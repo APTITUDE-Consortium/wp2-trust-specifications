@@ -10,7 +10,7 @@
     - [Registration Certificate](#registration-certificate)
     - [Registry](#registry)
   - [Trusted List Notification Process](#trusted-list-notification-process)
-    - [Trusted List Notification Process](#trusted-list-and-list-of-trusted-lists)
+    - [Trusted List and List of Trusted Lists](#trusted-list-and-list-of-trusted-lists)
 - [Trust Management and Lifecycle](#trust-management-and-lifecycle)
 - [Trust Evaluation](#trust-evaluation)
   - [Issuance Phase](#issuance-phase)
