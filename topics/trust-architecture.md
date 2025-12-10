@@ -106,7 +106,6 @@ graph BT
 
 ```mermaid
 graph TB
-graph TB
     %% Participants
 
     subgraph MS["Member State"]
