@@ -1,56 +1,54 @@
 # Trust Architecture
 
-This section describes the trust model and its architecture at a high level by providing definitions for the terms used in the rest of the ducument and representing graphically the trust processes which are in scope of D2.1. The 
+This section describes the trust model and its architecture at a high level by providing definitions for the terms used in the rest of the ducument and representing graphically the trust processes which are in scope of D2.1.
 
 ## Definitions
 
 In this section we give a precise meaning to the Entities, Components, Roles, Services and Processe which are relevant for the specification. The following definition are mutuated from the terminology already present in the ARF.
 
-An **Entity** is a distinct legal, organizational, or natural person that participates in the ecosystem. Entities possess a legal identity and are accountable for the actions of the components they operate, or whose operation they delegate to other Entities. The following Entities are present in this specification:
-- **User/Wallet Holder**: The natural or legal person who is the subject of the Person Identification Data (PID) and Electronic Attestation of Attributes (EAA) and who controls the Wallet Instance.
-- **Relying Party (RP)**: A natural or legal person that relies upon an Electronic Identification or Attestations for the provision of a service.
-- **Attestation Provider**: An Entity responsible for issuing Person Identification Data (PID) or Electronic Attestation of Attributes (EAA) to the Wallet Instance. This includes Qualified Trust Service Providers (QTSP) issuing Qualified EAAs.
-- **Wallet Provider**: An Entity that provides the Wallet Solution (software and related backend services) to the User and is responsible for its compliance with security and functional requirements.
-- **Registrar**: An Entity responsible for registering other ecosystem participants and maintaining authoritative records of their identity and authorization status.
-- **Trust Service Providers (TSP)**: An entity that provides one or more trust services, such as the creation, verification, and validation of electronic signatures, seals, or certificates. Some components of the Registrar such as the the Access Certificate Authority might be operated by a third party (other then the Registrar) which is a Trust Service Provider.
-- **Supervisory Bodies**: An Entity responsible for the supervision of Trust Service Providers, Attestation Providers, and other regulated actors to ensure compliance with the relevant regulations (e.g., eIDAS)
+An **Entity** is a distinct legal, or natural person that participates in the ecosystem. Entities possess an identity and are accountable for the actions of the Components they operate, or whose operation they delegate to other Entities. The following Entities are present in this specification:
+- **User/Wallet Holder**: The natural or legal person who controls the Wallet Unit.
+- **Relying Party (RP)**: A natural or legal person that relies upon presentation of Attestations from a Wallet Unit for the provision of a service.
+- **Attestation Provider**: An Entity responsible for issuing Attestations to the Wallet Unit. This includes Qualified Trust Service Providers (QTSP) issuing Qualified EAAs.
+- **Wallet Provider**: An Entity that provides the Wallet Solution (software and related backend services) to the User.
+- **Registrar**: An Entity responsible for onboasrding, registering other ecosystem participants and maintaining authoritative records of their identity, public key material and authorizations.
+- **Trust Service Providers (TSP)**: An entity that provides one or more trust services.
+- **Supervisory Bodies**: An Entity responsible for the supervision of Trust Service Providers, Attestation Providers, and other actors within the EUDIW ecosystem to ensure compliance with the relevant regulations.
 
-A **Component** is a functional unit, software module, or subsystem operated by an Entity to perform specific technical operations within the ecosystem. An Entity may operate multiple distinct Components. A Component is defined by its function within the architecture, regardless of which Entity physically operates it. For example, an Entity may delegate the operation of a Component to a specialized Trust Service Provider. In this scenario, the Component in question remains within the Entity's logical domain, even if the operational infrastructure belongs to the TSP. The following Components are present in this specification:
-- **Wallet Unit** (Wallet Solution component): The specific instantiation of the Wallet software installed on the User's device.
-- **Relying Party Instance** (Relying Party component): The specific instantiation of the Relying Party that interacts with the Wallet Instance to request and verify data.
-- **Registry** (Registrar component): The authoritative database or repository component where the Registrar stores the identity and metadata of registered entities.
-- **Trust List Provider** (Registrar component): The component responsible for generating and signing the Member State Trusted List and EU List of Trusted List.
-- **Catalogue** (MS/EU Component):
-- **OJEU** (EU Component): The Official Journal of the European Union, which serves as the publication mechanism for the List of Trusted Lists (LOTL), acting as the root of trust anchor.
-- **Trusted List** (MS/EU Component): The signed artifact (in XML format) containing the authoritative list of trusted services and their status within a Member State.
-- **Access Certification Authority** (Registrar component): The PKI component responsible for issuing Access Certificates to authenticated participants
-- **Registration Certificate Provider** (Registrar component): The component responsible for issuing Registration Certificates that encode the specific entitlements or data request permissions of an Entity.
+A **Component** is a functional unit, software module, or subsystem operated by an Entity to perform specific technical operations within the EUDIW ecosystem. An Entity may operate multiple distinct Components. A Component is defined by its function within the architecture, regardless of which Entity physically operates it. For example, an Entity may delegate the operation of a Component to a specialized Trust Service Provider, regardless the Component in question remains within the Entity's logical domain. The following Components are present in this specification:
+- **Wallet Unit** (Wallet Solution Component): The specific instantiation of the Wallet software installed on the User's device.
+- **Relying Party Instance** (Relying Party Component): The specific instantiation of the Relying Party that interacts with the Wallet Unit to request and verify data.
+- **Registry** (Registrar Component): The authoritative database or repository Component where the Registrar stores the identity and metadata of registered entities.
+- **Trust List Provider** (Registrar Component): The Component responsible for generating and signing the Member State Trusted List.
+- **Catalogue** (MS/EU Component): The Component which Registration Certificate Provider may use to check the entitlements of a certain Wallet Relying Party to issue/request certain attributes/credentials.
+- **OJEU** (EU Component): The Official Journal of the European Union, which serves as the publication mechanism for the List of Trusted Lists (LOTL) URL and TLS certificate hash, acting as the root of trust.
+- **Trusted List** (MS/EU Component): The signed artifact (in XML format) containing the list of trusted services and their status within a Member State.
+- **Access Certification Authority** (Registrar Component): The PKI Component responsible for issuing Access Certificates to authenticated participants.
+- **Registration Certificate Provider** (Registrar Component): The Component responsible for issuing Registration Certificates that encode the specific entitlements or data request permissions of an Entity.
 
-A **Role** describes the specific function, authorization, or set of responsibilities assigned to an Entity or Component within a specific interaction or process. The following Roles are present in this specification:
-- **Issuer**: The role assumed by an Attestation Provider when creating and cryptographically signing a PID or EAA.
-- **Verifier**: The role assumed by a Relying Party Instance when validating the authenticity and integrity of a credential presented by a Wallet Instance.
-- **Holder**: The role assumed by the User (operating the Wallet Instance) when storing and selectively disclosing credentials to a Verifier.
-- **Subscriber**: The role assumed by an Entity that contracts with a Registrar or Trust Service Provider for the issuance of a certificate.
-- **Revocation Status Publisher**: The role responsible for publishing information regarding the validity status of certificates or credentials (e.g., CRL issuer, OCSP responder).
+A **Role** describes the specific function, authorization, or set of responsibilities assigned to an Entity or Component during a specific interaction or process. The following Roles are present in this specification:
+- **Issuer**: The role of an Attestation Provider when issuing credentials to a Wallet Unit.
+- **Verifier**: The role of a Relying Party Instance when validating the credential presentation by a Wallet Unit.
+- **Holder**: The role of the User (operating the Wallet Unit) when requesting, storing or selectively disclosing credentials.
 
-A **Service** is a distinct capability or interface exposed by a Component to other actors in the ecosystem to facilitate onboarding, lifecycle management of entities, or transactions. The following Serivices are present in this specification:
+A **Service** is a distinct capability or interface exposed by a Component to other actors in the ecosystem to facilitate a process such as onboarding, lifecycle management, or trust evaluation. The following Services are present in this specification:
 - **Certificate Revocation Service**: The interface for checking the revocation status of certificates (e.g., via CRL download points, OCSP responders, or Status Lists).
-- **Registry API**: The programmatic interface exposed by the Registry component allowing participants to query Entity metadata, status, or public keys.
+- **Registry API**: The programmatic interface exposed by the Registry Component allowing participants to query Entity metadata, status, or public keys.
 - **Catalogue API**: The interface allowing the retrieval of trusted metadata used by the Registrar and Registration Certificate Provider needed for the Registration phase .
 
-A **Process** describes the workflow and sequence of interactions between Entities and Components to achieve a specific goal. The following Processes are present in this specification:
-- **Publication**, the process thorugh which an Entity requests onboarding to the Registrar; the Registrar then registers the Entity's metadata in the Registry, and prompts the Access Certification Authority and optionally the Registration Certificate Provider to issue an Access and Registration Certificate.   
-- **Notification**, the process thorugh which a MS notifies the identifiers and public key material of its Trust List Providers to the EC for inclusion in the LoTL 
-- **Trust Evaluation**, the process through which an Entity authenticates another Entity using the EC LoTL as the primary Trust Anchor 
-- **Entitlements Evaluations**, the process through which an Entity checks whether another Entity (which has been already authenticated) is authorized to perform some transaction using the ``entitlements`` present in the Registration Certificate; 
-- **Trust Management**, the process by which Supervisory Bodies, Member States, Trust List Providers and Access Certificate Authorities supervise Entities and revocate certificates if need be;
-- **Entitlement Management**, the process by which Supervisory Bodies, Member States, and Registration Certificate Providers supervise the conduct of Attestation Providers and Relying Parties against the authorization present in the Registration Certificates.
+A **Process** describes the workflow and sequence of interactions between Entities and/or Components to achieve a specific goal. The following Processes are present in this specification:
+- **Publication**, the process through which an Entity requests onboarding to the EUDIW ecosystem; the Registrar registers the Entity's metadata in the Registry while the Access Certification Authority and the Registration Certificate Provider, issue an Access and, optionally, Registration Certificate.   
+- **Notification**, the process through which a Member State notifies the identifiers and public key material of its Trust List Providers to the European Commission for inclusion in the List of Trusted List. 
+- **Trust Evaluation**, the process through which an Entity authenticates another Entity using the LoTL as the primary Trust Anchor.
+- **Entitlements Evaluations**, the process through which an Entity checks whether another Entity (which has been already authenticated) is authorized to perform some transaction using the parameters present in the Registration Certificate. 
+- **Trust Management**, the process by which Supervisory Bodies, Member States, Trust List Providers and Access Certificate Authorities monitor Entities and revoke certificates if need be.
+- **Entitlement Management**, the process by which Supervisory Bodies, Member States, and Registration Certificate Providers monitor the conduct of Attestation Providers and Relying Parties to ensure compliance with the relevant regulations and authorizations granted during Registration.
 
-##
+## Terminology Mapping
 The following table maps terms across the Implementing Acts, ETSI Specifications, and the ARF frameworks.
 
 | IA | ETSI | ARF |
-| :--- | :--- | :--- |
+| :- | :--- | :-- |
 | | Wallet Relying Party | Attestation Provider |
 | Wallet Relying Party | Wallet Relying Party | Relying Party |
 | Wallet Provider | Wallet Provider | Wallet Provider |
@@ -95,7 +93,7 @@ graph BT
     style Entity fill:#e8f5e9
 
     %% Arrows
-    Entity -->|1. Request| Registrar
+    Entity -->|1. Registration Request| Registrar
     Registrar -->|2. Checks Rulebooks </br>for onboarding| Cat
     Registrar -->|3. Registers the Entity's metadata| Registry
     ACA -->|4. Issue Access Certificate| Entity
