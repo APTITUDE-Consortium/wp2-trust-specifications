@@ -15,8 +15,12 @@ An **Entity** is a distinct legal, or natural person that participates in the ec
 - **Trust Service Provider (TSP)**: An entity that provides one or more trust services.
 - **Supervisory Body**: An Entity responsible for the supervision of Trust Service Providers, Attestation Providers, and other actors within the EUDIW ecosystem to ensure compliance with the relevant regulations.
 
+**Regulatory Subjects**: These are subjects that define rules and specific operational procedures for Entities.
+- **Member States**: They norm the Registration process and designate Registrars for the onboarding of Entities. In addition, they are responsible for communicating to the European Commission the Trust List Providers at the National level. These may manage directly or indirectly a Catalogue of National credentials.
+- **European Commission**: The subject in charge of providing and keeping up to date the OJEU, designating the List of Trusted List Provider, and a Catalogue of EU credentials.
+
 A **Component** is a functional unit, software module, or subsystem operated by an Entity to perform specific technical operations within the EUDIW ecosystem. An Entity may operate multiple distinct Components. A Component is defined by its function within the architecture, regardless of which Entity physically operates it. For example, an Entity may delegate the operation of a Component to a specialized Trust Service Provider, regardless the Component in question remains within the Entity's logical domain. The following Components are present in this specification:
-- **Wallet Unit** (Wallet Solution Component): The specific instantiation of the Wallet software installed on the User's device.
+- **Wallet Unit** (Wallet Provider Component): The specific instantiation of the Wallet software installed on the User's device.
 - **Relying Party Instance** (Relying Party Component): The specific instantiation of the Relying Party that interacts with the Wallet Unit to request and verify data.
 - **Registry** (Registrar Component): The authoritative database or repository Component where the Registrar stores the identity and metadata of registered entities.
 - **Trust List Provider** (Registrar Component): The Component responsible for generating and signing the Member State Trusted List.
@@ -131,7 +135,7 @@ graph TB
     end
 
     LoTL["List of Trusted List"]
-    OJEU["Official Journal of the EU"]
+    OJEU["Official Journal of the European Union"]
 
     %% --- Styles ---
 
@@ -182,8 +186,8 @@ graph TB
     
     %% Trust Evaluation Flow
     A -->|1. Reads Entity A Trust Anchor| B
-    B -->|2. Searches for LoTL URL and LoTLSO certificate| OJEU
-    B -->|3. Fetches LoTL.xml<br>- Verifies LoTL signature</br>- Obtains MS TLSO certificate| LoTL
+    B -->|2. Searches for LoTL URL and LoTL Provider certificate| OJEU
+    B -->|3. Fetches LoTL.xml<br>- Verifies LoTL signature</br>- Obtains MS TL Provider certificate| LoTL
     B -->|4. Fetches TL with TA</br>- Verifies TL signature<br>- Obtains TA certificate| TL
 ```
 
