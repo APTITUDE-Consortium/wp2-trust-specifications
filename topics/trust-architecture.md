@@ -16,17 +16,17 @@ An **Entity** is a distinct legal, or natural person that participates in the ec
 - **Supervisory Body**: An Entity responsible for the supervision of Trust Service Providers, Attestation Providers, and other actors within the EUDIW ecosystem to ensure compliance with the relevant regulations.
 
 **Regulatory Subjects**: These are subjects that define rules and specific operational procedures for Entities.
-- **Member States**: They norm the Registration process and designate Registrars for the onboarding of Entities. In addition, they are responsible for communicating to the European Commission the Trust List Providers at the National level. These may manage directly or indirectly a Catalogue of National credentials.
-- **European Commission**: The subject in charge of providing and keeping up to date the OJEU, designating the List of Trusted List Provider, and a Catalogue of EU credentials.
+- **Member States (MS)**: They norm the Registration process and designate Registrars for the onboarding of Entities. In addition, they are responsible for communicating to the European Commission the Trusted List Providers at the National level. These may manage directly or indirectly a Catalogue of National credentials.
+- **European Commission (EU)**: The subject in charge of providing and keeping up to date the Official Journal of the European Union, designating the List of Trusted List Provider, and a Catalogue of EU credentials.
 
 A **Component** is a functional unit, software module, or subsystem operated by an Entity to perform specific technical operations within the EUDIW ecosystem. An Entity may operate multiple distinct Components. A Component is defined by its function within the architecture, regardless of which Entity physically operates it. For example, an Entity may delegate the operation of a Component to a specialized Trust Service Provider, regardless the Component in question remains within the Entity's logical domain. The following Components are present in this specification:
 - **Wallet Unit** (Wallet Provider Component): The specific instantiation of the Wallet software installed on the User's device.
 - **Relying Party Instance** (Relying Party Component): The specific instantiation of the Relying Party that interacts with the Wallet Unit to request and verify data.
 - **Registry** (Registrar Component): The authoritative database or repository Component where the Registrar stores the identity and metadata of registered entities.
-- **Trust List Provider** (Registrar Component): The Component responsible for generating and signing the Member State Trusted List.
-- **Catalogue** (MS/EU Component): The Component which Registration Certificate Provider may use to check the entitlements of a certain Wallet Relying Party to issue/request certain attributes/credentials.
-- **OJEU** (EU Component): The Official Journal of the European Union, which serves as the publication mechanism for the List of Trusted Lists (LOTL) URL and TLS certificate hash, acting as the root of trust.
 - **Trusted List** (MS/EU Component): The signed artifact (in XML format) containing the list of trusted services and their status within a Member State.
+- **Trusted List Provider** (Registrar Component): The Component responsible for generating and signing the Member State Trusted List.
+- **Catalogue** (MS/EU Component): The Component which Registration Certificate Provider may use to check the entitlements of a certain Wallet Relying Party to issue/request certain attributes/credentials.
+- **Official Journal of the European Union** (OJEU - EU Component): The Official Journal of the European Union, which serves as the publication mechanism for the List of Trusted Lists (LOTL) URL and TLS certificate hash, acting as the root of trust.
 - **Access Certification Authority** (Registrar Component): The PKI Component responsible for issuing Access Certificates to authenticated participants.
 - **Provider of Registration Certificates** (Registrar Component): The Component responsible for issuing Registration Certificates that encode the specific entitlements or data request permissions of an Entity.
 
@@ -42,10 +42,10 @@ A **Service** is a distinct capability or interface exposed by a Component to ot
 
 A **Process** describes the workflow and sequence of interactions between Entities and/or Components to achieve a specific goal. The following Processes are present in this specification:
 - **Publication**: The process through which an Entity requests onboarding to the EUDIW ecosystem; the Registrar registers the Entity's metadata in the Registry while the Access Certification Authority and the Registration Certificate Provider, issue an Access and, optionally, Registration Certificate.   
-- **Notification**: The process through which a Member State notifies the identifiers and public key material of its Trust List Providers to the European Commission for inclusion in the List of Trusted List. 
+- **Notification**: The process through which a Member State notifies the identifiers and public key material of its Trusted List Providers to the European Commission for inclusion in the List of Trusted List. 
 - **Trust Evaluation**: The process through which an Entity authenticates another Entity using the LoTL as the primary Trust Anchor (TA).
 - **Entitlements Evaluations**: The process through which an Entity checks whether another Entity (which has been already authenticated) is authorized to perform some transaction using the parameters present in the Registration Certificate. 
-- **Trust Management**: The process by which Supervisory Bodies, Member States, Trust List Providers and Access Certificate Authorities monitor Entities and revoke certificates if need be.
+- **Trust Management**: The process by which Supervisory Bodies, Member States, Trusted List Providers and Access Certificate Authorities monitor Entities and revoke certificates if need be.
 - **Entitlement Management**: The process by which Supervisory Bodies, Member States, and Registration Certificate Providers monitor the conduct of Attestation Providers and Relying Parties to ensure compliance with the relevant regulations and authorizations granted during Registration.
 
 ## Terminology Mapping
@@ -118,7 +118,7 @@ graph TB
         subgraph Child[" "]
             ACA["Access Certificate Authority"]
             RCP["Provider of Registration Certificates"]
-            MSTLSO["Trust List Provider"]
+            MSTLSO["Trusted List Provider"]
         end
     end
 
