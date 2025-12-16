@@ -23,8 +23,10 @@ A **Component** is a functional unit, software module, or subsystem operated by 
 - **Wallet Unit** (Wallet Provider Component): The specific instantiation of the Wallet software installed on the User's device.
 - **Relying Party Instance** (Relying Party Component): The specific instantiation of the Relying Party that interacts with the Wallet Unit to request and verify data.
 - **Registry** (Registrar Component): The authoritative database or repository Component where the Registrar stores the identity and metadata of registered entities.
-- **Trusted List** (MS/EU Component): The signed artifact (in XML format) containing the list of trusted services and their status within a Member State.
+- **Trusted List** (TL - MS Component): The signed artifact (in XML format) containing the list of trusted services and their status within a Member State.
+- **List of Trusted Lists** (LoTL - EU Component): The signed artifact (in XML format) containing the list of Member States' Trusted List Providers.
 - **Trusted List Provider** (Registrar Component): The Component responsible for generating and signing the Member State Trusted List.
+- **List of Trusted Lists Provider** (Registrar Component): The Component responsible for generating and signing the List of Trusted Lists.
 - **Catalogue** (MS/EU Component): The Component which Registration Certificate Provider may use to check the entitlements of a certain Wallet Relying Party to issue/request certain attributes/credentials.
 - **Official Journal of the European Union** (OJEU - EU Component): The Official Journal of the European Union, which serves as the publication mechanism for the List of Trusted Lists (LOTL) URL and TLS certificate hash, acting as the root of trust.
 - **Access Certification Authority** (Registrar Component): The PKI Component responsible for issuing Access Certificates to authenticated participants.
