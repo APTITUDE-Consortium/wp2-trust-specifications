@@ -4,16 +4,16 @@ This section describes the trust model and its architecture at a high level by p
 
 ## Definitions
 
-In this section we give a precise meaning to the Entities, Components, Roles, Services and Processe which are relevant for the specification. The following definition are mutuated from the terminology already present in the ARF.
+In this section we give a precise meaning to the Entities, Components, Roles, Services and Processes which are relevant for the specification. The following definition are mutuated from the terminology already present in the ARF.
 
 An **Entity** is a distinct legal, or natural person that participates in the ecosystem. Entities possess an identity and are accountable for the actions of the Components they operate, or whose operation they delegate to other Entities. The following Entities are present in this specification:
 - **User/Wallet Holder**: The natural or legal person who controls the Wallet Unit.
 - **Relying Party (RP)**: A natural or legal person that relies upon presentation of Attestations from a Wallet Unit for the provision of a service.
-- **Attestation Provider**: An Entity responsible for issuing Attestations to the Wallet Unit. This includes Qualified Trust Service Providers (QTSP) issuing Qualified EAAs.
+- **Attestation Provider**: An Entity responsible for issuing Attestations to the Wallet Unit. This includes Qualified Trust Service Providers (QTSP) issuing Qualified Electronic Attestation of Attributes (QEAA).
 - **Wallet Provider**: An Entity that provides the Wallet Solution (software and related backend services) to the User.
-- **Registrar**: An Entity responsible for onboasrding, registering other ecosystem participants and maintaining authoritative records of their identity, public key material and authorizations.
-- **Trust Service Providers (TSP)**: An entity that provides one or more trust services.
-- **Supervisory Bodies**: An Entity responsible for the supervision of Trust Service Providers, Attestation Providers, and other actors within the EUDIW ecosystem to ensure compliance with the relevant regulations.
+- **Registrar**: An Entity responsible for onboarding and registering other ecosystem participants, as well as maintaining authoritative records of their identity, public key material and authorizations.
+- **Trust Service Provider (TSP)**: An entity that provides one or more trust services.
+- **Supervisory Body**: An Entity responsible for the supervision of Trust Service Providers, Attestation Providers, and other actors within the EUDIW ecosystem to ensure compliance with the relevant regulations.
 
 A **Component** is a functional unit, software module, or subsystem operated by an Entity to perform specific technical operations within the EUDIW ecosystem. An Entity may operate multiple distinct Components. A Component is defined by its function within the architecture, regardless of which Entity physically operates it. For example, an Entity may delegate the operation of a Component to a specialized Trust Service Provider, regardless the Component in question remains within the Entity's logical domain. The following Components are present in this specification:
 - **Wallet Unit** (Wallet Solution Component): The specific instantiation of the Wallet software installed on the User's device.
@@ -24,7 +24,7 @@ A **Component** is a functional unit, software module, or subsystem operated by 
 - **OJEU** (EU Component): The Official Journal of the European Union, which serves as the publication mechanism for the List of Trusted Lists (LOTL) URL and TLS certificate hash, acting as the root of trust.
 - **Trusted List** (MS/EU Component): The signed artifact (in XML format) containing the list of trusted services and their status within a Member State.
 - **Access Certification Authority** (Registrar Component): The PKI Component responsible for issuing Access Certificates to authenticated participants.
-- **Registration Certificate Provider** (Registrar Component): The Component responsible for issuing Registration Certificates that encode the specific entitlements or data request permissions of an Entity.
+- **Provider of Registration Certificates** (Registrar Component): The Component responsible for issuing Registration Certificates that encode the specific entitlements or data request permissions of an Entity.
 
 A **Role** describes the specific function, authorization, or set of responsibilities assigned to an Entity or Component during a specific interaction or process. The following Roles are present in this specification:
 - **Issuer**: The role of an Attestation Provider when issuing credentials to a Wallet Unit.
@@ -34,15 +34,15 @@ A **Role** describes the specific function, authorization, or set of responsibil
 A **Service** is a distinct capability or interface exposed by a Component to other actors in the ecosystem to facilitate a process such as onboarding, lifecycle management, or trust evaluation. The following Services are present in this specification:
 - **Certificate Revocation Service**: The interface for checking the revocation status of certificates (e.g., via CRL download points, OCSP responders, or Status Lists).
 - **Registry API**: The programmatic interface exposed by the Registry Component allowing participants to query Entity metadata, status, or public keys.
-- **Catalogue API**: The interface allowing the retrieval of trusted metadata used by the Registrar and Registration Certificate Provider needed for the Registration phase .
+- **Catalogue API**: The interface allowing the retrieval of trusted metadata used by the Registrar and Registration Certificate Provider needed for the Registration phase.
 
 A **Process** describes the workflow and sequence of interactions between Entities and/or Components to achieve a specific goal. The following Processes are present in this specification:
-- **Publication**, the process through which an Entity requests onboarding to the EUDIW ecosystem; the Registrar registers the Entity's metadata in the Registry while the Access Certification Authority and the Registration Certificate Provider, issue an Access and, optionally, Registration Certificate.   
-- **Notification**, the process through which a Member State notifies the identifiers and public key material of its Trust List Providers to the European Commission for inclusion in the List of Trusted List. 
-- **Trust Evaluation**, the process through which an Entity authenticates another Entity using the LoTL as the primary Trust Anchor.
-- **Entitlements Evaluations**, the process through which an Entity checks whether another Entity (which has been already authenticated) is authorized to perform some transaction using the parameters present in the Registration Certificate. 
-- **Trust Management**, the process by which Supervisory Bodies, Member States, Trust List Providers and Access Certificate Authorities monitor Entities and revoke certificates if need be.
-- **Entitlement Management**, the process by which Supervisory Bodies, Member States, and Registration Certificate Providers monitor the conduct of Attestation Providers and Relying Parties to ensure compliance with the relevant regulations and authorizations granted during Registration.
+- **Publication**: The process through which an Entity requests onboarding to the EUDIW ecosystem; the Registrar registers the Entity's metadata in the Registry while the Access Certification Authority and the Registration Certificate Provider, issue an Access and, optionally, Registration Certificate.   
+- **Notification**: The process through which a Member State notifies the identifiers and public key material of its Trust List Providers to the European Commission for inclusion in the List of Trusted List. 
+- **Trust Evaluation**: The process through which an Entity authenticates another Entity using the LoTL as the primary Trust Anchor (TA).
+- **Entitlements Evaluations**: The process through which an Entity checks whether another Entity (which has been already authenticated) is authorized to perform some transaction using the parameters present in the Registration Certificate. 
+- **Trust Management**: The process by which Supervisory Bodies, Member States, Trust List Providers and Access Certificate Authorities monitor Entities and revoke certificates if need be.
+- **Entitlement Management**: The process by which Supervisory Bodies, Member States, and Registration Certificate Providers monitor the conduct of Attestation Providers and Relying Parties to ensure compliance with the relevant regulations and authorizations granted during Registration.
 
 ## Terminology Mapping
 The following table maps terms across the Implementing Acts, ETSI Specifications, and the ARF frameworks.
@@ -55,7 +55,7 @@ The following table maps terms across the Implementing Acts, ETSI Specifications
 | | | Registry |
 | | Trusted List Scheme Operator | Trusted List Provider |
 
-## High level diagrams
+## High Level Diagrams
 
 In the following section, we represent the diagrams related to the high-level view of the processes detailed in the Definition section. 
 
@@ -63,9 +63,9 @@ In the following section, we represent the diagrams related to the high-level vi
 
 ```mermaid
 graph BT
-    subgraph MS
-        ACA
-        RCA
+    subgraph MS["Member State"]
+        ACA["Access Certificate Authority"]
+        RCA["Provider of Registration Certificates"]
         Registrar
     end
     Entity
@@ -93,11 +93,11 @@ graph BT
     style Entity fill:#e8f5e9
 
     %% Arrows
-    Entity -->|1. Registration Request| Registrar
+    Entity -->|1. Requests Registration| Registrar
     Registrar -->|2. Checks Rulebooks </br>for onboarding| Cat
     Registrar -->|3. Registers the Entity's metadata| Registry
-    ACA -->|4. Issue Access Certificate| Entity
-    RCA -.->|4. Issue Registration Certificate| Entity
+    ACA -->|4. Issues Access Certificate| Entity
+    RCA -.->|4. Issues Registration Certificate| Entity
 ```
 
 ### Notification
@@ -109,12 +109,12 @@ graph TB
     subgraph MS["Member State"]
         AP["Attestation Provider"]
         RP[Relying Party]
-        WP["Wallet Providers"]
+        WP["Wallet Provider"]
         Registrar
         subgraph Child[" "]
             ACA["Access Certificate Authority"]
             RCP["Provider of Registration Certificates"]
-            MSTLSO["Trust List Providers"]
+            MSTLSO["Trust List Provider"]
         end
     end
 
@@ -162,7 +162,7 @@ graph TB
     EC -->|5. Designates| LoTLSO
     LoTLSO -->|6. Publishes| LoTL
     LoTLSO -.->|Has certificate in| OJEU 
-    LoTL -.->|Is referenced| OJEU 
+    LoTL -.->|Is referenced in| OJEU 
 ```
 
 ### Trust Evaluation
@@ -181,10 +181,10 @@ graph TB
     style B fill:#e8f5e9
     
     %% Trust Evaluation Flow
-    A -->|1. Read Entity A Trust Anchor| B
-    B -->|2. Search for LoTL URL and LoTLSO certificate| OJEU
-    B -->|3. Fetch LoTL.xml<br>- Verify LoTL signature</br>- Obtain MS TLSO certificate| LoTL
-    B -->|4. Fetch TL with TA</br>- Verify TL signature<br>- Obtain TA certificate| TL
+    A -->|1. Reads Entity A Trust Anchor| B
+    B -->|2. Searches for LoTL URL and LoTLSO certificate| OJEU
+    B -->|3. Fetches LoTL.xml<br>- Verifies LoTL signature</br>- Obtains MS TLSO certificate| LoTL
+    B -->|4. Fetches TL with TA</br>- Verifies TL signature<br>- Obtains TA certificate| TL
 ```
 
 ### Entitlements Evaluations
