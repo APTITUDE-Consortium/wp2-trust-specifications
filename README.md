@@ -11,18 +11,19 @@ The repository is structured according to the following organization:
 ├── references
 ├── requirements
 │   ├── arf.md
-│   ├── others.md
+│   ├── etsi-ts-119-411-8.md
+│   ├── etsi-ts-119-475.md
+│   └── others.md
 ├── topics
 │   ├── access-certificate.md
-│   ├── entitlement.md
+│   ├── entitlement-policy.md
 │   ├── lifecycle-management.md
 │   ├── registration-certificate.md
-│   ├── registration-process.md
 │   ├── registry.md
 │   ├── trust-architecture.md
-│   ├── trust-evaluation-process.md
-│   ├── trusted-list-and-list-of-trusted-lists.md
-│   └── trusted-list-notification-publication-processes.md
+│   ├── trust-evaluation-process-authentication.md
+│   ├── trust-evaluation-process-authorization.md
+│   └── trusted-list-and-list-of-trusted-lists.md
 ├── deliverable-2.1-trust-md
 └── README.md
 ```
