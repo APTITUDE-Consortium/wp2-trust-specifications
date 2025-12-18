@@ -17,14 +17,15 @@ The repository is structured according to the following organization:
 ├── topics
 │   ├── access-certificate.md
 │   ├── entitlement-policy.md
-│   ├── lifecycle-management.md
 │   ├── registration-certificate.md
 │   ├── registry.md
+│   ├── revocation-mechanisms.md
 │   ├── trust-architecture.md
 │   ├── trust-evaluation-process-authentication.md
 │   ├── trust-evaluation-process-authorization.md
+│   ├── trust-management-process.md
 │   └── trusted-list-and-list-of-trusted-lists.md
-├── deliverable-2.1-trust-md
+├── deliverable-2.1-trust.md
 └── README.md
 ```
 
@@ -33,5 +34,5 @@ The main files are as follows:
 |-------------------|---------------------|
 | `references/`     | Contains the reference material |
 | `requirements/`   | Contains the lists of consolidated requirements from different sources |
-| `topics/`         | Contains the  |
-| `deliverable-2.1-trust-md` | Represents the *Trust Specifications* chapter of deliverable D2.1 |
+| `topics/`         | Contains the files associated with each topic |
+| `deliverable-2.1-trust.md` | Represents the *Trust Specifications* chapter of deliverable D2.1 |
