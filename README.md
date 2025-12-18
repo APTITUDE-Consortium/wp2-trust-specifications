@@ -36,3 +36,15 @@ The main files are as follows:
 | `requirements/`   | Contains the lists of consolidated requirements from different sources |
 | `topics/`         | Contains the files associated with each topic |
 | `deliverable-2.1-trust.md` | Represents the *Trust Specifications* chapter of deliverable D2.1 |
+
+## Funding
+
+![Co-funded by the European Union](https://github.com/APTITUDE-Consortium/aptitude-eudi-wallet-rfcs/raw/main/images/eu-cofunded.png)
+
+The project is co-funded by the European Union. However, the views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union or the granting authority. Neither the European Union nor the granting authority can be held responsible.
+
+## Licensing
+
+Licensed under the Apache 2.0 License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the LICENSE for the specific language governing permissions and limitations under the License.
