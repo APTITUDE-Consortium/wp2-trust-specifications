@@ -1,7 +1,7 @@
 # Normative Requirements (from ARF)
 
-| ID | Description | Source | Topic | Phase | Subject | In scope of the pilot? | Notes  |
-|----|-------------|--------|-------|-------|---------|------------------------|--------|
+| ID | Description | Source | Topic | Phase | Subject | Scope? | Notes |
+|:--|:---------------------------------------|:-----------|:---------|:---------|:--|:---------|:-------------------|
 | CT_01 | An Access CA issuing access certificates SHALL register these in a CT log according to RFC 9162, if such a log is available for access certificates. | ARF 2.7.3 Annex 2 - Topic 55 | Access certificate, CT Log | Registration | Access Certificate Authority | No | In the LSP we hardcode the Signed Certificate Timestamp in the Access Certificate avoiding the testing of the CT Log. |
 | CT_02 | An Access CA issuing access certificates SHALL describe in its Certificates Practice Statement (CPS) how it logs all access certificates. | ARF 2.7.3 Annex 2 - Topic 55 | Access certificate, CT Log | Registration | Access Certificate Authority | No | CPS is a normative/comformance aspect and therefore not to be tested |
 | CT_03 | In case a CT log provider for access certificates is available, all Access CAs SHALL act as monitors in the CT ecosystem. Access CAs SHOULD still monitor the CT logs in situations of temporary unavailability. | ARF 2.7.3 Annex 2 - Topic 55 | Access certificate, CT Log | Registration | Access Certificate Authority | No | Monitorning of the CT log cannot be tested in the pilot. |
