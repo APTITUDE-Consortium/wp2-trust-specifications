@@ -17,7 +17,7 @@ At a high level, the Authentication Trust Evaluation Process is composed of **Ac
       - Validating the List of Trusted Entities using information obtained from the Official Journal of the European Union (OJEU).
 
   - **Trusted List (TL) Validation**
-    In case the Entity being authenticated is a QEAA Provider in a Member State Trusted List (MS TL), the authenticating Entity downloads and establishes trust in the List of Trusted Lists (LoTL) and the MS TL that contains the metadata of the Entity being authenticated. This typically involves:
+    In case the Entity being authenticated is a QEAA Provider or a QTSP in a Member State Trusted List (MS TL), the authenticating Entity downloads and establishes trust in the List of Trusted Lists (LoTL) and the MS TL that contains the metadata of the Entity being authenticated. This typically involves:
       - Retrieving the List of Trusted Lists that enumerates Trusted List Providers.
       - Validating the authenticity and integrity of the List of Trusted Lists by validating the corresponding List of Trusted Lists Provider Certificate using information obtained from the Official Journal of the European Union (OJEU).
       - Obtaining the Trusted List Provider’s public key (or certificate) from the validated "List of Trusted Lists".
@@ -472,8 +472,3 @@ To validate the TL of a QTSP or an Issuer (when utilizing the ETSI TS 119 612 hi
 
 This certificate (and its public key) is now a Trusted Anchor for authenticating the entity (e.g., for verifying a QES or specific credential signature).
 
-## References
-- https://github.com/eu-digital-idEntity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/architecture-and-reference-framework-main.md
-- IT TL https://eidas.agid.gov.it/TL/TSL-IT.xml
-- EU LoTL ttps://ec.europa.eu/tools/lotl/eu-lotl.xml
-- https://eidas.ec.europa.eu/efda/wallet
