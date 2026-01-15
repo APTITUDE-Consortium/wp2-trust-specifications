@@ -61,8 +61,8 @@ The Access Certificate Validation Process is a specific instance of the Authenti
 ### Sequence Diagram
 ```mermaid
 sequenceDiagram
-    participant Server as Server (Presenter)
-    participant Client as Client (Verifier)
+    participant Server as Server
+    participant Client as Client
     Server->>+Client: Request/Response with Access Certificate
     Client->>Client: Validate Access Certificate
     alt Validation successful
@@ -321,7 +321,7 @@ This section summarizes the process by which a List of Trusted Entities (LoTE) a
 ```mermaid
 sequenceDiagram
   participant Client
-  participant EU_API as EU Trust Repository
+  participant EU_API as EU LoTE Distribution Point
 
   Client->>EU_API: HTTP GET Request (URL from OJEU)
   EU_API-->>Client: List of Trusted Entities (JWT or XML)
@@ -380,8 +380,8 @@ This section summarizes the process by which a Trusted List (TL) at the Member S
 ```mermaid
 sequenceDiagram
     participant Client
-    participant EU_API as EU List (LoTL)
-    participant MS_Repo as MS Trusted List
+    participant EU_API as EU LoTL Distribution Point
+    participant MS_Repo as MS TL Distribution Point
 
     Client->>EU_API: GET /LoTL.xml
     EU_API-->>Client: Returns EU List of Trusted Lists (XML)
