@@ -59,3 +59,266 @@ The column "Criticality" of the certificate extensions takes the semantics defin
 | qcStatements: esi4-qcStatement-1 | RFC 3739 clause 3.2.6 and <br/>ETSI EN 319 412-5, clause 4.2.1 | M(C) | NC | Applicable condition: for qualified certificates.<br/>It indicates that the certificate is qualified within the defined legal framework.<br/>For the eIDAS regulatory environment, the *QcCClegislation* shall be abesent.|
 |qcStatements: esi4-qcStatement-4 | RFC 3739 clause 3.2.6 and <br/>ETSI EN 319 412-5, clause 4.2.2 | M(C) | NC | Applicable condition: for qualified certificates.<br/>It indicates that the private key related to the certified public key resides in a QSCD according to eIDAS regulation.<br/>The extension is mandatory as stated in ETSI EN 319 411-2, GEN-6.6.1-03.|
 |qcStatements: esi4-qcStatement-6 | RFC 3739 clause 3.2.6 and <br/>ETSI EN 319 412-5, clause 4.2.3 | M(C) | NC | Applicable condition: for qualified certificates issued to legal persons, for the purpose of electronic seal.<br/>For certificates issued to natural persons for the purpose of electronic signatures, this QCStatement may be present.<br/>This QCStatement declares that a certificate is issued as one and only one of the purposes of electronic signature, electronic seal or web site authentication.<br/>The extension is mandatory for qualified certificates issued for the purpose of electronic seal as stated in ETSI EN 319 412-5, clause 5.|
+
+## Examples (Informative)
+
+### Example of an access certificate for legal persons following the NCP policy
+
+```
+
+AccessCertificate cert = {
+
+  tbsCertificate: {
+
+    version: 2,                     // integer value 2 for v3  
+    serialNumber: "0x6F3A0B91D2...", 
+    signature: AlgorithmIdentifier { 
+      oid: "1.2.840.113549.1.1.11",  // sha256WithRSAEncryption 
+      params: NULL 
+    }, 
+
+    issuer: DistinguishedName {      // issuer attributes for legal person 
+      countryName: "FR", 
+      organizationName: "Example Trust Services CA S.A.", 
+      commonName: "Example TS CA - Issuing", 
+      organizationIdentifier: "VATFR-123456789" 
+    }, 
+
+    validity: { 
+      notBefore: "2026-01-27T00:00:00Z", 
+      notAfter:  "2027-01-27T00:00:00Z" 
+    }, 
+
+    subject: DistinguishedName {     // subject attributes for legal person 
+      countryName: "FR", 
+      organizationName: "Relying Party Example S.A.", 
+      organizationIdentifier: "LEIXYZ-5493001KJTIIGC8Y1R12", 
+      commonName: "RP Example" 
+    }, 
+
+    subjectPublicKeyInfo: { 
+      algorithm: AlgorithmIdentifier { 
+        oid: "1.2.840.113549.1.1.1", 
+        params: NULL 
+      }, 
+
+      subjectPublicKey: "BASE64(SPKI_PUBLIC_KEY_BYTES)" 
+    }, 
+
+  
+    extensions: [
+
+      Extension { 
+        oid: "2.5.29.35",            // authorityKeyIdentifier 
+        critical: false, 
+        value: AuthorityKeyIdentifier { 
+          keyIdentifier: "HEX(20B_KEYID_OF_ISSUING_CA_PUBLIC_KEY)" 
+        } 
+      },
+      
+      Extension {
+        oid: "2.5.29.15",            // keyUsage 
+        critical: true, 
+        value: KeyUsage { 
+          nonRepudiation: true        // Type A 
+          // all others false 
+        } 
+      }, 
+
+      Extension {
+        oid: "1.3.6.1.5.5.7.1.1",    // authority information access
+        critical: false, 
+        value: AuthorityInfoAccess [ 
+          AccessDescription { 
+            accessMethod: "1.3.6.1.5.5.7.48.2",            // id-ad-caIssuers 
+            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer") 
+          }, 
+
+          AccessDescription { 
+            accessMethod: "1.3.6.1.5.5.7.48.1",            // id-ad-ocsp 
+            accessLocation: URI("https://ocsp.example.test") 
+          } 
+        ] 
+      }, 
+
+      Extension { 
+        oid: "2.5.29.32",            // certificatePolicies 
+        critical: false, 
+        value: CertificatePolicies [ 
+          PolicyInformation { 
+            policyIdentifier: "0.4.0.194118.1.2",          // NCP-l-eudiwrp (legal person) 
+            policyQualifiers: [ 
+              CPSuri("https://rpca.example.test/cps") 
+            ] 
+          } 
+        ] 
+      }, 
+
+      Extension { 
+        oid: "2.5.29.17",            // subjectAltName 
+        critical: false, 
+        value: SubjectAltName [ 
+          GeneralName.uniformResourceIdentifier("https://rp.example.test/support"), 
+          GeneralName.rfc822Name("wallet-support@rp.example.test"), 
+          GeneralName.otherName( 
+            typeId: "2.5.4.20",       // id-at-telephoneNumber 
+            value: "+33-1-23-45-67-89" 
+          ) 
+        ] 
+      }, 
+
+      Extension { 
+        oid: "2.5.29.31",            // cRLDistributionPoints 
+        critical: false,
+        value: CRLDistributionPoints [ 
+          DistributionPoint { 
+            distributionPoint: URI("https://crl.example.test/issuing-ca.crl") 
+          } 
+        ] 
+      } 
+    ] 
+  }, 
+
+  signatureAlgorithm: AlgorithmIdentifier { 
+    oid: "1.2.840.113549.1.1.11",    // must match/align with tbsCertificate.signature 
+    params: NULL 
+  }, 
+  signatureValue: "BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))" 
+} 
+
+```
+
+### Example of an access certificate for natural persons following the QCP policy that is short-term and therefore non-revocable
+
+``` 
+AccessCertificate cert = { 
+
+  tbsCertificate: { 
+
+    version: 2,                     // integer value 2 for v3  
+    serialNumber: "0x02A94F10C3B7",
+    signature: AlgorithmIdentifier { // M: per ETSI TS 119 312 (or national) 
+      oid: "1.2.840.113549.1.1.11",  // example: sha256WithRSAEncryption 
+      params: NULL 
+    }, 
+
+    issuer: DistinguishedName {      // issuer attributes for legal person 
+      countryName: "FR", 
+      organizationName: "Qualified Trust Service Provider CA S.A.", 
+      commonName: "QTSP CA - Qualified Issuing", 
+      organizationIdentifier: "VATFR-987654321" 
+    }, 
+
+      validity: {                    // short-term validity 
+      notBefore: "2026-01-27T10:00:00Z", 
+      notAfter:  "2026-01-27T22:00:00Z" 
+    }, 
+
+    subject: DistinguishedName { 
+      countryName: "FR", 
+      givenName: "Alice", 
+      surname: "Martin", 
+      commonName: "Alice Martin", 
+      serialNumber: "PNO-FR-ALICEMARTIN-839201"
+    }, 
+
+    subjectPublicKeyInfo: {
+      algorithm: AlgorithmIdentifier { 
+        oid: "1.2.840.10045.2.1",     // ecPublicKey 
+        params: "1.2.840.10045.3.1.7" // prime256v1 
+      }, 
+
+      subjectPublicKey: "BASE64(SPKI_PUBLIC_KEY_BYTES)" 
+    }, 
+
+    extensions: [ 
+
+      Extension {					            // authority key identifier
+        oid: "2.5.29.35", 
+        critical: false, 
+        value: AuthorityKeyIdentifier { 
+          keyIdentifier: "HEX(ISSUING_CA_KEYID)" 
+        } 
+      }, 
+
+      Extension { 
+        oid: "2.5.29.15",			        // key usage
+        critical: true, 
+        value: KeyUsage { 
+          nonRepudiation: true        // Type A 
+        } 
+      }, 
+
+      Extension {				            	// subject alternative name
+        oid: "2.5.29.17", 
+        critical: false, 
+        value: SubjectAltName [ 
+          GeneralName.rfc822Name("helpdesk@relyingparty.example.test"), 
+          GeneralName.uniformResourceIdentifier("https://relyingparty.example.test/support") 
+        ] 
+      }, 
+
+      Extension {	              			// authority information access 
+        oid: "1.3.6.1.5.5.7.1.1", 
+        critical: false, 
+        value: AuthorityInfoAccess [ 
+          AccessDescription { 
+            accessMethod: "1.3.6.1.5.5.7.48.2",  // id-ad-caIssuers 
+            accessLocation: URI("https://qtsp.example.test/caIssuers/qualified-issuing-ca.cer") 
+          } 
+        ] 
+      }, 
+
+      Extension { 
+        oid: "2.5.29.32", 	                    // certificate policies
+        critical: false, 
+        value: CertificatePolicies [ 
+          PolicyInformation { 
+            policyIdentifier: "0.4.0.194118.1.3",  // QCP-n-eudiwrp 
+            policyQualifiers: [ 
+              CPSuri("https://qtsp.example.test/cps") 
+            ] 
+          } 
+        ] 
+      }, 
+
+      Extension { 
+        oid: "0.4.0.194121.2.1",	 	// ext-etsi-valassured-ST-certs
+        critical: false, 
+        value:DER(NULL)             // (DER encoding: 0500)
+      }, 
+
+      Extension { 
+        oid: "2.5.29.56",           // id-ce-noRevAvail
+        critical: false, 
+        value:DER(NULL)             // (DER encoding: 0500)
+      }, 
+
+      Extension { 
+        oid: "1.3.6.1.5.5.7.1.3",   // qcStatements container 
+        critical: false, 
+        value: QCStatements [ 
+          QCStatement {				      // esi4-qcStatement-1
+            statementId: "0.4.0.1862.1.1",
+          }, 
+          QCStatement { 
+            statementId: "0.4.0.1862.1.4", // esi4-qcStatement-4
+          }, 
+          QCStatement { 
+            statementId: "0.4.0.1862.1.6", 	// esi4-qcStatement-6
+            value: 0.4.0.1862.1.6.1		// purpose : electronicSignature
+            } 
+          } 
+        ] 
+      } 
+    ] 
+  }, 
+
+  signatureAlgorithm: AlgorithmIdentifier { 
+    oid: "1.2.840.113549.1.1.11", 
+    params: NULL 
+  }, 
+
+  signatureValue: "BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))" 
+} 
+``` 
