@@ -1,7 +1,7 @@
 # Registry
 This document specifies requirements for the **Registrar of Wallet-Relying Parties (WRPs)** and the National Register of WRPs (the registry service) in the context of eIDAS2 and the EUDI Wallet ecosystem.
 ## Registrar & National Register of Wallet-Relying Parties (WRPs)
-**1. Scope and objective** 
+### Scope and objective
 
 Formally, a **Registrar** is the designated body that:
 - manages the WRP registration lifecycle (onboarding, update, suspension, cancellation),
@@ -10,10 +10,10 @@ Formally, a **Registrar** is the designated body that:
 
 The **National Register of WRPs** is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about WRPs and their authorisations/declared usage.
 
->Note (non-normative): The **National Register of Wallet-Relying Parties** is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a **single coherent common REST API** and return **signed statements** as required.<br>
->In addition, the issuance of WRPAC is based on whether the Relying Party has been registered with an active status in the National Register. This would prevent having **sectorial register** much less interest.
+>The **National Register of Wallet-Relying Parties** is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a **single coherent common REST API** and return **signed statements** as required.<br>
+>However, the usage of **sectorial register** MAY NOT have interest because the issuance of WRPAC is based on whether the Relying Party has been registered with an active status in the National Register.
 
-**2. Terms and Roles**
+### Terms and Roles
 
 - **Registrar of WRPs**: body designated by a Member State to establish and maintain the list of registered WRPs.
 - **Register (National Register of WRPs)**: the service exposing information about registered WRPs through a national website and a common REST API.
@@ -22,13 +22,73 @@ The **National Register of WRPs** is the publicly accessible system (dataset + A
 - **WRPRC**: Wallet-Relying Party Registration Certificate, which is optional, and is used to express intended use + registered data requests.
 - **Intermediary**: an entity acting on behalf of a WRP in wallet interactions (where applicable).
 
-**Normative basis**: [Commission Implementing Regulation (EU) 2025/848](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ%3AL_202500848) <br>
+**Implementing regulation basis**: [Commission Implementing Regulation (EU) 2025/848](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ%3AL_202500848) <br>
 **Architecture basis**: [EUDI Wallet ARF (Relying Party registration + authentication mechanisms)](https://eudi.dev/2.7.3/architecture-and-reference-framework-main/) <br>
 **Standardization basis**: [ETSI TS 119 475 v1.1.1](https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.01.01_60/ts_119475v010101p.pdf) and [TS 119 411-8 v1.1.1](https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf) <br>
 
 
+### Overall schema
+The following diagram shows interactions between involved actors in case that WRP interacts directly with Wallet 
+
+````mermaid
+flowchart LR
+  WRP[Wallet-Relying Party] -->|1. Onboarding application| REG[Registrar]
+  REG -->|2. Registration status + Annex I info| NREG[National Register / Single Common API]
+  
+  REG -->|3. Approval / lifecycle updates| WRP
+
+  WRP -->|4. Request certificate issuance| ACA[Access Certificate <br> Authority]
+  ACA -->|5. Issue WRPAC | WRP
+
+  WRP -->|"6. Request registration certificate (optional)"| RCA[Registration Certificate <br> Authority]
+  RCA -->|"7. Issue WRPRC (optional)" | WRP
+
+  WRP -->|8. OID4VP / ISO 18013-5 interaction| WAL[Wallet Unit]
+  WAL -->|9. Authenticate WRP using WRPAC| WAL
+  WAL -->|"10. Retrieve RP registered info (optional)"| NREG
+  WAL -->|11. User consent + attribute release| WRP
+
+````
+
+The following diagram shows interactions between involved actors in case that WRP interacts directly with Wallet
+
+````mermaid
+flowchart LR
+  INT[Intermediary on behalf of WRP]
+  REG[Registrar]
+  NREG[National Register / Single Common API]
+  ACA[Access Certificate <br> Authority]
+  REGCA[Registration Certificate <br> Authority]
+  WRP[Wallet-Relying Party]
+  WAL[Wallet Unit]
+  
+  %% Onboarding & registration
+  INT -->|1. Intermediary Onboarding application| REG
+  REG -->|2. Intermediary registration| NREG
+  
+  %% Certificate issuance
+  INT -->|3. Request certificate issuance| ACA
+  ACA -->|4. Issue WRPAC to Intermediary| INT
+
+  %% Contractual agreement
+  WRP -->|5. Agree on contract| INT
+  INT -->|6. RP onboarding application| REG
+  REG -->|7. RP registration| NREG
+
+  INT -->|"8. Request Registration Certificate (optional)"| REGCA
+  REGCA -->|"9. Issue WRPRC for WRP (optional)"| INT
+  
+  %% Wallet interaction
+  INT -->|10. OID4VP / ISO 18013-5 interaction| WAL
+  WAL -->|11. Authenticate presenting entity via WRPAC| WAL
+  WAL -->|"12. Retrieve WRP entry + intermediary association (optional)"| NREG
+  WAL -->|13. User consent + attribute release| INT
+
+
+
+````
 ## Registrar governance, deployment, and maintenance
-**1. Deployment and operational responsibility**
+### Deployment and operational responsibility
 
 **REQ-RG-1** — Each Member State SHALL designate one or more Registrar(s) for WRPs established in its territory.
 
@@ -38,7 +98,7 @@ retained for audit/monitoring needs.
 
 **REQ-RG-3** — The Registrar SHALL define a registration policy (including verification rules for entitlements and intermediaries) and a suspension/cancellation policy.
 
-**2. Publication and availability requirements**
+### Publication and availability requirements
 
 **REQ-RG-4** — Registration information SHALL be made available through:
 
@@ -51,14 +111,19 @@ retained for audit/monitoring needs.
 
 **REQ-RG-7** — The API and register services SHALL implement security-by-design / security-by-default protections for integrity and availability (anti-tamper, DoS resilience, monitoring).
 
-**3. Discoverability (recommended for cross-border interoperability)**
+### Discoverability for cross-border interoperability
 
 **REC-RG-8** — Member States SHOULD publish Registrar/Register endpoints as part of EU “trusted entity” discovery mechanisms (e.g., EU lists of trusted entities) to support cross-border wallets and verifiers.
 
-## Relying Party Onboarding
-**1. WRP registration (onboarding process)**
+## Relying Party Onboarding with Registrar
+### WRP registration (onboarding process)
 
-**REQ-ONB-1** — The Registrar SHALL define a formal WRP onboarding process, including: 
+**REQ-ONB-1** — The Registrar SHALL define a formal WRP onboarding process:
+
+**1. Electronic (and automated where possible) registration**
+
+The Registrar SHALL establish easy-to-use electronic, and where possible automated, registration processes for Wallet-Relying Parties
+
 - intake (portal/API),
 - legal entity identification,
 - verification of declared entitlements, 
@@ -66,7 +131,7 @@ retained for audit/monitoring needs.
 - assignment of a registration identifier, 
 - lifecycle management (update/suspension/cancellation)
 
-**2. Legal entity information (minimum dataset)**
+### Legal entity information
 
 The Registrar SHALL collect and maintain at least the information listed in CIR 2025/848 Annex I, including (non-exhaustive summary):
 
@@ -90,14 +155,14 @@ The Registrar SHALL collect and maintain at least the information listed in CIR 
 
 
 
-**3. Entitlement verification sources**
+### Entitlement verification sources
 
 **REQ-ONB-2** — The Registrar SHALL verify entitlements using appropriate documentary evidence sources, including:
 - national Trusted Lists (for QTSP-related entitlements), 
 - EU-level lists published by the Commission for PID providers / Pub-EAA providers where relevant, 
 - additional Member State procedures for non-qualified providers not listed.
 
-**4. Privacy policy requirement**
+### Privacy policy requirement
 
 **REQ-ONB-3** — The Registrar SHALL require WRPs to provide a URL to the privacy policy for the intended use (and ensure it is represented where WRPRCs are used)
 
@@ -131,7 +196,7 @@ The Registrar SHALL collect and maintain at least the information listed in CIR 
 
 
 ## Registrar interactions with ecosystem actors
-**1. Access certificates (WRPAC)**
+### Access certificates (WRPAC)
 
 **REQ-CERT-1** — Providers of WRPACs SHALL verify at issuance time that: the WRP is included with a valid status in the national register, certificate contents match register information.
 
@@ -143,7 +208,7 @@ The Registrar SHALL collect and maintain at least the information listed in CIR 
 
 **REQ-CERT-3** — WRPAC policies/practice statements should follow the harmonisation approach and ETSI policy guidance applicable to WRPACs.
 
-**2 Registration certificates (WRPRC) – optional but strongly useful**
+### Registration certificates (WRPRC) – optional but strongly useful
 
 **REQ-CERT-4** — If Member States implement WRPRCs, these certificates SHALL be:
 
@@ -151,7 +216,7 @@ The Registrar SHALL collect and maintain at least the information listed in CIR 
 - aligned with CIR requirements and corresponding ETSI data models for RP attributes / user authorization.
 
 
-**4. Suspension and cancellation lifecycle**
+### Suspension and cancellation lifecycle
 
 **REQ-LC-1** — The Registrar SHALL suspend or cancel a registration:
 - if requested by a competent supervisory body, or 
@@ -175,34 +240,34 @@ The Registrar SHALL collect and maintain at least the information listed in CIR 
 
 ## Record keeping, auditability, and compliance
 
-**1. Record keeping**
+### Record keeping
 
 **REQ-AUD-1** — The Registrar SHALL keep records for 10 years of:
 - initial registration information (Annex I), 
 - subsequent changes, 
 - data used for issuance of WRPACs/WRPRCs.
   
-**2. Data protection**
+### Data protection
 
 **REQ-GDPR-1** — Personal data processing performed by the Registrar and register services SHALL comply with GDPR and related EU data protection rules.
 
-
+## Wallet, Relying Party, and Register interactions
 
 
 ````mermaid
-flowchart LR
-  WRP[Wallet-Relying Party] -->|Onboarding application| REG[Registrar]
-  REG -->|Registration status + Annex I info| NREG[National Register / Single Common API]
-  REG -->|Approval / lifecycle updates| WRP
+sequenceDiagram
+  autonumber
+  participant RP as Relying Party (WRP)
+  participant W as Wallet
+  participant REG as National Register API
+  participant PKI as Trust/Validation data (cert path)
 
-  WRP -->|Request certificate issuance| ACA[Access CA]
-  ACA -->|Issue WRPAC | WRP
+  RP->>W: Auth request (includes WRPAC or reference)
+  W->>PKI: Validate WRPAC chain to expected trust anchor
+  W->>REG: Query WRP entry (name/ID/entitlement/intermediary params)
+  REG-->>W: JWS-signed JSON statement (Annex I info + current/historic WRPAC/WRPRC)
+  W->>PKI: Validate Registrar seal/signature (JWS + validation data)
+  W->>W: Check WRP status + match presented WRPAC with "current" certificate(s)
+  W->>RP: Continue protocol only if checks succeed
 
-  WRP -->|OID4VP / ISO 18013-5 interaction| WAL[Wallet Unit]
-  WAL -->|Authenticate WRP using WRPAC| WRP
-  WAL -->|Optional: retrieve registered info| NREG
-  WAL -->|User consent + attribute release| WRP
-
-  REGCA[Registration CA ] -->|Issue WRPRC| WRP
-  WRP -->|Provide WRPRC in request | WAL
 ````
