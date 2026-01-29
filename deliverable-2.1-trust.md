@@ -8,6 +8,7 @@
   - [Registration Certificate](#registration-certificate)
   - [List of Trusted Entities and List of Trusted Lists](#list-of-trusted-entities-and-list-of-trusted-lists)
 - [Trust Evaluation](#trust-evaluation)
+  - [Trust Anchor Validation](#trust-anchor-validation)
   - [Authentication Process](#authentication-process)
   - [Authorization Process](#authorization-process)
     - [Entitlement and Policy](#entitlement-and-policy)
