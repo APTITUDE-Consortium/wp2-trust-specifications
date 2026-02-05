@@ -1,6 +1,6 @@
 # Trust Evaluation Process (Authentication)
 
-This section describes the **Authentication Trust Evaluation Process**. The process is triggered whenever an Entity needs to authenticate another Entity during an interaction. Frequently, this involves verifying the authenticity of an Access Certificate or a Wallet Unit Attestation (WUA) and, therefore, the identity of the sender. The process can occur in different scenarios, such as during issuance or presentation of credentials, or when checking the status of a credential.
+This section describes the **Authentication Trust Evaluation Process**. The process is triggered whenever an Entity needs to authenticate another Entity during an interaction.  This involves verifying the authenticity of an Access Certificate or a Wallet Unit Attestation (WUA) and, therefore, the identity of the sender. The process can occur in different scenarios, such as during issuance or presentation of credentials, or when checking the status of a credential.
 
 At a high level, the Authentication Trust Evaluation Process is composed of **Access Certificate Validation** combined with a **Trust Anchor validation** step. Depending on the type of Entity being authenticated, the **Trust Anchor validation** is performed via either **List of Trusted Entities Validation** or **Trusted List Validation**.
 
@@ -22,7 +22,7 @@ At a high level, the Authentication Trust Evaluation Process is composed of **Ac
       - Validating the authenticity and integrity of the List of Trusted Lists by validating the corresponding List of Trusted Lists Provider Certificate using information obtained from the Official Journal of the European Union (OJEU).
       - Obtaining the Trusted List Provider’s public key (or certificate) from the validated "List of Trusted Lists".
       - Retrieving the relevant Trusted List issued by that Trusted List Provider.
-      - Validating the Trusted List Provider Certificate using the public key obtained from the "List of Trusted Lists", and then validating the Trusted List (e.g., signature, freshness, policy).
+      - Validating the Trusted List Provider Certificate using the public key obtained from the "List of Trusted Lists", and then validating the authenticity and integrity of the Trusted List (e.g., signature, freshness, policy).
 
 The **Access Certificate Validation** sub‑process MAY be skipped if the Entity being authenticated does not present an Access Certificate (e.g., when the Entity is a Wallet Instance presenting a WUA). In contrast, **Trust Anchor Validation** (via LoTE or TL) is always required to establish trust in the metadata about the Entity being authenticated.
 
