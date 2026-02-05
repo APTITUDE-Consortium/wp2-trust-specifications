@@ -131,27 +131,26 @@ The Registrar SHALL establish easy-to-use electronic, and where possible automat
 - assignment of a registration identifier, 
 - lifecycle management (update/suspension/cancellation)
 
-### Legal entity information
+### Wallet Relying Party information
 
-The Registrar SHALL collect and maintain at least the information listed in CIR 2025/848 Annex I, including (non-exhaustive summary):
+The Registrar SHALL collect and maintain at least the information listed in CIR 2025/848 Annex I and desscribed in ETSI TS 119 475, including (non-exhaustive summary):
 
-| #   | Annex I item                                                                  | Data element (suggested JSON key)       | Published via Register API?* |
-|-----|-------------------------------------------------------------------------------|-----------------------------------------|------------------------------|
-| 1   | Legal name + official record identification                                   | `legalName`, `officialRecord`           | YES                          |
-| 2   | User-friendly name (trade/service name)                                       | `displayName`                           | YES                          |
-| 3   | One or more identifiers (EORI, BRN, LEI, VAT, tax, EUID, etc.)                 | `identifiers[]`                         | YES                          |
-| 4   | Establishment address                                                         | `establishmentAddress`                  | YES                          |
-| 5   | URL belonging to WRP                                                          | `websiteUrl`                            | YES                          |
-| 6   | Country prefix rule for some identifiers (ISO 3166-1 alpha-2, EL for Greece) | validation rule                         | YES (as semantics)           |
-| 7   | Contact info (website / phone / email)                                        | `contact`                               | NO (excluded in API)         |
-| 8   | Description of service type                                                   | `serviceDescription`                    | YES                          |
-| 9   | For each intended use: requested data list (machine-readable)                 | `intendedUses[].requestedData[]`        | YES                          |
-| 10  | For each intended use: purpose description                                    | `intendedUses[].purpose`                | YES                          |
-| 11  | Public sector body indicator                                                  | `isPublicSectorBody`                    | YES                          |
-| 12  | Entitlements (enumerated values)                                              | `entitlements[]`                        | YES                          |
-| 13  | Optional sub-entitlements for Non_Q_EAA_Provider                               | `subEntitlements[]`                     | YES                          |
-| 14  | Intermediary reliance indication                                              | `usesIntermediary`                      | YES                          |
-| 15  | Association to intermediary                                                   | `intermediaryAssociation`               | YES                          |
+| #   | Annex I item                                                                                                                      |attribute                                |   Type                     | Published via Register API?* |
+|-----|-----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|----------------------------|------------------------------|
+| 1   | Legal name as specified in an official record                                                                                     | `legalName`                             | `string`                   | YES                          |
+| 2   | User-friendly name (trade/service name)                                                                                           | `tradeName`                             | `string`                 | YES                          |
+| 3   | One or more identifiers of the legal entity, as stated in an official record (EORI, BRN, LEI, VAT, tax, EUID, etc.)               | `identifier[]`                          | `Identifier`               | YES                          |
+| 4   | Physical address of the WRP                                                                                                       | `postalAddress`                         | `string`                   | YES                          |
+| 5   | URL belonging to WRP                                                                                                              | `infoURI`                               | `string`                   | YES                          |
+| 6   | Country prefix rule for some identifiers (ISO 3166-1 alpha-2, EL for Greece)                                                      | `country`                               | `string`                   | YES                          |
+| 7   | Support URI for the service provided by the WRP                                                                                   | `supportURI`                            | `string[]`                 | YES                          |
+| 8   | Description of service provided by WRP                                                                                            | `serviceDescription`                    | `MultiLangString[]`        | YES                          |
+| 9, 10   | The intended use to request specific electronic attestations of attributes from a wallet.                                     | `intendedUse`                           | `IntendedUse[]`            | YES                          |
+| 10  | Public sector body indicator                                                                                                      | `isPSB`                                 | `boolean`                  | YES                          |
+| 12  | Entitlements (enumerated values)                                                                                                  | `entitlement`                           | `string[]`                 | YES                          |
+| 13  | Optional sub-entitlements for Non_Q_EAA_Provider                                                                                  | `providesAttestations`                  | `Credential[]`             | YES                          |
+| 14, 15  | Intermediary reliance indication                                                                                              | `usesIntermediary`                      | `WalletRelyingParty[]`     | YES                          |
+
 
 
 
