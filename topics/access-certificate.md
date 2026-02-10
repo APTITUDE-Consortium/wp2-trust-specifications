@@ -3,11 +3,11 @@
 ## Introduction
 This section describes the purpose, format and content of wallet-relying party access certificates.
 
-According to the CIR (EU) 2025/848, a wallet-relying party access certificate (access certificate), is a certificate for electronic seals or signatures authenticating and validating the wallet-relying party.
+According to the Article 2 of CIR (EU) 2025/848, a wallet-relying party access certificate (access certificate), is a certificate for electronic seals or signatures authenticating and validating the wallet-relying party.
 Issued by a designated provider under Member State supervision, the access certificate serves to authenticate and verify the trustworthiness of the wallet-relying parties when they interact with the EUDI wallet.
 The suspension or cancellation of the relying party services, involves revocation of all valid access certificates by the relevant issuing authority, such that the relying party is no longer able to interact with wallet units.
 
-The CIR (EU) 2025/848 also states that the access certificates are meant for performing electronic signatures or seals and that they shall comply with at least the normalised certificate policy (‘NCP’) requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the access certificates fall into.  
+The Annex IV of CIR (EU) 2025/848 also states that the access certificates are meant for performing electronic signatures or seals and that they shall comply with at least the normalised certificate policy (‘NCP’) requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the access certificates fall into.  
 
 ## References
 
