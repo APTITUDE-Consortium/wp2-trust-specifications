@@ -22,9 +22,11 @@ The **National Register of WRPs** is the publicly accessible system (dataset + A
 - **WRPRC**: Wallet-Relying Party Registration Certificate, which is optional, and is used to express intended use + registered data requests.
 - **Intermediary**: an entity acting on behalf of a WRP in wallet interactions (where applicable).
 
-**Implementing regulation basis**: [Commission Implementing Regulation (EU) 2025/848](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ%3AL_202500848) <br>
-**Architecture basis**: [EUDI Wallet ARF (Relying Party registration + authentication mechanisms)](https://eudi.dev/2.7.3/architecture-and-reference-framework-main/) <br>
-**Standardization basis**: [ETSI TS 119 475 v1.1.1](https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.01.01_60/ts_119475v010101p.pdf) and [TS 119 411-8 v1.1.1](https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf) <br>
+
+### References
+[1]. [Commission Implementing Regulation (EU) 2025/848](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ%3AL_202500848) <br>
+[2]. [EUDI Wallet ARF (TS5 + TS6)](https://eudi.dev/2.7.3/architecture-and-reference-framework-main/) <br>
+[3].  [ETSI TS 119 475 v1.1.1](https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.01.01_60/ts_119475v010101p.pdf) and [TS 119 411-8 v1.1.1](https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf) <br>
 
 
 ### Overall schema
@@ -50,7 +52,7 @@ flowchart LR
 
 ````
 
-The following diagram shows interactions between involved actors in case that WRP interacts directly with Wallet
+In case that a relying party is represented by an intermediary, the interaction flow is shown as followings: 
 
 ````mermaid
 flowchart LR
@@ -89,6 +91,7 @@ flowchart LR
 ````
 ## Registrar governance, deployment, and maintenance
 ### Deployment and operational responsibility
+To ensure the reliability of register over time, policies and controls must exist and enforceable:
 
 **REQ-RG-1** — Each Member State SHALL designate one or more Registrar(s) for WRPs established in its territory.
 
@@ -99,7 +102,7 @@ retained for audit/monitoring needs.
 **REQ-RG-3** — The Registrar SHALL define a registration policy (including verification rules for entitlements and intermediaries) and a suspension/cancellation policy.
 
 ### Publication and availability requirements
-
+A set of requirements MUST be set out to ensure the publication and high availability of register.
 **REQ-RG-4** — Registration information SHALL be made available through:
 
 - a national website and
@@ -124,16 +127,17 @@ retained for audit/monitoring needs.
 
 The Registrar SHALL establish easy-to-use electronic, and where possible automated, registration processes for Wallet-Relying Parties
 
-- intake (portal/API),
-- legal entity identification,
-- verification of declared entitlements, 
-- validation of the “intended use” and requested data list,
-- assignment of a registration identifier, 
-- lifecycle management (update/suspension/cancellation)
+| Phase               | Goal                                                     | Typical implementation artefacts                                     |
+|---------------------|----------------------------------------------------------|-----------------------------------------------------------------------|
+| Intake              | Receive application electronically                       | Web portal / eForm / API endpoint                                     |
+| Automated checks    | Perform Article 6(3) automated verifications where possible | Registry lookups, automation rules                   |
+| Evidence validation | Validate supporting documents / authentic sources        | Business register query, mandate/power-of-attorney verification       |
+| Decision            | Approve or reject (Article 6(6))                          | Decision record, audit log                                            |
+| Publication         | Update national website + single common API               | Signed/sealed JSON statements + OpenAPI v3 publication                |
 
-### Legal entity information
+**2. Legal entity information**
 
-The Registrar SHALL collect and maintain at least the information listed in CIR 2025/848 Annex I, including (non-exhaustive summary):
+The Registrar SHALL collect and maintain at least the information listed in CIR 2025/848 Annex I in [1], including (non-exhaustive summary):
 
 | #   | Annex I item                                                                  | Data element (suggested JSON key)       | Published via Register API?* |
 |-----|-------------------------------------------------------------------------------|-----------------------------------------|------------------------------|
@@ -182,7 +186,7 @@ The Registrar SHALL collect and maintain at least the information listed in CIR 
 **2. Returned objects (“signed statements”)**
 
 **REQ-API-2** — API responses returning one or more matches SHALL include one or more signed/sealed statements containing:
-- Annex I registration information, 
+- Annex I in [1] registration information, 
 - current and historic WRPACs and (if applicable) WRPRCs, 
 - excluding the contact information as required by the CIR API constraints.
 
@@ -243,7 +247,7 @@ The Registrar SHALL collect and maintain at least the information listed in CIR 
 ### Record keeping
 
 **REQ-AUD-1** — The Registrar SHALL keep records for 10 years of:
-- initial registration information (Annex I), 
+- initial registration information (Annex I in [1]), 
 - subsequent changes, 
 - data used for issuance of WRPACs/WRPRCs.
   
@@ -251,8 +255,7 @@ The Registrar SHALL collect and maintain at least the information listed in CIR 
 
 **REQ-GDPR-1** — Personal data processing performed by the Registrar and register services SHALL comply with GDPR and related EU data protection rules.
 
-## Wallet, Relying Party, and Register interactions
-
+## Attestation Verification Workflow
 
 ````mermaid
 sequenceDiagram
