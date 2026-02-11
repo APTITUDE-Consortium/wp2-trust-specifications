@@ -9,10 +9,11 @@ par. 5.1 di TS 119 475
 ## Intro
 The goal of this section is to describe the lifecycle of access (WRPAC) and registration (WRPRC) certificates.
 Registrar manages the register : repository of identities and authorizations for identities related to specific credential types.
-Certificate authority manages certificate issuance on the base of the information in the register. 
+Certificate authority manages certificate issuance on the base of the information in the register (VAT+LEI and other specs). 
 There are different sectors that act in different ways. 
 banking case
 different responsibilities for different information types
+different lifecycle for certificate and for license
 
 Lifecyle is based on different process phases:
 1. registration: entity onboarding that includes register and
