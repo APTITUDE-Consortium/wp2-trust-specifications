@@ -35,17 +35,17 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC). Th
 
 | Attribute | Type | Description | Reference |
 |-----------|------|-------------|-----------|
-| `typ` | *string* | Specifies the type of the Web Token. The value is set to rc-wrp+jwt for JWT | ETSI TS 119 475 Table 5 |
+| `typ` | *string* | Specifies the type of the Web Token. The value is set to `rc-wrp+jwt` for JWT | ETSI TS 119 475 Table 5 |
 | `alg` | *string* | Indicates the algorithm used to sign the JWT as defined in clause 5.1.2 of ETSI TS 119 182-1 [18]. | ETSI TS 119 475 Table 5 |
-| `b64` | *boolean* | The header as defined in clause 5.1.2 of ETSI TS 119 182-1 [18] with value set true | ETSI TS 119 475 Table 5 |
-| `cty` | *string* | Content type as defined in clause 5.1.3 of ETSI TS 119 182-1 [18], string with the value "b64" | ETSI TS 119 475 Table 5 |
+| `b64` | *boolean* | The header as defined in clause 5.1.2 of ETSI TS 119 182-1 [18] with value set `true` | ETSI TS 119 475 Table 5 |
+| `cty` | *string* | Content type as defined in clause 5.1.3 of ETSI TS 119 182-1 [18], string with the value `"b64"` | ETSI TS 119 475 Table 5 |
 | `x5c` | *array[string]* | Contains the whole certificate chain to verify the JWT or CWT as defined in clause 5.1.8 of ETSI TS 119 182-1 [18] | ETSI TS 119 475 Table 5 |
 
 ### CWT Header Attributes
 
 | Attribute | Type | Description | Reference |
 |-----------|------|-------------|-----------|
-| `typ` | *string* | Specifies the type of the Web Token. The value is set to rc-wrp+cwt for CWT | ETSI TS 119 475 Table 6 |
+| `typ` | *string* | Specifies the type of the Web Token. The value is set to `rc-wrp+cwt` for CWT | ETSI TS 119 475 Table 6 |
 | `alg` | *string* | Indicates the algorithm used to sign the CWT as specified in IETF RFC 9052 [19], clause 3.1 | ETSI TS 119 475 Table 6 |
 | `content type` | *string* | Content type as specified in IETF RFC 9052 [19], clause 3.1 | ETSI TS 119 475 Table 6 |
 | `x5chain` | *array[string]* | Contains the whole certificate chain to verify the CWT as specified in IETF RFC 9360 [20], clause 2 | ETSI TS 119 475 Table 6 |
@@ -97,16 +97,16 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC). Th
 
 ### Service Provider Attributes
 
-| Attribute | Type | Description | Mandatory | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `credentials` | *array[object] | A set of credential queries, used to request credentials from the Wallet. The EUDIW will use this information to perform an over-asking validation | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `credential` |
-| `credentials[].format` | *string | Format of the attestation | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `format` |
-| `credentials[].meta` | *object* | Object defining additional properties. | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `meta` |
-| `credentials[].claims` | *array[object] | Array of objects that specifies attributes in the requested attestation. If not available, all attributes are requested | Mandatory for Service Provide | ETSI TS 119 475 Table 9 - `claim` |
+| Attribute | Type            | Description | Mandatory | Reference |
+|-----------|-----------------|-------------|-----------|-----------|
+| `credentials` | *array[object]* | A set of credential queries, used to request credentials from the Wallet. The EUDIW will use this information to perform an over-asking validation | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `credential` |
+| `credentials[].format` | *string*         | Format of the attestation | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `format` |
+| `credentials[].meta` | *object*        | Object defining additional properties. | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `meta` |
+| `credentials[].claims` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If not available, all attributes are requested | Mandatory for Service Provide | ETSI TS 119 475 Table 9 - `claim` |
 | `purpose` | *array[object]* | A list describing the purpose of the WRPRC. | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `purpose` |
-| `purpose[].lang` | *string* | Language identifier, referring the BCP 47 language tag format defined in IETF RFC 5646 [9] | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `lang` |
-| `purpose[].value` | *string* | Purpose description provided in the language specified above | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `value` |
-| `intended_use_id` | *string* | Unique identifier of the intended use if provided by the registry | Mandatory for Service Provider only if provided by registry | ETSI TS 119 475 Table 9 - `intendedUserIdentifier` |
+| `purpose[].lang` | *string*        | Language identifier, referring the BCP 47 language tag format defined in IETF RFC 5646 [9] | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `lang` |
+| `purpose[].value` | *string*        | Purpose description provided in the language specified above | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `value` |
+| `intended_use_id` | *string*        | Unique identifier of the intended use if provided by the registry | Mandatory for Service Provider only if provided by registry | ETSI TS 119 475 Table 9 - `intendedUserIdentifier` |
 
 ### Attestation Provider Attributes
 
@@ -528,3 +528,9 @@ Per ETSI TS 119 475 clause 5.1.3 - Table 2 and 5.1.5 - Table 4:
 | `http://data.europa.eu/eudi/id/LEI` | `LEI` | GEN-5.1.3-02, Table 2 | CIR 2022/1860 |
 | `http://data.europa.eu/eudi/id/VATIN` | `VAT` | GEN-5.1.3-02, Table 2 | Directive 2006/112/EC |
 | `http://data.europa.eu/eudi/id/TIN` | `TIN` | GEN-5.1.5-02, Table 4 | |
+
+### CBOR Web Token (CWT) Claims
+
+CWT token claims must be registered in a register created by IANA.
+
+The register is available at - https://www.iana.org/assignments/cwt/cwt.xhtml
