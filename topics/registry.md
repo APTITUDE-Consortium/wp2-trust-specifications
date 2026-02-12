@@ -153,28 +153,56 @@ This section defines the format of the information exchanged via the Register AP
 ## 6.1 WalletRelyingParty (WRP registration information object)
 
 
-| Parameter              |                                                              Type | Description                                                                                                       | Reference                                             |
-| ---------------------- |------------------------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------| ----------------------------------------------------- |
-| `legalName`            |                                   `string` or `MultiLangString[]` | Legal name as stated in an official record (for legal person).                                                    | CIR Annex I(1); ETSI TS 119 475 (RP attributes model) |
-| `givenName`            |                                                          `string` | Given name (for natural person).                                                                                  | CIR Annex I(1); ETSI TS 119 475                       |
-| `familyName`           |                                                          `string` | Family name (for natural person).                                                                                 | CIR Annex I(1); ETSI TS 119 475                       |
-| `tradeName`            |                                                          `string` | User-friendly name (trade/service name), recognisable to the user.                                                | CIR Annex I(2)                                        |
-| `identifier`           |                                                    `Identifier[]` | One or more identifiers (EORI, business register no., LEI, VAT, tax, EUID, etc.).                                 | CIR Annex I(3)                                        |
-| `postalAddress`        |                                     `string` or structured object | Physical address where the WRP is established (**registration only; excluded from API statements**).              | CIR Annex I(4); CIR Annex II §2(1)(c)                 |
-| `infoURI`              |                                                        `string[]` | URL(s) belonging to the WRP.                                                                                      | CIR Annex I(5)                                        |
-| `country`              |                                                          `string` | ISO 3166-1 alpha-2 prefixing rule where applicable (EL for Greece).                                               | CIR Annex I(6)                                        |
-| `supportURI`           |                                                          `string` | Website for helpdesk/support contact (one of the contact options).                                                | CIR Annex I(7)(a)                                     |
-| `phone`                |                                                        `string[]` | Phone numbers for registration/intended-use contact (one of the contact options).                                 | CIR Annex I(7)(b)                                     |
-| `email`                |                                                        `string[]` | Email addresses for registration/intended-use contact (one of the contact options).                               | CIR Annex I(7)(c)                                     |
-| `srvDescription`       | `MultiLangString[]` (or array of per-service multilingual blocks) | Description of the type of services provided by the WRP.                                                          | CIR Annex I(8)                                        |
-| `intendedUse`          |                                                   `IntendedUse[]` | Intended use(s) and requested data.                                                                               | CIR Annex I(9)–(10)                                   |
-| `isPSB`                |                                                         `boolean` | Whether the WRP is a public sector body.                                                                          | CIR Annex I(11)                                       |
-| `entitlement`          |                                                        `string[]` | Entitlement(s) (values defined in CIR Annex I(12); URIs in ETSI TS 119 475).                                      | CIR Annex I(12); ETSI TS 119 475 Annex A.2            |
-| `providesAttestations` |                                                    `Credential[]` | Optional sub-entitlements (Member State specific) indicating which attestations a Non_Q_EAA_Provider shall issue. | CIR Annex I(13)                                       |
-| `usesIntermediary`     |                     `WalletRelyingParty[]` or `IntermediaryRef[]` | Indicates reliance upon an intermediary acting on behalf of the relying party.                                    | CIR Annex I(14)–(15)                                  |
-| `isIntermediary`       |                                                         `boolean` | Flag indicating the entity acts as an intermediary (national rules/implementation).                               | CIR Annex I(14)–(15) (association model)              |
+| Parameter              |                                                              Type | Description                                                                                                                                                                   | Reference                                             |
+| ---------------------- |------------------------------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ----------------------------------------------------- |
+| `legalPerson`          |                                                      `LegalPerson`| Attributes of a legal person (cannot be present if there is a natural person).                                                                                                | CIR Annex I(1); ETSI TS 119 475 ; TS5                 |
+| `naturalPerson`        |                                                   `NaturalPerson` | Attributes of a legal person (cannot be present if there is a natural person).                                                                                                | CIR Annex I(1); ETSI TS 119 475; TS5                  |
+| `tradeName`            |                                                          `string` | User-friendly name (trade/service name), recognisable to the user.                                                                                                            | CIR Annex I(2)                                        |
+| `identifier`           |                                                    `Identifier[]` | One or more identifiers (EORI, business register no., LEI, VAT, tax, EUID, etc.).                                                                                             | CIR Annex I(3)                                        |
+| `postalAddress`        |                                     `string` or structured object | Physical address where the WRP is established (**registration only; excluded from API statements**).                                                                          | CIR Annex I(4); CIR Annex II §2(1)(c)                 |
+| `infoURI`              |                                                        `string[]` | URL(s) belonging to the WRP.                                                                                                                                                  | CIR Annex I(5)                                        |
+| `country`              |                                                          `string` | ISO 3166-1 alpha-2 prefixing rule where applicable (EL for Greece).                                                                                                           | CIR Annex I(6)                                        |
+| `supportURI`           |                                                          `string` | Website for helpdesk/support contact (one of the contact options).                                                                                                            | CIR Annex I(7)(a)                                     |
+| `phone`                |                                                        `string[]` | Phone numbers for registration/intended-use contact (one of the contact options).                                                                                             | CIR Annex I(7)(b)                                     |
+| `email`                |                                                        `string[]` | Email addresses for registration/intended-use contact (one of the contact options).                                                                                           | CIR Annex I(7)(c)                                     |
+| `srvDescription`       | `MultiLangString[]` (or array of per-service multilingual blocks) | Description of the type of services provided by the WRP.                                                                                                                      | CIR Annex I(8)                                        |
+| `intendedUse`          |                                                   `IntendedUse[]` | Intended use(s) and requested data.                                                                                                                                           | CIR Annex I(9)–(10)                                   |
+| `isPSB`                |                                                         `boolean` | Whether the WRP is a public sector body.                                                                                                                                      | CIR Annex I(11)                                       |
+| `entitlement`          |                                                        `string[]` | Entitlement(s) (values defined in CIR Annex I(12); URIs in ETSI TS 119 475).                                                                                                  | CIR Annex I(12); ETSI TS 119 475 Annex A.2            |
+| `providesAttestations` |                                                    `Credential[]` | Optional sub-entitlements (Member State specific) indicating which attestations a Non_Q_EAA_Provider shall issue.                                                             | CIR Annex I(13)                                       |
+| `usesIntermediary`     |                     `WalletRelyingParty[]` or `IntermediaryRef[]` | Indicates reliance upon an intermediary acting on behalf of the relying party.                                                                                                | CIR Annex I(14)–(15)                                  |
+| `isIntermediary`       |                                                         `boolean` | Flag indicating the entity acts as an intermediary (national rules/implementation).                                                                                           | CIR Annex I(14)–(15) (association model)              |
+| `providerType`         |                                                          `string` | Type of provider (values defined in TS2 section 2.2)                                                                                                                          | TS2; TS5                                              |
+| `policy`               |                                                         `Policy[]`| Specifies the type and URL of a webpage where the relevant policies are located (privacy policy, T&C, ...)                                                                    | TS2; TS5                                              |
+| `x5c`                  |                                                         `string[]`| Sequence of X.509 certificate chains according to RFC 7515, where each certificate chain is compliant to RFC 3647 and RFC 5280, if used by the provider for all its services. | TS2; TS5                                              |
+| `registryURI`          |                                                         `string`  | URI for the national registry API of the registered Wallet-Relying Party                                                                                                      | CIR Article 3(5); TS5                                                   |
+| `supervisoryAuthority` |                                                     `LegalEntity` | Data protection supervisory authority according to CIR 2016/679 in charge of supervising the Wallet-Relying Party.                                                            | CIR Annex IV(3)(g) ; CIR Annex V(3)(f); TS5           |
 
-### 6.1.1 Identifier
+### 6.1.1 LegalPerson
+
+| Parameter           |     Type | Description                                                    | Reference                   |
+| --------------------| -------: | -------------------------------------------------------------- | --------------------------- |
+| `legalName`         | `string` | Legal name as stated in an official record                     | ETSI TS 119 475 Annex B.2.3 |
+| `establishedByLaw`  | `Law[]`  | Legal basis on which the legal person is established (for PSB) | ETSI TS 119 475 Annex B.2.3 |
+
+#### 6.1.2 Law
+
+| Parameter           |     Type | Description                                          | Reference                    |
+| --------------------| -------: | ---------------------------------------------------- | ---------------------------- |
+| `lang`              | `string` |  Language tag (e.g., `en`, `fr`)                     | ETSI TS 119 475 Annex B.2.11 |
+| `legalBasis`        | `string` | Legal basis on which the legal person is established | ETSI TS 119 475 Annex B.2.11 |
+
+
+### 6.1.3 naturalPerson
+
+| Parameter           |     Type | Description                                         | Reference                   |
+| --------------------| -------: | --------------------------------------------------- | --------------------------- |
+| `givenName`         | `string` | Current first name of the natural person            | ETSI TS 119 475 Annex B.2.4 |
+| `familyName`        | `string` | Current last name of the natural person             | ETSI TS 119 475 Annex B.2.4 |
+| `dateOfBirth`       | `string` | Where present, date of brith of the natural person  | ETSI TS 119 475 Annex B.2.4 |
+| `placeOfBirth`      | `string` | Where present, place of birth of the natural person | ETSI TS 119 475 Annex B.2.4 |
+
+### 6.1.4 Identifier
 
 | Parameter    |     Type | Description                                                                      | Reference      |
 | ------------ | -------: | -------------------------------------------------------------------------------- | -------------- |
@@ -182,7 +210,7 @@ This section defines the format of the information exchanged via the Register AP
 | `type`       | `string` | Identifier scheme/type (e.g., `EORI`, `BRN`, `LEI`, `VAT`, `TAX`, `EUID`, etc.). | CIR Annex I(3) |
 
 
-### 6.1.2 MultiLangString
+### 6.1.5 MultiLangString
 
 | Parameter |     Type | Description                      | Reference                  |
 | --------- | -------: | -------------------------------- | -------------------------- |
@@ -190,7 +218,7 @@ This section defines the format of the information exchanged via the Register AP
 | `content` | `string` | Language-specific content.       | ARF / common i18n practice |
 
 
-### 6.1.3 IntendedUse
+### 6.1.6 IntendedUse
 
 | Parameter               |                Type | Description                                                           | Reference                              |
 | ----------------------- | ------------------: | --------------------------------------------------------------------- | -------------------------------------- |
@@ -202,25 +230,38 @@ This section defines the format of the information exchanged via the Register AP
 | `revokedAt`             | `string` (optional) | Revocation timestamp (implementation).                                | Implementation                         |
 
 
-### 6.1.4 Policy
+### 6.1.7 Policy
 
 | Parameter   |     Type | Description                                 | Reference           |
 | ----------- | -------: | ------------------------------------------- | ------------------- |
 | `policyURI` | `string` | URL to the policy (e.g., privacy policy).   | CIR Article 8(2)(g) |
 | `type`      | `string` | Policy type label (implementation/profile). | Implementation      |
 
-### 6.1.5 Credential
+### 6.1.8 Credential
 | Parameter |      Type | Description                                                   | Reference                         |
 | --------- | --------: | ------------------------------------------------------------- | --------------------------------- |
 | `format`  |  `string` | Credential format identifier (e.g., `dc+sd-jwt`, `mso_mdoc`). | CIR Annex I(9) (machine readable) |
 | `meta`    |  `string` | Additional grouping/type metadata (profile).                  | Implementation / ARF profile      |
 | `claim`   | `Claim[]` | Requested claim paths and allowed values (if constrained).    | CIR Annex I(9)                    |
 
-### 6.1.6 Claim
+### 6.1.9 Claim
 | Parameter |       Type | Description                         | Reference                                     |
 | --------- | ---------: | ----------------------------------- | --------------------------------------------- |
 | `path`    |   `string` | Claim path within the credential.   | CIR Annex I(9)                                |
 | `values`  | `string[]` | Optional allowed values constraint. | CIR Annex I(9) (machine-readable constraints) |
+
+### 6.1.10 LegalEntity
+
+| Parameter              |                          Type | Description                                                                         | Reference                             |
+| ---------------------- |------------------------------:|------------------------------------------------------------------------------------ | ------------------------------------- |
+| `legalPerson`          |                 `LegalPerson` | Attributes of a legal person (cannot be present if there is a natural person).      | CIR Annex I(1); ETSI TS 119 475 ; TS5 |
+| `naturalPerson`        |               `NaturalPerson` | Attributes of a legal person (cannot be present if there is a natural person).      | CIR Annex I(1); ETSI TS 119 475       |
+| `identifier`           |                `Identifier[]` | One or more identifiers (EORI, business register no., LEI, VAT, tax, EUID, etc.).   | CIR Annex I(3)                        |
+| `postalAddress`        | `string` or structured object | Physical address where the WRP is established                                       | CIR Annex I(4); CIR Annex II §2(1)(c) |
+| `infoURI`              |                    `string[]` | URL(s) belonging to the WRP.                                                        | CIR Annex I(5)                        |
+| `country`              |                      `string` | ISO 3166-1 alpha-2 prefixing rule where applicable (EL for Greece).                 | CIR Annex I(6)                        |
+| `phone`                |                    `string[]` | Phone numbers for registration/intended-use contact (one of the contact options).   | CIR Annex I(7)(b)                     |
+| `email`                |                    `string[]` | Email addresses for registration/intended-use contact (one of the contact options). | CIR Annex I(7)(c)                     |
 
 
 ## 6.2 Entitlements
