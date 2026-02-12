@@ -506,7 +506,7 @@ This endpoint is registrar-specific and may be exposed only for registrar operat
 
 ````
 
-## Attestation Verification Workflow
+## 12. Attestation Verification Workflow
 
 This section illustrates an example runtime verification flow performed by a Wallet Unit when a Wallet-Relying Party (WRP) (or an intermediary acting on its behalf) initiates an interaction (e.g., OID4VP or ISO 18013-5).
 
