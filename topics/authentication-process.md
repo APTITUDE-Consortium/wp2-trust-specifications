@@ -41,17 +41,6 @@ sequenceDiagram
     end
 ```
 
-<!-- In the diagram above, 
-1. The Entity being authenticated sends a message to the Wallet Instance that includes the WRPAC or a sequence of certificates ending with the WRPAC.
-2. & 3. The Wallet Instance retrieves the LoTE of WRPAC Providers from the European Commission.
-4. The Wallet Instance validates the LoTE as described in [List of Trusted Entities Validation Process](#list-of-trusted-entities-validation-process).
-5. The Wallet Instance extracts the (sequence of) certificate of the WRPAC Provider(s) from the LoTE and generates a certification path starting from the WRPAC Provider certificate (the trust anchor) and ending with the WRP's Access Certificate.
-6. The Wallet Instance performs Access Certificate validation. This includes:
-    - Validating the certification path from the WRPAC provider certificate (the trust anchor) to the Access Certificate, according to the applicable profile based on [RFC 5280](https://datatracker.ietf.org/doc/html/rfc5280) and ETSI TS 119 411-8.
-    - Verifying signatures, validity periods, revocation status (via CRLs or OCSP), and any required certificate policies or name constraints for each certificate in the path.
-7. The Wallet Instance uses the WRPAC public key to validate the signature of the signed metadata about the WRP being authenticated.
-8. If the Access Certificate and metadata signature validations succeed, the Wallet Instance continues with the interaction flow. If any validation fails, the Wallet Instance MUST stop the interaction.-->
-
 ### Access Certificate Path Validation
 
 This section defines the validation of the certification path.
@@ -332,6 +321,6 @@ graph TD
 
     class Start,FetchNew,Step3,Step4,Step5,ProcessStatus process;
     class Step1,Step2,Retry,CheckSig,CheckIDs,CheckTime,CheckCertStatus decision;
-    class StatusGood,outcome;
+    class StatusGood outcome;
     class Invalid,InvalidSig,InvalidIDs,Stale,StatusRevoked,StatusUnknown,StatusUnknownResponse fail;
 ```

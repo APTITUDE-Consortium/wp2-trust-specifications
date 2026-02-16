@@ -119,7 +119,7 @@ graph TD
     S6 -- Valid --> SetupVars[Set Variables:<br/>Current Signer = LoTE-Signer-Cert<br/>Extract Trusted Set from Payload]:::process
 
     %% Step 7: The Loop
-    SetupVars --> S7Check{7. Is n = 0 (no Pivots)?}:::decision
+    SetupVars --> S7Check{"7. Is n = 0 (no Pivots)?"}:::decision
     S7Check -- Yes --> S8
     S7Check -- "No (n > 0, Start Loop)" --> LoopStart[Start Pivot Loop i=1 to n]:::process
 
