@@ -3,10 +3,10 @@
 
 The Trust Anchor Validation Process allows a Wallet Instance or Wallet Relying Party (WRP) to validate a List of Trusted Entities (LoTE) or an EU Member State Trusted List (EUMS TL). This process establishes the cryptographic root of trust required to validate:
 <ol type="a">
-  <li>Infrastructure Certificates: The certificate chains of WRPAC Providers or WRPRC Providers.</li>
-  <li>Wallet Attestation Signatures: The certificate chains verifying a Wallet Unit Attestation (WUA) or Wallet Instance Attestation (WIA).</li>
-  <li>PID Signatures: The certificate chains verifying a Person Identification Data (PID); or</li> 
-  <li>QEAA or Pub-EAA Signatures: The certificate chains needed to verify the signature/seal on a QEAA or Pub-EAA.</li>
+  <li>Infrastructure Certificates: the certificate chains of WRPAC Providers or WRPRC Providers;</li>
+  <li>Wallet Attestation Signatures: the certificate chains verifying a Wallet Unit Attestation (WUA) or Wallet Instance Attestation (WIA);</li>
+  <li>PID Signatures: the certificate chains verifying a Person Identification Data (PID); or</li> 
+  <li>QEAA or Pub-EAA Signatures: the certificate chains needed to verify the signature/seal on a QEAA or Pub-EAA.</li>
 </ol>
 In cases (a), (b) and (c), the Entity MUST fetch, download, and validate the relevant LoTE. For case 4, the Entity MUST fetch, download, and validate the relevant EUMS TL.
 

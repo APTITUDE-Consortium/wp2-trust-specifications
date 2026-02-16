@@ -76,7 +76,6 @@ Iterate through the path for $i$ from $1$ to $n$:
 2. Policy Processing:
     - If `certificatePolicies` extension is present and `valid_policy_tree` is not NULL:
         - Process policy constraints, qualifiers, and mappings according to RFC 5280 Section 6.1.3.
-        
         - for each policy $P$ not equal to `anyPolicy` in the certificate policies extension, let $P$-OID denote the OID for policy $P$ and $P$-Q denote the qualifier set for policy $P$.
             - for each node of depth $i-1$ in the `valid_policy_tree` where $P$-OID is in the node's `expected_policy_set`, create a child node with `valid_policy` $P$-OID, `qualifier_set` $P$-Q, and `expected_policy_set` set to {$P$-OID}.
             - If no match is found for $P$-OID in any node of depth $i-1$ and the `valid_policy_tree` has a node of depth $i-1$ with `valid_policy` set to `anyPolicy`, generate a child node with `valid_policy` $P$-OID, `qualifier_set` $P$-Q, and `expected_policy_set` set to {`anyPolicy`}.
@@ -167,6 +166,7 @@ graph TD
     class Start,DefineInputs,Success terminator;
     class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;
 ```
+
 ### Revocation Checking
 
 The Wallet Instance MUST determine the revocation status for every certificate in the path with one of the following methods:
@@ -175,15 +175,8 @@ The Wallet Instance MUST determine the revocation status for every certificate i
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Instance MAY perform an OCSP lookup.
 
 #### CRL Validation
-<!-- 
-TODO: 
-- no delta crl for the moment, if so add considerations about cached CRLs and delta CRLs, and how to handle the `deltaCRLIndicator` extension in the CRL.
 
-The Wallet Instance can retrieve the CRL from one of the locations specified in the `distributionPoint` field of the `cRLDistributionPoints` extension, or use a cached CRL. The format and content of the CRL is described in more detail in the [Revocation Mechanism](/topics/revocation-mechanisms.md) section. 
--->
 When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)), the Wallet Instance MUST:
-
-Then the Wallet Instance MUST perform the following steps:
 1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Instance SHOULD attempt to retrieve an updated CRL.
 2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
     - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked <!-- Assumption: in case the issuer of the CRL and certificate coincides-->;
@@ -248,19 +241,10 @@ graph TD
     class Valid valid;
     class Revoked,Revoked2,Revoked3,Revoked4,Revoked5 revoked;
 ```
+
 #### OCSP Response Validation
 
 When using OCSP, the Wallet Instance MUST:
-<!-- 
-TODO: 
-- no nonce during request response, be sure to add it to the OCSP request, response and validation.
-- add in revocation section: For each certificate being checked its status can be one of three values: `good`, `revoked`, or `unknown`. If the status is `good`, the certificate is considered valid. If the status is `revoked` or `unknown`, the certificate is considered revoked. If any of the above checks fail (steps 1-6), the Wallet Instance MUST consider the certificate as `revoked`. If all checks succeed, the certificate status is determined by the `certStatus` field of the `SingleResponse` as described above. 
-
-Text snippets:
-- This section describes the necessary steps determine if a certificate is revoked when OCSP is the revocation mechanism used by the certificate issuer. In this case, the Wallet Instance MUST send an OCSP request to the OCSP responder specified in the `accessLocation` field of the `authorityInfoAccess` extension of the certificate being checked, and then validate the returned OCSP response. The OCSP request and response ASN.1 structures are described in more detail in the [Revocation Mechanism](/topics/revocation-mechanisms.md) section.
--->
-
-Upon obtaining the OCSP response (see [Revocation Mechanism](/topics/revocation-mechanisms.md)), the Wallet Instance MUST perform the following steps:
 1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the Wallet Instance SHOULD attempt to retrieve an updated OCSP response, and if that fails, the certificate status MUST be considered `unknown`.
 2. Verify `responseType` is `id-pkix-ocsp-basic`. <!-- Assumption: only basic OCSP responses are supported. -->
 3. Verify the response `signature` using the Responder's public key (`certs` field in the OCSP response).
