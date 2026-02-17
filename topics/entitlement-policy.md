@@ -505,7 +505,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
 
 10. The WI MUST check `iat` (issued at) claim and `exp` (expiration) claim in the WRPRC to verify temporal validity.
 
-11. The WI SHOULD check revocation status of WRPRC using `status` field (if present).
+11. The WI MUST check revocation status of WRPRC using `status` field.
 
 12. If any validation in substeps 4-11 fails:
     - Record verification result is CERTIFICATE_INVALID
@@ -705,7 +705,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
 
 10. The WI MUST check `iat` (issued at) claim and `exp` (expiration) claim in the WRPRC to verify temporal validity.
 
-11. The WI SHOULD check revocation status of WRPRC using `status` field (if present).
+11. The WI MUST check revocation status of WRPRC using `status` field.
     - If revocation check indicates certificate is revoked, proceed to Step 2b (fallback to Registrar).
 
 12. If any validation in substeps 4-11 fails:
