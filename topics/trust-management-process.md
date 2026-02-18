@@ -1,5 +1,6 @@
 # Trust Management Process
-to do: ref webuild tech specs
+to do: ref webuild tech specs wrprc e wrpac
+aggiungere nota che la DPA Data Protection Authorities (che espone api tramite TS 08) notifica al registrar eventuale sospensione, idem altre authorities
 **Table of Contents**
 
 ## normative & technical references
@@ -12,6 +13,10 @@ ARF
 2. TS02 : Specification of systems enabling the notification and subsequent publication of Provider information (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts2-notification-publication-provider-information.md)
 3. TS05 : Specification of common formats and API for Relying Party Registration information (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts5-common-formats-and-api-for-rp-registration-information.md)
 4. TS06 : Common Set of Relying Party Information to be Registered (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts6-common-set-of-rp-information-to-be-registered.md)
+5. TS08 : Specification of Common Interface for reporting of Relying Parties to Data Protection Authorities (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts8-common-interface-for-reporting-of-wrp-to-dpa.md)
+
+topics
+Topic x : opic X - Relying Party registration (https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/431)
 
 Tech standards
 3. Policy and security requirements for Trust Service Providers issuing certificates; Part 8: Access Certificate Policy for EUDI Wallet Relying Parties : ETSI TS 119 411 part 8 (https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf)
@@ -112,6 +117,10 @@ In any case the CA is in charge to publish the certificate status using OCSP (on
 
 
 # Banking usecase
+
+gestione segnalazioni e frodi (ts08)
+qwac, registro dati e licenze su eu
+nca possono manifestare interesse per ricevere certificati emessi da CAs
 
 
 
