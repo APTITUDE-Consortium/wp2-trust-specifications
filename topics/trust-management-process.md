@@ -71,6 +71,10 @@ National Registrar could integrate existing identity repository for specific sec
 Registrar collects issued WRPAC and WRPRC certificates from providers. This must be done in order to be able to trigger their revocation towards certificate authorities in case of license withdrawal, and so cover req of "" in CIR 848
 Registrar could publish the authorization data bound to WRPidentifier in case WRPRCs are not transmitted to the wallet, in order to fulfill policy requirements.
 
+* Identity: different sectors manages licenses and appartenza in modo diverso con valenze e modalità. a good example is the banking sector, more structured and advanced under a regulation and standardization across europe.
+* Certificate authority manages certificate issuance on the base of the information in the register (VAT+LEI and other specs). 
+There are different sectors that act in different ways. 
+
 ## Access (WRPAC) and registration (WRPRC) certificate issuance
 In order to make the entity and its license effectevely operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and WRPRC.
 This step requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists.
@@ -96,10 +100,7 @@ The CA is responsible to revoke the certificates and eventually to communicate t
 In any case the CA is in charge to publish the certificate status using OCSP (online certificate status protocol) or CRL (Certificate revocation lists) according to technical specifications in etsi [319 411].
 
 
-Identity: different sectors manages licenses and appartenza in modo diverso con valenze e modalità. a good example is the banking sector, more structured and advanced under a regulation and standardization across europe.
 
-Certificate authority manages certificate issuance on the base of the information in the register (VAT+LEI and other specs). 
-There are different sectors that act in different ways. 
 
 # Banking usecase
 
