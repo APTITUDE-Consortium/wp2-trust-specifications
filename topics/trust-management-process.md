@@ -5,11 +5,13 @@ to do: ref webuild tech specs
 ## normative & technical references
 CIR
 1. 2025/848 CIR 2025/848 of 6 May 2025 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards the registration of wallet-relying parties (https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj/eng)
+2. 2025/848 amendement draft https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16113-European-Digital-Identity-Wallet-registration-of-wallet-relying-parties-update-_en
 
 ARF
 1. general reference 
 2. TS02 : Specification of systems enabling the notification and subsequent publication of Provider information (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts2-notification-publication-provider-information.md)
 3. TS05 : Specification of common formats and API for Relying Party Registration information (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts5-common-formats-and-api-for-rp-registration-information.md)
+4. TS06 : Common Set of Relying Party Information to be Registered (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts6-common-set-of-rp-information-to-be-registered.md)
 
 Tech standards
 3. Policy and security requirements for Trust Service Providers issuing certificates; Part 8: Access Certificate Policy for EUDI Wallet Relying Parties : ETSI TS 119 411 part 8 (https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf)
@@ -23,7 +25,8 @@ The aim of this chapter is to describe the lifecycle of
 2. and the related certificates that are used to claim that identity and related authorization in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates.
 The integrity and authenticity of credentials is out of scope, assuming that Q seals and Q signing certificates are consolidated.
 
-All available normative and technical references will be referred for each phase.
+All available normative and technical references will be referred for each phase. 
+work in progress
 
 This topic is not fully covered by ARF or actual legislation (topic is open?) and probably some details will be delegated to member states, and so it could be useful to identify best practices and success stories from the market that could provide an "inspirational starting point" in order to define a sustainable and effective design. 
 Banking sector is probably by nature a good example to be taken into consideration, and so there is a specific chapter that aims to describe the state of the art relating the authentication mechanisms in place at the present, and is described in Annex I. [allowed the entrance in this market of different actors able to integrate and extend the service offered by traditional banks. The use of authentication certificates could be taken as source of inspiration for defining a large scale application like the eudiw ecosystem]
@@ -60,12 +63,14 @@ Of course changes in the policy repository will affect potentially the validity 
 
 # Entity license registration (Onboarding relying parties)
 Each Member State will delegate a Registrar to manage the national register: it's a repository of identities and authorizations for entities that will handle attestations and attributes (in the issuance or presentation request phases).
-The process and related attributes that must be collected are described in [CIR 848], and the process will be specific for member state and it's assumed to be equivalent. This enrollment represents a "license" to operate in the EUDIW ecosystem.
+The process and related attributes that must be collected are described in [CIR 2025/848 and its amendement https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16113-European-Digital-Identity-Wallet-registration-of-wallet-relying-parties-update-_en], and the process will be specific for member state and it's assumed to be equivalent. This enrollment represents a "license" to operate in the EUDIW ecosystem.
 The first step is entity identification: the onboarding process must ensure adequate controls on the entity identity claims, using EUDI busines wallet or other authentication mechanisms. A unique identifier is assigned to the entity (WRP identifier) and operational attributes must be linked to that and that will be referred by WRPAC: credential offer endpoints, privacy policy statement URL.
 The second step is entity authorization to handle credentials, autonomously or delegating an intermediary: both for the credential issuance and request operations, in case of explicit policy requirements enlisted in the EU credential catalogue, an explicit authorization must be provided on specific referred attributes or attestation types.
 In this phase, entity must notify the registrar if it's intermediated by a technical provider, that will be verified against trusted lists and national registers.
 
-The register information data model is described in [TS02] and api for registration and inquiry in the register are defined in [TS05] and will be managed by national registrar.
+The register information data model is described in [TS02] and api for registration and inquiry in the register are defined in [TS05] , data to be registered in TS06 
+This process and register maintenance will be managed by national registrar.
+TS06 . The CIR 848 amendement in annex V refers explicitly to etsi 475
 
 National Registrar could integrate existing identity repository for specific sectors, according to NCA sector policies.
 
@@ -74,12 +79,15 @@ Registrar could publish the authorization data bound to WRPidentifier in case WR
 
 * Identity: different sectors manages licenses and appartenza in modo diverso con valenze e modalità. a good example is the banking sector, more structured and advanced under a regulation and standardization across europe.
 * Certificate authority manages certificate issuance on the base of the information in the register (VAT+LEI and other specs). 
-There are different sectors that act in different ways. 
+There are different sectors that act in different ways.
+
+Data schemas are provided for these elements (and most of them are “mandatory”):
+
 
 ## Access (WRPAC) and registration (WRPRC) certificate issuance
 In order to make the entity and its license effectevely operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and WRPRC.
 This step requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists.
-The CA so access the national register using management apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475.
+The CA so access the national register using management apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
 
 The Certificate Authority has to notify the Registrar as soon a WRPAC or WRPRC has been issued. Registrar should record all issued certificates in order to be able to ask for revocation if required. Revocation process cases and status management is described in [etsi 475]
 The CA has the duty to publish all certificate according to Certificate transparency policies rif [?].
