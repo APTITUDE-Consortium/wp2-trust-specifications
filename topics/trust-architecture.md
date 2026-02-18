@@ -1,200 +1,214 @@
 # Trust Architecture
 
-This section describes the trust model and its architecture at a high level by providing definitions for the terms used in the rest of the ducument and representing graphically the trust processes which are in scope of D2.1.
+The main entities involved in the EUDIW ecosystem are:
+- the Wallet Unit, installed and activated by the User and provided through a Wallet Solution by the Wallet Provider (WP)
+- Wallet Relying Parties (WRPs)
+    - the PID Providers and Attestation Providers that interact with the Wallet Unit to issue Attestations
+    - the Relying Parties (RPs) that interact with the Wallet Unit to request Attestations
 
-## Definitions
-
-In this section we give a precise meaning to the Entities, Components, Roles, Services and Processes which are relevant for the specification. The following definition are mutuated from the terminology already present in the ARF.
-
-An **Entity** is a distinct legal, or natural person that participates in the ecosystem. Entities possess an identity and are accountable for the actions of the Components they operate, or whose operation they delegate to other Entities. The following Entities are present in this specification:
-- **User/Wallet Holder**: The natural or legal person who controls the Wallet Unit.
-- **Relying Party (RP)**: A natural or legal person that relies upon presentation of Attestations from a Wallet Unit for the provision of a service.
-- **Attestation Provider**: An Entity responsible for issuing Attestations to the Wallet Unit. This includes Qualified Trust Service Providers (QTSP) issuing Qualified Electronic Attestation of Attributes (QEAA).
-- **Wallet Provider**: An Entity that provides the Wallet Solution (software and related backend services) to the User.
-- **Registrar**: An Entity responsible for onboarding and registering other ecosystem participants, as well as maintaining authoritative records of their identity, public key material and authorizations.
-- **Trust Service Provider (TSP)**: An entity that provides one or more trust services.
-- **Supervisory Body**: An Entity responsible for the supervision of Trust Service Providers, Attestation Providers, and other actors within the EUDIW ecosystem to ensure compliance with the relevant regulations.
-
-**Regulatory Subjects**: These are subjects that define rules and specific operational procedures for Entities.
-- **Member States (MS)**: They norm the Registration process and designate Registrars for the onboarding of Entities. In addition, they are responsible for communicating to the European Commission the Trusted List Providers at the National level. These may manage directly or indirectly a Catalogue of National credentials.
-- **European Commission (EU)**: The subject in charge of providing and keeping up to date the Official Journal of the European Union, designating the List of Trusted List Provider, and a Catalogue of EU credentials.
-
-A **Component** is a functional unit, software module, or subsystem operated by an Entity to perform specific technical operations within the EUDIW ecosystem. An Entity may operate multiple distinct Components. A Component is defined by its function within the architecture, regardless of which Entity physically operates it. For example, an Entity may delegate the operation of a Component to a specialized Trust Service Provider, regardless the Component in question remains within the Entity's logical domain. The following Components are present in this specification:
-- **Wallet Unit** (Wallet Provider Component): The specific instantiation of the Wallet software installed on the User's device.
-- **Relying Party Instance** (Relying Party Component): The specific instantiation of the Relying Party that interacts with the Wallet Unit to request and verify data.
-- **Registry** (Registrar Component): The authoritative database or repository Component where the Registrar stores the identity and metadata of registered entities.
-- **Trusted List** (TL - MS Component): The signed artifact (in XML format) containing the list of trusted services and their status within a Member State.
-- **List of Trusted Lists** (LoTL - EU Component): The signed artifact (in XML format) containing the list of Member States' Trusted List Providers.
-- **Trusted List Provider** (Registrar Component): The Component responsible for generating and signing the Member State Trusted List.
-- **List of Trusted Lists Provider** (Registrar Component): The Component responsible for generating and signing the List of Trusted Lists.
-- **Catalogue** (MS/EU Component): The Component which Registration Certificate Provider may use to check the entitlements of a certain Wallet Relying Party to issue/request certain attributes/credentials.
-- **Official Journal of the European Union** (OJEU - EU Component): The Official Journal of the European Union, which serves as the publication mechanism for the List of Trusted Lists (LOTL) URL and TLS certificate hash, acting as the root of trust.
-- **Access Certification Authority** (Registrar Component): The PKI Component responsible for issuing Access Certificates to authenticated participants.
-- **Provider of Registration Certificates** (Registrar Component): The Component responsible for issuing Registration Certificates that encode the specific entitlements or data request permissions of an Entity.
-
-A **Role** describes the specific function, authorization, or set of responsibilities assigned to an Entity or Component during a specific interaction or process. The following Roles are present in this specification:
-- **Issuer**: The role of an Attestation Provider when issuing credentials to a Wallet Unit.
-- **Verifier**: The role of a Relying Party Instance when validating the credential presentation by a Wallet Unit.
-- **Holder**: The role of the User (operating the Wallet Unit) when requesting, storing or selectively disclosing credentials.
-
-A **Service** is a distinct capability or interface exposed by a Component to other actors in the ecosystem to facilitate a process such as onboarding, lifecycle management, or trust evaluation. The following Services are present in this specification:
-- **Certificate Revocation Service**: The interface for checking the revocation status of certificates (e.g., via CRL download points, OCSP responders, or Status Lists).
-- **Registry API**: The programmatic interface exposed by the Registry Component allowing participants to query Entity metadata, status, or public keys.
-- **Catalogue API**: The interface allowing the retrieval of trusted metadata used by the Registrar and Registration Certificate Provider needed for the Registration phase.
-
-A **Process** describes the workflow and sequence of interactions between Entities and/or Components to achieve a specific goal. The following Processes are present in this specification:
-- **Publication**: The process through which an Entity requests onboarding to the EUDIW ecosystem; the Registrar registers the Entity's metadata in the Registry while the Access Certification Authority and the Registration Certificate Provider, issue an Access and, optionally, Registration Certificate.   
-- **Notification**: The process through which a Member State notifies the identifiers and public key material of its Trusted List Providers to the European Commission for inclusion in the List of Trusted List. 
-- **Trust Evaluation**: The process through which an Entity authenticates another Entity using the LoTL as the primary Trust Anchor (TA).
-- **Entitlements Evaluations**: The process through which an Entity checks whether another Entity (which has been already authenticated) is authorized to perform some transaction using the parameters present in the Registration Certificate. 
-- **Trust Management**: The process by which Supervisory Bodies, Member States, Trusted List Providers and Access Certificate Authorities monitor Entities and revoke certificates if need be.
-- **Entitlement Management**: The process by which Supervisory Bodies, Member States, and Registration Certificate Providers monitor the conduct of Attestation Providers and Relying Parties to ensure compliance with the relevant regulations and authorizations granted during Registration.
-
-## Terminology Mapping
-The following table maps terms across the Implementing Acts, ETSI Specifications, and the ARF frameworks.
-
-| IA | ETSI | ARF |
-| :- | :--- | :-- |
-| | Wallet Relying Party | Attestation Provider |
-| Wallet Relying Party | Wallet Relying Party | Relying Party |
-| Wallet Provider | Wallet Provider | Wallet Provider |
-| | | Registry |
-| | Trusted List Scheme Operator | Trusted List Provider |
-
-## High Level Diagrams
-
-In the following section, we represent the diagrams related to the high-level view of the processes detailed in the Definition section. 
-
-### Registration
 
 ```mermaid
-graph BT
-    subgraph MS["Member State"]
-        ACA["Access Certificate Authority"]
-        RCA["Provider of Registration Certificates"]
-        Registrar
-    end
-    Entity
+graph TD
 
-    subgraph Cat["Rulebooks"]
-        direction TB
-        NC["National Catalogue"]
-        EUC["EU Catalogue"] 
+    WP["Wallet Provider (WP)"]
+    User((User))
+    WU["Wallet Unit <br/> [WIA]"]
+
+   subgraph WRP["Wallet Relying Parties (WRPs) [WRPAC, WRPRC]"]
+        direction LR
+        PIDP["PID Providers"]
+        subgraph AP["Attestation Providers"]
+            QEAAP["QEAA <br/>Providers"]
+            PubP["Pub-EAA <br/>Providers"]
+            EAAP["non-qualified <br/>EAA Providers"]
+        end
+        RP["Relying Parties (RPs)"]
+        RPI["RP <br/>Intermediaries"]
     end
 
     %% Skeleton
-    Registrar ~~~ Entity
-    ACA ~~~ Entity
-    RCA ~~~ Entity
-    MS ~~~ Entity
-    Cat ~~~ Registrar
-    Registrar ~~~ Registry
+    PIDP ~~~ RPI
+    RPI ~~~ AP
+    RP ~~~ RPI
 
     %% Style
-    style Cat fill:#f9f9f9,stroke:#333,stroke-width:2px,rx:20,ry:20
-    style NC fill:#fff4e1,stroke:#333,stroke-width:2px,rx:20,ry:20
-    style EUC fill:#fff4e1,stroke:#333,stroke-width:2px,rx:20,ry:20
-    style Registry fill:#fff4e1,stroke:#333,stroke-width:2px,rx:20,ry:20
-    style MS fill:#e1f5ff
-    style Entity fill:#e8f5e9
+    classDef WRP_entities fill:#ffefd5, stroke:#ffdab9
+    style WRP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style AP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+
+    class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
+
 
     %% Arrows
-    Entity -->|1. Requests Registration| Registrar
-    Registrar -->|2. Checks Rulebooks </br>for onboarding| Cat
-    Registrar -->|3. Registers the Entity's metadata| Registry
-    ACA -->|4. Issues Access Certificate| Entity
-    RCA -.->|4. Issues Registration Certificate| Entity
+    WP ---|Provides Wallet Solution| User 
+    User ---|Controls/activates| WU
+    WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP 
 ```
 
-### Notification
+However, these entities alone are not enough to establish trust between each others. Indeed, to trust the interactions between these entities, the following processes are needed:
+- *Authentication Process*: a way to authenticate the entity they interact with. To achieve this: 
+    - the Wallet Unit needs a Wallet Instance Attestation (WIA), an object that attests its integrity and genuinity and is signed by the WP.
+    - the WRPs needs an WRP Access Certificate (WRPAC).
+- *Authorization Process*: a way to check the authorization of an entity (e.g., it is the WRP eligible to issue/request an Attestation). To achieve this: 
+    - the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).
+    - the Attestation Providers may write their own embedded disclosure policies.
+- *Trust Anchor validation process*: a way to check the authenticity of signed objects, e.g., PID, Attestations, certificates and Register. To achieve this:
+    - the public key of the corresponding private key used to sign is published on Trusted Lists (TLs) or List of Trusted Entities (LoTEs).
+
+While these trust evaluation processes will be further detailed in the following sections, the processes to obtain and manage the artifacts needed for the trust evaluation are:
+- *WRP Registration Process*: to rely on Wallet Units for the purpose of providing a service, WRPs register at a Registrar in the Member State where they are established. Based on the type of service registered, registration includes: the attributes that the RP intends to request from Wallet Units or the attestation type(s) the Attestation Provider wants to issue to Wallet Units. As a result of the registration process:
+    - WRP registered data are added in the Register and made available online both in human-readable and machine-readable format; 
+    - WRP obtains a WRPAC provided by a Provider of WRPAC; and 
+    - optionally, WRP obtains a WRPRC provided by a Provider of WRPRC.
+
+    ```mermaid
+    graph TD
+
+    WRP["Wallet Relying Parties <br/> (WRPs)"]
+
+    subgraph MS["Member State (MS)"]
+        MSReg[MS <br/>Registrar]
+        ProvAC[Provider of <br/>WRPAC]
+        ProvRC[Provider of <br/>WRPRC]
+        Reg[/"Register(s)"/]
+        MSReg---|"Publishes data"| Reg
+    end
+
+    subgraph EC["European Commission (EC)"]
+        Cat[/Catalogues/]
+    end
+
+    %% Style
+    style WRP fill:#ffefd5, stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style MS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+    style EC fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
+    classDef blue fill:#e8f0fe,stroke:#abb2bf
+    classDef green fill:#8fbc8f,stroke:#2f4f4f
+
+    class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
+    class ECLoTE,ECNS,Cat,LoTEs blue;
+    class MSReg,ProvAC,ProvRC,TLs,Reg green;
+
+    %% Arrows
+    WRP ---|"Request registration"| MSReg
+    ProvAC ---|"Issues WRPAC"| WRP
+    ProvRC ---|"Issues WRPRC"| WRP
+    MSReg ---|"Checks Catalogues"| Cat
+    ```
+- *Notification Process*: Based on the entity, the MS sends a set of the data to the EC Notification System. 
+    - For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC and MS Registrars, MS sends a set of the data (including the trust anchors) to the EC as described in XX. As result, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.
+    - For Pub-EAA Providers, MS sends a set of the data (no trust anchor) to the EC as described in XX. As result, the notified entities are included in a LoTE by a EC LoTE Provider.
+    - For QEAA Providers and QTSP, MS sends a set of the data (containing the URL of the MS TLs) to the EC as described in XX. As result, the URL of the MS TLs is added in the EU List of Trusted List (LoTL).
+    ```mermaid
+    graph LR
+
+    subgraph MS["Member State (MS)"]
+        MSTLP["MS  <br/>Trusted List Provider  <br/>(TLP)"]
+        TLs[/TLs/]
+        MSTLP ---|"publish"| TLs
+    end
+
+    subgraph EC["European Commission (EC)"]
+        ECLoTE[EC LoTE <br/>Provider]
+        LoTE1[/WP <br/>LoTE/]
+        LoTE2[/PID Providers <br/>LoTE/]
+        LoTE3[/Providers of <br/>WRPAC LoTE/]
+        LoTE4[/Providers of <br/>WRPRC LoTE/]
+        LoTE5[/MS Registrar <br/>LoTE/]
+        LoTE6[/Pub-EAA Providers <br/>LoTE/]
+        LoTL[/LoTL/]
+        ECLoTE ---|"publish"| LoTE1
+        ECLoTE ---|"publish"| LoTE2
+        ECLoTE ---|"publish"| LoTE3
+        ECLoTE ---|"publish"| LoTE4
+        ECLoTE ---|"publish"| LoTE5
+        ECLoTE ---|"publish"| LoTE6
+        ECLoTE ---|"publish"| LoTL
+    end
+
+    LoTE1 ~~~ LoTE2
+    LoTE3 ~~~ LoTE4
+    LoTE5 ~~~ LoTE6
+
+    %% Style
+    style EC fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
+    style MS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+    classDef blue fill:#e8f0fe,stroke:#abb2bf
+    classDef green fill:#8fbc8f,stroke:#2f4f4f
+
+    class ECLoTE,ECNS,LoTE1,LoTE2,LoTE3,LoTE4,LoTE5,LoTE6,LoTL blue;
+    class MSTLP,TLs green;
+
+    %% Arrows
+    EC ---|"Notification Process <br/>(trust anchor or URL of the MS TL)"| MS
+    ```
+
+The following figure add these two processes to the previous architecture.
 
 ```mermaid
-graph TB
-    %% Participants
+graph TD
 
-    subgraph MS["Member State"]
-        AP["Attestation Provider"]
-        RP[Relying Party]
-        WP["Wallet Provider"]
-        Registrar
-        subgraph Child[" "]
-            ACA["Access Certificate Authority"]
-            RCP["Provider of Registration Certificates"]
-            MSTLSO["Trusted List Provider"]
+    WP["Wallet Provider (WP)"]
+    User((User))
+    WU["Wallet Unit <br/> [WIA]"]
+
+   subgraph WRP["Wallet Relying Parties (WRPs) <br/>[WRPAC, WRPRC]"]
+        direction LR
+        PIDP["PID Providers"]
+        subgraph AP["Attestation Providers"]
+            QEAAP["QEAA <br/>Providers"]
+            PubP["Pub-EAA <br/>Providers"]
+            EAAP["non-qualified <br/>EAA Providers"]
         end
+        RP["Relying Parties (RPs)"]
+        RPI["RP <br/>Intermediaries"]
+    end
+
+    subgraph MS["Member State (MS)"]
+        MSReg[MS <br/>Registrar]
+        ProvAC[Provider of <br/>WRPAC]
+        ProvRC[Provider of <br/>WRPRC]
+        MSTLP["MS  <br/>Trusted List Provider  <br/>(TLP)"]
+        TLs[/TLs/]
+        Reg[/"Register(s)"/]
+        MSTLP --- TLs
+        MSReg--- Reg
+    end
+
+    subgraph EC["European Commission (EC)"]
+        ECLoTE[EC LoTE <br/>Provider]
+        Cat[/Catalogues/]
+        LoTEs[/LoTLs or LoTEs/]
+        ECLoTE --- LoTEs
     end
 
 
-    subgraph TL["Trusted Lists"]
-        WPTL[Wallet Provider Trusted List]
-        ACATL[Access Certificate Authority Trusted List]
-        RCPTL[Provider of Registration Certificates Trusted List]
-    end
-    
-    subgraph eu["European Union"]
-        EC["European Commission"]
-        LoTLSO["List of Trusted List Provider"]
-    end
 
-    LoTL["List of Trusted List"]
-    OJEU["Official Journal of the European Union"]
+    %% Skeleton
+    PIDP ~~~ RPI
+    RPI ~~~ AP
+    RP ~~~ RPI
+    ProvAC ~~~ ProvRC
+  
 
-    %% --- Styles ---
+    %% Style
+    classDef WRP_entities fill:#ffefd5, stroke:#ffdab9
+    style WRP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style AP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style EC fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
+    style MS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+    classDef blue fill:#e8f0fe,stroke:#abb2bf
+    classDef green fill:#8fbc8f,stroke:#2f4f4f
 
-    style eu fill:#b0dcec,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style MS stroke:#333,stroke-width:1px,rx:20,ry:20
-    style TL fill:#f9f9f9,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style WPTL fill:#fff4e1,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style ACATL fill:#fff4e1,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style RCPTL fill:#fff4e1,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style OJEU fill:#fff4e1,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style LoTL fill:#fff4e1,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style WP fill:#e8f5e9
-    style AP fill:#e8f5e9
-    style RP fill:#e8f5e9
+    class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
+    class ECLoTE,ECNS,Cat,LoTEs blue;
+    class MSTLP,MSReg,ProvAC,ProvRC,TLs,Reg green;
 
-    %% --- Connections ---
 
-    WP -->|1. Registers| Registrar
-    AP --> Registrar
-    RP --> Registrar
-    Registrar -.->|Operates| Child
-    ACA -->|1. Registers| MSTLSO
-    RCP -->|1. Registers| MSTLSO
-    MSTLSO -->|2. Publishes| TL
-    MSTLSO -->|3. Notifies| EC
-    MSTLSO -.->|Has certificate in| LoTL
-    EC --> |4. Publishes| OJEU
-    EC -->|5. Designates| LoTLSO
-    LoTLSO -->|6. Publishes| LoTL
-    LoTLSO -.->|Has certificate in| OJEU 
-    LoTL -.->|Is referenced in| OJEU 
+    %% Arrows
+    WP ---|Provides Wallet Solution| User 
+    User ---|Controls/activates| WU
+    WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP 
+    WRP ---|"WRP Registration Process"| MS  
+    EC ---|"Notification Process <br/> through the EC Notification System"| MS
 ```
-
-### Trust Evaluation
-```mermaid
-graph TB
-    A["Entity A"]
-    B["Entity B"]
-    LoTL["List of Trusted List"]
-    OJEU["Official Journal of the EU"]
-    TL["Trusted List"]
-
-    style TL fill:#fff4e1,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style OJEU fill:#fff4e1,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style LoTL fill:#fff4e1,stroke:#333,stroke-width:1px,rx:20,ry:20
-    style A fill:#e8f5e9
-    style B fill:#e8f5e9
-    
-    %% Trust Evaluation Flow
-    A -->|1. Reads Entity A Trust Anchor| B
-    B -->|2. Searches for LoTL URL and LoTL Provider certificate| OJEU
-    B -->|3. Fetches LoTL.xml<br>- Verifies LoTL signature</br>- Obtains MS TL Provider certificate| LoTL
-    B -->|4. Fetches TL with TA</br>- Verifies TL signature<br>- Obtains TA certificate| TL
-```
-
-### Entitlements Evaluations
-
-### Trust Management
-
-### Entitlements Management
