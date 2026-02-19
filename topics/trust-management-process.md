@@ -66,7 +66,8 @@ The credential catalogue and related policies are not in scope of this chapter a
 Credential types and their policy are linked to the entity identity as registration profile, aka authorization.
 Of course changes in the policy repository will affect potentially the validity of registration certificates!!!
 
-# Entity license registration (Onboarding relying parties)
+# Entity license management
+## Registration (Onboarding relying parties)
 Each Member State will delegate a Registrar to manage the national register: it's a repository of identities and authorizations for entities that will handle attestations and attributes (in the issuance or presentation request phases).
 The process and related attributes that must be collected are described in [CIR 2025/848 and its amendement https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16113-European-Digital-Identity-Wallet-registration-of-wallet-relying-parties-update-_en], and the process will be specific for member state and it's assumed to be equivalent. This enrollment represents a "license" to operate in the EUDIW ecosystem.
 The first step is entity identification: the onboarding process must ensure adequate controls on the entity identity claims, using EUDI busines wallet or other authentication mechanisms. A unique identifier is assigned to the entity (WRP identifier) and operational attributes must be linked to that and that will be referred by WRPAC: credential offer endpoints, privacy policy statement URL.
@@ -86,11 +87,10 @@ Registrar could publish the authorization data bound to WRPidentifier in case WR
 * Certificate authority manages certificate issuance on the base of the information in the register (VAT+LEI and other specs). 
 There are different sectors that act in different ways.
 
-Data schemas are provided for these elements (and most of them are “mandatory”):
+Registrar could include the engagement of the CA in the registration process, according to 
 
-
-## Access (WRPAC) and registration (WRPRC) certificate issuance
-In order to make the entity and its license effectevely operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and WRPRC.
+# Access (WRPAC) and registration (WRPRC) certificate issuance
+In order to make the entity and its license effectevely operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and WRPRC (Regulatory requirements are described in Annex E , data model in Annex B of ETSI 119 475).
 This step requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists.
 The CA so access the national register using management apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
 
@@ -107,11 +107,8 @@ Whether the WRPAC is mandatory, WRPRC is not. This have two meanings:
 The authentication mecanism 
 * ARF  Reg_10a (separate certificate per Relying Party Instance), and clarifies that access certificates must include a user-presentable name (Reg_31)
 
-## License information update or revocation
-Updates to the register of course could be managed by entity's active request or autonomously by the registrar. The information update could affect identification data or registration and attestation permissions. The Registrar is responsible for handling this operation, it does not matter throughout which application mechanism (is automatic data collection after a notification, or after to be notified by a sectorial National Competent Authority) .
-This information change triggers a notification to the Certificate Authorities that issued certificates (tracked in the register) on the basis of the trusted information in the register. CA's contact information is in the trusted list. 
-The CA is responsible to revoke the certificates and eventually to communicate to the entity and to issue updated new ones. 
-In any case the CA is in charge to publish the certificate status using OCSP (online certificate status protocol) or CRL (Certificate revocation lists) according to technical specifications in etsi [319 411].
+## WRPAC and WRPRC examples and profiles
+ref to https://github.com/webuild-consortium/wp4-trust-group/tree/main/task5-participants-certificates-policies
 
 
 
