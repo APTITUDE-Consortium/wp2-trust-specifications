@@ -176,7 +176,7 @@ The following table lists all parameters from WRPRC that play role in authorizat
 | `service` | array of MultiLangString | **WRPs** (REQUIRED) | User transparency about service provided, support informed consent | [ETSI TS 119 475 Table 7], [CIR 2025/848 Annex I.8]  |
 | `public_body` | boolean | **WRPs** (REQUIRED by CIR 2025/848 Annex I.11) | Public sector body identification for trust assessment | [ETSI TS 119 475 Table 10], [CIR 2025/848 Annex I.11] |
 | `dpa` | LegalEntity | **WRPs** (REQUIRED) | Data protection supervisory authority for user rights and accountability | [ETSI TS 119 475 Table 7], [CIR 2025/848 Annex IV.3(g)]  |
-| `registry_uri` | string (URL) | **WRPs** (REQUIRED) | Registrar API URL for runtime verification and user opt-in queries | [ETSI TS 119 475 Table 7], [CIR 2025/848 Article 3(5)], [ARF RPRC_18]  |
+| `registry_uri` | string (URL) | **WRPs** (REQUIRED) | Register URL for runtime verification and user opt-in queries | [ETSI TS 119 475 Table 7], [CIR 2025/848 Article 3(5)], [ARF RPRC_18]  |
 | `support_uri` | string[^1] | **WRPs** (REQUIRED) | Support contact points for user rights including data deletion requests | [ETSI TS 119 475 Table 10], [CIR 2025/848 Annex I.7(a)] |
 | `act` | array of WalletRelyingParty | **WRPs** (OPTIONAL) | Intermediary entities disclosure for data flow transparency and trust assessment | [ETSI TS 119 475 Table 10], [CIR 2025/848 Annex I.14] |
 | `credentials[].claim[]` | array of Claim | **RPs** (OPTIONAL) | Attribute overasking prevention - verify requested attributes match registration. If not available, all attributes are requested | [ETSI TS 119 475 Table 9], [ARF RPRC_09], [ARF RPRC_21] |
@@ -410,7 +410,7 @@ sequenceDiagram
 
 **Step 1: Obtain Registration Data**
 
-The WI MUST obtain registration data from one of two sources: WRPRC (if present in metadata) or Registrar API (fallback).
+The WI MUST obtain registration data from one of two sources: WRPRC (if present in metadata) or Register (fallback).
 
 **Step 1a: Obtain Registration Data from WRPRC in Metadata**
 
@@ -443,7 +443,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
 
 12. If any validation in substeps 4-11 fails:
     - Record verification result is CERTIFICATE_INVALID
-    - Proceed to Step 1b (fallback to Registrar API)
+    - Proceed to Step 1b (fallback to Register)
 
 13. If all validations pass:
     - Extract registration data from WRPRC:
@@ -451,7 +451,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
       - `provided_Attestations[]` array (Attestation types AP registered to issue, per ETSI TS 119 475, ARF RPRC_15)
     - Proceed to Step 2 (verify provider entitlements)
 
-**Step 1b: Obtain Registration Data from Registrar API** (fallback if WRPRC missing or validation failed)
+**Step 1b: Obtain Registration Data from Register** (fallback if WRPRC missing or validation failed)
 
 1. The WI MUST extract Registrar URL from Credential Issuer Metadata (per ETSI TS 119 472-3, ARF RPRC_22a: field `registry_uri`).
    - If Registrar URL is not present:
@@ -484,7 +484,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
 
 **Step 2: Verify Provider Entitlements**
 
-This step operates on registration data obtained from Step 1a (WRPRC) or Step 1b (Registrar API).
+This step operates on registration data obtained from Step 1a (WRPRC) or Step 1b (Register).
 
 1. The WI MUST determine provider type based on user request:
    - If user requested PID then the expected entitlement is : `PID_Provider`
@@ -506,7 +506,7 @@ This step operates on registration data obtained from Step 1a (WRPRC) or Step 1b
 
 **Step 3: Verify Attestation Type Registered**
 
-This step operates on registration data obtained from Step 1a (WRPRC) or Step 1b (Registrar API).
+This step operates on registration data obtained from Step 1a (WRPRC) or Step 1b (Register).
 
 1. If provider type is PID_Provider (from Step 2):
    - Skip Attestation type verification (PID Providers issue PIDs by definition)
@@ -567,8 +567,8 @@ sequenceDiagram
     autonumber
     participant RP as Relying Party
     participant WI as Wallet Instance
-    participant TL as PRRC Trusted List
-    participant Reg as Registrar API
+    participant TL as WRPRC LoTE
+    participant Reg as Register
     participant User
 
     RP->>WI: Presentation Request
@@ -608,7 +608,7 @@ sequenceDiagram
 
 **Step 2: Obtain Registration Data**
 
-The WI MUST obtain registration data from one of two sources: WRPRC (if present and valid) or Registrar API (fallback).
+The WI MUST obtain registration data from one of two sources: WRPRC (if present and valid) or Register (fallback).
 
 **Step 2a: Obtain Registration Data from WRPRC**
 
@@ -617,7 +617,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
    - **Proximity flow (ISO 18013-5)**: Extract from device request extension according to ETSI TS 119 472-2 and ARF RPRC_20
 
 2. If WRPRC NOT present:
-   - Proceed to Step 2b (fallback to Registrar API)
+   - Proceed to Step 2b (fallback to Register)
 
 3. If WRPRC present:
    - The WI MUST verify that WRPRC included **by value** (not by reference per ARF RPRC_19)
@@ -644,7 +644,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
 
 12. If any validation in substeps 4-11 fails:
     - Record verification result is CERTIFICATE_INVALID
-    - Proceed to Step 2b (fallback to Registrar API)
+    - Proceed to Step 2b (fallback to Register)
 
 13. If all validations pass:
     - Extract registration data from WRPRC:
@@ -656,7 +656,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
       - `credentials[].claim[].path` - paths to registered attributes
     - Proceed to Step 3 (verify entitlements and binding)
 
-**Step 2b: Obtain Registration Data from Registrar API** (fallback if WRPRC missing or validation failed)
+**Step 2b: Obtain Registration Data from Register** (fallback if WRPRC missing or validation failed)
 
 1. The WI MUST extract Registrar URL from presentation request RP info extension:
    - Field: `registry_uri` (per ARF RPRC_19a).
@@ -695,7 +695,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
 
 **Step 3: Verify Entitlements and Binding**
 
-This step operates on registration data obtained from Step 2a (WRPRC) or Step 2b (Registrar API).
+This step operates on registration data obtained from Step 2a (WRPRC) or Step 2b (Register).
 
 1. The WI MUST verify that entitlements array contains the Service Provider entitlement:
    - Required value: `https://uri.etsi.org/19475/Entitlement/Service_Provider` (per ETSI TS 119 475 Annex A.2, CIR 2025/848)
@@ -732,7 +732,7 @@ This step operates on registration data obtained from Step 2a (WRPRC) or Step 2b
 
 **Step 4: Compare Requested vs Registered Attributes**
 
-This step operates on registration data obtained from Step 2a (WRPRC) or Step 2b (Registrar API).
+This step operates on registration data obtained from Step 2a (WRPRC) or Step 2b (Register).
 
 1. The WI MUST extract requested attributes from presentation request:
    - **Remote flow (DCQL)**: Extract from `credential_queries[].claims[]` paths.
@@ -788,8 +788,8 @@ sequenceDiagram
     participant RP as Relying Party
     participant WI as Wallet Instance
     participant User
-    participant TL as PRRC Trusted List (optional)
-    participant Reg as Registrar API (optional)
+    participant TL as WRPRC LoTE (optional)
+    participant Reg as Register (optional)
 
     RP->>WI: Presentation Request
 
@@ -802,7 +802,7 @@ sequenceDiagram
             Note over WI: Extract RP identifier (Step 2a)<br/>Check if RP ID in authorized list (Step 3a)
         else Policy type: SpecificRootOfTrust
             alt Intermediary scenario
-                WI->>TL: Fetch PRRC root certificate (optional)
+                WI->>TL: Fetch PRC root certificate (optional)
                 TL-->>WI: Root certificate
             end
             Note over WI: Extract certificate chain (Step 2b)<br/>Check if cert in authorized list (Step 3b)
@@ -940,7 +940,7 @@ This section shows how RP Overasking Prevention and Embedded Disclosure Policy E
 flowchart TD
     Start([RP sends presentation request]) --> UserOptIn{User enabled<br/>registration verification?}
 
-    UserOptIn -->|Yes| ObtainRegData[Obtain RP registration data<br/>WRPRC or Registrar API]
+    UserOptIn -->|Yes| ObtainRegData[Obtain RP registration data<br/>WRPRC or Register]
     UserOptIn -->|No| SkipRegVerif[Skip registration verification]
 
     ObtainRegData --> RegDataOK{Registration data<br/>obtained?}
@@ -1070,7 +1070,7 @@ This table map authorization mechanisms to ARF High-Level Requirements.
 | | RPRC_23 | Wallet Instance verify Attestation type registered |
 | | ISSU_24a | Wallet Instance verify PID Provider registration |
 | | ISSU_34a | Wallet Instance verify AP type and Attestation types |
-| | ISSU_33a | Wallet Instance accept PRRC trusted lists |
+| | ISSU_33a | Wallet Instance accept WRPRC LoTE |
 | | OIA_15 note, ISSU_10 note | Non-qualified EAA Providers not fully trustworthy |
 | **Embedded Disclosure Policies** | EDP_01 | Wallet Instance enable AP to express policy |
 | | EDP_02 | Support "Authorized relying parties only" policy |
@@ -1088,8 +1088,8 @@ This table map authorization mechanisms to ARF High-Level Requirements.
 | | EDP_02 note | Use intermediated RP ID for policy evaluation |
 | | EDP_03 note | Use intermediated RP PRRC root for policy evaluation |
 | **Trust Infrastructure** | RPACANot_01 - RPACANot_07 | Notification of PRRC providers |
-| | RPA_04 | Wallet Instance accept PRRC trusted lists |
-| | ISSU_33a | Wallet Instance accept PRRC trusted lists for AP |
+| | RPA_04 | Wallet Instance accept WRPRC LoTE |
+| | ISSU_33a | Wallet Instance accept WRPRC LoTE for AP |
 | **Presentation Flows** | OIA_01 | Support OpenID4VP (remote) and ISO 18013-5 (proximity) |
 | | RPRC_19 | Include WRPRC in both flows |
 | | RPA_03 | Perform RP authentication in both flows |
