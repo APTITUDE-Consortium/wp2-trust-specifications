@@ -10,85 +10,28 @@ The section covers three main authorization mechanisms:
 2. **Attestation Provider Unauthorized Issuance Prevention**: Mechanisms to prevent Attestation Providers from issuing Attestations they are not authorized to issue
 3. **Embedded Disclosure Policy Enforcement**: Mechanisms to apply disclosure policies defined by Attestation Providers
 
-As an essential part of the mechanisms described above, the entitlement verification mechanism is also covered in this section. 
+These mechanisms based on **WRPRCs** that contain registered capabilities and entitlements of entities, and **Embedded Disclosure Policies** that allow Attestation Providers to restrict which Relying Parties can access specific Attestations.
 
-The scope includes both proximity and remote presentation flows, and covers all types of Attestation Providers (PID Providers, QEAA Providers, PuB-EAA Providers, and non-qualified EAA Providers).
+The Wallet Instance plays a central role in implementing these mechanisms by:
+- Validating WRPRCs
+- Comparing requested operations with registered capabilities
+- Evaluating embedded disclosure policies
+- Informing user about verification results
 
-### Acronyms and Definitions
-
-| Term | Definition |
-|------|------------|
-| **AP** | Attestation Provider - Generic term for entities that issue Attestations (PID Providers, QEAA Providers, PuB-EAA Providers, EAA Providers) |
-| **CI** | Credential Issuer - Alternative term for Attestation Provider in OpenID4VCI context |
-| **EAA** | Electronic Attestation of Attributes |
-| **EDP** | Embedded Disclosure Policy as a set of rules defiend by APs for an Electronic Attestation of Attributes, indicating conditions that RP must meet to access Attestation |
-| **PID** | Person Identification Data |
-| **PuB-EAA** | Public Electronic Attestation of Attributes |
-| **QEAA** | Qualified Electronic Attestation of Attributes |
-| **Registrar** | Body responsible for establishing and maintaining list of Wallet-Relying Parties, PID providers, and Attestation providers in Member State |
-| **RP** | Relying Party |
-| **WI** | Wallet Instance |
-| **WRP** | Wallet-Relying Party - Entity that intends to rely upon WI. APs, RPs are WRPs|
-| **WRPAC** | Wallet-Relying Party Access Certificate - Certificate authenticating Wallet-Relying Party when interact with EUDI Wallet |
-| **WRPRC** | Wallet-Relying Party Registration Certificate. Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users  |
-
-### Reference Documents
-
-| Reference | Document |
-|-----------|----------|
-| **[ARF]** | EUDI Wallet Architecture and Reference Framework, including Discussion Topics and Annexes |
-| **[CIR 2024/2979]** | Commission Implementing Regulation (EU) 2024/2979 on integrity and core functionalities of European Digital Identity Wallets |
-| **[CIR 2025/848]** | Commission Implementing Regulation (EU) 2025/848 on registration of Wallet-Relying Parties |
-| **[ETSI TS 119 475]** | ETSI TS 119 475 V1.1.1 - Relying party attributes supporting EUDIW users authorization decisions |
-| **[ISO/IEC 18013-5]** | ISO/IEC 18013-5 - Personal identification — ISO-compliant driving licence — Part 5: Mobile driving licence (mDL) application |
-| **[OpenID4VP]** | OpenID for Verifiable Presentations |
-| **[OpenID4VCI]** | OpenID for Verifiable Credential Issuance |
-
-### Overview of Authorization Mechanisms
-
-Authorization mechanisms in EUDI Wallet ecosystem work together to ensure that:
-
-- **Relying Parties** can request only attributes they registered for specific intended use
-- **Attestation Providers** can issue only Attestation types they authorized to issue
-- **Users** have control over disclosure through policies defined by Attestation Providers
-
-These mechanisms based on **WRPRCs** that contain registered capabilities of entities, and **Embedded Disclosure Policies** that allow Attestation Providers to restrict which Relying Parties can access specific Attestations.
-
-The Wallet Instance play central role in implementing these mechanisms by:
-- Validate WRPRCs
-- Compare requested operations with registered capabilities
-- Evaluate embedded disclosure policies
-- Inform user about verification results
-
-All mechanisms support both **proximity presentation flows** (using ISO/IEC 18013-5) and **remote presentation flows** (using OpenID4VP).
+All mechanisms support both **proximity presentation flows** (using ISO/IEC 18013-5) and **remote presentation flows** (using OpenID4VP), and covers all types of Attestation Providers (QEAA Providers, PuB-EAA Providers, and non-qualified EAA Providers) and PID Providers.
 
 ## Prerequisites: Registration Process Overview
 
 ### Registration Process
 
-Both Relying Parties and Attestation Providers must register with Registrar in Member State before they can operate in EUDI Wallet ecosystem. Registration process follow common phases with entity-specific specializations.
-
-#### Common Registration Phases
-
-The following steps are in common to all WRPs for which registration is required.
-
-1. **Identity Verification**: Registrar verify identity of WRP according requirements in ETSI TS 119 461. The specific identity proofing level may vary based on entity type and applicable regulatory framework (e.g. QTSP requirements or MS national legislation) and it is out of scope of the piloting.
-
-2. **Registration Record Creation**: Registrar create registration record in national register. Record contain at least:
-   - WRP identification information.
-   - WRP type (RP, PID Provider, QEAA Provider, PuB-EAA Provider, EAA Provider).
-   - Entity-specific capabilities (see [Entity-Specific Specialization](#entity-specific-specialization))
-
-3. **WRPRC Issuance**: If the Member State mandates WRPRC issuance according to CIR 2025/848 Article 8, the Provider of WRPRCs must issue a signed WRPRC containing registered capabilities. If it is not mandated, Wallet Instance may retrieve information from Registrar's online service. 
-
-#### Entity-Specific Capabilities
+Wallet-Relying Parties (WRPs) must register with Registrar in their Member State before they can operate in the EUDI Wallet ecosystem. The Registration Process follows common phases with entity-specific specializations. See Section [Trust Architecture](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/topics/trust-architecture.md) for more details.
 
 Depending on the WRP type, the following information is provided during the registration process.
 
 - **Relying Parties** declare one or more intended uses, each with:
   - User-friendly description of intended use.
   - Attestation type and optionally the list of attributes needed for that intended use.
-  - Purpose of requesting those attributes
+  - Purpose of requesting those attributes.
   - Link to privacy policy.
 
   WRPRC is issued for each intended use, containing only attributes registered for that specific use  (see ARF RPRC_09).
@@ -100,18 +43,18 @@ Depending on the WRP type, the following information is provided during the regi
 
 Registration information is made available through:
 - **WRPRC**: Included in presentation request (RPs) or Credential Issuer metadata (APs) if issued.
-- **Registrar Online Service**: API accessible via URL for query registration information when certificate is not available.
+- **Register*: API accessible via URL for query registration information when certificate is not available.
 
 
 ### Trust Infrastructure
 
 Trust infrastructure supports authorization mechanisms through:
 
-1. **Provider of WRPRCs Trusted Lists**: Wallet Instances accept trust anchors from all Trusted Lists for Providers of WRPRCs. These trusted lists published by Commission and contain public keys for verify WRPRC signatures.
+1. **Provider of WRPRCs LoTE**: Wallet Instances accept trust anchors from all List of Trusted Entities (LoTE) for Providers of WRPRCs. These LoTE are published by Commission and contain public keys for verify WRPRC signatures.
 
-2. **WRPAC Certificate Authority Trusted Lists**: Separate from WRPRCs, WRPACs authenticated using trusted lists of WRPAC Certificate Authorities. Multiple trusted lists may exist for different entity types.
+2. **Provider of WRPAC LoTE**: Separate from WRPRCs, WRPACs authenticated using LoTE of Provider of WRPAC. Multiple LoTE may exist for different entity types.
 
-3. **Registrar Online Services**: Each Registrar provides URL to online service. This URL is included in:
+3. **Register**: Each Registrar provides URL to online service. This URL is included in:
    - WRPACs for Attestation Providers (see note in ARF DASH_05).
    - Presentation request extension for Relying Parties (see ARF RPRC_19a), and used for queries (see ARF RPRC_18)
 
@@ -210,7 +153,7 @@ WRPRCs are used in authorization mechanisms to:
 - Verify that requested attributes from RP match registered attributes for declared intended use.
 - Verify that provider type and Attestation types from AP match registration before issuance.
 
-Key characteristic of WRPRCs in authorization context:
+Key characteristics of WRPRCs in authorization context:
 - **Signed by Provider of WRPRCs**: Ensure authenticity and integrity
 - **Bound to WRPAC**: Ensure WRPRC belong to entity that authenticate with WRPAC
 - **Specific to Intended Use**: For Relying Parties, separate WRPRC issued for each intended use
@@ -218,14 +161,7 @@ Key characteristic of WRPRCs in authorization context:
 
 ### WRPRC Elements for Authorization
 
-WRPRCs contain parameters used by authorization mechanisms to verify that Relying Parties and Attestation Providers operate within their registered capabilities.
-
-This section identifies which parameters play role in authorization decisions. Detailed parameter specifications (formats, encodings, ETSI mappings) provided in [Section X.Y - WRPRC Detailed Specification].
-
-> [!WARNING]
-> The cross reference above should be replaced when the section about WRPRC will be finalized
-
-Parameters apply to different WRP types:
+This section identifies which parameters of a WRPRC play role in authorization decisions. Parameters apply to different WRP types:
 - **WRPs**: Common parameters for all Wallet-Relying Parties (both RPs and APs).
 - **RPs**: Any RP that requests attributes from wallet.
 - **APs**: Parameters specific to Attestation Providers.
@@ -243,11 +179,11 @@ The following table lists all parameters from WRPRC that play role in authorizat
 | `registry_uri` | string (URL) | **WRPs** (REQUIRED) | Registrar API URL for runtime verification and user opt-in queries | [ETSI TS 119 475 Table 7], [CIR 2025/848 Article 3(5)], [ARF RPRC_18]  |
 | `support_uri` | string[^1] | **WRPs** (REQUIRED) | Support contact points for user rights including data deletion requests | [ETSI TS 119 475 Table 10], [CIR 2025/848 Annex I.7(a)] |
 | `act` | array of WalletRelyingParty | **WRPs** (OPTIONAL) | Intermediary entities disclosure for data flow transparency and trust assessment | [ETSI TS 119 475 Table 10], [CIR 2025/848 Annex I.14] |
-| `credentials[].claim[]` | array of Claim | **RPs** (REQUIRED) | Attribute overasking prevention - verify requested attributes match registration | [ETSI TS 119 475 Table 9], [ARF RPRC_09], [ARF RPRC_21] |
+| `credentials[].claim[]` | array of Claim | **RPs** (OPTIONAL) | Attribute overasking prevention - verify requested attributes match registration. If not available, all attributes are requested | [ETSI TS 119 475 Table 9], [ARF RPRC_09], [ARF RPRC_21] |
 | `purpose` | array of MultiLangString | **RPs** (REQUIRED if IntendedUse present) | User transparency - inform user why attributes requested | [ETSI TS 119 475 Table 9], [ARF RPRC_18]  |
 | `privacy_policy` | string (URL) | **RPs** (REQUIRED if IntendedUse present) | User transparency - inform user about data processing practices | [ETSI TS 119 475 Table 9] |
 | `intended_use_id` | string | **RPs** (OPTIONAL - reserved for future) | Registrar-provided unique identifier of the registered intended use | [ETSI TS 119 475 Table 9], [ARF RPRC_19a] |
-| `provided_Attestations[]` | array of Credential | **APs** (REQUIRED for APs) | Verify AP authorized to issue specific Attestation type | [ETSI TS 119 475 Table 8], [ARF RPRC_15], [ARF RPRC_23], [ARF ISSU_34a] |
+| `provided_Attestations[]` | array of Credential | **APs** (REQUIRED) | Verify AP authorized to issue specific Attestation type | [ETSI TS 119 475 Table 8], [ARF RPRC_15], [ARF RPRC_23], [ARF ISSU_34a] |
 | `status`	| object {idx: string, uri: string} |	**WRPs** (REQUIRED)	| Revocation verification - check WRPRC validity status before using registration data|	[ETSI TS 119 475 GEN-6.2.6.1-04], [ARF RPRC_17]
 
 [^1]: ETSI shows `support_uri` as singular (URL or email), but Looking at Table 1 `supportURI` is related to Subject Alternative Name can have multiple entries. To check if it makes sense to define `support_uri` as array of strings.
@@ -263,9 +199,9 @@ The following table lists all parameters from WRPRC that play role in authorizat
 
 ### Distribution Methods
 
-Relying Party Instance include WRPRC in presentation request for **both proximity and remote presentation flows** (RPRC_19), using extension defined in ETSI TS 119 472-2.
-During  the **Proximity flow** (ISO/IEC 18013-5), the WRPRC is included in device request. 
-In the **Remote flow** (OpenID4VP), the WRPRC is included in authorization request. 
+Relying Party Instances include the WRPRC in a presentation request for **both proximity and remote presentation flows** (RPRC_19), using extension defined in ETSI TS 119 472-2.
+During  the **Proximity flow** (ISO/IEC 18013-5), the WRPRC is included in the device request. 
+In the **Remote flow** (OpenID4VP), the WRPRC is included in the authorization request. 
 
 WRPRCs are included **by value**, not by reference (RPRC_19). This ensure:
 - No external requests necessary to validate Relying Party
@@ -288,11 +224,9 @@ If WRPRC is not available in CI metadata, Wallet Instance may query Registrar on
 
 > "a set of rules, embedded in an electronic Attestation of attributes by its provider, that indicates the conditions that a Wallet-Relying Party has to meet to access the electronic Attestation of attributes"
 
-The main prurpose is to allow Attestation Provider to control which Relying Parties can access specific Attestation.
+The main purpose is to allow Attestation Providers to control which Relying Parties can access specific Attestation.
 
-Attestation Provider can optionally express Embedded Disclosure policy for Attestations (EDP_01), and, accoridng to the Article 10 of CIR 2024/2979, Wallet Providers ensure that electronic Attestations with common Embedded Disclosure policies (listed in Annex III) can be processed by their Wallet Instances.
-
-If no policy defined, Attestations can be presented to any Relying Party, although they are always subject to user consent.
+Attestation Providers can optionally express Embedded Disclosure policy for Attestations (EDP_01), and, according to the Article 10 of CIR 2024/2979, Wallet Providers ensure that electronic Attestations with common Embedded Disclosure policies (listed in Annex III) can be processed by their Wallet Instances.
 
 The Embedded Disclosure Policies are applicable to:
 - **QEAAs**. 
@@ -303,17 +237,17 @@ They are **not applicable to PIDs**: EUDIW Regulation doesn't provide any requir
 
 The main **use cases** that can be enabled by Embedded Disclosure Policies are:
 - Restrict access to sensitive Attestations to authorized RPs only.
-- If a sector-specific CAs exists, the AP may implement sector-specific access control (e.g., only public sector RPs)
-- MS-specific access control (only RPs registered within a specific MEmber State)
+- If a sector-specific CAs exists, the AP may implement sector-specific access control (e.g., only public sector RPs).
+- MS-specific access control (only RPs registered within a specific Member State).
 
 In particular, the use cases above are enabled using the policy types described in the following section. 
 
 
 ### Policy Types
 
-Annex III of CIR 2024/2979 define three common embedded disclosure policy types that Wallet Instance must support.
+Annex III of CIR 2024/2979 define three common Embedded Disclosure Policy types that Wallet Instance must support.
 
-1. **No Policy**: Attestation has no embedded disclosure policy. Wallet Instance can present Attestation to any Relying Party, subject only to user approval.
+1. **No Policy**: Attestation has no Embedded Disclosure Policy. Wallet Instance can present Attestation to any Relying Party, subject only to user approval.
 2. **Authorized Relying Parties Only Policy**: Attestation can be presented only to Relying Parties in authorized list defined by Attestation Provider. According to (EDP_02), this list contains the **EU-wide unique identifiers** of authorized Relying Parties. The format is the same as the unique identifier in WRPRC.
 3. **Specific Root of Trust Policy**: Attestation can be presented only to Relying Parties whose WRPACs signed by specific trusted Certificate Authorities. According to (EDP_03), the list contains the **root or intermediate certificates** used for signing Relying Party WRPACs, and must be in X.509 format.
 
@@ -321,7 +255,7 @@ Annex III of CIR 2024/2979 define three common embedded disclosure policy types 
 ### Policy Structure and Encoding
 
 > [!WARNING]
-> The Embedded Disclosure Policy structure and parameter names defined in this section are not based on normative references neither on technical standards. ARF requirement EDP_08 state that Commission shall create technical specification for embedded disclosure policy format. However this specification is **not yet published**. The content of this section is based on EDP_02, EDP_03, EDP_05, but may differ from final technical specification.
+> The Embedded Disclosure Policy structure and parameter names defined in this section are not based on normative references neither on technical standards. ARF requirement EDP_08 state that Commission shall create technical specification for Embedded Disclosure Policy format. However this specification is **not yet published**. The content of this section is based on EDP_02, EDP_03, EDP_05, but may differ from final technical specification.
 
 
 The Embedded Disclosure Policy structure is defined in the following table:
@@ -380,7 +314,7 @@ In the following sections non-normative examples are provided.
 
 ### Policy Distribution via Credential Issuer Metadata
 
-According to ARF Discussion Topic D, the **primary distribution method** for Embedded disclosure policies should be including it in **Credential Issuer metadata**.
+According to ARF Discussion Topic D, the **primary distribution method** for Embedded Disclosure Policies should be including it in **Credential Issuer metadata**.
 
 This is preferred method because:
 - Policy is available before Attestation issuance
@@ -413,7 +347,7 @@ This is preferred method because:
 
 A Wallet Instance may:
 1. Fetch Credential Issuer metadata during issuance flow.
-2. Extract embedded disclosure policy for credential type.
+2. Extract Embedded Disclosure Policy for credential type.
 3. Store policy locally with issued Attestation (see EDP_10).
 4. During presentation, evaluate stored policy against requesting Relying Party as described in the following section.
 
@@ -441,8 +375,8 @@ sequenceDiagram
     participant User
     participant WI as Wallet Instance
     participant AP as Attestation Provider
-    participant TL as PRRC Trusted List
-    participant Reg as Registrar API
+    participant TL as WRPRC LoTE
+    participant Reg as Register
 
     User->>WI: Request Attestation issuance
     WI->>AP: Fetch Credential Issuer Metadata
@@ -497,7 +431,7 @@ The WI MUST obtain registration data from one of two sources: WRPRC (if present 
 
 6. The WI MUST extract issuer identifier from WRPRC `iss` claim.
 
-7. The WI MUST fetch trust anchor for Provider of WRPRCs from Trusted List. The WI MUST accept trust anchors from **all** Provider of WRPRCs Trusted Lists (per ARF ISSU_33a).
+7. The WI MUST fetch trust anchor for Provider of WRPRCs from LoTE. The WI MUST accept trust anchors from **all** Provider of WRPRCs LoTE (per ARF ISSU_33a).
 
 8. The WI MUST validate certificate chain from WRPRC signing certificate to trust anchor per ETSI TS 119 475 requirements.
 
@@ -669,7 +603,7 @@ sequenceDiagram
 1. The WI MUST check if user enabled registration verification (per ARF RPRC_16: user indicated they want to verify information registered by Registrar about RP).
 2. If user opted-in, then the WI MUST proceed to Step 2, otherwise:
    - The WI MUST skip all following steps.
-   - The WI MUST proceed directly to embedded disclosure policy evaluation (see Section XX).
+   - The WI MUST proceed directly to Embedded Disclosure Policy evaluation (see Section XX).
 
 
 **Step 2: Obtain Registration Data**
