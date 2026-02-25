@@ -1,5 +1,12 @@
 # Trust Management Process
 to do: ref webuild tech specs wrprc e wrpac
+
+cosa gestiscono le policy?
+se il cred catalogue è a livello MS, dovranno esserci policy a livello eu e a livello MS. le policy sono sia per identità che per autorizzazione. la policy discovery è interrogata da wallet: wallet nazionale interroga il proprio endpoint e quando opera in contesto MS?
+il certificato esprime ciò che c'è nel register. info register deve rimanere sync con quella trasportata dal certificato . o registrar notifica ai issuer o qtsp e ca interrogano il registro per recuperare informazioni che sono state aggiornate. owner non avrà la responsabilità.
+
+il ctlog è un servizio che raccoglie i timestamp di quando sono stati registrati i certificati . sprattutto nella prima fase di avvio ci sarà un alto tasso di cambiamento delle informazioni. 
+
 aggiungere nota che la DPA Data Protection Authorities (che espone api tramite TS 08) notifica al registrar eventuale sospensione, idem altre authorities
 **Table of Contents**
 
@@ -67,7 +74,7 @@ Credential types and their policy are linked to the entity identity as registrat
 Of course changes in the policy repository will affect potentially the validity of registration certificates!!!
 
 # Entity license management
-## Registration (Onboarding relying parties)
+## Registration (Onboarding wallet relying parties)
 Each Member State will delegate a Registrar to manage the national register: it's a repository of identities and authorizations for entities that will handle attestations and attributes (in the issuance or presentation request phases).
 The process and related attributes that must be collected are described in [CIR 2025/848 and its amendement https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16113-European-Digital-Identity-Wallet-registration-of-wallet-relying-parties-update-_en], and the process will be specific for member state and it's assumed to be equivalent. This enrollment represents a "license" to operate in the EUDIW ecosystem.
 The first step is entity identification: the onboarding process must ensure adequate controls on the entity identity claims, using EUDI busines wallet or other authentication mechanisms. A unique identifier is assigned to the entity (WRP identifier) and operational attributes must be linked to that and that will be referred by WRPAC: credential offer endpoints, privacy policy statement URL.
@@ -88,19 +95,27 @@ Registrar could publish the authorization data bound to WRPidentifier in case WR
 There are different sectors that act in different ways.
 
 Registrar could include the engagement of the CA in the registration process, according to 
+## revoca licenza ad operare 
+NCA per wallet è ie ACN (agenzia per la cybersecurity nazionale ) italia 
 
-# Access (WRPAC) and registration (WRPRC) certificate issuance
+
+# Access (WRPAC) and registration (WRPRC) certificate lifecyclwe
+## issuance
 In order to make the entity and its license effectevely operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and WRPRC (Regulatory requirements are described in Annex E , data model in Annex B of ETSI 119 475).
 This step requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists.
 The CA so access the national register using management apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
 
-The Certificate Authority has to notify the Registrar as soon a WRPAC or WRPRC has been issued. Registrar should record all issued certificates in order to be able to ask for revocation if required. Revocation process cases and status management is described in [etsi 475]
-The CA has the duty to publish all certificate according to Certificate transparency policies rif [?].
+****The Certificate Authority has to notify the Registrar as soon a WRPAC or WRPRC has been issued. Registrar should record all issued certificates in order to be able to ask for revocation if required. Revocation process cases and status management is described in [etsi 475]
+The CA has the duty to publish all certificate according to Certificate transparency policies rif [?]. ca logga i timestamp sui log (il certificato è stato registrato) e obbligo di ca, logga in due log diversi gestiti da ctlog. quando ti connetti verifica signed certificate timestamp : verifico il certificato 1 emesso da ca in TL e che sia stato registrato gestori del ctlog
 The WRP has to make available its WRPRC and WRPAC certificates online (il wallet dove deve cercarli????)
+## revoca
+1. per synco con NCA register
+2. segnalazione abuso
 
+# credntial presentation and issuance according to standard everyday flow
 ## Operational WRPAC and WRPRC application use
 The use in oid4vp and oid4vci of these 2 certificates, policy discovery and WRPAC/WRPRC verification against trusted lists is not in scope.
-Whether the WRPAC is mandatory, WRPRC is not. This have two meanings:
+Whether the WRPAC is mandatory, WRPRC is not (se wallet fa policy discovery, issuer o rp devono necessariamente mandare il wrprc XXX). This have two meanings:
 1. credential policy could not require a specific authorization that is in the WRPRC
 2. but even if it could require it, it's not mandatory to send it through the communication protocol, and so the wallet should verify the authorization set in the register for the WRP identifier, according to the credential policy.
 
