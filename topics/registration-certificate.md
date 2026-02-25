@@ -2,22 +2,20 @@
 
 ## Overview
 
-This document defines Wallet-Relying Party Registration Certificates (WRPRC). The WRPRC provides detailed information about the provider's entitlements, the attestations they issue, and their intended use.
+This document defines Wallet-Relying Party Registration Certificates (WRPRC), as described in [ARF](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/architecture-and-reference-framework-main.md#319-providers-of-registration-certificates). The WRPRC provides detailed information about the provider's entitlements, the attestations they issue, and their intended use.
 
 ## Normative References
 
 | Reference | Document |
-|-----------|----------|
-| ETSI TS 119 475 | Relying party attributes supporting EUDI Wallet user's authorization decisions |
-| ETSI TS 119 182-1 | JAdES digital signatures; Part 1: Building blocks and JAdES baseline signatures |
-| ETSI EN 319 411-1 | Policy and security requirements for Trust Service Providers issuing certificates; Part 1: General requirements |
-| CIR (EU) 2025/848 | Commission Implementing Regulation on the registration of wallet-relying parties |
-| IETF RFC 7519 | JSON Web Token (JWT) |
-| IETF RFC 8392 | CBOR Web Token (CWT) |
-| IETF RFC 5646 | Tags for Identifying Languages |
-| ISO 3166-1 | Codes for the representation of names of countries |
-
----
+|----------|----------|
+| [ETSI TS 119 475](https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.01.01_60/ts_119475v010101p.pdf) | Relying party attributes supporting EUDI Wallet user's authorization decisions |
+| [ETSI TS 119 182-1](https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.02.01_60/ts_11918201v010201p.pdf) | JAdES digital signatures; Part 1: Building blocks and JAdES baseline signatures |
+| [ETSI EN 319 411-1](https://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.03.01_60/en_31941101v010301p.pdf) | Policy and security requirements for Trust Service Providers issuing certificates; Part 1: General requirements |
+| [CIR (EU) 2025/848](https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj/eng) | Commission Implementing Regulation on the registration of wallet-relying parties |
+| [IETF RFC 7519](https://www.rfc-editor.org/rfc/rfc7519) | JSON Web Token (JWT) |
+| [IETF RFC 8392](https://datatracker.ietf.org/doc/html/rfc8392) | CBOR Web Token (CWT) |
+| [IETF RFC 5646](https://datatracker.ietf.org/doc/rfc5646/) | Tags for Identifying Languages |
+| [ISO 3166-1](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) | Codes for the representation of names of countries |
 
 ## Format
 
@@ -33,6 +31,8 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC). Th
 
 ### JWT Header Attributes
 
+> Listed header attributes are mandatory.
+
 | Attribute | Type | Description | Reference |
 |-----------|------|-------------|-----------|
 | `typ` | *string* | Specifies the type of the Web Token. The value is set to `rc-wrp+jwt` for JWT | ETSI TS 119 475 Table 5 |
@@ -42,6 +42,8 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC). Th
 | `x5c` | *array[string]* | Contains the whole certificate chain to verify the JWT or CWT as defined in clause 5.1.8 of ETSI TS 119 182-1 [18] | ETSI TS 119 475 Table 5 |
 
 ### CWT Header Attributes
+
+> Listed header attributes are mandatory.
 
 | Attribute | Type | Description | Reference |
 |-----------|------|-------------|-----------|
@@ -63,6 +65,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC). Th
 | `sub.id` | *string* | Organizational identifier per clause 5.1.3 | Mandatory for Legal Entity | ETSI TS 119 475 Table 7 - `identifier` |
 | `country` | *string* | ISO 3166-1 alpha-2 code | Mandatory | ETSI TS 119 475 Table 7 - `country` |
 | `registry_uri` | *string* | URL pointing to the national registry API endpoint of the registered WRP | Mandatory | ETSI TS 119 475 Table 7 - `registryURI` |
+| `info_uri` | *string* | URL general-purpose web address | Mandatory | ETSI TS 119 475 Table 7 - `infoURI` |
 
 ### Service Description Attributes
 
@@ -83,7 +86,6 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC). Th
 | Attribute | Type | Description | Mandatory | Reference |
 |-----------|------|-------------|-----------|-----------|
 | `privacy_policy` | *string* | URL to the WRP's privacy policy explaining data processing and storage practices | Mandatory | ETSI TS 119 475 Table 7 - `privacyPolicy` |
-| `info_uri` | *string* | URL general-purpose web address | Mandatory | ETSI TS 119 475 Table 7 - `infoURI` |
 | `public_body` | *boolean* | Boolean indicating whether the WRP is a public sector body` | Optional | ETSI TS 119 475 Table 10 - `isPSB` | 
 
 ### Data Protection Authority Attributes
@@ -500,6 +502,15 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC). Th
 ---
 
 ## Other information
+
+### Algorithms
+
+Algorithms used should be one of the algorithms for digital signatures recommended by in [ETSI TS 119 312](https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.02.01_60/ts_11918201v010201p.pdf).
+
+[OpenID4VC High Assurance Interoperability Profile 1.0](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html#section-7)
+also defines its own requirements for digital signatures. However, those requirements are not directly related to
+registration certificates.
+
 
 ### List of possible Entitlements
 
