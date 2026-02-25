@@ -8,6 +8,11 @@ il certificato esprime ciò che c'è nel register. info register deve rimanere s
 il ctlog è un servizio che raccoglie i timestamp di quando sono stati registrati i certificati . sprattutto nella prima fase di avvio ci sarà un alto tasso di cambiamento delle informazioni. 
 
 aggiungere nota che la DPA Data Protection Authorities (che espone api tramite TS 08) notifica al registrar eventuale sospensione, idem altre authorities
+
+Sectors have sectorial registries recognized by market or regulation (ie banks) where both identities and license registration could be reused in eudiw ecosystem. MS/EU/Registrars could adopt strategies in order to federate existing registries in order to use these information in eidas framework.
+Sectorial authorities could act as NCA National Competent Authority, defining and notifing to eu commission a credential catalogue and license repository for sectorial operators and perhaps the data policies in accordance with european sectorial authority. EU commission's criteria to identify these actors is out of scope
+If this scenario would be supported, different levels of trust should be managed, because different sectors could have different level of trust and this could qualify entities issuing EAA creds
+
 **Table of Contents**
 
 ## normative & technical references
