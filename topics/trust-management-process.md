@@ -40,10 +40,10 @@ Tech standards
 The aim of this chapter is to describe the lifecycle of 
 1. entity identity and authorization information managed in the national registers
 2. and the related certificates that are used to claim that identity and related authorization in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates.
-The integrity and authenticity of credentials is out of scope, assuming that Q seals and Q signing certificates are consolidated.
+The integrity and authenticity of these credentials is out of scope, assuming that Q seals and Q signing certificates are consolidated.
 
-All available normative and technical references will be referred for each phase. 
-work in progress
+Wallet Relying Parties (WRP) Identity is delegated to national registrars according to national trust framework policies.
+
 
 This topic is not fully covered by ARF or actual legislation (topic is open?) and probably some details will be delegated to member states, and so it could be useful to identify best practices and success stories from the market that could provide an "inspirational starting point" in order to define a sustainable and effective design. 
 Banking sector is probably by nature a good example to be taken into consideration, and so there is a specific chapter that aims to describe the state of the art relating the authentication mechanisms in place at the present, and is described in Annex I. [allowed the entrance in this market of different actors able to integrate and extend the service offered by traditional banks. The use of authentication certificates could be taken as source of inspiration for defining a large scale application like the eudiw ecosystem]
