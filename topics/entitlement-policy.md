@@ -379,182 +379,150 @@ sequenceDiagram
     participant Reg as Register
 
     User->>WI: Request Attestation issuance
+    Note over WI: Phase 1: Obtain registration data"
     WI->>AP: Fetch Credential Issuer Metadata
     AP-->>WI: Metadata (signed)
 
-    Note over WI: Obtain registration data (Step 1)
+    
 
     alt WRPRC in metadata
+        Note over WI: Phase 1a: Validate WRPRC <br/>Extract registration data. 
         WI->>TL: Fetch trust anchor
         TL-->>WI: Trust anchor
-        Note over WI: Validate WRPRC (Step 1a)<br/>Extract registration data
     else WRPRC missing
+        Note over WI: Phase 1b: Verify response authenticity<br/>Extract registration data.
         WI->>Reg: Query registration data
         Reg-->>WI: Registration data
-        Note over WI: Verify response authenticity (Step 1b)<br/>Extract registration data
     end
 
-    Note over WI: Verify provider entitlements (Step 2)<br/>Verify Attestation type registered (Step 3)
+    Note over WI: Phase 2: Verify provider entitlements.
+    Note over WI: Phase 3: Verify Attestation type registered.
 
     alt Verification passed
+        Note over WI: Phase 4: Allow Issuance Request.
         WI->>User: Show provider info + request user confirmation
         User-->>WI: User confirms
         WI->>AP: Request Attestation issuance
     else Verification failed
+        Note over WI: Phase 5: Refuse Issuance Request.
         WI->>User: Display warning (cannot verify provider)
-        Note over WI: Refuse to request issuance
     end
 ```
 
 #### Step-by-Step Operations
 
-**Step 1: Obtain Registration Data**
+**Phase 1: Obtain Registration Data**.
 
 The WI MUST obtain registration data from one of two sources: WRPRC (if present in metadata) or Register (fallback).
 
-**Step 1a: Obtain Registration Data from WRPRC in Metadata**
+**Step 2-3**. The WI MUST fetch Credential Issuer Metadata from AP using OpenID4VCI protocol (per ARF ISSU_01). 
 
-1. The WI MUST fetch Credential Issuer Metadata from AP using OpenID4VCI protocol (per ARF ISSU_01).
+The WI MUST fetch Credential Issuer Metadata and extract the field `registration_certificate` from metadata (per ETSI TS 119 472-3 section 4.2.3, ARF RPRC_22). If WRPRC is present, proceed to Phase 1a, otherwise proceed with Phase 1a  (fallback to Registrar).
 
-2. The WI MUST extract WRPRC from metadata (per ETSI TS 119 472-3 section 4.2.3, ARF RPRC_22):
-   - Field: `registration_certificate` in metadata
-   - If WRPRC NOT present, proceed to Step 1b (fallback to Registrar)
+**Phase 1a: Obtain Registration Data from WRPRC in Metadata**.
 
-3. If WRPRC present:
-   - The WI MUST verify that WRPRC included **by value** (not by reference per ARF RPRC_22)
-   - Proceed to substep 4
-
-4. The WI MUST verify WRPRC format:
+**Step 4-5**. The WI MUST
+   - Verify that WRPRC is included **by value** (not by reference per ARF RPRC_22)
    - WRPRC MUST be JWT with header `typ: "wrprc+jwt"` per ETSI TS 119 475 section 5.1.1
+   - Verify signing algorithm in JOSE header is acceptable (not "none", not deprecated algorithms).
+   - Extract issuer identifier from WRPRC `iss` claim.
+   - Fetch trust anchor for Provider of WRPRCs from LoTE; the WI MUST accept trust anchors from **all** Provider of WRPRCs LoTE (per ARF ISSU_33a).
+   - Validate certificate chain from WRPRC signing certificate to trust anchor per ETSI TS 119 475 requirements.
+   - Verify WRPRC signature using validated certificate chain.
+   - Check `iat` (issued at) claim and `exp` (expiration) claim in the WRPRC to verify temporal validity.
+   - Check revocation status of WRPRC using `status` field.
 
-5. The WI MUST verify signing algorithm in JOSE header is acceptable (not "none", not deprecated algorithms).
+If any validation fails, the WI MUST:
+   - Record verification result is CERTIFICATE_INVALID.
+   - Proceed to Step 1b (fallback to Register).
 
-6. The WI MUST extract issuer identifier from WRPRC `iss` claim.
+Otherwise, the WI MUST:
+   - Extract registration data from WRPRC:
+      - `entitlements` array (per ETSI TS 119 475 Table 7, B.2.1).
+      - `provided_Attestations[]` array (Attestation types AP registered to issue, per ETSI TS 119 475, ARF RPRC_15).
+   - Proceed to Phase 2 (verify provider entitlements).
 
-7. The WI MUST fetch trust anchor for Provider of WRPRCs from LoTE. The WI MUST accept trust anchors from **all** Provider of WRPRCs LoTE (per ARF ISSU_33a).
+**Phase 1b: Obtain Registration Data from Register** (fallback if WRPRC missing or validation failed).
 
-8. The WI MUST validate certificate chain from WRPRC signing certificate to trust anchor per ETSI TS 119 475 requirements.
+The WI MUST extract Registrar URL from Credential Issuer Metadata (per ETSI TS 119 472-3, ARF RPRC_22a: field `registry_uri`).
+**Step 6-7**. The WI MUST:
+   - Connect to Registrar online service at extracted URL using HTTPS with TLS certificate validation, as defined in ARF Technical Specification 5 (TS5).
+   - Query registration information using AP unique identifier.
+   - Verify authenticity of Registrar response (validate TLS certificate chain for Registrar server), and, if response is signed (per TS5), validate signature using Registrar public key from national trusted list.
 
-9. The WI MUST verify WRPRC signature using validated certificate chain.
+If Registrar URL is not present OR authenticity verification fails OR connection fails, the WI MUST:
+   - Display warning to user per ARF ISSU_24a/ISSU_34a: "Could not verify the Attestation Provider registration".
+   - Record verification result is FAILED.
+   - Refuse issuance request (proceed to Phase 5).
 
-10. The WI MUST check `iat` (issued at) claim and `exp` (expiration) claim in the WRPRC to verify temporal validity.
-
-11. The WI MUST check revocation status of WRPRC using `status` field.
-
-12. If any validation in substeps 4-11 fails:
-    - Record verification result is CERTIFICATE_INVALID
-    - Proceed to Step 1b (fallback to Register)
-
-13. If all validations pass:
-    - Extract registration data from WRPRC:
-      - `entitlements` array (per ETSI TS 119 475 Table 7, B.2.1)
-      - `provided_Attestations[]` array (Attestation types AP registered to issue, per ETSI TS 119 475, ARF RPRC_15)
-    - Proceed to Step 2 (verify provider entitlements)
-
-**Step 1b: Obtain Registration Data from Register** (fallback if WRPRC missing or validation failed)
-
-1. The WI MUST extract Registrar URL from Credential Issuer Metadata (per ETSI TS 119 472-3, ARF RPRC_22a: field `registry_uri`).
-   - If Registrar URL is not present:
-     - The WI MUST display warning to user per ARF ISSU_24a/ISSU_34a: "Could not verify the Attestation Provider registration"
-     - Record verification result is FAILED
-     - Refuse to request issuance (proceed to Step 4)
-
-2. The WI MUST connect to Registrar online service at extracted URL using HTTPS with TLS certificate validation, as defined in ARF Technical Specification 5 (TS5).
-
-3. The WI MUST query registration information using:
-   - AP unique identifier (from metadata field `id` per ARF RPRC_22a)
-
-4. The WI MUST verify authenticity of Registrar response:
-   - Validate TLS certificate chain for Registrar server
-   - If response is signed (per TS5), validate signature using Registrar public key from national trusted list
-
-5. If authenticity verification fails OR connection fails:
-   - The WI MUST display warning to user per ARF ISSU_24a/ISSU_34a: "Could not verify the Attestation Provider registration"
-   - Record verification result is FAILED
-   - Refuse to request issuance (proceed to Step 4)
-
-6. If authenticity verification succeeds:
+Otherwise, if authenticity verification succeeds, the WI MUST:
    - Extract registration data from Registrar response:
-     - `entitlements` array
-     - `provided_Attestations[]` array
-   - Proceed to Step 2 (verify provider entitlements)
+     - `entitlements` array.
+     - `provided_Attestations[]` array.
+   - Proceed to Phase 2 (verify provider entitlements).
 
 > [!NOTE]
 > **Three-tier fallback** (per ARF ISSU_24a, ISSU_34a): If both WRPRC and Registrar query fail, WI MAY optionally inspect self-declared `entitlement` member in Credential Issuer Metadata. This is NOT RECOMMENDED for security (self-declared data) and is at Wallet Provider discretion.
 
-**Step 2: Verify Provider Entitlements**
+**Phase 2: Verify Provider Entitlements**.
 
-This step operates on registration data obtained from Step 1a (WRPRC) or Step 1b (Register).
+This phase operates on registration data obtained from phase 1a (WRPRC) or phase 1b (Register).
+The WI MUST:
+   - Determine provider type based on user request:
+     - If user requested PID then the expected entitlement is : `PID_Provider`.
+     - If user requested QEAA the expected entitlement is: `Q_EAA_Provider`.
+     - If user requested PuB-EAA the expected entitlement is: `PuB_EAA_Provider`.
+     - If user requested non-qualified EAA then the expected entitlement is: `Non_Q_EAA_Provider`.
 
-1. The WI MUST determine provider type based on user request:
-   - If user requested PID then the expected entitlement is : `PID_Provider`
-   - If user requested QEAA the expected entitlement is: `Q_EAA_Provider`
-   - If user requested PuB-EAA the expected entitlement is: `PuB_EAA_Provider`
-   - If user requested non-qualified EAA then the expected entitlement is: `Non_Q_EAA_Provider`
+   - Verify that entitlements array contains expected provider entitlement (per ETSI TS 119 475 Annex A.2): `https://uri.etsi.org/19475/Entitlement/{ProviderType}`.
 
-2. The WI MUST verify that entitlements array contains expected provider entitlement (per ETSI TS 119 475 Annex A.2):
-   - Required value format: `https://uri.etsi.org/19475/Entitlement/{ProviderType}`
-   - Example for PID Provider: `https://uri.etsi.org/19475/Entitlement/PID_Provider`
+If entitlement check fails (per ARF ISSU_24a for PID, ISSU_34a for AP), the WI MUST:
+   - Display warning to user: "This provider is not registered as [expected provider type]".
+   - Record verification result is WRONG_ENTITLEMENT.
+   - Refuse issuance request (proceed to Phase 5).
 
-3. If entitlement check fails (per ARF ISSU_24a for PID, ISSU_34a for AP):
-   - The WI MUST display warning to user: "This provider is not registered as [expected provider type]"
-   - Record verification result is WRONG_ENTITLEMENT
-   - Refuse to request issuance (proceed to Step 4)
+Otherwise, if entitlement check succeeds, the WI MUST proceed to Phase 3 (verify Attestation type) registered.
 
-4. If entitlement check succeeds:
-   - Proceed to Step 3 (verify Attestation type)
+**Phase 3: Verify Attestation Type Registered**
 
-**Step 3: Verify Attestation Type Registered**
+Depending on the provider type obtained from phase 2, the following case occur:
+   - If provider type is PID_Provider (from Step 2), the WI MAY skip Attestation type verification (PID Providers issue PIDs by definition), and proceed to Phase 4 (allow issuance request).
+   - If provider type is Q_EAA_Provider, PuB_EAA_Provider, or Non_Q_EAA_Provider, the WI MUST:
+     - Extract Attestation type user wants to obtain (from user request).
+     - Extract list of registered Attestation types from registration data (`provided_Attestations[]` array per ARF RPRC_15, ISSU_34b).
+   - Check if requested Attestation type is present in registered Attestation types list:
+     - Matching MUST be **case-sensitive** and **exact**.
+     - Match Attestation type identifier (e.g., VCT value for SD-JWT VC, doctype for mDL).
 
-This step operates on registration data obtained from Step 1a (WRPRC) or Step 1b (Register).
-
-1. If provider type is PID_Provider (from Step 2):
-   - Skip Attestation type verification (PID Providers issue PIDs by definition)
-   - Proceed to Step 5 (allow issuance request)
-
-2. If provider type is Q_EAA_Provider, PuB_EAA_Provider, or Non_Q_EAA_Provider:
-   - Extract Attestation type user wants to obtain (from user request)
-   - Extract list of registered Attestation types from registration data (`provided_Attestations[]` array per ARF RPRC_15, ISSU_34b)
-
-3. The WI MUST check if requested Attestation type is present in registered Attestation types list:
-   - Matching MUST be **case-sensitive** and **exact**
-   - Match Attestation type identifier (e.g., VCT value for SD-JWT VC, doctype for mDL)
-
-4. If Attestation type NOT in registered list (per ARF RPRC_23, ISSU_34b):
-   - The WI MUST display warning to user: "This provider is not registered to issue [Attestation type]"
+If all checks succeed, the WI MUST proceed to phase 4 (allow issuance request), otherwise (per ARF RPRC_23, ISSU_34b) the WI MUST:
+   - Display warning to user: "This provider is not registered to issue [Attestation type]"
    - Record verification result is ATTESTATION_TYPE_NOT_REGISTERED
-   - Refuse to request issuance (proceed to Step 4)
+   - Refuse issuance request (proceed to phase 5).
 
-5. If Attestation type is in registered list:
-   - Proceed to Step 5 (allow issuance request)
+**Phase 4: Allow Issuance Request**
 
-**Step 4: Refuse Issuance Request**
+**Step 8**. The WI MUST:
+   - display provider information to user (per ARF RPRC_22a):
+     - Provider name.
+     - Provider type (PID Provider / QEAA Provider / etc.).
+     - Attestation type to be issued.
+     - Provider description.
+   - Request user confirmation: "Do you want to request [Attestation type] from [provider name]?".
 
-1. If verification result is FAILED, CERTIFICATE_INVALID, WRONG_ENTITLEMENT, or ATTESTATION_TYPE_NOT_REGISTERED:
-   - The WI MUST NOT request Attestation issuance from AP (per ARF ISSU_24a, ISSU_34a, RPRC_23)
-   - The WI MUST display appropriate warning to user (warnings shown in Steps 1b, 2, 3)
-   - Issuance flow terminates
+**Step 9**. If user confirms, the WI MUST:
+   - Proceed to request Attestation issuance using OpenID4VCI protocol (per ARF ISSU_01).
+   - Retrieve and store the Embedded Disclosure Policy, if present in Credential Issuer Metadata (per ARF EDP_09). This policy will be evaluated during presentation (see [Embedded Disclosure Policy Enforcement Mechanism](#embedded-disclosure-policy-enforcement-mechanism)).
 
-**Step 5: Allow Issuance Request**
+Otherwise, if user cancels, the WI MUST terminate the Issuance flow.
 
-1. If all verifications passed:
-   - The WI MUST display provider information to user (per ARF RPRC_22a):
-     - Provider name
-     - Provider type (PID Provider / QEAA Provider / etc.)
-     - Attestation type to be issued
-     - Provider description
-   - The WI MUST request user confirmation: "Do you want to request [Attestation type] from [provider name]?"
+**Phase 5: Refuse Issuance Request**
 
-2. If user confirms:
-   - The WI MUST proceed to request Attestation issuance using OpenID4VCI protocol (per ARF ISSU_01)
-   - **During issuance**: If Embedded Disclosure Policy is present in Credential Issuer Metadata (per ARF EDP_09), the WI MUST retrieve and store it locally with issued Attestation (per ARF EDP_10). This policy will be evaluated during presentation (see [Embedded Disclosure Policy Enforcement Mechanism](#embedded-disclosure-policy-enforcement-mechanism)).
-
-3. If user cancels:
-   - Issuance flow terminates
+If verification result is FAILED, CERTIFICATE_INVALID, WRONG_ENTITLEMENT, or ATTESTATION_TYPE_NOT_REGISTERED, the WI MUST:
+   - Terminate the request Attestation issuance from AP (per ARF ISSU_24a, ISSU_34a, RPRC_23).
+   - Display appropriate warning to user (warnings shown in Phase 1b, 2, 3).
 
 > [!NOTE]
-> **Mandatory Enforcement**: Unlike RP Overasking Prevention (opt-in, advisory with user override), AP Unauthorized Issuance Prevention is **mandatory** (always executed) and **no user override allowed** (per ARF RPRC_23). If verification fails, WI refuses to request issuance.
-
+> **Mandatory Enforcement**: Unlike RP Overasking Prevention (opt-in, advisory with user override), AP Unauthorized Issuance Prevention is **mandatory** (always executed) and **no user override allowed** (per ARF RPRC_23). If verification fails, WI MUST refuse the issuance request.
 
 ### RP Overasking Prevention Mechanism
 
