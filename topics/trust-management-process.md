@@ -28,22 +28,32 @@ ARF
 5. TS08 : Specification of Common Interface for reporting of Relying Parties to Data Protection Authorities (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts8-common-interface-for-reporting-of-wrp-to-dpa.md)
 
 topics
-Topic x : opic X - Relying Party registration (https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/431)
+Topic x : Relying Party registration (https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/431)
 
 Tech standards
 3. Policy and security requirements for Trust Service Providers issuing certificates; Part 8: Access Certificate Policy for EUDI Wallet Relying Parties : ETSI TS 119 411 part 8 (https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf)
 4. Relying party attributes supporting EUDI Wallet user's authorization decisions (Certificate profile and policy requirements for access and registration certificates) ETSI TS 119 475 (https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.01.01_60/ts_119475v010101p.pdf)
 5. 
-
+all technical specs referred by ARF are available at https://eudi.dev/latest/technical-specifications/
 
 ## Intro
 The aim of this chapter is to describe the lifecycle of 
-1. entity identity and authorization information managed in the national registers
+1. entity identity and credential authorization information managed in the national registers
 2. and the related certificates that are used to claim that identity and related authorization in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates.
 The integrity and authenticity of these credentials is out of scope, assuming that Q seals and Q signing certificates are consolidated.
 
 Wallet Relying Parties (WRP) Identity is delegated to national registrars according to national trust framework policies.
+National Competent Authorities for different sectors will be able to interact with registrars to provide information from their registries to fulfill the registration process, aside with information provided directly by entities.
 
+The entity authorization has to be managed by registrars too, according to entity requests. The authorization is a link between entity identifier - role assumed in eudiw ecosystem (credential issuer or consumer) and the credential type identifier. 
+
+// facciamo class diagram per bindare entity identity - role - credential type
+
+The credential types could be registered within the credential catalogue, a set of data schema definitions that is managed centrally for all MSs by EU commission (ref CIR 2025/1569). This will ensure that only entitled entities will be allowed to issue specific credential in order to preserve level of assurance of information according to sectorial compentent authorities. And on the other side only authorized entities (mainly for privacy preserving reasons) could be allowed to request these credentials.
+"Use a common schema catalogue, enabling consistent exchange of information across the EU ecosystem, ensuring the interoperability of the wallets and their ecosystem."
+
+Specific requirements for authorization management will be expressed through policies, that will be rules to be fulfilled for issuing and asking for specific credential types. 
+Note: it's not clear how to manage cohexistence of national trust frameworks sharing an european credential catalogue. 
 
 This topic is not fully covered by ARF or actual legislation (topic is open?) and probably some details will be delegated to member states, and so it could be useful to identify best practices and success stories from the market that could provide an "inspirational starting point" in order to define a sustainable and effective design. 
 Banking sector is probably by nature a good example to be taken into consideration, and so there is a specific chapter that aims to describe the state of the art relating the authentication mechanisms in place at the present, and is described in Annex I. [allowed the entrance in this market of different actors able to integrate and extend the service offered by traditional banks. The use of authentication certificates could be taken as source of inspiration for defining a large scale application like the eudiw ecosystem]
