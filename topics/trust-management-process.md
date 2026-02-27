@@ -28,7 +28,7 @@ ARF
 5. TS08 : Specification of Common Interface for reporting of Relying Parties to Data Protection Authorities (https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts8-common-interface-for-reporting-of-wrp-to-dpa.md)
 
 topics
-Topic x : Relying Party registration (https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/431)
+Topic x : Relying Party registration (https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/431 and its refinement https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/645)
 
 Tech standards
 3. Policy and security requirements for Trust Service Providers issuing certificates; Part 8: Access Certificate Policy for EUDI Wallet Relying Parties : ETSI TS 119 411 part 8 (https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf)
@@ -36,52 +36,42 @@ Tech standards
 5. 
 all technical specs referred by ARF are available at https://eudi.dev/latest/technical-specifications/
 
-## Intro
+## Scope And Introduction
 The aim of this chapter is to describe the lifecycle of 
 1. entity identity and credential authorization information managed in the national registers
-2. and the related certificates that are used to claim that identity and related authorization in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates.
+2. and the related certificates that are used to claim that identity and related authorizations in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates.
 The integrity and authenticity of these credentials is out of scope, assuming that Q seals and Q signing certificates are consolidated.
+Identity and autorization in the register are the information references, and we refr to this as "license" to operate in the eudiw ecosystem. They are managed by registrars and have their specific lifecycle.
+This information is transported and consumed by communication and application processes using X509 certificates, that are issued and managed by Certificate Authorities according to trusted list policies. These certificates have their own lifecycle and obviously there are some touchpoints between license and certificate lifecycles.
 
-Wallet Relying Parties (WRP) Identity is delegated to national registrars according to national trust framework policies.
-National Competent Authorities for different sectors will be able to interact with registrars to provide information from their registries to fulfill the registration process, aside with information provided directly by entities.
+// rappresentiamo lifecycle della licenza e dei certificati e punti di contatto per sync
 
-The entity authorization has to be managed by registrars too, according to entity requests. The authorization is a link between entity identifier - role assumed in eudiw ecosystem (credential issuer or consumer) and the credential type identifier. 
-
-// facciamo class diagram per bindare entity identity - role - credential type
-
-The credential types could be registered within the credential catalogue, a set of data schema definitions that is managed centrally for all MSs by EU commission (ref CIR 2025/1569). This will ensure that only entitled entities will be allowed to issue specific credential in order to preserve level of assurance of information according to sectorial compentent authorities. And on the other side only authorized entities (mainly for privacy preserving reasons) could be allowed to request these credentials.
-"Use a common schema catalogue, enabling consistent exchange of information across the EU ecosystem, ensuring the interoperability of the wallets and their ecosystem."
-
-Specific requirements for authorization management will be expressed through policies, that will be rules to be fulfilled for issuing and asking for specific credential types. 
-Note: it's not clear how to manage cohexistence of national trust frameworks sharing an european credential catalogue. 
-
-This topic is not fully covered by ARF or actual legislation (topic is open?) and probably some details will be delegated to member states, and so it could be useful to identify best practices and success stories from the market that could provide an "inspirational starting point" in order to define a sustainable and effective design. 
-Banking sector is probably by nature a good example to be taken into consideration, and so there is a specific chapter that aims to describe the state of the art relating the authentication mechanisms in place at the present, and is described in Annex I. [allowed the entrance in this market of different actors able to integrate and extend the service offered by traditional banks. The use of authentication certificates could be taken as source of inspiration for defining a large scale application like the eudiw ecosystem]
-
-The WRPAC is used in OIDC4VP and OID4VCI for authentication, so represents the identity keys of an entity. Access Certificates are used to sign the OID4VP request and also for signing the OID4VCI issuer metadata.The WRPRC is optional and used for authorization both in credential issuance and request steps whether the credential is some how referred to policies in the credential catalogue. For their description and use refer to [475]
-
-webuild reference
+It could be useful to identify best practices and success stories from the market that could provide an "inspirational starting point", in order to define a sustainable and effective design. Banking sector is probably by nature a good example to be taken into consideration, and so there is a specific chapter that aims to describe the state of the art relating the authentication mechanisms in place at the present, and is described in Annex I. [allowed the entrance in this market of different actors able to integrate and extend the service offered by traditional banks. The use of authentication certificates could be taken as source of inspiration for defining a large scale application like the eudiw ecosystem]
 
 # Trust management overview
-todo file
-475 Figure 1: Institutional architecture for registration of wallet-relying parties
-national registers under Annex I, point 12 of CIR (EU) 2025/848 [i.2].
+Wallet Relying Parties (WRP) Identity is managed by national registrars, according to national trust framework policies. WRP applies for registration to the registrar.
+National Competent Authorities for different sectors will be able to interact with registrars to provide information from their registries to fulfill the registration process, aside with information provided directly by entities. [ARF Topic X and its refinement , national registers under Annex I, point 12 of CIR (EU) 2025/848 [i.2].]
 
-* qui mettiamo le swimline con ruoli e fase
+The entity authorization has to be managed by registrars too, according to entity requests. The authorization is a link between entity identifier - role assumed in eudiw ecosystem (credential issuer or consumer) and the credential type identifiers. The goal is to fulfill policy requirements related to credential types.
 
-blocchi di insieme e sequence diagram per blocco
+// facciamo class diagram per bindare entity identity - role - credential type (authorization)
 
-different responsibilities for different information types
-different lifecycle for certificates and for license
+If a credential is subject to a policy, the credential types should be registered within the credential catalogue: a set of data schema definitions that is managed centrally for all MSs by EU commission (ref CIR 2025/1569). This will ensure that only entitled entities will be allowed to issue specific credential in order to preserve level of assurance of information according to sectorial competent authorities. And on the other side only authorized entities (mainly for privacy preserving reasons) could be allowed to request these credentials.
+"Use a common schema catalogue, enabling consistent exchange of information across the EU ecosystem, ensuring the interoperability of the wallets and their ecosystem."
+
+Specific requirements for authorization management will be expressed through policies, rules to be fulfilled for issuing and asking for specific credential types. 
+Note: it's not clear how to manage cohexistence of policies of national trust frameworks based on one single european credential catalogue. Different sectors have different stages of "european maturity", so probably there will be cases where a policy could be valid at european level, others where policies will be expressed at national level.
+
+// todo file 475 Figure 1: Institutional architecture for registration of wallet-relying parties
+* qui mettiamo le swimline con ruoli e fase: 
 
 Lifecyle is based on different process phases:
-1. registration: entity onboarding that includes register and
-2. WRPAC & WRPRC issuance: after this phase entity can interact with ather actors in the ecosystem
-3. authorization to operate could be revoked ( or information of entity could change affecting what's in the wrpac)
-4. authorizations could change >> affecting wrprc that need reissuance, or rekey according to cert validity
-5. license could change>> affecting certificate lifecycle
+1. license registration (id onboarding) update & revocation
+3. credential autorization - update & revocation  >> affects WRPRC
+4. WRPAC issuance & revocation/expiration
+5. WRPRC issuance & revocation/expiration
 
-all certificate states and revocation mechanisms are in  ETSI 119 411-8 describes Access Certificate Policy for EUDI Wallet Relying Parties
+All certificate states and revocation mechanisms are in  ETSI 119 411-8 describes Access Certificate Policy for EUDI Wallet Relying Parties
  
 # Credential catalogue and EAA policy management
 The credential catalogue and related policies are not in scope of this chapter and are managed centrally by EU Commission. This topic is not defined yet [ref topic X (https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/431)]
@@ -114,7 +104,10 @@ Registrar could include the engagement of the CA in the registration process, ac
 NCA per wallet è ie ACN (agenzia per la cybersecurity nazionale ) italia 
 
 
-# Access (WRPAC) and registration (WRPRC) certificate lifecyclwe
+# Access (WRPAC) and registration (WRPRC) certificate lifecycle
+The WRPAC is used in OIDC4VP and OID4VCI for authentication, so it represents the identity key of an entity. Access Certificates are used to sign the OID4VP request and also for signing the OID4VCI issuer metadata. The WRPRC is used for authorization both in credential issuance and request steps, whether the credential is somehow referred by policies. For their description and use, see [475]. WRPRC is optional: it depends on credential policy requirements, and it is not mandatory to 
+
+webuild reference
 ## issuance
 In order to make the entity and its license effectevely operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and WRPRC (Regulatory requirements are described in Annex E , data model in Annex B of ETSI 119 475).
 This step requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists.
