@@ -1,12 +1,12 @@
 # Authentication Process
 
-The Authentication Process enables the Wallet Instance to authenticate a Wallet Relying Party (WRP). This involves validating the X.509 certificate chain, starting from a trusted WRPAC Provider (the Trust Anchor) and ending with the Wallet Relying Party Access Certificate (WRPAC) presented by the WRP.
+The Authentication Process enables the Wallet Unit to authenticate a Wallet Relying Party (WRP). This involves validating the X.509 certificate chain, starting from the certificate issued by a trusted Provider of WRPAC and ending with the Wallet Relying Party Access Certificate (WRPAC) presented by the WRP.
 
-To perform this validation, the Wallet Instance MUST:
-- Obtain the WRPAC Provider’s entry from the valid List of Trusted Entities (LoTE) (see [Trust Anchor Validation](/topics/trust-anchor-validation.md)). The certificate(s) found in the `ServiceDigitalIdentity` field of the LoTE entry constitute the Trust Anchor.
-- Construct a certification path by appending the certificates presented by the WRP to the Trust Anchor.
+To perform this validation, the Wallet Unit MUST:
+- Obtain the Provider of WRPAC’s entry from the validated List of Trusted Entities (LoTE) (see [Trust Anchor Validation](/topics/trust-anchor-validation.md)). The certificate(s) found in the `ServiceDigitalIdentity` field within the `TrustedEntitiesList` parameter of the LoTE constitute the Trust Anchor.
+- Construct a certification path starting from the Provider of WRPAC issued certificate and ending with the WRPAC presented by the WRP.
 - Execute the path validation algorithm defined in Section [Access Certificate Path Validation](#access-certificate-path-validation).
-- Use the public key from the validated WRPAC to verify the signature of the metadata presented by the WRP (e.g., the Request Object for the remote presentation flow, the Credential Issuer's metadata during credential issuance).
+- Use the public key from the WRPAC to verify the signature of the metadata presented by the WRP (e.g., the Request Object for the remote presentation flow, the Credential Issuer's metadata during credential issuance).
 
 **Security Note (Blind Signing)**: Implementers MUST distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To mitigate blind signing attacks—where an attacker disguises a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP MUST NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
 
@@ -17,7 +17,7 @@ Below is a sequence diagram illustrating the Authentication Process, including t
 ```mermaid
 sequenceDiagram
     participant WRP as WRP (Entity)
-    participant Wallet as Wallet Instance
+    participant Wallet as Wallet Unit
     participant LoTE as LoTE Distribution Point
 
     WRP->>Wallet: Authentication Request + WRPAC Chain
@@ -25,7 +25,7 @@ sequenceDiagram
     LoTE-->>Wallet: Return Valid LoTE
     
     Note over Wallet: 1. Trust Anchor Discovery
-    Wallet->>Wallet: Extract WRPAC Provider Cert (Trust Anchor) from LoTE
+    Wallet->>Wallet: Extract Provider of WRPAC Cert (Trust Anchor) from LoTE
     
     Note over Wallet: 2. Path Construction
     Wallet->>Wallet: Build Path: [Intermediate CAs] -> WRPAC
@@ -44,15 +44,15 @@ sequenceDiagram
 ### Access Certificate Path Validation
 
 This section defines the validation of the certification path.
-- The Trust Anchor is the WRPAC Provider certificate obtained from the LoTE.
+- The Trust Anchor is the Provider of WRPAC certificate obtained from the LoTE.
 - The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:
     - $C_1$ is the certificate issued by the Trust Anchor.
     - $C_n$ is the WRPAC (the target certificate).
     - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
 
-The Wallet Instance initializes the validation with:
+The Wallet Unit initializes the validation with:
 - `path`: The sequence $C_1 \dots C_n$.
-- `trust_anchor`: The WRPAC Provider certificate.
+- `trust_anchor`: The Provider of WRPAC certificate.
 - `current_time`: The current date and time.
 
 **Step 1: Initialization**
@@ -169,15 +169,15 @@ graph TD
 
 ### Revocation Checking
 
-The Wallet Instance MUST determine the revocation status for every certificate in the path with one of the following methods:
+The Wallet Unit MUST determine the revocation status for every certificate in the path with one of the following methods:
 - If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see ETSI TS 119 412-1), revocation checking MAY be skipped (status is determined solely by validity period).
-- If the `cRLDistributionPoints` extension is present, the Wallet Instance MAY retrieve and validate the CRL.
-- If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Instance MAY perform an OCSP lookup.
+- If the `cRLDistributionPoints` extension is present, the Wallet Unit MAY retrieve and validate the CRL.
+- If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Unit MAY perform an OCSP lookup.
 
 #### CRL Validation
 
-When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)), the Wallet Instance MUST:
-1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Instance SHOULD attempt to retrieve an updated CRL.
+When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)), the Wallet Unit MUST:
+1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Unit SHOULD attempt to retrieve an updated CRL.
 2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
     - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked <!-- Assumption: in case the issuer of the CRL and certificate coincides-->;
 3. Verify the `issuingDistributionPoint` matches the certificate's distribution point.
@@ -186,7 +186,7 @@ When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)),
 4. Validate the CRL signature using the issuer's public key. If a key usage extension is present in the CRL issuer's certificate, verify that the `cRLSign` bit is set.
 5. Check if the certificate's serial number is listed in `revokedCertificates`. If an entry is found then the certificate status is set to `revoked`.
 
-If any of the above checks fail (steps 1-5), the Wallet Instance MUST consider the certificate as revoked. If all checks succeed and the certificate serial number is not found in the CRL, the certificate MUST be considered valid.
+If any of the above checks fail (steps 1-5), the Wallet Unit MUST consider the certificate as revoked. If all checks succeed and the certificate serial number is not found in the CRL, the certificate MUST be considered valid.
 
 ```mermaid
 graph TD
@@ -244,8 +244,8 @@ graph TD
 
 #### OCSP Response Validation
 
-When using OCSP, the Wallet Instance MUST:
-1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the Wallet Instance SHOULD attempt to retrieve an updated OCSP response, and if that fails, the certificate status MUST be considered `unknown`.
+When using OCSP, the Wallet Unit MUST:
+1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the Wallet Unit SHOULD attempt to retrieve an updated OCSP response, and if that fails, the certificate status MUST be considered `unknown`.
 2. Verify `responseType` is `id-pkix-ocsp-basic`. <!-- Assumption: only basic OCSP responses are supported. -->
 3. Verify the response `signature` using the Responder's public key (`certs` field in the OCSP response).
     - *Note*: To ensure the OCSP Responder is authorized, match the Issuer's key or check the delegation certificate signed by the Issuer.

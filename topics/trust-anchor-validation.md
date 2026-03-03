@@ -1,12 +1,12 @@
 
 # Trust Anchor Validation Process
 
-The Trust Anchor Validation Process allows a Wallet Instance or Wallet Relying Party (WRP) to validate a List of Trusted Entities (LoTE) or an EU Member State Trusted List (EUMS TL). This process establishes the cryptographic root of trust required to validate:
+The Trust Anchor Validation Process allows a Wallet Unit or Wallet Relying Party (WRP) to validate a List of Trusted Entities (LoTE) or an EU Member State Trusted List (EUMS TL). This process establishes the cryptographic root of trust (Trust Anchor) required to validate:
 <ol type="a">
-  <li>Infrastructure Certificates: the certificate chains of WRPAC Providers or WRPRC Providers;</li>
-  <li>Wallet Attestation Signatures: the certificate chains verifying a Wallet Unit Attestation (WUA) or Wallet Instance Attestation (WIA);</li>
-  <li>PID Signatures: the certificate chains verifying a Person Identification Data (PID); or</li> 
-  <li>QEAA or Pub-EAA Signatures: the certificate chains needed to verify the signature/seal on a QEAA or Pub-EAA.</li>
+  <li>Infrastructure Certificates: the Trust Anchors needed to verify WRPAC or WRPRC;</li>
+  <li>Wallet Attestation Signatures: the Trust Anchors needed to verify a Wallet Unit Attestation (WUA) or Wallet Instance Attestation (WIA);</li>
+  <li>PID Signatures: the Trust Anchors needed to verify a Person Identification Data (PID); or</li> 
+  <li>QEAA or Pub-EAA Signatures: the Trust Anchors needed to verify the signature/seal on a QEAA or Pub-EAA.</li>
 </ol>
 In cases (a), (b) and (c), the Entity MUST fetch, download, and validate the relevant LoTE. For case 4, the Entity MUST fetch, download, and validate the relevant EUMS TL.
 
@@ -16,7 +16,7 @@ Both the LoTE and LoTL are signed artifacts maintained via a Trust Anchor publis
 
 This section defines the validation of the EU-level List of Trusted Entities (LoTE). The LoTE is a digitally signed/sealed artifact (JWT format) containing metadata and public keys for entities operating at the EU level.
 
-Prior to validating the LoTE, the Wallet Instance MUST download the LoTE from the protected location (URI) published in the OJEU. 
+Prior to validating the LoTE, the Wallet Unit MUST download the LoTE from the protected location (URI) published in the OJEU. 
 
 ### Sequence diagram
 
@@ -80,14 +80,14 @@ The validation MUST perform the following steps:
 11. (Update Bookmark) If `OJEU-LoTE-Loc` does not match the `LoTELocation` in `Authenticated-LoTE` (territory `EU`), update `OJEU-LoTE-Loc` to that value.
 12. (Update Anchor) [Caution: This step modifies the Root of Trust configuration]
     - If `OJEU-Loc` does not match the first URI in `SchemeInformationURI`, update `OJEU-LoTE-Loc`.
-    - Update `OJEU-LoTE-Certs-Set` according to the new trust anchor either in `Authenticated-LoTE` or from a new OJEU publication.
+    - Update `OJEU-LoTE-Certs-Set` according to the new Trust Anchor either in `Authenticated-LoTE` or from a new OJEU publication.
 
 **Remarks**:
-- Steps 4, 5 and 11 allow modifying the location of the LoTE file without changing the trust anchor, as long as the both the old and the new location have the same content (otherwise the validation fails with `LoTE_FILE_CONFLICT` status). This allows the LoTE to be retrieved from different locations (e.g., mirrors) without affecting the trust anchor validation as long as the content is the same.
+- Steps 4, 5 and 11 allow modifying the location of the LoTE file without changing the Trust Anchor, as long as the both the old and the new location have the same content (otherwise the validation fails with `LoTE_FILE_CONFLICT` status). This allows the LoTE to be retrieved from different locations (e.g., mirrors) without affecting the Trust Anchor validation as long as the content is the same.
 - In case of `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE` error, it is likely that the OJEU publication has been updated with a new location for the LoTE, and the validation process needs to be restarted with the new location.
-- In step 8. the validator established the binding of the signer certificate of the `LoTE` XML with the certificate referenced in the OJEU, effectively using the latter as a trust anchor.
+- In step 8. the validator established the binding of the signer certificate of the `LoTE` XML with the certificate referenced in the OJEU, effectively using the latter as a Trust Anchor.
 
-To validate a Pub-EAA LoTE in XML format (XAdES) containing the sought trust anchor, the Wallet Instance or WRP MUST perform the same steps described in [Validation of the LoTL](#validation-of-the-LoTL) for the LoTE, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LoTL`.
+To validate a Pub-EAA LoTE in XML format (XAdES) containing the sought Trust Anchor, the Wallet Unit or WRP MUST perform the same steps described in [Validation of the LoTL](#validation-of-the-LoTL) for the LoTE, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LoTL`.
 
 Below is a flowchart summarizing the above steps for the validation of the LoTE:
 ```mermaid
@@ -164,7 +164,7 @@ graph TD
 
 ## EUMS Trusted List Validation
 
-This section defines the validation of Member State Trusted Lists (EUMS TL). The EUMS TL is an XML artifact signed by a Member State Scheme Operator. In order to validate the EUMS TL, the Wallet Instance or WRP uses the following validation hierarchy:
+This section defines the validation of Member State Trusted Lists (EUMS TL). The EUMS TL is an XML artifact signed by a Member State Scheme Operator. In order to validate the EUMS TL, the Wallet Unit or WRP uses the following validation hierarchy:
 1. The Wallet/WRP MUST first validate the EU List of Trusted Lists (LoTL).
 2. The Wallet/WRP uses the authenticated LoTL to discover and validate the EUMS TL.
 
@@ -185,7 +185,7 @@ sequenceDiagram
     MS_Repo-->>Client: Returns EUMS Trusted List (XML)
     Client->>Client: Validate EUMS TL Signature using LoTL certificate
 ```
-In the diagram above, a Wallet Instance or WRP downloads and validates an EUMS Trusted List by performing the following steps:
+In the diagram above, a Wallet Unit or WRP downloads and validates an EUMS Trusted List by performing the following steps:
 1. requests the LoTL at the location indicated by the URL published in the OJEU;
 2. the LoTL distribution point returns the LoTL XML document;
 3. validates the signature/seal on the downloaded LoTL and verifies its validity;
@@ -193,20 +193,20 @@ In the diagram above, a Wallet Instance or WRP downloads and validates an EUMS T
 5. requests the EUMS TL at the location indicated by the `TSLLocation` field in the LoTL;
 6. the EUMS TL distribution point returns the EUMS TL XML document;
 7. validates the signature/seal on the downloaded MS TL using the certificates obtained from the LoTL in Step 4.
-8. parses the EUMS TL to retrieve the metadata and public key certificates of the relevant entities (e.g., QEAA Providers, Pub-EAA Providers) and use them as trustworthy trust anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
+8. parses the EUMS TL to retrieve the metadata and public key certificates of the relevant entities (e.g., QEAA Providers, Pub-EAA Providers) and use them as trustworthy Trust Anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
 
-If any of the above verifications fail, the validation process MUST be aborted and the LoTE MUST be considered invalid. If all verifications succeed, the Wallet Instance or WRP can parse the EUMS TL to retrieve the metadata and public key certificates of the relevant entities (i.e., QEAA Providers or Pub-EAA Providers) and use them as trustworthy trust anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
+If any of the above verifications fail, the validation process MUST be aborted and the LoTE MUST be considered invalid. If all verifications succeed, the Wallet Unit or WRP can parse the EUMS TL to retrieve the metadata and public key certificates of the relevant entities (i.e., QEAA Providers or Pub-EAA Providers) and use them as trustworthy Trust Anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
 
 ### Validation process
 
-To validate a EUMS TL containing the sought trust anchor, the Wallet Instance or Relying Party MUST validate both the LoTL and the EUMS TL. The validation of the LoTL is a prerequisite for the validation of the EUMS TL, as the trust anchor for validating the EUMS TL is obtained from the LoTL. 
+To validate a EUMS TL containing the sought Trust Anchor, the Wallet Unit or Relying Party MUST validate both the LoTL and the EUMS TL. The validation of the LoTL is a prerequisite for the validation of the EUMS TL, as the Trust Anchor for validating the EUMS TL is obtained from the LoTL. 
 
 #### Validation of the LoTL
 
 **Remarks**: The logic mirrors the LoTE validation but uses XML signatures (XMLDSig) and TSL-specific elements.
 - The XML Pivot logic (Step 6) includes a "Self-Consistency Check" not present in the JWT logic due to the fact that the `Signature` element is not integrity protected.
 
-The Wallet Instance or Relying Party initializes the following input variables for the LoTL validation:
+The Wallet Unit or Relying Party initializes the following input variables for the LoTL validation:
 - `OJEU-Loc`: URI value referencing the latest publication of the Official Journal of the European Union (OJEU) related to data on EUMS TL.
 - `OJEU-LoTL-Loc`: URI value representing the location where the last processed instance of the LoTL XML file is available. If not available, this is initialized from the `OJEU-Loc` publication.
 - `OJEU-LoTL-Certs-Set`: The set of certificates used to ensure the authenticity and integrity of the LoTL. Initialized from the `OJEU-Loc` publication.
