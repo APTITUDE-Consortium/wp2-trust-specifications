@@ -1,0 +1,120 @@
+name: Add Parent Issue
+
+on:
+  workflow_dispatch:
+
+jobs:
+  add-parent-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Link open issues to parent roadmap#95
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const PARENT_OWNER = 'APTITUDE-Consortium';
+            const PARENT_REPO = 'roadmap';
+            const PARENT_ISSUE_NUMBER = 95;
+            const CHILD_OWNER = 'APTITUDE-Consortium';
+            const CHILD_REPO = 'wp2-trust-specifications';
+
+            // Resolve the node ID of the parent issue
+            const parentQuery = `
+              query($owner: String!, $repo: String!, $number: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $number) {
+                    id
+                    title
+                    url
+                  }
+                }
+              }
+            `;
+
+            const parentData = await github.graphql(parentQuery, {
+              owner: PARENT_OWNER,
+              repo: PARENT_REPO,
+              number: PARENT_ISSUE_NUMBER,
+            });
+
+            const parentIssueId = parentData.repository.issue.id;
+            const parentTitle   = parentData.repository.issue.title;
+            console.log(`Parent issue: "${parentTitle}" (${parentData.repository.issue.url})`);
+
+            // Collect all open issues in the child repository
+            const issuesQuery = `
+              query($owner: String!, $repo: String!, $after: String) {
+                repository(owner: $owner, name: $repo) {
+                  issues(first: 100, states: OPEN, after: $after) {
+                    nodes {
+                      id
+                      number
+                      title
+                    }
+                    pageInfo {
+                      hasNextPage
+                      endCursor
+                    }
+                  }
+                }
+              }
+            `;
+
+            let issues = [];
+            let after  = null;
+            let hasNextPage = true;
+
+            while (hasNextPage) {
+              const data = await github.graphql(issuesQuery, {
+                owner: CHILD_OWNER,
+                repo:  CHILD_REPO,
+                after,
+              });
+              const page = data.repository.issues;
+              issues = issues.concat(page.nodes);
+              hasNextPage = page.pageInfo.hasNextPage;
+              after       = page.pageInfo.endCursor;
+            }
+
+            console.log(`Found ${issues.length} open issue(s) to link.`);
+
+            // Add each open issue as a sub-issue of the parent
+            const addSubIssueMutation = `
+              mutation($parentId: ID!, $childId: ID!) {
+                addSubIssue(input: { issueId: $parentId, subIssueId: $childId }) {
+                  issue    { id number }
+                  subIssue { id number }
+                }
+              }
+            `;
+
+            let successCount = 0;
+            let skipCount    = 0;
+            let failCount    = 0;
+
+            for (const issue of issues) {
+              try {
+                await github.graphql(addSubIssueMutation, {
+                  parentId: parentIssueId,
+                  childId:  issue.id,
+                });
+                console.log(`✓ Linked #${issue.number}: ${issue.title}`);
+                successCount++;
+              } catch (error) {
+                // DUPLICATE_SUB_ISSUE means the relationship already exists – not an error
+                if (error.message && error.message.includes('DUPLICATE_SUB_ISSUE')) {
+                  console.log(`⊘ Already linked #${issue.number}: ${issue.title}`);
+                  skipCount++;
+                } else {
+                  console.error(`✗ Failed #${issue.number}: ${error.message}`);
+                  failCount++;
+                }
+              }
+            }
+
+            console.log(`\nDone. ${successCount} linked, ${skipCount} already linked, ${failCount} failed.`);
+            if (failCount > 0) {
+              core.setFailed(`${failCount} issue(s) could not be linked.`);
+            }
