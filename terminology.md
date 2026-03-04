@@ -1,7 +1,7 @@
 # Terminology
 Since different specifications use different terms to refer to similar content, the table below lists the terms and their definitions that will be used in writing the implementation profiles for the trust framework of the European LSP APTITUDE. It consists of the following columns:
 1. Name of the term used in APTITUDE and related acronym. 
-2. Definition of the term with the source(s) indicated in brackets. If the same difinition is shared between specifications, multiple references will be listed.
+2. Definition of the term with the source(s) indicated in brackets. If the same definition is shared between specifications, multiple references will be listed.
 3. Alternative terms.
 
 | Term used in APTITUDE | Definition | Alternative Terms |

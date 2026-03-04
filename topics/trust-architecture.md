@@ -52,7 +52,7 @@ However, these entities alone are not enough to establish trust between each oth
 - *Authorization Process*: a way to check the authorization of an entity (e.g., it is the WRP eligible to issue/request an Attestation). To achieve this: 
     - the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).
     - the Attestation Providers may write their own embedded disclosure policies.
-- *Trust Anchor validation process*: a way to check the authenticity of signed objects, e.g., PID, Attestations, certificates and Register. To achieve this:
+- *Trust Anchor Validation Process*: a way to check the authenticity of signed objects, e.g., PID, Attestations, certificates and Register. To achieve this:
     - the public key of the corresponding private key used to sign is published on EU Member State Trusted List (EUMS TLs) or on List of Trusted Entities (LoTE) managed by the European Commission.
 
 While these trust evaluation processes will be further detailed in the following sections, the processes to obtain and manage the artifacts needed for the trust evaluation are:
@@ -63,7 +63,7 @@ While these trust evaluation processes will be further detailed in the following
      - WRP type (RP, PID Provider, QEAA Provider, PuB-EAA Provider, EAA Provider).
      - Entity-specific capabilities
   3. *WRPAC Issuance*: WRP obtains a WRPAC provided by a Provider of WRPAC.
-  4. optionally *WRPRC Issuance*: If the Member State mandates WRPRC issuance according to CIR 2025/848 Article 8, the Provider of WRPRCs must issue a signed WRPRC containing registered capabilities. If it is not mandated, Wallet Instance may retrieve information from Register.
+  4. [optionally] *WRPRC Issuance*: If the Member State mandates WRPRC issuance according to CIR 2025/848 Article 8, the Provider of WRPRCs must issue a signed WRPRC containing registered capabilities. If it is not mandated, Wallet Instance may retrieve information from Register.
 
     ```mermaid
     graph TD
