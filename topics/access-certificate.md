@@ -34,7 +34,7 @@ The following table lists all the parameters and extensions that are mandatory i
 The column "Presence" contains the specification of the presence of the certificate parameter as follows:
 * M: Mandatory. The parameter shall be present.
 * M(C): Conditionally mandatory. The parameter shall be present if the condition specified in the "Description" column is fulfilled.
-* R(C): Conditionnaly recommended. The parameter should be present if the condition specified in the "Description" column is fulfilled.
+* R(C): Conditionally recommended. The parameter should be present if the condition specified in the "Description" column is fulfilled.
 
 The column "Criticality" of the certificate extensions takes the semantics defined in RFC 5280 clause 4.2 and uses the following accronyms:
 * C: The extension shall be considered critical.
