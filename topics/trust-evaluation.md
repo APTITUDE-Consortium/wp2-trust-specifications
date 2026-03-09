@@ -1,6 +1,6 @@
 # Trust Evaluation Process (Authentication)
 
-This section describes the **Trust Evaluation Process**, which ensures that all actors and credentials within the ecosystem are verified against a recognized Root of Trust. This process comprises three distinct sub-processes: 
+This section describes the **Trust Evaluation Process**, which establish trust between two interacting entities by ensuring that their identities are verified against a recognized Root of Trust and they are eligible to perform a particular operations (e.g., issuing or requesting an Attestation of a certain type). This process comprises three distinct sub-processes: 
 1. **Trust Anchor Validation Process**
 2. **Authentication Process**, and 
 3. **Authorization Process**.  
@@ -10,8 +10,8 @@ This section describes the **Trust Evaluation Process**, which ensures that all 
 *See also: [Trust Anchor Validation Process](/topics/trust-anchor-validation.md)*
 
 The [Trust Anchor Validation Process](/topics/trust-anchor-validation.md) establishes the integrity and authenticity of the trusted lists required to verify service providers. This process is a prerequisite for obtaining trusted certificates, including:
-1. the self-signed certificate (Turst Anchor) of a Provider of WRPAC or Provider of WRPRC derived from the *List of Trusted Entities* (LoTE);
-2. the self-signed certificate (Turst Anchor) of an Attestation, a Wallet Unit Attestation (WUA) or Wallet Unit Attestation (WIA) derived from the *List of Trusted Entities* (LoTE);
+1. the self-signed certificate (Trust Anchor) of a Provider of WRPAC or Provider of WRPRC derived from the *List of Trusted Entities* (LoTE);
+2. the self-signed certificate (Trust Anchor) of an Attestation, a Wallet Unit Attestation (WUA) or Wallet Unit Attestation (WIA) derived from the *List of Trusted Entities* (LoTE);
 3. QTSP self-signed certificates needed to verify the seal of a Qualified Electronic Attestation of Attributes (QEAA) or a Public Electronic Attestation of Attributes (Pub-EAA) derived from the *EU Member State Trusted Lists* (EUMS TL).
 
 During this process, the validating Entity MUST retrieve the relevant trusted list and verify its authenticity by validating:

@@ -6,7 +6,7 @@ To perform this validation, the Wallet Unit MUST:
 - Obtain the Provider of WRPAC’s entry from the validated List of Trusted Entities (LoTE) (see [Trust Anchor Validation](/topics/trust-anchor-validation.md)). The certificate(s) found in the `ServiceDigitalIdentity` field within the `TrustedEntitiesList` parameter of the LoTE constitute the Trust Anchor.
 - Construct a certification path starting from the Provider of WRPAC issued certificate and ending with the WRPAC presented by the WRP.
 - Execute the path validation algorithm defined in Section [Access Certificate Path Validation](#access-certificate-path-validation).
-- Use the public key from the WRPAC to verify the signature of the metadata presented by the WRP (e.g., the Request Object for the remote presentation flow, the Credential Issuer's metadata during credential issuance).
+- Use the public key from the WRPAC to verify the object signed by the WRP (e.g., the Request Object for the remote presentation flow, the Credential Issuer's metadata during credential issuance).
 
 **Security Note (Blind Signing)**: Implementers MUST distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To mitigate blind signing attacks—where an attacker disguises a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP MUST NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
 
@@ -20,7 +20,7 @@ sequenceDiagram
     participant Wallet as Wallet Unit
     participant LoTE as LoTE Distribution Point
 
-    WRP->>Wallet: Authentication Request + WRPAC Chain
+    WRP->>Wallet: Signed Object + WRPAC Chain
     Wallet->>LoTE: Retrieve/Check LoTE
     LoTE-->>Wallet: Return Valid LoTE
     
@@ -32,7 +32,7 @@ sequenceDiagram
     
     Note over Wallet: 3. Validation
     Wallet->>Wallet: Validate Path (RFC 5280, RFC 6960)
-    Wallet->>Wallet: Verify WRP Metadata Signature
+    Wallet->>Wallet: Verify WRP Object Signature
     
     alt Validation Successful
         Wallet-->>WRP: Proceed with Interaction
@@ -44,7 +44,7 @@ sequenceDiagram
 ### Access Certificate Path Validation
 
 This section defines the validation of the certification path.
-- The Trust Anchor is the Provider of WRPAC certificate obtained from the LoTE.
+- The Trust Anchor is the certificate of the Provider of WRPAC obtained from the LoTE.
 - The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:
     - $C_1$ is the certificate issued by the Trust Anchor.
     - $C_n$ is the WRPAC (the target certificate).
@@ -52,7 +52,7 @@ This section defines the validation of the certification path.
 
 The Wallet Unit initializes the validation with:
 - `path`: The sequence $C_1 \dots C_n$.
-- `trust_anchor`: The Provider of WRPAC certificate.
+- `trust_anchor`: The certificate of the Provider of WRPAC.
 - `current_time`: The current date and time.
 
 **Step 1: Initialization**
@@ -98,6 +98,7 @@ Iterate through the path for $i$ from $1$ to $n$:
         - If $C_i$ contains `pathLenConstraint`, set `max_path_length` to $\min(\text{current}, \text{pathLenConstraint})$.
 3. Policy Counters:
     - Decrement `explicit_policy` and `inhibit_any_policy` (if > 0).
+
 **Step 4: Wrap-up**
 After processing $C_n$:
 1. If `explicit_policy` > 0, decrement it.
@@ -179,7 +180,7 @@ The Wallet Unit MUST determine the revocation status for every certificate in th
 When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)), the Wallet Unit MUST:
 1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Unit SHOULD attempt to retrieve an updated CRL.
 2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
-    - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked <!-- Assumption: in case the issuer of the CRL and certificate coincides-->;
+    - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked; <!-- Assumption: in case the issuer of the CRL and certificate coincides-->
 3. Verify the `issuingDistributionPoint` matches the certificate's distribution point.
     - `distributionPoint` field of the `cRLDistributionPoints` extension matches the `distributionPoint` field of the `IssuingDistributionPoint` extension of the CRL (if present);
     - if the `BasicConstraints` extension is present in the certificate being checked, and has `cA` set to `TRUE` (respectively `FALSE`), the CRL Issuing Distribution Point extension MUST have the `onlyContainsCACerts` field set to `TRUE` (respectively have the `onlyContainsUserCerts` field set to `TRUE`)
