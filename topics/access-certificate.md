@@ -331,7 +331,7 @@ A wallet-relying party access certificate (access certificate) is a certificate 
 The wallet-relying party (and any remote signing component used on its behalf, e.g., HSM/QSCD/remote seal) should only sign well-defined, locally constructed protocol artefacts and should not sign arbitrary bytes received from outside (e.g., “random” nonces, hashes, or opaque challenges supplied by an attacker).
 For instance, in case of interacting with the wallet unit by means of the protocol OpenID4VP, this means the wallet-relying party signs a Request Object it constructs itself. Before signing, the wallet-relying party should validate the Request Object is fully context-bound (e.g., correct aud, client_id/iss, exp, nonce, and correct endpoint binding such as response_uri/redirect_uri, and the intended presentation definition). Any signing API should enforce a strict schema/allowlist and reject unexpected fields.
 
-**SC-2** — Bind signatures to the intended protocol context
+**SC-2 — Bind signatures to the intended protocol context.**
 Signed protocol objects should be clearly typed and scoped to the protocol to reduce “cross-context” misuse. In particular:
 - Use an explicit JOSE typ value appropriate for secured authorization requests / OpenID4VP request objects.
 - Constrain accepted JOSE algorithms and key types, and reject insecure or unexpected values (e.g., alg=none).
