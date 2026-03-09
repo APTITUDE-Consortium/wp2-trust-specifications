@@ -327,7 +327,7 @@ AccessCertificate cert = {
 
 A wallet-relying party access certificate (access certificate) is a certificate for electronic seals or signatures that is used to authenticate and validate a wallet-relying party when interacting with Wallet Units. Because the corresponding private key is a signature/seal key, implementations SHALL prevent the access certificate key from becoming a general-purpose signing oracle.
 
-**SC-1** — No blind signing of attacker-controlled inputs
+**SC-1 — No blind signing of attacker-controlled inputs.**
 The wallet-relying party (and any remote signing component used on its behalf, e.g., HSM/QSCD/remote seal) should only sign well-defined, locally constructed protocol artefacts and should not sign arbitrary bytes received from outside (e.g., “random” nonces, hashes, or opaque challenges supplied by an attacker).
 For instance, in case of interacting with the wallet unit by means of the protocol OpenID4VP, this means the wallet-relying party signs a Request Object it constructs itself. Before signing, the wallet-relying party should validate the Request Object is fully context-bound (e.g., correct aud, client_id/iss, exp, nonce, and correct endpoint binding such as response_uri/redirect_uri, and the intended presentation definition). Any signing API should enforce a strict schema/allowlist and reject unexpected fields.
 
