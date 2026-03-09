@@ -336,5 +336,5 @@ Signed protocol objects should be clearly typed and scoped to the protocol to re
 - Use an explicit JOSE typ value appropriate for secured authorization requests / OpenID4VP request objects.
 - Constrain accepted JOSE algorithms and key types, and reject insecure or unexpected values (e.g., alg=none).
 
-**SC-3** — Key protection, access control, and monitoring
+**SC-3 — Key protection, access control, and monitoring.**
 Private keys corresponding to wallet-relying party access certificates should be protected and operated under strong controls (access control for key use, audit logging, incident response, and operational monitoring). For remote signing, apply rate limiting and anomaly detection to reduce abuse.
