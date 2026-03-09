@@ -36,7 +36,7 @@ The column "Presence" contains the specification of the presence of the certific
 * M(C): Conditionally mandatory. The parameter shall be present if the condition specified in the "Description" column is fulfilled.
 * R(C): Conditionally recommended. The parameter should be present if the condition specified in the "Description" column is fulfilled.
 
-The column "Criticality" of the certificate extensions takes the semantics defined in RFC 5280 clause 4.2 and uses the following accronyms:
+The column "Criticality" of the certificate extensions takes the semantics defined in RFC 5280 clause 4.2 and uses the following acronyms:
 * C: The extension shall be considered critical.
 * NC: The extension shall be considered non-critical.
 
