@@ -47,7 +47,6 @@ Wallet Relying Parties (WRP) Identity is managed by national registrars, accordi
 National Competent Authorities for different sectors will be able to interact with registrars to provide information from their registries to fulfill the registration process, aside with information provided directly by entities ([Topic-X] and its refinement , national registers under Annex I, point 12 of CIR (EU) 2025/848 [CIR-1, CIR-2]).
 The entity authorization has to be managed by registrars too, according to entity requests. The authorization is a link between entity identifier - role assumed in eudiw ecosystem (credential issuer or consumer) and the credential type identifiers. The goal is to fulfill policy requirements related to credential types.
 
-// facciamo class diagram per bindare entity identity - role - credential type (authorization)
 ```mermaid graph
 flowchart LR
     Entity["Entity Identity"]-.->|Authentication as| Role["Role (Credential Consumer-Issuer)"]
@@ -60,6 +59,38 @@ If a credential is subject to a policy, the credential types should be registere
 
 Specific requirements for authorization management will be expressed through policies, rules to be fulfilled for issuing and asking for specific credential types. 
 > Note: it's not clear how to manage cohexistence of policies of national trust frameworks based on one single european credential catalogue. Different sectors have different stages of "europeanization maturity", so probably there will be cases where a policy could be valid at european level, others where policies will be expressed at national level.
+
+```mermaid graph
+flowchart LR
+subgraph Cred_Def["Credential & Policy Catalogue"]
+        Cred[["Credential Catalogue"]]
+        IDPol[["Identification Policy Catalogue"]]
+        CredPol[["Authorization Policy Catalogue"]]
+end
+subgraph Register["Identity & Authorization Data Register"]
+        IDReg@{shape: cyl, label: "Identity Register" }
+        AuthReg@{shape: cyl, label: "Authorization Register"}
+        Registrar@{shape: lin-rect, label: "Registrar" }
+end
+subgraph CA["Certificate Authority"]
+        WRPAC@{ shape: lin-doc, label: "WRPAC" }
+        WRPRC@{ shape: lin-doc, label: "WRPRC" }
+        CA@{shape: lin-rect, label: "Certificate AUthority" }
+end
+
+    Registrar-->|Identification|IDReg
+    Registrar-.->IDPol
+
+    Registrar-.->Cred
+    Registrar-.->CredPol
+    Registrar-->|Authorization|AuthReg
+
+    CA-.->IDReg
+    CA-->|Issuance|WRPAC
+    CA-.->AuthReg
+    CA-->|Issuance|WRPRC
+
+```
 
 ```mermaid graph
 flowchart LR
