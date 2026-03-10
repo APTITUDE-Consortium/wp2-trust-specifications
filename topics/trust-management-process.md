@@ -61,7 +61,7 @@ Specific requirements for authorization management will be expressed through pol
 > Note: it's not clear how to manage cohexistence of policies of national trust frameworks based on one single european credential catalogue. Different sectors have different stages of "europeanization maturity", so probably there will be cases where a policy could be valid at european level, others where policies will be expressed at national level.
 
 ```mermaid graph
-flowchart LR
+flowchart TD
 subgraph Cred_Def["Credential & Policy Catalogue"]
         Cred[["Credential Catalogue"]]
         IDPol[["Identification Policy Catalogue"]]
