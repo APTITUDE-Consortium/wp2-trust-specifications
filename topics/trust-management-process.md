@@ -94,6 +94,8 @@ end
     CA-->|Issuance|WRPRC
 
 ```
+rif https://github.com/webuild-consortium/wp4-trust-group/blob/3a6218f951ea499b04308b5e99bab8619629e227/task2-trust-framework/eudi-wallet-trust-and-entitlement-discovery.md
+
 
 ```mermaid graph
 ---
