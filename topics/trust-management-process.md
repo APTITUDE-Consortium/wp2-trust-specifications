@@ -72,7 +72,7 @@ subgraph Register["Identity & Authorization Data Register"]
         AuthReg@{shape: cyl, label: "Authorization Register"}
         Registrar@{shape: lin-rect, label: "Registrar" }
 end
-subgraph CA["Certificate Authority"]
+subgraph C_A["Certificate Authority"]
         WRPAC@{ shape: lin-doc, label: "WRPAC" }
         WRPRC@{ shape: lin-doc, label: "WRPRC" }
         CA@{shape: lin-rect, label: "Certificate AUthority" }
