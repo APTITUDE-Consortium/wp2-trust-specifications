@@ -161,7 +161,8 @@ As soon as the CA revokes a certificate, updates and publishes a certificate rev
 Refer to ref to https://github.com/webuild-consortium/wp4-trust-group/tree/main/task5-participants-certificates-policies
 
 # Annex I - Banking usecase
-TBD
+TBD  
+
 gestione segnalazioni e frodi (ts08)
 qwac, registro dati e licenze su eu
 nca possono manifestare interesse per ricevere certificati emessi da CAs
