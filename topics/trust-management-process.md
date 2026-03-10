@@ -64,7 +64,7 @@ Specific requirements for authorization management will be expressed through pol
 ---
 title: Logical Flow
 ---
-flowchart TD
+flowchart TD 
 subgraph Cred_Def["Credential & Policy Catalogue"]
         Cred[["Credential Catalogue"]]
         IDPol[["Identification Policy Catalogue"]]
