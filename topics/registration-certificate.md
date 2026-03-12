@@ -102,11 +102,11 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
 | `credentials` | *array[object]* | A set of credential queries, used to request credentials from the Wallet. The EUDIW will use this information to perform an over-asking validation | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `credential` |
 | `credentials[].format` | *string*         | Format of the attestation | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `format` |
 | `credentials[].meta` | *object*        | Object defining additional properties. | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `meta` |
-| `credentials[].claims` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If not available, all attributes are requested | Mandatory for Service Provide | ETSI TS 119 475 Table 9 - `claim` |
-| `purpose` | *array[object]* | A list describing the purpose of the WRPRC. | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `purpose` |
+| `credentials[].claim` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If claim is absent, the WRPRC does not declare any specific attributes intended to be requested by the WRP | Mandatory for Service Provide | ETSI TS 119 475 Table 9 - `claim` |
+| `purpose` | *array[object]* | A list describing the data processing associated with the intended use | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `purpose` |
 | `purpose[].lang` | *string*        | Language identifier, referring the BCP 47 language tag format defined in IETF RFC 5646 [9] | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `lang` |
 | `purpose[].value` | *string*        | Purpose description provided in the language specified above | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `value` |
-| `intended_use_id` | *string*        | Unique identifier of the intended use if provided by the registry | Mandatory for Service Provider only if provided by registry | ETSI TS 119 475 Table 9 - `intendedUserIdentifier` |
+| `intended_use_id` | *string*        | Unique identifier of the intended use if provided by the registry. Used to fetch the intented use directly from the registry | Mandatory for Service Provider only if provided by registry | ETSI TS 119 475 Table 9 - `intendedUserIdentifier` |
 
 ### Attestation Provider Attributes
 
@@ -192,7 +192,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
     {
       "format": "dc+sd-jwt",
       "meta": { "vct_values": ["https://credentials.example.eu/pid"] },
-      "claims": [{ "path": ["age_over_18"] }]
+      "claim": [{ "path": ["age_over_18"] }]
     }
   ],
   "privacy_policy": "https://shop.example.de/privacy",
@@ -237,7 +237,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
     "https://uri.etsi.org/19475/Entitlement/QEAA_Provider",
     "https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider"
   ],
-  "provided_attestations": [
+  "provides_attestations": [
     {
       "format": "dc+sd-jwt",
       "meta": {
@@ -245,7 +245,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
           "https://credentials.dgt.es/mobile-driving-license"
         ]
       },
-      "claims": [
+      "claim": [
         { "path": ["family_name"] },
         { "path": ["given_name"] },
         { "path": ["birth_date"] },
@@ -263,7 +263,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
       "meta": {
         "doctype_value": "org.iso.18013.5.1.mDL"
       },
-      "claims": [
+      "claim": [
         { "path": ["org.iso.18013.5.1", "family_name"] },
         { "path": ["org.iso.18013.5.1", "given_name"] },
         { "path": ["org.iso.18013.5.1", "birth_date"] },
@@ -319,7 +319,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
   "entitlements": [
     "https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider"
   ],
-  "provided_attestations": [
+  "provides_attestations": [
     {
       "format": "dc+sd-jwt",
       "meta": {
@@ -327,7 +327,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
           "https://credentials.uva.nl/student-id"
         ]
       },
-      "claims": [
+      "claim": [
         { "path": ["family_name"] },
         { "path": ["given_name"] },
         { "path": ["student_id"] },
@@ -345,7 +345,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
           "https://credentials.uva.nl/diploma"
         ]
       },
-      "claims": [
+      "claim": [
         { "path": ["family_name"] },
         { "path": ["given_name"] },
         { "path": ["degree_title"] },
@@ -401,7 +401,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
     {
       "format": "dc+sd-jwt",
       "meta": { "vct_values": ["https://credentials.example.eu/pid"] },
-      "claims": [
+      "claim": [
         { "path": ["family_name"] }, { "path": ["given_name"] },
         { "path": ["birth_date"] }, { "path": ["nationality"] },
         { "path": ["resident_address"] }, { "path": ["personal_identifier"] }
@@ -410,7 +410,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
     {
       "format": "dc+sd-jwt",
       "meta": { "vct_values": ["https://credentials.example.eu/address-attestation"] },
-      "claims": [
+      "claim": [
         { "path": ["resident_address"] }, { "path": ["resident_country"] }
       ]
     }
@@ -442,10 +442,10 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
     {
       "format": "dc+sd-jwt",
       "meta": { "vct_values": ["https://credentials.example.eu/pid"] },
-      "claims": [{ "path": ["age_over_18"] }]
+      "claim": [{ "path": ["age_over_18"] }]
     }
   ],
-  "act": {
+  "intermediary": {
     "sub": {
       "id": "LEIXG-529900INTERMEDIARY01",
       "name": "Verification Services AG"
@@ -477,7 +477,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
     {
       "format": "dc+sd-jwt",
       "meta": { "vct_values": ["https://credentials.example.eu/pid"] },
-      "claims": [
+      "claim": [
         { "path": ["family_name"] }, { "path": ["given_name"] },
         { "path": ["birth_date"] }, { "path": ["personal_identifier"] }
       ]
