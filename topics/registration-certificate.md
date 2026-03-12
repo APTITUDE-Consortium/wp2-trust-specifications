@@ -29,18 +29,18 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
 
 ## Attribute overview
 
-| Attribute group                                                       | Description                                                                               | Mandatory |
+| Attribute group                                                       | Description                                                                               | Required |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-----------|
-| [Header Attributes](#header-attributes)                               | Mandatory header fields used to identify, sign, and validate WRPRC.                       | Mandatory |
-| [Core Identity Attributes](#core-identity-attributes)                 | Identity attributes of the WRP subject (natural person or legal entity).                  | Mandatory |
-| [Service Description Attributes](#service-description-attributes)     | Multilingual service descriptions defining the WRP’s provided services.                   | Mandatory |
-| [Entitlements Attribute](#entitlements-attribute)                     | Entitlements defining what the WRP is authorised to do.                                   | Mandatory |
+| [Header Attributes](#header-attributes)                               | Required header fields used to identify, sign, and validate WRPRC.                        | Required |
+| [Core Identity Attributes](#core-identity-attributes)                 | Identity attributes of the WRP subject (natural person or legal entity).                  | Required |
+| [Service Description Attributes](#service-description-attributes)     | Multilingual service descriptions defining the WRP’s provided services.                   | Required |
+| [Entitlements Attribute](#entitlements-attribute)                     | Entitlements defining what the WRP is authorised to do.                                   | Required |
 | [Privacy and Policy Attributes](#privacy-and-policy-attributes)       | Privacy policy information.                                                               | Some of them |
-| [Supervisory Authority Attributes](#supervisory-authority-attributes) | Supervisory authority contact details for reporting suspicious data-processing behaviour. | Mandatory |
-| [Service Provider Attributes](#service-provider-attributes)           | Credential queries, purposes, and intended-use identifiers for service providers.         | Mandatory for Service Provider |
-| [Attestation Provider Attributes](#attestation-provider-attributes)   | Attributes describing attestations issued by an EAA provider.                             | Mandatory for EAA Provider |
+| [Supervisory Authority Attributes](#supervisory-authority-attributes) | Supervisory authority contact details for reporting suspicious data-processing behaviour. | Required |
+| [Service Provider Attributes](#service-provider-attributes)           | Credential queries, purposes, and intended-use identifiers for service providers.         | Required for Service Provider |
+| [Attestation Provider Attributes](#attestation-provider-attributes)   | Attributes describing attestations issued by an EAA provider.                             | Required for EAA Provider |
 | [Technical Attributes](#technical-attributes)                         | Technical metadata such as policies, timestamps, and status-list configuration.           | Some of them |
-| [Uses Intermediary Attributes](#uses-intermediary-attributes)         | Attributes required when the WRP operates through an intermediary entity.                 | Mandatory if Intermediary is used |
+| [Uses Intermediary Attributes](#uses-intermediary-attributes)         | Attributes required when the WRP operates through an intermediary entity.                 | Required if Intermediary is used |
 
 
 ## Header Attributes
@@ -69,89 +69,89 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
 
 ### Core Identity Attributes
 
-| Attribute | Type | Description | Mandatory | Reference |
+| Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `name` | *string* | The subject of the WRPRC trade name | Mandatory | ETSI TS 119 475 Table 7 - `tradeName` |
-| `sub_gn` | *string* | Given Name of Natural Person | Mandatory for Natural Person | ETSI TS 119 475 Table 7 - `givenName` |
-| `sub_fn` | *string* | Family Name of Natural Person | Mandatory for Natural Person | ETSI TS 119 475 Table 7 - `familyName` |
-| `sub_ln` | *string* | Official legal name | Mandatory for Legal Entity | ETSI TS 119 475 Table 7 - `legalName` |
-| `sub` | *string* | Organizational identifier per clause 5.1.3 | Mandatory for Legal Entity | ETSI TS 119 475 Table 7 - `identifier` |
-| `country` | *string* | ISO 3166-1 alpha-2 code | Mandatory | ETSI TS 119 475 Table 7 - `country` |
-| `registry_uri` | *string* | URL pointing to the national registry API endpoint of the registered WRP | Mandatory | ETSI TS 119 475 Table 7 - `registryURI` |
-| `info_uri` | *string* | URL general-purpose web address | Mandatory | ETSI TS 119 475 Table 7 - `infoURI` |
-| `support_uri` | *string* | URL or email address to use in data deletion or portability requests related to the WRP | Mandatory | ETSI TS 119 475 Table 7 - `supportURI` |
+| `name` | *string* | The subject of the WRPRC trade name | Required | ETSI TS 119 475 Table 7 - `tradeName` |
+| `sub_gn` | *string* | Given Name of Natural Person | Required for Natural Person | ETSI TS 119 475 Table 7 - `givenName` |
+| `sub_fn` | *string* | Family Name of Natural Person | Required for Natural Person | ETSI TS 119 475 Table 7 - `familyName` |
+| `sub_ln` | *string* | Official legal name | Required for Legal Entity | ETSI TS 119 475 Table 7 - `legalName` |
+| `sub` | *string* | Organizational identifier per clause 5.1.3 | Required for Legal Entity | ETSI TS 119 475 Table 7 - `identifier` |
+| `country` | *string* | ISO 3166-1 alpha-2 code | Required | ETSI TS 119 475 Table 7 - `country` |
+| `registry_uri` | *string* | URL pointing to the national registry API endpoint of the registered WRP | Required | ETSI TS 119 475 Table 7 - `registryURI` |
+| `info_uri` | *string* | URL general-purpose web address | Required | ETSI TS 119 475 Table 7 - `infoURI` |
+| `support_uri` | *string* | URL or email address to use in data deletion or portability requests related to the WRP | Required | ETSI TS 119 475 Table 7 - `supportURI` |
 
 ### Service Description Attributes
 
-| Attribute | Type | Description | Mandatory | Reference |
+| Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `srv_description` | *array[object]* | Multilingual service descriptions | Mandatory | ETSI TS 119 475 Table 7 - `srvDescription` |
-| `srv_description[].lang` | *string* | Language identifier, referring the BCP47 language tag format defined in RFC 5646 [9] | Mandatory | ETSI TS 119 475 Table 7 - `lang` |
-| `srv_description[].value` | *string* | Service description in specified language | Mandatory | ETSI TS 119 475 Table 7 - `content` |
+| `srv_description` | *array[object]* | Multilingual service descriptions | Required | ETSI TS 119 475 Table 7 - `srvDescription` |
+| `srv_description[].lang` | *string* | Language identifier, referring the BCP47 language tag format defined in RFC 5646 [9] | Required | ETSI TS 119 475 Table 7 - `lang` |
+| `srv_description[].value` | *string* | Service description in specified language | Required | ETSI TS 119 475 Table 7 - `content` |
 
 ### Entitlements Attribute
 
-| Attribute | Type | Description | Mandatory | Reference |
+| Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `entitlements` | *array[string]* | A list of entitlements assigned to the WRP as defined in ETSI TS 119 475 - Annex A.2 | Mandatory | ETSI TS 119 475 Table 7 - `entitlement` |
+| `entitlements` | *array[string]* | A list of entitlements assigned to the WRP as defined in ETSI TS 119 475 - Annex A.2 | Required | ETSI TS 119 475 Table 7 - `entitlement` |
 
 ### Privacy and Policy Attributes
 
-| Attribute | Type | Description | Mandatory | Reference |
+| Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `privacy_policy` | *string* | URL to the WRP's privacy policy explaining data processing and storage practices | Mandatory | ETSI TS 119 475 Table 7 - `policyURI` |
+| `privacy_policy` | *string* | URL to the WRP's privacy policy explaining data processing and storage practices | Required | ETSI TS 119 475 Table 7 - `policyURI` |
 | `public_body` | *boolean* | Boolean indicating whether the WRP is a public sector body | Optional | ETSI TS 119 475 Table 10 - `isPSB` |
 
 ### Supervisory Authority Attributes
 
-| Attribute | Type | Description | Mandatory | Reference |
+| Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `supervisory_authority` | *object* | DPA Info | Mandatory | ETSI TS 119 475 Table 7 - `supervisoryAuthority` |
-| `spervisory_authority.uri` | *string* | The URL of web form provided by the Data Protection Authority supervising the Relying Party, which Users can use to report suspicious attribute presentation requests | Mandatory | ETSI TS 119 475 Table 7 - `infoURI` |
-| `supervisory_authority.email` | *string* | An e-mail address of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Mandatory | ETSI TS 119 475 Table 7 - `email` |
-| `supervisory_authority.phone` | *string* | A telephone number of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Mandatory | ETSI TS 119 475 Table 7 - `phone` |
+| `supervisory_authority` | *object* | DPA Info | Required | ETSI TS 119 475 Table 7 - `supervisoryAuthority` |
+| `spervisory_authority.uri` | *string* | The URL of web form provided by the Data Protection Authority supervising the Relying Party, which Users can use to report suspicious attribute presentation requests | Required | ETSI TS 119 475 Table 7 - `infoURI` |
+| `supervisory_authority.email` | *string* | An e-mail address of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Required | ETSI TS 119 475 Table 7 - `email` |
+| `supervisory_authority.phone` | *string* | A telephone number of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Required | ETSI TS 119 475 Table 7 - `phone` |
 
 ### Service Provider Attributes
 
-| Attribute | Type            | Description | Mandatory | Reference |
+| Attribute | Type            | Description | Required | Reference |
 |-----------|-----------------|-------------|-----------|-----------|
-| `credentials` | *array[object]* | A set of credential queries, used to request credentials from the Wallet. The EUDIW will use this information to perform an over-asking validation | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `credential` |
-| `credentials[].format` | *string*         | Format of the attestation | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `format` |
-| `credentials[].meta` | *object*        | Object defining additional properties. | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `meta` |
-| `credentials[].claim` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If claim is absent, the WRPRC does not declare any specific attributes intended to be requested by the WRP | Mandatory for Service Provide | ETSI TS 119 475 Table 9 - `claim` |
-| `purpose` | *array[object]* | A list describing the data processing associated with the intended use | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `purpose` |
-| `purpose[].lang` | *string*        | Language identifier, referring the BCP 47 language tag format defined in IETF RFC 5646 [9] | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `lang` |
-| `purpose[].value` | *string*        | Purpose description provided in the language specified above | Mandatory for Service Provider | ETSI TS 119 475 Table 9 - `value` |
-| `intended_use_id` | *string*        | Unique identifier of the intended use if provided by the registry. Used to fetch the intented use directly from the registry | Mandatory for Service Provider only if provided by registry | ETSI TS 119 475 Table 9 - `intendedUserIdentifier` |
+| `credentials` | *array[object]* | A set of credential queries, used to request credentials from the Wallet. The EUDIW will use this information to perform an over-asking validation | Required for Service Provider | ETSI TS 119 475 Table 9 - `credential` |
+| `credentials[].format` | *string*         | Format of the attestation | Required for Service Provider | ETSI TS 119 475 Table 9 - `format` |
+| `credentials[].meta` | *object*        | Object defining additional properties. | Required for Service Provider | ETSI TS 119 475 Table 9 - `meta` |
+| `credentials[].claim` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If claim is absent, the WRPRC does not declare any specific attributes intended to be requested by the WRP | Required for Service Provide | ETSI TS 119 475 Table 9 - `claim` |
+| `purpose` | *array[object]* | A list describing the data processing associated with the intended use | Required for Service Provider | ETSI TS 119 475 Table 9 - `purpose` |
+| `purpose[].lang` | *string*        | Language identifier, referring the BCP 47 language tag format defined in IETF RFC 5646 [9] | Required for Service Provider | ETSI TS 119 475 Table 9 - `lang` |
+| `purpose[].value` | *string*        | Purpose description provided in the language specified above | Required for Service Provider | ETSI TS 119 475 Table 9 - `value` |
+| `intended_use_id` | *string*        | Unique identifier of the intended use if provided by the registry. Used to fetch the intented use directly from the registry | Required for Service Provider only if provided by registry | ETSI TS 119 475 Table 9 - `intendedUserIdentifier` |
 
 ### Attestation Provider Attributes
 
-| Attribute | Type | Description | Mandatory | Reference |
+| Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `provides_attestations` | *array[object]* | A set of credentials issued by the WRP with EAA entitlements. | Mandatory for EAA Provider | ETSI TS 119 475 Table 8 - `providesAttestations` |
-| `provides_attestations[].format` | *string* | Format of the credential. | Mandatory for EAA Provider | ETSI TS 119 475 Table 8 - `format` |
-| `provides_attestations[].meta` | *object* | Metadata to identify the credential type. | Mandatory for EAA Provider | ETSI TS 119 475 Table 8 - `meta` |
-| `provides_attestations[].claim` | *array[object]* | Objects that specifies attributes in the requested attestation. | Mandatory for EAA Provider only if provided by registry| ETSI TS 119 475 Table 8 - `claim` |
+| `provides_attestations` | *array[object]* | A set of credentials issued by the WRP with EAA entitlements. | Required for EAA Provider | ETSI TS 119 475 Table 8 - `providesAttestations` |
+| `provides_attestations[].format` | *string* | Format of the credential. | Required for EAA Provider | ETSI TS 119 475 Table 8 - `format` |
+| `provides_attestations[].meta` | *object* | Metadata to identify the credential type. | Required for EAA Provider | ETSI TS 119 475 Table 8 - `meta` |
+| `provides_attestations[].claim` | *array[object]* | Objects that specifies attributes in the requested attestation. | Required for EAA Provider only if provided by registry| ETSI TS 119 475 Table 8 - `claim` |
 
 ### Technical Attributes
 
-| Attribute | Type | Description | Mandatory | Reference |
+| Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `policy_id` | *array[string]* | List of policy identifiers as defined in clause 6.1.3 | Mandatory |  ETSI TS 119 475 Table 7 - `technical` |
-| `certificate_policy` | *string* | URL to the certificate policy and certificate practice statement | Mandatory | ETSI TS 119 475 Table 7 - `technical` |
-| `iat` | *unix_timestamp* | Unix timestamp indicating when the WRP was issued | Mandatory | ETSI TS 119 475 Table 7 - `technical` |
+| `policy_id` | *array[string]* | List of policy identifiers as defined in clause 6.1.3 | Required |  ETSI TS 119 475 Table 7 - `technical` |
+| `certificate_policy` | *string* | URL to the certificate policy and certificate practice statement | Required | ETSI TS 119 475 Table 7 - `technical` |
+| `iat` | *unix_timestamp* | Unix timestamp indicating when the WRP was issued | Required | ETSI TS 119 475 Table 7 - `technical` |
 | `exp` | *unix_timestamp* | Expiration time of the JWT/CWT as a Unix timestamp | Optional | ETSI TS 119 475 Table 10 - `technical` |
-| `status` | *object* | A URI to a status list presenting information about validity of the WRPRC  | Mandatory | ETSI TS 119 475 Table 7 - `technical` |
-| `status.status_list.idx` | *int* | Position in status bitstring | Mandatory | ETSI TS 119 475 GEN-6.2.6.1-04, GEN-6.2.6.1-05 |
-| `status.status_list.uri` | *string* | Status list credential URI | Mandatory | ETSI TS 119 475 GEN-6.2.6.1-04 |
+| `status` | *object* | A URI to a status list presenting information about validity of the WRPRC  | Required | ETSI TS 119 475 Table 7 - `technical` |
+| `status.status_list.idx` | *int* | Position in status bitstring | Required | ETSI TS 119 475 GEN-6.2.6.1-04, GEN-6.2.6.1-05 |
+| `status.status_list.uri` | *string* | Status list credential URI | Required | ETSI TS 119 475 GEN-6.2.6.1-04 |
 
 ### Uses Intermediary Attributes
 
-| Attribute | Type | Description | Mandatory | Reference |
+| Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `intermediary` | *object* | Used when the WRP operates via an intermediary | Mandatory if Intermediary is used | ETSI TS 119 475 Table 10 - `usesIntermediary` |
-| `intermediary.sub` | *string* | Identifier of the intermediary as specified by the intermediary WRPAC | Mandatory if Intermediary is used | ETSI TS 119 475 Table 10 - `usesIntermediary` |
-| `intermediary.sname` | *string* | commonName of the intermediary as specified by the intermediary WRPAC | Mandatory if Intermediary is used | ETSI TS 119 475 Table 10 - `usesIntermediary` |
+| `intermediary` | *object* | Used when the WRP operates via an intermediary | Required if Intermediary is used | ETSI TS 119 475 Table 10 - `usesIntermediary` |
+| `intermediary.sub` | *string* | Identifier of the intermediary as specified by the intermediary WRPAC | Required if Intermediary is used | ETSI TS 119 475 Table 10 - `usesIntermediary` |
+| `intermediary.sname` | *string* | commonName of the intermediary as specified by the intermediary WRPAC | Required if Intermediary is used | ETSI TS 119 475 Table 10 - `usesIntermediary` |
 
 
 ---
