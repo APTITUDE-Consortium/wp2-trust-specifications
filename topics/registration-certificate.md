@@ -27,6 +27,22 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
 
 ---
 
+## Attribute overview
+
+| Attribute group                                                               | Description                                                                               | Mandatory |
+|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-----------|
+| [Header Attributes](#header-attributes)                               | Mandatory header fields used to identify, sign, and validate WRPRC.                       | Mandatory |
+| [Core Identity Attributes](#core-identity-attributes)                         | Identity attributes of the WRP subject (natural person or legal entity).                  | Mandatory |
+| [Service Description Attributes](#service-description-attributes)             | Multilingual service descriptions defining the WRP’s provided services.                   | Mandatory |
+| [Entitlements Attribute](#entitlements-attribute)                             | Entitlements defining what the WRP is authorised to do.                                   | Mandatory |
+| [Privacy and Policy Attributes](#privacy-and-policy-attributes)               | Privacy policy information.                                                               | Some of them |
+| [Data Protection Authority Attributes](#data-protection-authority-attributes) | Supervisory authority contact details for reporting suspicious data-processing behaviour. | Mandatory |
+| [Service Provider Attributes](#service-provider-attributes)                   | Credential queries, purposes, and intended-use identifiers for service providers.         | Mandatory for Service Provider |
+| [Attestation Provider Attributes](#attestation-provider-attributes)           | Attributes describing attestations issued by an EAA provider.                             | Mandatory for EAA Provider |
+| [Technical Attributes](#technical-attributes)                                 | Technical metadata such as policies, timestamps, and status-list configuration.           | Some of them |
+| [Uses Intermediary Attributes](#uses-intermediary-attributes)                 | Attributes required when the WRP operates through an intermediary entity.                 | Mandatory if Intermediary is used |
+
+
 ## Header Attributes
 
 ### JWT Header Attributes
