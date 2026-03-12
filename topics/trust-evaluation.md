@@ -9,10 +9,10 @@ This section describes the **Trust Evaluation Process**, which establish trust b
 
 *See also: [Trust Anchor Validation Process](/topics/trust-anchor-validation.md)*
 
-The [Trust Anchor Validation Process](/topics/trust-anchor-validation.md) establishes the integrity and authenticity of Trust Anchors -- self-signed artifacts containing a name and public key used to verify other signed data (e.g., PID, Attestations, certificates). This process involves validating the authenticity and integrity of:
-1. the Trust Anchor of a Provider of WRPAC or Provider of WRPRC derived from the *List of Trusted Entities* (LoTE);
-2. the Trust Anchor of a PID, an Attestation, a Wallet Unit Attestation (WUA) or Wallet Unit Attestation (WIA) derived from the *List of Trusted Entities* (LoTE);
-3. QTSP root certificates needed to verify the seal of a Qualified Electronic Attestation of Attributes (QEAA) or a Public Electronic Attestation of Attributes (Pub-EAA) derived from the *EU Member State Trusted Lists* (EUMS TL).
+The [Trust Anchor Validation Process](/topics/trust-anchor-validation.md) establishes the integrity and authenticity of trusted lists which serve as the authoritative sources for Trust Anchors. The latter are self-signed X509 certificates containing the names and public key used to verify other signed data (e.g., PID, Attestations, WRP certificates). This process involves validating the authenticity and integrity of:
+1. the *List of Trusted Entities* (LoTE) to retrieve the Trust Anchor of a Provider of WRPAC or Provider of WRPRC;
+2. the *List of Trusted Entities* (LoTE) to retrieve the Trust Anchor of a PID, an Attestation, a Wallet Unit Attestation (WUA) or Wallet Unit Attestation (WIA) derived from the *List of Trusted Entities* (LoTE);
+3. a *EU Member State Trusted Lists* (EUMS TL) to retrieve the QTSP root certificate needed to verify the seal of a Qualified Electronic Attestation of Attributes (QEAA) or a Public Electronic Attestation of Attributes (Pub-EAA).
 
 During this process, the validating Entity SHALL retrieve the relevant trusted list and verify its authenticity by validating:
 - (For the LoTE) the digital signature of the LoTE, verified against the LoTE Provider certificate. This certificate is authenticated via the *Official Journal of the European Union* (OJEU).
