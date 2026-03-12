@@ -49,7 +49,7 @@ However, these entities alone are not enough to establish trust between each oth
 - *Authentication Process*: a way to authenticate the entity they interact with. To achieve this: 
     - the Wallet Unit needs a Wallet Instance Attestation (WIA), an object that attests its integrity and is signed by the WP.
     - the WRPs needs an WRP Access Certificate (WRPAC).
-- *Authorization Process*: a way to check the authorization of an entity (e.g., it is the WRP eligible to issue/request an Attestation). To achieve this: 
+- *Authorization Process*: a way to check the authorization of an entity (i.e., *(i)* the WRP entitlements, *(ii)* whether an Attestation Providers is eligible to issue an Attestation, and *(iii)* whether a Relying Party has the right to access the data he is requesting). To achieve this: 
     - the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).
     - the Attestation Providers may write their own embedded disclosure policies.
 - *Trust Anchor Validation Process*: a way to check the authenticity of signed objects, e.g., PID, Attestations, certificates and Register. To achieve this:
