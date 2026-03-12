@@ -13,14 +13,13 @@ Among the implementing acts related to the EU Digital Identity Wallet ecosystem,
 
 Among the complementary technical specifications developed by the European Commission in collaboration with the European Digital Identity Cooperation Group and the European Standards Organisations (ESO), the following are of interest to the trust infrastructure: 
 - **TS02 V1.0.1 (2026-01)**: Specification of systems enabling the notification and subsequent publication of Provider information. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ARF_TS/ts2-notification-publication-provider-information.md)]
-- **TS05 V1.2.1 (2026-01)**: Specification of common formats and API for Relying Party Registration information. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ARF_TS/ts5-common-formats-and-api-for-rp-registration-information.md)]
+- **TS05 V1.3 (2026-02)**: Specification of common formats and API for Relying Party Registration information. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ARF_TS/ts5-common-formats-and-api-for-rp-registration-information.md)]
 - **TS06 V1.0.1 (2026-01**: Common Set of Relying Party Information to be Registered. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ARF_TS/ts6-common-set-of-rp-information-to-be-registered.md)]
 - **TS11 V1.0.1 (2026-01)**: Specification of interfaces and formats for the catalogue of attributes and the catalogue of attestations. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ARF_TS/ts11-interfaces-and-formats-for-catalogue-of-attributes-and-catalogue-of-schemes.md)]
 
 ## ETSI Standards
 ETSI specifications for EU Digital Identity Wallets of main interest for the trust framework: 
-- **ETSI TS 119 475 V1.1.1 (2025-10)**: Electronic Signatures and Trust Infrastructures (ESI); Relying party attributes supporting EUDI Wallet user's authorisation decisions. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_119475v010101p.pdf)]
-    > :warning: an update is in preparation [[Details](https://portal.etsi.org/webapp/workprogram/Report_WorkItem.asp?WKI_ID=77921)]
+- **ETSI TS 119 475 V1.2.1 (2026-03)**: Electronic Signatures and Trust Infrastructures (ESI); Relying party attributes supporting EUDI Wallet user's authorisation decisions. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_119475v010201p.pdf)]
 - **ETSI TS 119 602 V1.1.1 (2025-11)**: Electronic Signatures and Trust Infrastructures (ESI); Lists of trusted entities; Data model. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_119602v010101p.pdf)]
 - **ETSI TS 119 612 V2.4.1 (2025-08)**: Electronic Signatures and Trust Infrastructures (ESI); Trusted Lists. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_119612v020401p.pdf)]
 - **ETSI TS 119 615 V1.3.1 (2026-01)**: Electronic Signatures and Trust Infrastructures (ESI); Trusted lists; Procedures for using and interpreting European Union Member States national trusted lists. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_119615v010301p.pdf)]
@@ -30,8 +29,7 @@ ETSI specifications for EU Digital Identity Wallets of main interest for the tru
 - **ETSI TS 119 472-1 V1.2.1 (2026-02)**: Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 1: General requirements. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_11947201v010201p.pdf)]
 - **ETSI TS 119 472-2 V1.1.1 (2025-12)**: Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 2: Profiles for EAA/PID Presentations to Relying Party. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_11947202v010101p.pdf)]
     > :warning: an update is in preparation [[Details](https://portal.etsi.org/webapp/workprogram/Report_WorkItem.asp?WKI_ID=77507)]
-- **ETSI TS 119 472-3**: Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 3: Profiles for issuance of EAA or PID. 
-    > :warning: not available
+- **ETSI TS 119 472-3 V1.1.1 (2026-03)**: Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 3: Profiles for issuance of EAA or PID. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_11947203v010101p.pdf)]
 
 Other ETSI specifications that the previous specifications build upon:
 - **ETSI TS 119 182-1 V1.2.1 (2024-07)**: Electronic Signatures and Trust Infrastructures (ESI); JAdES digital signatures; Part 1: Building blocks and JAdES baseline signatures. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/ETSI/ts_11918201v010201p.pdf)]
@@ -64,3 +62,11 @@ Other ETSI specifications that the previous specifications build upon:
 - **RFC 9360 (2023-02)**. CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509
 Certificate. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc9360.pdf)]
 - **RFC 9608 (2024-06)**. No Revocation Available for X.509 Public Key Certificates. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc9608.pdf)]
+
+## Changelog
+
+| Date       | Document Name                                                                              | Version                |
+|------------|--------------------------------------------------------------------------------------------|------------------------|
+| 2026-03    |ETSI TS 119 475 - ESI; Relying party attributes supporting EUDI Wallet user's authorization decisions | `V1.1.1` &rarr; `V1.2.1`|
+| 2026-03    |ETSI TS 119 472-3 - ESI; Profiles for Electronic Attestation of Attributes | `n.a` &rarr; `V1.1.1`|
+| 2026-02    | TS05 - Specification of common formats and API for Relying Party Registration information  | `V1.2.1` &rarr; `V1.3` |
