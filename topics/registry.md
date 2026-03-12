@@ -157,30 +157,30 @@ This section defines the format of the information exchanged via the Register AP
 ## 6.1 WalletRelyingParty (WRP registration information object)
 
 
-| Parameter | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| `legalPerson` | `LegalPerson` (optional) | Specific attributes of a legal person. | Draft Annex VI Table 1 / Table 8 |
-| `naturalPerson` | `NaturalPerson` (optional) | Specific attributes of a natural person. | Draft Annex VI Table 1 / Table 9 |
-| `identifier` | `Identifier[]` | One or more identifiers from official records. | Draft Annex VI Table 1 / Table 10 |
-| `postalAddress` | `string[]` (optional) | Postal address(es) of the legal entity (**registration view only; excluded from published API statements**). | Draft Annex VI Table 1; Draft Annex VI §3(a) |
-| `country` | `string` | ISO 3166-1 alpha-2 country code, or `"EU"` for providers operating in the Union. | Draft Annex VI Table 1 |
-| `email` | `string[]` (optional) | Contact email address(es) (RFC 5322 format). | Draft Annex VI Table 1 |
-| `phone` | `string[]` (optional) | Contact phone number(s), international form with `+` prefix. | Draft Annex VI Table 1 |
-| `infoURI` | `string[]` (optional) | Web page URI(s) for information about the entity. | Draft Annex VI Table 1 |
-| `providerType` | `string` | Provider subtype. For WRP records, typically `WalletRelyingParty`. | Draft Annex VI Table 1 |
-| `policy` | `Policy[]` | Policy/terms/privacy/registration policy URL(s) with policy type URI. | Draft Annex VI Table 1 / Table 7 |
-| `x5c` | `string[]` (optional) | X.509 certificate chain(s) for provider services (JWS `x5c`-style chains; supports rollover). | Draft Annex VI Table 1 |
-| `tradeName` | `string` (optional) | User-facing trade/service name recognisable to users. | CIR Annex I(2); Draft Annex VI Table 1 |
-| `supportURI` | `string[]` | Support/helpdesk URI(s) for the service. | CIR Annex I(7)(a); Draft Annex VI Table 1 |
-| `srvDescription` | `MultiLangString[]` | Localised description(s) of services provided. | CIR Annex I(8); Draft Annex VI Table 1 / Table 4 |
-| `intendedUse` | `IntendedUse[]` (optional) | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. | CIR Annex I(9)–(10); Draft Annex VI Table 1 / Table 2 |
-| `isPSB` | `boolean` | Whether the WRP is a public sector body (explicitly present; `false` if not PSB). | CIR Annex I(11); Draft Annex VI §10.1 |
-| `entitlement` | `string[]` | Entitlement URI(s) (ETSI TS 119 475 Annex A.2 URIs). | CIR Annex I(12); ETSI TS 119 475; Draft Annex VI Table 1 |
+| Parameter |                                               Type | Description | Reference |
+| --- |---------------------------------------------------:| --- | --- |
+| `legalPerson` |                        `LegalPerson` (conditional) | Specific attributes of a legal person. | Draft Annex VI Table 1 / Table 8 |
+| `naturalPerson` |                       `NaturalPerson`(conditional) | Specific attributes of a natural person. | Draft Annex VI Table 1 / Table 9 |
+| `identifier` |                                     `Identifier[]` | One or more identifiers from official records. | Draft Annex VI Table 1 / Table 10 |
+| `postalAddress` |                              `string[]` (optional) | Postal address(es) of the legal entity (**registration view only; excluded from published API statements**). | Draft Annex VI Table 1; Draft Annex VI §3(a) |
+| `country` |                                           `string` | ISO 3166-1 alpha-2 country code, or `"EU"` for providers operating in the Union. | Draft Annex VI Table 1 |
+| `email` |                              `string[]` (optional) | Contact email address(es) (RFC 5322 format). | Draft Annex VI Table 1 |
+| `phone` |                              `string[]` (optional) | Contact phone number(s), international form with `+` prefix. | Draft Annex VI Table 1 |
+| `infoURI` |                              `string[]` (optional) | Web page URI(s) for information about the entity. | Draft Annex VI Table 1 |
+| `providerType` |                                           `string` | Provider subtype. For WRP records, typically `WalletRelyingParty`. | Draft Annex VI Table 1 |
+| `policy` |                                         `Policy[]` | Policy/terms/privacy/registration policy URL(s) with policy type URI. | Draft Annex VI Table 1 / Table 7 |
+| `x5c` |                              `string[]` (optional) | X.509 certificate chain(s) for provider services (JWS `x5c`-style chains; supports rollover). | Draft Annex VI Table 1 |
+| `tradeName` |                                `string` (optional) | User-facing trade/service name recognisable to users. | CIR Annex I(2); Draft Annex VI Table 1 |
+| `supportURI` |                                         `string[]` | Support/helpdesk URI(s) for the service. | CIR Annex I(7)(a); Draft Annex VI Table 1 |
+| `srvDescription` |                                `MultiLangString[]` | Localised description(s) of services provided. | CIR Annex I(8); Draft Annex VI Table 1 / Table 4 |
+| `intendedUse` |                         `IntendedUse[]` (optional) | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. | CIR Annex I(9)–(10); Draft Annex VI Table 1 / Table 2 |
+| `isPSB` |                                          `boolean` | Whether the WRP is a public sector body (explicitly present; `false` if not PSB). | CIR Annex I(11); Draft Annex VI §10.1 |
+| `entitlement` |                                         `string[]` | Entitlement URI(s) (ETSI TS 119 475 Annex A.2 URIs). | CIR Annex I(12); ETSI TS 119 475; Draft Annex VI Table 1 |
 | `providesAttestations` | `Credential[]` (optional / conditionally required) | Attestation types the WRP intends to issue to wallet units. **SHALL be present** if any entitlement is `QEAA_Provider`, `Non_Q_EAA_Provider`, `PUB_EAA_Provider`, or `PID_Provider`. | CIR Annex I(13); Draft Annex VI §10.2; Draft Annex VI Table 1 / Table 5 |
-| `supervisoryAuthority` | `LegalEntity` | Competent supervisory authority (Art. 46a eIDAS) including contact information. | Draft Annex VI Table 1 / Table 6 |
-| `registryURI` | `string` | URI of the API of the national register of WRPs. | Draft Annex VI Table 1 |
-| `usesIntermediary` | `WalletRelyingParty[]` (optional, subset) | If present, indicates designated intermediary(ies). Only the subset `{identifier, tradeName, registryURI}` is needed for each intermediary reference. | CIR Annex I(14)–(15); Draft Annex VI Table 1 |
-| `isIntermediary` | `boolean` | Whether the registered entity is a designated intermediary. SHALL be `false` if `usesIntermediary` is present. | CIR Annex I(14)–(15); Draft Annex VI Table 1 |
+| `supervisoryAuthority` |                                      `LegalEntity` | Competent supervisory authority (Art. 46a eIDAS) including contact information. | Draft Annex VI Table 1 / Table 6 |
+| `registryURI` |                                           `string` | URI of the API of the national register of WRPs. | Draft Annex VI Table 1 |
+| `usesIntermediary` |          `WalletRelyingParty[]` (optional, subset) | If present, indicates designated intermediary(ies). Only the subset `{identifier, tradeName, registryURI}` is needed for each intermediary reference. | CIR Annex I(14)–(15); Draft Annex VI Table 1 |
+| `isIntermediary` |                                          `boolean` | Whether the registered entity is a designated intermediary. SHALL be `false` if `usesIntermediary` is present. | CIR Annex I(14)–(15); Draft Annex VI Table 1 |
 
 
 ### 6.1.1 Identifier
