@@ -105,7 +105,6 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
 
 | Attribute | Type | Description | Mandatory | Reference |
 |-----------|------|-------------|-----------|-----------|
-
 | `supervisory_authority` | *object* | DPA Info | Mandatory | ETSI TS 119 475 Table 7 - `supervisoryAuthority` |
 | `spervisory_authority.uri` | *string* | The URL of web form provided by the Data Protection Authority supervising the Relying Party, which Users can use to report suspicious attribute presentation requests | Mandatory | ETSI TS 119 475 Table 7 - `infoURI` |
 | `supervisory_authority.email` | *string* | An e-mail address of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Mandatory | ETSI TS 119 475 Table 7 - `email` |
