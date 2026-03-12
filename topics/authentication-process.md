@@ -2,13 +2,13 @@
 
 The Authentication Process enables the Wallet Unit to authenticate a Wallet Relying Party (WRP). This involves validating the X.509 certificate chain, starting from the certificate issued by a trusted Provider of WRPAC and ending with the Wallet Relying Party Access Certificate (WRPAC) presented by the WRP.
 
-To perform this validation, the Wallet Unit MUST:
+To perform this validation, the Wallet Unit SHALL:
 - Obtain the Provider of WRPAC’s entry from the validated List of Trusted Entities (LoTE) (see [Trust Anchor Validation](/topics/trust-anchor-validation.md)). The certificate(s) found in the `ServiceDigitalIdentity` field within the `TrustedEntitiesList` parameter of the LoTE constitute the Trust Anchor.
 - Construct a certification path starting from the Provider of WRPAC issued certificate and ending with the WRPAC presented by the WRP.
 - Execute the path validation algorithm defined in Section [Access Certificate Path Validation](#access-certificate-path-validation).
 - Use the public key from the WRPAC to verify the object signed by the WRP (e.g., the Request Object for the remote presentation flow, the Credential Issuer's metadata during credential issuance).
 
-**Security Note (Blind Signing)**: Implementers MUST distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To mitigate blind signing attacks—where an attacker disguises a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP MUST NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
+**Security Note (Blind Signing)**: Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To mitigate blind signing attacks—where an attacker disguises a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP SHALL NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
 
 ### Sequence Diagram
 
@@ -170,24 +170,24 @@ graph TD
 
 ### Revocation Checking
 
-The Wallet Unit MUST determine the revocation status for every certificate in the path with one of the following methods:
+The Wallet Unit SHALL determine the revocation status for every certificate in the path with one of the following methods:
 - If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see ETSI TS 119 412-1), revocation checking MAY be skipped (status is determined solely by validity period).
 - If the `cRLDistributionPoints` extension is present, the Wallet Unit MAY retrieve and validate the CRL.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Unit MAY perform an OCSP lookup.
 
 #### CRL Validation
 
-When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)), the Wallet Unit MUST:
+When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)), the Wallet Unit SHALL:
 1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Unit SHOULD attempt to retrieve an updated CRL.
 2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
     - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked; <!-- Assumption: in case the issuer of the CRL and certificate coincides-->
 3. Verify the `issuingDistributionPoint` matches the certificate's distribution point.
     - `distributionPoint` field of the `cRLDistributionPoints` extension matches the `distributionPoint` field of the `IssuingDistributionPoint` extension of the CRL (if present);
-    - if the `BasicConstraints` extension is present in the certificate being checked, and has `cA` set to `TRUE` (respectively `FALSE`), the CRL Issuing Distribution Point extension MUST have the `onlyContainsCACerts` field set to `TRUE` (respectively have the `onlyContainsUserCerts` field set to `TRUE`)
+    - if the `BasicConstraints` extension is present in the certificate being checked, and has `cA` set to `TRUE` (respectively `FALSE`), the CRL Issuing Distribution Point extension SHALL have the `onlyContainsCACerts` field set to `TRUE` (respectively have the `onlyContainsUserCerts` field set to `TRUE`)
 4. Validate the CRL signature using the issuer's public key. If a key usage extension is present in the CRL issuer's certificate, verify that the `cRLSign` bit is set.
 5. Check if the certificate's serial number is listed in `revokedCertificates`. If an entry is found then the certificate status is set to `revoked`.
 
-If any of the above checks fail (steps 1-5), the Wallet Unit MUST consider the certificate as revoked. If all checks succeed and the certificate serial number is not found in the CRL, the certificate MUST be considered valid.
+If any of the above checks fail (steps 1-5), the Wallet Unit SHALL consider the certificate as revoked. If all checks succeed and the certificate serial number is not found in the CRL, the certificate SHALL be considered valid.
 
 ```mermaid
 graph TD
@@ -245,8 +245,8 @@ graph TD
 
 #### OCSP Response Validation
 
-When using OCSP, the Wallet Unit MUST:
-1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the Wallet Unit SHOULD attempt to retrieve an updated OCSP response, and if that fails, the certificate status MUST be considered `unknown`.
+When using OCSP, the Wallet Unit SHALL:
+1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the Wallet Unit SHOULD attempt to retrieve an updated OCSP response, and if that fails, the certificate status SHALL be considered `unknown`.
 2. Verify `responseType` is `id-pkix-ocsp-basic`. <!-- Assumption: only basic OCSP responses are supported. -->
 3. Verify the response `signature` using the Responder's public key (`certs` field in the OCSP response).
     - *Note*: To ensure the OCSP Responder is authorized, match the Issuer's key or check the delegation certificate signed by the Issuer.

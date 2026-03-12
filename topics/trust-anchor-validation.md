@@ -8,7 +8,7 @@ The Trust Anchor Validation Process allows a Wallet Unit or Wallet Relying Party
   <li>PID Signatures: the Trust Anchors needed to verify a Person Identification Data (PID); or</li> 
   <li>QEAA or Pub-EAA Signatures: the Trust Anchors needed to verify the signature/seal on a QEAA or Pub-EAA.</li>
 </ol>
-In cases (a), (b) and (c), the Entity MUST fetch, download, and validate the relevant LoTE. For case 4, the Entity MUST fetch, download, and validate the relevant EUMS TL.
+In cases (a), (b) and (c), the Entity SHALL fetch, download, and validate the relevant LoTE. For case 4, the Entity SHALL fetch, download, and validate the relevant EUMS TL.
 
 Both the LoTE and LoTL are signed artifacts maintained via a Trust Anchor published in the Official Journal of the European Union (OJEU). To support continuous key rotation, both artifacts implement a pivoting mechanism. This allows an Entity possessing the last known valid version to discover the location of the next version and validate it using the chain of trust rooted in the OJEU.
 
@@ -16,7 +16,7 @@ Both the LoTE and LoTL are signed artifacts maintained via a Trust Anchor publis
 
 This section defines the validation of the EU-level List of Trusted Entities (LoTE). The LoTE is a digitally signed/sealed artifact (JWT format) containing metadata and public keys for entities operating at the EU level.
 
-Prior to validating the LoTE, the Wallet Unit MUST download the LoTE from the protected location (URI) published in the OJEU. 
+Prior to validating the LoTE, the Wallet Unit SHALL download the LoTE from the protected location (URI) published in the OJEU. 
 
 ### Sequence diagram
 
@@ -49,14 +49,14 @@ The validator initializes the following variables.
 - `LoTE-Sub-Status`: detailed error codes.
 
 **Validation Steps**:
-The validation MUST perform the following steps:
+The validation SHALL perform the following steps:
 1. (Initialization) Download the JWT file from `OJEU-LoTE-Loc` and assign it to `LoTE`.
 2. (Parsing) Extract the first certificate from the `x5c` header of `LoTE` and assign it to `LoTE-Signer-Cert`.
 3. (Pivot Discovery) Iterate through the `uriValue` claims in the `SchemeInformationURI` object. Count the number of valid URIs found before encountering the URI matching `OJEU-Loc`. Let $n$ be that count.
-    - If no URI matches `OJEU-Loc`: Validation MUST fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and `LoTE-Sub-Status` set to `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE`. (This implies a Trust Anchor migration is required).
+    - If no URI matches `OJEU-Loc`: Validation SHALL fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and `LoTE-Sub-Status` set to `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE`. (This implies a Trust Anchor migration is required).
 4. (LoTE Location Conflict) Check the condition: `OJEU-LoTE-Loc != LoTELocation` AND `LoTE != Content at LoTELocation`.
     - (`LoTELocation` is the URI in the `PointersToOtherLoTE` claim of `LoTE` with `SchemeTerritory` = `EU`).
-    - If `TRUE`: Validation MUST stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and `LoTE-Sub-Status` set to `LoTE_FILE_CONFLICT`.
+    - If `TRUE`: Validation SHALL stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and `LoTE-Sub-Status` set to `LoTE_FILE_CONFLICT`.
     - If `FALSE`, proceed to the next step.
 5. (LoTE Freshness) Check the condition: `OJEU-LoTE-Loc == LoTELocation` AND `LoTE !=` Content at `LoTELocation`.
     - If `TRUE`: Set `OJEU-LoTE-Loc` to `LoTELocation` and restart from Step 1.
@@ -70,12 +70,12 @@ The validation MUST perform the following steps:
     - Case $n=0$ (No Pivots): Proceed directly to Step 8.
     - Case $n>0$ (History Chain):
         - Iterate $i$ from 1 to $n$ (from most recent Pivot to oldest). Let `Pivot` be the file downloaded from the $i$-th URI.
-        - (Link Check) Set `Pivot-Certs-Set` to the certificates in the `PointersToOtherLoTE` claim (territory `EU`) of `Pivot`. If `LoTESO-Cert` (the signer of the previous file in the chain) is not in `Pivot-Certs-Set`, validation MUST fail with `LoTE-Sub-Status` set to `PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
+        - (Link Check) Set `Pivot-Certs-Set` to the certificates in the `PointersToOtherLoTE` claim (territory `EU`) of `Pivot`. If `LoTESO-Cert` (the signer of the previous file in the chain) is not in `Pivot-Certs-Set`, validation SHALL fail with `LoTE-Sub-Status` set to `PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
         - (Update Signer) Set `LoTESO-Cert` to the first certificate in the `x5c` header parameter of `Pivot`.
-        - (Verify Signature) Validate the signature of `Pivot` using `LoTESO-Cert`. If it fails, validation MUST fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED`, and `LoTE-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
+        - (Verify Signature) Validate the signature of `Pivot` using `LoTESO-Cert`. If it fails, validation SHALL fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED`, and `LoTE-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
         - The loop continues, walking backwards until LoTESO-Cert represents the signer of the oldest Pivot.
-8. (Trust Anchor Validation) Verify the end of the chain. If `LoTESO-Cert` (from the last Pivot or current LoTE) is not in `OJEU-LoTE-Certs-Set` (the Trust Anchor), validation MUST fail with `LoTE-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
-9. (Expiration) If current time > `NextUpdate` claim of `LoTE`, validation MUST fail.
+8. (Trust Anchor Validation) Verify the end of the chain. If `LoTESO-Cert` (from the last Pivot or current LoTE) is not in `OJEU-LoTE-Certs-Set` (the Trust Anchor), validation SHALL fail with `LoTE-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
+9. (Expiration) If current time > `NextUpdate` claim of `LoTE`, validation SHALL fail.
 10. (Success) Set `Authenticated-LoTE` to `LoTE`, `LoTE-Status` to `LoTE_VERIFICATION_PASSED`.
 11. (Update Bookmark) If `OJEU-LoTE-Loc` does not match the `LoTELocation` in `Authenticated-LoTE` (territory `EU`), update `OJEU-LoTE-Loc` to that value.
 12. (Update Anchor) [Caution: This step modifies the Root of Trust configuration]
@@ -87,7 +87,7 @@ The validation MUST perform the following steps:
 - In case of `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE` error, it is likely that the OJEU publication has been updated with a new location for the LoTE, and the validation process needs to be restarted with the new location.
 - In step 8. the validator established the binding of the signer certificate of the `LoTE` XML with the certificate referenced in the OJEU, effectively using the latter as a Trust Anchor.
 
-To validate a Pub-EAA LoTE in XML format (XAdES) containing the sought Trust Anchor, the Wallet Unit or WRP MUST perform the same steps described in [Validation of the LoTL](#validation-of-the-LoTL) for the LoTE, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LoTL`.
+To validate a Pub-EAA LoTE in XML format (XAdES) containing the sought Trust Anchor, the Wallet Unit or WRP SHALL perform the same steps described in [Validation of the LoTL](#validation-of-the-LoTL) for the LoTE, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LoTL`.
 
 Below is a flowchart summarizing the above steps for the validation of the LoTE:
 ```mermaid
@@ -165,7 +165,7 @@ graph TD
 ## EUMS Trusted List Validation
 
 This section defines the validation of Member State Trusted Lists (EUMS TL). The EUMS TL is an XML artifact signed by a Member State Scheme Operator. In order to validate the EUMS TL, the Wallet Unit or WRP uses the following validation hierarchy:
-1. The Wallet/WRP MUST first validate the EU List of Trusted Lists (LoTL).
+1. The Wallet/WRP SHALL first validate the EU List of Trusted Lists (LoTL).
 2. The Wallet/WRP uses the authenticated LoTL to discover and validate the EUMS TL.
 
 ### Sequence diagram
@@ -195,11 +195,11 @@ In the diagram above, a Wallet Unit or WRP downloads and validates an EUMS Trust
 7. validates the signature/seal on the downloaded MS TL using the certificates obtained from the LoTL in Step 4.
 8. parses the EUMS TL to retrieve the metadata and public key certificates of the relevant entities (e.g., QEAA Providers, Pub-EAA Providers) and use them as trustworthy Trust Anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
 
-If any of the above verifications fail, the validation process MUST be aborted and the LoTE MUST be considered invalid. If all verifications succeed, the Wallet Unit or WRP can parse the EUMS TL to retrieve the metadata and public key certificates of the relevant entities (i.e., QEAA Providers or Pub-EAA Providers) and use them as trustworthy Trust Anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
+If any of the above verifications fail, the validation process SHALL be aborted and the LoTE SHALL be considered invalid. If all verifications succeed, the Wallet Unit or WRP can parse the EUMS TL to retrieve the metadata and public key certificates of the relevant entities (i.e., QEAA Providers or Pub-EAA Providers) and use them as trustworthy Trust Anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
 
 ### Validation process
 
-To validate a EUMS TL containing the sought Trust Anchor, the Wallet Unit or Relying Party MUST validate both the LoTL and the EUMS TL. The validation of the LoTL is a prerequisite for the validation of the EUMS TL, as the Trust Anchor for validating the EUMS TL is obtained from the LoTL. 
+To validate a EUMS TL containing the sought Trust Anchor, the Wallet Unit or Relying Party SHALL validate both the LoTL and the EUMS TL. The validation of the LoTL is a prerequisite for the validation of the EUMS TL, as the Trust Anchor for validating the EUMS TL is obtained from the LoTL. 
 
 #### Validation of the LoTL
 
@@ -220,13 +220,13 @@ The operations described below produce the following output variables:
 - `LoTL-Status`: The status indication of the process of authenticating the current instance of the LoTL.
 - `LoTL-Sub-Status`: A list of indications supplementing LoTL-Status indication of the process of authenticating the current instance of the LoTL.
 
-The validation operations for the LoTL MUST perform the following steps (see ETSI TS 119 615 clause 4.1.4 for reference):
+The validation operations for the LoTL SHALL perform the following steps (see ETSI TS 119 615 clause 4.1.4 for reference):
 1. [PRO-4.1.4-1] (Initialization) Set `LoTL` to the XML file downloaded from `OJEU-LoTL-Loc`.
 2. [PRO-4.1.4-2] (Parsing) Set `LoTL-Signer-Cert` to the certificate extracted from the `ds:X509Certificate` element within the `ds:Signature` of the `LoTL`.
-3. [PRO-4.1.4-3, PRO-4.1.4-4] (Pivot Discovery) Iterate through the URIs in the `SchemeInformationURI` element. Count the number of successive valid XML URIs found before encountering the URI matching `OJEU-Loc`. Let $n$ be that count. If no URI matches `OJEU-Loc`, the validation MUST fail with `LoTL-Status` set to `LoTL_VERIFICATION_FAILED` and `LoTL-Sub-Status` set to `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTL`.
+3. [PRO-4.1.4-3, PRO-4.1.4-4] (Pivot Discovery) Iterate through the URIs in the `SchemeInformationURI` element. Count the number of successive valid XML URIs found before encountering the URI matching `OJEU-Loc`. Let $n$ be that count. If no URI matches `OJEU-Loc`, the validation SHALL fail with `LoTL-Status` set to `LoTL_VERIFICATION_FAILED` and `LoTL-Sub-Status` set to `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTL`.
 4. [PRO-4.1.4-5] (LoTL Location Conflict) Check the condition: `OJEU-LoTL-Loc != TSLLocation` AND `LoTL != Content at TSLLocation`.
     - (`TSLLocation` is the URI in the `PointersToOtherTSL` element of `LoTL` with `SchemeTerritory` = `EU`).
-    - If TRUE: Validation MUST stop with `LoTL-Status` set to `LoTL_VERIFICATION_FAILED` and `LoTL-Sub-Status` set to `LoTL_FILE_CONFLICT`.
+    - If TRUE: Validation SHALL stop with `LoTL-Status` set to `LoTL_VERIFICATION_FAILED` and `LoTL-Sub-Status` set to `LoTL_FILE_CONFLICT`.
     - If FALSE: Proceed to the next step.
 5. [PRO-4.1.4-6] (LoTL Freshness) Check the condition: `OJEU-LoTL-Loc == TSLLocation` AND `LoTL != Content at TSLLocation`.
     - If TRUE: Set `OJEU-LoTL-Loc` to `TSLLocation` and restart from Step 1.
@@ -236,16 +236,16 @@ The validation operations for the LoTL MUST perform the following steps (see ETS
     - [PRO-4.1.4-9] If successful: Set `LoTLSO-Cert` to `LoTL-Signer-Cert`. Set `LoTLSO-Certs-Set` to the certificates found in the `PointersToOtherTSL` tuple (territory `EU`) of the current `LoTL`.
 7. (Intermediate Pivot Validation)
     - [PRO-4.1.4-10] If $n = 0$ (No Pivots):
-        - If `LoTLSO-Cert` is not in `OJEU-LoTL-Certs-Set`, validation MUST fail (Signer not authorized by Trust Anchor). Otherwise, proceed to Step 8.
+        - If `LoTLSO-Cert` is not in `OJEU-LoTL-Certs-Set`, validation SHALL fail (Signer not authorized by Trust Anchor). Otherwise, proceed to Step 8.
     - [PRO-4.1.4-11] If $n > 0$ (History Chain):
         - Iterate $i$ from 1 to $n$ (from most recent Pivot to oldest). Let `Pivot` be the file at the $i$-th URI.
-        - (Link Check) Set `Pivot-Certs-Set` to the certificates in the `PointersToOtherTSL` (territory `EU`) of `Pivot`. If `LoTLSO-Cert` (from the previous step) is not in `Pivot-Certs-Set`, validation MUST fail with `LoTL-Sub-Status` set to `PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
+        - (Link Check) Set `Pivot-Certs-Set` to the certificates in the `PointersToOtherTSL` (territory `EU`) of `Pivot`. If `LoTLSO-Cert` (from the previous step) is not in `Pivot-Certs-Set`, validation SHALL fail with `LoTL-Sub-Status` set to `PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
         - (Extract Signer) Set `LoTLSO-Cert` to the certificate extracted from the signature of `Pivot`.
-        - (Self-Consistency Check) If `LoTLSO-Cert` is not in `Pivot-Certs-Set`, validation MUST fail with `LoTL-Sub-Status` set to `PIVOT_i_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
-        - (Verify Signature) Validate the signature of `Pivot` using `LoTLSO-Cert`. If it fails, validation MUST fail with `LoTL-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
+        - (Self-Consistency Check) If `LoTLSO-Cert` is not in `Pivot-Certs-Set`, validation SHALL fail with `LoTL-Sub-Status` set to `PIVOT_i_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
+        - (Verify Signature) Validate the signature of `Pivot` using `LoTLSO-Cert`. If it fails, validation SHALL fail with `LoTL-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
         - The loop continues with the new `LoTLSO-Cert` acting as the input for the next Pivot or the Anchor.
-8. [PRO-4.1.4-12] (Trust Anchor Validation) If `LoTLSO-Cert` (from the last Pivot) is not in `OJEU-LoTL-Certs-Set` (the Trust Anchor), validation MUST fail with `LoTL-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
-9. [PRO-4.1.4-13] (Expiration) If current time > `NextUpdate` of `LoTL`, validation MUST fail with `LoTL-Sub-Status` set to `LoTL_NEXTUPDATE_PASSED`.
+8. [PRO-4.1.4-12] (Trust Anchor Validation) If `LoTLSO-Cert` (from the last Pivot) is not in `OJEU-LoTL-Certs-Set` (the Trust Anchor), validation SHALL fail with `LoTL-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
+9. [PRO-4.1.4-13] (Expiration) If current time > `NextUpdate` of `LoTL`, validation SHALL fail with `LoTL-Sub-Status` set to `LoTL_NEXTUPDATE_PASSED`.
 10. [PRO-4.1.4-14, 15] (Success) Set `Authenticated-LoTL` to `LoTL`, `LoTL-Status` to `LoTL_VERIFICATION_PASSED`.
 11. [PRO-4.1.4-16] (Location Update) If `OJEU-LoTL-Loc` does not match the `TSLLocation` in `Authenticated-LoTL` (territory `EU`), update `OJEU-LoTL-Loc` to that value.
 12. [PRO-4.1.4-17] (Update Anchor) [Caution: This step modifies the Root of Trust configuration]
@@ -254,7 +254,7 @@ The validation operations for the LoTL MUST perform the following steps (see ETS
 
 #### Validation of the EUMS TL
 
-The validation operations for the EUMS TL MUST perform the following steps (see ETSI TS 119 615 clause 4.2.4 for reference).
+The validation operations for the EUMS TL SHALL perform the following steps (see ETSI TS 119 615 clause 4.2.4 for reference).
 
 **Input variables**: [PRO-4.2.4-01, PRO-4.2.4-02]
 - `Authenticated-LoTL`: The authenticated XML version of the current instance of the LoTL obtained from the validation of the LoTL.
@@ -269,10 +269,10 @@ The validation operations for the EUMS TL MUST perform the following steps (see 
 2. [PRO-4.2.4-04] (EUMS TL Download) Download the XML file from the `TSLLocation` found in the previous step and set the `EUTL` variable to the downloaded XML file.
 3. [PRO-4.2.4-05, PRO-4.2.4-06] (EUMS TL Parsing) Parse the `Authenticated-LoTL` to find the `X509Certificates` tuple in the `ServiceDigitalIdentity` element of the `PointersToOtherTSL` element with `SchemeTerritory` value matching the target Member State, and set the `EUTL-Certs-Set` variable to the full set of certificates available in that tuple. The set the `EUTL-Signer-Cert` variable to the certificate extracted from the XML in the `ds:X509Certificate` element in the `ds:KeyInfo` element in the `Signature` element of the `EUTL`.
 4. [PRO-4.2.4-07, PRO-4.2.4-08, PRO-4.2.4-09] (EUMS TL Integrity and Authenticity Validation) 
-    - Validate the digital signature of the `EUTL` using the `EUTL-Signer-Cert`. If the signature validation fails, or it is undetermined, the validation MUST fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, and `EUTL-Sub-Status` set to `EUTL_SIGNATURE_VERIFICATION_FAILED`.
-    - If the signature validation is successful, check that the `EUTL-Signer-Cert` is in the `EUTL-Certs-Set` (i.e., the signing certificate of the EUMS TL has not been tampered with). If the check fails, the validation MUST fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, `Authenticated-LoTL` set to `null`, and `EUTL-Sub-Status` set to `EUTLSO_SIGNER_CERT_NOT_AUTHENTICATED_BY_LoTL`.
+    - Validate the digital signature of the `EUTL` using the `EUTL-Signer-Cert`. If the signature validation fails, or it is undetermined, the validation SHALL fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, and `EUTL-Sub-Status` set to `EUTL_SIGNATURE_VERIFICATION_FAILED`.
+    - If the signature validation is successful, check that the `EUTL-Signer-Cert` is in the `EUTL-Certs-Set` (i.e., the signing certificate of the EUMS TL has not been tampered with). If the check fails, the validation SHALL fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, `Authenticated-LoTL` set to `null`, and `EUTL-Sub-Status` set to `EUTLSO_SIGNER_CERT_NOT_AUTHENTICATED_BY_LoTL`.
 5. [PRO-4.2.4-10] (EUMS TL Validity Check) Check the `NextUpdate` field in the `EUTL`. 
-    - If the current date/time is greater than the `NextUpdate` value, the validation MUST fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, and `EUTL-Sub-Status` set to `WARNING_EUTL_NEXTUPDATE_PASSED`.
+    - If the current date/time is greater than the `NextUpdate` value, the validation SHALL fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, and `EUTL-Sub-Status` set to `WARNING_EUTL_NEXTUPDATE_PASSED`.
 6. [PRO-4.2.4-11, PRO-4.2.4-12] If all the above checks are successful, set `Authenticated-EUTL` to the value of the currently validated `EUTL`, `EUTL-Status` to `EUTL_VERIFICATION_PASSED`, and `EUTL-Sub-Status` to an empty list.
 
 Below is a flowchart summarizing the above steps for the validation of the EUMS TL:

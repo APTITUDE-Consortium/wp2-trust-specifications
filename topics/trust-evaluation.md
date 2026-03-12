@@ -1,6 +1,6 @@
 # Trust Evaluation Process (Authentication)
 
-This section describes the **Trust Evaluation Process**, which establish trust between two interacting entities by ensuring that their identities are verified against a recognized Root of Trust and they are eligible to perform a particular operations (e.g., issuing or requesting an Attestation of a certain type). This process comprises three distinct sub-processes: 
+This section describes the **Trust Evaluation Process**, which establish trust between two interacting entities by ensuring that their identities are verified against a recognized Root of Trust, and they are eligible to perform a particular operation (e.g., issuing or requesting an Attestation of a certain type). This process comprises three distinct sub-processes: 
 1. **Trust Anchor Validation Process**
 2. **Authentication Process**, and 
 3. **Authorization Process**.  
@@ -9,12 +9,12 @@ This section describes the **Trust Evaluation Process**, which establish trust b
 
 *See also: [Trust Anchor Validation Process](/topics/trust-anchor-validation.md)*
 
-The [Trust Anchor Validation Process](/topics/trust-anchor-validation.md) establishes the integrity and authenticity of the trusted lists required to verify service providers. This process is a prerequisite for obtaining trusted certificates, including:
-1. the self-signed certificate (Trust Anchor) of a Provider of WRPAC or Provider of WRPRC derived from the *List of Trusted Entities* (LoTE);
-2. the self-signed certificate (Trust Anchor) of an Attestation, a Wallet Unit Attestation (WUA) or Wallet Unit Attestation (WIA) derived from the *List of Trusted Entities* (LoTE);
-3. QTSP self-signed certificates needed to verify the seal of a Qualified Electronic Attestation of Attributes (QEAA) or a Public Electronic Attestation of Attributes (Pub-EAA) derived from the *EU Member State Trusted Lists* (EUMS TL).
+The [Trust Anchor Validation Process](/topics/trust-anchor-validation.md) establishes the integrity and authenticity of Trust Anchors -- self-signed artifacts containing a name and public key used to verify other signed data (e.g., PID, Attestations, certificates). This process involves validating the authenticity and integrity of:
+1. the Trust Anchor of a Provider of WRPAC or Provider of WRPRC derived from the *List of Trusted Entities* (LoTE);
+2. the Trust Anchor of a PID, an Attestation, a Wallet Unit Attestation (WUA) or Wallet Unit Attestation (WIA) derived from the *List of Trusted Entities* (LoTE);
+3. QTSP root certificates needed to verify the seal of a Qualified Electronic Attestation of Attributes (QEAA) or a Public Electronic Attestation of Attributes (Pub-EAA) derived from the *EU Member State Trusted Lists* (EUMS TL).
 
-During this process, the validating Entity MUST retrieve the relevant trusted list and verify its authenticity by validating:
+During this process, the validating Entity SHALL retrieve the relevant trusted list and verify its authenticity by validating:
 - (For the LoTE) the digital signature of the LoTE, verified against the LoTE Provider certificate. This certificate is authenticated via the *Official Journal of the European Union* (OJEU).
 - (For the EUMS TL) the digital signature of the EUMS TL, verified against the corresponding Member State public keys published in the *List of Trusted Lists* (LoTL). The LoTL itself is authenticated via the *Official Journal of the European Union* (OJEU).
 
@@ -22,10 +22,18 @@ During this process, the validating Entity MUST retrieve the relevant trusted li
 
 *See also: [Authentication Process](/topics/authentication-process.md)*
 
-The [Authentication Process](/topics/authentication-process.md) establishes the identity of a Wallet Relying Party (WRP) during an interaction. When a Wallet Unit authenticates a WRP, it MUST verify the authenticity and integrity of the presented Wallet Relying Party Access Certificate (WRPAC) and MUST verify WRP's possession of the private key corresponding to the public key in the WRPAC. To accomplish this, the Wallet Unit MUST perform the following steps:
+The [Authentication Process](/topics/authentication-process.md) establishes the identity of a Wallet Relying Party (WRP) during an interaction. When a Wallet Unit authenticates a WRP, it SHALL verify the authenticity and integrity of the presented Wallet Relying Party Access Certificate (WRPAC) and SHALL verify WRP's possession of the private key corresponding to the public key in the WRPAC. 
+
+To accomplish this, the Wallet Unit SHALL perform the following steps:
 1. Fetch the Provider of WRPAC Trust Anchor certificate from the corresponding validated LoTE (verified in [Trust Anchor Validation Process](/topics/trust-anchor-validation.md)). 
 2. Validate the certificate path starting from the Provider of WRPAC issued certificate ($C_1$) and ending with the WRPAC presented by the WRP ($C_n$).
-3. Use the public key from the WRPAC to verify the signature of the metadata presented by the WRP.
+3. Use the public key from the WRPAC to verify the signature of the metadata presented by the WRP during the specific interaction.
+
+These interactions are:
+- the remote flow normed by [OpenID4VP](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html), where the WRP presents a WRPAC chain to the Wallet Unit in the `x5c` field of the Request Object.
+- the proximity flow normed by the ISO 18013-5, where the WRP presents a WRPAC chain to the Wallet Unit within the `ReaderAuth` element of the mdoc request message.
+- the issuance flow normed by [OpenID4VCI](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html), where the WRP presents a WRPAC chain to the Wallet Unit in the `x5c` field of the [Issuer Metadata](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0-final.html#section-4.1).
+
 
 > [!NOTE]
 >
