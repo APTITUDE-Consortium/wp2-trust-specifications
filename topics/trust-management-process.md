@@ -178,16 +178,17 @@ Registrar collects issued WRPAC and WRPRC references from CAs. This must be done
 Registrar could publish the authorization data bound to WRPidentifier in case WRPRCs are not transmitted to the wallet, in order to fulfill policy requirements.
 
 # Access (WRPAC) and registration (WRPRC) certificate lifecycle
-In order to make the entity and its license effectively operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and WRPRC (Regulatory requirements are described in Annex E , data model in Annex B of [ETSI-119-475]). 
+In order to make the entity and its license effectively operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and sign WRPRCs (Regulatory requirements are described in Annex E , data model in Annex B of [ETSI-119-475]). 
 The WRPAC represents the identity key of an entity. Access Certificates are used to sign the OID4VP request and also for signing the OID4VCI issuer metadata. 
-The WRPRC is used for authorization both in credential issuance and request steps, whether the credential is somehow referred by policies. WRPRC is optional: it depends on credential policy requirements.
+The WRPRC is a JWT used for authorization both in credential issuance and request steps, whether the credential is somehow referred by policies. WRPRC is optional: it depends on credential policy requirements.
 Certificate description and examples can be found in [ETSI-119-475] and webuild references [webuild]. 
 ## WRPAC and WRPRC Issuance
 WRPAC and WRPRC issuance requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists. Entity identification could be done using business wallet or other means.
 The CA accesses the national register using management apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
-As soon a WRPAC or WRPRC has been issued:
+As soon a WRPAC has been issued:
 1. the CA has to notify the Registrar, providing their references. Registrar should record all issued certificates in order to be able to ask for revocation if required. Revocation process cases and status management is described in [ETSI 119-475]
 2. the CA should trace certificate issuance on 2 CTlog service providers (using API provided by ctlog managers) according to Certificate transparency policies. CTlog service will keep all timestamps of certificate issuance to enable third party verification that the certificate has been issued by an authorized Certificate Authority at that time that's declared. 
+Signing and provisioning of the WRPRC requires access to register to collect data, and it will not require notification to registrar because JWT will have a short lifetime, so it will not incur on revocation mechanism.
 The WRP has to make available its WRPRC and WRPAC certificates online through its website.
 ## Revocation
 Certificate lifecycle can be bound to license lifecycle or be indipendent.
