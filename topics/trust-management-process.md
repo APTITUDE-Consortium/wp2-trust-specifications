@@ -179,10 +179,13 @@ Registrar collects issued WRPAC and WRPRC references from CAs. This must be done
 Registrar could publish the authorization data bound to WRPidentifier in case WRPRCs are not transmitted to the wallet, in order to fulfill policy requirements.
 
 # Access (WRPAC) and registration (WRPRC) certificate lifecycle
-In order to make the entity and its license effectively operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and sign WRPRCs (Regulatory requirements are described in Annex E , data model in Annex B of [ETSI-119-475]). 
-The WRPAC represents the identity key of an entity. Access Certificates are used to sign the OID4VP request and also for signing the OID4VCI issuer metadata. 
-The WRPRC is a JWT used for authorization both in credential issuance and request steps, whether the credential is somehow referred by policies. WRPRC is optional: it depends on credential policy requirements.
-Certificate description and examples can be found in [ETSI-119-475] and webuild references [webuild]. 
+In order to make the entity and its license effectively operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and sign WRPRCs (Regulatory requirements are described in Annex E, data model in Annex B of [ETSI-119-475] referred by Commission Implementing Regulation 2024/2982). 
+The WRPAC represents the identity key of a WRP. Access Certificates are used to sign the OID4VP request and also for signing the OID4VCI issuer metadata.  
+The WRPRC is a JWT used for authorization both in credential issuance and request steps, whether the credential is somehow referred by policies. 
+WRPRC is optional: 
+1. it depends on credential policy requirements
+2. whether required by credential policy requirements and not sent by WRP during the authentication phase, the same information can also be retrieved from the Registrar's online service. 
+Certificate description and examples can be found in [ETSI-119-475] and [rif aptitude]. 
 ## WRPAC and WRPRC Issuance
 WRPAC and WRPRC issuance requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists. Entity identification could be done using business wallet or other means.
 The CA accesses the national register using management apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
