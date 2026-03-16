@@ -1,5 +1,6 @@
 # Trust Management Process
-
+note:
+1. il jwn non necessita revoca
 **Table of Contents**
 
 **Normative & technical references**  
