@@ -434,7 +434,7 @@ The WI MUST fetch Credential Issuer Metadata and extract the field `registration
 
 If any validation fails, the WI MUST:
    - Record verification result is CERTIFICATE_INVALID.
-   - Proceed to Step 1b (fallback to Register).
+   - Proceed to phase 1b (fallback to Register).
 
 Otherwise, the WI MUST:
    - Extract registration data from WRPRC:
@@ -540,213 +540,173 @@ sequenceDiagram
     participant User
 
     RP->>WI: Presentation Request
-    Note over WI: Check user opt-in (Step 1)
+    Note over WI: Phase 1: Check user opt-in 
 
     alt User opted-in
-        Note over WI: Obtain registration data (Step 2)
+        Note over WI: Phase 2: Obtain registration data
 
         alt WRPRC present and valid
+             Note over WI: Phase 2a: Validate WRPRC <br/>Extract registration data
             WI->>TL: Fetch trust anchor
             TL-->>WI: Trust anchor
-            Note over WI: Validate WRPRC (Step 2a)<br/>Extract registration data
         else WRPRC missing or invalid
+            Note over WI: Phase 2b: Verify response authenticity<br/>Extract registration data
             WI->>Reg: Query registration data
             Reg-->>WI: Registration data
-            Note over WI: Verify response authenticity (Step 2b)<br/>Extract registration data
         end
 
-        Note over WI: Verify entitlements and binding (Step 3)<br/>Compare requested vs registered attributes (Step 4)
-        WI->>User: Display verification results (Step 5)
+        Note over WI: Phase 3: Verify entitlements and binding
+        alt Direct RP
+            Note over WI: Phase 3a: Direct RP scenario
+        else RP acting through Intermediary 
+            Note over WI: Phase 3b: Intermediary scenario
+        end
+        Note over WI: Phase 4: Compare requested vs registered attributes
+        
     else User NOT opted-in
-        Note over WI: Skip verification (Step 1)
+        Note over WI: Skip verification
     end
-
-    Note over WI: Evaluate embedded disclosure policy (Step 6, Section XX)
+    WI->>User: Display verification results
+    
+    Note over WI: Phase 5: Evaluate embedded disclosure policy
 ```
 
 #### Step-by-Step Operations
 
-**Step 1: Check User Opt-In**
+**Phase 1: Check User Opt-In**.
 
-1. The WI MUST check if user enabled registration verification (per ARF RPRC_16: user indicated they want to verify information registered by Registrar about RP).
-2. If user opted-in, then the WI MUST proceed to Step 2, otherwise:
-   - The WI MUST skip all following steps.
-   - The WI MUST proceed directly to Embedded Disclosure Policy evaluation (see Section XX).
+The WI MUST check if user enabled registration verification (per ARF RPRC_16: user indicated they want to verify information registered by Registrar about RP).
+If user opted-in, then the WI MUST proceed to phase 2, otherwise, the WI MUST skip all following steps, proceeding directly to Embedded Disclosure Policy evaluation (see [Embedded Disclosure Policy Enforcement Mechanism](#embedded-disclosure-policy-enforcement-mechanism)).
 
 
-**Step 2: Obtain Registration Data**
+**Phase 2: Obtain Registration Data**
 
 The WI MUST obtain registration data from one of two sources: WRPRC (if present and valid) or Register (fallback).
 
-**Step 2a: Obtain Registration Data from WRPRC**
+**Phase 2a: Obtain Registration Data from WRPRC**
 
-1. The WI MUST extract WRPRC from presentation request:
-   - **Remote flow (OpenID4VP)**: Extract from `rp_registration_certificate` field in authorization request JWT
-   - **Proximity flow (ISO 18013-5)**: Extract from device request extension according to ETSI TS 119 472-2 and ARF RPRC_20
+The WI MUST extract WRPRC from presentation request, depending on the presentation flow scenario:
+   - **Remote flow (OpenID4VP)**: from `rp_registration_certificate` field in authorization request JWT.
+   - **Proximity flow (ISO 18013-5)**: from device request extension according to ETSI TS 119 472-2 and ARF RPRC_20.
 
-2. If WRPRC NOT present:
-   - Proceed to Step 2b (fallback to Register)
+**Step 2-3**. If WRPRC is present, the WI MUST follow the same verifications as in phase 1a defined in [AP Unauthorized Issuance Prevention Mechanism](#ap-unauthorized-issuance-prevention-mechanism), with the following modifications in case of proximity flow: 
+   - WRPRC MUST be CWT per ETSI TS 119 475 section 5.2.1, instead of JWT. 
+   - The signing algorithm MUST be extracted from COSE header, instead of JOSE.
 
-3. If WRPRC present:
-   - The WI MUST verify that WRPRC included **by value** (not by reference per ARF RPRC_19)
-   - Proceed to substep 4
+If any validation fails, the WI MUST:
+   - Record verification result is CERTIFICATE_INVALID.
+   - Proceed to phase 2b (fallback to Register).
 
-4. The WI MUST verify WRPRC format:
-   - **Remote flow**: WRPRC MUST be JWT with header `typ: "wrprc+jwt"` per ETSI TS 119 475 section 5.1.1
-   - **Proximity flow**: WRPRC MUST be CWT per ETSI TS 119 475 section 5.2.1
-
-5. The WI MUST verify signing algorithm in JOSE/COSE header is acceptable (not "none", not deprecated algorithms).
-
-6. The WI MUST extract issuer identifier from WRPRC `iss` claim.
-
-7. The WI MUST fetch trust anchor for Provider of WRPRCs from Trusted List. The WI MUST accept trust anchors from **all** Provider of WRPRCs Trusted Lists, not limited to single Member State (per ARF RPRC_17, RPA_04).
-
-8. The WI MUST validate certificate chain from WRPRC signing certificate to trust anchor per ETSI TS 119 475 requirements.
-
-9. The WI MUST verify WRPRC signature using validated certificate chain.
-
-10. The WI MUST check `iat` (issued at) claim and `exp` (expiration) claim in the WRPRC to verify temporal validity.
-
-11. The WI MUST check revocation status of WRPRC using `status` field.
-    - If revocation check indicates certificate is revoked, proceed to Step 2b (fallback to Registrar).
-
-12. If any validation in substeps 4-11 fails:
-    - Record verification result is CERTIFICATE_INVALID
-    - Proceed to Step 2b (fallback to Register)
-
-13. If all validations pass:
-    - Extract registration data from WRPRC:
+Otherwise, the WI MUST:
+   - Extract registration data from WRPRC:
       - `entitlements` array (per ETSI TS 119 475 Table 7, B.2.1)
       - `sub.id` field (subject identifier)
       - `act` array (intermediary association, if present, per ETSI TS 119 475 Table 7, ARF RPRC_04)
       - `credentials[].format` - credential format (per ETSI TS 119 475 B.2.9 Credential class)
       - `credentials[].meta.vct_values[]` - array of registered VCT values
       - `credentials[].claim[].path` - paths to registered attributes
-    - Proceed to Step 3 (verify entitlements and binding)
+   - Proceed to Phase 3 (verify entitlements and binding).
 
-**Step 2b: Obtain Registration Data from Register** (fallback if WRPRC missing or validation failed)
+**Phase 2b: Obtain Registration Data from Register** (fallback if WRPRC missing or validation failed)
 
-1. The WI MUST extract Registrar URL from presentation request RP info extension:
-   - Field: `registry_uri` (per ARF RPRC_19a).
-   - If Registrar URL is not present:
-     - The WI MUST notify user per ARF RPRC_18: "Could not verify the information registered about this Relying Party"
-     - Record verification result is FAILED
-     - Proceed to Step 5 (display results)
+The WI MUST extract Registrar URL from presentation request RP info extension field `registry_uri` (per ARF RPRC_19a). 
+**Step 4-5**. The WI MUST performe the same checks as in phase 1b in [AP Unauthorized Issuance Prevention Mechanism](#ap-unauthorized-issuance-prevention-mechanism) using the RP unique identifier and the intended use identifier (from RP info extension field `intended_use_id` per ARF RPRC_19a).
 
-2. The WI SHOULD inform user that external query will be made (privacy consideration per ARF RPRC_18).
+> [!NOTE]
+> The WI SHOULD inform user that external query will be made (privacy consideration per ARF RPRC_18).
 
-3. The WI MUST connect to Registrar online service at extracted URL using HTTPS with TLS certificate validation, as defined in ARF Technical Specification 5 (TS5 - Common Formats and API for RP Registration Information).
 
-4. The WI MUST query registration information using:
-   - RP unique identifier (from WRPAC or RP info extension)
-   - Intended use identifier (from RP info extension field `intended_use_id` per ARF RPRC_19a)
+If Registrar URL is not present OR authenticity verification fails OR connection fails, the WI MUST:
+   - Notify user per ARF RPRC_18: "Could not verify the information registered about this Relying Party".
+   - Record verification result is FAILED.
+   - Proceed to Step 6 (display results).
 
-5. The WI MUST verify authenticity of Registrar response:
-   - Validate TLS certificate chain for Registrar server
-   - If response is signed (per TS5), validate signature using Registrar public key from national trusted list
-
-6. If authenticity verification fails OR connection fails:
-   - The WI MUST notify user per ARF RPRC_18: "Could not obtain the information registered about this Relying Party"
-   - Record verification result is FAILED
-   - Proceed to Step 5 (display results)
-
-7. If authenticity verification succeeds:
+Otherwise, if authenticity verification succeeds, the WI MUST:
    - Extract registration data from Registrar response:
-     - `entitlements` array
-     - Subject identifier
-     - Intermediary association (if present)
-     - `credentials[].format`
-     - `credentials[].meta.vct_values[]`
-     - `credentials[].claim[].path`
-   - Proceed to Step 3 (verify entitlements and binding)
+     - `entitlements` array.
+     - Subject identifier.
+     - Intermediary association (if present).
+     - `credentials[].format`.
+     - `credentials[].meta.vct_values[]`.
+     - `credentials[].claim[].path`.
+   - Proceed to phase 3 (verify entitlements and binding).
 
 
-**Step 3: Verify Entitlements and Binding**
+**Phase 3: Verify Entitlements and Binding**
 
-This step operates on registration data obtained from Step 2a (WRPRC) or Step 2b (Register).
-
-1. The WI MUST verify that entitlements array contains the Service Provider entitlement:
-   - Required value: `https://uri.etsi.org/19475/Entitlement/Service_Provider` (per ETSI TS 119 475 Annex A.2, CIR 2025/848)
-   - If entitlement check fails:
+The WI MUST verify that entitlements array contains the Service Provider entitlement `https://uri.etsi.org/19475/Entitlement/Service_Provider` (per ETSI TS 119 475 Annex A.2, CIR 2025/848). If entitlement check fails, the WI MUST:
      - Record verification result is WRONG_ENTITLEMENT
-     - Proceed to Step 5 (display results)
+     - Proceed to Step 6 (display results)
 
-2. The WI MUST detect intermediary scenario:
-   - Extract RP identifier from WRPAC (subject identifier)
-   - Extract RP identifier from presentation request RP info extension (per ARF RPRC_19a: field `id`)
+The WI MUST detect intermediary scenario:
+   - Extract RP identifier from WRPAC (subject identifier) and from presentation request. 
    - Compare identifiers:
-     - If identifiers **match** then the direct RP scenario applies, proceed to substep 3
-     - If identifiers **do not match** then the intermediary scenario applies (intermediary holds WRPAC, RP info extension refers to intermediated RP), proceed to substep 4
+     - If identifiers **match** then the direct RP scenario applies, proceed to subphase 3a
+     - If identifiers **do not match** then the intermediary scenario applies (intermediary holds WRPAC, RP info extension refers to intermediated RP), proceed to subphase 3b
 
-3. **Direct RP scenario**:
+**Phase 3a: Direct RP scenario**:
    - The WI MUST verify that subject identifier from registration data matches RP identifier from WRPAC.
-   - If binding verification fails:
-     - Record verification result is BINDING_FAILED
-     - Proceed to Step 5 (display results)
-   - If binding verification succeeds, proceed to Step 4 (compare attributes).
+   - If binding verification succeeds, the WI MUST proceed to phase 4 (compare attributes), otherwise, the WI MUST:
+     - Record verification result is BINDING_FAILED.
+     - Proceed to Step 6 (display results).
 
-4. **Intermediary scenario**:
-   - The WI MUST verify that intermediary association from registration data (e.g., `act` array) contains intermediary identifier (from WRPAC).
+**Phase 3b: Intermediary scenario**:
+   - The WI MUST verify that intermediary association from registration data (thorugh `act.sub.id` and `act.sub.name`) contains intermediary identifier (from WRPAC).
    - If association verification fails:
      - Record verification result is INTERMEDIARY_NOT_AUTHORIZED
-     - Proceed to Step 5 (display results)
+     - Proceed to Step 6 (display results)
    - The WI MUST verify that subject identifier from registration data matches intermediated RP identifier from RP info extension.
    - If binding verification fails:
      - Record verification result is BINDING_FAILED
-     - Proceed to Step 5 (display results)
+     - Proceed to Step 6 (display results)
    - The WI MUST prepare user display per ARF RPI_07: "[intermediary name] acting on behalf of [intermediated RP name] for [intended use description]".
    - If all verifications succeed, proceed to Step 4 (compare attributes).
 
 
-**Step 4: Compare Requested vs Registered Attributes**
+**Phase 4: Compare Requested vs Registered Attributes**
 
-This step operates on registration data obtained from Step 2a (WRPRC) or Step 2b (Register).
+The WI MUST extract requested attributes from presentation request:
+   - **Remote flow (DCQL)**: from `credential_queries[].claims[]` paths.
+   - **Proximity flow**: from device request `namespaces` structure.
 
-1. The WI MUST extract requested attributes from presentation request:
-   - **Remote flow (DCQL)**: Extract from `credential_queries[].claims[]` paths.
-   - **Proximity flow**: Extract from device request `namespaces` structure.
+For each credential type requested, the WI MUST:
+   - Identify corresponding credential type in registered attributes (from registration data).
+   - Check that the `credentials[].claims[]` and `vct` parameters match the `credentials.claim array` and `credentials[].meta.vct_values` within the WRPRC (for remote flow).
+   - Check that the `docRequest.itemRequest.docType` and `docRequest.itemRequest.nameSpaces` parameters of the mdoc request match the `credential.meta.doctype_value` parameter and `credential.claims` array of the WRPRC.
+  
+  The matching MUST be **case-sensitive** and **exact**.
 
-2. For each credential type requested:
-   1. The WI MUST identify corresponding credential type in registered attributes (from registration data).
-   2. For each attribute requested in that credential type, the WI MUST check if attribute is present in the registered attributes list (per ARF RPRC_21). The matching MUST be **case-sensitive** and **exact**.
-
-3. The WI MUST record comparison result:
+The WI MUST record comparison result:
    - If all requested attributes are registered: Result is VERIFICATION_PASSED
-   - If some requested attributes are NOT registered: Result is OVERASKING_DETECTED
-     - The WI MUST identify which specific attributes are not registered
+   - If some requested attributes are NOT registered: Result is OVERASKING_DETECTED. In this case the WI MUST identify which specific attributes are not registered.
 
-4. Proceed to Step 5 (display verification results to user)
+**Step6**. In any case the WI MUST inform user of verification results per ARF RPA_07, RPRC_17, RPRC_18, and RPRC_21:
 
-
-**Step 5: Display Verification Results to User**
-
-The WI MUST inform user of verification results per ARF RPA_07, RPRC_17, RPRC_18, and RPRC_21:
-
-1. If verification result is VERIFICATION_PASSED:
+If verification result is VERIFICATION_PASSED:
    - The WI SHOULD display: "This Relying Party is registered for the requested attributes"
 
-2. If verification result is OVERASKING_DETECTED:
+If verification result is OVERASKING_DETECTED:
    - The WI MUST display per ARF RPRC_21: "The following attributes were requested but not registered: [list of unregistered attributes]"
    - The WI MUST allow user to approve or deny presentation (user override allowed - advisory mechanism)
 
-3. If verification result is FAILED, CERTIFICATE_INVALID, WRONG_ENTITLEMENT, BINDING_FAILED, or INTERMEDIARY_NOT_AUTHORIZED:
+If verification result is FAILED, CERTIFICATE_INVALID, WRONG_ENTITLEMENT, BINDING_FAILED, or INTERMEDIARY_NOT_AUTHORIZED:
    - The WI MUST display per ARF RPRC_17/18: "Could not verify the information registered about this Relying Party"
    - The WI MUST allow user to approve or deny presentation (user override allowed - advisory mechanism)
 
-4. If verification was skipped (user not opted-in):
+If verification was skipped (user not opted-in):
    - The WI MAY display: "Registration verification was not performed"
 
-After user is informed, proceed to Step 6 (embedded disclosure policy evaluation).
+After user is informed, proceed to Phase 5 (embedded disclosure policy evaluation).
 
 
-**Step 6: Proceed to Embedded Disclosure Policy Evaluation**
+**Phase 5: Proceed to Embedded Disclosure Policy Evaluation**
 
 After registration verification (success, failure, or skipped), the WI MUST always proceed to embedded disclosure policy evaluation (see [Embedded Disclosure Policy Enforcement Mechanism](#embedded-disclosure-policy-enforcement-mechanism)). Policy evaluation is executed regardless of registration verification result.
 
 
 ### Embedded Disclosure Policy Enforcement Mechanism
 
-This mechanism allows Attestation Providers to define policies that restrict which Relying Parties can access specific Attestations. Unlike RP Overasking Prevention (which is opt-in and advisory), policy enforcement is **mandatory** and **cannot be overridden** by the user (per ARF EDP_07, RPA_11). If policy evaluation fails, the WI behaves as if the Attestation does not exist.
+This mechanism allows Attestation Providers to define policies that restrict which Relying Parties can access specific Attestations. 
 
 #### Interaction Flow
 
