@@ -750,25 +750,25 @@ sequenceDiagram
 
 #### Step-by-Step Operations
 
-**Step 1: Extract Embedded Disclosure Policy**
+**Phase 1: Extract Embedded Disclosure Policy**
 
 1. For each Attestation that matches presentation request, the WI MUST check if Attestation has associated embedded disclosure policy (per ARF EDP_10: policy stored locally during issuance).
 
 2. If Attestation does NOT have embedded policy:
-   - Skip Steps 2-4 for this Attestation
+   - Skip Phases 2-4 for this Attestation
    - Allow Attestation to be presented (subject to user approval per ARF RPA_07)
 
 3. If Attestation HAS embedded policy:
    - Extract policy from local storage
    - Extract policy type from policy object
    - If policy URL present (per ARF EDP_05), prepare to display link to user explaining policy
-   - Proceed to Step 2 based on policy type
+   - Proceed to Phase 2 based on policy type
 
-**Step 2: Extract RP Information for Policy Evaluation**
+**Phase 2: Extract RP Information for Policy Evaluation**
 
 This step extracts RP information needed for policy evaluation (per ARF EDP_06).
 
-**Step 2a: For "Authorized Relying Parties Only" Policy (ARF EDP_02)**
+**Phase 2a: For "Authorized Relying Parties Only" Policy (ARF EDP_02)**
 
 1. The WI MUST detect intermediary scenario:
    - Extract RP identifier from WRPAC (subject identifier)
@@ -778,7 +778,7 @@ This step extracts RP information needed for policy evaluation (per ARF EDP_06).
      - If identifiers **do not match** then intermediary scenario applies
 
 2. **If direct RP scenario**:
-   - The WI MUST extract RP unique identifier from WRPAC
+   - The WI MUST extract unique identifier of **intermediated Relying Party** from presentation request RP info extension (field `id` per ARF RPRC_19a) or from the registration certificate.
    - Use this identifier for policy evaluation in Step 3a
 
 3. **If intermediary scenario** (per ARF EDP_02 note):
@@ -921,26 +921,35 @@ flowchart TD
     PolicySat --> NotifyPolicySat[Notify: RP authorized by policy]
     NotifyPolicySat --> AllowAttest
 
-    PolicyNotSat --> HideAttest[HIDE Attestation<br/>Behave as if not exist]
+    PolicyNotSat --> FlagAttest[Flag Attestation with policy warning<br/>Include in selection as flagged]
 
     AllowAttest --> MoreAttest{More Attestations<br/>to check?}
-    HideAttest --> MoreAttest
+    FlagAttest --> MoreAttest
 
     MoreAttest -->|Yes| SelectAttest
-    MoreAttest -->|No| AnyVisible{Any Attestations<br/>visible to user?}
+    MoreAttest -->|No| UserApproval[Request user approval<br/>Show all Attestations]
 
-    AnyVisible -->|No| DenyPresentation
-    AnyVisible -->|Yes| UserApproval[Request user approval<br/>Show visible Attestations + warnings]
 
-    UserApproval --> UserDecideFinal{User decision}
-    UserDecideFinal -->|Approve| PresentAttestations[Present approved Attestations to RP]
+
+    UserApproval --> HasFlagged{Any flagged<br/>Attestations?}
+
+    HasFlagged -->|No| ShowClean[Show Attestations<br/>with registration warnings if any]
+    HasFlagged -->|Yes| ShowAdvice[Show advice per flagged Attestation<br/>e.g. The RP X is not authorized by the AP Y to request the Attestation Z.<br/>Do you want to continue?]
+
+    ShowClean --> UserDecideFinal{User decision}
+    ShowAdvice --> UserDecideFinal
+
+    UserDecideFinal -->|Approve all| PresentAttestations[Present approved Attestations to RP<br/>including user-overridden ones]
     UserDecideFinal -->|Deny| DenyPresentation
 
-    PresentAttestations --> End([End])
+
+
+    PresentAttestations --> End
     DenyPresentation --> End
 
-    style PolicyNotSat fill:#ffcccc
-    style HideAttest fill:#ffcccc
+    style PolicyNotSat fill:#ffffcc
+    style FlagAttest fill:#ffffcc
+    style ShowAdvice fill:#ffffcc
     style DenyPresentation fill:#ffcccc
     style WarnNoRegData fill:#ffffcc
     style WarnEntitlement fill:#ffffcc
@@ -958,7 +967,7 @@ This table defines user override capabilities for each authorization mechanism.
 |-----------|-------|-----------------|-----------|
 | **RP Registration Verification** | Presentation | **MANDATORY EXECUTION** | Per ARF RPRC_16: User can opt-in/opt-out. If user opted-in, verification is executed. |
 | **RP Overasking Prevention** | Presentation | **USER CAN OVERRIDE** | Per ARF RPRC_16, RPRC_21: Advisory mechanism. If overasking detected or verification failed, user can choose to proceed anyway. Wallet warns but allows user decision. |
-| **Embedded Disclosure Policy** | Presentation | **NO USER OVERRIDE** | Per ARF EDP_07, RPA_11: Mandatory enforcement. If policy not satisfied, Attestation is hidden and WI behaves as if Attestation does not exist. User cannot override policy defined by AP. |
+| **Embedded Disclosure Policy** | Presentation | **USER CAN OVERRIDE** | Per ARF EDP_07: Advisory mechanism. If policy not satisfied, user can choose to proceed anyway overriding policy defined by AP. |
 | **AP Provider Type Verification** | Issuance | **NO USER OVERRIDE** | Per ARF ISSU_24a, ISSU_34a, RPRC_23: Mandatory verification. If provider entitlement wrong, WI SHALL NOT request issuance. User cannot override. |
 | **AP Attestation Type Verification** | Issuance | **NO USER OVERRIDE** | Per ARF ISSU_34b, RPRC_23: Mandatory verification. If Attestation type not registered, WI SHALL NOT request issuance. User cannot override. |
 
