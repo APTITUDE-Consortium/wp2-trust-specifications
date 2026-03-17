@@ -71,19 +71,27 @@ subgraph Register["Identity & Authorization Data Register"]
 end
 subgraph C_A["Certificate Authority"]
         WRPAC@{ shape: lin-doc, label: "WRPAC" }
+        WRPAC_CRL@{ shape: lin-doc, label: "WRPA_CRL_" }
         WRPRC@{ shape: lin-doc, label: "WRPRC" }
+        WRPRC_TSL@{ shape: lin-doc, label: "WRPRC_TSL" }
         CA@{shape: lin-rect, label: "Certificate AUthority" }
 end
 
     Registrar-->|Identification|IDReg
+    Registrar-->|Id_Revocation_|IDReg
     Registrar-.->IDPol
 
     Registrar-.->Cred
     Registrar-.->CredPol
     Registrar-->|Authorization|AuthReg
-
+    Registrar-->|Authorization_Suspension|AuthReg
+    AuthReg-->|Suspension|CA
+    IDReg-->|Revocation|CA
+    
     CA-.->IDReg
     CA-->|Issuance|WRPAC
+    CA-->|Revocation|WRPAC_CRL
+    CA-->|Suspension|WRPRC_TSL
     CA-.->AuthReg
     CA-->|Issuance|WRPRC
 
@@ -120,13 +128,13 @@ subgraph EDW["EUDIW operational context"]
         WRP["WRP"] -->uses_certificates["WRPAC (Access)<br/>WRPRC (Registration)<br/>Active/Valid"]
 end
 
-    WRP -.->|Applies for| WRP_Id
-    WRP -.->|Applies for| WRP_Auth
-    WRP -.->|Applies for| WRPAC_I
-    WRP -.->|Applies for| WRPRC_I
+    WRP -.->|1. Applies for| WRP_Id
+    WRP -.->|2. Applies for| WRP_Auth
+    WRP -.->|5. Applies for| WRPAC_I
+    WRP -.->|6. Applies for| WRPRC_I
 
-    WRPAC_I -.->|Data Request| National_Register
-    WRPRC_I -.->|Data Request| National_Register
+    WRPAC_I -.->|3. Data Request| National_Register
+    WRPRC_I -.->|4. Data Request| National_Register
     
     WRP -->|Request| WRPAC_Rev
     WRP -->|Request| WRPRC_Rev
