@@ -10,7 +10,7 @@ The section covers three main authorization mechanisms:
 2. **Attestation Provider Unauthorized Issuance Prevention**: Mechanisms to prevent Attestation Providers from issuing Attestations they are not authorized to issue
 3. **Embedded Disclosure Policy Enforcement**: Mechanisms to apply disclosure policies defined by Attestation Providers
 
-These mechanisms based on **WRPRCs** that contain registered capabilities and entitlements of entities, and **Embedded Disclosure Policies** that allow Attestation Providers to restrict which Relying Parties can access specific Attestations.
+These mechanisms are based on **WRPRCs** that contain registered capabilities and entitlements of entities, and **Embedded Disclosure Policies** that allow Attestation Providers to restrict which Relying Parties can access specific Attestations.
 
 The Wallet Instance plays a central role in implementing these mechanisms by:
 - Validating WRPRCs
@@ -782,7 +782,7 @@ This step extracts RP information needed for policy evaluation (per ARF EDP_06).
    - Use this identifier for policy evaluation in Step 3a
 
 3. **If intermediary scenario** (per ARF EDP_02 note):
-   - The WI MUST extract unique identifier of **intermediated Relying Party** from presentation request RP info extension (field `id` per ARF RPRC_19a)
+   - The WI MUST extract unique identifier of **intermediated Relying Party** from presentation request RP info extension (field `id` per ARF RPRC_19a) or from the registration certificate.
    - Use intermediated RP identifier for policy evaluation in Step 3a
    - Note: DO NOT use intermediary identifier - policy evaluates against intermediated RP
 
