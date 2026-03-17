@@ -1,6 +1,5 @@
 # Trust Management Process
-note:
-1. il jwn non necessita revoca
+
 **Table of Contents**
 
 **Normative & technical references**  
@@ -35,39 +34,33 @@ https://github.com/webuild-consortium/wp4-trust-group/tree/main/task1-use-cases/
 
 ## Scope And Introduction
 The aim of this chapter is to describe the lifecycle of: 
-1. entity identity and credential authorization information managed in the national registers
+1. WRP identity and attestation authorization information managed in the national registers
 2. and the related certificates that are used to claim that identity and related authorizations in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates.
-The integrity and authenticity of these credentials is out of scope, assuming that Q seals and Q signing certificates are consolidated.
-Identity and autorization in the register are the information references, and we refer to this as "license" to operate in the eudiw ecosystem. They are managed by registrars and have their specific lifecycle.
-This information is transported and consumed by communication and application processes using X509 certificates, that are issued and managed by Certificate Authorities according to trusted list policies. These certificates have their own lifecycle and obviously there are some touchpoints between license and certificate lifecycles.
-
-It could be useful to identify best practices and success stories from the market that could provide an "inspirational starting point", in order to define a sustainable and effective design. Banking sector is probably by nature a good example to be taken into consideration, and so there is a specific annex that aims to describe the state of the art relating the authentication mechanisms in place at the present, and is described in Annex I. 
+> [!NOTE] The integrity and authenticity of these attestations is out of scope, assuming that Q seals and Q signing certificates are consolidated.
+Register information lifecycle affects directly lifecycle of WRP certificates and tokens. 
 
 # Trust management overview
-Wallet Relying Parties (WRP) Identity is managed by national registrars, according to national trust framework policies. WRP applies for registration to the registrar.
-National Competent Authorities for different sectors will be able to interact with registrars to provide information from their registries to fulfill the registration process, aside with information provided directly by entities ([Topic-X] and its refinement , national registers under Annex I, point 12 of CIR (EU) 2025/848 [CIR-1, CIR-2]).
-The entity authorization has to be managed by registrars too, according to entity requests. The authorization is a link between entity identifier - role assumed in eudiw ecosystem (credential issuer or consumer) and the credential type identifiers. The goal is to fulfill policy requirements related to credential types.
+Wallet Relying Parties (WRP) Identity shall be managed by national registrars, according to national trust framework policies. WRP shall apply for registration to the registrar.
+National Competent Authorities for different sectors shall be able to interact with registrars to provide information from their registries to fulfill the registration process, aside with information provided directly by entities ([Topic-X] and its refinement , national registers under Annex I, point 12 of CIR (EU) 2025/848 [CIR-1, CIR-2]).
+WRP authorization shall be managed by registrars too, according to their requests. The authorization is a link between WRP identifier - role assumed in eudiw ecosystem (AP or RP) and the attestation type identifiers. The goal of authorization process is to fulfill policy requirements by WRP related to attestation types.
 
 ```mermaid graph
 flowchart LR
-    Entity["Entity Identity"]-.->|Authentication as| Role["Role (Credential Consumer-Issuer)"]
-    Role -.->|Authorization on| Cred["Credential Type"]
+    WEP["WRP Identity"]-.->|Authentication as| Role["Role (AP or RP)"]
+    Role -.->|Authorization on| Cred["Attestation Type"]
 Policy<-.->|Authorization requirements|Cred
-Cat["Credential Catalogue"]-.->|defines|Cred
+Cat["Catalogue of Schemes"]-.->|defines|Cred
 ```
 
-If a credential is subject to a policy, the credential types should be registered within the credential catalogue: a set of data schema definitions that is managed centrally for all MSs by EU commission (ref CIR-3 2025/1569). This will ensure that only entitled entities will be allowed to issue specific credential in order to preserve level of assurance of information according to sectorial competent authorities. And on the other side only authorized entities (mainly for privacy preserving reasons) could be allowed to request these credentials.
-
-Specific requirements for authorization management will be expressed through policies, rules to be fulfilled for issuing and asking for specific credential types. 
-> Note: it's not clear how to manage cohexistence of policies of national trust frameworks based on one single european credential catalogue. Different sectors have different stages of "europeanization maturity", so probably there will be cases where a policy could be valid at european level, others where policies will be expressed at national level.
+If an attestation is subject to a policy, the attestation types shall be registered within the catalogue of schemes. This will ensure that only entitled providers will be allowed to issue specific credential in order to preserve level of assurance of information according to sectorial competent authorities. And on the other side only authorized relying parties shall be allowed to request these credentials.
 
 ```mermaid graph
 ---
 title: Logical Flow
 ---
 flowchart TD 
-subgraph Cred_Def["Credential & Policy Catalogue"]
-        Cred[["Credential Catalogue"]]
+subgraph Cred_Def["Attestation & Policy Catalogue"]
+        Cred[["Attestation Catalogue"]]
         IDPol[["Identification Policy Catalogue"]]
         CredPol[["Authorization Policy Catalogue"]]
 end
@@ -95,119 +88,121 @@ end
     CA-->|Issuance|WRPRC
 
 ```
-rif https://github.com/webuild-consortium/wp4-trust-group/blob/3a6218f951ea499b04308b5e99bab8619629e227/task2-trust-framework/eudi-wallet-trust-and-entitlement-discovery.md
-
+The following graph aims to represent the interactions and dependencies between entities and lifecycle actions. 
 
 ```mermaid graph
 ---
 title: Lifecycle Flow
 ---
 flowchart LR
-subgraph EU["EU Commission and Member States"]
-        Pol["Policy definition and updates"]
-        Cat["Credential Catalogue definition and updates"]
+subgraph EU["EU Commission & Member State"]
+        Pol["Policy update"]
+        Cat["Catalogue of schemes update"]
 end
  
-subgraph National_Register["National Registrar and other National Competent Authorities"]
-        LR["License Registration<br/>Entity ID + Authorizations<br/>(Onboarding/Update)"]
-        LRev["License Revocation<br/>Update/Suspend"]
-        Pol["Policy definition and updates"]
-         subgraph Note[Judicial Authorities, Data Protection Authority, National Competent Authorities could require license update or revocation]
-        end
-    end
+subgraph National_Register["National Registrar and other National Competent Authorities (Judicial Authorities, Data Protection Authority)"]
+        WRP_Id["WRP Identity Registration"]
+        WRP_Auth["WRP Authorization Registration"]
+
+        WRP_Id_Rev["WRP Identity Registration Revocation"]
+        WRP_Auth_Rev["WRP Authorization Registration Suspension"]
+        TL_Rev["Certificate Authority Removal from TL"]
+end
  
-    subgraph CA["Certificate Authority and CTLog Service Provider"]
-        CI["Issue WRPAC/WRPRC<br/>Notifies Register <br/>Notifies CTlog SP"]
-        CRev["Revoke Certs<br/>Update CRL/OCSP"]
-    end
+subgraph CA["Certificate Authority and CTLog Service Provider"]
+        WRPAC_I["WRPAC Issuance<br/>Register Notification<br/>CTlog SP notification"]
+        WRPRC_I["WRPRC Issuance<br/>Register Notification<br/>CTlog SP notification"]
+        WRPAC_Rev["WRPAC Revocation<br/>Update CRL/OCSP"]
+        WRPRC_Rev["WRPRC Suspension<br/>Update TSL"]
+end
 
-    subgraph EDW["EUDIW operational context"]
-        Entity["Entity WRP"]
-        CI --> Certs["WRPAC (Access)<br/>WRPRC (Registration)<br/>Active/Valid"]
+subgraph EDW["EUDIW operational context"]
+        WRP["WRP"] -->uses_certificates["WRPAC (Access)<br/>WRPRC (Registration)<br/>Active/Valid"]
+end
 
-    end
+    WRP -.->|Applies for| WRP_Id
+    WRP -.->|Applies for| WRP_Auth
+    WRP -.->|Applies for| WRPAC_I
+    WRP -.->|Applies for| WRPRC_I
 
-    Entity -.->|Applies/Requests| LR
-    Entity -.->|Uses| Certs
-
-    CI -.->|Request Certs:<br/>ID/Authz Data| LR
-    Entity -.->|Request| CI
+    WRPAC_I -.->|Data Request| National_Register
+    WRPRC_I -.->|Data Request| National_Register
     
-    Entity -->|Request| CRev
-    Pol -->|Trigger authorization updates| LRev
-    Cat -->|Trigger authorization updates| LRev
+    WRP -->|Request| WRPAC_Rev
+    WRP -->|Request| WRPRC_Rev
+    WRP_Id_Rev -->|Request| WRPAC_Rev
+    WRP_Auth_Rev -->|Request| WRPRC_Rev
+
+    National_Register-->|Request| WRP_Id_Rev
+    National_Register-->|Request| WRP_Auth_Rev
+    National_Register-->|Request| WRPAC_Rev
+    National_Register-->|Request| WRPRC_Rev
+    
+    Pol -->|Trigger authorization updates| WRPRC_Rev
     Cat -->|Trigger policy updates| Pol
-    LRev -.->|Trigger| CRev
-    LR -.->|Optional: Collect<br/>Cert Refs| LR
+    WRP_Id_Rev -.->|Trigger| WRPAC_Rev
+    WRP_Auth_Rev -.->|Trigger| WRPRC_Rev
  
-    style LR fill:#e1f5fe
-    style CI fill:#c8e6c9
-    style Certs fill:#fff3e0
-    style CRev fill:#ffcdd2
-    style Note fill:yellow,stroke:#fbc02d,stroke-dasharray: 5 5
+    style WRP_Id fill:#e1f5fe
+    style WRP_Auth fill:#e1f5fe
+    style WRPAC_I fill:#c8e6c9
+    style WRPRC_I fill:#c8e6c9
+    style WRPAC_Rev fill:#ffcdd2
+    style WRPRC_Rev fill:#ffcdd2
 ```
 
 All certificate states and revocation mechanisms are in  ETSI 119-411-8, that describes Access Certificate Policy for EUDI Wallet Relying Parties
 
-# Credential catalogue and EAA policy management
+# Catalogue of schemes and policy management
 The credential catalogue and related policies are not in scope of this chapter and are managed centrally by EU Commission. This topic is not defined yet [ref topic X (https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/discussions/431)]
-Credential types and their policy are linked to the entity identity as registration profile, aka authorization.
+ETSI TS 319.482 will define catalogue of schemes implementation.
 > Note: So changes in the credential catalogue and in related policy repositories will affect potentially both authorizations and consequently the validity of registration certificates.
 
-The EUDI credential catalogue (catalogue of attributes and schemes for attestations) is defined for management by the CIR(EU) 2025/1569 [CIR-3]. Articles 7 and 8 of this regulation specify the scope and responsibilities for the catalogues, distinguishing the catalogue of attributes (limited to public sector authentic sources) from the broader catalogue of attestation schemes. It mandates the Commission to host, make publicly available, and ensure machine-readable access to these catalogues, including high-availability mechanisms (ARF CAT_06 requirement).
-# Entity license management
+# WRP Registration lifecycle 
 ## Registration (Onboarding wallet relying parties)
-Each Member State will delegate a Registrar to manage the national register: it's a repository of identities and authorizations for entities that will handle attestations and attributes (in the issuance or presentation request phases).
-The process and related attributes that must be collected are described in [CIR-1 CIR-2], and the process will be specific for member state and it's assumed to be equivalent. This enrollment represents a "license" to operate in the EUDIW ecosystem.
-The first step is entity identification: the onboarding process must ensure adequate controls on the entity identity claims, using EUDI busines wallet or other authentication mechanisms. A unique identifier is assigned to the entity (WRP identifier) and operational attributes must be linked to that and that will be referred by WRPAC: credential offer endpoints, privacy policy statement URL.
-The second step is entity authorization to handle credentials, autonomously or delegating an intermediary: both for the credential issuance and request operations, in case of explicit policy requirements enlisted in the EU credential catalogue, an explicit authorization must be provided on specific referred attributes or attestation types.
-In this phase, entity must notify the registrar if it's intermediated by a technical provider, that will be verified against trusted lists and national registers.
+Each Member State will delegate a Registrar to manage the national register: it's a repository of identities and authorizations for WRPs that will handle attestations and attributes (in the issuance or presentation request phases).
+The process and related attributes that must be collected are described in [CIR-1 CIR-2], and the process will be specific for member state and it's assumed to be equivalent. 
+The first step is WRP's identification: the onboarding process must ensure adequate controls on the entity identity claims. A unique identifier is assigned to the entity (WRP identifier) and related attributes, such as credential offer endpoints, privacy policy statement URL, etc.
+The second step is WRP's authorization to handle attestations, autonomously or delegating an intermediary: both for the attestation issuance and presentation request, policy requirements related to attestation type must be satisfied. 
 
 The register information data model is described in [TS02] and api for registration and inquiry in the register are defined in [TS05] , data to be registered in [TS06]. 
 This process and register maintenance will be managed by national registrar.
 National Registrar could integrate existing identity repository for specific sectors, according to NCA sector policies. 
-Registrar could include the engagement of the CA in the registration process, in order to facilitate the onboarding process, according to entity preferences.
+Registrar could include the engagement of the CA in the registration process, in order to facilitate the onboarding process, according to WRP preferences.
 
 ## License update and revocation
 Each Member State Registrar, as National Competent Authority, will manage a process to manage license revocation: 
 1. this could be the case of cessation of business that could be notified by the Business Register 
 2. the judicial authority could suspend the license in case of suspicion of abuse
-3. DPA Data Protection Authorities (that will publish specific APIs to collect abuses [TS 08]) will request suspension to Registrar
+3. DPA Data Protection Authorities (that will publish specific APIs to collect abuses [TS 08]) will request suspension or revocation.
 
 ## Further optional and asyncronous information collection
-Registrar collects issued WRPAC and WRPRC references from CAs. This must be done in order to be able to trigger their revocation towards certificate authorities in case of license withdrawal.
+Registrar may collect issued WRPAC and WRPRC references from CAs. This could be done in order to be able to trigger their revocation towards certificate authorities in case of license withdrawal.
 Registrar could publish the authorization data bound to WRPidentifier in case WRPRCs are not transmitted to the wallet, in order to fulfill policy requirements.
 
 # Access (WRPAC) and registration (WRPRC) certificate lifecycle
-In order to make the entity and its license effectively operational in OID4VP and OID4VCI protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and sign WRPRCs (Regulatory requirements are described in Annex E, data model in Annex B of [ETSI-119-475] referred by Commission Implementing Regulation 2024/2982). 
+In order to make WRP operational in application protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and sign WRPRCs (Regulatory requirements are described in Annex E, data model in Annex B of [ETSI-119-475] referred by Commission Implementing Regulation 2024/2982). 
 The WRPAC represents the identity key of a WRP. Access Certificates are used to sign the OID4VP request and also for signing the OID4VCI issuer metadata.  
 The WRPRC is a JWT used for authorization both in credential issuance and request steps, whether the credential is somehow referred by policies. 
 WRPRC is optional: 
 1. it depends on credential policy requirements
 2. whether required by credential policy requirements and not sent by WRP during the authentication phase, the same information can also be retrieved from the Registrar's online service. 
-Certificate description and examples can be found in [ETSI-119-475] and [rif aptitude]. 
+
 ## WRPAC and WRPRC Issuance
-WRPAC and WRPRC issuance requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists. Entity identification could be done using business wallet or other means.
-The CA accesses the national register using management apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
-As soon a WRPAC has been issued:
-1. the CA has to notify the Registrar, providing their references. Registrar should record all issued certificates in order to be able to ask for revocation if required. Revocation process cases and status management is described in [ETSI 119-475]
-2. the CA should trace certificate issuance on 2 CTlog service providers (using API provided by ctlog managers) according to Certificate transparency policies. CTlog service will keep all timestamps of certificate issuance to enable third party verification that the certificate has been issued by an authorized Certificate Authority at that time that's declared. 
-Signing and provisioning of the WRPRC requires access to register to collect data, and it will not require notification to registrar because JWT will have a short lifetime, so it will not incur on revocation mechanism.
+WRPAC and WRPRC issuance requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists. 
+The CA accesses the national register using REST apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
+As soon a WRPAC and WRPRC have been issued:
+1. the CA SHOULD notify the Registrar, providing their references. Registrar should record all issued certificates in order to be able to ask for revocation if required. 
+2. the CA shall trace certificate issuance on 2 CTlog service providers (using API provided by ctlog managers) according to Certificate transparency policies. CTlog service will keep all timestamps of certificate issuance to enable third party verification that the certificate has been issued by an authorized Certificate Authority at that time that's declared. 
 The WRP has to make available its WRPRC and WRPAC certificates online through its website.
 ## Revocation
-Certificate lifecycle can be bound to license lifecycle or be indipendent.
+WRPAC and WRPRC revocation could be triggered by  identity and authorization changes or revocation, or by indipendent processes.
 1. Issuance or revocation can be triggered by Registrar according to information changed in the register 
-2. issuance can be triggered by an entity WRP request directly to a CA
-3. revocation can be requested by WRP, Judicial or other authorities
-As soon as the CA revokes a certificate, updates and publishes a certificate revocation list CRL.
+2. issuance can be triggered by a WRP request directly to a CA
+3. revocation can be requested by WRP or other national or EU authorities to the CA.
+As soon as the CA revokes a certificate, shall update and publish the information in a certificate revocation list (CRL) or a Token Supension List (TSL).
 
-## WRPAC and WRPRC examples and profiles
-Refer to ref to https://github.com/webuild-consortium/wp4-trust-group/tree/main/task5-participants-certificates-policies
 
 # Annex I - Banking usecase
 TBD  
 
-gestione segnalazioni e frodi (ts08)
-qwac, registro dati e licenze su eu
-nca possono manifestare interesse per ricevere certificati emessi da CAs
-[allowed the entrance in this market of different actors able to integrate and extend the service offered by traditional banks. The use of authentication certificates could be taken as source of inspiration for defining a large scale application like the eudiw ecosystem]
