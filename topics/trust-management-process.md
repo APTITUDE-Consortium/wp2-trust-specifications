@@ -85,9 +85,9 @@ end
     Registrar-.->CredPol
     Registrar-->|Authorization|AuthReg
     Registrar-->|Authorization_Suspension|AuthReg
-    AuthReg-->|Suspension|CA
-    IDReg-->|Revocation|CA
-    
+    AuthReg-->|Asks_for_Suspension|CA
+    IDReg-->|Asks_for_Revocation|CA
+
     CA-.->IDReg
     CA-->|Issuance|WRPAC
     CA-->|Revocation|WRPAC_CRL
