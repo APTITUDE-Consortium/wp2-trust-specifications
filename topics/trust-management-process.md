@@ -225,6 +225,8 @@ WRPAC and WRPRC revocation could be triggered by  identity and authorization cha
 3. revocation can be requested by WRP or other national or EU authorities to the CA.
 As soon as the CA revokes a certificate, shall update and publish the information in a certificate revocation list (CRL) or a Token Supension List (TSL).
 
+# Trusted List Issuer Certificates
+All certificate and attestation issuer that will be enlisted in Trusted Lists will be subject of their authorization lifecycle by NCAs and CABs.
 
 # Annex I - Banking usecase
 TBD  
