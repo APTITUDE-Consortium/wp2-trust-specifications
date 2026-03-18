@@ -74,14 +74,14 @@ subgraph C_A["Certificate Authority"]
         WRPAC@{ shape: lin-doc, label: "WRPAC" }
         WRPAC_CRL@{ shape: lin-doc, label: "WRPAC_CRL" }
         WRPRC@{ shape: lin-doc, label: "WRPRC" }
+        SEAL@{ shape: lin-doc, label: "Seal for Attestations" }
+        SEAL_CRL@{ shape: lin-doc, label: "Seal & Certificate CRL" }
         WRPRC_TSL@{ shape: lin-doc, label: "WRPRC_TSL" }
         CA@{shape: lin-rect, label: "Certificate Authority" }
 end
 subgraph WRPG["Wallet Relying Parties"]
         WRP@{shape: lin-rect, label: "WRP" }
-        PID@{shape: lin-rect, label: "PID Issuer" }
-        PEAA@{shape: lin-rect, label: "Pub EAA Issuer" }
-        QEAA@{shape: lin-rect, label: "QEAA Issuer" }
+        PID@{shape: lin-rect, label: "PID, Pub EAA, QEAA Issuers" }
 end
 
     Registrar-->|Identification|IDReg
@@ -103,11 +103,14 @@ end
     CA-->|Suspension|WRPRC_TSL
     CA-.->AuthReg
     CA-->|Issuance|WRPRC
+    CA-->|Issuance|SEAL
+    CA-->|Revocation|SEAL_CRL
     
     WRPG-->|Use|WRPAC
+    PID-->|Use|SEAL
     TL-->|Provider_Identification|PID
-    TL-->|Provider_Identification|PEAA
-    TL-->|Provider_Identification|QEAA
+
+    
 ```
 The following graph aims to represent the interactions and dependencies between entities and lifecycle actions. 
 
@@ -226,7 +229,7 @@ WRPAC and WRPRC revocation could be triggered by  identity and authorization cha
 As soon as the CA revokes a certificate, shall update and publish the information in a certificate revocation list (CRL) or a Token Supension List (TSL).
 
 # Trusted List Issuer Certificates
-All certificate and attestation issuer that will be enlisted in Trusted Lists will be subject of their authorization lifecycle by NCAs and CABs.
+All seal and signing certificates for attestation issuer that will be enlisted in Trusted Lists, will be subject of their authorization lifecycle by NCAs and CABs.
 
 # Annex I - Banking usecase
 TBD  
