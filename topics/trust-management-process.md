@@ -58,7 +58,7 @@ If an attestation is subject to a policy, the attestation types shall be registe
 ---
 title: Logical Flow
 ---
-flowchart TD 
+flowchart LR 
 subgraph Cred_Def["Attestation & Policy Catalogue"]
         Cred[["Attestation Catalogue"]]
         IDPol[["Identification Policy Catalogue"]]
