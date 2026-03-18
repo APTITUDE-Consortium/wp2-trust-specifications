@@ -46,13 +46,13 @@ WRP authorization shall be managed by registrars too, according to their request
 
 ```mermaid graph
 flowchart LR
-    WEP["WRP Identity"]-.->|Authentication as| Role["Role (AP or RP)"]
+    WEP["WRP Identity"]-.->|Authentication as| Role["Entitlement (AP or RP)"]
     Role -.->|Authorization on| Cred["Attestation Type"]
 Policy<-.->|Authorization requirements|Cred
 Cat["Catalogue of Schemes"]-.->|defines|Cred
 ```
 
-If an attestation is subject to a policy, the attestation types shall be registered within the catalogue of schemes. This will ensure that only entitled providers will be allowed to issue specific credential in order to preserve level of assurance of information according to sectorial competent authorities. And on the other side only authorized relying parties shall be allowed to request these credentials.
+If an attestation is subject to a policy, the attestation types shall be registered within the catalogue of schemes. This will ensure that only entitled providers will be allowed to issue specific credential in order to preserve level of assurance and data structure of the information according to sectorial competent authorities. And on the other side, only authorized relying parties shall be allowed to request these credentials.
 
 ```mermaid graph
 ---
@@ -68,25 +68,28 @@ subgraph Register["Identity & Authorization Data Register"]
         IDReg@{shape: cyl, label: "Identity Register" }
         AuthReg@{shape: cyl, label: "Authorization Register"}
         Registrar@{shape: lin-rect, label: "Registrar" }
+        TL@{shape: lin-rect, label: "Trusted Lists" }
 end
 subgraph C_A["Certificate Authority"]
         WRPAC@{ shape: lin-doc, label: "WRPAC" }
         WRPAC_CRL@{ shape: lin-doc, label: "WRPA_CRL_" }
         WRPRC@{ shape: lin-doc, label: "WRPRC" }
         WRPRC_TSL@{ shape: lin-doc, label: "WRPRC_TSL" }
-        CA@{shape: lin-rect, label: "Certificate AUthority" }
+        CA@{shape: lin-rect, label: "Certificate Authority" }
 end
 
     Registrar-->|Identification|IDReg
-    Registrar-->|Id_Revocation_|IDReg
+    Registrar-->|Identity_Revocation|IDReg
     Registrar-.->IDPol
 
     Registrar-.->Cred
     Registrar-.->CredPol
     Registrar-->|Authorization|AuthReg
     Registrar-->|Authorization_Suspension|AuthReg
-    AuthReg-->|Asks_for_Suspension|CA
-    IDReg-->|Asks_for_Revocation|CA
+    AuthReg-->|Suspension_Request|CA
+    IDReg-->|Revocation_Request|CA
+    TL-->|Identification|CA
+    TL-->|Identity_Revocation|CA
 
     CA-.->IDReg
     CA-->|Issuance|WRPAC
@@ -122,6 +125,7 @@ subgraph CA["Certificate Authority and CTLog Service Provider"]
         WRPRC_I["WRPRC Issuance<br/>Register Notification<br/>CTlog SP notification"]
         WRPAC_Rev["WRPAC Revocation<br/>Update CRL/OCSP"]
         WRPRC_Rev["WRPRC Suspension<br/>Update TSL"]
+        CTLog["CTLog"]
 end
 
 subgraph EDW["EUDIW operational context"]
@@ -135,6 +139,7 @@ end
 
     WRPAC_I -.->|3. Data Request| National_Register
     WRPRC_I -.->|4. Data Request| National_Register
+    WRPAC_I-->|Certificate Timestamping| CTLog
     
     WRP -->|Request| WRPAC_Rev
     WRP -->|Request| WRPRC_Rev
@@ -174,33 +179,33 @@ The first step is WRP's identification: the onboarding process must ensure adequ
 The second step is WRP's authorization to handle attestations, autonomously or delegating an intermediary: both for the attestation issuance and presentation request, policy requirements related to attestation type must be satisfied. 
 
 The register information data model is described in [TS02] and api for registration and inquiry in the register are defined in [TS05] , data to be registered in [TS06]. 
-This process and register maintenance will be managed by national registrar.
-National Registrar could integrate existing identity repository for specific sectors, according to NCA sector policies. 
-Registrar could include the engagement of the CA in the registration process, in order to facilitate the onboarding process, according to WRP preferences.
+This process and register maintenance shall be managed by national registrar.
+National Registrar may integrate existing identity repository for specific sectors, according to NCA sector policies. 
+Registrar may include the engagement of the CA in the registration process, in order to facilitate the onboarding process, according to WRP preferences.
 
 ## License update and revocation
-Each Member State Registrar, as National Competent Authority, will manage a process to manage license revocation: 
-1. this could be the case of cessation of business that could be notified by the Business Register 
-2. the judicial authority could suspend the license in case of suspicion of abuse
-3. DPA Data Protection Authorities (that will publish specific APIs to collect abuses [TS 08]) will request suspension or revocation.
+Each Member State Registrar, as National Competent Authority, shall manage a process to manage license revocation: 
+1. in case of cessation of business that could be notified by the Business Register 
+2. in case of suspension by the judicial authority 
+3. or by DPA Data Protection Authorities (that will publish specific APIs to collect abuses [TS 08]).
 
 ## Further optional and asyncronous information collection
-Registrar may collect issued WRPAC and WRPRC references from CAs. This could be done in order to be able to trigger their revocation towards certificate authorities in case of license withdrawal.
-Registrar could publish the authorization data bound to WRPidentifier in case WRPRCs are not transmitted to the wallet, in order to fulfill policy requirements.
+Registrar may collect issued WRPAC and WRPRC references from CAs. This may be done in order to be able to trigger their revocation towards certificate authorities in case of license withdrawal.
+Registrar may publish the authorization data bound to WRPidentifier in case WRPRCs are not transmitted to the wallet, in order to fulfill policy requirements.
 
 # Access (WRPAC) and registration (WRPRC) certificate lifecycle
-In order to make WRP operational in application protocols, a certificate authority has to provide the authentication keys, and so it issues a WRPAC and sign WRPRCs (Regulatory requirements are described in Annex E, data model in Annex B of [ETSI-119-475] referred by Commission Implementing Regulation 2024/2982). 
+In order to make WRP operational in application protocols, a certificate authority shall provide the authentication keys, and so it shall issue a WRPAC and shall sign WRPRCs (Regulatory requirements are described in Annex E, data model in Annex B of [ETSI-119-475] referred by Commission Implementing Regulation 2024/2982). 
 The WRPAC represents the identity key of a WRP. Access Certificates are used to sign the OID4VP request and also for signing the OID4VCI issuer metadata.  
-The WRPRC is a JWT used for authorization both in credential issuance and request steps, whether the credential is somehow referred by policies. 
+The WRPRC is a JWT used for authorization both in attestation issuance and request steps, whether the attestation is somehow referred by policies. 
 WRPRC is optional: 
-1. it depends on credential policy requirements
-2. whether required by credential policy requirements and not sent by WRP during the authentication phase, the same information can also be retrieved from the Registrar's online service. 
+1. it depends on attestation policy requirements
+2. whether required by attestation policy requirements and not sent by WRP during the authentication phase, the same information can also be retrieved from the Registrar's online service. 
 
 ## WRPAC and WRPRC Issuance
 WRPAC and WRPRC issuance requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists. 
 The CA accesses the national register using REST apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
 As soon a WRPAC and WRPRC have been issued:
-1. the CA SHOULD notify the Registrar, providing their references. Registrar should record all issued certificates in order to be able to ask for revocation if required. 
+1. the CA SHshouldOULD notify the Registrar, providing their references. Registrar should record all issued certificates in order to be able to ask for revocation if required. 
 2. the CA shall trace certificate issuance on 2 CTlog service providers (using API provided by ctlog managers) according to Certificate transparency policies. CTlog service will keep all timestamps of certificate issuance to enable third party verification that the certificate has been issued by an authorized Certificate Authority at that time that's declared. 
 The WRP has to make available its WRPRC and WRPAC certificates online through its website.
 ## Revocation
