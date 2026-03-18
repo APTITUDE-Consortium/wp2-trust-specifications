@@ -72,10 +72,16 @@ subgraph Register["Identity & Authorization Data Register"]
 end
 subgraph C_A["Certificate Authority"]
         WRPAC@{ shape: lin-doc, label: "WRPAC" }
-        WRPAC_CRL@{ shape: lin-doc, label: "WRPA_CRL_" }
+        WRPAC_CRL@{ shape: lin-doc, label: "WRPAC_CRL" }
         WRPRC@{ shape: lin-doc, label: "WRPRC" }
         WRPRC_TSL@{ shape: lin-doc, label: "WRPRC_TSL" }
         CA@{shape: lin-rect, label: "Certificate Authority" }
+end
+subgraph WRPG["Wallet Relying Parties"]
+        WRP@{shape: lin-rect, label: "WRP" }
+        PID@{shape: lin-rect, label: "PID Issuer" }
+        PEAA@{shape: lin-rect, label: "Pub EAA Issuer" }
+        QEAA@{shape: lin-rect, label: "QEAA Issuer" }
 end
 
     Registrar-->|Identification|IDReg
@@ -97,7 +103,11 @@ end
     CA-->|Suspension|WRPRC_TSL
     CA-.->AuthReg
     CA-->|Issuance|WRPRC
-
+    
+    WRPG-->|Use|WRPAC
+    TL-->|Provider_Identification|PID
+    TL-->|Provider_Identification|PEAA
+    TL-->|Provider_Identification|QEAA
 ```
 The following graph aims to represent the interactions and dependencies between entities and lifecycle actions. 
 
