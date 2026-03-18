@@ -106,8 +106,9 @@ end
     CA-->|Issuance|SEAL
     CA-->|Revocation|SEAL_CRL
     
-    WRPG-->|Use|WRPAC
-    PID-->|Use|SEAL
+    WRP<-->|Use|WRPAC
+    PID<-->|Use|WRPAC
+    PID<-->|Use|SEAL
     TL-->|Provider_Identification|PID
 
     
