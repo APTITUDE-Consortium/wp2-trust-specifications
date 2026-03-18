@@ -88,8 +88,8 @@ end
     Registrar-->|Authorization_Suspension|AuthReg
     AuthReg-->|Suspension_Request|CA
     IDReg-->|Revocation_Request|CA
-    TL-->|Identification|CA
-    TL-->|Identity_Revocation|CA
+    TL-->|CA_Identification|CA
+    TL-->|CA_Identity_Revocation|CA
 
     CA-.->IDReg
     CA-->|Issuance|WRPAC
