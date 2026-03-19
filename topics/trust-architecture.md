@@ -100,8 +100,7 @@ While these trust evaluation processes will be further detailed in the following
     MSReg ---|"Checks Catalogues"| Cat
     ```
 - *Notification Process*: Based on the entity, the MS sends a set of the data to the EC Notification System. 
-    - For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC and MS Registrars, MS sends a set of the data (including the Trust Anchors) to the EC. As result, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.
-    - For Pub-EAA Providers, MS sends a set of the data (no Trust Anchor) to the EC. As result, the notified entities are included in a LoTE by a EC LoTE Provider.
+    - For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC, MS Registrars, and Pub-EAA Providers, MS sends a set of the data to the EC. As result, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.
     - For QEAA Providers and QTSP, MS sends a set of the data (containing the URL of the EUMS TLs) to the EC. As result, the URL of the EUMS TLs is added in the EU List of Trusted List (LOTL).
     ```mermaid
     graph LR
