@@ -25,8 +25,8 @@ ALL-TS All technical specs referred by ARF are available at https://eudi.dev/lat
 ## Scope And Introduction
 The aim of this chapter is to describe the lifecycle of: 
 1. WRP identity and attestation authorization information managed in the national registers
-2. and the related certificates that are used to claim that identity and related authorizations in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates
-3. and the signing seals and certificates that are used to sign attestations by all roles foreseen within the Trusted List for EUDIW ecosystem.
+2. the related certificates that are used to claim that identity and related authorizations in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates
+3. the signing seals and certificates that are used to sign attestations by all AP roles foreseen within the Trusted List for EUDIW ecosystem.
 
 # Trust management overview
 Wallet Relying Parties (WRP) Identity shall be managed by national registrars, according to national trust framework policies. WRP shall apply for registration to the registrar.
@@ -75,10 +75,10 @@ end
 
     Registrar-->|Identification|IDReg
     Registrar-->|Identity_Revocation|IDReg
-    Registrar-.->IDPol
+    Registrar<-.->IDPol
 
-    Registrar-.->Cred
-    Registrar-.->CredPol
+    Registrar<-.->Cred
+    Registrar<-.->CredPol
     Registrar-->|Authorization|AuthReg
     Registrar-->|Authorization_Suspension|AuthReg
     AuthReg-->|Suspension_Request|CA
