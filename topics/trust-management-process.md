@@ -22,22 +22,11 @@ ETSI-119-411 Policy and security requirements for Trust Service Providers issuin
 ETSI-119-475 Relying party attributes supporting EUDI Wallet user's authorization decisions (Certificate profile and policy requirements for access and registration certificates) (https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.01.01_60/ts_119475v010101p.pdf)  
 ALL-TS All technical specs referred by ARF are available at https://eudi.dev/latest/technical-specifications/  
 
-Webuild LSP references:  
-WBD-1 Access Certificate Examples:  
-https://github.com/webuild-consortium/wp4-trust-group/blob/main/task5-participants-certificates-policies/eaa_provider_access_certificate.md  
-https://github.com/webuild-consortium/wp4-trust-group/blob/main/task5-participants-certificates-policies/relying_party_access_certificate.md  
-WBD-2 Registration Certificate Examples:  
-https://github.com/webuild-consortium/wp4-trust-group/blob/main/task5-participants-certificates-policies/eaa_provider_registration_certificate.md  
-https://github.com/webuild-consortium/wp4-trust-group/blob/main/task5-participants-certificates-policies/relying_party_registration_certificate.md  
-WBD-3 Onboarding usecase  
-https://github.com/webuild-consortium/wp4-trust-group/tree/main/task1-use-cases/subtask1-1-onboarding  
-
 ## Scope And Introduction
 The aim of this chapter is to describe the lifecycle of: 
 1. WRP identity and attestation authorization information managed in the national registers
-2. and the related certificates that are used to claim that identity and related authorizations in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates.
-> [!NOTE] The integrity and authenticity of these attestations is out of scope, assuming that Q seals and Q signing certificates are consolidated.
-Register information lifecycle affects directly lifecycle of WRP certificates and tokens. 
+2. and the related certificates that are used to claim that identity and related authorizations in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates
+3. and the signing seals and certificates that are used to sign attestations by all roles foreseen within the Trusted List for EUDIW ecosystem.
 
 # Trust management overview
 Wallet Relying Parties (WRP) Identity shall be managed by national registrars, according to national trust framework policies. WRP shall apply for registration to the registrar.
@@ -52,11 +41,11 @@ Policy<-.->|Authorization requirements|Cred
 Cat["Catalogue of Schemes"]-.->|defines|Cred
 ```
 
-If an attestation is subject to a policy, the attestation types shall be registered within the catalogue of schemes. This will ensure that only entitled providers will be allowed to issue specific credential in order to preserve level of assurance and data structure of the information according to sectorial competent authorities. And on the other side, only authorized relying parties shall be allowed to request these credentials.
+If an attestation is subject to a policy, the attestation types shall be registered within the catalogue of schemes to be referred. This will ensure that only entitled providers will be allowed to issue specific credential in order to preserve level of assurance and data structure of the information according to sectorial competent authorities. And on the other side, only authorized relying parties shall be allowed to request these credentials.
 
 ```mermaid graph
 ---
-title: Logical Flow
+title: Identity and authorization lifecycle Flow
 ---
 flowchart LR 
 subgraph Cred_Def["Attestation & Policy Catalogue"]
