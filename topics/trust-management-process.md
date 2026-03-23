@@ -24,8 +24,8 @@ ALL-TS All technical specs referred by ARF are available at https://eudi.dev/lat
 
 ## Scope And Introduction
 The aim of this chapter is to describe the lifecycle of: 
-1. WRP identity and attestation authorization information managed in the national registers
-2. the related certificates that are used to claim that identity and related authorizations in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates
+1. WRP identity and attestation authorization information managed in the national registers (This represents the source of WPR information)
+2. the related certificates that are used to claim that identity and related authorizations in EUDIW ecosystem: access (Wallet relying Party Access Certificate, aka WRPAC) and registration (Wallet relying Party Registration  Certificate, aka WRPRC) certificates (This represents the mean to transport WRP information across the ecosystem)
 3. the signing seals and certificates that are used to sign attestations by all AP roles foreseen within the Trusted List for EUDIW ecosystem.
 
 # Trust management overview
@@ -49,29 +49,28 @@ title: Identity and authorization lifecycle Flow
 ---
 flowchart LR 
 subgraph Cred_Def["Attestation & Policy Catalogue"]
-        Cred[["Attestation Catalogue"]]
+        Cred[["Catalogue of schemes"]]
         IDPol[["Identification Policy Catalogue"]]
         CredPol[["Authorization Policy Catalogue"]]
 end
-subgraph Register["Identity & Authorization Data Register"]
+subgraph Register["Primary Information data management"]
         IDReg@{shape: cyl, label: "Identity Register" }
         AuthReg@{shape: cyl, label: "Authorization Register"}
         Registrar@{shape: lin-rect, label: "Registrar" }
-        TL@{shape: lin-rect, label: "Trusted Lists" }
+        NCA@{shape: lin-rect, label: "EU Comm & NCA" }
+        TL@{shape: cyl, label: "Trusted Lists & LoTE" }
 end
-subgraph C_A["Certificate Authority"]
+subgraph C_A["Certificate Management"]
         WRPAC@{ shape: lin-doc, label: "WRPAC" }
         WRPAC_CRL@{ shape: lin-doc, label: "WRPAC_CRL" }
         WRPRC@{ shape: lin-doc, label: "WRPRC" }
         SEAL@{ shape: lin-doc, label: "Seal for Attestations" }
         SEAL_CRL@{ shape: lin-doc, label: "Seal & Certificate CRL" }
         WRPRC_TSL@{ shape: lin-doc, label: "WRPRC_TSL" }
-        CA@{shape: lin-rect, label: "Certificate Authority" }
+        CA@{shape: lin-rect, label: "Certificate Authority & QTSP" }
+        QTSP@{shape: lin-rect, label: "QTSP" }
 end
-subgraph WRPG["Wallet Relying Parties"]
-        WRP@{shape: lin-rect, label: "WRP" }
-        PID@{shape: lin-rect, label: "PID, Pub EAA, QEAA Issuers" }
-end
+
 
     Registrar-->|Identification|IDReg
     Registrar-->|Identity_Revocation|IDReg
@@ -85,6 +84,8 @@ end
     IDReg-->|Revocation_Request|CA
     TL-->|CA_Identification|CA
     TL-->|CA_Identity_Revocation|CA
+    Registrar-->|Insert|TL
+    Registrar-->|Delete and update|TL
 
     CA-.->IDReg
     CA-->|Issuance|WRPAC
@@ -94,12 +95,6 @@ end
     CA-->|Issuance|WRPRC
     CA-->|Issuance|SEAL
     CA-->|Revocation|SEAL_CRL
-    
-    WRP<-.->|Use|WRPAC
-    PID<-.->|Use|WRPAC
-    PID<-.->|Use|SEAL
-    TL-->|Provider_Identification|PID
-
     
 ```
 The following graph aims to represent the interactions and dependencies between entities and lifecycle actions. 
@@ -186,17 +181,29 @@ This process and register maintenance shall be managed by national registrar.
 National Registrar may integrate existing identity repository for specific sectors, according to NCA sector policies. 
 Registrar may include the engagement of the CA in the registration process, in order to facilitate the onboarding process, according to WRP preferences.
 
-## License update and revocation
-Each Member State Registrar, as National Competent Authority, shall manage a process to manage license revocation: 
+Specific entities, like 
+1. PID providers, 
+2. wallet providers,
+3. Pub EAA providers
+4. QEAA providers
+are enlisted in trusted lists and list of trusted entities.
+
+## Registration update and revocation
+Both types of information repositories will be subject of lifecycle management.
+Each Member State Registrar, as National Competent Authority, shall define a process to manage information update or registration revocation on registers: 
 1. in case of cessation of business that could be notified by the Business Register 
 2. in case of suspension by the judicial authority 
 3. or by DPA Data Protection Authorities (that will publish specific APIs to collect abuses [TS 08]).
+
+EU Commission and NCAs will have authority on information management on trusted lists.
 
 ## Further optional and asyncronous information collection
 Registrar may collect issued WRPAC and WRPRC references from CAs. This may be done in order to be able to trigger their revocation towards certificate authorities in case of license withdrawal.
 Registrar may publish the authorization data bound to WRPidentifier in case WRPRCs are not transmitted to the wallet, in order to fulfill policy requirements.
 
 # Access (WRPAC) and registration (WRPRC) certificate lifecycle
+
+## Introduction
 In order to make WRP operational in application protocols, a certificate authority shall provide the authentication keys, and so it shall issue a WRPAC and shall sign WRPRCs (Regulatory requirements are described in Annex E, data model in Annex B of [ETSI-119-475] referred by Commission Implementing Regulation 2024/2982). 
 The WRPAC represents the identity key of a WRP. Access Certificates are used to sign the OID4VP request and also for signing the OID4VCI issuer metadata.  
 The WRPRC is a JWT used for authorization both in attestation issuance and request steps, whether the attestation is somehow referred by policies. 
@@ -208,7 +215,7 @@ WRPRC is optional:
 WRPAC and WRPRC issuance requires a mutual authentication: the certificate authority must identify the applicant entity, and the entity must be able to check if the CA is present with this role in the trusted lists. 
 The CA accesses the national register using REST apis and provides the certificates according to certificate profile and policy requirements, described in ETSI 119.475 and referred in Annex V of CIR amendment draft.
 As soon a WRPAC and WRPRC have been issued:
-1. the CA SHshouldOULD notify the Registrar, providing their references. Registrar should record all issued certificates in order to be able to ask for revocation if required. 
+1. the CA should notify the Registrar, providing their references. Registrar should record all issued certificates in order to be able to ask for revocation if required. 
 2. the CA shall trace certificate issuance on 2 CTlog service providers (using API provided by ctlog managers) according to Certificate transparency policies. CTlog service will keep all timestamps of certificate issuance to enable third party verification that the certificate has been issued by an authorized Certificate Authority at that time that's declared. 
 The WRP has to make available its WRPRC and WRPAC certificates online through its website.
 ## Revocation
@@ -218,8 +225,10 @@ WRPAC and WRPRC revocation could be triggered by  identity and authorization cha
 3. revocation can be requested by WRP or other national or EU authorities to the CA.
 As soon as the CA revokes a certificate, shall update and publish the information in a certificate revocation list (CRL) or a Token Supension List (TSL).
 
+Specific roles will be managed by specific authorities using trusted lists as persistence repository and way to disseminate information. API endpoint could be provided to publish a subset of TL information.
+
 # Trusted List Issuer Certificates
-All seal and signing certificates for attestation issuer that will be enlisted in Trusted Lists, will be subject of their authorization lifecycle by NCAs and CABs.
+All seal and signing certificates for attestation issuer will be provided by QTSPs, enlisted in Trusted Lists, that will be subject for their authorization lifecycle by NCAs and CABs.
 
 # Annex I - Banking usecase
 TBD  
