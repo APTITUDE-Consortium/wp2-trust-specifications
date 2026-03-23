@@ -68,7 +68,7 @@ subgraph C_A["Certificate Management"]
         SEAL_CRL@{ shape: lin-doc, label: "Seal & Certificate CRL" }
         WRPRC_TSL@{ shape: lin-doc, label: "WRPRC_TSL" }
         CA@{shape: lin-rect, label: "Certificate Authority & QTSP" }
-        QTSP@{shape: lin-rect, label: "QTSP" }
+        
 end
 
 
