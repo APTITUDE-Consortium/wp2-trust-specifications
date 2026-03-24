@@ -30,8 +30,8 @@ The **National Register of WRPs** is the publicly accessible system (dataset + A
 - **Commission “Have your say” draft update to WRP registration rules (introduces Annex VI for common API / registry schema)**:  
   https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16113-European-Digital-Identity-Wallet-registration-of-wallet-relying-parties-update-_en
 
-- **ETSI TS 119 475 v1.1.1** (WRP attributes, entitlement URIs, RP authorisation decision support):  
-  https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.01.01_60/ts_119475v010101p.pdf
+- **ETSI TS 119 475 v1.2.1** (WRP attributes, entitlement URIs, RP authorisation decision support):
+  https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.02.01_60/ts_119475v010201p.pdf
 
 - **ETSI TS 119 411-8 v1.1.1** (certificate profiles/policies referenced by ETSI ecosystem):  
   https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf
@@ -162,7 +162,7 @@ This section defines the format of the information exchanged via the Register AP
 | `legalPerson` |                        `LegalPerson` (conditional) | Specific attributes of a legal person. | Draft Annex VI Table 1 / Table 8 |
 | `naturalPerson` |                       `NaturalPerson`(conditional) | Specific attributes of a natural person. | Draft Annex VI Table 1 / Table 9 |
 | `identifier` |                                     `Identifier[]` | One or more identifiers from official records. | Draft Annex VI Table 1 / Table 10 |
-| `postalAddress` |                              `string[]` (optional) | Postal address(es) of the legal entity (**registration view only; excluded from published API statements**). | Draft Annex VI Table 1; Draft Annex VI §3(a) |
+| `postalAddress` |                              `string[]` (optional) | Postal address(es) of the legal entity (**registration view only; excluded from published API statements**). Note: ETSI TS 119 475 B.2.2 defines this as `[1..1] string`; Draft Annex VI Table 1 uses an array. This document follows Draft Annex VI. | Draft Annex VI Table 1; Draft Annex VI §3(a) |
 | `country` |                                           `string` | ISO 3166-1 alpha-2 country code, or `"EU"` for providers operating in the Union. | Draft Annex VI Table 1 |
 | `email` |                              `string[]` (optional) | Contact email address(es) (RFC 5322 format). | Draft Annex VI Table 1 |
 | `phone` |                              `string[]` (optional) | Contact phone number(s), international form with `+` prefix. | Draft Annex VI Table 1 |
@@ -172,7 +172,7 @@ This section defines the format of the information exchanged via the Register AP
 | `x5c` |                              `string[]` (optional) | X.509 certificate chain(s) for provider services (JWS `x5c`-style chains; supports rollover). | Draft Annex VI Table 1 |
 | `tradeName` |                                `string` (optional) | User-facing trade/service name recognisable to users. | CIR Annex I(2); Draft Annex VI Table 1 |
 | `supportURI` |                                         `string[]` | Support/helpdesk URI(s) for the service. | CIR Annex I(7)(a); Draft Annex VI Table 1 |
-| `srvDescription` |                                `MultiLangString[]` | Localised description(s) of services provided. | CIR Annex I(8); Draft Annex VI Table 1 / Table 4 |
+| `srvDescription` |                                `MultiLangString[][]` | Array of service descriptions, each being an array of localised strings (one inner array per service). | CIR Annex I(8); Draft Annex VI Table 1 / Table 4; ETSI TS 119 475 B.2.1 |
 | `intendedUse` |                         `IntendedUse[]` (optional) | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. | CIR Annex I(9)–(10); Draft Annex VI Table 1 / Table 2 |
 | `isPSB` |                                          `boolean` | Whether the WRP is a public sector body (explicitly present; `false` if not PSB). | CIR Annex I(11); Draft Annex VI §10.1 |
 | `entitlement` |                                         `string[]` | Entitlement URI(s) (ETSI TS 119 475 Annex A.2 URIs). | CIR Annex I(12); ETSI TS 119 475; Draft Annex VI Table 1 |
@@ -188,7 +188,20 @@ This section defines the format of the information exchanged via the Register AP
 | Parameter    |     Type | Description                                                                      | Reference      |
 | ------------ | -------: | -------------------------------------------------------------------------------- | -------------- |
 | `identifier` | `string` | Identifier value.                                                                | CIR Annex I(3) |
-| `type`       | `string` | Identifier scheme/type (e.g., `EORI`, `BRN`, `LEI`, `VAT`, `TAX`, `EUID`, etc.). | CIR Annex I(3) |
+| `type`       | `string` | Identifier scheme/type URI (see normative URIs below). | CIR Annex I(3); ETSI TS 119 475 B.2.5 |
+
+Normative identifier type URIs defined in ETSI TS 119 475:
+
+| Label | Normative URI | Reference |
+| --- | --- | --- |
+| EORI | `http://data.europa.eu/eudi/id/EORI-No` | (EU) No 1352/2013 |
+| LEI | `http://data.europa.eu/eudi/id/LEI` | (EU) 2022/1860; ISO 17442-1 |
+| EUID | `http://data.europa.eu/eudi/id/EUID` | (EU) 2020/2244; (EU) 2021/1042 |
+| VATIN | `http://data.europa.eu/eudi/id/VATIN` | Council Directive 2006/112/EC |
+| TIN | `http://data.europa.eu/eudi/id/TIN` | — |
+| Excise | `http://data.europa.eu/eudi/id/Excise` | Council Regulation (EC) No 389/2012 |
+
+> Additional type identifiers may be defined at national or EU level.
 
 
 ### 6.1.2 MultiLangString
@@ -216,14 +229,24 @@ This section defines the format of the information exchanged via the Register AP
 
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
-| `type` | `string` | Policy type URI (RFC 3986). See policy URIs below. | Draft Annex VI Table 7 |
+| `type` | `string` | Policy type URI (RFC 3986). See defined policy type URIs below. | Draft Annex VI Table 7 |
 | `policyURI` | `string` | URL where the policy is published. | Draft Annex VI Table 7 |
+
+Defined policy type URIs:
+
+| Policy type | URI | Reference |
+| --- | --- | --- |
+| Privacy policy | `http://data.europa.eu/eudi/policy/privacy-policy` | ETSI TS 119 475 B.2.8; CIR Article 8(2)(g) |
+| Terms and conditions | `http://data.europa.eu/eudi/policy/terms-and-conditions` | Draft Annex VI Table 7 |
+| Privacy statement (intended use) | `http://data.europa.eu/eudi/policy/privacy-statement` | Draft Annex VI Table 7 |
+
+> Additional policy type URIs may be defined at national or EU level.
 
 ### 6.1.5 Credential
 | Parameter |      Type | Description                                                   | Reference                         |
 | --------- | --------: | ------------------------------------------------------------- | --------------------------------- |
 | `format`  |  `string` | Credential format identifier (e.g., `dc+sd-jwt`, `mso_mdoc`). | CIR Annex I(9) (machine readable) |
-| `meta`    |  `string` | Additional grouping/type metadata (profile).                  | Implementation / ARF profile      |
+| `meta`    |  `object` | Additional grouping/type metadata defined per credential format (e.g., `{"vct": "..."}` for `dc+sd-jwt`, `{"doctype_value": "..."}` for `mso_mdoc`). See OpenID4VP §6.1. | Implementation / ARF profile; OpenID4VP DCQL |
 | `claim`   | `Claim[]` | Requested claim paths and allowed values (if constrained).    | CIR Annex I(9)                    |
 
 ### 6.1.6 Claim
@@ -291,6 +314,18 @@ Mapping between CIR entitlement label and ETSI TS 119 475 normative URI:
 | `rQSealCDs_Provider`           | `https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider`       | ETSI TS 119 475, Annex A.2   |
 | `ESig_ESeal_Creation_Provider` | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | ETSI TS 119 475, Annex A.2 |
 
+> **Sub-entitlements:** ETSI TS 119 475 v1.2.1 Annex A.3 defines additional sub-entitlement URIs for specific service provider roles. For example, Payment Service Provider sub-entitlements include:
+>
+> | Sub-entitlement | URI |
+> | --- | --- |
+> | Account Servicing PSP | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-as` |
+> | Payment Initiation Service Provider | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-pi` |
+> | Account Information Service Provider | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai` |
+> | PSP issuing card-based payment instruments | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ic` |
+> | Unspecified PSP | `https://uri.etsi.org/19475/SubEntitlement/psp/unspecified` |
+>
+> Future editions may define additional sub-entitlements at national or EU level.
+
 
 
 ## 7. Registry statements
@@ -326,7 +361,7 @@ The following JOSE Protected Header requirements apply to registry statements:
 
 
 
-## 7.2 Normative endpoint payloads (strict Annex VI-aligned)
+## 7.2 Normative endpoint payloads
 
 ### 7.2.1 `GET /wrp` payload
 The decoded JWS payload for `GET /wrp` SHALL be:
@@ -347,10 +382,15 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | --- | ---: | --- |
 | `iss` | `string` | Identifier of the Registry/Registrar issuing the statement. |
 | `iat` | `integer` | Issued-at timestamp (Unix epoch seconds). |
-| `data` | `WalletRelyingParty[]` | Matching WRP entries (published view, address excluded). |
+| `data` | `WRPEntry[]` | Matching WRP entries (published view, address excluded), each bundled with its certificate history. |
 | `pagination` | `Pagination` (optional) | Cursor-based pagination metadata. |
-| `wrpacHistory` | `CertificateHistoryEntry[]` (optional) | WRP access certificate history (including CT-related references where available). |
-| `wrprcHistory` | `CertificateHistoryEntry[]` (optional) | WRP registration certificate history (if provided by national profile). |
+
+#### WRPEntry (per-WRP bundle)
+| Parameter | Type | Description |
+| --- | ---: | --- |
+| `wrp` | `WalletRelyingParty` | WRP registration information (published view, address excluded). |
+| `wrpacHistory` | `CertificateHistoryEntry[]` (optional) | WRP access certificate history for this WRP (including CT-related references where available). |
+| `wrprcHistory` | `CertificateHistoryEntry[]` (optional) | WRP registration certificate history for this WRP (if provided by national profile). |
 
 ### 7.3.2 SignedWRPEnvelope (profile, for non-common helper endpoints)
 | Parameter | Type | Description |
@@ -468,6 +508,9 @@ This is a common API write method in the draft Annex VI.
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `201` | - | Created. | Draft Annex VI §9(b) |
+| `400` | - | Bad request (invalid or incomplete payload). | Implementation |
+| `401` | - | Unauthorized (missing or invalid authentication). | Implementation |
+| `403` | - | Forbidden (caller not authorised by Member State). | Implementation |
 
 ---
 
@@ -485,6 +528,9 @@ This is a common API write method in the draft Annex VI.
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `200` | - | Updated. | Draft Annex VI §9(b) |
+| `400` | - | Bad request (invalid or incomplete payload). | Implementation |
+| `401` | - | Unauthorized (missing or invalid authentication). | Implementation |
+| `403` | - | Forbidden (caller not authorised by Member State). | Implementation |
 | `404` | - | Not found. | Draft Annex VI §9(b) |
 
 ---
@@ -503,6 +549,10 @@ This is a common API write method in the draft Annex VI.
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `204` | - | Deleted. | Draft Annex VI §9(b) |
+| `400` | - | Bad request (invalid identifier payload). | Implementation |
+| `401` | - | Unauthorized (missing or invalid authentication). | Implementation |
+| `403` | - | Forbidden (caller not authorised by Member State). | Implementation |
+| `404` | - | Not found. | Implementation |
 
 ---
 
@@ -572,7 +622,7 @@ This is a common API write method in the draft Annex VI.
 | Where a Member State authorises WRPRCs, it SHALL ensure each intended use is expressed in the WRPRC and that WRPRCs include a privacy policy URL and a general access policy. | CIR Article 8(2)(b)–(c) and (g), Article 8(3) |
 | Providers SHALL verify at issuance time register status, consistency with register info, and validity of the WRPAC (when relevant).                                           | CIR Annex V §3(c)                             |
 | Providers SHALL monitor register changes, reissue/revoke when changes require.                                                                                                | CIR Annex V §3(d)                             |
-| Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392).                                                                                           | CIR Annex V §4                                |
+| Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the **B-B profile** (JAdES per ETSI TS 119 182-1 for JWT, COSE for CWT). | CIR Annex V §4; ETSI TS 119 475 §4.4          |
 
 ## 11. Non-normative JSON examples 
 
@@ -622,8 +672,10 @@ This is a common API write method in the draft Annex VI.
     "https://examplebank.eu/support"
   ],
   "srvDescription": [
-    { "lang": "en", "content": "Retail banking services for individuals." },
-    { "lang": "fr", "content": "Services bancaires pour particuliers." }
+    [
+      { "lang": "en", "content": "Retail banking services for individuals." },
+      { "lang": "fr", "content": "Services bancaires pour particuliers." }
+    ]
   ],
   "isPSB": false,
   "entitlement": [
@@ -705,7 +757,9 @@ This is a common API write method in the draft Annex VI.
     "https://examplebank.eu/support"
   ],
   "srvDescription": [
-    { "lang": "en", "content": "Retail banking services for individuals." }
+    [
+      { "lang": "en", "content": "Retail banking services for individuals." }
+    ]
   ],
   "isPSB": false,
   "entitlement": [
@@ -740,7 +794,8 @@ This is a common API write method in the draft Annex VI.
           },
           "claim": [
             { "path": ["family_name"] },
-            { "path": ["given_name"] }
+            { "path": ["given_name"] },
+            { "path": ["birth_date"] }
           ]
         }
       ],
@@ -751,24 +806,4 @@ This is a common API write method in the draft Annex VI.
 
 ````
 
-## Attestation Verification Workflow
-
-This section illustrates an example runtime verification flow performed by a Wallet Unit when a Wallet-Relying Party (WRP) (or an intermediary acting on its behalf) initiates an interaction (e.g., OID4VP or ISO 18013-5).
-
-````mermaid
-sequenceDiagram
-  autonumber
-  participant RP as Relying Party (WRP)
-  participant W as Wallet
-  participant REG as National Register API
-  participant PKI as Trust/Validation data (cert path)
-
-  RP->>W: Auth request (includes WRPAC or reference)
-  W->>PKI: Validate WRPAC chain to expected trust anchor
-  W->>REG: Query WRP entry (name/ID/entitlement/intermediary params)
-  REG-->>W: JWS-signed JSON statement (Annex I info + current/historic WRPAC/WRPRC)
-  W->>PKI: Validate Registrar seal/signature (JWS + validation data)
-  W->>W: Check WRP status + match presented WRPAC with "current" certificate(s)
-  W->>RP: Continue protocol only if checks succeed
-
-````
+> **Note:** The published API view excludes only `postalAddress` (Annex I point 4). All other fields, including intended-use credential claims, are published as registered.
