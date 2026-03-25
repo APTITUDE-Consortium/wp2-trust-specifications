@@ -52,7 +52,7 @@ However, these entities alone are not enough to establish trust between each oth
 - *Authorization Process*: a way to check the authorization of an entity (i.e., *(i)* the WRP entitlements, *(ii)* whether an Attestation Providers is eligible to issue an Attestation, and *(iii)* whether a Relying Party has the right to access the data he is requesting). To achieve this: 
     - the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).
     - the Attestation Providers may write their own embedded disclosure policies.
-- *Trust Anchor Validation Process*: a way to check the authenticity of signed objects, e.g., PID, Attestations, certificates and Register. To achieve this:
+- *Trust Anchor Validation Process*: a way to check the integrity and authenticity of trusted lists which serve as the authentic source for Trust Anchors used to verify signed objects such as PIDs, Attestations, Access and Registration Certificates, and Register. To achieve this:
     - the public key of the corresponding private key used to sign is published on EU Member State Trusted List (EUMS TLs) or on List of Trusted Entities (LoTE) managed by the European Commission.
 
 While these trust evaluation processes will be further detailed in the following sections, the processes to obtain and manage the artifacts needed for the trust evaluation are:
