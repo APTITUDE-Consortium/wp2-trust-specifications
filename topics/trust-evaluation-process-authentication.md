@@ -1,1 +1,0 @@
-# Trust Evaluation Process (Authentication)
