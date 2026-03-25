@@ -56,13 +56,16 @@ Other ETSI specifications that the previous specifications build upon:
 - **RFC 3647 (2003-11)**. Internet X.509 Public Key Infrastructure - Certificate Policy and Certification Practices Framework (CRL) Profile. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc3647.pdf)]
 - **RFC 3739 (2004-03)**. Internet X.509 Public Key Infrastructure - Qualified Certificates Profile. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc3739.pdf)]
 - **RFC 5280 (2008-05)**. Internet X.509 Public Key Infrastructure - Certificate and Certificate Revocation List (CRL) Profile. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc5280.pdf)]
+- **RFC 6960 (2013-05)**. X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc6960.pdf)]
 - **RFC 7515 (2015-05)**. JSON Web Signature (JWS). [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc7515.pdf)]
 - **RFC 7519 (2015-05)**. JSON Web Token (JWT). [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc7519.pdf)]
 - **RFC 9052 (2022-08)**. CBOR Object Signing and Encryption (COSE): Structures and Process. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc9052.pdf)]
 - **RFC 9360 (2023-02)**. CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509
 Certificate. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc9360.pdf)]
 - **RFC 9608 (2024-06)**. No Revocation Available for X.509 Public Key Certificates. [[Link](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/blob/main/references/IETF/rfc9608.pdf)]
+### IETF Drafts
 
+- **draft-ietf-oauth-status-list-19 (2026-03)**. Token Status List (TSL). [[Link](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/)]
 ## Changelog
 
 | Date       | Document Name                                                                              | Version                |
