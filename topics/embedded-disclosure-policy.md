@@ -122,10 +122,4 @@ Even a minor policy change (e.g., adding a single RP to the authorized list) req
 | ETSI TS 119 475 Annex A.2 | Common entitlement URIs |
 | ETSI EN 319 412-1 section 5.1.4 | organizationIdentifier semantics |
 | RFC 4514 | LDAP string representation of Distinguished Names |
-| EDP_01 | AP may optionally express EDP; not applicable to PIDs |
-| EDP_02 | Authorized relying parties only policy |
-| EDP_03 | Specific root of trust policy |
-| EDP_05 | Explanatory link in EDP |
-| EDP_09 | AP SHALL include EDP by value in Issuer Metadata |
-| EDP_10 | WI SHALL retrieve and store EDP locally during issuance |
-| EDP_11 | AP SHALL revoke Attestation if EDP is added, changed, or deleted |
+
