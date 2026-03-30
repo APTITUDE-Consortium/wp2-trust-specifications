@@ -8,7 +8,7 @@ This section describes the format and contents of the Trusted Lists and how they
 
 The Trusted List is defined in article 22 of eIDAS regulation EU 910/2014 as the means to keep current and historical information about the accredited trust service providers in each Member State. One Trusted List must be maintained and published by each Member State.
 
-Furthermore, according to Chapter II of Annex I of The CID (EU) 2015/1505, further amended by CID (EU) 2025/2164, Trusted Lists must follow the technical specification ETSI TS 119 612 version 2.1.1.
+Furthermore, according to Chapter II of Annex I of The CID (EU) 2015/1505, further amended by CID (EU) 2025/2164, Trusted Lists must follow the technical specification ETSI TS 119 612 version 2.4.1, becoming effective and live on April 29th, 2026.
 
 Also in CID (EU) 2015/150, article 4(3) establishes that the Comission publishes the information received from MS about their Trust Lists in machine readable format for automated processing. This is what is known by "List of Trusted Lists" (LOTL). Under article 4(4), the Commission may also publish the same information in human readable format.
 
