@@ -32,8 +32,8 @@ Annex III of CIR 2024/2979 defines three common EDP types:
 **No Policy.** No EDP is present, or the EDP explicitly indicates that no restrictions apply (ISS-MDATA-EBD-4.2.5.2-06).
 
 **Authorized Relying Parties Only.** The EDP contains a list of RPs that are allowed to access the Attestation. According to ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07), authorized RPs are identified by their subject distinguished name as held in the WRPAC, in LDAP string form as defined in RFC 4514. 
-For legal persons, the relevant DN attributes are commonName, organizationName, organizationIdentifier, and countryName. 
-For natural persons: commonName, givenName, surname, serialNumber, and countryName. The organizationIdentifier attribute type is represented by the LDAP string "ORGID"; the serialNumber attribute type is represented by "SN" (according to ETSI TS 119 472-3 NOTE 1 and NOTE 2 to ISS-MDATA-EBD-4.2.5.2-07).
+For legal persons, the relevant DN attributes are `commonName`, `organizationName`, `organizationIdentifier`, and `countryName`. 
+For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `countryName`. The organizationIdentifier attribute type is represented by the LDAP string "ORGID"; the serialNumber attribute type is represented by "SN" (according to ETSI TS 119 472-3 NOTE 1 and NOTE 2 to ISS-MDATA-EBD-4.2.5.2-07).
 
 > [!NOTE]
 > ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in ETSI TS 119 475, included in the WRPRC. However, the current set of common entitlements defined in ETSI TS 119 475 Annex A.2 includes only `Service_Provider` for RPs, which would not provide effective policy. This specification therefore considers only the subject DN identification mechanism. The entitlement URI mechanism will become applicable when sector-specific entitlements are defined in future versions of ETSI TS 119 475.
@@ -87,10 +87,10 @@ The following JSON structure is derived from the ETSI TS 119 472-3 data model re
 
 # Distribution
 
-The EDP is distributed through Credential Issuer Metadata at issuance time. The AP SHALL include the EDP (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with OpenID4VCI or the extension thereof specified in ETSI TS 119 472-3 (EDP_09). The EDP is not revealed to the RP through the presentation protocol (per ETSI TS 119 472-3 section 4.2.5.1).
+The EDP is distributed through Credential Issuer Metadata at issuance time. The AP SHALL include the EDP (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with OpenID4VCI or the extension thereof specified in ETSI TS 119 472-3 (EDP_09). The EDP SHALL NOT be revealed to the RP through the presentation protocol (per ETSI TS 119 472-3 section 4.2.5.1).
 
 > [!WARNING]
-> Accroding to ISS-MDATA-EBD-4.2.5.2-03, the AP may provide only the `policy_uri` if the policy data set has already been pre-loaded into the WI. As the mechanism for pre-loading policies into a WI is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
+> According to ISS-MDATA-EBD-4.2.5.2-03, the AP may provide only the `policy_uri` if the policy data set has already been pre-loaded into the WI. As the mechanism for pre-loading policies into a WI is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
 
 As described in section [Authorization Process](authorization-process.md), during attestation issuance, the EDP (if available) is stored locally by the WI and it is associated with the specific Attestation for which it was retrieved.
 

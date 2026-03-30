@@ -88,7 +88,7 @@ In **presentation** phase, two specific cases are overridable:
 1. Negative scope comparison (per RPRC_21: the User is informed of unregistered attributes but can proceed).
 2. Negative EDP evaluation (per EDP_07: the User can deny or allow). 
  
-All other presentation failures  (binding failures and intermediary binding failures) are non-overridable because they indicate an integrity problem rather than a user-facing choice.
+All other presentation failures (binding failures and intermediary binding failures) are non-overridable because they indicate an integrity problem rather than a user-facing choice.
 
 In case of non-overridable failures, the WI SHALL clearly inform the User about the negative outcome. User-relevant information about overridable outcomes SHALL be presented as advisories, and the User approval SHALL be a separate step from the authorization decision [AUTHZ-UI-02, AUTHZ-UI-03, AUTHZ-UI-04].
 
@@ -242,9 +242,9 @@ When a WRPRC is available, the WI SHALL validate it before relying on it [AUTHZ-
 
 If any step fails, the procedure outputs `CERTIFICATE_INVALID`. This is not a final authorization decision; it triggers the [Registrar Validation Procedure](#registrar-validation-procedure) as fallback.
 
-## Registrar Validation Procedure
+## Register Validation Procedure
 
-When the WRPRC is not available or validation has failed, the WI SHALL attempt the Registrar [AUTHZ-GEN-10]:
+When the WRPRC is not available or validation has failed, the WI SHALL attempt to contact the Register APIs [AUTHZ-GEN-10]:
 
 1. **Extract Registrar URL** from the presentation request (`verifier_info` in remote scenario or `requestInfo` in proximity scanario) during presentation flow, or from Credential Issuer Metadata (`issuer_info.registry_uri`) during issuance flow. See [Distribution Methods](#distribution-methods) section for details. 
 2. **Connect** using HTTPS with TLS validation per TS5.
@@ -273,7 +273,7 @@ All available sources SHALL be mutually consistent.
 
 ### Issuance binding
 
-In issuance, the WI SHALL verify that the AP that signed the Credential Issuer Metadata (identified by the WRPAC in the `x5c` header of the JWS) is the same entity described in the authorization data [AUTHZ-GEN-11]. The WI SHALL check coherence between:
+During issuance, the WI SHALL verify that the AP that signed the Credential Issuer Metadata (identified by the WRPAC in the `x5c` header of the JWS) is the same entity described in the authorization data [AUTHZ-GEN-11]. The WI SHALL check coherence between:
 
 - The AP identifier from the WRPAC subject (extracted during metadata signature verification).
 - The `sub` field from the WRPRC in `issuer_info` (if present).
@@ -304,7 +304,7 @@ In the intermediary scenario, the WI SHALL perform the following verifications [
 
 **Step 1: Identify the parties.** The WI identifies:
 
-- The **intermediary**: the entity that authenticated via WRPAC. Its identifier is extracted from the WRPAC subject DN.
+- The **intermediary**: the entity authenticated via WRPAC. Its identifier is extracted from the WRPAC subject DN.
 - The **intermediated (final) RP**: the authorization subject. Its identifier and other data are obtained from the WRPRC `sub` field and/or from the presentation request fields.
 
 **Step 2: Verify intermediary association.** The WI SHALL verify that the intermediary is authorized to act on behalf of the intermediated RP. The verification depends on the available data source:
@@ -359,7 +359,7 @@ If the `entitlements` array does not contain the expected value, the procedure S
 The WI SHALL verify that the PID or attestation type being requested is registered for the provider [AUTHZ-ISS-02]:
 
 - For PID Providers issuing PIDs, the WI MAY skip this step.
-- Otherwise, the WI SHALL match the `provides_attestations[]` array against the `credential_configurations_supported` keys in Credential Issuer Metadata. Matching SHALL be case-sensitive and exact (VCT value for SD-JWT VC, doctype for mDL).
+- Otherwise, the WI SHALL match the `provides_attestations[]` array against the `credential_configurations_supported` keys in Credential Issuer Metadata. Matching SHALL be case-sensitive and exact (`vct_value` for SD-JWT VC, `doctype` for mDL).
 
 If not found, the procedure SHALL output `ATTESTATION_TYPE_NOT_REGISTERED`.
 
@@ -389,7 +389,7 @@ In case of **Specific Root of Trust** policy type [AUTHZ-EDP-05] and according t
 - For intermediary, the WI SHALL retrieve root certificate information of the Provider of WRPRCs for the intermediated RP. Then, the WI SHALL compare against the `trusted_roots` list and match `issuer_dn` using LDAP DN comparison and `serial_number` using integer comparison (as defined ISS-MDATA-EBD-4.2.5.2-09). If the check is satisfied, the WI SHALL output: `EDP_SATISFIED` or `EDP_NOT_SATISFIED`.
 
 The WI SHALL evaluate EDP together with RP information to determine access permission (EDP_06) [AUTHZ-EDP-06]. 
-If `EDP_SATISFIED`, the WI SHALL allow the Attestation (subject to User approval) and display explanatory link if present (EDP_05) [AUTHZ-EDP-07]. 
+If `EDP_SATISFIED`, the WI SHALL allow the Attestation presentation (subject to User approval) and display explanatory link if present (EDP_05) [AUTHZ-EDP-07]. 
 If `EDP_NOT_SATISFIED`, the WI SHALL produce `NOT_AUTHORIZED`, present the outcome, and allow User override (EDP_07) [AUTHZ-EDP-08]. 
 If the User denies, the WI SHALL behave as if the Attestation does not exist (RPA_11).
 
@@ -400,9 +400,9 @@ This section details the override behaviour for each procedure when it provides 
 
 | Evaluation Procedure | Phase | Negative Outcome | User Override |
 |---------------------|-------|-----------------|---------------|
-| WRPRC Validation | Both | `CERTIFICATE_INVALID` | It triggers *Registrar Validation* as fallback. User is not involved |
-| Registrar Validation | Issuance | `FAILED` | Non-overridable [AUTHZ-ISS-01], [AUTHZ-UI-06] |
-| Registrar Validation | Presentation | `FAILED` | Overridable. Advisory to User [AUTHZ-PRES-06] |
+| WRPRC Validation | Both | `CERTIFICATE_INVALID` | It triggers *Register Validation* as fallback. User is not involved |
+| Register Validation | Issuance | `FAILED` | Non-overridable [AUTHZ-ISS-01], [AUTHZ-UI-06] |
+| Register Validation | Presentation | `FAILED` | Overridable. Advisory to User [AUTHZ-PRES-06] |
 | Binding Verification | Issuance | `BINDING_FAILED` | Non-overridable [AUTHZ-UI-06] |
 | Binding Verification (direct RP) | Presentation | `BINDING_FAILED` | Non-overridable [AUTHZ-UI-06] |
 | Binding Verification (intermediary) | Presentation | `INTERMEDIARY_NOT_AUTHORIZED` | Non-overridable [AUTHZ-INT-03], [AUTHZ-UI-06] |
@@ -531,7 +531,7 @@ sequenceDiagram
 > [!NOTE]
 > If opted-in, the WI executes the full registration verification block: evidence collection, binding verification, entitlement verification, and scope comparison (steps 2-7). If not opted-in, the WI skips these steps and proceeds directly to EDP evaluation (step 8), which is always executed.
 
-**Steps 2-4: Collect authorization evidence.** Extract the WRPRC from the request [AUTHZ-PRES-05]: from `verifier_info` (remote) or `euWrprc` in `requestInfo` (proximity). If present, apply the *WRPRC Validation Procedure*. If absent or invalid, apply the *Registrar Validation Procedure* using `registry_uri` from the request extension and the RP identifier with `intended_use_id`. If lookup fails, notify User, record `FAILED`, proceed with advisory [AUTHZ-PRES-06].
+**Steps 2-4: Collect authorization evidence.** Extract the WRPRC from the request [AUTHZ-PRES-05]: from `verifier_info` (remote) or `euWrprc` in `requestInfo` (proximity). If present, apply the *WRPRC Validation Procedure*. If absent or invalid, apply the *Register Validation Procedure* using `registry_uri` from the request extension and the RP identifier with `intended_use_id`. If lookup fails, notify User, record `FAILED`, proceed with advisory [AUTHZ-PRES-06].
 
 **Step 5: Binding verification.** Apply the *Binding Verification Procedure* (direct or intermediary) [AUTHZ-PRES-07].
 
@@ -653,7 +653,7 @@ flowchart TD
 | AUTHZ-GEN-07 | Where both WRPRC and Register data are available, the WI SHALL normalize both into the same model. | Both | -- |
 | AUTHZ-GEN-08 | When a WRPRC is available, the WI SHALL validate its authenticity, integrity, temporal validity, and status before relying on it. | Both | RPRC_17 |
 | AUTHZ-GEN-09 | WRPRC validation SHALL include coherence check between WRPRC subject and scenario context. | Both | -- |
-| AUTHZ-GEN-10 | When WRPRC is not available or validation failed, the WI SHALL attempt the Registrar. | Both | RPRC_18 |
+| AUTHZ-GEN-10 | When WRPRC is not available or validation failed, the WI SHALL attempt querying the Register. | Both | RPRC_18 |
 | AUTHZ-GEN-11 | The WI SHALL verify coherence between authenticated WRP and authorization context in both issuance and presentation. | Both | -- |
 | AUTHZ-GEN-12 | For direct RP in presentation, the WI SHALL verify RP identifier from WRPAC matches `sub` in authorization context and RPRC_19a identifier. For issuance, the WI SHALL verify AP identifier from WRPAC matches `sub` in WRPRC and `identifier` in registrar_dataset. | Both | RPRC_07, RPRC_08 |
 | AUTHZ-GEN-13 | The WI SHALL verify that entitlements match the expected role. | Both | ISSU_24a, ISSU_34a |
@@ -665,7 +665,7 @@ flowchart TD
 | AUTHZ-IN-06 | The WI SHALL NOT rely solely on self-declared information for checks requiring registered information. | Both | ISSU_24a note, ISSU_34a note |
 | AUTHZ-IN-07 | Authoritative sources SHALL prevail over non-authoritative sources. | Both | -- |
 | AUTHZ-IN-08 | Identity conflict between authenticated context and authorization context produces NOT_AUTHORIZED (non-overridable). | Both | -- |
-| AUTHZ-IN-09 | A request-carried Registrar URL SHALL NOT be treated as proof of registration; MAY be used as discovery hint. | Both | -- |
+| AUTHZ-IN-09 | A request-carried Register URL SHALL NOT be treated as proof of registration; MAY be used as a discovery hint. | Both | -- |
 | AUTHZ-IN-10 | Self-declared fallback information SHALL NOT be presented as verified registration information. | Issuance | ISSU_24a note |
 | AUTHZ-UI-01 | The WI SHALL produce AUTHORIZED or NOT_AUTHORIZED. | Both | -- |
 | AUTHZ-UI-02 | User-relevant limitations SHALL be represented as advisories. | Both | -- |
