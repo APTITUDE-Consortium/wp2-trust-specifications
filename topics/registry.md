@@ -460,34 +460,35 @@ The common API SHALL support parameterised queries on `GET /wrp`. The following 
 
 ### 8.1.3 Response
 
-| Parameter | Type | Description | Reference |
+| HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
-| `200` body | `application/jwt` | JWS compact string. Decoded payload SHALL contain matching `WalletRelyingParty` entries (strict Annex VI form: array; profile envelope also allowed if documented). | Draft Annex VI §5; RFC 7515 |
+| `200` | `application/jwt` | JWS compact string. Decoded payload SHALL contain matching `WalletRelyingParty` entries (strict Annex VI form: array; profile envelope also allowed if documented). | Draft Annex VI §5; RFC 7515 |
 
 ---
 
-## 8.2 `GET /wrp/check-intended-use` — intended use check (public, mandatory)
+## 8.2 `GET /wrp/check-intended-use` — intended use check (public, required)
 
 > **Important:** In the Annex VI draft this endpoint is part of the public API and is not optional.
 
 ### 8.2.1 Request
 
-The draft requires a dedicated intended-use check endpoint with **four mandatory and one optional parameter**.  
+The draft requires a dedicated intended-use check endpoint with **four required and one optional parameter**.  
 This profile uses the following mapping (strictly aligned names for intended-use filters):
 
-| Parameter | Type | M/O | Description | Reference |
+| Parameter | Type | R/O | Description | Reference |
 | --- | ---: | :--: | --- | --- |
-| `identifier` | `string` | M | Identifier of the WRP whose intended-use registration is being checked. | Draft Annex VI §5 (specific WRP check) |
-| `intendedUseIdentifier` | `string` | M | Intended-use identifier registered by the registrar. | Draft Annex VI §2(g), §5 |
-| `intendedUseClaimPath` | `string` | M | Requested claim path to check (serialised representation of path array; profile-defined encoding). | Draft Annex VI §4(c), §5 |
-| `intendedUseCredentialFormat` | `string` | M | Credential format to check. | Draft Annex VI §2(f), §4(c), §5 |
+| `identifier` | `string` | R | Identifier of the WRP whose intended-use registration is being checked. | Draft Annex VI §5 (specific WRP check) |
+| `intendedUseIdentifier` | `string` | R | Intended-use identifier registered by the registrar. | Draft Annex VI §2(g), §5 |
+| `intendedUseClaimPath` | `string` | R | Requested claim path to check (serialised representation of path array; profile-defined encoding). | Draft Annex VI §4(c), §5 |
+| `intendedUseCredentialFormat` | `string` | R | Credential format to check. | Draft Annex VI §2(f), §4(c), §5 |
 | `intendedUseCredentialMeta` | `string` | O | Credential metadata filter (profile-defined serialisation). | Draft Annex VI §4(c), §5 |
 
 ### 8.2.2 Response
 
-| Parameter | Type | Description | Reference |
+| HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
-| `200` body | `application/jwt` | JWS compact string; decoded payload is boolean `true` or `false` (strict Annex VI). | Draft Annex VI §5; RFC 7515 |
+| `200`  | `application/jwt` | JWS compact string; decoded payload is boolean `true` or `false` (strict Annex VI). | Draft Annex VI §5; RFC 7515 |
+| `400` | - | Bad request (invalid or incomplete request parameter). | Implementation |
 
 ---
 
@@ -505,7 +506,7 @@ This is a common API write method in the draft Annex VI.
 
 ### 8.3.2 Response
 
-| Parameter | Type | Description | Reference |
+| HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `201` | - | Created. | Draft Annex VI §9(b) |
 | `400` | - | Bad request (invalid or incomplete payload). | Implementation |
@@ -525,7 +526,7 @@ This is a common API write method in the draft Annex VI.
 
 ### 8.4.2 Response
 
-| Parameter | Type | Description | Reference |
+| HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `200` | - | Updated. | Draft Annex VI §9(b) |
 | `400` | - | Bad request (invalid or incomplete payload). | Implementation |
@@ -546,7 +547,7 @@ This is a common API write method in the draft Annex VI.
 
 ### 8.5.2 Response
 
-| Parameter | Type | Description | Reference |
+| HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `204` | - | Deleted. | Draft Annex VI §9(b) |
 | `400` | - | Bad request (invalid identifier payload). | Implementation |
@@ -569,9 +570,9 @@ This is a common API write method in the draft Annex VI.
 
 ### 8.6.2 Response
 
-| Parameter | Type | Description |
+| HTTP Code | Type | Description |
 | --- | ---: | --- |
-| `200` body | `application/jwt` | JWS compact string; decoded payload contains one `WalletRelyingParty` entry (or profile envelope). |
+| `200` | `application/jwt` | JWS compact string; decoded payload contains one `WalletRelyingParty` entry (or profile envelope). |
 | `404` | - | Not found. |
 
 
