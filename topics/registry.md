@@ -432,22 +432,22 @@ This section documents a TS5-aligned common Register API profile that satisfies 
 
 The common API SHALL support parameterised queries on `GET /wrp`. The following names align with the draft Annex VI query parameter naming.
 
-| Parameter | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| `identifier` | `string` | Filter by official/business registration number / identifier. | Draft Annex VI §2(a), §4(a) |
-| `legalname` | `string` | Filter by official company name. | Draft Annex VI §2(b), §4(a) |
-| `tradename` | `string` | Filter by trade name. | Draft Annex VI §2(b), §4(a) |
-| `policy` | `string` | Filter by privacy policy URL (or policy URI as profiled). | Draft Annex VI §2(c), §4(a) |
-| `entitlement` | `string` | Filter by entitlement type (URI). | Draft Annex VI §2(d), §4(a) |
-| `providesattestation` | `string` | Filter by attestation types provided (e.g., attestation schema type in `providesAttestations`). | Draft Annex VI §2(e), §4(a) |
-| `usesintermediary` | `string` or `boolean` | Filter by reliance on intermediary (presence of `usesIntermediary`). | Draft Annex VI §2(h), §4(a) |
-| `isintermediary` | `boolean` | Filter by intermediary status. | Draft Annex VI §4(a) |
-| `intendedUseIdentifier` | `string` | Filter by registrar-provided intended-use identifier. | Draft Annex VI §2(g), §4(a) |
-| `intendedUseClaimPath` | `string` | Filter by intended-use requested claim path. | Draft Annex VI §4(a) |
-| `intendedUseCredentialMeta` | `string` | Filter by intended-use credential metadata (format-specific). | Draft Annex VI §4(a) |
-| `intendedUseCredentialFormat` | `string` | Filter by intended-use credential format. | Draft Annex VI §2(f), §4(a) |
-| `cursor` | `string` (optional) | Cursor for pagination (profile-defined token format). | Draft Annex VI §4(c) |
-| `limit` | `integer` (optional) | Page size (profile-defined). | Implementation profile |
+| Parameter | Type | R/O | Description | Reference |
+| --- | ---: | --- | --- | --- |
+| `identifier` | `string` | O | Filter by official/business registration number / identifier. | Draft Annex VI §2(a), §4(a) |
+| `legalname` | `string` | O | Filter by official company name. | Draft Annex VI §2(b), §4(a) |
+| `tradename` | `string` | O | Filter by trade name. | Draft Annex VI §2(b), §4(a) |
+| `policy` | `string` | O | Filter by privacy policy URL (or policy URI as profiled). | Draft Annex VI §2(c), §4(a) |
+| `entitlement` | `string` | O | Filter by entitlement type (URI). | Draft Annex VI §2(d), §4(a) |
+| `providesattestation` | `string` | O | Filter by attestation types provided (e.g., attestation schema type in `providesAttestations`). | Draft Annex VI §2(e), §4(a) |
+| `usesintermediary` | `string` or `boolean` | O | Filter by reliance on intermediary (presence of `usesIntermediary`). | Draft Annex VI §2(h), §4(a) |
+| `isintermediary` | `boolean` | O | Filter by intermediary status. | Draft Annex VI §4(a) |
+| `intendedUseIdentifier` | `string` | O | Filter by registrar-provided intended-use identifier. | Draft Annex VI §2(g), §4(a) |
+| `intendedUseClaimPath` | `string` | O | Filter by intended-use requested claim path. | Draft Annex VI §4(a) |
+| `intendedUseCredentialMeta` | `string` | O | Filter by intended-use credential metadata (format-specific). | Draft Annex VI §4(a) |
+| `intendedUseCredentialFormat` | `string` | O | Filter by intended-use credential format. | Draft Annex VI §2(f), §4(a) |
+| `cursor` | `string`  | O | Cursor for pagination (profile-defined token format). | Draft Annex VI §4(c) |
+| `limit` | `integer`  | O | Page size (profile-defined). | Implementation profile |
 
 ### 8.1.2 Behaviour
 
@@ -500,9 +500,9 @@ This is a common API write method in the draft Annex VI.
 > This method is only accessible for entities which are authorized by Member State
 
 
-| Parameter | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| request body | `WalletRelyingParty` | Full WRP object compliant with Annex VI Table 1 schema (registration view). | Draft Annex VI §9(b); Table 1 |
+| Parameter | Type | R/O | Description | Reference |
+| --- | ---: | --- | --- | --- |
+| request body | `WalletRelyingParty` | R | Full WRP object compliant with Annex VI Table 1 schema (registration view). | Draft Annex VI §9(b); Table 1 |
 
 ### 8.3.2 Response
 
@@ -520,9 +520,9 @@ This is a common API write method in the draft Annex VI.
 ### 8.4.1 Request
 > This method is only accessible for entities which are authorized by Member State
 
-| Parameter | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| request body | `WalletRelyingParty` | Full WRP object compliant with Annex VI Table 1 schema (registration view). | Draft Annex VI §9(b); Table 1 |
+| Parameter | Type | R/O | Description | Reference |
+| --- | ---: | --- | --- | --- |
+| request body | `WalletRelyingParty` | R | Full WRP object compliant with Annex VI Table 1 schema (registration view). | Draft Annex VI §9(b); Table 1 |
 
 ### 8.4.2 Response
 
@@ -541,9 +541,9 @@ This is a common API write method in the draft Annex VI.
 
 ### 8.5.1 Request
 
-| Parameter | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| request body | `object` | Identifier payload for the WRP to delete (profile-defined body shape, based on `WalletRelyingParty.identifier`). | Draft Annex VI §9(b) |
+| Parameter | Type | R/O | Description | Reference |
+| --- | ---: | --- | --- | --- |
+| request body | `object` | R | Identifier payload for the WRP to delete (profile-defined body shape, based on `WalletRelyingParty.identifier`). | Draft Annex VI §9(b) |
 
 ### 8.5.2 Response
 
@@ -564,9 +564,9 @@ This is a common API write method in the draft Annex VI.
 
 ### 8.6.1 Request
 
-| Parameter | Type | Description |
-| --- | ---: | --- |
-| `identifier` (path) | `string` | Identifier of the WRP to retrieve. |
+| Parameter | Type | R/O | Description |
+| --- | ---: | --- | --- |
+| `identifier` (path) | `string` | R | Identifier of the WRP to retrieve. |
 
 ### 8.6.2 Response
 
