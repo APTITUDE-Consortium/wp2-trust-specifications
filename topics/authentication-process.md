@@ -80,7 +80,6 @@ Iterate through the path for $i$ from $1$ to $n$:
             - for each node of depth $i-1$ in the `valid_policy_tree` where $P$-OID is in the node's `expected_policy_set`, create a child node with `valid_policy` $P$-OID, `qualifier_set` $P$-Q, and `expected_policy_set` set to {$P$-OID}.
             - If no match is found for $P$-OID in any node of depth $i-1$ and the `valid_policy_tree` has a node of depth $i-1$ with `valid_policy` set to `anyPolicy`, generate a child node with `valid_policy` $P$-OID, `qualifier_set` $P$-Q, and `expected_policy_set` set to {`anyPolicy`}.
         - if the `certificatePolicies` extension contains `anyPolicy` with the qualifier set $AP$-Q, $i \leq n$, and the certificate is self issued, then for each node of depth $i-1$ in the `valid_policy_tree` and each value in the `expected_policy_set` of that node, generate a child node with `valid_policy` and `expected_policy_set` set to the `expected_policy_set` value, set the `qualifier_set` set to $AP$-Q.
-        -->
         - Update the `valid_policy_tree` by pruning nodes that do not match the policies in $C_i$.
     - If `certificatePolicies` is missing, set `valid_policy_tree` to NULL.
 3. Policy State Verification:
@@ -175,9 +174,11 @@ The Wallet Unit SHALL determine the revocation status for every certificate in t
 - If the `cRLDistributionPoints` extension is present, the Wallet Unit MAY retrieve and validate the CRL.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Unit MAY perform an OCSP lookup.
 
+For details regarding the formats and parameters of CRLs and OCSP responses, see [Revocation Mechanism](/topics/revocation-mechanisms.md).
+
 #### CRL Validation
 
-When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)), the Wallet Unit SHALL:
+When using a CRL, the Wallet Unit SHALL:
 1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Unit SHOULD attempt to retrieve an updated CRL.
 2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
     - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked; <!-- Assumption: in case the issuer of the CRL and certificate coincides-->
@@ -187,7 +188,7 @@ When using a CRL (see [Revocation Mechanism](/topics/revocation-mechanisms.md)),
 4. Validate the CRL signature using the issuer's public key. If a key usage extension is present in the CRL issuer's certificate, verify that the `cRLSign` bit is set.
 5. Check if the certificate's serial number is listed in `revokedCertificates`. If an entry is found then the certificate status is set to `revoked`.
 
-If any of the above checks fail (steps 1-5), the Wallet Unit SHALL consider the certificate as revoked. If all checks succeed and the certificate serial number is not found in the CRL, the certificate SHALL be considered valid.
+If any of the steps 1-4 fail or the CRL is unavailable, the Wallet Unit SHALL consider the certificate status as `unknown`. When all steps 1-4 succeed and the certificate serial number is not found in the CRL, the certificate SHALL be considered `good`.
 
 ```mermaid
 graph TD
@@ -198,20 +199,20 @@ graph TD
     Step1 -- No --> FetchUpdate[Attempt to retrieve updated CRL]
     FetchUpdate --> GotUpdate{Update Retrieved?}
     GotUpdate -- Yes --> Step1
-    GotUpdate -- No --> Revoked([Certificate status: undetermined<br/>Reason: CRL Expired/Unavailable])
+    GotUpdate -- No --> Revoked([Certificate status: unknown<br/>Reason: CRL Expired/Unavailable])
 
     %% Step 2: Issuer Verification
     Step2[Step 2: Verify Issuer] --> CheckIssuer{Does CRL Issuer match<br/>Certificate Issuer?}
     CheckIssuer -- Yes --> Step3
-    CheckIssuer -- No --> Revoked2([Certificate status: revoked<br/>Reason: Issuer Mismatch])
+    CheckIssuer -- No --> Revoked2([Certificate status: UNKNOWN<br/>Reason: Issuer Mismatch])
 
     %% Step 3: Distribution Point Verification
     Step3[Step 3: Verify Distribution Point] --> CheckDP{Do Distribution Points match?}
-    CheckDP -- No --> Revoked3([Certificate status: revoked<br/>Reason: DP Mismatch])
+    CheckDP -- No --> Revoked3([Certificate status: UNKNOWN<br/>Reason: Distribution Point Mismatch])
     CheckDP -- Yes --> CheckBasicConstraints{Check BasicConstraints}
     
-    CheckBasicConstraints -- Cert is CA --> CheckCRL_CA{Is CRL onlyContainsCACerts=TRUE?}
-    CheckBasicConstraints -- Cert is User --> CheckCRL_User{Is CRL onlyContainsUserCerts=TRUE?}
+    CheckBasicConstraints -- Certificate<br/>has `CA=TRUE` --> CheckCRL_CA{Is CRL onlyContainsCACerts=TRUE?}
+    CheckBasicConstraints -- Certificate defaults<br/>to `CA=FALSE` --> CheckCRL_User{Is CRL onlyContainsUserCerts=TRUE?}
     
     CheckCRL_CA -- No --> Revoked3
     CheckCRL_User -- No --> Revoked3
@@ -220,7 +221,7 @@ graph TD
 
     %% Step 4: Signature & Key Usage
     Step4[Step 4: Signature & Key Usage] --> ValidateSig{Validate CRL Signature}
-    ValidateSig -- Invalid --> Revoked4([Certificate status: revoked<br/>Reason: Invalid CRL Signature])
+    ValidateSig -- Invalid --> Revoked4([Certificate status: UNKNOWN<br/>Reason: Invalid CRL Signature])
     ValidateSig -- Valid --> CheckKeyUsage{If KeyUsage present:<br/>Is cRLSign bit set?}
     CheckKeyUsage -- No --> Revoked4
     CheckKeyUsage -- Yes --> Step5
@@ -228,8 +229,8 @@ graph TD
     %% Step 5: Revocation Lookup
     Step5[Step 5: Revocation Lookup] --> LookupSerial{Is Certificate Serial Number<br/>in revokedCertificates?}
     
-    LookupSerial -- Yes --> Revoked5([Certificate status: revoked])
-    LookupSerial -- No --> Valid([Certificate status: valid])
+    LookupSerial -- Yes --> Revoked5([Certificate status: REVOKED])
+    LookupSerial -- No --> Valid([Certificate status: GOOD])
 
     %% Styling
     classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:1px;
@@ -256,7 +257,7 @@ When using OCSP, the Wallet Unit SHALL:
     - `serialNumber` field value is the certificate’s serial number.
 5. Check `thisUpdate` and `nextUpdate` (or `producedAt`) against local freshness policies.
 
-Update the status of each certificate by matching the `certStatus` value in the `SingleResponse` to the requested `CertID`. 
+If any of the checks in 2-4 fail, the certificate status SHALL be considered `unknown`. If all checks succeed, update the status of each certificate by matching the `certStatus` value in the `SingleResponse` to the requested `CertID`. 
 
 ```mermaid
 graph TD
@@ -268,28 +269,28 @@ graph TD
     
     Retry -- Yes --> FetchNew[Attempt to retrieve<br/>updated OCSP response]
     FetchNew --> Step1
-    Retry -- No --> StatusUnknown([Set Certificate Status: UNKNOWN])
+    Retry -- No --> StatusUnknown([Certificate Status: UNKNOWN])
 
     %% Step 2: Response Type
     Step2 -- "id-pkix-ocsp-basic" --> Step3["Step 3: Verify Signature & Auth"]
-    Step2 -- Other --> Invalid([Validation FAILED: Unsupported Type])
+    Step2 -- Other --> Invalid([Certificate Status: UNKNOWN<br/>Reason: Invalid Response Type])
 
     %% Step 3: Signature Verification
     Step3 --> CheckSig{Signature Valid?}
     
     CheckSig -- Yes --> Step4["Step 4: Verify ResponderID & CertID"]
-    CheckSig -- No --> InvalidSig([Validation FAILED: Invalid Signature])
+    CheckSig -- No --> InvalidSig([Certificate Status: UNKNOWN<br/>Reason: Invalid Signature])
     
     %% Step 4: ID Matching
     Step4 --> CheckIDs{Do IDs Match?}
     
     CheckIDs -- Yes --> Step5["Step 5: Check Freshness"]
-    CheckIDs -- No --> InvalidIDs([Validation FAILED: ID Mismatch])
+    CheckIDs -- No --> InvalidIDs([Certificate Status: UNKNOWN<br/>Reason: ID Mismatch])
 
     %% Step 5: Freshness
     Step5 --> CheckTime{"Time Check<br/>Is current_time between<br/>thisUpdate and nextUpdate?"}
     
-    CheckTime -- No --> Stale([Validation FAILED: Response Stale])
+    CheckTime -- No --> Stale([Certificate Status: UNKNOWN<br/>Reason: OCSP Response Expired])
     CheckTime -- Yes --> ProcessStatus[Parse SingleResponse certStatus]
 
     %% Final Status Mapping
