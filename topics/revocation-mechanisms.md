@@ -1,27 +1,27 @@
 # Revocation Mechanisms
 
-This section describes the artifacts, respective formats and parameters, that are employed in [Trust Management Process](trust-management-process.md) to manage the status of certificates and entities. The main distinction is the following:
-  * To manage WRPAC, each Provider of WRPAC SHALL:
-    - make available the necessary endpoints for at least one between [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
+This section describes the artifacts that are employed in [Trust Management Process](trust-management-process.md) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
+  * To manage Wallet Relying Party Access Certificates (WRPACs), each Provider of WRPAC SHALL:
+    - make available at least one revocartion mechanism between [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
     - issue Access Certificates with at least an extension corresponding to the provided revocation mechanism as illustrated in [Access Certificate](access-certificate.md).
-  * To manage WRPRC, each Provider of WRPRC SHALL:
-    - make available an endpoint to request Status [List Tokens](#status-list-token);
-    - issue Registration Certificates with the appropriate parameter `status` as described in [Registration Certificates](registration-certificate.md).
+  * To manage Wallet Relying Party Registration Certificates (WRPRCs), each Provider of WRPRC SHALL:
+    - make available an endpoint to request [Status List Tokens](#status-list-token);
+    - issue WRPRC with the appropriate parameter `status` as described in [Registration Certificates](registration-certificate.md).
 
 ## Token Status List
 
-This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple Wallet Relying Party Registration Certificates (WRPRC). A Status List describes the status of the WRPRCs by encoding their validity in a bit array. Each WRPRC is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the WRPRC's status. A Status List is provided within a cryptographically signed Status List Token in JWT format. 
+This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple WRPRCs. A Status List describes the status of the WRPRCs by encoding their validity in a bit array. Each WRPRC is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the WRPRC's status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [Token Status List](https://www.ietf.org/archive/id/draft-ietf-oauth-status-list-19.html).
 
 In this specification, the roles of the Provider of WRPRC and Status Issuer (i.e., the entity that issues the Status List Token about the status information of the WRPRC) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the Status List Token on a public endpoint) SHALL be the Provider of WRPRC itself.
 
-The Provider of WRPRC MUST:
-  * Define a number of bits, $k$, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each WRPRC within this Status List. The Provider of WRPRC MUST configure this number. Each WRPRC will therefore have $2^k$ possible states.
+The Provider of WRPRC SHALL:
+  * Define a number of bits, $k$, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each WRPRC within this Status List. The Provider of WRPRC SHALL configure this number. Each WRPRC will therefore have $2^k$ possible states.
   * Create a byte array of size $\geq$ (expected number of WRPRCs) * $k$ / 8. Depending on $k$, each byte in the array corresponds to 8/$k$ statuses (8 if $k=1$, 4 if $k=2$, 2 if $k=4$, or 1 if $k=8$). Each time a WRPRC is issued, the Provider of WRPRC assigns it to a position in the array.
   * Set the status values for all issued WRPRCs within the byte array. The status of each WRPRC is identified using an index that maps to one or more specific bits within the byte array. The index starts counting at 0 and ends with (number of WRPRC) - 1. All bits of the byte array at a particular index are set to a status value.
   * Compress the byte array using DEFLATE [RFC 1951](https://datatracker.ietf.org/doc/html/rfc1951) with the ZLIB [RFC 1950](https://datatracker.ietf.org/doc/html/rfc1950) data format. Implementations are RECOMMENDED to use the highest compression level available.
   * Make an endpoint available to Wallet Units to request Status Lists Tokens.
 
-The Provider of WRPRC MUST use the following values for the possible statuses of the issued WRPRCs:
+The Provider of WRPRC SHALL use the following values for the possible statuses of the issued WRPRCs:
   * `0x00` - `VALID` - The WRPRC is valid.
   * `0x01` - `INVALID` - The WRPRC is revoked.
 
@@ -31,7 +31,7 @@ For example, if two states for a certain WRPRC are possible, then $k=1$. If the 
   * The array is then compressed using DEFLATE.
 
 > _**Note:**_
-> When the Provider of WRPRC chooses the number of bits for conveying statuses of the WRPRCs it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a WRPRC must, however, be carefully pondered, as it discloses information to Relying Parties.
+> When the Provider of WRPRC chooses the number of bits for conveying statuses of the WRPRCs it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a WRPRC SHALL, however, be carefully pondered, as it discloses information to Relying Parties.
 
 Once the Wallet Unit receives a WRPRC, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.
 
@@ -43,20 +43,21 @@ The **Status List Token** (SLT) is available at the Status List Endpoint. It is 
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
-| `alg` | RFC 7515 | REQUIRED | *String* | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It MUST NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
-| `typ` | RFC 7515 | REQUIRED | *String* | Specifies the type of the Web Token. It MUST be set to `statuslist+jwt`. |
+| `alg` | RFC 7515 | REQUIRED | *String* | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It SHALL NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
+| `typ` | RFC 7515 | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
 | `x5c` | RFC 7515 | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the SLT's signature. |
 
 #### Status List Token Payload
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
-| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim MUST specify the URI of the SLT. The value MUST be equal to that of the `uri` claim contained in the `status_list.uri` claim of the WRPRC. |
-| `iat` | RFC 7519 | REQUIRED | *NumericDate* | A standard timestamp indicating when the SLT was issued. |
-| `exp` | RFC 7519 | REQUIRED | *NumericDate* | A standard timestamp indicating when the SLT expires. |
+| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim SHALL specify the URI of the SLT. The value SHALL be equal to that of the `uri` claim contained in the `status_list.uri` claim of the WRPRC. |
+| `iat` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the SLT was issued. |
+| `exp` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the SLT expires. |
 | `status_list` | OAuth Status List Draft | REQUIRED | *JSON Object* | A JSON Object that contains the Status List configurations and payload. |
 | `status_list.bits` | OAuth Status List Draft | REQUIRED | *Integer* | Specifies the number of bits per WRPRC in the compressed byte array. The allowed values are 1, 2, 4, and 8. |
-| `status_list.lst` | OAuth Status List Draft | REQUIRED | *Base64url-encoded String* | Contains the status values for all the WRPRCs. The value MUST be the base64url-encoded compressed byte array. |
+| `status_list.lst` | OAuth Status List Draft | REQUIRED | *Base64url-encoded String* | Contains the status values for all the WRPRCs. The value SHALL be the base64url-encoded compressed byte array. |
+| `ttl` | OAuth Status List Draft | RECOMMENDED | *Integer* | Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the Status List Token can be cached by a consumer before a fresh copy SHOULD be retrieved. |
 
 The following is an example of the Status List Token payload and header prior to signing and base64url encoding:
 
@@ -72,6 +73,7 @@ The following is an example of the Status List Token payload and header prior to
   ]
 }
 ```
+
 **Payload:**
 ```json
 {
@@ -84,10 +86,39 @@ The following is an example of the Status List Token payload and header prior to
   }
 }
 ```
+### Status List Request
+
+The Wallet Unit SHALL request a Status List Token at the URI referenced within the `status.url` claim of the WRPRC. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
+
+Below it is represented an example of such a request.
+
+```text
+  GET /statuslists/1 HTTP/1.1
+  Host: example.com
+  Accept: application/statuslist+jwt
+```
+
+### Status List Response
+
+The successful response SHALL contain a Status List Token and have HTTP status code 200. The content type of the successful response SHALL be `application/statuslist+jwt`.
+
+```text
+  HTTP/1.1 200 OK
+  Content-Type: application/statuslist+jwt
+
+  eyJhbGciOiJFUzI1NiIsImtpZCI6IjEyIiwidHlwIjoic3RhdHVzbGlzdCtqd3QifQ.e
+  yJleHAiOjIyOTE3MjAxNzAsImlhdCI6MTY4NjkyMDE3MCwiaXNzIjoiaHR0cHM6Ly9le
+  GFtcGxlLmNvbSIsInN0YXR1c19saXN0Ijp7ImJpdHMiOjEsImxzdCI6ImVOcmJ1UmdBQ
+  WhjQlhRIn0sInN1YiI6Imh0dHBzOi8vZXhhbXBsZS5jb20vc3RhdHVzbGlzdHMvMSIsI
+  nR0bCI6NDMyMDB9.2lKUUNG503R9htu4aHAYi7vjmr3sgApbfoDvPrl65N3URUO1EYqq
+  Ql45Jfzd-Av4QzlKa3oVALpLwOEUOq-U_g
+```
+
+If caching-related HTTP headers are present in the HTTP response, Wallet Units SHALL prioritize the `exp` and `ttl` claims within the Status List Token over the HTTP headers for determining caching behavior.
 
 ## Certificate Revocation Lists
 
-Certificate Revocation Lists (CRLs) MAY be used in a wide range of applications and environments covering a broad spectrum of interoperability goals and an even broader spectrum of operational and assurance requirements. 
+**Certificate Revocation Lists** ([CRLs](https://datatracker.ietf.org/doc/html/rfc5280#section-5)) MAY be used in a wide range of applications and environments covering a broad spectrum of interoperability goals and an even broader spectrum of operational and assurance requirements. 
 
 **CRL issuers** issue CRLs. The CRL issuer is either the Certificate Authority (CA) or an entity that has been authorized by the CA to issue CRLs. 
 
@@ -96,7 +127,9 @@ Certificate Revocation Lists (CRLs) MAY be used in a wide range of applications 
 
 CAs publish CRLs to provide status information about the certificates they issued. Each CRL has a particular scope. The CRL scope is the set of certificates that could appear on a given CRL. For example, the scope could be "all certificates issued by CA X". A complete CRL lists all unexpired certificates, within its scope, that have been revoked for one of the revocation reasons covered by the CRL scope.
 
-The CRL issuer MAY also generate delta CRLs. A delta CRL only lists those certificates, within its scope, whose revocation status has changed since the issuance of a referenced complete CRL. The referenced complete CRL is referred to as a base CRL. The scope of a delta CRL MUST be the same as the base CRL that it references.
+The CRL issuer MAY also generate delta CRLs. A delta CRL only lists those certificates, within its scope, whose revocation status has changed since the issuance of a referenced complete CRL. The referenced complete CRL is referred to as a base CRL. The scope of a delta CRL SHALL be the same as the base CRL that it references.
+
+If supported by the CA, the CRL SHALL be available at the URI specified in the `cRLDistributionPoints.distributionPoint` *[0] CHOICE* structure within the [WRPAC](access-certificate.md).
 
 An X.509 v2 CRL is represented as the ASN.1 DER encoding of the `CertificateList` SEQUENCE. The ASN.1 DER encoding is a strictly defined tag, length, and value encoding system for each element. The final bytes transmitted represent the DER encoding of the top-level SEQUENCE containing the fields in the following table:
 
@@ -114,18 +147,18 @@ The `TBSCertList` (To Be Signed Certificate List) is an ASN.1 SEQUENCE containin
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `version` | RFC 5280 clause 5.1.2.1 | OPTIONAL | *INTEGER* | Describes the version of the encoded CRL. When extensions are used (as is standard practice), this field MUST be present and MUST specify version 2 (the integer value is `1`). |
+| `version` | RFC 5280 clause 5.1.2.1 | OPTIONAL | *INTEGER* | Describes the version of the encoded CRL. When extensions are used (as is standard practice), this field SHALL be present and SHALL specify version 2 (the integer value is `1`). |
 | `signature` | RFC 5280 clause 5.1.2.2 | REQUIRED | *SEQUENCE* | The algorithm identifier for the algorithm used to sign the CRL. |
-| `signature.algorithm` | RFC 5280 clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. MUST match the `signatureAlgorithm` field in the parent `CertificateList` sequence. |
+| `signature.algorithm` | RFC 5280 clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. SHALL match the `signatureAlgorithm` field in the parent `CertificateList` sequence. |
 | `signature.parameters` | RFC 5280 clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the algorithm used. |
-| `issuer` | RFC 5280 clause 5.1.2.3 | REQUIRED | *Name* | Identifies the entity that has signed and issued the CRL. It MUST contain a non-empty X.500 distinguished name (DN) composed of `AttributeType` (OID) and `AttributeValue` sequences. |
-| `thisUpdate` | RFC 5280 clause 5.1.2.4 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the issue date of this CRL. Dates through 2049 MUST use `UTCTime`; dates in 2050 or later MUST use `GeneralizedTime`. |
-| `nextUpdate` | RFC 5280 clause 5.1.2.5 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the date by which the next CRL will be issued. Dates through 2049 MUST use `UTCTime`; dates in 2050 or later MUST use `GeneralizedTime`. |
-| `revokedCertificates` | RFC 5280 clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | A sequence of revoked certificates. When there are no revoked certificates, this field MUST be absent. |
+| `issuer` | RFC 5280 clause 5.1.2.3 | REQUIRED | *Name* | Identifies the entity that has signed and issued the CRL. It SHALL contain a non-empty X.500 distinguished name (DN) composed of `AttributeType` (OID) and `AttributeValue` sequences. |
+| `thisUpdate` | RFC 5280 clause 5.1.2.4 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the issue date of this CRL. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
+| `nextUpdate` | RFC 5280 clause 5.1.2.5 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the date by which the next CRL will be issued. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
+| `revokedCertificates` | RFC 5280 clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | A sequence of revoked certificates. When there are no revoked certificates, this field SHALL be absent. |
 | `revokedCertificates.userCertificate` | RFC 5280 clause 5.1.2.6 | REQUIRED | *INTEGER* | The `CertificateSerialNumber` of the revoked certificate. |
 | `revokedCertificates.revocationDate` | RFC 5280 clause 5.1.2.6 | REQUIRED | *UTCTime* or *GeneralizedTime* | The date on which the revocation occurred. |
-| `revokedCertificates.crlEntryExtensions` | RFC 5280 clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | Extensions specific to this revoked certificate entry. If present, the CRL `version` MUST be `v2`. |
-| `crlExtensions` | RFC 5280 clause 5.1.2.7 | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | A sequence of one or more CRL extensions. If present, the CRL `version` MUST be `v2`. |
+| `revokedCertificates.crlEntryExtensions` | RFC 5280 clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | Extensions specific to this revoked certificate entry. If present, the CRL `version` SHALL be `v2`. |
+| `crlExtensions` | RFC 5280 clause 5.1.2.7 | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | A sequence of one or more CRL extensions. If present, the CRL `version` SHALL be `v2`. |
 
 The `crlExtensions` field MAY contain various extensions. Notable standard extensions include:
 
@@ -139,9 +172,11 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 
 ## Online Certificate Status Protocol
 
-In addition to checking CRLs for WRPACs, the Wallet Unit or WRP MAY also utilize the **Online Certificate Status Protocol (OCSP)**. OCSP enables applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
+**Online Certificate Status Protocol** ([OCSP](https://datatracker.ietf.org/doc/html/rfc6960)) enable applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
 
 An OCSP client issues a status request to an OCSP responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response. 
+
+If supported by the CA, the URI to which the OCSP Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](access-certificate.md).
 
 This protocol specifies the data that SHALL be exchanged between the OCSP client (which checks the status of one or more certificates) and the OCSP server (which provides the corresponding status). In this specific ecosystem, the OCSP client can be a WU checking the WRPAC of a WRP, and the OCSP server is the Provider of the WRPAC.
 
@@ -195,7 +230,7 @@ OCSPRequest:
           issuerKeyHash  = SHA256( Issuer SubjectPublicKey BIT STRING )
           serialNumber   = 0x01A2B3C4D5
     requestExtensions:
-      nonce = BIT STRING (nonce)
+      nonce = OCTET STRING (nonce)
 ```
 
 ### Online Certificate Status Protocol Response Format
@@ -218,7 +253,7 @@ An OCSP response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. Whe
 | :-------: | :--------: | :------: | :----- | :---------- |
 | `tbsResponseData` | RFC 6960 clause 4.2.1 | REQUIRED | *SEQUENCE* | Contains the core response data to be signed by the responder. |
 | `tbsResponseData.version` | RFC 6960 clause 4.2.1 | OPTIONAL | *[0] EXPLICIT INTEGER* | The version of the response syntax. If omitted, the default value is `v1` (0). |
-| `tbsResponseData.responderID` | RFC 6960 clause 4.2.1 | REQUIRED | *CHOICE* | Identifies the OCSP responder. It MUST contain either `byName` or `byKey`. |
+| `tbsResponseData.responderID` | RFC 6960 clause 4.2.1 | REQUIRED | *CHOICE* | Identifies the OCSP responder. It SHALL contain either `byName` or `byKey`. |
 | `tbsResponseData.responderID.byName` | RFC 6960 clause 4.2.1 | OPTIONAL | *[1] EXPLICIT Name* | The `Name` from the responder’s certificate subject. |
 | `tbsResponseData.responderID.byKey` | RFC 6960 clause 4.2.1 | OPTIONAL | *[2] EXPLICIT OCTET STRING* | The SHA-1 hash of the responder’s `subjectPublicKey` (excluding the tag and length fields). |
 | `tbsResponseData.producedAt` | RFC 6960 clause 4.2.1 | REQUIRED | *GeneralizedTime* | The time at which the OCSP response was generated. |
