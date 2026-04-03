@@ -379,9 +379,9 @@ For each Attestation matching a presentation request, the WI SHALL check for a l
 In case of **Authorized Relying Parties Only** policy type[AUTHZ-EDP-04]: 
 - Detect intermediary scenario. 
 - Extract the identity information of the RP (direct) or intermediated RP. The WI SHALL NOT use intermediary identity. 
-- Match against the `authorized_parties` list comparing the RP subject DN from WRPAC against `subject_dn` entries (using LDAP DN comparison rules as defined in RFC 4514). 
+- Match against the `authorized_parties` list: compare the RP subject DN from WRPAC against `subject_dn` entries, and/or compare the RP entitlements or sub-entitlements from WRPRC against `entitlement_uri` entries. A match on either criterion is sufficient.
 
-If the checks are successful, the WI SHAL provide `EDP_SATISFIED` as output result, otherwise the WI SHALL provide `EDP_NOT_SATISFIED`.
+If the checks are successful, the WI SHALL provide `EDP_SATISFIED` as output result, otherwise the WI SHALL provide `EDP_NOT_SATISFIED`.
 
 In case of **Specific Root of Trust** policy type [AUTHZ-EDP-05] and according to direct/intermediary scenario: 
 

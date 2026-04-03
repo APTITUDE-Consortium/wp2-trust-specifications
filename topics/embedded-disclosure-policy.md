@@ -36,7 +36,7 @@ For legal persons, the relevant DN attributes are `commonName`, `organizationNam
 For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `countryName`. The organizationIdentifier attribute type is represented by the LDAP string "ORGID"; the serialNumber attribute type is represented by "SN" (according to ETSI TS 119 472-3 NOTE 1 and NOTE 2 to ISS-MDATA-EBD-4.2.5.2-07).
 
 > [!NOTE]
-> ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in ETSI TS 119 475, included in the WRPRC. However, the current set of common entitlements defined in ETSI TS 119 475 Annex A.2 includes only `Service_Provider` for RPs, which would not provide effective policy. This specification therefore considers only the subject DN identification mechanism. The entitlement URI mechanism will become applicable when sector-specific entitlements are defined in future versions of ETSI TS 119 475.
+> ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in ETSI TS 119 475, held in the WRPRC. ETSI TS 119 475 Annex A.3 defines sub-entitlements for Service Providers, currently for Payment Service Providers (e.g. `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai`). Future versions may include additional sector-specific sub-entitlements at national or EU level. This specification supports both the subject DN and the entitlement URI identification mechanisms.
 
 > [!NOTE]
 > ARF HLR EDP_02 refers to "EU-wide unique identifiers", as defined in Reg_32, for the authorized RP list. ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) identifies authorized RPs by their subject DN from the WRPAC. The organizationIdentifier attribute within the DN has the same semantics as the identifier given in Reg_32. This specification aligns with the ETSI TS 119 472-3 formulation. Future ARF versions are expected to align accordingly.
@@ -80,7 +80,8 @@ The following JSON structure is derived from the ETSI TS 119 472-3 data model re
 | `policy_authority` | string | OPTIONAL. Identifier of the authority responsible for the policy. | ISS-MDATA-EBD-4.2.5.2-05 |
 | `policy_info_url` | string (URL) | OPTIONAL. Link to a website explaining the policy in layman's terms. | ISS-MDATA-EBD-4.2.5.2-13, EDP_05 |
 | `authorized_parties` | array of objects | REQUIRED if `policy_type` is `"authorized_rp_only"`. List of authorized RPs. | ISS-MDATA-EBD-4.2.5.2-07 |
-| `authorized_parties[].subject_dn` | string | REQUIRED. Subject DN of the RP from the WRPAC, in LDAP string form as defined in RFC 4514. | ISS-MDATA-EBD-4.2.5.2-07 |
+| `authorized_parties[].subject_dn` | string | OPTIONAL. Subject DN of the RP from the WRPAC, in LDAP string form as defined in RFC 4514. At least one of `subject_dn` or `entitlement_uri` SHALL be present in each element. | ISS-MDATA-EBD-4.2.5.2-07 |
+| `authorized_parties[].entitlement_uri` | string (URI) | OPTIONAL. URI-encoded entitlement or sub-entitlement as specified in ETSI TS 119 475 Annex A, held in the WRPRC. At least one of `subject_dn` or `entitlement_uri` SHALL be present in each element. | ISS-MDATA-EBD-4.2.5.2-07 |
 | `trusted_roots` | array of objects | REQUIRED if `policy_type` is `"specific_root_of_trust"`. List of trusted roots. | ISS-MDATA-EBD-4.2.5.2-08 |
 | `trusted_roots[].issuer_dn` | string | REQUIRED. Issuer DN in LDAP string form compliant with RFC 4514. | ISS-MDATA-EBD-4.2.5.2-09 |
 | `trusted_roots[].serial_number` | string | REQUIRED. Certificate serial number of the issuer. | ISS-MDATA-EBD-4.2.5.2-09 |
