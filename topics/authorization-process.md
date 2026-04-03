@@ -247,10 +247,12 @@ If any step fails, the procedure outputs `CERTIFICATE_INVALID`. This is not a fi
 When the WRPRC is not available or validation has failed, the WI SHALL attempt to contact the Register APIs [AUTHZ-GEN-10]:
 
 1. **Extract Registrar URL** from the presentation request (`verifier_info` in remote scenario or `requestInfo` in proximity scanario) during presentation flow, or from Credential Issuer Metadata (`issuer_info.registry_uri`) during issuance flow. See [Distribution Methods](#distribution-methods) section for details. 
-2. **Connect** using HTTPS with TLS validation per TS5.
+2. **Connect** to the Registrar online service using HTTPS.
 3. **Query** using entity identifier and `intended_use_id` (presentation) or AP identifier (issuance).
-4. **Validate** response authenticity, integrity, and pertinence [AUTHZ-REG-01], [AUTHZ-REG-02].
-5. **Normalize** Register-derived data into the same internal model used for WRPRC data [AUTHZ-REG-03].
+4. **Verify response signature**: the WI SHALL verify the signature of the response data according to TS5.
+5. **Resolve Registrar trust chain**: the WI SHALL resolve the trust chain of the signing certificate and verify that the Registrar trust anchor is contained in the applicable Registrar LoTE.
+6. **Verify pertinence**: the WI SHALL verify that the response pertains to the relevant authorization subject and intended use [AUTHZ-REG-01], [AUTHZ-REG-02].
+7. **Normalize** Register-derived data into the same internal model used for WRPRC data [AUTHZ-REG-03].
 
 If the URL is not present, connection fails, or validation fails, the procedure outputs `FAILED` [AUTHZ-REG-04].
 
