@@ -16,7 +16,7 @@ An Embedded Disclosure Policy is defined in Article 2(9) of CIR 2024/2979 as:
 
 *"A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes"*.
 
-The EDP allows APs to control which RPs can access specific Attestations. APs can optionally express an EDP for their Attestations (EDP_01). The Article 10 of CIR 2024/2979 establishes that Wallet Providers SHALL ensure that Attestations with common EDPs (as listed in Annex III of CIR 2024/2979) can be processed by their Wallet Instances.
+The EDP allows APs to indicate which RPs can access specific Attestations. APs can optionally express an EDP for their Attestations (EDP_01). The Article 10 of CIR 2024/2979 establishes that Wallet Providers SHALL ensure that Attestations with common EDPs (as listed in Annex III of CIR 2024/2979) can be processed by their Wallet Instances.
 
 EDPs are applicable to QEAAs, PuB-EAAs, and non-qualified EAAs. They are not applicable to PIDs as the EUDIW Regulation does not provide any requirement for PIDs to contain an EDP (EDP_01 note).
 
