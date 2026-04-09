@@ -21,7 +21,6 @@ The EDP allows APs to indicate which RPs can access specific Attestations. APs c
 EDPs are applicable to QEAAs, PuB-EAAs, and non-qualified EAAs. They are not applicable to PIDs as the EUDIW Regulation does not provide any requirement for PIDs to contain an EDP (EDP_01 note).
 
 The main use cases enabled by EDPs are: 
-- Restricting access to sensitive Attestations to authorized RPs only.
 - Implementing sector-specific access control (e.g., only public sector RPs or only healthcare RPs). 
 - Implementing Member-State-specific access control (e.g., only RPs registered within a specific Member State).
 
