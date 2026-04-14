@@ -1,8 +1,9 @@
-# Authentication Process
+## Authentication Process
 
 The Authentication Process enables the Wallet Unit to authenticate a Wallet Relying Party (WRP). This involves validating the X.509 certificate chain, starting from the certificate issued by a trusted Provider of WRPAC and ending with the Wallet Relying Party Access Certificate (WRPAC) presented by the WRP.
 
 To perform this validation, the Wallet Unit SHALL:
+
 - Obtain the Provider of WRPAC’s entry from the validated List of Trusted Entities (LoTE) (see [Trust Anchor Validation](/topics/trust-anchor-validation.md)). The certificate(s) found in the `ServiceDigitalIdentity` field within the `TrustedEntitiesList` parameter of the LoTE constitute the Trust Anchor.
 - Construct a certification path starting from the Provider of WRPAC issued certificate and ending with the WRPAC presented by the WRP.
 - Execute the path validation algorithm defined in Section [Access Certificate Path Validation](#access-certificate-path-validation).
@@ -44,19 +45,22 @@ sequenceDiagram
 ### Access Certificate Path Validation
 
 This section defines the validation of the certification path.
+
 - The Trust Anchor is the certificate of the Provider of WRPAC obtained from the LoTE.
 - The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:
-    - $C_1$ is the certificate issued by the Trust Anchor.
-    - $C_n$ is the WRPAC (the target certificate).
-    - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
+  - $C_1$ is the certificate issued by the Trust Anchor.
+  - $C_n$ is the WRPAC (the target certificate).
+  - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
 
 The Wallet Unit initializes the validation with:
+
 - `path`: The sequence $C_1 \dots C_n$.
 - `trust_anchor`: The certificate of the Provider of WRPAC.
 - `current_time`: The current date and time.
 
 **Step 1: Initialization**
 Initialize the state variables:
+
 - `valid_policy_tree`: A single node (depth 0, `valid_policy`=`anyPolicy`, `qualifier_set`={}, `expected_policy_set`={ `anyPolicy` }).
 - `explicit_policy` (how many certificates in the chain are allowed to lack a specific, valid policy): $n+1$.
 - `inhibit_any_policy` (how many certificates are allowed to use the `anyPolicy` OID): $n+1$ (no inhibition of policies allowed).
@@ -68,6 +72,7 @@ Initialize the state variables:
 
 **Step 2: Certificate Processing**
 Iterate through the path for $i$ from $1$ to $n$:
+
 1. Basic Integrity & Binding Checks:
     - Verify the signature of $C_i$ using `working_public_key`, `working_public_key_parameters`, and the algorithm identifier.
     - Ensure `current_time` falls within the `notBefore` and `notAfter` validity period of $C_i$.
@@ -86,6 +91,7 @@ Iterate through the path for $i$ from $1$ to $n$:
     - Verify that either `explicit_policy > 0` OR `valid_policy_tree` is not NULL. If this fails, abort.
 
 **Step 3: Preparation for Next Certificate**
+
 1. If $i < n$ (i.e., $C_i$ is an intermediate CA), perform the following updates:
     - Set `working_issuer_name` to the Subject DN of $C_i$.
     - Set `working_public_key` to the Subject Public Key of $C_i$.
@@ -100,6 +106,7 @@ Iterate through the path for $i$ from $1$ to $n$:
 
 **Step 4: Wrap-up**
 After processing $C_n$:
+
 1. If `explicit_policy` > 0, decrement it.
 2. If `explicit_policy` > 0 OR `valid_policy_tree` is not NULL, the path is VALID.
 3. Otherwise, the path is INVALID.
@@ -170,6 +177,7 @@ graph TD
 ### Revocation Checking
 
 The Wallet Unit SHALL determine the revocation status for every certificate in the path with one of the following methods:
+
 - If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see ETSI TS 119 412-1), revocation checking MAY be skipped (status is determined solely by validity period).
 - If the `cRLDistributionPoints` extension is present, the Wallet Unit MAY retrieve and validate the CRL.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Unit MAY perform an OCSP lookup.
@@ -179,6 +187,7 @@ For details regarding the formats and parameters of CRLs and OCSP responses, see
 #### CRL Validation
 
 When using a CRL, the Wallet Unit SHALL:
+
 1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Unit SHOULD attempt to retrieve an updated CRL.
 2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
     - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked; <!-- Assumption: in case the issuer of the CRL and certificate coincides-->
@@ -247,6 +256,7 @@ graph TD
 #### OCSP Response Validation
 
 When using OCSP, the Wallet Unit SHALL:
+
 1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the Wallet Unit SHOULD attempt to retrieve an updated OCSP response, and if that fails, the certificate status SHALL be considered `unknown`.
 2. Verify `responseType` is `id-pkix-ocsp-basic`. <!-- Assumption: only basic OCSP responses are supported. -->
 3. Verify the response `signature` using the Responder's public key (`certs` field in the OCSP response).
@@ -257,7 +267,7 @@ When using OCSP, the Wallet Unit SHALL:
     - `serialNumber` field value is the certificate’s serial number.
 5. Check `thisUpdate` and `nextUpdate` (or `producedAt`) against local freshness policies.
 
-If any of the checks in 2-4 fail, the certificate status SHALL be considered `unknown`. If all checks succeed, update the status of each certificate by matching the `certStatus` value in the `SingleResponse` to the requested `CertID`. 
+If any of the checks in 2-4 fail, the certificate status SHALL be considered `unknown`. If all checks succeed, update the status of each certificate by matching the `certStatus` value in the `SingleResponse` to the requested `CertID`.
 
 ```mermaid
 graph TD

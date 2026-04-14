@@ -14,18 +14,18 @@ The Annex IV of CIR (EU) 2025/848 also states that the WRPACs are meant for perf
 
 To guarantee the interoperability across all the wallets provided within the Union, WRPACs should adhere to common requirements, with respect to their content and format. The technical standard specific to these certificates is ETSI TS 119 411-8. However, multiple other standards are referenced either directly or indirectly by the ETSI TS 119 411-8, containing requirements that are applicable to WRPACs as well. The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
 
--	[ETSI TS 119 411-8](https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf)
--	[ETSI EN 319 411-1](https://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.05.01_60/en_31941101v010501p.pdf)
--	[ETSI EN 319 411-2](https://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.06.01_60/en_31941102v020601p.pdf) applicable if the certificate is qualified
--	[ETSI EN 319 412-1](https://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.06.01_60/en_31941201v010601p.pdf)
--	[ETSI EN 319 412-2](https://www.etsi.org/deliver/etsi_en/319400_319499/31941202/02.04.01_60/en_31941202v020401p.pdf) applicable if the certificate is issued to natural persons
--	[ETSI EN 319 412-3](https://www.etsi.org/deliver/etsi_en/319400_319499/31941203/01.03.01_60/en_31941203v010301p.pdf) applicable if the certificate is issued to legal persons
--	[ETSI EN 319 412-5](https://www.etsi.org/deliver/etsi_en/319400_319499/31941205/02.05.01_60/en_31941205v020501p.pdf) applicable if the certificate is qualified
--	[RFC 5280](https://datatracker.ietf.org/doc/html/rfc5280)
--	[RFC 3647](https://datatracker.ietf.org/doc/html/rfc3647)
--	[RFC 3739](https://datatracker.ietf.org/doc/html/rfc3739)
--	[RFC 9608](https://datatracker.ietf.org/doc/html/rfc9608)
--	[CIR (EU) 2025/848](https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj/eng)
+- [ETSI TS 119 411-8](https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf)
+- [ETSI EN 319 411-1](https://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.05.01_60/en_31941101v010501p.pdf)
+- [ETSI EN 319 411-2](https://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.06.01_60/en_31941102v020601p.pdf) applicable if the certificate is qualified
+- [ETSI EN 319 412-1](https://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.06.01_60/en_31941201v010601p.pdf)
+- [ETSI EN 319 412-2](https://www.etsi.org/deliver/etsi_en/319400_319499/31941202/02.04.01_60/en_31941202v020401p.pdf) applicable if the certificate is issued to natural persons
+- [ETSI EN 319 412-3](https://www.etsi.org/deliver/etsi_en/319400_319499/31941203/01.03.01_60/en_31941203v010301p.pdf) applicable if the certificate is issued to legal persons
+- [ETSI EN 319 412-5](https://www.etsi.org/deliver/etsi_en/319400_319499/31941205/02.05.01_60/en_31941205v020501p.pdf) applicable if the certificate is qualified
+- [RFC 5280](https://datatracker.ietf.org/doc/html/rfc5280)
+- [RFC 3647](https://datatracker.ietf.org/doc/html/rfc3647)
+- [RFC 3739](https://datatracker.ietf.org/doc/html/rfc3739)
+- [RFC 9608](https://datatracker.ietf.org/doc/html/rfc9608)
+- [CIR (EU) 2025/848](https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj/eng)
 
 ## Dependency considerations
 
@@ -36,12 +36,14 @@ The WRPAC attributes SHALL be derived from the information held in the Register 
 The following table lists all the parameters and extensions that are mandatory in a WRPAC or mandatory with conditions. Optional parameters are not referenced and are not recommended, since they could cause conflicts with the content specified.
 
 The column "Presence" contains the specification of the presence of the certificate parameter as follows:
-* REQUIRED: The parameter SHALL be present.
-* REQUIRED(C): The parameter SHALL be present if the condition specified in the "Description" column is fulfilled.
+
+- REQUIRED: The parameter SHALL be present.
+- REQUIRED(C): The parameter SHALL be present if the condition specified in the "Description" column is fulfilled.
 
 The column "Criticality" of the certificate extensions takes the semantics defined in RFC 5280 clause 4.2 and uses the following acronyms:
-* C: The extension SHALL be considered critical.
-* NC: The extension SHALL be considered non-critical.
+
+- C: The extension SHALL be considered critical.
+- NC: The extension SHALL be considered non-critical.
 
 | Parameter | Defined in | Presence | Criticality | Format | Description |
 | :-------: | :--------: | :------: | :---------: | :----- | :---------- |
@@ -194,7 +196,7 @@ AccessCertificate cert = {
 
 ### Example of a WRPAC for natural persons following the QCP policy that is short-term and therefore non-revocable
 
-``` 
+```
 WRPAC cert = { 
 
   tbsCertificate: { 
@@ -237,7 +239,7 @@ WRPAC cert = {
 
     extensions: [ 
 
-      Extension {					            // authority key identifier
+      Extension {                 // authority key identifier
         oid: "2.5.29.35", 
         critical: false, 
         value: AuthorityKeyIdentifier { 
@@ -246,14 +248,14 @@ WRPAC cert = {
       }, 
 
       Extension { 
-        oid: "2.5.29.15",			        // key usage
+        oid: "2.5.29.15",           // key usage
         critical: true, 
         value: KeyUsage { 
           nonRepudiation: true        // Type A 
         } 
       }, 
 
-      Extension {				            	// subject alternative name
+      Extension {                 // subject alternative name
         oid: "2.5.29.17", 
         critical: false, 
         value: SubjectAltName [ 
@@ -262,7 +264,7 @@ WRPAC cert = {
         ] 
       }, 
 
-      Extension {	              			// authority information access 
+      Extension {                  // authority information access 
         oid: "1.3.6.1.5.5.7.1.1", 
         critical: false, 
         value: AuthorityInfoAccess [ 
@@ -274,7 +276,7 @@ WRPAC cert = {
       }, 
 
       Extension { 
-        oid: "2.5.29.32", 	                    // certificate policies
+        oid: "2.5.29.32",                      // certificate policies
         critical: false, 
         value: CertificatePolicies [ 
           PolicyInformation { 
@@ -287,7 +289,7 @@ WRPAC cert = {
       }, 
 
       Extension { 
-        oid: "0.4.0.194121.2.1",	 	// ext-etsi-valassured-ST-certs
+        oid: "0.4.0.194121.2.1",   // ext-etsi-valassured-ST-certs
         critical: false, 
         value:DER(NULL)             // (DER encoding: 0500)
       }, 
@@ -302,15 +304,15 @@ WRPAC cert = {
         oid: "1.3.6.1.5.5.7.1.3",   // qcStatements container 
         critical: false, 
         value: QCStatements [ 
-          QCStatement {				      // esi4-qcStatement-1
+          QCStatement {          // esi4-qcStatement-1
             statementId: "0.4.0.1862.1.1",
           }, 
           QCStatement { 
             statementId: "0.4.0.1862.1.4", // esi4-qcStatement-4
           }, 
           QCStatement { 
-            statementId: "0.4.0.1862.1.6", 	// esi4-qcStatement-6
-            value: 0.4.0.1862.1.6.1		// purpose : electronicSignature
+            statementId: "0.4.0.1862.1.6",  // esi4-qcStatement-6
+            value: 0.4.0.1862.1.6.1  // purpose : electronicSignature
             } 
           } 
         ] 
@@ -337,6 +339,7 @@ For instance, when the interaction with the Wallet Unit takes plase as described
 
 **SC-2 — Bind signatures to the intended protocol context.**
 Signed protocol objects should be clearly typed and scoped to the protocol to reduce *cross-context* misuse. In particular:
+
 - Use an explicit JOSE `typ` value appropriate for secured authorization requests / OpenID4VP Request Objects.
 - Constrain accepted JOSE algorithms and key types, and reject insecure or unexpected values (e.g., `alg=none`).
 
