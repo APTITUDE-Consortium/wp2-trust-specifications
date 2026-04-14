@@ -1,0 +1,21 @@
+name: Notify aptitude-eudi-wallet-specs on merge
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+jobs:
+  dispatch:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger repository_dispatch in aptitude-eudi-wallet-specs
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}
+          repository: APTITUDE-Consortium/aptitude-eudi-wallet-specs
+          event-type: pr-closed
