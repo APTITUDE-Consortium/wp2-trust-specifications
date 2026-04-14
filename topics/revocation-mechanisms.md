@@ -79,16 +79,17 @@ The following is an example of the Status List Token payload and header prior to
 {
   "exp": 2291720170,
   "iat": 1686920170,
-  "sub": "https://example-issuer.com/statuslists/",
+  "sub": "https://example-issuer.com/statuslists/1",
   "status_list": {
     "bits": 1,
     "lst": "eNrbuRgAAhcBXQ"
   }
 }
 ```
+
 ### Status List Request
 
-The Wallet Unit SHALL request a Status List Token at the URI referenced within the `status.url` claim of the WRPRC. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
+The Wallet Unit SHALL request a Status List Token at the URI referenced within the `status.status_list.uri` claim of the WRPRC. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
 
 Below it is represented an example of such a request.
 
@@ -318,7 +319,7 @@ OCSPResponse:
               nextUpdate  = 20250102000000Z
               singleExtensions = absent
           responseExtensions:
-            nonce = BIT STRING (nonce)
+            nonce = OCTET STRING (nonce)
         signatureAlgorithm = sha256WithRSAEncryption
         signature          = BIT STRING (signature over hash(DER(tbsResponseData)))
         certs              = SEQUENCE OF
