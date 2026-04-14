@@ -52,7 +52,7 @@ jobs:
           mapfile -d '' changed_files < changed_markdown_files.zlist
 
           set +e
-          markdownlint --config .markdownlint.json "${changed_files[@]}" 2>&1 | tee markdownlint.out
+          markdownlint --config .markdownlint.yml "${changed_files[@]}" 2>&1 | tee markdownlint.out
           lint_exit=${PIPESTATUS[0]}
           set -e
 
