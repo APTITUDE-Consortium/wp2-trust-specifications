@@ -1,19 +1,21 @@
 # 1. List Formatting
 MD004:
-  style: dash         # Enforces using '-' for unordered lists
-MD032: true           # Requires blank lines above and below lists
-MD060: true           # Enforces consistent indentation for sub-lists
+  style: dash         # Enforces using '-' for unordered lists.
+MD032: true           # Requires blank lines above and below lists.
+MD060:
+  style: padded       # Controls table pipe spacing.
 
 # 2. Style Consistency
 MD046:
   style: fenced       # Requires code blocks to use triple backticks.
 MD049:
-  style: asterisk     # Enforces _italics_ using asterisks
+  style: asterisk     # Enforces _italics_ using asterisks.
 
 # 3. Flexibility
-MD013: false          # Disables the 80-character line length limit
+MD013: false          # Disables the 80-character line length limit.
 MD024:
   siblings_only: true # Allows duplicate headings under different parent heading.
+MD028: false          # Allows blank lines inside blockquotes.
 MD033: false          # Disables the "No Inline HTML" rule.
 MD041: false          # Disables the requirement that the first line must be an H1 header.
 
