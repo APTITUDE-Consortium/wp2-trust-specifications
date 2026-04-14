@@ -181,7 +181,7 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 
 **Online Certificate Status Protocol** ([OCSP](https://datatracker.ietf.org/doc/html/rfc6960)) enable applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
 
-An OCSP client issues a status request to an OCSP responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response. 
+An OCSP client issues a status request to an OCSP responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response.
 
 If supported by the CA, the URI to which the OCSP Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](access-certificate.md).
 
@@ -251,7 +251,7 @@ An OCSP response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. Whe
 | `responseBytes.responseType` | RFC 6960 clause 4.2.1 | REQUIRED | *OBJECT IDENTIFIER* | Identifier for the response type. For a basic OCSP responder, this value SHALL be `id-pkix-ocsp-basic`. |
 | `responseBytes.response` | RFC 6960 clause 4.2.1 | REQUIRED | *OCTET STRING* | Contains the DER encoding of the response syntax identified by `responseType` (e.g., the `BasicOCSPResponse` structure). |
 
-> ***Note:*** 
+> ***Note:***
 > Within APTITUDE, OCSP responders SHALL be capable of producing responses of the `id-pkix-ocsp-basic` response type. Correspondingly, OCSP clients SHALL be capable of receiving and processing responses of the `id-pkix-ocsp-basic` response type.
 
 `BasicOCSPResponse` is an ASN.1 SEQUENCE containing the following parameters:
