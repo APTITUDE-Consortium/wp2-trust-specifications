@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger repository_dispatch in aptitude-eudi-wallet-specs
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@v4
         with:
           token: ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}
           repository: APTITUDE-Consortium/aptitude-eudi-wallet-specs
