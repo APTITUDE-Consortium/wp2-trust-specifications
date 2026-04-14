@@ -41,7 +41,7 @@ These interactions are:
 
 ## Authorization Process
 
-*See also: [Authorization Process](/topics/trust-evaluation-process-authorization.md) and [Entitlement and Policies](/topics/entitlement-policy.md)*
+*See also: [Authorization Process](/topics/authorization-process.md) and [Embedded Disclosure Policies](/topics/embedded-disclosure-policies.md)*
 
 The Authorization Process determines whether an authenticated WRP is permitted to perform a specific action, such as issuing an Attestation or requesting specific attributes. This process involves:
 
@@ -49,6 +49,6 @@ The Authorization Process determines whether an authenticated WRP is permitted t
 2. Comparing requested operations with registered capabilities.
 3. Evaluating Embedded Disclosure Policies (rule set embedded in an electronic Attestation by its Attestation Providers to restrict which Relying Parties can access specific Attestations).
 
-Based on these inputs, the Wallet Unit determines whether to grant or deny the requested access.
+Based on these inputs, the Wallet Unit and, in some instances, the User determine whether to grant or deny the requested access.
 
 
