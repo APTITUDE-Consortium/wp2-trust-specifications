@@ -2,12 +2,12 @@
 
 This section describes the artifacts that are employed in [Trust Management Process](trust-management-process.md) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
-* To manage Wallet Relying Party Access Certificates (WRPACs), each Provider of WRPAC SHALL:
-  * make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
-  * issue Access Certificates with at least an extension corresponding to the provided revocation mechanism as illustrated in [Access Certificate](access-certificate.md).
-* To manage Wallet Relying Party Registration Certificates (WRPRCs), each Provider of WRPRC SHALL:
-  * make available an endpoint to request [Status List Tokens](#status-list-token);
-  * issue WRPRC with the appropriate parameter `status` as described in [Registration Certificates](registration-certificate.md).
+- To manage Wallet Relying Party Access Certificates (WRPACs), each Provider of WRPAC SHALL:
+  - make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
+  - issue Access Certificates with at least an extension corresponding to the provided revocation mechanism as illustrated in [Access Certificate](access-certificate.md).
+- To manage Wallet Relying Party Registration Certificates (WRPRCs), each Provider of WRPRC SHALL:
+  - make available an endpoint to request [Status List Tokens](#status-list-token);
+  - issue WRPRC with the appropriate parameter `status` as described in [Registration Certificates](registration-certificate.md).
 
 ## Token Status List
 
@@ -17,24 +17,24 @@ In this specification, the roles of the Provider of WRPRC and Status Issuer (i.e
 
 The Provider of WRPRC SHALL:
 
-* Define a number of bits, $k$, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each WRPRC within this Status List. The Provider of WRPRC SHALL configure this number. Each WRPRC will therefore have $2^k$ possible states.
-* Create a byte array of size $\geq$ (expected number of WRPRCs) * $k$ / 8. Depending on $k$, each byte in the array corresponds to 8/$k$ statuses (8 if $k=1$, 4 if $k=2$, 2 if $k=4$, or 1 if $k=8$). Each time a WRPRC is issued, the Provider of WRPRC assigns it to a position in the array.
-* Set the status values for all issued WRPRCs within the byte array. The status of each WRPRC is identified using an index that maps to one or more specific bits within the byte array. The index starts counting at 0 and ends with (number of WRPRC) - 1. All bits of the byte array at a particular index are set to a status value.
-* Compress the byte array using DEFLATE [RFC 1951](https://datatracker.ietf.org/doc/html/rfc1951) with the ZLIB [RFC 1950](https://datatracker.ietf.org/doc/html/rfc1950) data format. Implementations are RECOMMENDED to use the highest compression level available.
-* Make an endpoint available to Wallet Units to request Status Lists Tokens.
+- Define a number of bits, $k$, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each WRPRC within this Status List. The Provider of WRPRC SHALL configure this number. Each WRPRC will therefore have $2^k$ possible states.
+- Create a byte array of size $\geq$ (expected number of WRPRCs) * $k$ / 8. Depending on $k$, each byte in the array corresponds to 8/$k$ statuses (8 if $k=1$, 4 if $k=2$, 2 if $k=4$, or 1 if $k=8$). Each time a WRPRC is issued, the Provider of WRPRC assigns it to a position in the array.
+- Set the status values for all issued WRPRCs within the byte array. The status of each WRPRC is identified using an index that maps to one or more specific bits within the byte array. The index starts counting at 0 and ends with (number of WRPRC) - 1. All bits of the byte array at a particular index are set to a status value.
+- Compress the byte array using DEFLATE [RFC 1951](https://datatracker.ietf.org/doc/html/rfc1951) with the ZLIB [RFC 1950](https://datatracker.ietf.org/doc/html/rfc1950) data format. Implementations are RECOMMENDED to use the highest compression level available.
+- Make an endpoint available to Wallet Units to request Status Lists Tokens.
 
 The Provider of WRPRC SHALL use the following values for the possible statuses of the issued WRPRCs:
 
-* `0x00` - `VALID` - The WRPRC is valid.
-* `0x01` - `INVALID` - The WRPRC is revoked.
+- `0x00` - `VALID` - The WRPRC is valid.
+- `0x01` - `INVALID` - The WRPRC is revoked.
 
 For example, if two states for a certain WRPRC are possible, then $k=1$. If the Credential Issuer creates an array to store the statuses of 6 WRPRCs, whose validity statuses are 0, 0, 0, 1, 1, 0, respectively; then:
 
-* The bit array can be of the form `a=[0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 1, 1, 0, 0, 0, 0; 0, 0, 1, 0, 0, 0, 0, 1]` which, in hexadecimal notation, corresponds to the byte array `[0x00, 0x30, 0x21]`.
-* The status values are encoded in specific bit positions based on their assigned index.
-* The array is then compressed using DEFLATE.
+- The bit array can be of the form `a=[0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 1, 1, 0, 0, 0, 0; 0, 0, 1, 0, 0, 0, 0, 1]` which, in hexadecimal notation, corresponds to the byte array `[0x00, 0x30, 0x21]`.
+- The status values are encoded in specific bit positions based on their assigned index.
+- The array is then compressed using DEFLATE.
 
-> _**Note:**_
+> ***Note:***
 > When the Provider of WRPRC chooses the number of bits for conveying statuses of the WRPRCs it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a WRPRC SHALL, however, be carefully pondered, as it discloses information to Relying Parties.
 
 Once the Wallet Unit receives a WRPRC, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.
@@ -47,8 +47,8 @@ The **Status List Token** (SLT) is available at the Status List Endpoint. It is 
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
-| `alg` | RFC 7515 | REQUIRED | _String_ | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It SHALL NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
-| `typ` | RFC 7515 | REQUIRED | _String_ | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
+| `alg` | RFC 7515 | REQUIRED | *String* | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It SHALL NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
+| `typ` | RFC 7515 | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
 | `x5c` | RFC 7515 | REQUIRED | _Array of Strings_ | Contains the Base64-encoded certificate chain required to verify the SLT's signature. |
 
 #### Status List Token Payload
