@@ -1,0 +1,72 @@
+name: Markdown Lint (PR changed files)
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions:
+  contents: read
+
+jobs:
+  markdown-lint:
+    name: Check markdown warnings
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "20"
+
+      - name: Install markdown linter
+        run: npm install --global markdownlint-cli
+
+      - name: Collect changed markdown files
+        id: changed_md
+        run: |
+          git diff --diff-filter=ACMRT --name-only -z "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" -- '*.md' > changed_markdown_files.zlist
+
+          if [[ -s changed_markdown_files.zlist ]]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "Changed markdown files:"
+            tr '\0' '\n' < changed_markdown_files.zlist
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No changed markdown files in this pull request."
+          fi
+
+      - name: Lint changed markdown files
+        if: steps.changed_md.outputs.has_changes == 'true'
+        run: |
+          # Lint only files changed in this PR, using repo root markdownlint configuration.
+          # Also convert markdownlint output into GitHub annotations on the affected lines.
+          mapfile -d '' changed_files < changed_markdown_files.zlist
+
+          set +e
+          markdownlint --config .markdownlint.yml "${changed_files[@]}" 2>&1 | tee markdownlint.out
+          lint_exit=${PIPESTATUS[0]}
+          set -e
+
+          while IFS= read -r line; do
+            if [[ "$line" =~ ^(.+):([0-9]+)(:([0-9]+))?[[:space:]]+(MD[0-9]{3}(/[[:alnum:]_-]+)?)[[:space:]]+(.*)$ ]]; then
+              file_path="${BASH_REMATCH[1]}"
+              line_number="${BASH_REMATCH[2]}"
+              rule_name="${BASH_REMATCH[5]}"
+              message="${BASH_REMATCH[7]}"
+              echo "::warning file=$file_path,line=$line_number,title=$rule_name::$message"
+            fi
+          done < markdownlint.out
+
+          if [[ $lint_exit -ne 0 ]]; then
+            echo "Markdown lint reported issues. See annotations above."
+            exit $lint_exit
+          fi
