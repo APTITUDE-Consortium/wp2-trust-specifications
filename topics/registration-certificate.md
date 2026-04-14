@@ -42,7 +42,6 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
 | [Technical Attributes](#technical-attributes)                         | Technical metadata such as policies, timestamps, and status-list configuration.           | Some of them |
 | [Uses Intermediary Attributes](#uses-intermediary-attributes)         | Attributes required when the WRP operates through an intermediary entity.                 | Required if Intermediary is used |
 
-
 ## Header Attributes
 
 ### JWT Header Attributes
@@ -153,7 +152,6 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
 | `intermediary.sub` | *string* | Identifier of the intermediary as specified by the intermediary WRPAC | Required if Intermediary is used | ETSI TS 119 475 Table 10 - `usesIntermediary` |
 | `intermediary.sname` | *string* | commonName of the intermediary as specified by the intermediary WRPAC | Required if Intermediary is used | ETSI TS 119 475 Table 10 - `usesIntermediary` |
 
-
 ---
 
 ## Examples
@@ -172,7 +170,7 @@ This document defines Wallet-Relying Party Registration Certificates (WRPRC), as
 
 ### CWT Header
 
-```
+```cbor
 {
   1: -7,    / alg: ES256 /,
   16: "rc-wrp+cwt", / typ /
@@ -520,7 +518,6 @@ Algorithms used should be one of the algorithms for digital signatures recommend
 also defines its own requirements for digital signatures. However, those requirements are not directly related to
 registration certificates.
 
-
 ### List of possible Entitlements
 
 Per ETSI TS 119 475 Annex A.2:
@@ -553,4 +550,4 @@ Per ETSI TS 119 475 clause 5.1.3 - Table 2 and 5.1.5 - Table 4:
 
 CWT token claims must be registered in a register created by IANA.
 
-The register is available at - https://www.iana.org/assignments/cwt/cwt.xhtml
+The register is available at - <https://www.iana.org/assignments/cwt/cwt.xhtml>

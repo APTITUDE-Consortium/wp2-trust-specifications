@@ -3,16 +3,17 @@
 # Scope
 
 This section specifies the Embedded Disclosure Policy (EDP) for the EUDI Wallet ecosystem. It defines the following aspects:
+
 - What an EDP is, and which policy types are supported.
-- The data model and structure. 
-- The distribution mechanism. 
-- The lifecycle rules. 
+- The data model and structure.
+- The distribution mechanism.
+- The lifecycle rules.
 
 The authorization evaluation logic that the WI applies when processing an EDP during presentation is defined in the [Authorization Process](authorization-process.md) section of this specification.
 
 # Definition and applicability
 
-An Embedded Disclosure Policy is defined in Article 2(9) of CIR 2024/2979 as: 
+An Embedded Disclosure Policy is defined in Article 2(9) of CIR 2024/2979 as:
 
 *"A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes"*.
 
@@ -20,8 +21,9 @@ The EDP allows APs to indicate which RPs can access specific Attestations. APs c
 
 EDPs are applicable to QEAAs, PuB-EAAs, and non-qualified EAAs. They are not applicable to PIDs as the EUDIW Regulation does not provide any requirement for PIDs to contain an EDP (EDP_01 note).
 
-The main use cases enabled by EDPs are: 
-- Implementing sector-specific access control (e.g., only public sector RPs or only healthcare RPs). 
+The main use cases enabled by EDPs are:
+
+- Implementing sector-specific access control (e.g., only public sector RPs or only healthcare RPs).
 - Implementing Member-State-specific access control (e.g., only RPs registered within a specific Member State).
 
 # Policy Types
@@ -30,8 +32,8 @@ Annex III of CIR 2024/2979 defines three common EDP types:
 
 **No Policy.** No EDP is present, or the EDP explicitly indicates that no restrictions apply (ISS-MDATA-EBD-4.2.5.2-06).
 
-**Authorized Relying Parties Only.** The EDP contains a list of RPs that are allowed to access the Attestation. According to ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07), authorized RPs are identified by their subject distinguished name as held in the WRPAC, in LDAP string form as defined in RFC 4514. 
-For legal persons, the relevant DN attributes are `commonName`, `organizationName`, `organizationIdentifier`, and `countryName`. 
+**Authorized Relying Parties Only.** The EDP contains a list of RPs that are allowed to access the Attestation. According to ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07), authorized RPs are identified by their subject distinguished name as held in the WRPAC, in LDAP string form as defined in RFC 4514.
+For legal persons, the relevant DN attributes are `commonName`, `organizationName`, `organizationIdentifier`, and `countryName`.
 For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `countryName`. The organizationIdentifier attribute type is represented by the LDAP string "ORGID"; the serialNumber attribute type is represented by "SN" (according to ETSI TS 119 472-3 NOTE 1 and NOTE 2 to ISS-MDATA-EBD-4.2.5.2-07).
 
 > [!NOTE]
@@ -66,7 +68,7 @@ The data model defines the following elements:
 
 ## Structure and encoding
 
-The following JSON structure is derived from the ETSI TS 119 472-3 data model requirements. 
+The following JSON structure is derived from the ETSI TS 119 472-3 data model requirements.
 
 > [!WARNING]
 > The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. ETSI TS 119 472-3 section 4.2.5.2 defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of ETSI TS 119 472-3). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
@@ -108,6 +110,7 @@ Even a minor policy change (e.g., adding a single RP to the authorized list) req
 
 > [!WARNING]
 > Proactive refresh. The AP MAY provide EDP though its URI. In this case, the WI MAY proactively fetch the policy content at the `policy_uri` to check for updates, without waiting for an Attestation revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:
+>
 > - It enables AP to unilaterally change an EDP, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
 > - Technical details of this mechanism are not defined within ETSI standard.
 
@@ -122,4 +125,3 @@ Even a minor policy change (e.g., adding a single RP to the authorized list) req
 | ETSI TS 119 475 Annex A.2 | Common entitlement URIs |
 | ETSI EN 319 412-1 section 5.1.4 | organizationIdentifier semantics |
 | RFC 4514 | LDAP string representation of Distinguished Names |
-
