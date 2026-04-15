@@ -1,4 +1,4 @@
-### Sequence Diagram
+### Wallet Relying Party Authentication Sequence Diagram
 
 Below is a sequence diagram illustrating the Authentication Process, including the retrieval and validation of the LoTE, path construction, and certificate validation steps. The diagram also highlights the decision points for successful or failed authentication.
 
@@ -8,7 +8,7 @@ sequenceDiagram
     participant Wallet as Wallet Unit
     participant LoTE as LoTE Distribution Point
 
-    WRP->>Wallet: Signed Object + WRPAC Chain
+    WRP->>Wallet: Signed Artifact + WRPAC Chain
     Wallet->>LoTE: Retrieve/Check LoTE
     LoTE-->>Wallet: Return Valid LoTE
     
@@ -20,7 +20,7 @@ sequenceDiagram
     
     Note over Wallet: 3. Validation
     Wallet->>Wallet: Validate Path (RFC 5280, RFC 6960)
-    Wallet->>Wallet: Verify WRP Object Signature
+    Wallet->>Wallet: Verify WRP Artifact Signature
     
     alt Validation Successful
         Wallet-->>WRP: Proceed with Interaction
@@ -164,7 +164,7 @@ graph TD
 
 The Wallet Unit SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
-- If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see ETSI TS 119 412-1), revocation checking MAY be skipped (status is determined solely by validity period).
+- If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see [Wallet Relying Party Access Certificates Content](#wallet-relying-party-access-certificates-content)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
 - If the `cRLDistributionPoints` extension is present, the Wallet Unit MAY retrieve and validate the CRL.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Unit MAY perform an OCSP lookup.
 
