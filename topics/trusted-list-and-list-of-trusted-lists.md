@@ -13,12 +13,12 @@ Also in CID (EU) 2015/150, article 4(3) establishes that the Commission publishe
 Specifically for the EUDIW, the Commission defines the additional "Lists of Trusted Entities" (LOTE). The principles of the LOTEs are established under Articles 4 and 5 in CIR (EU) 2024/2980, which points the direction to the creation and publishing of two lists:
 
 1. one list to include:
-	- registrars of wallet-relying parties
-	- registers of wallet-relying parties
+   - registrars of wallet-relying parties
+   - registers of wallet-relying parties
 1. another list to include:
-	- wallet providers
-	- providers of person identification data
-	- and providers of wallet-relying party access certificates
+   - wallet providers
+   - providers of person identification data
+   - and providers of wallet-relying party access certificates
 
 ### Trusted List
 
