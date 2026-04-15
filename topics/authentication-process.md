@@ -1,16 +1,3 @@
-## Authentication Process
-
-The Authentication Process enables the Wallet Unit to authenticate a Wallet Relying Party (WRP). This involves validating the X.509 certificate chain, starting from the certificate issued by a trusted Provider of Wallet Relying Party Access Certificate (WRPAC) and ending with the WRPAC presented by the WRP.
-
-To perform this validation, the Wallet Unit SHALL:
-
-- Obtain the Provider of WRPAC’s entry from the validated List of Trusted Entities (LoTE) (see [Trust Anchor Validation Process](#trust-anchor-validation-process)). The certificate(s) found in the `ServiceDigitalIdentity` field within the `TrustedEntitiesList` parameter of the LoTE constitute the Trust Anchor.
-- Construct a certification path starting from the Provider of WRPAC issued certificate and ending with the WRPAC presented by the WRP.
-- Execute the path validation algorithm defined in Section [Access Certificate Path Validation](#access-certificate-path-validation).
-- Use the public key from the WRPAC to verify the object signed by the WRP (e.g., the Request Object for the remote presentation flow, the Credential Issuer's metadata during credential issuance).
-
-**Security Note (Blind Signing)**: Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To mitigate blind signing attacks—where an attacker disguises a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP SHALL NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
-
 ### Sequence Diagram
 
 Below is a sequence diagram illustrating the Authentication Process, including the retrieval and validation of the LoTE, path construction, and certificate validation steps. The diagram also highlights the decision points for successful or failed authentication.
