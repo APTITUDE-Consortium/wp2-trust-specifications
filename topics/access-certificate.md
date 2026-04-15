@@ -3,8 +3,8 @@
 This section describes the purpose, format and content of Wallet Relying Party Access Certificates (WRPACs).
 
 According to the Article 2 of CIR (EU) 2025/848, a WRPAC, is a certificate for electronic seals or signatures authenticating and validating the Wallet Relying Party (WRP).
-Issued by one or more designated provider under Member State supervision, the WRPAC serves to authenticate and verify the trustworthiness of the WRP when they interact with the EUDI Wallet. For more details on the authentication process, see [Authentication Process](/topics/authentication-process.md).
-The suspension or cancellation of the WRP services, involves revocation of all valid WRPAC by the relevant issuing authority, such that the WRP is no longer able to interact with Wallet Units. For more detail on the Trust Management processes, see [Trust Management](/topics/trust-management.md).
+Issued by one or more designated provider under Member State supervision, the WRPAC serves to authenticate and verify the trustworthiness of the WRP when they interact with the EUDI Wallet. For more details on the authentication process, see [Authentication Process](#authentication-process).
+The suspension or cancellation of the WRP services, involves revocation of all valid WRPAC by the relevant issuing authority, such that the WRP is no longer able to interact with Wallet Units. For more detail on the Trust Management processes, see [Trust Management](#trust-management).
 
 The Annex IV of CIR (EU) 2025/848 also states that the WRPACs are meant for performing electronic signatures or seals and that they shall comply with at least the normalised certificate policy (‘NCP’) requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the WRPACs fall into.  
 
