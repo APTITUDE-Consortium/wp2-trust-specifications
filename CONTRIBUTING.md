@@ -9,8 +9,8 @@ This document provides guidelines and conventions to follow when contributing, w
 * [General Principles](#general-principles)
 * [Files and Markup Language](#files-and-markup-language)
 * [Structure and Style](#structure-and-style)
+* [Normative Language](#normative-language)
 * [Syntax for Artifacts' Format](#syntax-for-artifacts-format)
-  * [Nested Objects](#nested-objects)
 * [References and Citations](#references-and-citations)
 * [Syntax for Diagrams](#syntax-for-diagrams)
 * [Terminology and Definitions](#terminology-and-definitions)
@@ -50,6 +50,30 @@ This document provides guidelines and conventions to follow when contributing, w
 
 ---
 
+## Normative Language
+
+To ensure technical precision and interoperability, these specifications adhere to RFC 2119 and RFC 8174 regarding the use of normative language.
+
+Contributors must use the following terms to define the specific requirement levels within the text:
+- **SHALL**: This term indicates an absolute requirement.
+- **SHALL NOT**: This term indicates an absolute prohibition.
+- **SHOULD**: This term indicates that valid reasons may exist in specific circumstances to deviate from a requirement, provided the implications are fully understood and weighed.
+- **SHOULD NOT**: This term indicates that a particular behavior may be acceptable or useful in specific cases, though the full implications must be carefully evaluated before implementation.
+- **MAY**: This term indicates a truly optional feature. Implementations must maintain interoperability regardless of whether these options are included.
+
+When defining artifact formats in tables (refer to [Syntax for Artifacts' Format](#syntax-for-artifacts-format)), use the following terms in the dedicated requirement column:
+- **REQUIRED**: The specified field SHALL be implemented.
+- **REQUIRED if**: The specified field SHALL be implemented if the associated condition is met.
+- **OPTIONAL**: The specified field MAY be implemented.
+
+To maintain consistency and minimize ambiguity, do not use the following terms. Replace them with their designated normative synonyms:
+- Do not use **MUST** — Use **SHALL** instead.
+- Do not use **MUST NOT** — Use **SHALL NOT** instead.
+- Do not use **RECOMMENDED** — Use **SHOULD** instead.
+- Do not use **NOT RECOMMENDED** — Use **SHOULD NOT** instead.
+
+---
+
 ## Syntax for Artifacts' Format
 
 When describing the format of an artifact (e.g., Access Certificates, Registation Certificates, Trusted Lists), parameters MUST be documented using a Markdown table with **four columns**:
@@ -57,6 +81,7 @@ When describing the format of an artifact (e.g., Access Certificates, Registatio
 | Column          | Description                                                                |
 | --------------- | -------------------------------------------------------------------------- |
 | **Parameter**   | Name of the parameter. Use inline code formatting.                         |
+| **Requirement**	| Indicates the requirement level: REQUIRED or OPTIONAL.                     |
 | **Type**        | Parameter type (e.g., `string`, `int`, `boolean`, `array`, `JSON object`). |
 | **Description** | Human-readable description of the parameter.                               |
 | **Reference**   | Link to the specification or standard from which the parameter originates. |
