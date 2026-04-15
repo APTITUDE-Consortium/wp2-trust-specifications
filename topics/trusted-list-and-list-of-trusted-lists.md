@@ -1,16 +1,14 @@
-# Trusted List and List of Trusted Lists
-
-## Introduction
+## Trusted List and List of Trusted Lists
 
 This section describes the format and contents of the Trusted Lists and how they are used for the purpose of the List of Trusted Lists and List of Trusted Entities within the context of the EUDIW.
 
-## Regulatory background
+### Regulatory background
 
 The Trusted List is defined in article 22 of eIDAS regulation EU 910/2014 as the means to keep current and historical information about the accredited trust service providers in each Member State. One Trusted List must be maintained and published by each Member State.
 
 Furthermore, according to Chapter II of Annex I of The CID (EU) 2015/1505, further amended by CID (EU) 2025/2164, Trusted Lists must follow the technical specification ETSI TS 119 612 version 2.4.1, becoming effective and live on April 29th, 2026.
 
-Also in CID (EU) 2015/150, article 4(3) establishes that the Comission publishes the information received from MS about their Trust Lists in machine readable format for automated processing. This is what is known by "List of Trusted Lists" (LOTL). Under article 4(4), the Commission may also publish the same information in human readable format.
+Also in CID (EU) 2015/150, article 4(3) establishes that the Commission publishes the information received from MS about their Trust Lists in machine-readable format for automated processing. This is what is known by "List of Trusted Lists" (LOTL). Under article 4(4), the Commission may also publish the same information in human-readable format.
 
 Specifically for the EUDIW, the Commission defines the additional "Lists of Trusted Entities" (LOTE). The principles of the LOTEs are established under Articles 4 and 5 in CIR (EU) 2024/2980, which points the direction to the creation and publishing of two lists:
 
@@ -22,14 +20,14 @@ Specifically for the EUDIW, the Commission defines the additional "Lists of Trus
 	- providers of person identification data
 	- and providers of wallet-relying party access certificates
 
-## Trusted List (TL)
+### Trusted List
 
-The Trusted List (TL) is a mecanhism to convey information about trust anchors in an wide interoperable ecosystem such as the eIDAS framework. It was originally designed to hold current and historical information about the accreditation of trust service providers, particulary Qualified Trust Service Providers (QTSP), albeit other non-qualified can also be included, including those recognized exclusively at a national level.
+The Trusted List (TL) is a mechanism to convey information about trust anchors in an wide interoperable ecosystem such as the eIDAS framework. It was originally designed to hold current and historical information about the accreditation of trust service providers, particularly Qualified Trust Service Providers (QTSP), albeit other non-qualified can also be included, including those recognized exclusively at a national level.
 
 For each trust service provider included, the following services can be listed:
 
 1. Qualified certificates issuing
-1. OCSP for qualified certificates (e.g. if the OCSP responder is external to the QTSP or is not listed in the OCSP URL is not indicated in the Authority Information Access extensio)
+1. OCSP for qualified certificates (e.g. if the OCSP responder is external to the QTSP or is not listed in the OCSP URL is not indicated in the Authority Information Access extension)
 1. CRL for qualified certificates (e.g. if the CRL issuing is delegated or the CRL publishing URL is not included in the CRL Distribution Point extension)
 1. Qualified timestamping
 1. Qualified electronic registered delivery
@@ -64,11 +62,11 @@ A TL may also include additional trust services defined at national level:
 1. National Root CA
 1. Other trust services
 
-The structure and semantics of the TL are defined in ETSI TS 119 612. For automated processing, the TL is provided in XML format. A browsable and human readable format is also available on the eIDAS Dashboard at https://eidas.ec.europa.eu/efda/trust-services/browse/eidas/tls.
+The structure and semantics of the TL are defined in ETSI TS 119 612. For automated processing, the TL is provided in XML format. A browsable and human-readable format is also available on the eIDAS Dashboard at https://eidas.ec.europa.eu/efda/trust-services/browse/eidas/tls.
 
 Within eIDAS, one TL is maintained per Member State, responsible for keeping record of the trusted services providers under their respective jurisdiction. TLs are numbered and renewed periodically, and published in a website for unrestricted download. To protect their integrity and assure authenticity TLs are also signed with trusted certificates. 
 
-## List of Trusted Lists (LOTL)
+### List of Trusted Lists
 
 The Trusted List standard ETSI TS 119 612 allows a hierarchy of Trusted Lists by means of referencing to other TLs from a parent TL.
 
@@ -76,13 +74,13 @@ Within eIDAS, a decentralized trust model is established, where the parent TL is
 
 Currently, the LOTL is published in the following URI: https://ec.europa.eu/tools/lotl/eu-lotl.xml.
 
-### LOTL signing and Pivot XML
+#### LOTL signing and Pivot XML
 
-The LOTL is electronically signed with a XAdES-B-B signature as defined by ETSI EN 319 132-1. For verification of the signature, the original signing certificates were initally published on the Official Journal of the European Union, here https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2019.276.01.0001.01.ENG.
+The LOTL is electronically signed with a XAdES-B-B signature as defined by ETSI EN 319 132-1. For verification of the signature, the original signing certificates were initially published on the Official Journal of the European Union, here https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2019.276.01.0001.01.ENG.
 
-Afterwards, a follow up method of providing traceable changes to the LOTL is provided through the "Pivot LOTL". Whenever the LOTL signing certificates are changed (as they expire over time and are replaced by new certificates), and/or the LOTL publishing URL is changed, a "Pivot LOTL" is created. A "snapshot" of the current LOTL is created and published at a specific URL and a reference to that Pivot LOTL is added to the new (main) LOTL. The LOTL contains the history of Pivot LOTLs, which allows participants in the eIDAS ecosystem to rebuild the history of the LOTL trust any given point in time. More information about the Pivot LOTL mechanism is availabe here: https://ec.europa.eu/tools/lotl/pivot-lotl-explanation.html.
+Afterwards, a follow up method of providing traceable changes to the LOTL is provided through the "Pivot LOTL". Whenever the LOTL signing certificates are changed (as they expire over time and are replaced by new certificates), and/or the LOTL publishing URL is changed, a "Pivot LOTL" is created. A "snapshot" of the current LOTL is created and published at a specific URL and a reference to that Pivot LOTL is added to the new (main) LOTL. The LOTL contains the history of Pivot LOTLs, which allows participants in the eIDAS ecosystem to rebuild the history of the LOTL trust any given point in time. More information about the Pivot LOTL mechanism is available here: https://ec.europa.eu/tools/lotl/pivot-lotl-explanation.html.
 
-## List of Trusted Entities (LOTE)
+### List of Trusted Entities
 
 The LOTE is a compilation of the information submitted by Member States about the following entities:
 
@@ -101,12 +99,11 @@ The LOTE types can be one of the following, as defined in annex C.2:
 - Public sector bodies issuing electronic attestations of attributes
 - List of registrars and registers
 
-## Tools
+### Tools
 
 This section presents a non-exhaustive list of tools to processing Trusted Lists.
 
-### TLManager
-
+**TLManager:**
 The TLManager is a tool for creating Trusted Lists compliant withy ETSI TS 116 612. Examples of use of the TLManager are:
 
 - non-EU countries willing to establish a national trusted list compatible with eIDAS. Following the same standard may facilitate bilateral trust.
@@ -117,14 +114,13 @@ TLManager is licenced under LGPL and is available for download here:
 
 https://ec.europa.eu/digital-building-blocks/sites/spaces/TLSO/pages/75665517/Trusted+List+Manager+non-EU
 
-### eIDAS Dashboard
-
+**eIDAS Dashboard:**
 The eIDAS Dashboard is a platform in the format of a dynamic website where all information and tools necessary to make use of the EUDI Wallet, Trust Services and eID schemes are openly available.
 
 The eIDAS Dashboard is available online here: https://eidas.ec.europa.eu/efda/home. Specifically for the EUDI Wallet ecosystem, the eIDAS Dashboard already has the placeholders for the several types of entities to be listed in the LOTEs, here: https://eidas.ec.europa.eu/efda/wallet.
 
 
-## Data Models
+### Data Models
 
 This section specifies the profiles and formats that the various Trusted Lists defined above SHALL utilize, depending on their specific use cases. 
 
@@ -141,20 +137,20 @@ The following table dictates the governing standard, publication scope (i.e., at
 | Pub-EAA Provider Lists | TS 119 602 Annex H | European Union | JSON or XML |
 | Registrar and Register Provider Lists | TS 119 602 Annex I | European Union | JSON |
 
-### Trusted List and List of Trusted Lists
+#### Trusted List and List of Trusted Lists
 
 The following URLs provide the normative XML schemas required for implementing the EU Member State Trusted Lists (EUMS TL) and the List of Trusted Lists (LoTL):
 
 * **EU MSTL Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd)
 * **LoTL Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd)
 
-### List of Trusted Entities
+#### List of Trusted Entities
 
 The following repository provides the normative JSON and XML schemas required for implementing the List of Trusted Entities (LoTE):
 
 * **LoTE Schemas:** [https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities](https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities)
 
-#### Trusted List Terminology Comparison
+##### Trusted List Terminology Comparison
 
 The LoTE and the LoTL / EUMS TL differ not only in their underlying schemas but also in their parameter nomenclature. The following table maps the equivalent terms between the two standards:
 
@@ -169,7 +165,7 @@ The LoTE and the LoTL / EUMS TL differ not only in their underlying schemas but 
 | Scheme Operator | Scheme Operator |
 | Service Digital Identity | Service Digital Identity |
 
-### Specific Formats and Uses
+#### Specific Formats and Uses
 
 The following table details the governing standards, publication scopes, and mandated data formats regarding the specific provider lists utilized within the ecosystem:
 
@@ -187,7 +183,7 @@ The following table details the governing standards, publication scopes, and man
 > _**Note:**_ 
 > Within the APTITUDE project, the Pub-EAA Provider Lists are published in JSON format. 
 
-#### LoTE Additional Requirements
+##### LoTE Additional Requirements
 
 Following Annexes D - I in ETSI TS 119 602, below are detailed the additional requirements spelled out by type. As seen in [List of Trusted Entities](#list-of-trusted-entities), the LoTE contains a sequence of two components: `ListAndSchemeInformation` and `TrustedEntitiesList`. Depending on the LoTE type, the `ListAndSchemeInformation` component is further specified by the following parameters:
 
@@ -195,7 +191,7 @@ Following Annexes D - I in ETSI TS 119 602, below are detailed the additional re
 | :-------: | :--------: | :------: | :----: | :---------- |
 | `LoTEVersionIdentifier` | ETSI TS 119 602 clause 6.3.1 | REQUIRED | *Integer* | The value of the `LoTEVersionIdentifier` component SHALL be `1`. |
 | `LoTESequenceNumber` | ETSI TS 119 602 clause 6.3.2 | REQUIRED | *Integer* | The first instance of the PID providers list SHALL be issued with the value of the `LoTESequenceNumber` component number set to `1`. |
-| `LoTEType` | ETSI TS 119 602 clause 6.3.3 | REQUIRED | *String* | Depending on the LoTE type, the value of the `LoTEType` component SHALL be one of the following URIs:<ul><li>"http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList" for PID Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWalletProvidersList" for Wallet Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPACProvidersList" for Providers of WRPAC;</li><li>"http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList" for Providers of WRPRC;</li><li>"http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList" for Pub-EAA Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/RegistrarsAndRegistersList" for Registrars.</li></ul> |
+| `LoTEType` | ETSI TS 119 602 clause 6.3.3 | REQUIRED | *String* | Depending on the LoTE type, the value of the `LoTEType` component SHALL be one of the following URIs:<ul><li>"http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList" for PID Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWalletProvidersList" for Wallet Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPACProvidersList" for Providers of WRPAC;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList" for Providers of WRPRC;</li><li>"http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList" for Pub-EAA Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/RegistrarsAndRegistersList" for Registrars.</li></ul> |
 | `SchemeOperatorName` | ETSI TS 119 602 clause 6.3.4 | REQUIRED | *Object* | No additional requirements. |
 | `SchemeOperatorAddress` | ETSI TS 119 602 clause 6.3.5 | REQUIRED | *Object* | No additional requirements. |
 | `SchemeName` | ETSI TS 119 602 clause 6.3.6 | REQUIRED | *Object* | No additional requirements. |
@@ -221,7 +217,7 @@ The `TrustedEntitiesList` is an *Array* of *Objects*, each possessing two primar
 | `TEInformationURI` | ETSI TS 119 602 clause 6.5.4 | REQUIRED | *Object* | Depending on the LoTE type, the `TEInformationURI` component SHALL contain:<ul><li>The URL of the webpage that contains the policies, terms, and conditions of the respective provider applying to the provision and use of their services/components;</li><li>where applicable, the URL of the webpage that contains additional information about the provider;</li><li>a URI formatted as `http://uri.etsi.org/19602/ListOfTrustedEntities/[Type]/CC`, where `[Type]` aligns with the provider type and `CC` is replaced by the ISO 3166-1 Alpha 2 country code of the responsible Member State.</li></ul> |
 | `TEInformationExtensions` | ETSI TS 119 602 clause 6.5.5 | REQUIRED | *Array* | No additional requirements. |
 
-> _**Warning:**_ 
+> ***Warning:***
 > The `TEAddress` component's description for the Pub-EAA Providers LoTE differs from c) of the `TEAddress` component's description in ETSI 119 602 Annex H.3, Table H.2, which states "*the URI "http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC" where "CC" is replaced by the ISO 3166-1 [2] Alpha 2 code of the Member State which is responsible for that Pub-EAA provider*". For conformance to the other LoTE types, this has been moved to the `TEInformationURI` component's description, as it is more appropriate for the information it conveys.
 
 The `TrustedEntityServices` is an *Array* of `TrustedEntityService` *Objects*. Each `TrustedEntityService` *Object* possesses two primary subcomponents: the `ServiceInformation` and `ServiceHistoryInstance` components. The following table details the additional requirements the `ServiceInformation` *Object* component SHALL satisfy depending on the LoTE type.
