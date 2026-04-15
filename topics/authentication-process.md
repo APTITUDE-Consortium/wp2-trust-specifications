@@ -1,6 +1,6 @@
 ## Authentication Process
 
-The Authentication Process enables the Wallet Unit to authenticate a Wallet Relying Party (WRP). This involves validating the X.509 certificate chain, starting from the certificate issued by a trusted Provider of WRPAC and ending with the Wallet Relying Party Access Certificate (WRPAC) presented by the WRP.
+The Authentication Process enables the Wallet Unit to authenticate a Wallet Relying Party (WRP). This involves validating the X.509 certificate chain, starting from the certificate issued by a trusted Provider of Wallet Relying Party Access Certificate (WRPAC) and ending with the WRPAC presented by the WRP.
 
 To perform this validation, the Wallet Unit SHALL:
 
@@ -42,7 +42,7 @@ sequenceDiagram
     end
 ```
 
-### Access Certificate Path Validation
+### Wallet Relying Party Access Certificate Path Validation
 
 This section defines the validation of the certification path.
 
@@ -91,7 +91,6 @@ Iterate through the path for $i$ from $1$ to $n$:
     - Verify that either `explicit_policy > 0` OR `valid_policy_tree` is not NULL. If this fails, abort.
 
 **Step 3: Preparation for Next Certificate**
-
 1. If $i < n$ (i.e., $C_i$ is an intermediate CA), perform the following updates:
     - Set `working_issuer_name` to the Subject DN of $C_i$.
     - Set `working_public_key` to the Subject Public Key of $C_i$.
@@ -174,7 +173,7 @@ graph TD
     class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;
 ```
 
-### Revocation Checking
+#### Revocation Checking
 
 The Wallet Unit SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
@@ -184,18 +183,21 @@ The Wallet Unit SHALL determine the revocation status for every certificate in t
 
 For details regarding the formats and parameters of CRLs and OCSP responses, see [Revocation Mechanism](/topics/revocation-mechanisms.md).
 
-#### CRL Validation
+##### CRL Validation
 
 When using a CRL, the Wallet Unit SHALL:
 
 1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Unit SHOULD attempt to retrieve an updated CRL.
 2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
-    - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked; <!-- Assumption: in case the issuer of the CRL and certificate coincides-->
+    - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked; 
 3. Verify the `issuingDistributionPoint` matches the certificate's distribution point.
     - `distributionPoint` field of the `cRLDistributionPoints` extension matches the `distributionPoint` field of the `IssuingDistributionPoint` extension of the CRL (if present);
     - if the `BasicConstraints` extension is present in the certificate being checked, and has `cA` set to `TRUE` (respectively `FALSE`), the CRL Issuing Distribution Point extension SHALL have the `onlyContainsCACerts` field set to `TRUE` (respectively have the `onlyContainsUserCerts` field set to `TRUE`)
 4. Validate the CRL signature using the issuer's public key. If a key usage extension is present in the CRL issuer's certificate, verify that the `cRLSign` bit is set.
 5. Check if the certificate's serial number is listed in `revokedCertificates`. If an entry is found then the certificate status is set to `revoked`.
+
+> ***Note:***
+> In this case it is assumed that the issuer of both the CRL and certificate do coincide, and that the CRL is not signed by a delegated CRL issuer.
 
 If any of the steps 1-4 fail or the CRL is unavailable, the Wallet Unit SHALL consider the certificate status as `unknown`. When all steps 1-4 succeed and the certificate serial number is not found in the CRL, the certificate SHALL be considered `good`.
 
@@ -253,12 +255,12 @@ graph TD
     class Revoked,Revoked2,Revoked3,Revoked4,Revoked5 revoked;
 ```
 
-#### OCSP Response Validation
+##### OCSP Response Validation
 
 When using OCSP, the Wallet Unit SHALL:
 
 1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the Wallet Unit SHOULD attempt to retrieve an updated OCSP response, and if that fails, the certificate status SHALL be considered `unknown`.
-2. Verify `responseType` is `id-pkix-ocsp-basic`. <!-- Assumption: only basic OCSP responses are supported. -->
+2. Verify `responseType` is `id-pkix-ocsp-basic`.
 3. Verify the response `signature` using the Responder's public key (`certs` field in the OCSP response).
     - *Note*: To ensure the OCSP Responder is authorized, match the Issuer's key or check the delegation certificate signed by the Issuer.
 4. Verify `responderID` matches the signer, and the `CertID` hash fields match the certificate being checked.
@@ -266,6 +268,9 @@ When using OCSP, the Wallet Unit SHALL:
     - `issuerKeyHash` field value is the hash (via `hashAlgorithm`) of the issuer’s `subjectPublicKey` BIT STRING (excluding tag/length/unused-bits).
     - `serialNumber` field value is the certificate’s serial number.
 5. Check `thisUpdate` and `nextUpdate` (or `producedAt`) against local freshness policies.
+
+> ***Note:***
+> It is assumed that only basic OCSP responses (i.e., where `responseType` is `id-pkix-ocsp-basic`) are supported.
 
 If any of the checks in 2-4 fail, the certificate status SHALL be considered `unknown`. If all checks succeed, update the status of each certificate by matching the `certStatus` value in the `SingleResponse` to the requested `CertID`.
 
