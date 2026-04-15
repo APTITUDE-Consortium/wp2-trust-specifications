@@ -1,6 +1,6 @@
-# Authorization Process
+## Authorization Process
 
-# Scope
+### Scope
 
 This section specifies the authorization process that a Wallet Instance (WI) SHALL execute to determine whether an interaction with a Wallet-Relying Party (WRP) is allowed within the EUDI Wallet ecosystem. A wallet Instance SHALL implement all the authorization-processing rules defined in this section [AUTHZ-GEN-03].
 
@@ -9,20 +9,20 @@ Authorization covers:
 - **Issuance authorization**: whether a PID Provider or Attestation Provider (AP) is registered for the relevant role and for the specific attestation type(s) to be issued. This applies to PID Providers, QEAA Providers, PuB-EAA Providers, and non-qualified EAA Providers.
 - **Presentation authorization**: whether a Relying Party (RP) request is within its registered scope, whether any Embedded Disclosure Policy permits disclosure, and whether the User approves. This applies to both direct RP and intermediated RP interactions, and both remote and proximity flows.
 
-## Out of scope
+#### Out of Scope
 
 Authentication process is out of scope. This section does not define access certificate validation rules, LoTE validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the WRPRC (covered in section [Registration Certificate](registration-certificate.md)), nor Registrar online service API definition.
 
-## Preconditions
+#### Preconditions
 
 The authorization process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](authentication-process.md)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the authorization process SHALL NOT start [AUTHZ-GEN-02].
 This section does define how the WI SHALL use the already-authenticated WRP context as an input to authorization, including binding checks between the authenticated WRP, the authorization subject, and the WRPRC or Register-derived authorization context.
 
-# Authorization Framework
+### Authorization Framework
 
 This subsection defines the conceptual model that defines all authorization decisions. It introduces the key concepts (authorization subject, data source hierarchy, decision outcomes, and override principles) that the subsequent subsections build upon.
 
-## Authentication prerequisite and authorization subject
+#### Authentication Prerequisite and Authorization Subject
 
 The WI SHALL distinguish between the authenticated WRP and the authorization subject [AUTHZ-GEN-04]. The authorization subject is the entity whose authorization is being evaluated:
 
@@ -30,11 +30,11 @@ The WI SHALL distinguish between the authenticated WRP and the authorization sub
 - In direct presentation: the RP.
 - In intermediated presentation: the final (intermediated) RP. The authenticated WRP in this case is the intermediary.
 
-## Source-model neutrality
+#### Source-Model Neutrality
 
 The WI SHALL support authorization-context resolution from a WRPRC (where available) and from the Register (where a WRPRC is not available or cannot be relied upon) [AUTHZ-GEN-05]. The substantive authorization logic SHALL NOT change based on the data source [AUTHZ-GEN-06]. Where both sources are available, the WI SHALL normalize both into the same internal authorization model before applying rules [AUTHZ-GEN-07].
 
-## Input model
+#### Input Model
 
 The WI SHALL base authorization decisions only on information derived from [AUTHZ-IN-01]:
 
@@ -54,7 +54,7 @@ Where authoritative sources conflict with non-authoritative sources, the authori
 
 A request-carried Registrar URL SHALL NOT be treated as sufficient proof of registered information by itself; it MAY be used only as a discovery hint unless confirmed by an authoritative source [AUTHZ-IN-09].
 
-## Decision model
+#### Decision Model
 
 The WI SHALL provide an authorization decision expressed as `AUTHORIZED` or `NOT_AUTHORIZED` [AUTHZ-UI-01].
 
@@ -75,7 +75,7 @@ Each evaluation procedure (defined later in this section) gives a granular verif
 
 The authorization process SHALL support transparent decision-making and SHALL NOT be a purely hidden backend check [AUTHZ-UI-05].
 
-## Override principles
+#### Override Principles
 
 A `NOT_AUTHORIZED` decision can be either non-overridable (the WI blocks the interaction) or overridable (the WI presents the negative outcome and the User can choose to proceed).
 
@@ -95,15 +95,15 @@ In case of non-overridable failures, the WI SHALL clearly inform the User about 
 
 The detailed override rules are provided in the [Override Rules](#override-rules) section.
 
-# Authorization Evidences
+### Authorization Evidences
 
 This section describes the data objects that carry authorization information such as where they originate, how they are distributed, and what parameters are relevant for authorization decisions. The evaluation procedures that operate on these data objects are defined in the section [Evaluation Procedures](#evaluation-procedures).
 
-## Registration overview
+#### Registration Overview
 
 WRPs are registered with a Registrar in their Member State before operating in the EUDI Wallet ecosystem. Relying Parties declare one or more intended uses, each with a user-friendly description, the attestation type and optionally the list of attributes needed, the purpose, and a privacy policy link. A WRPRC is issued for each intended use (RPRC_09). Attestation Providers declare which attestation types they intend to issue (RPRC_15, RPRC_22a). Intermediaries are registered as RPs that act on behalf of another RPs; the WRPRC of the intermediated RP contains the `intermediary` structure identifying the authorized intermediary per ETSI TS 119 475 Table 10.
 
-## Data object lifecycle
+#### Data Object Lifecycle
 
 The following diagram shows the authorization evidences and how they flow between the entities in the ecosystem.
 
@@ -154,7 +154,7 @@ class META,PRES transport
 
 Registration data is collected at the Registrar and the Provider of WRPRCs get it from Registrar to provide it through a WRPRC. Registration data can also be queried directly by the WI using Registrar online services as a fallback mechanism. WRPRCs are distributed to the WI through presentation requests (for RPs) or through Credential Issuer Metadata (for APs). EDPs are defined by the AP, distributed through Credential Issuer Metadata, stored locally by the WI during issuance, and evaluated at presentation time.
 
-## WRPRC parameters for authorization
+#### WRPRC Parameters for Authorization
 
 The following table lists the WRPRC payload parameters used in authorization processing, with field names as defined in ETSI TS 119 475 V1.2.1 section 5.2.4. Details about the WRPRC data structure and lifecycle are provided in section [Registration Certificate](registration-certificate.md).
 The **Authorization Use** column indicates how each parameter is consumed: **Decision rule** means the WI enforces an automated check, **User transparency** means the information is displayed to support the User's decision, and **Wallet operation** means the WI uses it internally (e.g. for fallback query).
@@ -179,7 +179,7 @@ The **Authorization Use** column indicates how each parameter is consumed: **Dec
 | `status` | WRPs (REQUIRED) | **Decision rule**: WRPRC revocation check via Status List | ETSI 475 GEN-6.2.6.1-04, RPRC_17 |
 | `iat` / `exp` | WRPs (REQUIRED) | **Decision rule**: temporal validity check | ETSI 475 |
 
-## Distribution Methods
+#### Distribution Methods
 
 **Presentation flows.** RPs include the WRPRC in the presentation request by value (RPRC_19) in the:
 
@@ -196,7 +196,7 @@ The **Authorization Use** column indicates how each parameter is consumed: **Dec
 
 Metadata is signed with the AP WRPAC private key (ISSU_22a). Authorization data cointained in the EDP is also distributed through Credential Issuer Metadata within `credential_configurations_supported` field.
 
-## Registrar online service
+#### Registrar Online Service
 
 Each Registrar provides an online service accessible via URL, obtained as described in the [Distribution Methods](#distribution-methods) section.
 
@@ -205,7 +205,7 @@ The WI SHALL use this service when the WRPRC is not available or validation fail
 > [!NOTE]
 > The WI SHOULD inform the User that an external query will be made (privacy consideration per RPRC_18).
 
-## Embedded Disclosure Policy
+#### Embedded Disclosure Policy
 
 The EDP is a set of rules defined by the AP that restricts which RPs can access specific Attestations. The EDP definition, data model, structure, encoding, and lifecycle are specified in the dedicated [Embedded Disclosure Policy](embedded-disclosure-policy.md) section of this specification.
 
@@ -219,11 +219,11 @@ For authorization purposes, the following aspects are relevant:
   - Authorized Relying Parties Only.
   - Specific Root of Trust.
 
-# Evaluation Procedures
+### Evaluation Procedures
 
 This section defines the individual verification procedures that are composed into end-to-end flows in the [Operational Flows](#operational-flows) section. Each procedure is self-contained: it specifies its inputs, its processing logic, and its output (a verification result code). The override behaviour for each procedure's negative outcome is detailed in the [Override Rules](#override-rules) section.
 
-## WRPRC Validation Procedure
+#### WRPRC Validation Procedure
 
 When a WRPRC is available, the WI SHALL validate it before relying on it [AUTHZ-GEN-08]:
 
@@ -237,7 +237,7 @@ When a WRPRC is available, the WI SHALL validate it before relying on it [AUTHZ-
 
 If any step fails, the procedure outputs `CERTIFICATE_INVALID`. This is not a final authorization decision; it triggers the [Register Validation Procedure](#register-validation-procedure) as fallback.
 
-## Register Validation Procedure
+#### Register Validation Procedure
 
 When the WRPRC is not available or validation has failed, the WI SHALL attempt to contact the Register APIs [AUTHZ-GEN-10]:
 
@@ -253,11 +253,11 @@ If the URL is not present, connection fails, or validation fails, the procedure 
 
 **Three-tier fallback (issuance only)** (ISSU_24a and ISSU_34a): self-declared data from `registrar_dataset` (advisory only, SHALL NOT be presented as verified) [AUTHZ-IN-10].
 
-## Binding Verification Procedure
+#### Binding Verification Procedure
 
 The WI SHALL verify coherence between the authenticated WRP identity and the authorization context, regardless of whether the authorization context is derived from a WRPRC or from the Register [AUTHZ-GEN-11]. This procedure ensures that the authenticated entity (through WRPAC) is the same as the entity described in the authorization data.
 
-### Common principle
+##### Common Principle
 
 The WI SHALL compare the WRP identifier extracted from the WRPAC subject (the `organizationIdentifier` in the subject DN, following ETSI EN 319 412-1 clause 5.1.4) against the authorization subject identifier available from:
 
@@ -267,7 +267,7 @@ The WI SHALL compare the WRP identifier extracted from the WRPAC subject (the `o
 
 All available sources SHALL be mutually consistent.
 
-### Issuance binding
+##### Issuance Binding
 
 During issuance, the WI SHALL verify that the AP that signed the Credential Issuer Metadata (identified by the WRPAC in the `x5c` header of the JWS) is the same entity described in the authorization data [AUTHZ-GEN-11]. The WI SHALL check coherence between:
 
@@ -277,7 +277,7 @@ During issuance, the WI SHALL verify that the AP that signed the Credential Issu
 
 If any pair of these identifiers is inconsistent, the procedure outputs `BINDING_FAILED`. Intermediary detection does not apply to issuance.
 
-### Presentation binding -- intermediary detection
+##### Presentation Binding -- Intermediary Detection
 
 In presentation, before verifying binding, the WI SHALL check whether the interaction is direct or intermediated [AUTHZ-INT-01] by comparing:
 
@@ -286,7 +286,7 @@ In presentation, before verifying binding, the WI SHALL check whether the intera
 
 If the two identifiers match, the **direct RP scenario** applies. If they differ, the **intermediary scenario** applies.
 
-### Direct RP binding
+##### Direct RP Binding
 
 In the direct RP scenario, the WI SHALL verify that the WRPRC (if present in `verifier_info` or `requestInfo`) is coherent with the already-established identities [AUTHZ-GEN-12]:
 
@@ -294,7 +294,7 @@ In the direct RP scenario, the WI SHALL verify that the WRPRC (if present in `ve
 
 If the WRPRC `sub` does not match, the WRPRC is not valid for this RP. The procedure outputs `BINDING_FAILED` and the WI SHALL discard the WRPRC and fall back to the [Register Validation Procedure](#register-validation-procedure).
 
-### Intermediary binding
+##### Intermediary Binding
 
 In the intermediary scenario, the WI SHALL perform the following verifications [AUTHZ-INT-02]:
 
@@ -332,7 +332,7 @@ If any name is not available, the WI SHALL display the identifier instead of the
 > [!NOTE]
 > The Registrar online service API, including the specific parameters for querying intermediary relationships, is defined in TS5. This specification does not define the Register API; it only defines how the WI uses the Register response for authorization purposes.
 
-## Entitlement Verification Procedure
+#### Entitlement Verification Procedure
 
 The WI SHALL verify that the entitlements of the authorization subject match the expected role [AUTHZ-GEN-13].
 
@@ -349,7 +349,7 @@ For **presentation**, the expected entitlement is `https://uri.etsi.org/19475/En
 
 If the `entitlements` array does not contain the expected value, the procedure SHALL output `WRONG_ENTITLEMENT`.
 
-## Attestation Type Verification Procedure (issuance only)
+#### Attestation Type Verification Procedure (Issuance Only)
 
 The WI SHALL verify that the PID or attestation type being requested is registered for the provider [AUTHZ-ISS-02]:
 
@@ -358,7 +358,7 @@ The WI SHALL verify that the PID or attestation type being requested is register
 
 If not found, the procedure SHALL output `ATTESTATION_TYPE_NOT_REGISTERED`.
 
-## Scope Comparison Procedure (presentation only, user-optional)
+#### Scope Comparison Procedure (Presentation Only, user-optional)
 
 The WI SHALL [AUTHZ-PRES-01]:
 
@@ -367,7 +367,7 @@ The WI SHALL [AUTHZ-PRES-01]:
 
 If all match, the WI SHALL output `VERIFICATION_PASSED`. Otherwise, the WI SHALL output `OVERASKING_DETECTED` and identify the unregistered attributes [AUTHZ-PRES-02].
 
-## EDP Evaluation Procedure
+#### EDP Evaluation Procedure
 
 For each Attestation matching a presentation request, the WI SHALL check for a locally stored EDP [AUTHZ-EDP-03]. If no EDP exists, the Attestation is allowed (subject to User approval). Otherwise:
 
@@ -389,7 +389,7 @@ If `EDP_SATISFIED`, the WI SHALL allow the Attestation presentation (subject to 
 If `EDP_NOT_SATISFIED`, the WI SHALL produce `NOT_AUTHORIZED`, present the outcome, and allow User override (EDP_07) [AUTHZ-EDP-08].
 If the User denies, the WI SHALL behave as if the Attestation does not exist (RPA_11).
 
-# Override Rules
+### Override Rules
 
 This section details the override behaviour for each procedure when it provides a negative outcome. Each row identifies a procedure, the phase in which it applies, the result code produced on failure, and whether the User can override that outcome.
 
@@ -407,13 +407,13 @@ This section details the override behaviour for each procedure when it provides 
 | Scope Comparison | Presentation | `OVERASKING_DETECTED` | Overridable. Advisory to User [AUTHZ-PRES-02] |
 | EDP Evaluation | Presentation | `EDP_NOT_SATISFIED` | Overridable. User can deny or allow [AUTHZ-EDP-08] |
 
-# Operational Flows
+### Operational Flows
 
 This section combines the evaluation procedures defined above into end-to-end flows for issuance and presentation.
 
-## Authorization during Issuance
+#### Authorization During Issuance
 
-### Interaction flow
+##### Interaction Flow
 
 ```mermaid
 sequenceDiagram
@@ -456,7 +456,7 @@ sequenceDiagram
     end
 ```
 
-### Step-by-step operations
+##### Step-by-step Operations
 
 **Steps 1-3: Obtain Credential Issuer Metadata.** The WI SHALL fetch metadata from the AP using OpenID4VCI (ISSU_01) [AUTHZ-ISS-04]. These steps are not required if the WI already has the Credential Issuer Metadata stored locally, for example if it is already fetched during authentication process.
 
@@ -472,9 +472,9 @@ sequenceDiagram
 
 **Steps 12-15: User confirmation and EDP storage.** Display AP information [AUTHZ-ISS-10], [AUTHZ-UI-09]. On confirmation, the WI store EDP locally if present (EDP_09) [AUTHZ-EDP-02] and proceed. On cancellation, terminate.
 
-## Authorization during Presentation
+#### Authorization During Presentation
 
-### Common authorization semantics
+##### Common Authorization Semantics
 
 The authorization logic is the same for remote and proximity flows [AUTHZ-PRES-03]. Main Differences are limited to:
 
@@ -483,7 +483,7 @@ The authorization logic is the same for remote and proximity flows [AUTHZ-PRES-0
 - WRPRC format (JWT vs CWT).
 - WRPRC data structure.
 
-### Interaction flow
+##### Interaction Flow
 
 ```mermaid
 sequenceDiagram
@@ -518,7 +518,7 @@ sequenceDiagram
     User-->>WI: 10. User decision
 ```
 
-### Step-by-step operations
+##### Step-by-step Operations
 
 **Step 1: Receive request and check User opt-in.** The WI SHALL offer a User setting for RP verification, enabled by default [AUTHZ-PRES-04]. If opted-in, proceed to step 2. Otherwise skip to step 8.
 
@@ -546,15 +546,15 @@ sequenceDiagram
 
 If `AUTHORIZED`, the WI SHALL proceed to normal User approval. If `NOT_AUTHORIZED` and override is allowed, the WI SHALL present the negative outcome and MAY allow continuation [AUTHZ-UI-11]. If `NOT_AUTHORIZED` and override is not allowed, the WI SHALL NOT allow continuation [AUTHZ-UI-12].
 
-### Remote flow specifics
+##### Remote Flow Specifics
 
 The RP Instance SHALL include RPRC_19a extension fields and, if available, the WRPRC by value (RPRC_19) [AUTHZ-PRES-10]. The WRPRC SHALL be JWT (`typ = "rc-wrp+jwt"`). Requested attributes SHALL be extracted from DCQL `credential_queries[].claims[]` paths.
 
-### Proximity flow specifics
+##### Proximity Flow Specifics
 
 The WRPRC is extracted from `euWrprc` in `requestInfo` according to ETSI TS 119 472-2 [AUTHZ-PRES-11]. The WRPRC SHALL be CWT (`typ = "rc-wrp+cwt"`), signing algorithm from COSE header. Requested attributes SHALL be extracted from `docRequest.itemRequest.nameSpaces`.
 
-### Intermediary handling
+##### Intermediary Handling
 
 Intermediary handling applies to both flows [AUTHZ-INT-04]. The WI SHALL:
 
@@ -565,7 +565,7 @@ Intermediary handling applies to both flows [AUTHZ-INT-04]. The WI SHALL:
 
 Negative cases SHALL result in `NOT_AUTHORIZED` code [AUTHZ-INT-06]. Override is allowed only for negative scope and negative EDP [AUTHZ-INT-07].
 
-### Combined mechanisms flowchart
+##### Combined Mechanisms Flowchart
 
 ```mermaid
 flowchart TD
@@ -633,7 +633,7 @@ flowchart TD
     style RegPassed fill:#ccffcc
 ```
 
-# Annex A -- Authorization Requirements
+### Annex A -- Authorization Requirements
 
 > **Note**: This table is provided for implementation and conformance-verification purposes. It consolidates the normative requirements defined throughout the specification body. In case of interpretative ambiguity between this table and the normative sections of the specification, the normative sections SHALL prevail.
 
