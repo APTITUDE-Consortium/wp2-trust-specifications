@@ -16,7 +16,7 @@ Depending on the artifact or attestation being verified, the validating Entity S
    - **PID Signatures**: Person Identification Data (PID).
    - **Registrar-signed artifacts**: Register informations.
 2. *EU Member State Trusted Lists* (EUMS TL); used to retrieve Trust Anchors for validating the following:
-   - seal or signature on a Qualified Electronic Attestation of Attributes (QEAA); or 
+   - seal or signature on a Qualified Electronic Attestation of Attributes (QEAA); or
    - seal or signature on a Public Electronic Attestation of Attributes (Pub-EAA).
 
 To verify the authenticity of the retrieved Trusted Lists, the Entity SHALL perform the following validations:

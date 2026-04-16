@@ -78,6 +78,7 @@ Iterate through the path for $i$ from $1$ to $n$:
     - Verify that either `explicit_policy > 0` OR `valid_policy_tree` is not NULL. If this fails, abort.
 
 **Step 3: Preparation for Next Certificate**
+
 1. If $i < n$ (i.e., $C_i$ is an intermediate CA), perform the following updates:
     - Set `working_issuer_name` to the Subject DN of $C_i$.
     - Set `working_public_key` to the Subject Public Key of $C_i$.
@@ -176,7 +177,7 @@ When using a CRL, the Wallet Unit SHALL:
 
 1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the Wallet Unit SHOULD attempt to retrieve an updated CRL.
 2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
-    - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked; 
+    - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked;
 3. Verify the `issuingDistributionPoint` matches the certificate's distribution point.
     - `distributionPoint` field of the `cRLDistributionPoints` extension matches the `distributionPoint` field of the `IssuingDistributionPoint` extension of the CRL (if present);
     - if the `BasicConstraints` extension is present in the certificate being checked, and has `cA` set to `TRUE` (respectively `FALSE`), the CRL Issuing Distribution Point extension SHALL have the `onlyContainsCACerts` field set to `TRUE` (respectively have the `onlyContainsUserCerts` field set to `TRUE`)

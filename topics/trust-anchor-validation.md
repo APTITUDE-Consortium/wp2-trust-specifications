@@ -79,7 +79,7 @@ The validation SHALL perform the following steps:
 - In case of `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE` error, it is likely that the OJEU publication has been updated with a new location for the LoTE, and the validation process needs to be restarted with the new location.
 - In step 8. the validator established the binding of the signer certificate of the `LoTE` XML with the certificate referenced in the OJEU, effectively using the latter as a Trust Anchor.
 
-To validate a Pub-EAA LoTE in XML format (XAdES) containing the sought Trust Anchor, the Wallet Unit or WRP SHALL perform the same steps as described in [Validation of the LoTL](#validation-of-the-lotl) for the LoTE, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LoTL`.
+To validate a Pub-EAA LoTE in XML format (XAdES) containing the sought Trust Anchor, the Wallet Unit or WRP SHALL perform the same steps as described in [List of Trusted Lists Validation Process](#list-of-trusted-lists-validation-process) for the LoTE, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LoTL`.
 
 Below is a flowchart summarizing the above steps for the validation of the LoTE:
 
@@ -155,7 +155,7 @@ graph TD
     F9 --> EndFail
 ```
 
-#### European Union Member State Trusted List Validation 
+#### European Union Member State Trusted List Validation
 
 This section defines the validation of Member State Trusted Lists (EUMS TL). The EUMS TL is an XML artifact signed by a Member State Scheme Operator. In order to validate the EUMS TL, the Wallet Unit or WRP uses the following validation hierarchy:
 

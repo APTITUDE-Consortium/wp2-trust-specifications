@@ -6,8 +6,7 @@ MD060:
   style: padded       # Controls table pipe spacing.
 
 # 2. Style Consistency
-MD046:
-  style: fenced       # Requires code blocks to use triple backticks.
+MD046: false          # Disable checks on code block style (to support Admonitions).
 MD049:
   style: asterisk     # Enforces _italics_ using asterisks.
 
@@ -18,6 +17,7 @@ MD024:
 MD028: false          # Allows blank lines inside blockquotes.
 MD033: false          # Disables the "No Inline HTML" rule.
 MD041: false          # Disables the requirement that the first line must be an H1 header.
+MD051: false          # Disables checks on link fragments (as single topics may reference each other).
 
 # 4. Cleanup
 MD009: true           # Flags trailing spaces at the end of lines.

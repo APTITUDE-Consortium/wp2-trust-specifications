@@ -1,11 +1,11 @@
-This section describes the artifacts that are employed in [Trust Management Process](#trust-management-process) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
+This section describes the artifacts that are employed in [Trust Management and Lifecycle](#7-trust-management-and-lifecycle) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
 - To manage Wallet Relying Party Access Certificates (WRPACs), each Provider of WRPAC SHALL:
   - make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
-  - issue Access Certificates with at least an extension corresponding to the provided revocation mechanism as illustrated in [Access Certificate](#access-certificate).
+  - issue Access Certificates with at least an extension corresponding to the provided revocation mechanism as illustrated in [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate).
 - To manage Wallet Relying Party Registration Certificates (WRPRCs), each Provider of WRPRC SHALL:
   - make available an endpoint to request [Status List Tokens](#status-list-token);
-  - issue WRPRC with the appropriate parameter `status` as described in [Registration Certificates](#registration-certificate).
+  - issue WRPRC with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
 
 #### Token Status List
 
