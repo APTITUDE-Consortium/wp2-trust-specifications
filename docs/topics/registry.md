@@ -11,7 +11,7 @@ The **National Register of WRPs** is the publicly accessible system (dataset + A
 >The **National Register of Wallet-Relying Parties** is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a **single coherent common REST API** and return **signed statements** as required.<br>
 >Additionally, sectorial registers may exist internally, but the decision regarding issuance of WRPAC is solely based on whether the Relying Party has been registered with an active status in the National Register.
 
-## 2. Terms and Roles
+#### Terms and Roles
 
 - **Registrar of WRPs**: body designated by a Member State to establish and maintain the list of registered WRPs.
 - **Register (National Register of WRPs)**: the service exposing information about registered WRPs through a national website and a common REST API. Responses from Register are sealed using Register's certificate.
@@ -20,7 +20,7 @@ The **National Register of WRPs** is the publicly accessible system (dataset + A
 - **WRPRC**: Wallet-Relying Party Registration Certificate, which is optional, and is used to express intended use and registered data requests.
 - **Intermediary**: an entity acting on behalf of a WRP in wallet interactions (where applicable).
 
-## 3. References
+#### References
 
 - **Commission Implementing Regulation (EU) 2025/848** (Wallet-relying party registration / national registers / Annex I–V):  
   <https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj>
@@ -46,9 +46,9 @@ The **National Register of WRPs** is the publicly accessible system (dataset + A
 - **WE BUILD – “Registry of Wallet Relying Parties” discussion** (informative):  
   <https://github.com/JustBelieveEU/WE_BUILD/issues/20>
 
-## 4. Overall interaction schema
+#### Overall interaction schema
 
-## 4.1 WRP interacts directly with Wallet
+#### WRP interacts directly with Wallet
 
 The following diagram shows interactions between involved actors in case that WRP interacts directly with Wallet
 
@@ -80,7 +80,7 @@ sequenceDiagram
 
 ````
 
-## 4.2 WRP represented by an intermediary (where applicable)
+#### WRP represented by an intermediary (where applicable)
 
 In case that a relying party is represented by an intermediary, the interaction flow is shown as following:
 
@@ -120,9 +120,9 @@ sequenceDiagram
 
 ````
 
-## 5. Registry governance and publication requirements
+#### Registry governance and publication requirements
 
-## 5.1 Establishment and publication
+#### Establishment and publication
 
 | Requirement                                                                                                                                                         | Reference                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
@@ -132,7 +132,7 @@ sequenceDiagram
 | Member States SHALL make Annex I information publicly available online in human-readable and machine-processable form.                                              | CIR (EU) 2025/848, Article 3(4) |
 | Annex I information SHALL be available through a national website and a single common API, and SHALL be electronically signed/sealed by/on behalf of the registrar. | CIR (EU) 2025/848, Article 3(5) |
 
-## 5.2 Common API constraints (high level)
+#### Common API constraints (high level)
 
 | Requirement                                                                                                                                            | Reference                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
@@ -143,14 +143,15 @@ sequenceDiagram
 | The API SHALL provide security-by-default/by-design to ensure availability and integrity.                                                              | CIR (EU) 2025/848, Annex II §2(1)(e) |
 | Statements SHALL be electronically signed/sealed JSON files (structure according to Annex II Section 1).                                               | CIR (EU) 2025/848, Annex II §2(2)    |
 
-## 6. Registry data model (format)
+#### Registry data model (format)
 
 This section defines the format of the information exchanged via the Register API as JSON objects and JWS-signed statements.
 
-> **Address field publication rule (important):** The draft Annex VI text says the published API payload excludes `WalletRelyingParty.physicalAddress`, while Table 1 uses the attribute name `postalAddress`.  
-> This document uses **`postalAddress`** as the schema field name and applies the publication rule to that field (i.e., do not publish it in API statements).
+!!! note "Address field publication rule (important)"
 
-## 6.1 WalletRelyingParty (WRP registration information object)
+    The draft Annex VI text says the published API payload excludes `WalletRelyingParty.physicalAddress`, while Table 1 uses the attribute name `postalAddress`. This document uses **`postalAddress`** as the schema field name and applies the publication rule to that field (i.e., do not publish it in API statements).
+
+#### WalletRelyingParty (WRP registration information object)
 
 | Parameter |                                               Type | Description | Reference |
 | --- |---------------------------------------------------:| --- | --- |
@@ -177,7 +178,7 @@ This section defines the format of the information exchanged via the Register AP
 | `usesIntermediary` |          `WalletRelyingParty[]` (optional, subset) | If present, indicates designated intermediary(ies). Only the subset `{identifier, tradeName, registryURI}` is needed for each intermediary reference. | CIR Annex I(14)–(15); Draft Annex VI Table 1 |
 | `isIntermediary` |                                          `boolean` | Whether the registered entity is a designated intermediary. SHALL be `false` if `usesIntermediary` is present. | CIR Annex I(14)–(15); Draft Annex VI Table 1 |
 
-### 6.1.1 Identifier
+##### Identifier
 
 | Parameter    |     Type | Description                                                                      | Reference      |
 | ------------ | -------: | -------------------------------------------------------------------------------- | -------------- |
@@ -195,16 +196,18 @@ Normative identifier type URIs defined in ETSI TS 119 475:
 | TIN | `http://data.europa.eu/eudi/id/TIN` | — |
 | Excise | `http://data.europa.eu/eudi/id/Excise` | Council Regulation (EC) No 389/2012 |
 
-> Additional type identifiers may be defined at national or EU level.
+!!! note
 
-### 6.1.2 MultiLangString
+    Additional type identifiers may be defined at national or EU level.
+
+##### MultiLangString
 
 | Parameter |     Type | Description                      | Reference                  |
 | --------- | -------: | -------------------------------- | -------------------------- |
 | `lang`    | `string` | Language tag (e.g., `en`, `fr`). | ARF / common i18n practice |
 | `content` | `string` | Language-specific content.       | ARF / common i18n practice |
 
-### 6.1.3 IntendedUse
+##### IntendedUse
 
 | Parameter               |                Type | Description                                                           | Reference                              |
 | ----------------------- | ------------------: | --------------------------------------------------------------------- | -------------------------------------- |
@@ -215,7 +218,7 @@ Normative identifier type URIs defined in ETSI TS 119 475:
 | `createdAt`             |            `string` | Creation timestamp (implementation).                                  | Implementation                         |
 | `revokedAt`             | `string` (optional) | Revocation timestamp (implementation).                                | Implementation                         |
 
-### 6.1.4 Policy
+##### Policy
 
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
@@ -230,9 +233,11 @@ Defined policy type URIs:
 | Terms and conditions | `http://data.europa.eu/eudi/policy/terms-and-conditions` | Draft Annex VI Table 7 |
 | Privacy statement (intended use) | `http://data.europa.eu/eudi/policy/privacy-statement` | Draft Annex VI Table 7 |
 
-> Additional policy type URIs may be defined at national or EU level.
+!!! note
 
-### 6.1.5 Credential
+    Additional policy type URIs may be defined at national or EU level.
+
+##### Credential
 
 | Parameter |      Type | Description                                                   | Reference                         |
 | --------- | --------: | ------------------------------------------------------------- | --------------------------------- |
@@ -240,14 +245,14 @@ Defined policy type URIs:
 | `meta`    |  `object` | Additional grouping/type metadata defined per credential format (e.g., `{"vct": "..."}` for `dc+sd-jwt`, `{"doctype_value": "..."}` for `mso_mdoc`). See OpenID4VP §6.1. | Implementation / ARF profile; OpenID4VP DCQL |
 | `claim`   | `Claim[]` | Requested claim paths and allowed values (if constrained).    | CIR Annex I(9)                    |
 
-### 6.1.6 Claim
+##### Claim
 
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `path` | `array` | Non-empty path array of strings / `null` / non-negative integers (OpenID4VP-style path pointer segments). | CIR Annex I(9); Draft Annex VI Table 3 |
 | `values` | `array` (optional) | Optional allowed values; elements may be `string`, `integer`, or `boolean`. | CIR Annex I(9); Draft Annex VI Table 3 |
 
-### 6.1.7 LegalEntity (for `supervisoryAuthority`)
+##### LegalEntity (for `supervisoryAuthority`)
 
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
@@ -260,14 +265,14 @@ Defined policy type URIs:
 | `phone` | `string[]` (optional) | Phone number(s) of the authority. | Draft Annex VI Table 6 |
 | `infoURI` | `string[]` (optional) | Information URI(s) of the authority. | Draft Annex VI Table 6 |
 
-### 6.1.8 LegalPerson
+##### LegalPerson
 
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `legalName` | `string[]` | Legal name(s) as in official records. | Draft Annex VI Table 8 |
 | `establishedBylaw` | `Law[]` (optional) | Legal basis for establishment. **SHALL be present** for PSBs responsible for authentic sources; present for other PSBs where applicable. | Draft Annex VI §10.3; Draft Annex VI Table 8 / Table 11 |
 
-### 6.1.9 NaturalPerson
+##### NaturalPerson
 
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
@@ -276,14 +281,14 @@ Defined policy type URIs:
 | `dateOfBirth` | `string` (optional) | Date of birth (where present in official records). | Draft Annex VI Table 9 |
 | `placeOfBirth` | `string` (optional) | Place of birth (where present in official records). | Draft Annex VI Table 9 |
 
-### 6.1.10 Law
+##### Law
 
 | Parameter | Type | Description | Reference |
 | --- | ---: | --- | --- |
 | `lang` | `string` | Two-letter language code (ISO 639-1 style). | Draft Annex VI Table 11 |
 | `legalBasis` | `string` | Legal basis text establishing the legal person (or requiring/recommending access to a claim). | Draft Annex VI Table 11 |
 
-## 6.2 Entitlements
+#### Entitlements
 
 | Parameter       |       Type | Description                                    | Reference                                  |
 | --------------- | ---------: | ---------------------------------------------- | ------------------------------------------ |
@@ -304,25 +309,27 @@ Mapping between CIR entitlement label and ETSI TS 119 475 normative URI:
 | `rQSealCDs_Provider`           | `https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider`       | ETSI TS 119 475, Annex A.2   |
 | `ESig_ESeal_Creation_Provider` | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | ETSI TS 119 475, Annex A.2 |
 
-> **Sub-entitlements:** ETSI TS 119 475 v1.2.1 Annex A.3 defines additional sub-entitlement URIs for specific service provider roles. For example, Payment Service Provider sub-entitlements include:
->
-> | Sub-entitlement | URI |
-> | --- | --- |
-> | Account Servicing PSP | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-as` |
-> | Payment Initiation Service Provider | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-pi` |
-> | Account Information Service Provider | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai` |
-> | PSP issuing card-based payment instruments | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ic` |
-> | Unspecified PSP | `https://uri.etsi.org/19475/SubEntitlement/psp/unspecified` |
->
-> Future editions may define additional sub-entitlements at national or EU level.
+!!! note "Sub-entitlements"
 
-## 7. Registry statements
+    ETSI TS 119 475 v1.2.1 Annex A.3 defines additional sub-entitlement URIs for specific service provider roles. For example, Payment Service Provider sub-entitlements include:
+
+    | Sub-entitlement | URI |
+    | --- | --- |
+    | Account Servicing PSP | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-as` |
+    | Payment Initiation Service Provider | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-pi` |
+    | Account Information Service Provider | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai` |
+    | PSP issuing card-based payment instruments | `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ic` |
+    | Unspecified PSP | `https://uri.etsi.org/19475/SubEntitlement/psp/unspecified` |
+
+    Future editions may define additional sub-entitlements at national or EU level.
+
+#### Registry statements
 
 Registry statements exposed through the common API SHALL be provided as electronically signed or sealed JSON files, using JWS in accordance with Annex II Section 1 and RFC 7515.
 
-## 7.1 JWS requirements
+#### JWS requirements
 
-### 7.1.1 Serialization and header placement
+##### Serialization and header placement
 
 This profile uses **JWS Compact Serialization** for API responses (e.g., `application/jwt`), unless a Member State profile explicitly defines another serialization.
 In JWS Compact Serialization, there is **no unprotected header**; therefore, the JOSE Header is the **JWS Protected Header** and is integrity-protected by the signature.
@@ -333,7 +340,7 @@ In JWS Compact Serialization, there is **no unprotected header**; therefore, the
 | `payload` | `JSON value` | Decoded payload. Depending on endpoint, this may be an object, an array, or a boolean. | Draft Annex VI §5; RFC 7515 |
 | `integrityValidationInfo` | implementation-specific | Integrity-validation information as required by the applicable signature/seal profile. | Draft update; RFC 9162 / RFC 6962 |
 
-### 7.1.2 JOSE Protected Header parameters (profile)
+##### JOSE Protected Header parameters (profile)
 
 The following JOSE Protected Header requirements apply to registry statements:
 
@@ -347,11 +354,13 @@ The following JOSE Protected Header requirements apply to registry statements:
 | `typ` | OPTIONAL (RECOMMENDED) | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | RFC 7515 §4.1.9 |
 | `crit` | OPTIONAL | If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. `crit` MUST appear only in the protected header. | RFC 7515 §4.1.11 |
 
-> The JOSE header parameter `x5c` above is part of the JWS signature envelope. It is distinct from any `x5c` attribute defined in the registry payload/data schema (e.g., Annex VI data model fields).
+!!! note
 
-## 7.2 Normative endpoint payloads
+    The JOSE header parameter `x5c` above is part of the JWS signature envelope. It is distinct from any `x5c` attribute defined in the registry payload/data schema (e.g., Annex VI data model fields).
 
-### 7.2.1 `GET /wrp` payload
+#### Normative endpoint payloads
+
+##### `GET /wrp` payload
 
 The decoded JWS payload for `GET /wrp` SHALL be:
 
@@ -359,17 +368,17 @@ The decoded JWS payload for `GET /wrp` SHALL be:
 - with address field excluded from published entries,
 - and, where relevant, accompanied by WRPAC history information in the statement/profile used by the Member State.
 
-### 7.2.2 `GET /wrp/check-intended-use` payload
+##### `GET /wrp/check-intended-use` payload
 
 The decoded JWS payload for `GET /wrp/check-intended-use` SHALL be:
 
 - a boolean `true` or `false`.
 
-## 7.3 Optional profile envelope (recommended for interoperability metadata)
+#### Optional profile envelope (recommended for interoperability metadata)
 
 To preserve issuer/timestamp metadata and pagination in a stable schema, a Member State MAY define an envelope profile as follows (while still satisfying the endpoint semantics above):
 
-### 7.3.1 SignedWRPArrayEnvelope (profile)
+##### SignedWRPArrayEnvelope (profile)
 
 | Parameter | Type | Description |
 | --- | ---: | --- |
@@ -378,7 +387,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `data` | `WRPEntry[]` | Matching WRP entries (published view, address excluded), each bundled with its certificate history. |
 | `pagination` | `Pagination` (optional) | Cursor-based pagination metadata. |
 
-#### WRPEntry (per-WRP bundle)
+###### WRPEntry (per-WRP bundle)
 
 | Parameter | Type | Description |
 | --- | ---: | --- |
@@ -386,7 +395,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `wrpacHistory` | `CertificateHistoryEntry[]` (optional) | WRP access certificate history for this WRP (including CT-related references where available). |
 | `wrprcHistory` | `CertificateHistoryEntry[]` (optional) | WRP registration certificate history for this WRP (if provided by national profile). |
 
-### 7.3.2 SignedWRPEnvelope (profile, for non-common helper endpoints)
+##### SignedWRPEnvelope (profile, for non-common helper endpoints)
 
 | Parameter | Type | Description |
 | --- | ---: | --- |
@@ -396,7 +405,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `wrpacHistory` | `CertificateHistoryEntry[]` (optional) | WRPAC history. |
 | `wrprcHistory` | `CertificateHistoryEntry[]` (optional) | WRPRC history (if supported). |
 
-### 7.3.3 SignedIntendedUseCheckEnvelope (profile)
+##### SignedIntendedUseCheckEnvelope (profile)
 
 !!! note
 
@@ -408,7 +417,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `iat` | `integer` | Issued-at timestamp. |
 | `data` | `boolean` | Result of intended-use check. |
 
-## 7.4 CertificateHistoryEntry (profile helper for certificate histories)
+#### CertificateHistoryEntry (profile helper for certificate histories)
 
 | Parameter | Type | Description |
 | --- | ---: | --- |
@@ -419,14 +428,14 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `validTo` | `string` (optional) | Validity end timestamp/date (profile-defined format). |
 | `ctLogEntries` | `object[]` (optional) | CT log / transparency references (RFC 9162-aligned, profile-defined structure). |
 
-## 8. Common Register API (TS5-aligned profile)
+#### Common Register API (TS5-aligned profile)
 
 This section documents a TS5-aligned common Register API profile that satisfies Annex II constraints.
 > The API is public (no prior authentication) and returns JWS-signed statements.
 
-## 8.1 `GET /wrp` — search/list
+#### `GET /wrp` — search/list
 
-### 8.1.1 Request (query parameters)
+##### Request (query parameters)
 
 The common API SHALL support parameterised queries on `GET /wrp`. The following names align with the draft Annex VI query parameter naming.
 
@@ -447,7 +456,7 @@ The common API SHALL support parameterised queries on `GET /wrp`. The following 
 | `cursor` | `string`  | O | Cursor for pagination (profile-defined token format). | Draft Annex VI §4(c) |
 | `limit` | `integer`  | O | Page size (profile-defined). | Implementation profile |
 
-### 8.1.2 Behaviour
+##### Behaviour
 
 | Requirement | Reference |
 | --- | --- |
@@ -456,7 +465,7 @@ The common API SHALL support parameterised queries on `GET /wrp`. The following 
 | The endpoint SHALL support combined filters in a single query. | Draft Annex VI §4(d) |
 | A successful response (`200`) SHALL be JWS-signed. | Draft Annex VI §5; CIR Annex II §1 |
 
-### 8.1.3 Response
+##### Response
 
 | HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
@@ -464,11 +473,13 @@ The common API SHALL support parameterised queries on `GET /wrp`. The following 
 
 ---
 
-## 8.2 `GET /wrp/check-intended-use` — intended use check (public, required)
+#### `GET /wrp/check-intended-use` — intended use check (public, required)
 
-> **Important:** In the Annex VI draft this endpoint is part of the public API and is not optional.
+!!! warning
 
-### 8.2.1 Request
+    In the Annex VI draft this endpoint is part of the public API and is not optional.
+
+##### Request
 
 The draft requires a dedicated intended-use check endpoint with **four required and one optional parameter**.  
 This profile uses the following mapping (strictly aligned names for intended-use filters):
@@ -481,7 +492,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 | `intendedUseCredentialFormat` | `string` | R | Credential format to check. | Draft Annex VI §2(f), §4(c), §5 |
 | `intendedUseCredentialMeta` | `string` | O | Credential metadata filter (profile-defined serialisation). | Draft Annex VI §4(c), §5 |
 
-### 8.2.2 Response
+##### Response
 
 | HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
@@ -490,19 +501,21 @@ This profile uses the following mapping (strictly aligned names for intended-use
 
 ---
 
-## 8.3 `POST /wrp` — create (authorised write method)
+#### `POST /wrp` — create (authorised write method)
 
 This is a common API write method in the draft Annex VI.
 
-### 8.3.1 Request
+##### Request
 
-> This method is only accessible for entities which are authorized by Member State
+!!! note
+
+    This method is only accessible for entities which are authorized by Member State
 
 | Parameter | Type | R/O | Description | Reference |
 | --- | ---: | --- | --- | --- |
 | request body | `WalletRelyingParty` | R | Full WRP object compliant with Annex VI Table 1 schema (registration view). | Draft Annex VI §9(b); Table 1 |
 
-### 8.3.2 Response
+##### Response
 
 | HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
@@ -513,17 +526,19 @@ This is a common API write method in the draft Annex VI.
 
 ---
 
-## 8.4 `PUT /wrp` — update (authorized write method)
+#### `PUT /wrp` — update (authorized write method)
 
-### 8.4.1 Request
+##### Request
 
-> This method is only accessible for entities which are authorized by Member State
+!!! note
+
+    This method is only accessible for entities which are authorized by Member State
 
 | Parameter | Type | R/O | Description | Reference |
 | --- | ---: | --- | --- | --- |
 | request body | `WalletRelyingParty` | R | Full WRP object compliant with Annex VI Table 1 schema (registration view). | Draft Annex VI §9(b); Table 1 |
 
-### 8.4.2 Response
+##### Response
 
 | HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
@@ -535,17 +550,19 @@ This is a common API write method in the draft Annex VI.
 
 ---
 
-## 8.5 `DELETE /wrp` — delete
+#### `DELETE /wrp` — delete
 
-> This method is only accessible for entities which are authorized by Member State
+!!! note
 
-### 8.5.1 Request
+    This method is only accessible for entities which are authorized by Member State
+
+##### Request
 
 | Parameter | Type | R/O | Description | Reference |
 | --- | ---: | --- | --- | --- |
 | request body | `object` | R | Identifier payload for the WRP to delete (profile-defined body shape, based on `WalletRelyingParty.identifier`). | Draft Annex VI §9(b) |
 
-### 8.5.2 Response
+##### Response
 
 | HTTP Code | Type | Description | Reference |
 | --- | ---: | --- | --- |
@@ -557,27 +574,28 @@ This is a common API write method in the draft Annex VI.
 
 ---
 
-## 8.6 `GET /wrp/{identifier}` — get by identifier (national/profile extension)
+#### `GET /wrp/{identifier}` — get by identifier (national/profile extension)
 
-> This endpoint is useful, but it is **not explicitly defined** in the draft Annex VI common API method list.  
-> If kept, mark it as a national/profile extension.
+!!! note
 
-### 8.6.1 Request
+    This endpoint is useful, but it is **not explicitly defined** in the draft Annex VI common API method list. If kept, mark it as a national/profile extension.
+
+##### Request
 
 | Parameter | Type | R/O | Description |
 | --- | ---: | --- | --- |
 | `identifier` (path) | `string` | R | Identifier of the WRP to retrieve. |
 
-### 8.6.2 Response
+##### Response
 
 | HTTP Code | Type | Description |
 | --- | ---: | --- |
 | `200` | `application/jwt` | JWS compact string; decoded payload contains one `WalletRelyingParty` entry (or profile envelope). |
 | `404` | - | Not found. |
 
-## 9. Registrar processes (requirements)
+#### Registrar processes (requirements)
 
-## 9.1 Registration policy and onboarding
+#### Registration policy and onboarding
 
 | Requirement                                                                                                                                                                                       | Reference            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
@@ -589,7 +607,7 @@ This is a common API write method in the draft Annex VI.
 | Verification of entitlements SHALL be carried out according to Annex III.                                                                                                                         | CIR Article 6(5)     |
 | If registrar cannot verify according to Article 6(3)–(5), registrar SHALL reject the registration.                                                                                                | CIR Article 6(6)     |
 
-## 9.2 Suspension and cancellation
+#### Suspension and cancellation
 
 | Requirement                                                                                                                        | Reference        |
 | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
@@ -600,15 +618,15 @@ This is a common API write method in the draft Annex VI.
 | Registrar SHALL notify WRP + relevant certificate providers without undue delay and **not later than 24 hours**.                   | CIR Article 9(5) |
 | Certificate providers SHALL revoke affected certificates without undue delay after notification (where applicable).                | CIR Article 9(6) |
 
-## 9.3 Record keeping
+#### Record keeping
 
 | Requirement                                                                         | Reference      |
 | ----------------------------------------------------------------------------------- | -------------- |
 | Registrars SHALL keep records (Annex I + issuance data + changes) for **10 years**. | CIR Article 10 |
 
-## 10. Certificate-provider interactions (requirements)
+#### Certificate-provider interactions (requirements)
 
-## 10.1 WRP access certificates (WRPAC)
+#### WRP access certificates (WRPAC)
 
 | Requirement                                                                                                                                                                     | Reference          |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
@@ -616,7 +634,7 @@ This is a common API write method in the draft Annex VI.
 | Providers SHALL continuously monitor changes in the national register and revoke when changes require (especially suspension/cancellation).                                     | CIR Annex IV §3(e) |
 | Providers SHALL publish revocation status timely and in any event within 24 hours after receipt of revocation request.                                                          | CIR Annex IV §3(h) |
 
-## 10.2 WRP registration certificates (WRPRC) (optional)
+#### WRP registration certificates (WRPRC) (optional)
 
 | Requirement                                                                                                                                                                   | Reference                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
@@ -625,9 +643,9 @@ This is a common API write method in the draft Annex VI.
 | Providers SHALL monitor register changes, reissue/revoke when changes require.                                                                                                | CIR Annex V §3(d)                             |
 | Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the **B-B profile** (JAdES per ETSI TS 119 182-1 for JWT, COSE for CWT). | CIR Annex V §4; ETSI TS 119 475 §4.4          |
 
-## 11. Non-normative JSON examples
+#### Non-normative JSON examples
 
-## 11.1 Example: WRP object (registration view – includes postalAddress)
+#### Example: WRP object (registration view – includes postalAddress)
 
 ````json
 {
@@ -723,7 +741,7 @@ This is a common API write method in the draft Annex VI.
 }
 ````
 
-## 11.2 Example of a WRP object (published via API – excludes Annex I point 4 / physical address)
+#### Example of a WRP object (published via API – excludes Annex I point 4 / physical address)
 
 ````json
 {
