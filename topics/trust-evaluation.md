@@ -1,12 +1,10 @@
-# Trust Evaluation Process (Authentication)
-
 This section describes the **Trust Evaluation Process**, which establish trust between two interacting entities by ensuring that their identities are verified against a recognized Root of Trust, and they are eligible to perform a particular operation (e.g., issuing or requesting an Attestation of a certain type). This process comprises three distinct sub-processes:
 
 1. **Trust Anchor Validation Process**
 2. **Authentication Process**, and
-3. **Authorization Process**.  
+3. **Authorization Process**.
 
-## Trust Anchor Validation Process
+### Trust Anchor Validation Process
 
 The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of Trusted Lists, which serve as the authoritative sources for Trust Anchors. A Trust Anchor is a self-signed X.509 certificate containing the names and public key used by a Wallet Unit or Wallet Relying Party (WRP) to validate an artifact or attestation.
 
@@ -28,7 +26,9 @@ To verify the authenticity of the retrieved Trusted Lists, the Entity SHALL perf
 
 To support continuous key rotation, both artifacts implement a pivoting mechanism. This ensures that an Entity possessing the last known valid version can reliably discover the location of the next version and validate it using the unbroken chain of trust rooted in the OJEU.
 
-## Authentication Process
+{% include-markdown "./trust-anchor-validation.md" %}
+
+### Authentication Process
 
 The **Authentication Process** enables the Wallet Unit to authenticate a Wallet Relying Party (WRP) during an interaction. It establishes trust by validating the WRP's X.509 certificate chain—from a trusted Provider of Wallet Relying Party Access Certificates (WRPAC) down to the presented WRPAC—and verifying the WRP's possession of the corresponding private key.
 
@@ -45,17 +45,23 @@ The method by which the WRP presents its WRPAC chain depends on the specific int
 - **ISO 18013-5 (Proximity Flow):** The certificate chain is presented within the WRP-signed `ReaderAuth` element of the mdoc request message.
 - **OpenID4VCI (Issuance Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed Issuer Metadata.
 
-> **Warning: Mitigating Blind Signing Attacks**
-> Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP SHALL NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
+> [!WARNING]
+>
+> **Mitigating Blind Signing Attacks**: Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP SHALL NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
 
-## Authorization Process
+{% include-markdown "./authentication-process.md" %}
 
-*See also: [Authorization Process](/topics/authorization-process.md) and [Embedded Disclosure Policies](/topics/embedded-disclosure-policies.md)*
+### Authorization Process
 
-The Authorization Process determines whether an authenticated WRP is permitted to perform a specific action, such as issuing an Attestation or requesting specific attributes. This process involves:
+This section specifies the authorization process that a Wallet Instance (WI) SHALL execute to determine whether an interaction with a Wallet-Relying Party (WRP) is allowed within the EUDI Wallet ecosystem. A wallet Instance SHALL implement all the authorization-processing rules defined in this section [AUTHZ-GEN-03].
 
-1. Validating the WRPRC.
-2. Comparing requested operations with registered capabilities.
-3. Evaluating Embedded Disclosure Policies (rule set embedded in an electronic Attestation by its Attestation Providers to restrict which Relying Parties can access specific Attestations).
+Authorization covers:
 
-Based on these inputs, the Wallet Unit and, in some instances, the User determine whether to grant or deny the requested access.
+- **Issuance authorization**: whether a PID Provider or Attestation Provider (AP) is registered for the relevant role and for the specific attestation type(s) to be issued. This applies to PID Providers, QEAA Providers, PuB-EAA Providers, and non-qualified EAA Providers.
+- **Presentation authorization**: whether a Relying Party (RP) request is within its registered scope, whether any Embedded Disclosure Policy permits disclosure, and whether the User approves. This applies to both direct RP and intermediated RP interactions, and both remote and proximity flows.
+
+> [!NOTE]
+>
+> Authentication process is out of scope. This section does not define access certificate validation rules, LoTE validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the WRPRC (covered in section [Registration Certificate](registration-certificate.md)), nor Registrar online service API definition.
+
+{% include-markdown "./authorization-process.md" %}

@@ -1,71 +1,114 @@
 # Implementation Profiles for the Trust Framework
 
-**Table of Contents**
-- [Trust Framework Requirements](#trust-framework-requirements)
-- [Trust Architecture](#trust-architecture)
+Version 0.1 (Draft)
+
+| Version | Date       | Description |
+| ------- | ---------- | ----------- |
+| 0.1     | 2026-04-XX | First release |
+
+## Authors
+
+- Gianmario Cortese, Namirial S.p.A.
+- Henry Faure-Geors, Keynectis
+- Francesco Antonio Marino, Istituto Poligrafico e Zecca dello Stato S.p.A.
+- Andrea Moro, Fondazione Bruno Kessler
+- Marco Pernpruner, Fondazione Bruno Kessler
+- Nuno Ponte, Multicert
+- Andreea Prian, IDAKTO
+- Giada Sciarretta, Fondazione Bruno Kessler
+- Hoang Van Hoan, Keynectis
+- Maroš Zelenák, ARICOMA Digital S.R.O
+
+## Reviewers
+
+- Dominik František Bučík, ARICOMA Digital S.R.O
+- Guillaume Hébert, Keynectis
+- Angel Palomares Perez, Atos IT Solutions
+- Leonardo Pio Palumbo, Istituto Poligrafico e Zecca dello Stato S.p.A.
+- Leone Riello, Infocert S.p.A.
+- Michal Šťava, ARICOMA Digital S.R.O
+- Nikolaos Triantafyllou, University of the Aegean
+
+## Table of Contents
+
+- [1. Introduction](#introduction)
+- [2. Scope](#2-scope)
+  - [Out of Scope](#out-of-scope)
+- [3. Normative Language](#3-normative-language)
+- [4. Trust Architecture](#4-trust-architecture)
+- [5. Trust Artifacts](#5-trust-artifacts)
   - [Register](#register)
-  - [Access Certificate](#access-certificate)
-  - [Registration Certificate](#registration-certificate)
+  - [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate)
+  - [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate)
   - [List of Trusted Entities and List of Trusted Lists](#list-of-trusted-entities-and-list-of-trusted-lists)
-- [Trust Evaluation](#trust-evaluation)
+- [6. Trust Evaluation](#5-trust-evaluation)
   - [Trust Anchor Validation](#trust-anchor-validation)
   - [Authentication Process](#authentication-process)
   - [Authorization Process](#authorization-process)
-    - [Entitlement and Policy](#entitlement-and-policy)
-- [Trust Management and Lifecycle](#trust-management-and-lifecycle)
+- [7. Trust Management and Lifecycle](#7-trust-management-and-lifecycle)
+  - [Revocation Mechanisms](#revocation-mechanisms)
+- [8. References](#8-references)
 
-## Trust Framework Requirements
-*From `requirements/*.md`*.
+## 1. Introduction
 
-This section elicitates relevant normative and APTITUDE-specific trust requirements extracted from the ARF, implementing acts, ETSI standards and use-cases. 
+*TBD*
 
-## Trust Architecture
-*From `topics/trust-architecture.md`*.
+---
 
-This section describes the trust-related processes (i.e., Wallet Relying Party registration, Provider notification and publication in Trusted List, and trust evaluation) by detailing the entities involved, high level flows and their relationships. In addition, the following subsections describe different artificats output of these processes. The trust evaluation process is further detailed in [Trust Evaluation](#trust-evaluation).
+## 2. Scope
+
+*TBD*
+
+### Out of Scope
+
+*TBD*
+
+---
+
+## 3. Normative Language
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
+
+---
+
+## 4. Trust Architecture
+
+{% include-markdown "./topics/trust-architecture.md" %}
+
+---
+
+## 5. Trust Artifacts
 
 ### Register
-*From `topics/registry.md`*.
 
-This section describes the content of the Register and its common set of APIs.
+{% include-markdown "./topics/registry.md" %}
 
-### Access Certificate
-*From `topics/access-certificate.md`*.
+### Wallet-Relying Party Access Certificate
 
-This section describes the content and format of the Wallet Relying Party Access Certificate.
+{% include-markdown "./topics/access-certificate.md" %}
 
-### Registration Certificate
-*From `topics/registration-certificate.md`*.
+### Wallet-Relying Party Registration Certificates
 
-This section describes the content and format of the Wallet Relying Party Registration Certificate.
+{% include-markdown "./topics/registration-certificate.md" %}
 
 ### List of Trusted Entities and List of Trusted Lists
-*From `topics/trusted-list-and-list-of-trusted-lists.md`*.
 
-This section describes the content and format of the List of Trusted Entities and List of Trusted Lists.
+{% include-markdown "./topics/trusted-list-and-list-of-trusted-lists.md" %}
 
-## Trust Evaluation
+---
 
-### Trust Anchor Validation
-*From `topics/trust-anchor-validation.md`*.
+## 6. Trust Evaluation Process
 
-This section describes the process of validating the trust anchor by downloading and verifying a Trusted List or List of Trusted Entities.
+{% include-markdown "./topics/trust-evaluation.md" %}
 
-### Authentication Process
-*From `topics/trust-evaluation-process-authentication.md`*.
+---
 
-This section describes the process of authenticating an entity by validating its Wallet Relying Party Access Certificate.
+## 7. Trust Management and Lifecycle
 
-### Authorization Process
-*From `topics/trust-evaluation-process-authorization.md`*.
+### Revocation Mechanisms
 
-This section covers the authorization process by evaluating the Wallet Relying Party registered data obtained through the Register or the Wallet Relying Party Registration Certificate with respect to the performed action and set of policies. For example, by checking during the issuance process that an Attestation Provider is allowed to issue a certain attestation, or by avoiding overasking by a Relying Party during the presentation process. 
+{% include-markdown "./topics/revocation-mechanisms.md" %}
 
-#### Entitlement and Policy
-*From `topics/entitlement-policy.md`*.
+---
 
-## Trust Management and Lifecycle
-*From `topics/trust-management-process.md`*.
-
-This section describe the trust management and lifecycle, e.g., by detailing what happen if a Wallet Relying Party updates its data on the Register or a Provider is not trusted anymore and the related revocation mechanims.
-
+## 8. References

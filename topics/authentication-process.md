@@ -1,4 +1,4 @@
-### Wallet Relying Party Authentication Sequence Diagram
+#### Wallet Relying Party Authentication Sequence Diagram
 
 Below is a sequence diagram illustrating the Authentication Process, including the retrieval and validation of the LoTE, path construction, and certificate validation steps. The diagram also highlights the decision points for successful or failed authentication.
 
@@ -29,7 +29,7 @@ sequenceDiagram
     end
 ```
 
-### Wallet Relying Party Access Certificate Path Validation
+#### Wallet Relying Party Access Certificate Path Validation
 
 This section defines the validation of the certification path.
 
@@ -160,7 +160,7 @@ graph TD
     class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;
 ```
 
-#### Revocation Checking
+##### Revocation Checking
 
 The Wallet Unit SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
@@ -170,7 +170,7 @@ The Wallet Unit SHALL determine the revocation status for every certificate in t
 
 For details regarding the formats and parameters of CRLs and OCSP responses, see [Revocation Mechanism](/topics/revocation-mechanisms.md).
 
-##### CRL Validation
+###### CRL Validation
 
 When using a CRL, the Wallet Unit SHALL:
 
@@ -242,7 +242,7 @@ graph TD
     class Revoked,Revoked2,Revoked3,Revoked4,Revoked5 revoked;
 ```
 
-##### OCSP Response Validation
+###### OCSP Response Validation
 
 When using OCSP, the Wallet Unit SHALL:
 

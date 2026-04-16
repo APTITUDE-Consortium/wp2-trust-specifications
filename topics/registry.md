@@ -1,8 +1,4 @@
-# Registry
-
-This document specifies requirements for the **Registrar of Wallet-Relying Parties (WRPs)** and the National Register of WRPs (the registry service) in the context of eIDAS2 and the EUDI Wallet ecosystem.
-
-## 1. Scope and objective
+This section specifies requirements for the **Registrar of Wallet-Relying Parties (WRPs)** and the National Register of WRPs (the registry service) in the context of eIDAS2 and the EUDI Wallet ecosystem.
 
 Formally, a **Registrar** is the designated body that:
 

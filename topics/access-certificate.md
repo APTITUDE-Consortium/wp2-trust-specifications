@@ -1,5 +1,3 @@
-## Wallet Relying Party Access Certificate
-
 This section describes the purpose, format and content of Wallet Relying Party Access Certificates (WRPACs).
 
 According to the Article 2 of CIR (EU) 2025/848, a WRPAC, is a certificate for electronic seals or signatures authenticating and validating the Wallet Relying Party (WRP).
@@ -8,7 +6,7 @@ The suspension or cancellation of the WRP services, involves revocation of all v
 
 The Annex IV of CIR (EU) 2025/848 also states that the WRPACs are meant for performing electronic signatures or seals and that they shall comply with at least the normalised certificate policy (‘NCP’) requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the WRPACs fall into.  
 
-### References
+#### References
 
 To guarantee the interoperability across all the wallets provided within the Union, WRPACs should adhere to common requirements, with respect to their content and format. The technical standard specific to these certificates is ETSI TS 119 411-8. However, multiple other standards are referenced either directly or indirectly by the ETSI TS 119 411-8, containing requirements that are applicable to WRPACs as well. The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
 
@@ -25,11 +23,11 @@ To guarantee the interoperability across all the wallets provided within the Uni
 - [RFC 9608](https://datatracker.ietf.org/doc/html/rfc9608)
 - [CIR (EU) 2025/848](https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj/eng)
 
-### Dependency Considerations
+#### Dependency Considerations
 
 The WRPAC attributes SHALL be derived from the information held in the Register as specified in clause 5.1.2 of ETSI TS 119 475. This also implies that for some specific attributes in the WRPAC the same value SHALL be encountered in the corresponding Wallet Relying Party Registration Certificate if any.
 
-### Wallet Relying Party Access Certificate Contents
+#### Wallet Relying Party Access Certificate Contents
 
 The following table lists all the parameters and extensions that are mandatory in a WRPAC or mandatory with conditions. Optional parameters are not referenced and are not recommended, since they could cause conflicts with the content specified.
 
@@ -82,7 +80,7 @@ Below there is a list of the mandatory extensions and their content, if applicab
 | `qcStatements` (esi4-qcStatement-4) | RFC 3739 clause 3.2.6 &<br>ETSI EN 319 412-5 clause 4.2.2 | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.4`.<br><br>**Applicable condition:** For qualified certificates. It indicates that the private key related to the certified public key resides in a QSCD according to eIDAS regulation. The extension is mandatory as stated in ETSI EN 319 411-2, GEN-6.6.1-03. |
 | `qcStatements` (esi4-qcStatement-6) | RFC 3739 clause 3.2.6 &<br>ETSI EN 319 412-5 clause 4.2.3 | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.6`.<br><br>**Applicable condition:** Mandatory for qualified certificates issued to legal persons for the purpose of electronic seal (ETSI EN 319 412-5, clause 5). MAY be present for certificates issued to natural persons for the purpose of electronic signatures.<br><br>Declares that a certificate is issued for one and only one of the purposes: electronic signature, electronic seal, or web site authentication. |
 
-### Examples
+#### Examples
 
 The following is an example of a WRPAC for legal persons following the NCP policy.
 
@@ -343,7 +341,7 @@ WRPAC cert = {
 } 
 ```
 
-### Security considerations
+#### Security Considerations
 
 A WRPAC is a certificate for electronic seals or signatures that is used to authenticate and validate a WRP when interacting with Wallet Units. Because the corresponding private key is a signature/seal key, implementations SHALL prevent the WRPAC key from becoming a general-purpose signing oracle.
 

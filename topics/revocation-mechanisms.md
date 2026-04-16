@@ -1,5 +1,3 @@
-## Revocation Mechanisms
-
 This section describes the artifacts that are employed in [Trust Management Process](#trust-management-process) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
 - To manage Wallet Relying Party Access Certificates (WRPACs), each Provider of WRPAC SHALL:
@@ -9,7 +7,7 @@ This section describes the artifacts that are employed in [Trust Management Proc
   - make available an endpoint to request [Status List Tokens](#status-list-token);
   - issue WRPRC with the appropriate parameter `status` as described in [Registration Certificates](#registration-certificate).
 
-### Token Status List
+#### Token Status List
 
 This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple WRPRCs. A Status List describes the status of the WRPRCs by encoding their validity in a bit array. Each WRPRC is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the WRPRC's status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [Token Status List](https://www.ietf.org/archive/id/draft-ietf-oauth-status-list-19.html).
 
@@ -34,16 +32,17 @@ For example, if two states for a certain WRPRC are possible, then $k=1$. If the 
 - The status values are encoded in specific bit positions based on their assigned index.
 - The array is then compressed using DEFLATE.
 
-> ***Note:***
+> [!NOTE]
+>
 > When the Provider of WRPRC chooses the number of bits for conveying statuses of the WRPRCs it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a WRPRC SHALL, however, be carefully pondered, as it discloses information to Relying Parties.
 
 Once the Wallet Unit receives a WRPRC, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.
 
-#### Status List Token
+##### Status List Token
 
 The **Status List Token** (SLT) is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the Provider of WRPRC and contains the following parameters:
 
-##### Status List Token Header
+###### Status List Token Header
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
@@ -51,7 +50,7 @@ The **Status List Token** (SLT) is available at the Status List Endpoint. It is 
 | `typ` | RFC 7515 | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
 | `x5c` | RFC 7515 | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the SLT's signature. |
 
-##### Status List Token Payload
+###### Status List Token Payload
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
@@ -93,7 +92,7 @@ The following is an example of the Status List Token payload and header prior to
 }
 ```
 
-#### Status List Request
+##### Status List Request
 
 The Wallet Unit SHALL request a Status List Token at the URI referenced within the `status.status_list.uri` claim of the WRPRC. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
 
@@ -105,7 +104,7 @@ Below it is represented an example of such a request.
   Accept: application/statuslist+jwt
 ```
 
-#### Status List Response
+##### Status List Response
 
 The successful response SHALL contain a Status List Token and have HTTP status code 200. The content type of the successful response SHALL be `application/statuslist+jwt`.
 
@@ -123,13 +122,14 @@ The successful response SHALL contain a Status List Token and have HTTP status c
 
 If caching-related HTTP headers are present in the HTTP response, Wallet Units SHALL prioritize the `exp` and `ttl` claims within the Status List Token over the HTTP headers for determining caching behavior.
 
-### Certificate Revocation Lists
+#### Certificate Revocation Lists
 
 **Certificate Revocation Lists** ([CRLs](https://datatracker.ietf.org/doc/html/rfc5280#section-5)) MAY be used in a wide range of applications and environments covering a broad spectrum of interoperability goals and an even broader spectrum of operational and assurance requirements.
 
 **CRL issuers** issue CRLs. The CRL issuer is either the Certificate Authority (CA) or an entity that has been authorized by the CA to issue CRLs.
 
-> ***Note:***
+> [!NOTE]
+>
 > Within APTITUDE the CRL Issuer SHALL be the Trust Anchor.
 
 CAs publish CRLs to provide status information about the certificates they issued. Each CRL has a particular scope. The CRL scope is the set of certificates that could appear on a given CRL. For example, the scope could be "all certificates issued by CA X". A complete CRL lists all unexpired certificates, within its scope, that have been revoked for one of the revocation reasons covered by the CRL scope.
@@ -148,7 +148,7 @@ An X.509 v2 CRL is represented as the ASN.1 DER encoding of the `CertificateList
 | `signatureAlgorithm.parameters` | RFC 5280 clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the signature algorithm used. |
 | `signatureValue` | RFC 5280 clause 5.1.1.3 | REQUIRED | *BIT STRING* | Contains the digital signature computed upon the ASN.1 DER encoded `tbsCertList`. |
 
-#### Certificate List Content
+##### Certificate List Content
 
 The `TBSCertList` (To Be Signed Certificate List) is an ASN.1 SEQUENCE containing several fields and extensions. The following table lists all such fields and extensions that are required in a CRL or conditionally required.
 
@@ -174,10 +174,11 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 | `authorityKeyIdentifier` | RFC 5280 clause 5.2.1 | REQUIRED | *SEQUENCE* | Provides a means of identifying the public key corresponding to the private key used to sign the CRL. Contains `keyIdentifier` (OCTET STRING), `authorityCertIssuer`, or `authorityCertSerialNumber`. |
 | `cRLNumber` | RFC 5280 clause 5.2.3 | REQUIRED | *INTEGER* | A non-critical extension conveying a monotonically increasing sequence number for a given CRL scope and issuer. |
 
-> ***Note:***
+> [!NOTE]
+>
 > Within the APTITUDE pilot we do not use Delta CRLs
 
-### Online Certificate Status Protocol
+#### Online Certificate Status Protocol
 
 **Online Certificate Status Protocol** ([OCSP](https://datatracker.ietf.org/doc/html/rfc6960)) enable applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
 
@@ -187,7 +188,7 @@ If supported by the CA, the URI to which the OCSP Responder can be invoked SHALL
 
 This protocol specifies the data that SHALL be exchanged between the OCSP client (which checks the status of one or more certificates) and the OCSP server (which provides the corresponding status). In this specific ecosystem, the OCSP client can be a WU checking the WRPAC of a WRP, and the OCSP server is the Provider of the WRPAC.
 
-#### Online Certificate Status Protocol Request Format
+##### Online Certificate Status Protocol Request Format
 
 The OCSP request is the ASN.1 DER encoding of the `OCSPRequest` SEQUENCE, which contains the `tbsRequest` (To-Be-Signed Request) and an optional signature. The following table lists the parameters found within the `tbsRequest` structure.
 
@@ -216,7 +217,8 @@ The `requestExtensions` and `singleRequestExtensions` structures MAY contain var
 | :-------: | :--------: | :------: | :----- | :---------- |
 | `nonce` | RFC 6960 clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. Identifier OID is `id-pkix-ocsp-nonce`. |
 
-> ***Note:***
+> [!NOTE]
+>
 > Within APTITUDE, OCSP requests SHALL use the `nonce` extension.
 
 When sent over HTTP using POST, the body of this request is the raw DER encoding of this `OCSPRequest`, with the MIME type `application/ocsp-request`.
@@ -240,7 +242,7 @@ OCSPRequest:
       nonce = OCTET STRING (nonce)
 ```
 
-#### Online Certificate Status Protocol Response Format
+##### Online Certificate Status Protocol Response Format
 
 An OCSP response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. When transported over HTTP, the body of the HTTP response is the raw DER encoding of this `OCSPResponse`, with the MIME type `application/ocsp-response`. The `OCSPResponse` *SEQUENCE* contains the following parameters:
 
@@ -251,7 +253,8 @@ An OCSP response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. Whe
 | `responseBytes.responseType` | RFC 6960 clause 4.2.1 | REQUIRED | *OBJECT IDENTIFIER* | Identifier for the response type. For a basic OCSP responder, this value SHALL be `id-pkix-ocsp-basic`. |
 | `responseBytes.response` | RFC 6960 clause 4.2.1 | REQUIRED | *OCTET STRING* | Contains the DER encoding of the response syntax identified by `responseType` (e.g., the `BasicOCSPResponse` structure). |
 
-> ***Note:***
+> [!NOTE]
+>
 > Within APTITUDE, OCSP responders SHALL be capable of producing responses of the `id-pkix-ocsp-basic` response type. Correspondingly, OCSP clients SHALL be capable of receiving and processing responses of the `id-pkix-ocsp-basic` response type.
 
 `BasicOCSPResponse` is an ASN.1 SEQUENCE containing the following parameters:
@@ -278,7 +281,8 @@ The `responseExtensions` structure MAY contain various extensions. A notable par
 | :-------: | :--------: | :------: | :----- | :---------- |
 | `nonce` | RFC 6960 clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. If included in the request, responders SHOULD include it in the response. Identifer OID is `id-pkix-ocsp-nonce`. |
 
-> ***Note:***
+> [!NOTE]
+>
 > Within APTITUDE, OCSP Responses SHALL use the `nonce` extension.
 
 In the OCSP Response there SHALL be at least a `SingleResponse` for each `CertID` in the request. Each `SingleResponse` is an ASN.1 *SEQUENCE* that carries the following parameters:
