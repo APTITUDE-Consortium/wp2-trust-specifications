@@ -40,19 +40,18 @@ Since different specifications use different terms to refer to similar content, 
 | **Wallet Solution** | A combination of software, hardware, services, settings, and configurations, including wallet instances, one or more wallet secure cryptographic applications and one or more wallet secure cryptographic devices. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569] |- |
 | **Wallet Unit** | A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual wallet user. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569] | - |
 
-> [!NOTE]
->
-> **Registrar vs Register vs Registry**. As commonly defined in all the reference specifications, the term *Registrar* refers to the body responsible for establishing and maintaining the list of registered WRPs. As a result of the registration process, the Registrar makes the information on registered WRP available through an electronic *Register*, sometimes called *Registrar's online service* or *Registry*. 
+!!! note "Registrar vs Register vs Registry"
 
-> [!NOTE]
->
-> **LoTE vs LOTL vs EUMS TL**. To establish the cryptographic root of trust, the validation of the Trust Anchors can be performed by validating List of Trusted Entities (LoTE) managed by the European Commission or validating List Of Trusted Lists (LOTL) pointing to Trusted Lists managed at the Member State level (EU Member State Trusted List - EUMS TL). 
+    As commonly defined in all the reference specifications, the term *Registrar* refers to the body responsible for establishing and maintaining the list of registered WRPs. As a result of the registration process, the Registrar makes the information on registered WRP available through an electronic *Register*, sometimes called *Registrar's online service* or *Registry*. 
 
-> [!NOTE]
->
-> To avoid confusion, the definition of WRP has been revised by removing the explicit reference to a Relying Party, as a WRP can be either a Relying Party or an Attestation Provider. 
+!!! note "LoTE vs LOTL vs EUMS TL"
 
+    To establish the cryptographic root of trust, the validation of the Trust Anchors can be performed by validating List of Trusted Entities (LoTE) managed by the European Commission or validating List Of Trusted Lists (LOTL) pointing to Trusted Lists managed at the Member State level (EU Member State Trusted List - EUMS TL). 
 
-> [!NOTE]
-> 
-> The WRPRC may serve multiple purposes. One is to indicate the intended use and requested attributes. Another is to include additional entitlements or metadata relevant only for the Wallet ecosystem and not used in access control decisions. The certificate can be seen as a structured export of registration data maintained by the Registrar, tailored for a specific use case within the Wallet framework. 
+!!! note
+
+    To avoid confusion, the definition of WRP has been revised by removing the explicit reference to a Relying Party, as a WRP can be either a Relying Party or an Attestation Provider. 
+
+!!! note
+
+    The WRPRC may serve multiple purposes. One is to indicate the intended use and requested attributes. Another is to include additional entitlements or metadata relevant only for the Wallet ecosystem and not used in access control decisions. The certificate can be seen as a structured export of registration data maintained by the Registrar, tailored for a specific use case within the Wallet framework. 

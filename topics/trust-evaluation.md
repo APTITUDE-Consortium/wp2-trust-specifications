@@ -45,9 +45,9 @@ The method by which the WRP presents its WRPAC chain depends on the specific int
 - **ISO 18013-5 (Proximity Flow):** The certificate chain is presented within the WRP-signed `ReaderAuth` element of the mdoc request message.
 - **OpenID4VCI (Issuance Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed Issuer Metadata.
 
-> [!WARNING]
->
-> **Mitigating Blind Signing Attacks**: Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP SHALL NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
+!!! warning "Mitigating Blind Signing Attacks"
+
+   Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP SHALL NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
 
 {% include-markdown "./authentication-process.md" %}
 
@@ -60,8 +60,8 @@ Authorization covers:
 - **Issuance authorization**: whether a PID Provider or Attestation Provider (AP) is registered for the relevant role and for the specific attestation type(s) to be issued. This applies to PID Providers, QEAA Providers, PuB-EAA Providers, and non-qualified EAA Providers.
 - **Presentation authorization**: whether a Relying Party (RP) request is within its registered scope, whether any Embedded Disclosure Policy permits disclosure, and whether the User approves. This applies to both direct RP and intermediated RP interactions, and both remote and proximity flows.
 
-> [!NOTE]
->
-> Authentication process is out of scope. This section does not define access certificate validation rules, LoTE validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the WRPRC (covered in section [Registration Certificate](registration-certificate.md)), nor Registrar online service API definition.
+!!! note
+
+    Authentication process is out of scope. This section does not define access certificate validation rules, LoTE validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the WRPRC (covered in section [Registration Certificate](registration-certificate.md)), nor Registrar online service API definition.
 
 {% include-markdown "./authorization-process.md" %}

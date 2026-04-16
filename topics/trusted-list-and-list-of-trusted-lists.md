@@ -180,9 +180,9 @@ The following table details the governing standards, publication scopes, and man
 | Pub-EAA Provider Lists | TS 119 602 Annex H | European Union | JSON or XML |
 | Registrar and Register Provider Lists | TS 119 602 Annex I | European Union | JSON |
 
-> [!NOTE]
->
-> Within the APTITUDE project, the Pub-EAA Provider Lists are published in JSON format.
+!!! note
+
+    Within the APTITUDE project, the Pub-EAA Provider Lists are published in JSON format.
 
 ###### LoTE Additional Requirements
 
@@ -218,9 +218,9 @@ The `TrustedEntitiesList` is an *Array* of *Objects*, each possessing two primar
 | `TEInformationURI` | ETSI TS 119 602 clause 6.5.4 | REQUIRED | *Object* | Depending on the LoTE type, the `TEInformationURI` component SHALL contain:<ul><li>The URL of the webpage that contains the policies, terms, and conditions of the respective provider applying to the provision and use of their services/components;</li><li>where applicable, the URL of the webpage that contains additional information about the provider;</li><li>a URI formatted as `http://uri.etsi.org/19602/ListOfTrustedEntities/[Type]/CC`, where `[Type]` aligns with the provider type and `CC` is replaced by the ISO 3166-1 Alpha 2 country code of the responsible Member State.</li></ul> |
 | `TEInformationExtensions` | ETSI TS 119 602 clause 6.5.5 | REQUIRED | *Array* | No additional requirements. |
 
-> [!WARNING]
->
-> The `TEAddress` component's description for the Pub-EAA Providers LoTE differs from c) of the `TEAddress` component's description in ETSI 119 602 Annex H.3, Table H.2, which states "*the URI "<http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC>" where "CC" is replaced by the ISO 3166-1 [2] Alpha 2 code of the Member State which is responsible for that Pub-EAA provider*". For conformance to the other LoTE types, this has been moved to the `TEInformationURI` component's description, as it is more appropriate for the information it conveys.
+!!! warning
+
+    The `TEAddress` component's description for the Pub-EAA Providers LoTE differs from c) of the `TEAddress` component's description in ETSI 119 602 Annex H.3, Table H.2, which states "*the URI "<http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC>" where "CC" is replaced by the ISO 3166-1 [2] Alpha 2 code of the Member State which is responsible for that Pub-EAA provider*". For conformance to the other LoTE types, this has been moved to the `TEInformationURI` component's description, as it is more appropriate for the information it conveys.
 
 The `TrustedEntityServices` is an *Array* of `TrustedEntityService` *Objects*. Each `TrustedEntityService` *Object* possesses two primary subcomponents: the `ServiceInformation` and `ServiceHistoryInstance` components. The following table details the additional requirements the `ServiceInformation` *Object* component SHALL satisfy depending on the LoTE type.
 

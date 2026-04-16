@@ -397,8 +397,10 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `wrprcHistory` | `CertificateHistoryEntry[]` (optional) | WRPRC history (if supported). |
 
 ### 7.3.3 SignedIntendedUseCheckEnvelope (profile)
->
-> **Note:** Annex VI strictly allows a JWS-signed boolean response. This object envelope is a non-normative profile convenience.
+
+!!! note
+
+    Annex VI strictly allows a JWS-signed boolean response. This object envelope is a non-normative profile convenience.
 
 | Parameter | Type | Description |
 | --- | ---: | --- |
@@ -805,4 +807,6 @@ This is a common API write method in the draft Annex VI.
 
 ````
 
-> **Note:** The published API view excludes only `postalAddress` (Annex I point 4). All other fields, including intended-use credential claims, are published as registered.
+!!! note
+
+    The published API view excludes only `postalAddress` (Annex I point 4). All other fields, including intended-use credential claims, are published as registered.

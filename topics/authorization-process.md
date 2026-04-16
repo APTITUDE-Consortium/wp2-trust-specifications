@@ -75,9 +75,9 @@ All other presentation failures (binding failures and intermediary binding failu
 
 In case of non-overridable failures, the WI SHALL clearly inform the User about the negative outcome. User-relevant information about overridable outcomes SHALL be presented as advisories, and the User approval SHALL be a separate step from the authorization decision [AUTHZ-UI-02, AUTHZ-UI-03, AUTHZ-UI-04].
 
-> [!NOTE]
->
-> **User opt-in:** the *Scope Comparison Procedure* is executed only if the User enabled registration verification (RPRC_16). Override mechanisms define what happens when the procedure produces a negative result.
+!!! note "User opt-in"
+
+    The *Scope Comparison Procedure* is executed only if the User enabled registration verification (RPRC_16). Override mechanisms define what happens when the procedure produces a negative result.
 
 The detailed override rules are provided in the [Override Rules](#override-rules) section.
 
@@ -172,8 +172,9 @@ The **Authorization Use** column indicates how each parameter is consumed: **Dec
 - `verifier_info` parameter included in the Request Object JWT within the authorization request (remote flow, ETSI TS 119 472-2 and OpenID4VP section 5.1). This is an array of JSON Objects containg WRPRC in base64-encoded format and RPRC_19a data including the URL of Registrar online service.
 - `euWrprc` (CBOR byte string with serialized WRPRC) member of `requestInfo` included in the ISO DeviceRequest (proximity flow, ETSI TS 119 472-2 section 5.3).
 
-> [!WARNING]
-> Currently, the mapping of RPRC_19a data in the `requestInfo` map is not defined in ETSI TS 119 472-2
+!!! warning
+
+    Currently, the mapping of RPRC_19a data in the `requestInfo` map is not defined in ETSI TS 119 472-2
 
 **Issuance flow.** APs include authorization data in Credential Issuer Metadata through the `issuer_info` array (ETSI TS 119 472-3 section 4.2.3). This array contains:
 
@@ -188,8 +189,9 @@ Each Registrar provides an online service accessible via URL, obtained as descri
 
 The WI SHALL use this service when the WRPRC is not available or validation fails. The service is queried using the entity unique identifier and, for presentation, the `intended_use_id`. The response provides the same authorization-relevant data as a WRPRC. Registrar online service is available through an API interface which is defined in TS5.
 
-> [!NOTE]
-> The WI SHOULD inform the User that an external query will be made (privacy consideration per RPRC_18).
+!!! note
+
+    The WI SHOULD inform the User that an external query will be made (privacy consideration per RPRC_18).
 
 ##### Embedded Disclosure Policy
 
@@ -309,16 +311,13 @@ The names are obtained from:
 
 If any name is not available, the WI SHALL display the identifier instead of the name.
 
-> [!WARNING]
->
-> ETSI TS 119 475 V1.2.1 Table 10 defines the intermediary name subfield
-> as `sname`. The example in Annex C of the same standard uses `name`
-> instead. This specification follows the normative Table 10 and uses
-> `sname`.
+!!! warning
 
-> [!NOTE]
->
-> The Registrar online service API, including the specific parameters for querying intermediary relationships, is defined in TS5. This specification does not define the Register API; it only defines how the WI uses the Register response for authorization purposes.
+    ETSI TS 119 475 V1.2.1 Table 10 defines the intermediary name subfield > as `sname`. The example in Annex C of the same standard uses `name` instead. This specification follows the normative Table 10 and uses `sname`.
+
+!!! note
+
+    The Registrar online service API, including the specific parameters for querying intermediary relationships, is defined in TS5. This specification does not define the Register API; it only defines how the WI uses the Register response for authorization purposes.
 
 ##### Entitlement Verification Procedure
 
@@ -510,8 +509,9 @@ sequenceDiagram
 
 **Step 1: Receive request and check User opt-in.** The WI SHALL offer a User setting for RP verification, enabled by default [AUTHZ-PRES-04]. If opted-in, proceed to step 2. Otherwise skip to step 8.
 
-> [!NOTE]
-> If opted-in, the WI executes the full registration verification block: evidence collection, binding verification, entitlement verification, and scope comparison (steps 2-7). If not opted-in, the WI skips these steps and proceeds directly to EDP evaluation (step 8), which is always executed.
+!!! note
+
+    If opted-in, the WI executes the full registration verification block: evidence collection, binding verification, entitlement verification, and scope comparison (steps 2-7). If not opted-in, the WI skips these steps and proceeds directly to EDP evaluation (step 8), which is always executed.
 
 **Steps 2-4: Collect authorization evidence.** Extract the WRPRC from the request [AUTHZ-PRES-05]: from `verifier_info` (remote) or `euWrprc` in `requestInfo` (proximity). If present, apply the *WRPRC Validation Procedure*. If absent or invalid, apply the *Register Validation Procedure* using `registry_uri` from the request extension and the RP identifier with `intended_use_id`. If lookup fails, notify User, record `FAILED`, proceed with advisory [AUTHZ-PRES-06].
 
@@ -623,9 +623,9 @@ flowchart TD
 
 #### Authorization Requirements
 
-> [!NOTE]
->
-> This table is provided for implementation and conformance-verification purposes. It consolidates the normative requirements defined throughout the specification body. In case of interpretative ambiguity between this table and the normative sections of the specification, the normative sections SHALL prevail.
+!!! note
+
+    This table is provided for implementation and conformance-verification purposes. It consolidates the normative requirements defined throughout the specification body. In case of interpretative ambiguity between this table and the normative sections of the specification, the normative sections SHALL prevail.
 
 | ID | Requirement | Phase | Related HLRs |
 |----|-------------|-------|-------------|

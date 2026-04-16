@@ -36,11 +36,13 @@ Annex III of CIR 2024/2979 defines three common EDP types:
 For legal persons, the relevant DN attributes are `commonName`, `organizationName`, `organizationIdentifier`, and `countryName`.
 For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `countryName`. The organizationIdentifier attribute type is represented by the LDAP string "ORGID"; the serialNumber attribute type is represented by "SN" (according to ETSI TS 119 472-3 NOTE 1 and NOTE 2 to ISS-MDATA-EBD-4.2.5.2-07).
 
-> [!NOTE]
-> ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in ETSI TS 119 475, held in the WRPRC. ETSI TS 119 475 Annex A.3 defines sub-entitlements for Service Providers, currently for Payment Service Providers (e.g. `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai`). Future versions may include additional sector-specific sub-entitlements at national or EU level. This specification supports both the subject DN and the entitlement URI identification mechanisms.
+!!! note
 
-> [!NOTE]
-> ARF HLR EDP_02 refers to "EU-wide unique identifiers", as defined in Reg_32, for the authorized RP list. ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) identifies authorized RPs by their subject DN from the WRPAC. The organizationIdentifier attribute within the DN has the same semantics as the identifier given in Reg_32. This specification aligns with the ETSI TS 119 472-3 formulation. Future ARF versions are expected to align accordingly.
+    ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in ETSI TS 119 475, held in the WRPRC. ETSI TS 119 475 Annex A.3 defines sub-entitlements for Service Providers, currently for Payment Service Providers (e.g. `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai`). Future versions may include additional sector-specific sub-entitlements at national or EU level. This specification supports both the subject DN and the entitlement URI identification mechanisms.
+
+!!! note
+
+    ARF HLR EDP_02 refers to "EU-wide unique identifiers", as defined in Reg_32, for the authorized RP list. ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) identifies authorized RPs by their subject DN from the WRPAC. The organizationIdentifier attribute within the DN has the same semantics as the identifier given in Reg_32. This specification aligns with the ETSI TS 119 472-3 formulation. Future ARF versions are expected to align accordingly.
 
 **Specific Root of Trust.** The EDP contains a list of trusted roots or intermediate certificates. Only RPs whose WRPACs chain to one of these roots are allowed to access the Attestation. According to ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-08/09), each authorized root is identified by its issuer distinguished name in LDAP string form as defined in RFC 4514 and the issuer's certificate serial number.
 
@@ -63,15 +65,17 @@ The data model defines the following elements:
 - An EDP Extension MAY contain alternative policy rules to be applied to specified attributes within the EAA which are subject to selective disclosure (ISS-MDATA-EBD-4.2.5.2-12).
 - The EDP SHOULD contain a link to a website of the AP explaining the disclosure policy in layman's terms (ISS-MDATA-EBD-4.2.5.2-13, EDP_05).
 
-> [!NOTE]
-> ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-12) provides for attribute-level policies, where alternative policy rules (no policy, authorized RP only, or specific root of trust) can be defined for specific attributes within an EAA that are subject to selective disclosure. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level EDP will be addressed when the ETSI JSON schema for EDP is finalized and the policy mechanisms are fully defined.
+!!! note
+
+    ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-12) provides for attribute-level policies, where alternative policy rules (no policy, authorized RP only, or specific root of trust) can be defined for specific attributes within an EAA that are subject to selective disclosure. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level EDP will be addressed when the ETSI JSON schema for EDP is finalized and the policy mechanisms are fully defined.
 
 ## Structure and encoding
 
 The following JSON structure is derived from the ETSI TS 119 472-3 data model requirements.
 
-> [!WARNING]
-> The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. ETSI TS 119 472-3 section 4.2.5.2 defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of ETSI TS 119 472-3). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
+!!! warning
+
+    The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. ETSI TS 119 472-3 section 4.2.5.2 defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of ETSI TS 119 472-3). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
 
 | Parameter | Type | Description | Based on |
 |-----------|------|-------------|----------|
@@ -91,8 +95,9 @@ The following JSON structure is derived from the ETSI TS 119 472-3 data model re
 
 The EDP is distributed through Credential Issuer Metadata at issuance time. The AP SHALL include the EDP (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with OpenID4VCI or the extension thereof specified in ETSI TS 119 472-3 (EDP_09). The EDP SHALL NOT be revealed to the RP through the presentation protocol (per ETSI TS 119 472-3 section 4.2.5.1).
 
-> [!WARNING]
-> According to ISS-MDATA-EBD-4.2.5.2-03, the AP may provide only the `policy_uri` if the policy data set has already been pre-loaded into the WI. As the mechanism for pre-loading policies into a WI is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
+!!! warning
+
+    According to ISS-MDATA-EBD-4.2.5.2-03, the AP may provide only the `policy_uri` if the policy data set has already been pre-loaded into the WI. As the mechanism for pre-loading policies into a WI is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
 
 As described in section [Authorization Process](authorization-process.md), during attestation issuance, the EDP (if available) is stored locally by the WI and it is associated with the specific Attestation for which it was retrieved.
 
@@ -108,11 +113,12 @@ If an AP adds, changes, or deletes an EDP for an Attestation, the AP SHALL revok
 
 Even a minor policy change (e.g., adding a single RP to the authorized list) requires revocation and re-issuance. The timing of detection depends on when the WI checks the Attestation status: if the WI checks only at presentation time, a policy change will not be detected until the next presentation attempt.
 
-> [!WARNING]
-> Proactive refresh. The AP MAY provide EDP though its URI. In this case, the WI MAY proactively fetch the policy content at the `policy_uri` to check for updates, without waiting for an Attestation revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:
->
-> - It enables AP to unilaterally change an EDP, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
-> - Technical details of this mechanism are not defined within ETSI standard.
+!!! warning
+
+    Proactive refresh. The AP MAY provide EDP though its URI. In this case, the WI MAY proactively fetch the policy content at the `policy_uri` to check for updates, without waiting for an Attestation revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:
+    
+    - It enables AP to unilaterally change an EDP, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
+    - Technical details of this mechanism are not defined within ETSI standard.
 
 # Normative References
 

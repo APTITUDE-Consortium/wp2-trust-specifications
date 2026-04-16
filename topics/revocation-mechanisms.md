@@ -32,9 +32,9 @@ For example, if two states for a certain WRPRC are possible, then $k=1$. If the 
 - The status values are encoded in specific bit positions based on their assigned index.
 - The array is then compressed using DEFLATE.
 
-> [!NOTE]
->
-> When the Provider of WRPRC chooses the number of bits for conveying statuses of the WRPRCs it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a WRPRC SHALL, however, be carefully pondered, as it discloses information to Relying Parties.
+!!! note
+
+    When the Provider of WRPRC chooses the number of bits for conveying statuses of the WRPRCs it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a WRPRC SHALL, however, be carefully pondered, as it discloses information to Relying Parties.
 
 Once the Wallet Unit receives a WRPRC, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.
 
@@ -128,9 +128,9 @@ If caching-related HTTP headers are present in the HTTP response, Wallet Units S
 
 **CRL issuers** issue CRLs. The CRL issuer is either the Certificate Authority (CA) or an entity that has been authorized by the CA to issue CRLs.
 
-> [!NOTE]
->
-> Within APTITUDE the CRL Issuer SHALL be the Trust Anchor.
+!!! note
+
+    Within APTITUDE the CRL Issuer SHALL be the Trust Anchor.
 
 CAs publish CRLs to provide status information about the certificates they issued. Each CRL has a particular scope. The CRL scope is the set of certificates that could appear on a given CRL. For example, the scope could be "all certificates issued by CA X". A complete CRL lists all unexpired certificates, within its scope, that have been revoked for one of the revocation reasons covered by the CRL scope.
 
@@ -174,9 +174,9 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 | `authorityKeyIdentifier` | RFC 5280 clause 5.2.1 | REQUIRED | *SEQUENCE* | Provides a means of identifying the public key corresponding to the private key used to sign the CRL. Contains `keyIdentifier` (OCTET STRING), `authorityCertIssuer`, or `authorityCertSerialNumber`. |
 | `cRLNumber` | RFC 5280 clause 5.2.3 | REQUIRED | *INTEGER* | A non-critical extension conveying a monotonically increasing sequence number for a given CRL scope and issuer. |
 
-> [!NOTE]
->
-> Within the APTITUDE pilot we do not use Delta CRLs
+!!! note
+
+    Within the APTITUDE pilot we do not use Delta CRLs
 
 #### Online Certificate Status Protocol
 
@@ -217,9 +217,9 @@ The `requestExtensions` and `singleRequestExtensions` structures MAY contain var
 | :-------: | :--------: | :------: | :----- | :---------- |
 | `nonce` | RFC 6960 clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. Identifier OID is `id-pkix-ocsp-nonce`. |
 
-> [!NOTE]
->
-> Within APTITUDE, OCSP requests SHALL use the `nonce` extension.
+!!! note
+
+    Within APTITUDE, OCSP requests SHALL use the `nonce` extension.
 
 When sent over HTTP using POST, the body of this request is the raw DER encoding of this `OCSPRequest`, with the MIME type `application/ocsp-request`.
 
@@ -253,9 +253,9 @@ An OCSP response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. Whe
 | `responseBytes.responseType` | RFC 6960 clause 4.2.1 | REQUIRED | *OBJECT IDENTIFIER* | Identifier for the response type. For a basic OCSP responder, this value SHALL be `id-pkix-ocsp-basic`. |
 | `responseBytes.response` | RFC 6960 clause 4.2.1 | REQUIRED | *OCTET STRING* | Contains the DER encoding of the response syntax identified by `responseType` (e.g., the `BasicOCSPResponse` structure). |
 
-> [!NOTE]
->
-> Within APTITUDE, OCSP responders SHALL be capable of producing responses of the `id-pkix-ocsp-basic` response type. Correspondingly, OCSP clients SHALL be capable of receiving and processing responses of the `id-pkix-ocsp-basic` response type.
+!!! note
+
+    Within APTITUDE, OCSP responders SHALL be capable of producing responses of the `id-pkix-ocsp-basic` response type. Correspondingly, OCSP clients SHALL be capable of receiving and processing responses of the `id-pkix-ocsp-basic` response type.
 
 `BasicOCSPResponse` is an ASN.1 SEQUENCE containing the following parameters:
 
@@ -281,9 +281,9 @@ The `responseExtensions` structure MAY contain various extensions. A notable par
 | :-------: | :--------: | :------: | :----- | :---------- |
 | `nonce` | RFC 6960 clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. If included in the request, responders SHOULD include it in the response. Identifer OID is `id-pkix-ocsp-nonce`. |
 
-> [!NOTE]
->
-> Within APTITUDE, OCSP Responses SHALL use the `nonce` extension.
+!!! note
+
+    Within APTITUDE, OCSP Responses SHALL use the `nonce` extension.
 
 In the OCSP Response there SHALL be at least a `SingleResponse` for each `CertID` in the request. Each `SingleResponse` is an ASN.1 *SEQUENCE* that carries the following parameters:
 

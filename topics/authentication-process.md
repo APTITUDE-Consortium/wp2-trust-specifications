@@ -183,8 +183,9 @@ When using a CRL, the Wallet Unit SHALL:
 4. Validate the CRL signature using the issuer's public key. If a key usage extension is present in the CRL issuer's certificate, verify that the `cRLSign` bit is set.
 5. Check if the certificate's serial number is listed in `revokedCertificates`. If an entry is found then the certificate status is set to `revoked`.
 
-> ***Note:***
-> In this case it is assumed that the issuer of both the CRL and certificate do coincide, and that the CRL is not signed by a delegated CRL issuer.
+!!! note
+
+    In this case it is assumed that the issuer of both the CRL and certificate do coincide, and that the CRL is not signed by a delegated CRL issuer.
 
 If any of the steps 1-4 fail or the CRL is unavailable, the Wallet Unit SHALL consider the certificate status as `unknown`. When all steps 1-4 succeed and the certificate serial number is not found in the CRL, the certificate SHALL be considered `good`.
 
@@ -256,8 +257,9 @@ When using OCSP, the Wallet Unit SHALL:
     - `serialNumber` field value is the certificate’s serial number.
 5. Check `thisUpdate` and `nextUpdate` (or `producedAt`) against local freshness policies.
 
-> ***Note:***
-> It is assumed that only basic OCSP responses (i.e., where `responseType` is `id-pkix-ocsp-basic`) are supported.
+!!! note
+
+    It is assumed that only basic OCSP responses (i.e., where `responseType` is `id-pkix-ocsp-basic`) are supported.
 
 If any of the checks in 2-4 fail, the certificate status SHALL be considered `unknown`. If all checks succeed, update the status of each certificate by matching the `certStatus` value in the `SingleResponse` to the requested `CertID`.
 
