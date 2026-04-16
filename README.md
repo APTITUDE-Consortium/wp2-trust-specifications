@@ -1,12 +1,14 @@
 # APTITUDE Trust Specifications
 
 ## About
+
 Repository related to the subtask T2.3.1 (Implementation profiles for the trust framework) within WP2 of the European LSP APTITUDE.
 
 ## Structure
+
 The repository is structured according to the following organization:
 
-```
+```text
 .
 ├── docs
     ├── topics
@@ -31,6 +33,7 @@ The repository is structured according to the following organization:
 ```
 
 The main files are as follows:
+
 | Name                            | Description           |
 | -------------------             | --------------------- |
 | `docs/`                         | Contains the reference material |
