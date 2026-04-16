@@ -1,7 +1,3 @@
-# Embedded Disclosure Policy
-
-# Scope
-
 This section specifies the Embedded Disclosure Policy (EDP) for the EUDI Wallet ecosystem. It defines the following aspects:
 
 - What an EDP is, and which policy types are supported.
@@ -11,7 +7,7 @@ This section specifies the Embedded Disclosure Policy (EDP) for the EUDI Wallet 
 
 The authorization evaluation logic that the WI applies when processing an EDP during presentation is defined in the [Authorization Process](authorization-process.md) section of this specification.
 
-# Definition and applicability
+#### Definition and Applicability
 
 An Embedded Disclosure Policy is defined in Article 2(9) of CIR 2024/2979 as:
 
@@ -26,7 +22,7 @@ The main use cases enabled by EDPs are:
 - Implementing sector-specific access control (e.g., only public sector RPs or only healthcare RPs).
 - Implementing Member-State-specific access control (e.g., only RPs registered within a specific Member State).
 
-# Policy Types
+#### Policy Types
 
 Annex III of CIR 2024/2979 defines three common EDP types:
 
@@ -46,11 +42,11 @@ For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `
 
 **Specific Root of Trust.** The EDP contains a list of trusted roots or intermediate certificates. Only RPs whose WRPACs chain to one of these roots are allowed to access the Attestation. According to ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-08/09), each authorized root is identified by its issuer distinguished name in LDAP string form as defined in RFC 4514 and the issuer's certificate serial number.
 
-# Data Model
+#### Data Model
 
 The data model of the EDP is defined in ETSI TS 119 472-3 section 4.2.5.2 through requirements ISS-MDATA-EBD-4.2.5.2-01 to ISS-MDATA-EBD-4.2.5.2-13.
 
-## Data model requirements
+##### Data Model Requirements
 
 The data model defines the following elements:
 
@@ -69,7 +65,7 @@ The data model defines the following elements:
 
     ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-12) provides for attribute-level policies, where alternative policy rules (no policy, authorized RP only, or specific root of trust) can be defined for specific attributes within an EAA that are subject to selective disclosure. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level EDP will be addressed when the ETSI JSON schema for EDP is finalized and the policy mechanisms are fully defined.
 
-## Structure and encoding
+##### Structure and Encoding
 
 The following JSON structure is derived from the ETSI TS 119 472-3 data model requirements.
 
@@ -91,7 +87,7 @@ The following JSON structure is derived from the ETSI TS 119 472-3 data model re
 | `trusted_roots[].issuer_dn` | string | REQUIRED. Issuer DN in LDAP string form compliant with RFC 4514. | ISS-MDATA-EBD-4.2.5.2-09 |
 | `trusted_roots[].serial_number` | string | REQUIRED. Certificate serial number of the issuer. | ISS-MDATA-EBD-4.2.5.2-09 |
 
-# Distribution
+#### Distribution
 
 The EDP is distributed through Credential Issuer Metadata at issuance time. The AP SHALL include the EDP (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with OpenID4VCI or the extension thereof specified in ETSI TS 119 472-3 (EDP_09). The EDP SHALL NOT be revealed to the RP through the presentation protocol (per ETSI TS 119 472-3 section 4.2.5.1).
 
@@ -101,13 +97,13 @@ The EDP is distributed through Credential Issuer Metadata at issuance time. The 
 
 As described in section [Authorization Process](authorization-process.md), during attestation issuance, the EDP (if available) is stored locally by the WI and it is associated with the specific Attestation for which it was retrieved.
 
-# Lifecycle
+#### Lifecycle
 
-## Validity binding
+##### Validity Binding
 
 The locally stored EDP SHALL remain valid as long as the Attestation it is associated with is valid and not revoked. The EDP SHALL NOT have an independent validity status or revocation mechanism separate from the Attestation.
 
-## Update mechanism
+##### Update Mechanism
 
 If an AP adds, changes, or deletes an EDP for an Attestation, the AP SHALL revoke that Attestation (EDP_11). The WI detects the policy change indirectly through the normal Attestation status checking mechanism (Status List), which will report that the Attestation as revoked. The locally stored EDP is then implicitly invalidated together with the Attestation. The User needs to request a new issuance to obtain the Attestation with the updated policy.
 
@@ -120,7 +116,7 @@ Even a minor policy change (e.g., adding a single RP to the authorized list) req
     - It enables AP to unilaterally change an EDP, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
     - Technical details of this mechanism are not defined within ETSI standard.
 
-# Normative References
+#### Normative References
 
 | Reference | Description |
 |-----------|-------------|

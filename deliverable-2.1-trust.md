@@ -41,6 +41,7 @@ Version 0.1 (Draft)
   - [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate)
   - [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate)
   - [List of Trusted Entities and List of Trusted Lists](#list-of-trusted-entities-and-list-of-trusted-lists)
+  - [Embedded Disclosure Policy](#embedded-disclosure-policy)
 - [6. Trust Evaluation](#5-trust-evaluation)
   - [Trust Anchor Validation](#trust-anchor-validation)
   - [Authentication Process](#authentication-process)
@@ -94,6 +95,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ### List of Trusted Entities and List of Trusted Lists
 
 {% include-markdown "./topics/trusted-list-and-list-of-trusted-lists.md" %}
+
+### Embedded Disclosure Policy
+
+{% include-markdown "./topics/embedded-disclosure-policy.md" %}
 
 ---
 
