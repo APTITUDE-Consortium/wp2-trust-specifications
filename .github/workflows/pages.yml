@@ -1,5 +1,3 @@
-pages
-
 name: Publish MkDocs site
 
 on:
@@ -7,6 +5,7 @@ on:
     branches:
       - main
       - page-compile
+      - 'release-v*'
     tags:
       - 'v*'
   workflow_dispatch:
@@ -56,8 +55,8 @@ jobs:
                -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/overrides/partials/footer.html \
                -o docs/overrides/partials/footer/footer.html
 
-      - name: Deploy Dev (from page-compile)
-        if: github.ref == 'refs/heads/page-compile'
+      - name: Deploy Dev (from page-compile or release branch)
+        if: github.ref == 'refs/heads/page-compile' || startsWith(github.ref, 'refs/heads/release-v')
         run: |
           mike deploy --push dev
           mike set-default --push dev
@@ -71,4 +70,4 @@ jobs:
       - name: Deploy Main (Internal/Preview)
         if: github.ref == 'refs/heads/main'
         run: |
-          mike deploy --push main-preview
+          mike deploy --push main
