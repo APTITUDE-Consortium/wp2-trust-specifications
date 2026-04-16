@@ -31,7 +31,7 @@ Version 0.1 (Draft)
 
 ## Table of Contents
 
-- [1. Introduction](#introduction)
+- [1. Introduction](#1-introduction)
 - [2. Scope](#2-scope)
   - [Out of Scope](#out-of-scope)
 - [3. Normative Language](#3-normative-language)
@@ -42,8 +42,8 @@ Version 0.1 (Draft)
   - [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate)
   - [List of Trusted Entities and List of Trusted Lists](#list-of-trusted-entities-and-list-of-trusted-lists)
   - [Embedded Disclosure Policy](#embedded-disclosure-policy)
-- [6. Trust Evaluation](#5-trust-evaluation)
-  - [Trust Anchor Validation](#trust-anchor-validation)
+- [6. Trust Evaluation Process](#6-trust-evaluation-process)
+  - [Trust Anchor Validation Process](#trust-anchor-validation-process)
   - [Authentication Process](#authentication-process)
   - [Authorization Process](#authorization-process)
 - [7. Trust Management and Lifecycle](#7-trust-management-and-lifecycle)
@@ -88,7 +88,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 {% include-markdown "./topics/access-certificate.md" %}
 
-### Wallet-Relying Party Registration Certificates
+### Wallet-Relying Party Registration Certificate
 
 {% include-markdown "./topics/registration-certificate.md" %}
 

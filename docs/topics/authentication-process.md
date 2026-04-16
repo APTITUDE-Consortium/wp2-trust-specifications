@@ -165,7 +165,7 @@ graph TD
 
 The Wallet Unit SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
-- If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see [Wallet Relying Party Access Certificates Content](#wallet-relying-party-access-certificates-content)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
+- If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see [Wallet Relying Party Access Certificate Content](#wallet-relying-party-access-certificate-content)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
 - If the `cRLDistributionPoints` extension is present, the Wallet Unit MAY retrieve and validate the CRL.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Unit MAY perform an OCSP lookup.
 

@@ -27,7 +27,7 @@ To guarantee the interoperability across all the wallets provided within the Uni
 
 The WRPAC attributes SHALL be derived from the information held in the Register as specified in clause 5.1.2 of ETSI TS 119 475. This also implies that for some specific attributes in the WRPAC the same value SHALL be encountered in the corresponding Wallet Relying Party Registration Certificate if any.
 
-#### Wallet Relying Party Access Certificate Contents
+#### Wallet Relying Party Access Certificate Content
 
 The following table lists all the parameters and extensions that are mandatory in a WRPAC or mandatory with conditions. Optional parameters are not referenced and are not recommended, since they could cause conflicts with the content specified.
 
