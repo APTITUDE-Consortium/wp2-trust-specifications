@@ -1,6 +1,6 @@
 # Registry — Additional JSON Examples
 
-This file contains non-normative JSON examples complementing the two baseline examples in [registry.md](registry.md) (§11). Each example illustrates a different registrant profile. Where meaningful, both the registration view (full, includes `postalAddress`) and the published API view (excludes `postalAddress`) are shown.
+This file contains non-normative JSON examples complementing the two baseline examples in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate) (§11). Each example illustrates a different registrant profile. Where meaningful, both the registration view (full, includes `postalAddress`) and the published API view (excludes `postalAddress`) are shown.
 
 ---
 

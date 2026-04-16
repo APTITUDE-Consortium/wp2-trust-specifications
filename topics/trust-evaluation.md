@@ -62,6 +62,6 @@ Authorization covers:
 
 !!! note
 
-    Authentication process is out of scope. This section does not define access certificate validation rules, LoTE validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the WRPRC (covered in section [Registration Certificate](registration-certificate.md)), nor Registrar online service API definition.
+    Authentication process is out of scope. This section does not define access certificate validation rules, LoTE validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the WRPRC (covered in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate)), nor Registrar online service API definition.
 
 {% include-markdown "./authorization-process.md" %}

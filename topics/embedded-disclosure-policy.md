@@ -5,7 +5,7 @@ This section specifies the Embedded Disclosure Policy (EDP) for the EUDI Wallet 
 - The distribution mechanism.
 - The lifecycle rules.
 
-The authorization evaluation logic that the WI applies when processing an EDP during presentation is defined in the [Authorization Process](authorization-process.md) section of this specification.
+The authorization evaluation logic that the WI applies when processing an EDP during presentation is defined in the [Authorization Process](#authorization-process) section of this specification.
 
 #### Definition and Applicability
 
@@ -95,7 +95,7 @@ The EDP is distributed through Credential Issuer Metadata at issuance time. The 
 
     According to ISS-MDATA-EBD-4.2.5.2-03, the AP may provide only the `policy_uri` if the policy data set has already been pre-loaded into the WI. As the mechanism for pre-loading policies into a WI is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
 
-As described in section [Authorization Process](authorization-process.md), during attestation issuance, the EDP (if available) is stored locally by the WI and it is associated with the specific Attestation for which it was retrieved.
+As described in section [Authorization Process](#authorization-process), during attestation issuance, the EDP (if available) is stored locally by the WI and it is associated with the specific Attestation for which it was retrieved.
 
 #### Lifecycle
 

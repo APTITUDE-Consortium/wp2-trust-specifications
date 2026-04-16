@@ -136,7 +136,7 @@ CAs publish CRLs to provide status information about the certificates they issue
 
 The CRL issuer MAY also generate delta CRLs. A delta CRL only lists those certificates, within its scope, whose revocation status has changed since the issuance of a referenced complete CRL. The referenced complete CRL is referred to as a base CRL. The scope of a delta CRL SHALL be the same as the base CRL that it references.
 
-If supported by the CA, the CRL SHALL be available at the URI specified in the `cRLDistributionPoints.distributionPoint` *[0] CHOICE* structure within the [WRPAC](access-certificate.md).
+If supported by the CA, the CRL SHALL be available at the URI specified in the `cRLDistributionPoints.distributionPoint` *[0] CHOICE* structure within the [WRPAC](#wallet-relying-party-access-certificate).
 
 An X.509 v2 CRL is represented as the ASN.1 DER encoding of the `CertificateList` SEQUENCE. The ASN.1 DER encoding is a strictly defined tag, length, and value encoding system for each element. The final bytes transmitted represent the DER encoding of the top-level SEQUENCE containing the fields in the following table:
 
@@ -184,7 +184,7 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 
 An OCSP client issues a status request to an OCSP responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response.
 
-If supported by the CA, the URI to which the OCSP Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](access-certificate.md).
+If supported by the CA, the URI to which the OCSP Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](#wallet-relying-party-access-certificate).
 
 This protocol specifies the data that SHALL be exchanged between the OCSP client (which checks the status of one or more certificates) and the OCSP server (which provides the corresponding status). In this specific ecosystem, the OCSP client can be a WU checking the WRPAC of a WRP, and the OCSP server is the Provider of the WRPAC.
 

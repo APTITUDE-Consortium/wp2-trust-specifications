@@ -169,7 +169,7 @@ The Wallet Unit SHALL determine the revocation status for every certificate in t
 - If the `cRLDistributionPoints` extension is present, the Wallet Unit MAY retrieve and validate the CRL.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the Wallet Unit MAY perform an OCSP lookup.
 
-For details regarding the formats and parameters of CRLs and OCSP responses, see [Revocation Mechanism](/topics/revocation-mechanisms.md).
+For details regarding the formats and parameters of CRLs and OCSP responses, see [Revocation Mechanism](#revocation-mechanisms).
 
 ###### CRL Validation
 

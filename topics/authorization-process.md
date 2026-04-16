@@ -1,6 +1,6 @@
 #### Preconditions
 
-The authorization process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](authentication-process.md)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the authorization process SHALL NOT start [AUTHZ-GEN-02].
+The authorization process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](#authentication-process)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the authorization process SHALL NOT start [AUTHZ-GEN-02].
 This section does define how the WI SHALL use the already-authenticated WRP context as an input to authorization, including binding checks between the authenticated WRP, the authorization subject, and the WRPRC or Register-derived authorization context.
 
 #### Authorization Framework
@@ -142,7 +142,7 @@ Registration data is collected at the Registrar and the Provider of WRPRCs get i
 
 ##### WRPRC Parameters for Authorization
 
-The following table lists the WRPRC payload parameters used in authorization processing, with field names as defined in ETSI TS 119 475 V1.2.1 section 5.2.4. Details about the WRPRC data structure and lifecycle are provided in section [Registration Certificate](registration-certificate.md).
+The following table lists the WRPRC payload parameters used in authorization processing, with field names as defined in ETSI TS 119 475 V1.2.1 section 5.2.4. Details about the WRPRC data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
 The **Authorization Use** column indicates how each parameter is consumed: **Decision rule** means the WI enforces an automated check, **User transparency** means the information is displayed to support the User's decision, and **Wallet operation** means the WI uses it internally (e.g. for fallback query).
 
 | Field | Applicability | Authorization Use | Reference |
@@ -195,7 +195,7 @@ The WI SHALL use this service when the WRPRC is not available or validation fail
 
 ##### Embedded Disclosure Policy
 
-The EDP is a set of rules defined by the AP that restricts which RPs can access specific Attestations. The EDP definition, data model, structure, encoding, and lifecycle are specified in the dedicated [Embedded Disclosure Policy](embedded-disclosure-policy.md) section of this specification.
+The EDP is a set of rules defined by the AP that restricts which RPs can access specific Attestations. The EDP definition, data model, structure, encoding, and lifecycle are specified in the dedicated [Embedded Disclosure Policy](#embedded-disclosure-policy) section of this specification.
 
 For authorization purposes, the following aspects are relevant:
 
