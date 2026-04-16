@@ -67,6 +67,8 @@ plugins:
         - 'references/**'
         - 'requirements/**'
         - 'topics/**'
+        - 'docs/topics/**'
+        - 'docs/glossary-definitions.md'
   - include-markdown:
       comments: true
   - search
