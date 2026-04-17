@@ -1046,832 +1046,438 @@ EC ---|"Notification Process &lt;br/&gt;(Trust Anchor or &lt;br/&gt;URL of the E
 <h2 id="5-trust-artifacts">5. Trust Artifacts<a class="headerlink" href="#5-trust-artifacts" title="Permanent link">&para;</a></h2>
 <h3 id="register">Register<a class="headerlink" href="#register" title="Permanent link">&para;</a></h3>
 <!-- BEGIN INCLUDE ./topics/registry.md -->
-<p>This section specifies requirements for the <strong>Registrar of Wallet-Relying Parties (WRPs)</strong> and the National Register of WRPs (the registry service) in the context of eIDAS2 and the EUDI Wallet ecosystem.</p>
-<p>Formally, a <strong>Registrar</strong> is the designated body that:</p>
+<p>This section specifies requirements for the Registrar of Wallet-Relying Parties (WRPs) and the national Register of WRPs (the registry service) in the context of eIDAS2 and the EUDI Wallet ecosystem.</p>
+<p>Formally, a Registrar is the designated body that:</p>
 <ul>
 <li>manages the WRP registration lifecycle (onboarding, update, suspension, cancellation),</li>
 <li>ensures the integrity and publication of registration information,</li>
 <li>ensures interoperability by exposing WRP registration data via a national website and a single common REST API.</li>
 </ul>
-<p>The <strong>National Register of WRPs</strong> is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about WRPs and their authorisations/declared usage.</p>
-<blockquote>
-<p>The <strong>National Register of Wallet-Relying Parties</strong> is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a <strong>single coherent common REST API</strong> and return <strong>signed statements</strong> as required.<br>
-Additionally, sectorial registers may exist internally, but the decision regarding issuance of WRPAC is solely based on whether the Relying Party has been registered with an active status in the National Register.</p>
-</blockquote>
-<h4 id="terms-and-roles">Terms and Roles<a class="headerlink" href="#terms-and-roles" title="Permanent link">&para;</a></h4>
-<ul>
-<li><strong>Registrar of WRPs</strong>: body designated by a Member State to establish and maintain the list of registered WRPs.</li>
-<li><strong>Register (National Register of WRPs)</strong>: the service exposing information about registered WRPs through a national website and a common REST API. Responses from Register are sealed using Register's certificate.</li>
-<li><strong>WRP</strong>: a relying party that intends to rely upon Wallet Units to provide services via digital interaction.</li>
-<li><strong>WRPAC</strong>: Wallet-Relying Party Access Certificate, which is used to authenticate the Relying Party during a transaction, and failure is treated as Relying Party authentication failure.</li>
-<li><strong>WRPRC</strong>: Wallet-Relying Party Registration Certificate, which is optional, and is used to express intended use and registered data requests.</li>
-<li><strong>Intermediary</strong>: an entity acting on behalf of a WRP in wallet interactions (where applicable).</li>
-</ul>
+<p>The national Register of WRPs is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about WRPs and their authorisations/declared usage.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The national Register of WRPs is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a single coherent common REST API and return signed statements as required.<br></p>
+<p>Additionally, sectorial registers may exist internally, but the decision regarding issuance of WRPAC is solely based on whether the WRP has been registered with an active status in the national Register.</p>
+</div>
 <h4 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h4>
+<p>The list below enumerates all the applicable standards and specifications that have been used to populate the table below:</p>
 <ul>
-<li>
-<p><strong>Commission Implementing Regulation (EU) 2025/848</strong> (Wallet-relying party registration / national registers / Annex I–V):<br />
-<a href="https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj">https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj</a></p>
-</li>
-<li>
-<p><strong>Commission “Have your say” draft update to WRP registration rules (introduces Annex VI for common API / registry schema)</strong>:<br />
-<a href="https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16113-European-Digital-Identity-Wallet-registration-of-wallet-relying-parties-update-_en">https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16113-European-Digital-Identity-Wallet-registration-of-wallet-relying-parties-update-_en</a></p>
-</li>
-<li>
-<p><strong>ETSI TS 119 475 v1.2.1</strong> (WRP attributes, entitlement URIs, RP authorisation decision support):
-  <a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.02.01_60/ts_119475v010201p.pdf">https://www.etsi.org/deliver/etsi_ts/119400_119499/119475/01.02.01_60/ts_119475v010201p.pdf</a></p>
-</li>
-<li>
-<p><strong>ETSI TS 119 411-8 v1.1.1</strong> (certificate profiles/policies referenced by ETSI ecosystem):<br />
-<a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf">https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf</a></p>
-</li>
-<li>
-<p><strong>IETF RFC 7515</strong> (JSON Web Signature, JWS):<br />
-<a href="https://www.rfc-editor.org/rfc/rfc7515">https://www.rfc-editor.org/rfc/rfc7515</a></p>
-</li>
-<li>
-<p><strong>IETF RFC 7519</strong> (JSON Web Token, JWT):<br />
-<a href="https://www.rfc-editor.org/rfc/rfc7519">https://www.rfc-editor.org/rfc/rfc7519</a></p>
-</li>
-<li>
-<p><strong>EUDI Wallet ARF (TS5 + TS6)</strong>:<br />
-<a href="https://eudi.dev/2.7.3/architecture-and-reference-framework-main/">https://eudi.dev/2.7.3/architecture-and-reference-framework-main/</a></p>
-</li>
-<li>
-<p><strong>WE BUILD – “Registry of Wallet Relying Parties” discussion</strong> (informative):<br />
-<a href="https://github.com/JustBelieveEU/WE_BUILD/issues/20">https://github.com/JustBelieveEU/WE_BUILD/issues/20</a></p>
-</li>
+<li><strong>CIR 2025/848</strong> on WRP registration and Registers </li>
+<li><strong>CIR 2025/848-Amendment</strong>. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for Register of WRPs.</li>
+<li><strong>ETSI TS 119 475 v1.2.1</strong>  on WRP attributes, entitlement URIs, RP authorisation decision support.</li>
+<li><strong>TS05 V1.3</strong> on common formats and API for WRP registration information</li>
+<li><strong>TS06 V1.0.1</strong> on common set of WRP information to be registered</li>
+<li><strong>RFC 7515</strong></li>
+<li><strong>RFC 7519</strong></li>
+<li><strong>RFC 8392</strong></li>
 </ul>
-<h4 id="overall-interaction-schema">Overall interaction schema<a class="headerlink" href="#overall-interaction-schema" title="Permanent link">&para;</a></h4>
-<h4 id="wrp-interacts-directly-with-wallet">WRP interacts directly with Wallet<a class="headerlink" href="#wrp-interacts-directly-with-wallet" title="Permanent link">&para;</a></h4>
-<p>The following diagram shows interactions between involved actors in case that WRP interacts directly with Wallet</p>
-<pre class="mermaid"><code>sequenceDiagram
-  autonumber
-  participant WRP as Wallet-Relying Party
-  participant REG as Registrar
-  participant NREG as National Register / Single Common API
-  participant ACA as Access Certificate Authority
-  participant RCA as Registration Certificate Authority
-  participant WAL as Wallet Unit
-
-  WRP-&gt;&gt;REG: Onboarding application
-  REG-&gt;&gt;NREG: Publish registration status + Annex I information
-  REG--&gt;&gt;WRP: Approval / lifecycle updates
-
-  WRP-&gt;&gt;ACA: Request certificate issuance
-  ACA--&gt;&gt;WRP: Issue WRPAC
-
-  WRP-&gt;&gt;RCA: Request registration certificate (optional)
-  RCA--&gt;&gt;WRP: Issue WRPRC (optional)
-
-  WRP-&gt;&gt;WAL: OID4VP / ISO 18013-5 interaction
-  WAL-&gt;&gt;WAL: Authenticate WRP using WRPAC
-  WAL-&gt;&gt;NREG: Retrieve RP registered info (optional)
-  WAL--&gt;&gt;WRP: User consent + attribute release
-
-</code></pre>
-<h4 id="wrp-represented-by-an-intermediary-where-applicable">WRP represented by an intermediary (where applicable)<a class="headerlink" href="#wrp-represented-by-an-intermediary-where-applicable" title="Permanent link">&para;</a></h4>
-<p>In case that a relying party is represented by an intermediary, the interaction flow is shown as following:</p>
-<pre class="mermaid"><code>sequenceDiagram
-  autonumber
-  participant INT as Intermediary (on behalf of WRP)
-  participant REG as Registrar
-  participant NREG as National Register / Single Common API
-  participant ACA as Access Certificate Authority
-  participant REGCA as Registration Certificate Authority
-  participant WRP as Wallet-Relying Party
-  participant WAL as Wallet Unit
-
-%% Onboarding &amp; registration (Intermediary)
-  INT-&gt;&gt;REG: Intermediary onboarding application
-  REG-&gt;&gt;NREG: Intermediary registration
-
-%% Certificate issuance (Intermediary)
-  INT-&gt;&gt;ACA: Request certificate issuance
-  ACA--&gt;&gt;INT: Issue WRPAC to Intermediary
-
-%% Contractual agreement + WRP onboarding
-  WRP-&gt;&gt;INT: Agree on contract
-  INT-&gt;&gt;REG: RP onboarding application
-  REG-&gt;&gt;NREG: RP registration
-
-%% Registration certificate (optional)
-  INT-&gt;&gt;REGCA: Request Registration Certificate
-  REGCA--&gt;&gt;INT: Issue WRPRC for WRP 
-
-%% Wallet interaction
-  INT-&gt;&gt;WAL: OID4VP / ISO 18013-5 interaction
-  WAL-&gt;&gt;WAL: Authenticate Intermediary via WRPAC  and RP &lt;br/&gt; with Registration Certificate (if present in protocols' extensions) 
-  WAL-&gt;&gt;NREG: Retrieve WRP entry + intermediary association (optional)
-  WAL--&gt;&gt;INT: User consent + attribute release
-</code></pre>
-<h4 id="registry-governance-and-publication-requirements">Registry governance and publication requirements<a class="headerlink" href="#registry-governance-and-publication-requirements" title="Permanent link">&para;</a></h4>
-<h4 id="establishment-and-publication">Establishment and publication<a class="headerlink" href="#establishment-and-publication" title="Permanent link">&para;</a></h4>
+<h4 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h4>
+<h5 id="register-requirements">Register Requirements<a class="headerlink" href="#register-requirements" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
+<th>ID</th>
 <th>Requirement</th>
 <th>Reference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Each Member State SHALL establish and maintain at least one national register of WRPs.</td>
-<td>CIR (EU) 2025/848, Article 3(1)</td>
+<td>REGISTER-PUB-01</td>
+<td>Each Member State SHALL establish and maintain at least one national Register of WRPs.</td>
+<td>[CIR 2025/848], Article 3(1)</td>
 </tr>
 <tr>
-<td>The register SHALL include at least the information set out in Annex I.</td>
-<td>CIR (EU) 2025/848, Article 3(2)</td>
+<td>REGISTER-PUB-02</td>
+<td>The Register SHALL include at least the information set out in Annex I of [CIR 2025/848].</td>
+<td>[CIR 2025/848], Article 3(2)</td>
 </tr>
 <tr>
-<td>Member States SHALL designate at least one registrar to manage and operate at least one national register.</td>
-<td>CIR (EU) 2025/848, Article 3(3)</td>
+<td>REGISTER-PUB-03</td>
+<td>Member States SHALL designate at least one Registrar to manage and operate at least one national Register.</td>
+<td>[CIR 2025/848], Article 3(3)</td>
 </tr>
 <tr>
+<td>REGISTER-PUB-04</td>
 <td>Member States SHALL make Annex I information publicly available online in human-readable and machine-processable form.</td>
-<td>CIR (EU) 2025/848, Article 3(4)</td>
+<td>[CIR 2025/848], Article 3(4)</td>
 </tr>
 <tr>
-<td>Annex I information SHALL be available through a national website and a single common API, and SHALL be electronically signed/sealed by/on behalf of the registrar.</td>
-<td>CIR (EU) 2025/848, Article 3(5)</td>
+<td>REGISTER-PUB-05</td>
+<td>Annex I information included in the Register (as for REGISTER-PUB-02) SHALL be available through a national website and a single common API, and SHALL be electronically signed/sealed by/on behalf of the Registrar.</td>
+<td>[CIR 2025/848], Article 3(5)</td>
+</tr>
+<tr>
+<td>REGISTER-API-01</td>
+<td>The single common API SHALL be a REST API supporting JSON, and signed according to IETF RFC 7515.</td>
+<td>[CIR 2025/848], Annex II §2(1)(a)</td>
+</tr>
+<tr>
+<td>REGISTER-API-02</td>
+<td>The API SHALL allow any requestor, without prior authentication, to search and request complete lists, allowing partial matches on defined parameters.</td>
+<td>[CIR 2025/848], Annex II §2(1)(b)</td>
+</tr>
+<tr>
+<td>REGISTER-API-03</td>
+<td>Replies to request that match at least one WRP SHALL include statements covering Annex I information [CIR 2025/848], current/historic WRPACs and WRPRCs, excluding Annex I point 4 information.</td>
+<td>[CIR 2025/848], Annex II §2(1)(c)</td>
+</tr>
+<tr>
+<td>REGISTER-API-04</td>
+<td>The API SHALL be published as OpenAPI v3 with documentation enabling interoperability across the Union.</td>
+<td>[CIR 2025/848], Annex II §2(1)(d)</td>
+</tr>
+<tr>
+<td>REGISTER-API-05</td>
+<td>The API SHALL provide security-by-default and by-design to ensure availability and integrity.</td>
+<td>[CIR 2025/848], Annex II §2(1)(e)</td>
+</tr>
+<tr>
+<td>REGISTER-API-06</td>
+<td>Statements referred to in REGISTER-API-03 SHALL be electronically signed/sealed JSON files as for IETF RFC 7515.</td>
+<td>[CIR 2025/848], Annex II §2(2)</td>
 </tr>
 </tbody>
 </table>
-<h4 id="common-api-constraints-high-level">Common API constraints (high level)<a class="headerlink" href="#common-api-constraints-high-level" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The set of WRP information listed in Annex I of [CIR 2025/848] and mentioned in REGISTER-PUB-05 and REGISTER-API-03 will be described in the <a href="#register-data-schema">Register Data Schema</a> section.</p>
+</div>
+<h5 id="registrar-requirements">Registrar Requirements<a class="headerlink" href="#registrar-requirements" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
+<th>ID</th>
 <th>Requirement</th>
 <th>Reference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>The single common API SHALL be a REST API supporting JSON, and signed according to Annex II Section 1.</td>
-<td>CIR (EU) 2025/848, Annex II §2(1)(a)</td>
+<td>REGISTRAR-REG-01</td>
+<td>Registrars SHALL establish easy-to-use electronic, and where possible automated, registration processes.</td>
+<td>[CIR 2025/848], Article 6(1)</td>
 </tr>
 <tr>
-<td>The API SHALL allow any requestor, without prior authentication, to search and request complete lists, allowing partial matches on defined parameters.</td>
-<td>CIR (EU) 2025/848, Annex II §2(1)(b)</td>
+<td>REGISTRAR-REG-02</td>
+<td>WRPs SHALL provide at least Annex I information to national registers.</td>
+<td>[CIR 2025/848], Article 5(1)</td>
 </tr>
 <tr>
-<td>Matching replies SHALL include statements covering Annex I information, current/historic WRPACs and WRPRCs, <strong>excluding Annex I point 4</strong> information.</td>
-<td>CIR (EU) 2025/848, Annex II §2(1)(c)</td>
+<td>REGISTRAR-REG-03</td>
+<td>WRPs SHALL ensure information is accurate and SHALL update without undue delay.</td>
+<td>[CIR 2025/848], Article 5(2)–(3)</td>
 </tr>
 <tr>
-<td>The API SHALL be published as OpenAPI v3 with documentation enabling interoperability across the Union.</td>
-<td>CIR (EU) 2025/848, Annex II §2(1)(d)</td>
+<td>REGISTRAR-REG-04</td>
+<td>Where possible, Registrars SHALL verify (automated) accuracy/validity, power of attorney (if applicable), entitlement type(s), and absence of existing registration in another national Register.</td>
+<td>[CIR 2025/848], Article 6(3)</td>
 </tr>
 <tr>
-<td>The API SHALL provide security-by-default/by-design to ensure availability and integrity.</td>
-<td>CIR (EU) 2025/848, Annex II §2(1)(e)</td>
+<td>REGISTRAR-REG-05</td>
+<td>Registrars SHALL verify against supporting documentation or appropriate authentic sources/official records.</td>
+<td>[CIR 2025/848], Article 6(4)</td>
 </tr>
 <tr>
-<td>Statements SHALL be electronically signed/sealed JSON files (structure according to Annex II Section 1).</td>
-<td>CIR (EU) 2025/848, Annex II §2(2)</td>
+<td>REGISTRAR-REG-06</td>
+<td>Verification of entitlements SHALL be carried out according to Annex III of [CIR 2025/848].</td>
+<td>[CIR 2025/848], Article 6(5)</td>
+</tr>
+<tr>
+<td>REGISTRAR-REG-07</td>
+<td>If Registrar cannot verify according to Article 6(3)–(5) of [CIR 2025/848], Registrar SHALL reject the registration.</td>
+<td>[CIR 2025/848], Article 6(6)</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-01</td>
+<td>Registrars SHALL suspend/cancel a registration of a WRP where requested by a supervisory body (per eIDAS reference).</td>
+<td>[CIR 2025/848], Article 9(1)</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-02</td>
+<td>Registrars MAY suspend/cancel a registration of a WRP if info inaccurate/outdated/misleading, non-compliance, excessive attribute requests, breach of law.</td>
+<td>[CIR 2025/848], Article 9(2)</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-03</td>
+<td>Registrars SHALL suspend/cancel a registration of a WRP if requested by the WRP itself.</td>
+<td>[CIR 2025/848], Article 9(3)</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-04</td>
+<td>Registrar SHALL conduct proportionality assessment before suspension/cancellation under Article 9(2).</td>
+<td>[CIR 2025/848], Article 9(4)</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-05</td>
+<td>Registrar SHALL notify WRP and relevant Providers of WRPAC and WRPRC without undue delay and not later than 24 hours.</td>
+<td>[CIR 2025/848], Article 9(5)</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-06</td>
+<td>Providers of WRPAC and WRPRC SHALL revoke affected certificates without undue delay after notification (where applicable).</td>
+<td>[CIR 2025/848], Article 9(6)</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-07</td>
+<td>Registrars SHALL keep records (Annex I + issuance data + changes) for 10 years.</td>
+<td>[CIR 2025/848], Article 10</td>
 </tr>
 </tbody>
 </table>
-<h4 id="registry-data-model-format">Registry data model (format)<a class="headerlink" href="#registry-data-model-format" title="Permanent link">&para;</a></h4>
-<p>This section defines the format of the information exchanged via the Register API as JSON objects and JWS-signed statements.</p>
+<h5 id="provider-of-wrpac-and-wrprc-and-register-interactions-requirements">Provider of WRPAC and WRPRC and Register Interactions Requirements<a class="headerlink" href="#provider-of-wrpac-and-wrprc-and-register-interactions-requirements" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PROVIDER-WRPAC-01</td>
+<td>Providers of WRPAC SHALL verify at issuance time that the WRP is included with valid registration status in the national Register and certificate info is consistent with Register info.</td>
+<td>[CIR 2025/848], Annex IV §3(c)</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPAC-02</td>
+<td>Providers of WRPAC SHALL continuously monitor changes in the national Register and revoke when changes require (especially suspension/cancellation).</td>
+<td>[CIR 2025/848], Annex IV §3(e)</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPAC-03</td>
+<td>Providers of WRPAC SHALL publish revocation status timely and in any event within 24 hours after receipt of revocation request.</td>
+<td>[CIR 2025/848], Annex IV §3(h)</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPRC-01</td>
+<td>Where a Member State authorises WRPRCs, it SHALL ensure each intended use is expressed in the WRPRC and that WRPRCs include a privacy policy URL and a general access policy.</td>
+<td>[CIR 2025/848], Article 8(2)(b)–(c) and (g), Article 8(3)</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPRC-02</td>
+<td>Providers of WRPRC SHALL verify at issuance time Register status, consistency with Register info, and validity of the WRPAC (when relevant).</td>
+<td>[CIR 2025/848], Annex V §3(c)</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPRC-03</td>
+<td>Providers of WRPRC SHALL monitor Register changes, reissue/revoke when changes require.</td>
+<td>[CIR 2025/848], Annex V §3(d)</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPRC-04</td>
+<td>Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT).</td>
+<td>[CIR 2025/848], Annex V §4; [ETSI TS 119 475] §4.4</td>
+</tr>
+</tbody>
+</table>
+<h4 id="register-data-schema">Register Data Schema<a class="headerlink" href="#register-data-schema" title="Permanent link">&para;</a></h4>
+<p>This section defines the data schema for each WRP registered in the national Register of WRPs. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].</p>
+<!--format of the information exchanged via the Register API as JSON objects and JWS-signed statements. -->
+
 <div class="admonition note">
 <p class="admonition-title">Address field publication rule (important)</p>
 <p>The draft Annex VI text says the published API payload excludes <code>WalletRelyingParty.physicalAddress</code>, while Table 1 uses the attribute name <code>postalAddress</code>. This document uses <strong><code>postalAddress</code></strong> as the schema field name and applies the publication rule to that field (i.e., do not publish it in API statements).</p>
 </div>
-<h4 id="walletrelyingparty-wrp-registration-information-object">WalletRelyingParty (WRP registration information object)<a class="headerlink" href="#walletrelyingparty-wrp-registration-information-object" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
-<th style="text-align: right;">Type</th>
+<th>Type</th>
+<th>Presence</th>
 <th>Description</th>
-<th>Reference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>legalPerson</code></td>
-<td style="text-align: right;"><code>LegalPerson</code> (conditional)</td>
-<td>Specific attributes of a legal person.</td>
-<td>Draft Annex VI Table 1 / Table 8</td>
+<td><code>LegalPerson</code></td>
+<td>REQUIRED if legal person</td>
+<td>Specific attributes of a legal person. It SHALL be present if the legal entity is a legal person.</td>
 </tr>
 <tr>
 <td><code>naturalPerson</code></td>
-<td style="text-align: right;"><code>NaturalPerson</code>(conditional)</td>
-<td>Specific attributes of a natural person.</td>
-<td>Draft Annex VI Table 1 / Table 9</td>
+<td><code>NaturalPerson</code></td>
+<td>REQUIRED if natural person</td>
+<td>Specific attributes of a natural person. It SHALL be present if the legal entity is a natural person.</td>
 </tr>
 <tr>
 <td><code>identifier</code></td>
-<td style="text-align: right;"><code>Identifier[]</code></td>
+<td><code>Identifier[]</code></td>
+<td>REQUIRED</td>
 <td>One or more identifiers from official records.</td>
-<td>Draft Annex VI Table 1 / Table 10</td>
 </tr>
 <tr>
 <td><code>postalAddress</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
-<td>Postal address(es) of the legal entity (<strong>registration view only; excluded from published API statements</strong>). Note: ETSI TS 119 475 B.2.2 defines this as <code>[1..1] string</code>; Draft Annex VI Table 1 uses an array. This document follows Draft Annex VI.</td>
-<td>Draft Annex VI Table 1; Draft Annex VI §3(a)</td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Postal address(es) of the legal entity (<strong>registration view only; excluded from published API statements</strong>). Note: [ETSI TS 119 475] B.2.2 defines this as <code>[1..1] string</code>; Draft Annex VI Table 1 uses an array. This document follows Draft Annex VI.</td>
 </tr>
 <tr>
 <td><code>country</code></td>
-<td style="text-align: right;"><code>string</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
 <td>ISO 3166-1 alpha-2 country code, or <code>"EU"</code> for providers operating in the Union.</td>
-<td>Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>email</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
 <td>Contact email address(es) (RFC 5322 format).</td>
-<td>Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>phone</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
 <td>Contact phone number(s), international form with <code>+</code> prefix.</td>
-<td>Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>infoURI</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
 <td>Web page URI(s) for information about the entity.</td>
-<td>Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>providerType</code></td>
-<td style="text-align: right;"><code>string</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
 <td>Provider subtype. For WRP records, typically <code>WalletRelyingParty</code>.</td>
-<td>Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>policy</code></td>
-<td style="text-align: right;"><code>Policy[]</code></td>
+<td><code>Policy[]</code></td>
+<td>REQUIRED</td>
 <td>Policy/terms/privacy/registration policy URL(s) with policy type URI.</td>
-<td>Draft Annex VI Table 1 / Table 7</td>
 </tr>
 <tr>
 <td><code>x5c</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
 <td>X.509 certificate chain(s) for provider services (JWS <code>x5c</code>-style chains; supports rollover).</td>
-<td>Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>tradeName</code></td>
-<td style="text-align: right;"><code>string</code> (optional)</td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
 <td>User-facing trade/service name recognisable to users.</td>
-<td>CIR Annex I(2); Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>supportURI</code></td>
-<td style="text-align: right;"><code>string[]</code></td>
+<td><code>string[]</code></td>
+<td>REQUIRED</td>
 <td>Support/helpdesk URI(s) for the service.</td>
-<td>CIR Annex I(7)(a); Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>srvDescription</code></td>
-<td style="text-align: right;"><code>MultiLangString[][]</code></td>
+<td><code>MultiLangString[][]</code></td>
+<td>REQUIRED</td>
 <td>Array of service descriptions, each being an array of localised strings (one inner array per service).</td>
-<td>CIR Annex I(8); Draft Annex VI Table 1 / Table 4; ETSI TS 119 475 B.2.1</td>
 </tr>
 <tr>
 <td><code>intendedUse</code></td>
-<td style="text-align: right;"><code>IntendedUse[]</code> (optional)</td>
+<td><code>IntendedUse[]</code></td>
+<td>OPTIONAL</td>
 <td>Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary.</td>
-<td>CIR Annex I(9)–(10); Draft Annex VI Table 1 / Table 2</td>
 </tr>
 <tr>
 <td><code>isPSB</code></td>
-<td style="text-align: right;"><code>boolean</code></td>
+<td><code>boolean</code></td>
+<td>REQUIRED</td>
 <td>Whether the WRP is a public sector body (explicitly present; <code>false</code> if not PSB).</td>
-<td>CIR Annex I(11); Draft Annex VI §10.1</td>
 </tr>
 <tr>
 <td><code>entitlement</code></td>
-<td style="text-align: right;"><code>string[]</code></td>
-<td>Entitlement URI(s) (ETSI TS 119 475 Annex A.2 URIs).</td>
-<td>CIR Annex I(12); ETSI TS 119 475; Draft Annex VI Table 1</td>
+<td><code>string[]</code></td>
+<td>REQUIRED</td>
+<td>Entitlement URI(s) (see note below).</td>
 </tr>
 <tr>
 <td><code>providesAttestations</code></td>
-<td style="text-align: right;"><code>Credential[]</code> (optional / conditionally required)</td>
-<td>Attestation types the WRP intends to issue to wallet units. <strong>SHALL be present</strong> if any entitlement is <code>QEAA_Provider</code>, <code>Non_Q_EAA_Provider</code>, <code>PUB_EAA_Provider</code>, or <code>PID_Provider</code>.</td>
-<td>CIR Annex I(13); Draft Annex VI §10.2; Draft Annex VI Table 1 / Table 5</td>
+<td><code>Credential[]</code></td>
+<td>REQUIRED if PID/Attestation Provider</td>
+<td>Attestation types the WRP intends to issue to wallet units. It SHALL be present if any entitlement is <code>QEAA_Provider</code>, <code>Non_Q_EAA_Provider</code>, <code>PUB_EAA_Provider</code>, or <code>PID_Provider</code>.</td>
 </tr>
 <tr>
 <td><code>supervisoryAuthority</code></td>
-<td style="text-align: right;"><code>LegalEntity</code></td>
+<td><code>LegalEntity</code></td>
+<td>REQUIRED</td>
 <td>Competent supervisory authority (Art. 46a eIDAS) including contact information.</td>
-<td>Draft Annex VI Table 1 / Table 6</td>
 </tr>
 <tr>
 <td><code>registryURI</code></td>
-<td style="text-align: right;"><code>string</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
 <td>URI of the API of the national register of WRPs.</td>
-<td>Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>usesIntermediary</code></td>
-<td style="text-align: right;"><code>WalletRelyingParty[]</code> (optional, subset)</td>
+<td><code>WalletRelyingParty[]</code></td>
+<td>OPTIONAL</td>
 <td>If present, indicates designated intermediary(ies). Only the subset <code>{identifier, tradeName, registryURI}</code> is needed for each intermediary reference.</td>
-<td>CIR Annex I(14)–(15); Draft Annex VI Table 1</td>
 </tr>
 <tr>
 <td><code>isIntermediary</code></td>
-<td style="text-align: right;"><code>boolean</code></td>
+<td><code>boolean</code></td>
+<td>REQUIRED</td>
 <td>Whether the registered entity is a designated intermediary. SHALL be <code>false</code> if <code>usesIntermediary</code> is present.</td>
-<td>CIR Annex I(14)–(15); Draft Annex VI Table 1</td>
-</tr>
-</tbody>
-</table>
-<h5 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>identifier</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Identifier value.</td>
-<td>CIR Annex I(3)</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Identifier scheme/type URI (see normative URIs below).</td>
-<td>CIR Annex I(3); ETSI TS 119 475 B.2.5</td>
-</tr>
-</tbody>
-</table>
-<p>Normative identifier type URIs defined in ETSI TS 119 475:</p>
-<table>
-<thead>
-<tr>
-<th>Label</th>
-<th>Normative URI</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>EORI</td>
-<td><code>http://data.europa.eu/eudi/id/EORI-No</code></td>
-<td>(EU) No 1352/2013</td>
-</tr>
-<tr>
-<td>LEI</td>
-<td><code>http://data.europa.eu/eudi/id/LEI</code></td>
-<td>(EU) 2022/1860; ISO 17442-1</td>
-</tr>
-<tr>
-<td>EUID</td>
-<td><code>http://data.europa.eu/eudi/id/EUID</code></td>
-<td>(EU) 2020/2244; (EU) 2021/1042</td>
-</tr>
-<tr>
-<td>VATIN</td>
-<td><code>http://data.europa.eu/eudi/id/VATIN</code></td>
-<td>Council Directive 2006/112/EC</td>
-</tr>
-<tr>
-<td>TIN</td>
-<td><code>http://data.europa.eu/eudi/id/TIN</code></td>
-<td>—</td>
-</tr>
-<tr>
-<td>Excise</td>
-<td><code>http://data.europa.eu/eudi/id/Excise</code></td>
-<td>Council Regulation (EC) No 389/2012</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Additional type identifiers may be defined at national or EU level.</p>
-</div>
-<h5 id="multilangstring">MultiLangString<a class="headerlink" href="#multilangstring" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>lang</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Language tag (e.g., <code>en</code>, <code>fr</code>).</td>
-<td>ARF / common i18n practice</td>
-</tr>
-<tr>
-<td><code>content</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Language-specific content.</td>
-<td>ARF / common i18n practice</td>
-</tr>
-</tbody>
-</table>
-<h5 id="intendeduse">IntendedUse<a class="headerlink" href="#intendeduse" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>intendedUseIdentifier</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Registry-level unique identifier for the intended use.</td>
-<td>CIR Annex I(9)–(10) (per intended use)</td>
-</tr>
-<tr>
-<td><code>purpose</code></td>
-<td style="text-align: right;"><code>MultiLangString[]</code></td>
-<td>Description of intended use of the data to request from wallet units.</td>
-<td>CIR Annex I(10)</td>
-</tr>
-<tr>
-<td><code>privacyPolicy</code></td>
-<td style="text-align: right;"><code>Policy[]</code></td>
-<td>Privacy policy URL(s) for the intended use.</td>
-<td>CIR Article 8(2)(g)–(3)</td>
-</tr>
-<tr>
-<td><code>credential</code></td>
-<td style="text-align: right;"><code>Credential[]</code></td>
-<td>Machine-readable list of requested data (attestations/attributes).</td>
-<td>CIR Annex I(9)</td>
-</tr>
-<tr>
-<td><code>createdAt</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Creation timestamp (implementation).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>revokedAt</code></td>
-<td style="text-align: right;"><code>string</code> (optional)</td>
-<td>Revocation timestamp (implementation).</td>
-<td>Implementation</td>
-</tr>
-</tbody>
-</table>
-<h5 id="policy">Policy<a class="headerlink" href="#policy" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>type</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Policy type URI (RFC 3986). See defined policy type URIs below.</td>
-<td>Draft Annex VI Table 7</td>
-</tr>
-<tr>
-<td><code>policyURI</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>URL where the policy is published.</td>
-<td>Draft Annex VI Table 7</td>
-</tr>
-</tbody>
-</table>
-<p>Defined policy type URIs:</p>
-<table>
-<thead>
-<tr>
-<th>Policy type</th>
-<th>URI</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Privacy policy</td>
-<td><code>http://data.europa.eu/eudi/policy/privacy-policy</code></td>
-<td>ETSI TS 119 475 B.2.8; CIR Article 8(2)(g)</td>
-</tr>
-<tr>
-<td>Terms and conditions</td>
-<td><code>http://data.europa.eu/eudi/policy/terms-and-conditions</code></td>
-<td>Draft Annex VI Table 7</td>
-</tr>
-<tr>
-<td>Privacy statement (intended use)</td>
-<td><code>http://data.europa.eu/eudi/policy/privacy-statement</code></td>
-<td>Draft Annex VI Table 7</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Additional policy type URIs may be defined at national or EU level.</p>
-</div>
-<h5 id="credential">Credential<a class="headerlink" href="#credential" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>format</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Credential format identifier (e.g., <code>dc+sd-jwt</code>, <code>mso_mdoc</code>).</td>
-<td>CIR Annex I(9) (machine readable)</td>
-</tr>
-<tr>
-<td><code>meta</code></td>
-<td style="text-align: right;"><code>object</code></td>
-<td>Additional grouping/type metadata defined per credential format (e.g., <code>{"vct": "..."}</code> for <code>dc+sd-jwt</code>, <code>{"doctype_value": "..."}</code> for <code>mso_mdoc</code>). See OpenID4VP §6.1.</td>
-<td>Implementation / ARF profile; OpenID4VP DCQL</td>
-</tr>
-<tr>
-<td><code>claim</code></td>
-<td style="text-align: right;"><code>Claim[]</code></td>
-<td>Requested claim paths and allowed values (if constrained).</td>
-<td>CIR Annex I(9)</td>
-</tr>
-</tbody>
-</table>
-<h5 id="claim">Claim<a class="headerlink" href="#claim" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>path</code></td>
-<td style="text-align: right;"><code>array</code></td>
-<td>Non-empty path array of strings / <code>null</code> / non-negative integers (OpenID4VP-style path pointer segments).</td>
-<td>CIR Annex I(9); Draft Annex VI Table 3</td>
-</tr>
-<tr>
-<td><code>values</code></td>
-<td style="text-align: right;"><code>array</code> (optional)</td>
-<td>Optional allowed values; elements may be <code>string</code>, <code>integer</code>, or <code>boolean</code>.</td>
-<td>CIR Annex I(9); Draft Annex VI Table 3</td>
-</tr>
-</tbody>
-</table>
-<h5 id="legalentity-for-supervisoryauthority">LegalEntity (for <code>supervisoryAuthority</code>)<a class="headerlink" href="#legalentity-for-supervisoryauthority" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>legalPerson</code></td>
-<td style="text-align: right;"><code>LegalPerson</code> (optional)</td>
-<td>Present when the authority is a legal person.</td>
-<td>Draft Annex VI Table 6 / Table 8</td>
-</tr>
-<tr>
-<td><code>naturalPerson</code></td>
-<td style="text-align: right;"><code>NaturalPerson</code> (optional)</td>
-<td>Present when the authority is a natural person.</td>
-<td>Draft Annex VI Table 6 / Table 9</td>
-</tr>
-<tr>
-<td><code>identifier</code></td>
-<td style="text-align: right;"><code>Identifier[]</code> (optional)</td>
-<td>Identifier(s) of the authority.</td>
-<td>Draft Annex VI Table 6 / Table 10</td>
-</tr>
-<tr>
-<td><code>postalAddress</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
-<td>Postal address(es) of the authority.</td>
-<td>Draft Annex VI Table 6</td>
-</tr>
-<tr>
-<td><code>country</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Country code (or <code>EU</code> where applicable).</td>
-<td>Draft Annex VI Table 6</td>
-</tr>
-<tr>
-<td><code>email</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
-<td>Email address(es) of the authority.</td>
-<td>Draft Annex VI Table 6</td>
-</tr>
-<tr>
-<td><code>phone</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
-<td>Phone number(s) of the authority.</td>
-<td>Draft Annex VI Table 6</td>
-</tr>
-<tr>
-<td><code>infoURI</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
-<td>Information URI(s) of the authority.</td>
-<td>Draft Annex VI Table 6</td>
-</tr>
-</tbody>
-</table>
-<h5 id="legalperson">LegalPerson<a class="headerlink" href="#legalperson" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>legalName</code></td>
-<td style="text-align: right;"><code>string[]</code></td>
-<td>Legal name(s) as in official records.</td>
-<td>Draft Annex VI Table 8</td>
-</tr>
-<tr>
-<td><code>establishedBylaw</code></td>
-<td style="text-align: right;"><code>Law[]</code> (optional)</td>
-<td>Legal basis for establishment. <strong>SHALL be present</strong> for PSBs responsible for authentic sources; present for other PSBs where applicable.</td>
-<td>Draft Annex VI §10.3; Draft Annex VI Table 8 / Table 11</td>
-</tr>
-</tbody>
-</table>
-<h5 id="naturalperson">NaturalPerson<a class="headerlink" href="#naturalperson" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>givenName</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Current first name(s), including middle names where applicable.</td>
-<td>Draft Annex VI Table 9</td>
-</tr>
-<tr>
-<td><code>familyName</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Current surname(s).</td>
-<td>Draft Annex VI Table 9</td>
-</tr>
-<tr>
-<td><code>dateOfBirth</code></td>
-<td style="text-align: right;"><code>string</code> (optional)</td>
-<td>Date of birth (where present in official records).</td>
-<td>Draft Annex VI Table 9</td>
-</tr>
-<tr>
-<td><code>placeOfBirth</code></td>
-<td style="text-align: right;"><code>string</code> (optional)</td>
-<td>Place of birth (where present in official records).</td>
-<td>Draft Annex VI Table 9</td>
-</tr>
-</tbody>
-</table>
-<h5 id="law">Law<a class="headerlink" href="#law" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>lang</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Two-letter language code (ISO 639-1 style).</td>
-<td>Draft Annex VI Table 11</td>
-</tr>
-<tr>
-<td><code>legalBasis</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Legal basis text establishing the legal person (or requiring/recommending access to a claim).</td>
-<td>Draft Annex VI Table 11</td>
-</tr>
-</tbody>
-</table>
-<h4 id="entitlements">Entitlements<a class="headerlink" href="#entitlements" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>entitlement[]</code></td>
-<td style="text-align: right;"><code>string[]</code></td>
-<td>Array of entitlement URIs (see mapping below).</td>
-<td>CIR Annex I(12); ETSI TS 119 475 Annex A.2</td>
-</tr>
-</tbody>
-</table>
-<p>Mapping between CIR entitlement label and ETSI TS 119 475 normative URI:</p>
+<p>Mapping between CIR entitlement label and [ETSI TS 119 475] (Annex A.2) normative URI:</p>
 <table>
 <thead>
 <tr>
 <th>CIR entitlement label</th>
 <th>Normative URI</th>
-<th>Reference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>Service_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/Service_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>QEAA_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/QEAA_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>Non_Q_EAA_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>PUB_EAA_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>PID_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/PID_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>QCert_for_ESeal_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/QCert_for_ESeal_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>QCert_for_ESig_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>rQSigCDs_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>rQSealCDs_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 <tr>
 <td><code>ESig_ESeal_Creation_Provider</code></td>
 <td><code>https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider</code></td>
-<td>ETSI TS 119 475, Annex A.2</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">Sub-entitlements</p>
-<p>ETSI TS 119 475 v1.2.1 Annex A.3 defines additional sub-entitlement URIs for specific service provider roles. For example, Payment Service Provider sub-entitlements include:</p>
+<p>[ETSI TS 119 475] v1.2.1 Annex A.3 defines additional sub-entitlement URIs for specific service provider roles. For example, Payment Service Provider sub-entitlements include:</p>
 <table>
 <thead>
 <tr>
@@ -1904,8 +1510,413 @@ Additionally, sectorial registers may exist internally, but the decision regardi
 </table>
 <p>Future editions may define additional sub-entitlements at national or EU level.</p>
 </div>
+<h5 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier value of the LegalEntity.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier scheme/type URI (see normative URIs below).</td>
+</tr>
+</tbody>
+</table>
+<p>Normative identifier type URIs defined in [ETSI TS 119 475]:</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Normative URI</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EORI-No</td>
+<td><code>http://data.europa.eu/eudi/id/EORI-No</code></td>
+<td>Economic Operator Registration and Identification Number according to (EU) No 1352/2013.</td>
+</tr>
+<tr>
+<td>LEI</td>
+<td><code>http://data.europa.eu/eudi/id/LEI</code></td>
+<td>Legal Entity Identifier according to (EU) 2022/1860; [ISO 17442-1].</td>
+</tr>
+<tr>
+<td>EUID</td>
+<td><code>http://data.europa.eu/eudi/id/EUID</code></td>
+<td>European Unique Identifier according to (EU) 2020/2244; (EU) 2021/1042.</td>
+</tr>
+<tr>
+<td>VATIN</td>
+<td><code>http://data.europa.eu/eudi/id/VATIN</code></td>
+<td>Value Added Tax Identification Number according to Council Directive 2006/112/EC.</td>
+</tr>
+<tr>
+<td>TIN</td>
+<td><code>http://data.europa.eu/eudi/id/TIN</code></td>
+<td>Taxpayer Identification Number.</td>
+</tr>
+<tr>
+<td>Excise</td>
+<td><code>http://data.europa.eu/eudi/id/Excise</code></td>
+<td>Excise Number according to Art. 2 (12) of the Council Regulation (EC) No 389/2012.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Additional type identifiers may be defined at national or EU level.</p>
+</div>
+<h5 id="multilangstring">MultiLangString<a class="headerlink" href="#multilangstring" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lang</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Language tag (e.g., <code>en</code>, <code>fr</code>).</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Language-specific content.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="intendeduse">IntendedUse<a class="headerlink" href="#intendeduse" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>intendedUseIdentifier</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Registry-level unique identifier for the intended use.</td>
+</tr>
+<tr>
+<td><code>purpose</code></td>
+<td><code>MultiLangString[]</code></td>
+<td>REQUIRED</td>
+<td>Description of intended use of the data to request from wallet units.</td>
+</tr>
+<tr>
+<td><code>privacyPolicy</code></td>
+<td><code>Policy[]</code></td>
+<td>REQUIRED</td>
+<td>Privacy policy URL(s) for the intended use.</td>
+</tr>
+<tr>
+<td><code>credential</code></td>
+<td><code>Credential[]</code></td>
+<td>REQUIRED</td>
+<td>Machine-readable list of requested data (attestations/attributes).</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Validity start date of the intended use in accordance with ISO86011  YYYY-MM-DD format.</td>
+</tr>
+<tr>
+<td><code>revokedAt</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>End date for the validity of the intended use in accordance with ISO86011  YYYY-MM-DD format.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="policy">Policy<a class="headerlink" href="#policy" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Policy type URI (RFC 3986). See defined policy type URIs below.</td>
+</tr>
+<tr>
+<td><code>policyURI</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>URL where the policy is published.</td>
+</tr>
+</tbody>
+</table>
+<p>Defined policy type URIs:</p>
+<table>
+<thead>
+<tr>
+<th>Policy type</th>
+<th>URI</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Privacy policy</td>
+<td><code>http://data.europa.eu/eudi/policy/privacy-policy</code></td>
+<td>[ETSI TS 119 475] B.2.8; [CIR 2025/848] Article 8(2)(g)</td>
+</tr>
+<tr>
+<td>Terms and conditions</td>
+<td><code>http://data.europa.eu/eudi/policy/terms-and-conditions</code></td>
+<td>[CIR 2025/848-Amendment], Annex VI Table 7</td>
+</tr>
+<tr>
+<td>Privacy statement (intended use)</td>
+<td><code>http://data.europa.eu/eudi/policy/privacy-statement</code></td>
+<td>[CIR 2025/848-Amendment], Annex VI Table 7</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Additional policy type URIs may be defined at national or EU level.</p>
+</div>
+<h5 id="credential">Credential<a class="headerlink" href="#credential" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Credential format identifier (e.g., <code>dc+sd-jwt</code>, <code>mso_mdoc</code>).</td>
+</tr>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>REQUIRED</td>
+<td>Additional grouping/type metadata defined per credential format (e.g., <code>{"vct": "..."}</code> for <code>dc+sd-jwt</code>, <code>{"doctype_value": "..."}</code> for <code>mso_mdoc</code>). See OpenID4VP §6.1.</td>
+</tr>
+<tr>
+<td><code>claim</code></td>
+<td><code>Claim[]</code></td>
+<td>OPTIONAL</td>
+<td>Requested claim paths and allowed values (if constrained).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="claim">Claim<a class="headerlink" href="#claim" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>array</code></td>
+<td>REQUIRED</td>
+<td>Non-empty path array of strings / <code>null</code> / non-negative integers (OpenID4VP-style path pointer segments).</td>
+</tr>
+<tr>
+<td><code>values</code></td>
+<td><code>array</code></td>
+<td>OPTIONAL</td>
+<td>Optional allowed values; elements may be <code>string</code>, <code>integer</code>, or <code>boolean</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="legalentity-for-supervisoryauthority">LegalEntity (for <code>supervisoryAuthority</code>)<a class="headerlink" href="#legalentity-for-supervisoryauthority" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>legalPerson</code></td>
+<td><code>LegalPerson</code></td>
+<td>OPTIONAL</td>
+<td>Present when the authority is a legal person.</td>
+</tr>
+<tr>
+<td><code>naturalPerson</code></td>
+<td><code>NaturalPerson</code></td>
+<td>OPTIONAL</td>
+<td>Present when the authority is a natural person.</td>
+</tr>
+<tr>
+<td><code>identifier</code></td>
+<td><code>Identifier[]</code></td>
+<td>OPTIONAL</td>
+<td>Identifier(s) of the authority.</td>
+</tr>
+<tr>
+<td><code>postalAddress</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Postal address(es) of the authority.</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Country code (or <code>EU</code> where applicable).</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Email address(es) of the authority.</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Phone number(s) of the authority.</td>
+</tr>
+<tr>
+<td><code>infoURI</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Information URI(s) of the authority.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="legalperson">LegalPerson<a class="headerlink" href="#legalperson" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>legalName</code></td>
+<td><code>string[]</code></td>
+<td>REQUIRED</td>
+<td>Legal name(s) as in official records.</td>
+</tr>
+<tr>
+<td><code>establishedBylaw</code></td>
+<td><code>Law[]</code></td>
+<td>REQUIRED if PSBs responsible for authentic sources</td>
+<td>Legal basis for establishment. It SHALL be present for PSBs responsible for authentic sources; present for other PSBs where applicable.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="naturalperson">NaturalPerson<a class="headerlink" href="#naturalperson" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>givenName</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Current first name(s), including middle names where applicable.</td>
+</tr>
+<tr>
+<td><code>familyName</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Current surname(s).</td>
+</tr>
+<tr>
+<td><code>dateOfBirth</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Date of birth (where present in official records).</td>
+</tr>
+<tr>
+<td><code>placeOfBirth</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Place of birth (where present in official records).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="law">Law<a class="headerlink" href="#law" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lang</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Two-letter language code (ISO 639-1 style).</td>
+</tr>
+<tr>
+<td><code>legalBasis</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Legal basis text establishing the legal person (or requiring/recommending access to a claim).</td>
+</tr>
+</tbody>
+</table>
 <h4 id="registry-statements">Registry statements<a class="headerlink" href="#registry-statements" title="Permanent link">&para;</a></h4>
-<p>Registry statements exposed through the common API SHALL be provided as electronically signed or sealed JSON files, using JWS in accordance with Annex II Section 1 and RFC 7515.</p>
+<p>Registry statements exposed through the common API SHALL be provided as electronically signed or sealed JSON files, using JWS in accordance with Annex II Section 1 and [RFC 7515].</p>
 <h4 id="jws-requirements">JWS requirements<a class="headerlink" href="#jws-requirements" title="Permanent link">&para;</a></h4>
 <h5 id="serialization-and-header-placement">Serialization and header placement<a class="headerlink" href="#serialization-and-header-placement" title="Permanent link">&para;</a></h5>
 <p>This profile uses <strong>JWS Compact Serialization</strong> for API responses (e.g., <code>application/jwt</code>), unless a Member State profile explicitly defines another serialization.
@@ -1924,19 +1935,19 @@ In JWS Compact Serialization, there is <strong>no unprotected header</strong>; t
 <td><code>statement</code></td>
 <td style="text-align: right;"><code>string</code> (JWS compact)</td>
 <td>JWS compact serialisation containing the response payload.</td>
-<td>CIR Annex II §1; RFC 7515</td>
+<td>CIR Annex II §1; [RFC 7515]</td>
 </tr>
 <tr>
 <td><code>payload</code></td>
 <td style="text-align: right;"><code>JSON value</code></td>
 <td>Decoded payload. Depending on endpoint, this may be an object, an array, or a boolean.</td>
-<td>Draft Annex VI §5; RFC 7515</td>
+<td>[CIR 2025/848-Amendment] Annex VI §5; [RFC 7515]</td>
 </tr>
 <tr>
 <td><code>integrityValidationInfo</code></td>
 <td style="text-align: right;">implementation-specific</td>
 <td>Integrity-validation information as required by the applicable signature/seal profile.</td>
-<td>Draft update; RFC 9162 / RFC 6962</td>
+<td>Draft update; [RFC 9162] / [RFC 6962]</td>
 </tr>
 </tbody>
 </table>
@@ -1956,49 +1967,49 @@ In JWS Compact Serialization, there is <strong>no unprotected header</strong>; t
 <td><code>alg</code></td>
 <td><strong>REQUIRED</strong></td>
 <td>Signature/seal algorithm identifier. SHALL be supported by producer and verifier. The value <code>none</code> SHALL NOT be used for registry statements.</td>
-<td>RFC 7515 §4.1.1; profile rule</td>
+<td>[RFC 7515] §4.1.1; profile rule</td>
 </tr>
 <tr>
 <td><code>x5c</code></td>
 <td><strong>RECOMMENDED</strong> (SHALL if no trust-list/key-resolution profile is defined)</td>
 <td>X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array.</td>
-<td>RFC 7515 §4.1.6</td>
+<td>[RFC 7515] §4.1.6</td>
 </tr>
 <tr>
 <td><code>kid</code></td>
 <td><strong>RECOMMENDED</strong></td>
 <td>Key identifier to support key rollover and efficient verifier key selection.</td>
-<td>RFC 7515 §4.1.4</td>
+<td>[RFC 7515] §4.1.4</td>
 </tr>
 <tr>
 <td><code>x5t#S256</code></td>
 <td><strong>RECOMMENDED</strong></td>
 <td>SHA-256 thumbprint of the signing certificate (useful for pinning / key matching).</td>
-<td>RFC 7515 §4.1.8</td>
+<td>[RFC 7515] §4.1.8</td>
 </tr>
 <tr>
 <td><code>x5u</code></td>
 <td>OPTIONAL</td>
 <td>URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation.</td>
-<td>RFC 7515 §4.1.5</td>
+<td>[RFC 7515] §4.1.5</td>
 </tr>
 <tr>
 <td><code>typ</code></td>
 <td>OPTIONAL (RECOMMENDED)</td>
 <td>Media type hint for the complete JWS object (e.g., <code>JWT</code> / <code>application/jwt</code> or a profile-specific media type).</td>
-<td>RFC 7515 §4.1.9</td>
+<td>[RFC 7515] §4.1.9</td>
 </tr>
 <tr>
 <td><code>crit</code></td>
 <td>OPTIONAL</td>
 <td>If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. <code>crit</code> MUST appear only in the protected header.</td>
-<td>RFC 7515 §4.1.11</td>
+<td>[RFC 7515] §4.1.11</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The JOSE header parameter <code>x5c</code> above is part of the JWS signature envelope. It is distinct from any <code>x5c</code> attribute defined in the registry payload/data schema (e.g., Annex VI data model fields).</p>
+<p>The JOSE header parameter <code>x5c</code> above is part of the JWS signature envelope. It is distinct from any <code>x5c</code> attribute defined in the registry payload/data schema (e.g., Annex VI data schema fields).</p>
 </div>
 <h4 id="normative-endpoint-payloads">Normative endpoint payloads<a class="headerlink" href="#normative-endpoint-payloads" title="Permanent link">&para;</a></h4>
 <h5 id="get-wrp-payload"><code>GET /wrp</code> payload<a class="headerlink" href="#get-wrp-payload" title="Permanent link">&para;</a></h5>
@@ -2180,7 +2191,7 @@ In JWS Compact Serialization, there is <strong>no unprotected header</strong>; t
 <tr>
 <td><code>ctLogEntries</code></td>
 <td style="text-align: right;"><code>object[]</code> (optional)</td>
-<td>CT log / transparency references (RFC 9162-aligned, profile-defined structure).</td>
+<td>CT log / transparency references ([RFC 9162]-aligned, profile-defined structure).</td>
 </tr>
 </tbody>
 </table>
@@ -2191,7 +2202,7 @@ In JWS Compact Serialization, there is <strong>no unprotected header</strong>; t
 </blockquote>
 <h4 id="get-wrp-searchlist"><code>GET /wrp</code> — search/list<a class="headerlink" href="#get-wrp-searchlist" title="Permanent link">&para;</a></h4>
 <h5 id="request-query-parameters">Request (query parameters)<a class="headerlink" href="#request-query-parameters" title="Permanent link">&para;</a></h5>
-<p>The common API SHALL support parameterised queries on <code>GET /wrp</code>. The following names align with the draft Annex VI query parameter naming.</p>
+<p>The common API SHALL support parameterised queries on <code>GET /wrp</code>. The following names align with the [CIR 2025/848-Amendment] Annex VI query parameter naming.</p>
 <table>
 <thead>
 <tr>
@@ -2208,91 +2219,91 @@ In JWS Compact Serialization, there is <strong>no unprotected header</strong>; t
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by official/business registration number / identifier.</td>
-<td>Draft Annex VI §2(a), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(a), §4(a)</td>
 </tr>
 <tr>
 <td><code>legalname</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by official company name.</td>
-<td>Draft Annex VI §2(b), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(b), §4(a)</td>
 </tr>
 <tr>
 <td><code>tradename</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by trade name.</td>
-<td>Draft Annex VI §2(b), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(b), §4(a)</td>
 </tr>
 <tr>
 <td><code>policy</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by privacy policy URL (or policy URI as profiled).</td>
-<td>Draft Annex VI §2(c), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(c), §4(a)</td>
 </tr>
 <tr>
 <td><code>entitlement</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by entitlement type (URI).</td>
-<td>Draft Annex VI §2(d), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(d), §4(a)</td>
 </tr>
 <tr>
 <td><code>providesattestation</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by attestation types provided (e.g., attestation schema type in <code>providesAttestations</code>).</td>
-<td>Draft Annex VI §2(e), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(e), §4(a)</td>
 </tr>
 <tr>
 <td><code>usesintermediary</code></td>
 <td style="text-align: right;"><code>string</code> or <code>boolean</code></td>
 <td>O</td>
 <td>Filter by reliance on intermediary (presence of <code>usesIntermediary</code>).</td>
-<td>Draft Annex VI §2(h), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(h), §4(a)</td>
 </tr>
 <tr>
 <td><code>isintermediary</code></td>
 <td style="text-align: right;"><code>boolean</code></td>
 <td>O</td>
 <td>Filter by intermediary status.</td>
-<td>Draft Annex VI §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(a)</td>
 </tr>
 <tr>
 <td><code>intendedUseIdentifier</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by registrar-provided intended-use identifier.</td>
-<td>Draft Annex VI §2(g), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(g), §4(a)</td>
 </tr>
 <tr>
 <td><code>intendedUseClaimPath</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by intended-use requested claim path.</td>
-<td>Draft Annex VI §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(a)</td>
 </tr>
 <tr>
 <td><code>intendedUseCredentialMeta</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by intended-use credential metadata (format-specific).</td>
-<td>Draft Annex VI §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(a)</td>
 </tr>
 <tr>
 <td><code>intendedUseCredentialFormat</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Filter by intended-use credential format.</td>
-<td>Draft Annex VI §2(f), §4(a)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(f), §4(a)</td>
 </tr>
 <tr>
 <td><code>cursor</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td>O</td>
 <td>Cursor for pagination (profile-defined token format).</td>
-<td>Draft Annex VI §4(c)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(c)</td>
 </tr>
 <tr>
 <td><code>limit</code></td>
@@ -2314,19 +2325,19 @@ In JWS Compact Serialization, there is <strong>no unprotected header</strong>; t
 <tbody>
 <tr>
 <td>If no query parameters are provided, <code>GET /wrp</code> SHALL return the full list of registered WRPs (subject to pagination profile).</td>
-<td>Draft Annex VI §4(b)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(b)</td>
 </tr>
 <tr>
 <td>The endpoint SHALL support cursor-based pagination.</td>
-<td>Draft Annex VI §4(c)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(c)</td>
 </tr>
 <tr>
 <td>The endpoint SHALL support combined filters in a single query.</td>
-<td>Draft Annex VI §4(d)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(d)</td>
 </tr>
 <tr>
 <td>A successful response (<code>200</code>) SHALL be JWS-signed.</td>
-<td>Draft Annex VI §5; CIR Annex II §1</td>
+<td>[CIR 2025/848-Amendment], Annex VI §5; CIR Annex II §1</td>
 </tr>
 </tbody>
 </table>
@@ -2345,7 +2356,7 @@ In JWS Compact Serialization, there is <strong>no unprotected header</strong>; t
 <td><code>200</code></td>
 <td style="text-align: right;"><code>application/jwt</code></td>
 <td>JWS compact string. Decoded payload SHALL contain matching <code>WalletRelyingParty</code> entries (strict Annex VI form: array; profile envelope also allowed if documented).</td>
-<td>Draft Annex VI §5; RFC 7515</td>
+<td>[CIR 2025/848-Amendment], Annex VI §5; [RFC 7515]</td>
 </tr>
 </tbody>
 </table>
@@ -2353,7 +2364,7 @@ In JWS Compact Serialization, there is <strong>no unprotected header</strong>; t
 <h4 id="get-wrpcheck-intended-use-intended-use-check-public-required"><code>GET /wrp/check-intended-use</code> — intended use check (public, required)<a class="headerlink" href="#get-wrpcheck-intended-use-intended-use-check-public-required" title="Permanent link">&para;</a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>In the Annex VI draft this endpoint is part of the public API and is not optional.</p>
+<p>In the Annex VI [CIR 2025/848-Amendment], this endpoint is part of the public API and is not optional.</p>
 </div>
 <h5 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h5>
 <p>The draft requires a dedicated intended-use check endpoint with <strong>four required and one optional parameter</strong>.<br />
@@ -2374,35 +2385,35 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td style="text-align: right;"><code>string</code></td>
 <td style="text-align: center;">R</td>
 <td>Identifier of the WRP whose intended-use registration is being checked.</td>
-<td>Draft Annex VI §5 (specific WRP check)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §5 (specific WRP check)</td>
 </tr>
 <tr>
 <td><code>intendedUseIdentifier</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td style="text-align: center;">R</td>
 <td>Intended-use identifier registered by the registrar.</td>
-<td>Draft Annex VI §2(g), §5</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(g), §5</td>
 </tr>
 <tr>
 <td><code>intendedUseClaimPath</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td style="text-align: center;">R</td>
 <td>Requested claim path to check (serialised representation of path array; profile-defined encoding).</td>
-<td>Draft Annex VI §4(c), §5</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(c), §5</td>
 </tr>
 <tr>
 <td><code>intendedUseCredentialFormat</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td style="text-align: center;">R</td>
 <td>Credential format to check.</td>
-<td>Draft Annex VI §2(f), §4(c), §5</td>
+<td>[CIR 2025/848-Amendment], Annex VI §2(f), §4(c), §5</td>
 </tr>
 <tr>
 <td><code>intendedUseCredentialMeta</code></td>
 <td style="text-align: right;"><code>string</code></td>
 <td style="text-align: center;">O</td>
 <td>Credential metadata filter (profile-defined serialisation).</td>
-<td>Draft Annex VI §4(c), §5</td>
+<td>[CIR 2025/848-Amendment], Annex VI §4(c), §5</td>
 </tr>
 </tbody>
 </table>
@@ -2421,7 +2432,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td><code>200</code></td>
 <td style="text-align: right;"><code>application/jwt</code></td>
 <td>JWS compact string; decoded payload is boolean <code>true</code> or <code>false</code> (strict Annex VI).</td>
-<td>Draft Annex VI §5; RFC 7515</td>
+<td>[CIR 2025/848-Amendment], Annex VI §5; [RFC 7515]</td>
 </tr>
 <tr>
 <td><code>400</code></td>
@@ -2433,7 +2444,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 </table>
 <hr />
 <h4 id="post-wrp-create-authorised-write-method"><code>POST /wrp</code> — create (authorised write method)<a class="headerlink" href="#post-wrp-create-authorised-write-method" title="Permanent link">&para;</a></h4>
-<p>This is a common API write method in the draft Annex VI.</p>
+<p>This is a common API write method in the [CIR 2025/848-Amendment], Annex VI.</p>
 <h5 id="request_1">Request<a class="headerlink" href="#request_1" title="Permanent link">&para;</a></h5>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2455,7 +2466,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td style="text-align: right;"><code>WalletRelyingParty</code></td>
 <td>R</td>
 <td>Full WRP object compliant with Annex VI Table 1 schema (registration view).</td>
-<td>Draft Annex VI §9(b); Table 1</td>
+<td>[CIR 2025/848-Amendment], Annex VI §9(b); Table 1</td>
 </tr>
 </tbody>
 </table>
@@ -2474,7 +2485,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td><code>201</code></td>
 <td style="text-align: right;">-</td>
 <td>Created.</td>
-<td>Draft Annex VI §9(b)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
 </tr>
 <tr>
 <td><code>400</code></td>
@@ -2519,7 +2530,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td style="text-align: right;"><code>WalletRelyingParty</code></td>
 <td>R</td>
 <td>Full WRP object compliant with Annex VI Table 1 schema (registration view).</td>
-<td>Draft Annex VI §9(b); Table 1</td>
+<td>[CIR 2025/848-Amendment], Annex VI §9(b); Table 1</td>
 </tr>
 </tbody>
 </table>
@@ -2538,7 +2549,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td><code>200</code></td>
 <td style="text-align: right;">-</td>
 <td>Updated.</td>
-<td>Draft Annex VI §9(b)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
 </tr>
 <tr>
 <td><code>400</code></td>
@@ -2562,7 +2573,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td><code>404</code></td>
 <td style="text-align: right;">-</td>
 <td>Not found.</td>
-<td>Draft Annex VI §9(b)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
 </tr>
 </tbody>
 </table>
@@ -2589,7 +2600,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td style="text-align: right;"><code>object</code></td>
 <td>R</td>
 <td>Identifier payload for the WRP to delete (profile-defined body shape, based on <code>WalletRelyingParty.identifier</code>).</td>
-<td>Draft Annex VI §9(b)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
 </tr>
 </tbody>
 </table>
@@ -2608,7 +2619,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td><code>204</code></td>
 <td style="text-align: right;">-</td>
 <td>Deleted.</td>
-<td>Draft Annex VI §9(b)</td>
+<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
 </tr>
 <tr>
 <td><code>400</code></td>
@@ -2640,7 +2651,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <h4 id="get-wrpidentifier-get-by-identifier-nationalprofile-extension"><code>GET /wrp/{identifier}</code> — get by identifier (national/profile extension)<a class="headerlink" href="#get-wrpidentifier-get-by-identifier-nationalprofile-extension" title="Permanent link">&para;</a></h4>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This endpoint is useful, but it is <strong>not explicitly defined</strong> in the draft Annex VI common API method list. If kept, mark it as a national/profile extension.</p>
+<p>This endpoint is useful, but it is <strong>not explicitly defined</strong> in the [CIR 2025/848-Amendment], Annex VI common API method list. If kept, mark it as a national/profile extension.</p>
 </div>
 <h5 id="request_4">Request<a class="headerlink" href="#request_4" title="Permanent link">&para;</a></h5>
 <table>
@@ -2680,147 +2691,6 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <td><code>404</code></td>
 <td style="text-align: right;">-</td>
 <td>Not found.</td>
-</tr>
-</tbody>
-</table>
-<h4 id="registrar-processes-requirements">Registrar processes (requirements)<a class="headerlink" href="#registrar-processes-requirements" title="Permanent link">&para;</a></h4>
-<h4 id="registration-policy-and-onboarding">Registration policy and onboarding<a class="headerlink" href="#registration-policy-and-onboarding" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Requirement</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Registrars SHALL establish easy-to-use electronic, and where possible automated, registration processes.</td>
-<td>CIR Article 6(1)</td>
-</tr>
-<tr>
-<td>Wallet-relying parties SHALL provide at least Annex I information to national registers.</td>
-<td>CIR Article 5(1)</td>
-</tr>
-<tr>
-<td>Wallet-relying parties SHALL ensure information is accurate and SHALL update without undue delay.</td>
-<td>CIR Article 5(2)–(3)</td>
-</tr>
-<tr>
-<td>Where possible, registrars SHALL verify (automated) accuracy/validity, power of attorney (if applicable), entitlement type(s), and absence of existing registration in another national register.</td>
-<td>CIR Article 6(3)</td>
-</tr>
-<tr>
-<td>Registrars SHALL verify against supporting documentation or appropriate authentic sources/official records.</td>
-<td>CIR Article 6(4)</td>
-</tr>
-<tr>
-<td>Verification of entitlements SHALL be carried out according to Annex III.</td>
-<td>CIR Article 6(5)</td>
-</tr>
-<tr>
-<td>If registrar cannot verify according to Article 6(3)–(5), registrar SHALL reject the registration.</td>
-<td>CIR Article 6(6)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="suspension-and-cancellation">Suspension and cancellation<a class="headerlink" href="#suspension-and-cancellation" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Requirement</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Registrars SHALL suspend/cancel where requested by a supervisory body (per eIDAS reference).</td>
-<td>CIR Article 9(1)</td>
-</tr>
-<tr>
-<td>Registrars MAY suspend/cancel if info inaccurate/outdated/misleading, non-compliance, excessive attribute requests, breach of law.</td>
-<td>CIR Article 9(2)</td>
-</tr>
-<tr>
-<td>Registrars SHALL suspend/cancel if requested by the WRP itself.</td>
-<td>CIR Article 9(3)</td>
-</tr>
-<tr>
-<td>Registrar SHALL conduct proportionality assessment before suspension/cancellation under Article 9(2).</td>
-<td>CIR Article 9(4)</td>
-</tr>
-<tr>
-<td>Registrar SHALL notify WRP + relevant certificate providers without undue delay and <strong>not later than 24 hours</strong>.</td>
-<td>CIR Article 9(5)</td>
-</tr>
-<tr>
-<td>Certificate providers SHALL revoke affected certificates without undue delay after notification (where applicable).</td>
-<td>CIR Article 9(6)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="record-keeping">Record keeping<a class="headerlink" href="#record-keeping" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Requirement</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Registrars SHALL keep records (Annex I + issuance data + changes) for <strong>10 years</strong>.</td>
-<td>CIR Article 10</td>
-</tr>
-</tbody>
-</table>
-<h4 id="certificate-provider-interactions-requirements">Certificate-provider interactions (requirements)<a class="headerlink" href="#certificate-provider-interactions-requirements" title="Permanent link">&para;</a></h4>
-<h4 id="wrp-access-certificates-wrpac">WRP access certificates (WRPAC)<a class="headerlink" href="#wrp-access-certificates-wrpac" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Requirement</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Providers SHALL verify at issuance time that the WRP is included with valid registration status in the national register and certificate info is consistent with register info.</td>
-<td>CIR Annex IV §3(c)</td>
-</tr>
-<tr>
-<td>Providers SHALL continuously monitor changes in the national register and revoke when changes require (especially suspension/cancellation).</td>
-<td>CIR Annex IV §3(e)</td>
-</tr>
-<tr>
-<td>Providers SHALL publish revocation status timely and in any event within 24 hours after receipt of revocation request.</td>
-<td>CIR Annex IV §3(h)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="wrp-registration-certificates-wrprc-optional">WRP registration certificates (WRPRC) (optional)<a class="headerlink" href="#wrp-registration-certificates-wrprc-optional" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Requirement</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Where a Member State authorises WRPRCs, it SHALL ensure each intended use is expressed in the WRPRC and that WRPRCs include a privacy policy URL and a general access policy.</td>
-<td>CIR Article 8(2)(b)–(c) and (g), Article 8(3)</td>
-</tr>
-<tr>
-<td>Providers SHALL verify at issuance time register status, consistency with register info, and validity of the WRPAC (when relevant).</td>
-<td>CIR Annex V §3(c)</td>
-</tr>
-<tr>
-<td>Providers SHALL monitor register changes, reissue/revoke when changes require.</td>
-<td>CIR Annex V §3(d)</td>
-</tr>
-<tr>
-<td>Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the <strong>B-B profile</strong> (JAdES per ETSI TS 119 182-1 for JWT, COSE for CWT).</td>
-<td>CIR Annex V §4; ETSI TS 119 475 §4.4</td>
 </tr>
 </tbody>
 </table>
