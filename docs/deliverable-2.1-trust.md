@@ -14,7 +14,7 @@ Version 0.1 (Draft)
 - Andrea Moro, *Fondazione Bruno Kessler*
 - Marco Pernpruner, *Fondazione Bruno Kessler*
 - Nuno Ponte, *Multicert*
-- Andreea Prian, *IDAKTO*
+- Andreea Prian, *iDAKTO*
 - Giada Sciarretta, *Fondazione Bruno Kessler*
 - Hoang Van Hoan, *Keynectis*
 - Maroš Zelenák, *ARICOMA Digital S.R.O*

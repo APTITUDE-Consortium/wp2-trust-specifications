@@ -1,6 +1,8 @@
 # 1. List Formatting
 MD004:
   style: dash         # Enforces using '-' for unordered lists.
+MD007:
+  indent: 4           # Force 4-space indentation for proper rendering.
 MD032: true           # Requires blank lines above and below lists.
 MD060:
   style: padded       # Controls table pipe spacing.

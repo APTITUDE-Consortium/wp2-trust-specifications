@@ -35,9 +35,9 @@ This section defines the validation of the certification path.
 
 - The Trust Anchor is the certificate of the Provider of WRPAC obtained from the LoTE.
 - The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:
-  - $C_1$ is the certificate issued by the Trust Anchor.
-  - $C_n$ is the WRPAC (the target certificate).
-  - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
+    - $C_1$ is the certificate issued by the Trust Anchor.
+    - $C_n$ is the WRPAC (the target certificate).
+    - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
 
 The Wallet Unit initializes the validation with:
 

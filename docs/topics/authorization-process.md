@@ -203,9 +203,9 @@ For authorization purposes, the following aspects are relevant:
 - During issuance, when the User confirms, the WI SHALL retrieve and store locally the EDP if present in the Credential Issuer Metadata [AUTHZ-EDP-02].
 - At presentation time, for each Attestation matching a request, the WI SHALL check its locally stored EDP and evaluate it against the requesting RP according to the [EDP Evaluation Procedure](#edp-evaluation-procedure) defined in this section.
 - Annex III of CIR 2024/2979 defines three policy types that the WI SHALL support. In particular:
-  - No Policy.
-  - Authorized Relying Parties Only.
-  - Specific Root of Trust.
+    - No Policy.
+    - Authorized Relying Parties Only.
+    - Specific Root of Trust.
 
 #### Evaluation Procedures
 

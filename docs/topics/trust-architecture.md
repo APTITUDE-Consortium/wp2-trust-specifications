@@ -4,8 +4,8 @@ The main entities involved in the EUDIW ecosystem are:
 
 - the Wallet Unit, installed and activated by the User and provided through a Wallet Solution by the Wallet Provider (WP)
 - Wallet Relying Parties (WRPs)
-  - the PID Providers and Attestation Providers that interact with the Wallet Unit to issue Attestations
-  - the Relying Parties (RPs) and RP Intermediaries that interact with the Wallet Unit to request Attestations
+    - the PID Providers and Attestation Providers that interact with the Wallet Unit to issue Attestations
+    - the Relying Parties (RPs) and RP Intermediaries that interact with the Wallet Unit to request Attestations
 
 ```mermaid
 graph TD
@@ -48,13 +48,13 @@ graph TD
 However, these entities alone are not enough to establish trust between each others. Indeed, to trust the interactions between these entities, the following processes are needed:
 
 - *Authentication Process*: a way to authenticate the entity they interact with. To achieve this:
-  - the Wallet Unit needs a Wallet Instance Attestation (WIA), an object that attests its integrity and is signed by the WP.
-  - the WRPs needs an WRP Access Certificate (WRPAC).
+    - the Wallet Unit needs a Wallet Instance Attestation (WIA), an object that attests its integrity and is signed by the WP.
+    - the WRPs needs an WRP Access Certificate (WRPAC).
 - *Authorization Process*: a way to check the authorization of an entity (i.e., *(i)* the WRP entitlements, *(ii)* whether an Attestation Providers is eligible to issue an Attestation, and *(iii)* whether a Relying Party has the right to access the data he is requesting). To achieve this:
-  - the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).
-  - the Attestation Providers may write their own embedded disclosure policies.
+    - the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).
+    - the Attestation Providers may write their own embedded disclosure policies.
 - *Trust Anchor Validation Process*: a way to check the integrity and authenticity of trusted lists which serve as the authentic source for Trust Anchors used to verify signed objects such as PIDs, Attestations, Access and Registration Certificates, and Register. To achieve this:
-  - the public key of the corresponding private key used to sign is published on EU Member State Trusted List (EUMS TLs) or on List of Trusted Entities (LoTE) managed by the European Commission.
+    - the public key of the corresponding private key used to sign is published on EU Member State Trusted List (EUMS TLs) or on List of Trusted Entities (LoTE) managed by the European Commission.
 
 While these trust evaluation processes will be further detailed in the following sections, the processes to obtain and manage the artifacts needed for the trust evaluation are:
 
@@ -103,8 +103,8 @@ While these trust evaluation processes will be further detailed in the following
     ```
 
 - *Notification Process*: Based on the entity, the MS sends a set of the data to the EC Notification System.
-  - For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC, MS Registrars, and Pub-EAA Providers, MS sends a set of the data to the EC. As result, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.
-  - For QEAA Providers and QTSP, MS sends a set of the data (containing the URL of the EUMS TLs) to the EC. As result, the URL of the EUMS TLs is added in the EU List of Trusted List (LOTL).
+    - For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC, MS Registrars, and Pub-EAA Providers, MS sends a set of the data to the EC. As result, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.
+    - For QEAA Providers and QTSP, MS sends a set of the data (containing the URL of the EUMS TLs) to the EC. As result, the URL of the EUMS TLs is added in the EU List of Trusted List (LOTL).
 
     ```mermaid
     graph LR
