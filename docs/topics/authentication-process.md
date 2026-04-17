@@ -38,7 +38,7 @@ sequenceDiagram
     Wallet->>Wallet: Build Path: [Intermediate CAs] -> WRPAC
     
     Note over Wallet: 3. Validation
-    Wallet->>Wallet: Validate Path (RFC 5280, RFC 6960)
+    Wallet->>Wallet: Validate Path ([RFC 5280], [RFC 6960])
     Wallet->>Wallet: Verify WRP Artifact Signature
     
     alt Validation Successful
@@ -86,7 +86,7 @@ Iterate through the path for $i$ from $1$ to $n$:
     - Verify that the issuer name of $C_i$ matches `working_issuer_name`.
 2. Policy Processing:
     - If `certificatePolicies` extension is present and `valid_policy_tree` is not NULL:
-        - Process policy constraints, qualifiers, and mappings according to RFC 5280 Section 6.1.3.
+        - Process policy constraints, qualifiers, and mappings according to [RFC 5280] Section 6.1.3.
         - for each policy $P$ not equal to `anyPolicy` in the certificate policies extension, let $P$-OID denote the OID for policy $P$ and $P$-Q denote the qualifier set for policy $P$.
             - for each node of depth $i-1$ in the `valid_policy_tree` where $P$-OID is in the node's `expected_policy_set`, create a child node with `valid_policy` $P$-OID, `qualifier_set` $P$-Q, and `expected_policy_set` set to {$P$-OID}.
             - If no match is found for $P$-OID in any node of depth $i-1$ and the `valid_policy_tree` has a node of depth $i-1$ with `valid_policy` set to `anyPolicy`, generate a child node with `valid_policy` $P$-OID, `qualifier_set` $P$-Q, and `expected_policy_set` set to {`anyPolicy`}.

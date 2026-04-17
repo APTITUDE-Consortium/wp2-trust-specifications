@@ -40,7 +40,7 @@ sequenceDiagram
 
 ##### List of Trusted Entities Validation Process
 
-The validator initializes the following variables as described in ETSI TS 119 615.
+The validator initializes the following variables as described in [ETSI TS 119 615].
 
 **Input Variables**:
 
@@ -219,7 +219,7 @@ To validate a EUMS TL containing the sought Trust Anchor, the Wallet Unit or Rel
 
 ###### List of Trusted Lists Validation Process
 
-**Remarks**: The logic mirrors the LoTE validation but uses XML signatures and TL-specific elements. The validation process is as described in ETSI TS 119 615.
+**Remarks**: The logic mirrors the LoTE validation but uses XML signatures and TL-specific elements. The validation process is as described in [ETSI TS 119 615].
 
 - The XML Pivot logic (Step 6) includes a "Self-Consistency Check" not present in the JWT logic due to the fact that the `Signature` element is not integrity protected.
 
@@ -239,7 +239,7 @@ The operations described below produce the following output variables:
 - `LOTL-Status`: The status indication of the process of authenticating the current instance of the LOTL.
 - `LOTL-Sub-Status`: A list of indications supplementing LOTL-Status indication of the process of authenticating the current instance of the LOTL.
 
-The validation operations for the LOTL SHALL perform the following steps (see ETSI TS 119 615 clause 4.1.4 for reference):
+The validation operations for the LOTL SHALL perform the following steps (see [ETSI TS 119 615] clause 4.1.4 for reference):
 
 1. [PRO-4.1.4-1] (Initialization) Set `LOTL` to the XML file downloaded from `OJEU-LOTL-Loc`.
 2. [PRO-4.1.4-2] (Parsing) Set `LOTL-Signer-Cert` to the certificate extracted from the `ds:X509Certificate` element within the `ds:Signature` of the `LOTL`.
@@ -274,7 +274,7 @@ The validation operations for the LOTL SHALL perform the following steps (see ET
 
 ###### European Union Member State Trusted List Validation Process
 
-The validation operations for the EUMS TL SHALL perform the following steps (see ETSI TS 119 615 clause 4.2.4 for reference).
+The validation operations for the EUMS TL SHALL perform the following steps (see [ETSI TS 119 615] clause 4.2.4 for reference).
 
 **Input variables**: [PRO-4.2.4-01, PRO-4.2.4-02]
 

@@ -9,7 +9,7 @@ This section describes the artifacts that are employed in [Trust Management and 
 
 #### Token Status List
 
-This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple WRPRCs. A Status List describes the status of the WRPRCs by encoding their validity in a bit array. Each WRPRC is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the WRPRC's status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [Token Status List](https://www.ietf.org/archive/id/draft-ietf-oauth-status-list-19.html).
+This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple WRPRCs. A Status List describes the status of the WRPRCs by encoding their validity in a bit array. Each WRPRC is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the WRPRC's status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].
 
 In this specification, the roles of the Provider of WRPRC and Status Issuer (i.e., the entity that issues the Status List Token about the status information of the WRPRC) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the Status List Token on a public endpoint) SHALL be the Provider of WRPRC itself.
 
@@ -46,9 +46,9 @@ The **Status List Token** (SLT) is available at the Status List Endpoint. It is 
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
-| `alg` | RFC 7515 | REQUIRED | *String* | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It SHALL NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
-| `typ` | RFC 7515 | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
-| `x5c` | RFC 7515 | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the SLT's signature. |
+| `alg` | [RFC 7515] | REQUIRED | *String* | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It SHALL NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
+| `typ` | [RFC 7515] | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
+| `x5c` | [RFC 7515] | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the SLT's signature. |
 
 ###### Status List Token Payload
 
@@ -142,11 +142,11 @@ An X.509 v2 CRL is represented as the ASN.1 DER encoding of the `CertificateList
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `tbsCertList` | RFC 5280 clause 5.1.1.1 | REQUIRED | *SEQUENCE* | Contains the core CRL information including the name of the issuer, issue date, next update date, the optional list of revoked certificates, and optional CRL extensions. |
-| `signatureAlgorithm` | RFC 5280 clause 5.1.1.2 | REQUIRED | *SEQUENCE* | Contains the algorithm identifier for the algorithm used by the CRL issuer to sign the `CertificateList`. Selection SHOULD align with relevant standards (e.g., ETSI TS 119 312). |
-| `signatureAlgorithm.algorithm` | RFC 5280 clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. |
-| `signatureAlgorithm.parameters` | RFC 5280 clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the signature algorithm used. |
-| `signatureValue` | RFC 5280 clause 5.1.1.3 | REQUIRED | *BIT STRING* | Contains the digital signature computed upon the ASN.1 DER encoded `tbsCertList`. |
+| `tbsCertList` | [RFC 5280] clause 5.1.1.1 | REQUIRED | *SEQUENCE* | Contains the core CRL information including the name of the issuer, issue date, next update date, the optional list of revoked certificates, and optional CRL extensions. |
+| `signatureAlgorithm` | [RFC 5280] clause 5.1.1.2 | REQUIRED | *SEQUENCE* | Contains the algorithm identifier for the algorithm used by the CRL issuer to sign the `CertificateList`. Selection SHOULD align with relevant standards (e.g., ETSI TS 119 312). |
+| `signatureAlgorithm.algorithm` | [RFC 5280] clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. |
+| `signatureAlgorithm.parameters` | [RFC 5280] clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the signature algorithm used. |
+| `signatureValue` | [RFC 5280] clause 5.1.1.3 | REQUIRED | *BIT STRING* | Contains the digital signature computed upon the ASN.1 DER encoded `tbsCertList`. |
 
 ##### Certificate List Content
 
@@ -154,25 +154,25 @@ The `TBSCertList` (To Be Signed Certificate List) is an ASN.1 SEQUENCE containin
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `version` | RFC 5280 clause 5.1.2.1 | OPTIONAL | *INTEGER* | Describes the version of the encoded CRL. When extensions are used (as is standard practice), this field SHALL be present and SHALL specify version 2 (the integer value is `1`). |
-| `signature` | RFC 5280 clause 5.1.2.2 | REQUIRED | *SEQUENCE* | The algorithm identifier for the algorithm used to sign the CRL. |
-| `signature.algorithm` | RFC 5280 clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. SHALL match the `signatureAlgorithm` field in the parent `CertificateList` sequence. |
-| `signature.parameters` | RFC 5280 clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the algorithm used. |
-| `issuer` | RFC 5280 clause 5.1.2.3 | REQUIRED | *Name* | Identifies the entity that has signed and issued the CRL. It SHALL contain a non-empty X.500 distinguished name (DN) composed of `AttributeType` (OID) and `AttributeValue` sequences. |
-| `thisUpdate` | RFC 5280 clause 5.1.2.4 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the issue date of this CRL. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
-| `nextUpdate` | RFC 5280 clause 5.1.2.5 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the date by which the next CRL will be issued. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
-| `revokedCertificates` | RFC 5280 clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | A sequence of revoked certificates. When there are no revoked certificates, this field SHALL be absent. |
-| `revokedCertificates.userCertificate` | RFC 5280 clause 5.1.2.6 | REQUIRED | *INTEGER* | The `CertificateSerialNumber` of the revoked certificate. |
-| `revokedCertificates.revocationDate` | RFC 5280 clause 5.1.2.6 | REQUIRED | *UTCTime* or *GeneralizedTime* | The date on which the revocation occurred. |
-| `revokedCertificates.crlEntryExtensions` | RFC 5280 clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | Extensions specific to this revoked certificate entry. If present, the CRL `version` SHALL be `v2`. |
-| `crlExtensions` | RFC 5280 clause 5.1.2.7 | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | A sequence of one or more CRL extensions. If present, the CRL `version` SHALL be `v2`. |
+| `version` | [RFC 5280] clause 5.1.2.1 | OPTIONAL | *INTEGER* | Describes the version of the encoded CRL. When extensions are used (as is standard practice), this field SHALL be present and SHALL specify version 2 (the integer value is `1`). |
+| `signature` | [RFC 5280] clause 5.1.2.2 | REQUIRED | *SEQUENCE* | The algorithm identifier for the algorithm used to sign the CRL. |
+| `signature.algorithm` | [RFC 5280] clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. SHALL match the `signatureAlgorithm` field in the parent `CertificateList` sequence. |
+| `signature.parameters` | [RFC 5280] clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the algorithm used. |
+| `issuer` | [RFC 5280] clause 5.1.2.3 | REQUIRED | *Name* | Identifies the entity that has signed and issued the CRL. It SHALL contain a non-empty X.500 distinguished name (DN) composed of `AttributeType` (OID) and `AttributeValue` sequences. |
+| `thisUpdate` | [RFC 5280] clause 5.1.2.4 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the issue date of this CRL. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
+| `nextUpdate` | [RFC 5280] clause 5.1.2.5 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the date by which the next CRL will be issued. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
+| `revokedCertificates` | [RFC 5280] clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | A sequence of revoked certificates. When there are no revoked certificates, this field SHALL be absent. |
+| `revokedCertificates.userCertificate` | [RFC 5280] clause 5.1.2.6 | REQUIRED | *INTEGER* | The `CertificateSerialNumber` of the revoked certificate. |
+| `revokedCertificates.revocationDate` | [RFC 5280] clause 5.1.2.6 | REQUIRED | *UTCTime* or *GeneralizedTime* | The date on which the revocation occurred. |
+| `revokedCertificates.crlEntryExtensions` | [RFC 5280] clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | Extensions specific to this revoked certificate entry. If present, the CRL `version` SHALL be `v2`. |
+| `crlExtensions` | [RFC 5280] clause 5.1.2.7 | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | A sequence of one or more CRL extensions. If present, the CRL `version` SHALL be `v2`. |
 
 The `crlExtensions` field MAY contain various extensions. Notable standard extensions include:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `authorityKeyIdentifier` | RFC 5280 clause 5.2.1 | REQUIRED | *SEQUENCE* | Provides a means of identifying the public key corresponding to the private key used to sign the CRL. Contains `keyIdentifier` (OCTET STRING), `authorityCertIssuer`, or `authorityCertSerialNumber`. |
-| `cRLNumber` | RFC 5280 clause 5.2.3 | REQUIRED | *INTEGER* | A non-critical extension conveying a monotonically increasing sequence number for a given CRL scope and issuer. |
+| `authorityKeyIdentifier` | [RFC 5280] clause 5.2.1 | REQUIRED | *SEQUENCE* | Provides a means of identifying the public key corresponding to the private key used to sign the CRL. Contains `keyIdentifier` (OCTET STRING), `authorityCertIssuer`, or `authorityCertSerialNumber`. |
+| `cRLNumber` | [RFC 5280] clause 5.2.3 | REQUIRED | *INTEGER* | A non-critical extension conveying a monotonically increasing sequence number for a given CRL scope and issuer. |
 
 !!! note
 
@@ -194,28 +194,28 @@ The OCSP request is the ASN.1 DER encoding of the `OCSPRequest` SEQUENCE, which 
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `version` | RFC 6960 clause 4.1.1 | OPTIONAL | *[0] EXPLICIT INTEGER* | Indicates the version of the protocol. If omitted, the default value is `v1` (0). |
-| `requestList` | RFC 6960 clause 4.1.1 | REQUIRED | *SEQUENCE OF* | Contains one or more single certificate status requests. |
-| `requestList.reqCert` | RFC 6960 clause 4.1.1 | REQUIRED | *SEQUENCE* | The `CertID` structure carrying the identifier of a target certificate. |
-| `requestList.singleRequestExtensions` | RFC 6960 clause 4.1.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE* | Includes extensions applicable to this single certificate status request. |
-| `requestExtensions` | RFC 6960 clause 4.1.1 | OPTIONAL | *[2] EXPLICIT SEQUENCE* | Includes extensions applicable to the overall requests found within the `requestList`. |
+| `version` | [RFC 6960] clause 4.1.1 | OPTIONAL | *[0] EXPLICIT INTEGER* | Indicates the version of the protocol. If omitted, the default value is `v1` (0). |
+| `requestList` | [RFC 6960] clause 4.1.1 | REQUIRED | *SEQUENCE OF* | Contains one or more single certificate status requests. |
+| `requestList.reqCert` | [RFC 6960] clause 4.1.1 | REQUIRED | *SEQUENCE* | The `CertID` structure carrying the identifier of a target certificate. |
+| `requestList.singleRequestExtensions` | [RFC 6960] clause 4.1.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE* | Includes extensions applicable to this single certificate status request. |
+| `requestExtensions` | [RFC 6960] clause 4.1.1 | OPTIONAL | *[2] EXPLICIT SEQUENCE* | Includes extensions applicable to the overall requests found within the `requestList`. |
 
 The `reqCert` parameter utilizes the `CertID` structure, which is an ASN.1 *SEQUENCE* containing the following parameters:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `hashAlgorithm` | RFC 6960 clause 4.1.1 | REQUIRED | *SEQUENCE* | Identifies the hash algorithm used to generate the issuer name and key hashes. |
-| `hashAlgorithm.algorithm` | RFC 6960 clause 4.1.1 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the hash function (e.g.,SHA-256, depending on the profile). |
-| `hashAlgorithm.parameters` | RFC 6960 clause 4.1.1 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the hash algorithm used. |
-| `issuerNameHash` | RFC 6960 clause 4.1.1 | REQUIRED | *OCTET STRING* | The hash of the issuer's distinguished name (DN), calculated over the DER encoding of the issuer's name field. |
-| `issuerKeyHash` | RFC 6960 clause 4.1.1 | REQUIRED | *OCTET STRING* | The hash of the issuer's public key, calculated over the value (excluding tag and length) of the subject public key field. |
-| `serialNumber` | RFC 6960 clause 4.1.1 | REQUIRED | *INTEGER* | The serial number of the target certificate for which the status is being requested. |
+| `hashAlgorithm` | [RFC 6960] clause 4.1.1 | REQUIRED | *SEQUENCE* | Identifies the hash algorithm used to generate the issuer name and key hashes. |
+| `hashAlgorithm.algorithm` | [RFC 6960] clause 4.1.1 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the hash function (e.g.,SHA-256, depending on the profile). |
+| `hashAlgorithm.parameters` | [RFC 6960] clause 4.1.1 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the hash algorithm used. |
+| `issuerNameHash` | [RFC 6960] clause 4.1.1 | REQUIRED | *OCTET STRING* | The hash of the issuer's distinguished name (DN), calculated over the DER encoding of the issuer's name field. |
+| `issuerKeyHash` | [RFC 6960] clause 4.1.1 | REQUIRED | *OCTET STRING* | The hash of the issuer's public key, calculated over the value (excluding tag and length) of the subject public key field. |
+| `serialNumber` | [RFC 6960] clause 4.1.1 | REQUIRED | *INTEGER* | The serial number of the target certificate for which the status is being requested. |
 
 The `requestExtensions` and `singleRequestExtensions` structures MAY contain various extensions. A common extension is the `nonce`:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `nonce` | RFC 6960 clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. Identifier OID is `id-pkix-ocsp-nonce`. |
+| `nonce` | [RFC 6960] clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. Identifier OID is `id-pkix-ocsp-nonce`. |
 
 !!! note
 
@@ -248,10 +248,10 @@ An OCSP response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. Whe
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `responseStatus` | RFC 6960 clause 4.2.1 | REQUIRED | *ENUMERATED* | Indicates the processing status of the prior request. Supported values are: `successful` (0), `malformedRequest` (1), `internalError` (2), `tryLater` (3), `sigRequired` (5), and `unauthorized` (6). |
-| `responseBytes` | RFC 6960 clause 4.2.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE* | Present only when the `responseStatus` is `successful` (0). Contains the response type and the encoded response data. |
-| `responseBytes.responseType` | RFC 6960 clause 4.2.1 | REQUIRED | *OBJECT IDENTIFIER* | Identifier for the response type. For a basic OCSP responder, this value SHALL be `id-pkix-ocsp-basic`. |
-| `responseBytes.response` | RFC 6960 clause 4.2.1 | REQUIRED | *OCTET STRING* | Contains the DER encoding of the response syntax identified by `responseType` (e.g., the `BasicOCSPResponse` structure). |
+| `responseStatus` | [RFC 6960] clause 4.2.1 | REQUIRED | *ENUMERATED* | Indicates the processing status of the prior request. Supported values are: `successful` (0), `malformedRequest` (1), `internalError` (2), `tryLater` (3), `sigRequired` (5), and `unauthorized` (6). |
+| `responseBytes` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE* | Present only when the `responseStatus` is `successful` (0). Contains the response type and the encoded response data. |
+| `responseBytes.responseType` | [RFC 6960] clause 4.2.1 | REQUIRED | *OBJECT IDENTIFIER* | Identifier for the response type. For a basic OCSP responder, this value SHALL be `id-pkix-ocsp-basic`. |
+| `responseBytes.response` | [RFC 6960] clause 4.2.1 | REQUIRED | *OCTET STRING* | Contains the DER encoding of the response syntax identified by `responseType` (e.g., the `BasicOCSPResponse` structure). |
 
 !!! note
 
@@ -261,25 +261,25 @@ An OCSP response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. Whe
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `tbsResponseData` | RFC 6960 clause 4.2.1 | REQUIRED | *SEQUENCE* | Contains the core response data to be signed by the responder. |
-| `tbsResponseData.version` | RFC 6960 clause 4.2.1 | OPTIONAL | *[0] EXPLICIT INTEGER* | The version of the response syntax. If omitted, the default value is `v1` (0). |
-| `tbsResponseData.responderID` | RFC 6960 clause 4.2.1 | REQUIRED | *CHOICE* | Identifies the OCSP responder. It SHALL contain either `byName` or `byKey`. |
-| `tbsResponseData.responderID.byName` | RFC 6960 clause 4.2.1 | OPTIONAL | *[1] EXPLICIT Name* | The `Name` from the responder’s certificate subject. |
-| `tbsResponseData.responderID.byKey` | RFC 6960 clause 4.2.1 | OPTIONAL | *[2] EXPLICIT OCTET STRING* | The SHA-1 hash of the responder’s `subjectPublicKey` (excluding the tag and length fields). |
-| `tbsResponseData.producedAt` | RFC 6960 clause 4.2.1 | REQUIRED | *GeneralizedTime* | The time at which the OCSP response was generated. |
-| `tbsResponseData.responses` | RFC 6960 clause 4.2.1 | REQUIRED | *SEQUENCE OF* | A sequence of `SingleResponse` structures, providing the status of each requested certificate. |
-| `tbsResponseData.responseExtensions` | RFC 6960 clause 4.2.1 | OPTIONAL | *[1] EXPLICIT SEQUENCE OF* | Contains extensions applicable to the overall OCSP response. |
-| `signatureAlgorithm` | RFC 5280 clause 4.1.1.2 | REQUIRED | *SEQUENCE* | Identifies the cryptographic algorithm used to sign the response. |
-| `signatureAlgorithm.algorithm` | RFC 5280 clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. Selection SHOULD align with relevant standards (e.g., ETSI TS 119 312). |
-| `signatureAlgorithm.parameters` | RFC 5280 clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the OID defined in `algorithm`. |
-| `signature` | RFC 6960 clause 4.2.1 | REQUIRED | *BIT STRING* | The digital signature computed over the hash of the DER-encoded `tbsResponseData`. |
-| `certs` | RFC 6960 clause 4.2.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | Certificate chain to help the client verify the responder's signature. If no certificates are included, this field SHOULD be absent. |
+| `tbsResponseData` | [RFC 6960] clause 4.2.1 | REQUIRED | *SEQUENCE* | Contains the core response data to be signed by the responder. |
+| `tbsResponseData.version` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT INTEGER* | The version of the response syntax. If omitted, the default value is `v1` (0). |
+| `tbsResponseData.responderID` | [RFC 6960] clause 4.2.1 | REQUIRED | *CHOICE* | Identifies the OCSP responder. It SHALL contain either `byName` or `byKey`. |
+| `tbsResponseData.responderID.byName` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[1] EXPLICIT Name* | The `Name` from the responder’s certificate subject. |
+| `tbsResponseData.responderID.byKey` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[2] EXPLICIT OCTET STRING* | The SHA-1 hash of the responder’s `subjectPublicKey` (excluding the tag and length fields). |
+| `tbsResponseData.producedAt` | [RFC 6960] clause 4.2.1 | REQUIRED | *GeneralizedTime* | The time at which the OCSP response was generated. |
+| `tbsResponseData.responses` | [RFC 6960] clause 4.2.1 | REQUIRED | *SEQUENCE OF* | A sequence of `SingleResponse` structures, providing the status of each requested certificate. |
+| `tbsResponseData.responseExtensions` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[1] EXPLICIT SEQUENCE OF* | Contains extensions applicable to the overall OCSP response. |
+| `signatureAlgorithm` | [RFC 5280] clause 4.1.1.2 | REQUIRED | *SEQUENCE* | Identifies the cryptographic algorithm used to sign the response. |
+| `signatureAlgorithm.algorithm` | [RFC 5280] clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. Selection SHOULD align with relevant standards (e.g., ETSI TS 119 312). |
+| `signatureAlgorithm.parameters` | [RFC 5280] clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the OID defined in `algorithm`. |
+| `signature` | [RFC 6960] clause 4.2.1 | REQUIRED | *BIT STRING* | The digital signature computed over the hash of the DER-encoded `tbsResponseData`. |
+| `certs` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | Certificate chain to help the client verify the responder's signature. If no certificates are included, this field SHOULD be absent. |
 
 The `responseExtensions` structure MAY contain various extensions. A notable parameter often required by specific profiles (such as to prevent replay attacks) is the `nonce`:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `nonce` | RFC 6960 clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. If included in the request, responders SHOULD include it in the response. Identifer OID is `id-pkix-ocsp-nonce`. |
+| `nonce` | [RFC 6960] clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. If included in the request, responders SHOULD include it in the response. Identifer OID is `id-pkix-ocsp-nonce`. |
 
 !!! note
 
@@ -289,16 +289,16 @@ In the OCSP Response there SHALL be at least a `SingleResponse` for each `CertID
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `certID` | RFC 6960 clause 4.2.1 | REQUIRED | *SEQUENCE* | Identifier of the certificate whose status is determined in `certStatus`. |
-| `certStatus` | RFC 6960 clause 4.2.1 | REQUIRED | *CHOICE* | The value of the certificate's status. It SHALL be exactly one of: `good`, `revoked`, or `unknown`. |
-| `certStatus.good` | RFC 6960 clause 4.2.1 | OPTIONAL | *[0] IMPLICIT NULL* | Indicates the certificate is valid. |
-| `certStatus.revoked` | RFC 6960 clause 4.2.1 | OPTIONAL | *[1] IMPLICIT SEQUENCE* | Indicates the certificate has been revoked. Contains the `RevokedInfo` structure. |
-| `certStatus.revoked.revocationTime` | RFC 6960 clause 4.2.1 | REQUIRED | *GeneralizedTime* | The time at which the certificate was revoked. |
-| `certStatus.revoked.revocationReason` | RFC 6960 clause 4.2.1 | OPTIONAL | *[0] EXPLICIT ENUMERATED* | Contains the `CRLReason` indicating why the certificate was revoked. |
-| `certStatus.unknown` | RFC 6960 clause 4.2.1 | OPTIONAL | *[2] IMPLICIT NULL* | Indicates the responder does not know the status of the certificate. |
-| `thisUpdate` | RFC 6960 clause 4.2.1 | REQUIRED | *GeneralizedTime* | Indicates the issue date and time of this OCSP Response. |
-| `nextUpdate` | RFC 6960 clause 4.2.1 | OPTIONAL | *[0] EXPLICIT GeneralizedTime* | Indicates the date and time by which the next update to the OCSP Responder database will be in place. |
-| `singleExtensions` | RFC 6960 clause 4.2.1 | OPTIONAL | *[1] EXPLICIT SEQUENCE* | Includes extensions applicable to this single certificate status response. |
+| `certID` | [RFC 6960] clause 4.2.1 | REQUIRED | *SEQUENCE* | Identifier of the certificate whose status is determined in `certStatus`. |
+| `certStatus` | [RFC 6960] clause 4.2.1 | REQUIRED | *CHOICE* | The value of the certificate's status. It SHALL be exactly one of: `good`, `revoked`, or `unknown`. |
+| `certStatus.good` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] IMPLICIT NULL* | Indicates the certificate is valid. |
+| `certStatus.revoked` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[1] IMPLICIT SEQUENCE* | Indicates the certificate has been revoked. Contains the `RevokedInfo` structure. |
+| `certStatus.revoked.revocationTime` | [RFC 6960] clause 4.2.1 | REQUIRED | *GeneralizedTime* | The time at which the certificate was revoked. |
+| `certStatus.revoked.revocationReason` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT ENUMERATED* | Contains the `CRLReason` indicating why the certificate was revoked. |
+| `certStatus.unknown` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[2] IMPLICIT NULL* | Indicates the responder does not know the status of the certificate. |
+| `thisUpdate` | [RFC 6960] clause 4.2.1 | REQUIRED | *GeneralizedTime* | Indicates the issue date and time of this OCSP Response. |
+| `nextUpdate` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT GeneralizedTime* | Indicates the date and time by which the next update to the OCSP Responder database will be in place. |
+| `singleExtensions` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[1] EXPLICIT SEQUENCE* | Includes extensions applicable to this single certificate status response. |
 
 Below is a concrete example of an OCSP response with a single `good` status.
 

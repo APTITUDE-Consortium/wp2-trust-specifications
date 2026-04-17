@@ -98,7 +98,7 @@ This section describes the data objects that carry authorization information suc
 
 ##### Registration Overview
 
-WRPs are registered with a Registrar in their Member State before operating in the EUDI Wallet ecosystem. Relying Parties declare one or more intended uses, each with a user-friendly description, the attestation type and optionally the list of attributes needed, the purpose, and a privacy policy link. A WRPRC is issued for each intended use (RPRC_09). Attestation Providers declare which attestation types they intend to issue (RPRC_15, RPRC_22a). Intermediaries are registered as RPs that act on behalf of another RPs; the WRPRC of the intermediated RP contains the `intermediary` structure identifying the authorized intermediary per ETSI TS 119 475 Table 10.
+WRPs are registered with a Registrar in their Member State before operating in the EUDI Wallet ecosystem. Relying Parties declare one or more intended uses, each with a user-friendly description, the attestation type and optionally the list of attributes needed, the purpose, and a privacy policy link. A WRPRC is issued for each intended use (RPRC_09). Attestation Providers declare which attestation types they intend to issue (RPRC_15, RPRC_22a). Intermediaries are registered as RPs that act on behalf of another RPs; the WRPRC of the intermediated RP contains the `intermediary` structure identifying the authorized intermediary per [ETSI TS 119 475] Table 10.
 
 ##### Data Object Lifecycle
 
@@ -153,26 +153,26 @@ Registration data is collected at the Registrar and the Provider of WRPRCs get i
 
 ##### WRPRC Parameters for Authorization
 
-The following table lists the WRPRC payload parameters used in authorization processing, with field names as defined in ETSI TS 119 475 V1.2.1 section 5.2.4. Details about the WRPRC data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
+The following table lists the WRPRC payload parameters used in authorization processing, with field names as defined in [ETSI TS 119 475] V1.2.1 section 5.2.4. Details about the WRPRC data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
 The **Authorization Use** column indicates how each parameter is consumed: **Decision rule** means the WI enforces an automated check, **User transparency** means the information is displayed to support the User's decision, and **Wallet operation** means the WI uses it internally (e.g. for fallback query).
 
 | Field | Applicability | Authorization Use | Reference |
 | :---- | :------------ | :---------------- | :-------- |
 | `sub` | WRPs (REQUIRED) | **Decision rule**: binding verification; entity identification for EDP evaluation | ETSI 475 Table 7, RPRC_07 |
-| `sub_ln` | WRPs (REQUIRED) | **User transparency**: legal name displayed to User | ETSI 475 Table 7, CIR 2025/848 Annex I.1 |
-| `name` | WRPs (OPTIONAL) | **User transparency**: trade name displayed to User | ETSI 475 Table 7, CIR 2025/848 Annex I.2 |
+| `sub_ln` | WRPs (REQUIRED) | **User transparency**: legal name displayed to User | ETSI 475 Table 7, [CIR 2025/848] Annex I.1 |
+| `name` | WRPs (OPTIONAL) | **User transparency**: trade name displayed to User | ETSI 475 Table 7, [CIR 2025/848] Annex I.2 |
 | `entitlements` | WRPs (REQUIRED) | **Decision rule**: entitlement verification against expected role | ETSI 475 Table 7, Annex A.2, ISSU_24a, ISSU_34a |
-| `srv_description` | WRPs (REQUIRED) | **User transparency**: service description displayed to User | ETSI 475 Table 7, CIR 2025/848 Annex I.8 |
+| `srv_description` | WRPs (REQUIRED) | **User transparency**: service description displayed to User | ETSI 475 Table 7, [CIR 2025/848] Annex I.8 |
 | `registry_uri` | WRPs (REQUIRED) | **Wallet operation**: Registrar URL for fallback query | ETSI 475 Table 7, RPRC_18 |
-| `support_uri` | WRPs (REQUIRED) | **User transparency**: support contact for rights and data deletion | ETSI 475 Table 7, CIR 2025/848 Annex I.7(a) |
-| `supervisory_authority` | WRPs (REQUIRED) | **User transparency**: DPA information displayed to User | ETSI 475 Table 7, CIR 2025/848 Annex IV.3(g) |
-| `public_body` | WRPs (OPTIONAL) | **User transparency**: public sector identification shown to User | ETSI 475 Table 10, CIR 2025/848 Annex I.11 |
+| `support_uri` | WRPs (REQUIRED) | **User transparency**: support contact for rights and data deletion | ETSI 475 Table 7, [CIR 2025/848] Annex I.7(a) |
+| `supervisory_authority` | WRPs (REQUIRED) | **User transparency**: DPA information displayed to User | ETSI 475 Table 7, [CIR 2025/848] Annex IV.3(g) |
+| `public_body` | WRPs (OPTIONAL) | **User transparency**: public sector identification shown to User | ETSI 475 Table 10, [CIR 2025/848] Annex I.11 |
 | `privacy_policy` | RPs (REQUIRED if IntendedUse is present) | **User transparency**: privacy policy link displayed to User | ETSI 475 Table 9 |
 | `purpose` | RPs (REQUIRED if IntendedUse is present) | **User transparency**: purpose description displayed to User | ETSI 475 Table 9, RPRC_18 |
 | `intended_use_id` | RPs (OPTIONAL) | **Wallet operation**: Registrar query key for intended-use lookup | ETSI 475 Table 9, RPRC_19a |
 | `credentials[]` | RPs (OPTIONAL) | **Decision rule**: scope comparison bertween `claim[]` paths and `meta.vct_values`/`doctype_value` and requested attributes | ETSI 475 Table 9, RPRC_09, RPRC_21 |
 | `provides_attestations[]` | APs (REQUIRED) | **Decision rule**: attestation type verification of registered types against requested type during issuance | ETSI 475 Table 8, RPRC_15, RPRC_23, ISSU_34b |
-| `intermediary` | WRPs (OPTIONAL) | **Decision rule**: `intermediary.sub` used to check against authenticated intermediary identity | ETSI 475 Table 10, CIR 2025/848 Annex I.14 |
+| `intermediary` | WRPs (OPTIONAL) | **Decision rule**: `intermediary.sub` used to check against authenticated intermediary identity | ETSI 475 Table 10, [CIR 2025/848] Annex I.14 |
 | `status` | WRPs (REQUIRED) | **Decision rule**: WRPRC revocation check via Status List | ETSI 475 GEN-6.2.6.1-04, RPRC_17 |
 | `iat` / `exp` | WRPs (REQUIRED) | **Decision rule**: temporal validity check | ETSI 475 |
 
@@ -180,14 +180,14 @@ The **Authorization Use** column indicates how each parameter is consumed: **Dec
 
 **Presentation flows.** RPs include the WRPRC in the presentation request by value (RPRC_19) in the:
 
-- `verifier_info` parameter included in the Request Object JWT within the authorization request (remote flow, ETSI TS 119 472-2 and OpenID4VP section 5.1). This is an array of JSON Objects containg WRPRC in base64-encoded format and RPRC_19a data including the URL of Registrar online service.
-- `euWrprc` (CBOR byte string with serialized WRPRC) member of `requestInfo` included in the ISO DeviceRequest (proximity flow, ETSI TS 119 472-2 section 5.3).
+- `verifier_info` parameter included in the Request Object JWT within the authorization request (remote flow, [ETSI TS 119 472-2] and [OpenID4VP] section 5.1). This is an array of JSON Objects containg WRPRC in base64-encoded format and RPRC_19a data including the URL of Registrar online service.
+- `euWrprc` (CBOR byte string with serialized WRPRC) member of `requestInfo` included in the ISO DeviceRequest (proximity flow, [ETSI TS 119 472-2] section 5.3).
 
 !!! warning
 
-    Currently, the mapping of RPRC_19a data in the `requestInfo` map is not defined in ETSI TS 119 472-2
+    Currently, the mapping of RPRC_19a data in the `requestInfo` map is not defined in [ETSI TS 119 472-2]
 
-**Issuance flow.** APs include authorization data in Credential Issuer Metadata through the `issuer_info` array (ETSI TS 119 472-3 section 4.2.3). This array contains:
+**Issuance flow.** APs include authorization data in Credential Issuer Metadata through the `issuer_info` array ([ETSI TS 119 472-3] section 4.2.3). This array contains:
 
 - An element with format `"registration_cert"` containing the WRPRC by value (ISS-MDATA-REG_CERT-4.2.3-04/05) (OPTIONAL).
 - An element with format `"registrar_dataset"` containing self-declared registration information including `identifier`, `srvDescription`, `registryURI`, and `providesAttestations` (ISS-MDATA-REG_CERT-4.2.3-07 through 13) (REQUIRED).
@@ -213,7 +213,7 @@ For authorization purposes, the following aspects are relevant:
 - EDPs are applicable to QEAAs, PuB-EAAs, and non-qualified EAAs. They are not applicable to PIDs [AUTHZ-EDP-01].
 - During issuance, when the User confirms, the WI SHALL retrieve and store locally the EDP if present in the Credential Issuer Metadata [AUTHZ-EDP-02].
 - At presentation time, for each Attestation matching a request, the WI SHALL check its locally stored EDP and evaluate it against the requesting RP according to the [EDP Evaluation Procedure](#edp-evaluation-procedure) defined in this section.
-- Annex III of CIR 2024/2979 defines three policy types that the WI SHALL support. In particular:
+- Annex III of [CIR 2024/2979] defines three policy types that the WI SHALL support. In particular:
     - No Policy.
     - Authorized Relying Parties Only.
     - Specific Root of Trust.
@@ -226,7 +226,7 @@ This section defines the individual verification procedures that are composed in
 
 When a WRPRC is available, the WI SHALL validate it before relying on it [AUTHZ-GEN-08]:
 
-1. **Format verification**: confirm `typ` is `rc-wrp+jwt` (remote) or `rc-wrp+cwt` (proximity)  (ETSI TS 119 475 section 5.2.1).
+1. **Format verification**: confirm `typ` is `rc-wrp+jwt` (remote) or `rc-wrp+cwt` (proximity)  ([ETSI TS 119 475] section 5.2.1).
 2. **Algorithm verification**: verify the conformance of signature algorithm (neither `"none"` nor deprecated).
 3. **Signature and Certificate chain validation**: verify the WRPRC signature and validate the chain.
 4. **Trust anchor resolution**: fetch the trust anchor for the Provider of WRPRCs from LoTE. The WI SHALL accept trust anchors from all Provider of WRPRCs LoTE (ISSU_33a).
@@ -258,7 +258,7 @@ The WI SHALL verify coherence between the authenticated WRP identity and the aut
 
 ###### Common Principle
 
-The WI SHALL compare the WRP identifier extracted from the WRPAC subject (the `organizationIdentifier` in the subject DN, following ETSI EN 319 412-1 clause 5.1.4) against the authorization subject identifier available from:
+The WI SHALL compare the WRP identifier extracted from the WRPAC subject (the `organizationIdentifier` in the subject DN, following [ETSI EN 319 412-1] clause 5.1.4) against the authorization subject identifier available from:
 
 - the WRPRC `sub` field (if available).
 - The authorization data (RPRC_19a) extracted from authentication request (`verifier_info` or `requestInfo`) in presentation scenario or in `registrar_dataset` field in issuance scenario.
@@ -304,7 +304,7 @@ In the intermediary scenario, the WI SHALL perform the following verifications [
 
 **Step 2: Verify intermediary association.** The WI SHALL verify that the intermediary is authorized to act on behalf of the intermediated RP. The verification depends on the available data source:
 
-- **If a valid WRPRC is available**: the WRPRC of the intermediated RP SHALL contain the `intermediary` structure (per ETSI TS 119 475 Table 10). The WI SHALL verify that `intermediary.sub` matches the authenticated intermediary identifier from the WRPAC. The presence of the `intermediary` field in the WRPRC, signed by the Provider of WRPRCs, is authoritative evidence that the relationship is registered.
+- **If a valid WRPRC is available**: the WRPRC of the intermediated RP SHALL contain the `intermediary` structure (per [ETSI TS 119 475] Table 10). The WI SHALL verify that `intermediary.sub` matches the authenticated intermediary identifier from the WRPAC. The presence of the `intermediary` field in the WRPRC, signed by the Provider of WRPRCs, is authoritative evidence that the relationship is registered.
 - **If the WRPRC is not available or invalid**: the WI SHALL query the Register using the intermediated RP identifier (from RPRC_19a item b) and verify in the Register response that the authenticated intermediary is listed as an authorized intermediary for that RP.
 - **If both WRPRC and Register verification fail**: the WI SHALL NOT confirm the intermediary relationship.
 
@@ -324,7 +324,7 @@ If any name is not available, the WI SHALL display the identifier instead of the
 
 !!! warning
 
-    ETSI TS 119 475 V1.2.1 Table 10 defines the intermediary name subfield > as `sname`. The example in Annex C of the same standard uses `name` instead. This specification follows the normative Table 10 and uses `sname`.
+    [ETSI TS 119 475] V1.2.1 Table 10 defines the intermediary name subfield > as `sname`. The example in Annex C of the same standard uses `name` instead. This specification follows the normative Table 10 and uses `sname`.
 
 !!! note
 
@@ -551,7 +551,7 @@ The RP Instance SHALL include RPRC_19a extension fields and, if available, the W
 
 ###### Proximity Flow Specifics
 
-The WRPRC is extracted from `euWrprc` in `requestInfo` according to ETSI TS 119 472-2 [AUTHZ-PRES-11]. The WRPRC SHALL be CWT (`typ = "rc-wrp+cwt"`), signing algorithm from COSE header. Requested attributes SHALL be extracted from `docRequest.itemRequest.nameSpaces`.
+The WRPRC is extracted from `euWrprc` in `requestInfo` according to [ETSI TS 119 472-2] [AUTHZ-PRES-11]. The WRPRC SHALL be CWT (`typ = "rc-wrp+cwt"`), signing algorithm from COSE header. Requested attributes SHALL be extracted from `docRequest.itemRequest.nameSpaces`.
 
 ###### Intermediary Handling
 
@@ -667,7 +667,7 @@ flowchart TD
 | AUTHZ-UI-02 | User-relevant limitations SHALL be represented as advisories. | Both | -- |
 | AUTHZ-UI-03 | Advisories SHALL be displayed to the Wallet User. | Both | -- |
 | AUTHZ-UI-04 | User approval SHALL be a separate step from the authorization decision. | Both | RPA_07 |
-| AUTHZ-UI-05 | The process SHALL support transparent decision-making and SHALL NOT be purely hidden. | Both | CIR 2025/848 |
+| AUTHZ-UI-05 | The process SHALL support transparent decision-making and SHALL NOT be purely hidden. | Both | [CIR 2025/848] |
 | AUTHZ-UI-06 | Non-overridable cases: provider role/type failure in issuance, metadata signature failure, coherence failure, intermediary binding failure, registration status failure, missing minimum info, inability to obtain required authoritative info for issuance. | Both | ISSU_24a, ISSU_34a, RPRC_23 |
 | AUTHZ-UI-07 | For presentation, the WI SHALL present all results and advisories and request User approval. | Presentation | RPA_07 |
 | AUTHZ-UI-08 | For presentation, the WI SHALL show at minimum: RP identity, intermediary identity, requested attributes, intended-use, privacy-policy, advisories. | Presentation | RPRC_19a, RPI_07 |
@@ -681,7 +681,7 @@ flowchart TD
 | AUTHZ-ISS-04 | The WI SHALL fetch Credential Issuer Metadata via OpenID4VCI. | Issuance | ISSU_01 |
 | AUTHZ-ISS-05 | The WI SHALL verify metadata signature and WRPAC certificate chain. | Issuance | ISSU_22a, ISSU_32a |
 | AUTHZ-ISS-06 | If metadata signature verification fails, produce NOT_AUTHORIZED (non-overridable). | Issuance | -- |
-| AUTHZ-ISS-07 | The WI SHALL extract authorization data from issuer_info per ETSI TS 119 472-3 section 4.2.3. | Issuance | RPRC_22 |
+| AUTHZ-ISS-07 | The WI SHALL extract authorization data from issuer_info per [ETSI TS 119 472-3] section 4.2.3. | Issuance | RPRC_22 |
 | AUTHZ-ISS-08 | Self-declared fallback from Credential Issuer Metadata SHALL be treated as advisory only. | Issuance | ISSU_24a note |
 | AUTHZ-ISS-09 | The WI SHALL NOT present self-declared entitlement information as verified. | Issuance | ISSU_24a note |
 | AUTHZ-ISS-10 | On successful verification and User confirmation, proceed with issuance and store EDP. | Issuance | EDP_09 |
@@ -710,8 +710,8 @@ flowchart TD
 | AUTHZ-EDP-01 | The WI SHALL support EDP for QEAAs, PuB-EAAs, non-qualified EAAs. SHALL NOT assume PIDs have EDP. | Presentation | EDP_01 |
 | AUTHZ-EDP-02 | During issuance, the WI SHALL store EDP locally if present. | Issuance | EDP_09, EDP_10 |
 | AUTHZ-EDP-03 | At presentation, the WI SHALL check locally stored EDP for each matching Attestation. | Presentation | EDP_06, EDP_10 |
-| AUTHZ-EDP-04 | The WI SHALL support authorized relying parties only policy evaluation. | Presentation | CIR 2024/2979 Annex III, Discussion Topic D Req 1 |
-| AUTHZ-EDP-05 | The WI SHALL support specific root of trust policy evaluation. | Presentation | CIR 2024/2979 Annex III, Discussion Topic D Req 2 |
+| AUTHZ-EDP-04 | The WI SHALL support authorized relying parties only policy evaluation. | Presentation | [CIR 2024/2979] Annex III, Discussion Topic D Req 1 |
+| AUTHZ-EDP-05 | The WI SHALL support specific root of trust policy evaluation. | Presentation | [CIR 2024/2979] Annex III, Discussion Topic D Req 2 |
 | AUTHZ-EDP-06 | The WI SHALL evaluate EDP together with RP information to determine access permission. | Presentation | EDP_06 |
 | AUTHZ-EDP-07 | If EDP satisfied and explanatory link present, display it. | Presentation | EDP_05 |
 | AUTHZ-EDP-08 | If EDP not satisfied, produce NOT_AUTHORIZED, present outcome, allow User override. | Presentation | EDP_07, RPA_11 |

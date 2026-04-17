@@ -2,8 +2,8 @@
 
 Version 0.1 (Draft)
 
-| Version | Date       | Description |
-| ------- | ---------- | ----------- |
+| Version | Date       | Description   |
+| ------- | ---------- | ------------- |
 | 0.1     | 2026-04-XX | First release |
 
 **Authors**:
@@ -111,4 +111,6 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ---
 
-## 8. References
+## References
+
+{% include-markdown "./references.md" %}

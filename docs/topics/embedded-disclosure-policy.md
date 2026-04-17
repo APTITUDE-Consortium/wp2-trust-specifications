@@ -9,11 +9,11 @@ The authorization evaluation logic that the WI applies when processing an EDP du
 
 #### Definition and Applicability
 
-An Embedded Disclosure Policy is defined in Article 2(9) of CIR 2024/2979 as:
+An Embedded Disclosure Policy is defined in Article 2(9) of [CIR 2024/2979] as:
 
 *"A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes"*.
 
-The EDP allows APs to indicate which RPs can access specific Attestations. APs can optionally express an EDP for their Attestations (EDP_01). The Article 10 of CIR 2024/2979 establishes that Wallet Providers SHALL ensure that Attestations with common EDPs (as listed in Annex III of CIR 2024/2979) can be processed by their Wallet Instances.
+The EDP allows APs to indicate which RPs can access specific Attestations. APs can optionally express an EDP for their Attestations (EDP_01). The Article 10 of [CIR 2024/2979] establishes that Wallet Providers SHALL ensure that Attestations with common EDPs (as listed in Annex III of [CIR 2024/2979]) can be processed by their Wallet Instances.
 
 EDPs are applicable to QEAAs, PuB-EAAs, and non-qualified EAAs. They are not applicable to PIDs as the EUDIW Regulation does not provide any requirement for PIDs to contain an EDP (EDP_01 note).
 
@@ -24,27 +24,27 @@ The main use cases enabled by EDPs are:
 
 #### Policy Types
 
-Annex III of CIR 2024/2979 defines three common EDP types:
+Annex III of [CIR 2024/2979] defines three common EDP types:
 
 **No Policy.** No EDP is present, or the EDP explicitly indicates that no restrictions apply (ISS-MDATA-EBD-4.2.5.2-06).
 
-**Authorized Relying Parties Only.** The EDP contains a list of RPs that are allowed to access the Attestation. According to ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07), authorized RPs are identified by their subject distinguished name as held in the WRPAC, in LDAP string form as defined in RFC 4514.
+**Authorized Relying Parties Only.** The EDP contains a list of RPs that are allowed to access the Attestation. According to [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-07), authorized RPs are identified by their subject distinguished name as held in the WRPAC, in LDAP string form as defined in RFC 4514.
 For legal persons, the relevant DN attributes are `commonName`, `organizationName`, `organizationIdentifier`, and `countryName`.
-For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `countryName`. The organizationIdentifier attribute type is represented by the LDAP string "ORGID"; the serialNumber attribute type is represented by "SN" (according to ETSI TS 119 472-3 NOTE 1 and NOTE 2 to ISS-MDATA-EBD-4.2.5.2-07).
+For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `countryName`. The organizationIdentifier attribute type is represented by the LDAP string "ORGID"; the serialNumber attribute type is represented by "SN" (according to [ETSI TS 119 472-3] NOTE 1 and NOTE 2 to ISS-MDATA-EBD-4.2.5.2-07).
 
 !!! note
 
-    ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in ETSI TS 119 475, held in the WRPRC. ETSI TS 119 475 Annex A.3 defines sub-entitlements for Service Providers, currently for Payment Service Providers (e.g. `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai`). Future versions may include additional sector-specific sub-entitlements at national or EU level. This specification supports both the subject DN and the entitlement URI identification mechanisms.
+    [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in [ETSI TS 119 475], held in the WRPRC. [ETSI TS 119 475] Annex A.3 defines sub-entitlements for Service Providers, currently for Payment Service Providers (e.g. `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai`). Future versions may include additional sector-specific sub-entitlements at national or EU level. This specification supports both the subject DN and the entitlement URI identification mechanisms.
 
 !!! note
 
-    ARF HLR EDP_02 refers to "EU-wide unique identifiers", as defined in Reg_32, for the authorized RP list. ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-07) identifies authorized RPs by their subject DN from the WRPAC. The organizationIdentifier attribute within the DN has the same semantics as the identifier given in Reg_32. This specification aligns with the ETSI TS 119 472-3 formulation. Future ARF versions are expected to align accordingly.
+    [ARF] HLR EDP_02 refers to "EU-wide unique identifiers", as defined in Reg_32, for the authorized RP list. [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-07) identifies authorized RPs by their subject DN from the WRPAC. The organizationIdentifier attribute within the DN has the same semantics as the identifier given in Reg_32. This specification aligns with the [ETSI TS 119 472-3] formulation. Future ARF versions are expected to align accordingly.
 
-**Specific Root of Trust.** The EDP contains a list of trusted roots or intermediate certificates. Only RPs whose WRPACs chain to one of these roots are allowed to access the Attestation. According to ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-08/09), each authorized root is identified by its issuer distinguished name in LDAP string form as defined in RFC 4514 and the issuer's certificate serial number.
+**Specific Root of Trust.** The EDP contains a list of trusted roots or intermediate certificates. Only RPs whose WRPACs chain to one of these roots are allowed to access the Attestation. According to [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-08/09), each authorized root is identified by its issuer distinguished name in LDAP string form as defined in RFC 4514 and the issuer's certificate serial number.
 
 #### Data Model
 
-The data model of the EDP is defined in ETSI TS 119 472-3 section 4.2.5.2 through requirements ISS-MDATA-EBD-4.2.5.2-01 to ISS-MDATA-EBD-4.2.5.2-13.
+The data model of the EDP is defined in [ETSI TS 119 472-3] section 4.2.5.2 through requirements ISS-MDATA-EBD-4.2.5.2-01 to ISS-MDATA-EBD-4.2.5.2-13.
 
 ##### Data Model Requirements
 
@@ -63,15 +63,15 @@ The data model defines the following elements:
 
 !!! note
 
-    ETSI TS 119 472-3 (ISS-MDATA-EBD-4.2.5.2-12) provides for attribute-level policies, where alternative policy rules (no policy, authorized RP only, or specific root of trust) can be defined for specific attributes within an EAA that are subject to selective disclosure. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level EDP will be addressed when the ETSI JSON schema for EDP is finalized and the policy mechanisms are fully defined.
+    [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-12) provides for attribute-level policies, where alternative policy rules (no policy, authorized RP only, or specific root of trust) can be defined for specific attributes within an EAA that are subject to selective disclosure. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level EDP will be addressed when the ETSI JSON schema for EDP is finalized and the policy mechanisms are fully defined.
 
 ##### Structure and Encoding
 
-The following JSON structure is derived from the ETSI TS 119 472-3 data model requirements.
+The following JSON structure is derived from the [ETSI TS 119 472-3] data model requirements.
 
 !!! warning
 
-    The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. ETSI TS 119 472-3 section 4.2.5.2 defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of ETSI TS 119 472-3). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
+    The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. [ETSI TS 119 472-3] section 4.2.5.2 defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of [ETSI TS 119 472-3]). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
 
 | Parameter | Type | Description | Based on |
 |-----------|------|-------------|----------|
@@ -82,14 +82,14 @@ The following JSON structure is derived from the ETSI TS 119 472-3 data model re
 | `policy_info_url` | string (URL) | OPTIONAL. Link to a website explaining the policy in layman's terms. | ISS-MDATA-EBD-4.2.5.2-13, EDP_05 |
 | `authorized_parties` | array of objects | REQUIRED if `policy_type` is `"authorized_rp_only"`. List of authorized RPs. | ISS-MDATA-EBD-4.2.5.2-07 |
 | `authorized_parties[].subject_dn` | string | OPTIONAL. Subject DN of the RP from the WRPAC, in LDAP string form as defined in RFC 4514. At least one of `subject_dn` or `entitlement_uri` SHALL be present in each element. | ISS-MDATA-EBD-4.2.5.2-07 |
-| `authorized_parties[].entitlement_uri` | string (URI) | OPTIONAL. URI-encoded entitlement or sub-entitlement as specified in ETSI TS 119 475 Annex A, held in the WRPRC. At least one of `subject_dn` or `entitlement_uri` SHALL be present in each element. | ISS-MDATA-EBD-4.2.5.2-07 |
+| `authorized_parties[].entitlement_uri` | string (URI) | OPTIONAL. URI-encoded entitlement or sub-entitlement as specified in [ETSI TS 119 475] Annex A, held in the WRPRC. At least one of `subject_dn` or `entitlement_uri` SHALL be present in each element. | ISS-MDATA-EBD-4.2.5.2-07 |
 | `trusted_roots` | array of objects | REQUIRED if `policy_type` is `"specific_root_of_trust"`. List of trusted roots. | ISS-MDATA-EBD-4.2.5.2-08 |
 | `trusted_roots[].issuer_dn` | string | REQUIRED. Issuer DN in LDAP string form compliant with RFC 4514. | ISS-MDATA-EBD-4.2.5.2-09 |
 | `trusted_roots[].serial_number` | string | REQUIRED. Certificate serial number of the issuer. | ISS-MDATA-EBD-4.2.5.2-09 |
 
 #### Distribution
 
-The EDP is distributed through Credential Issuer Metadata at issuance time. The AP SHALL include the EDP (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with OpenID4VCI or the extension thereof specified in ETSI TS 119 472-3 (EDP_09). The EDP SHALL NOT be revealed to the RP through the presentation protocol (per ETSI TS 119 472-3 section 4.2.5.1).
+The EDP is distributed through Credential Issuer Metadata at issuance time. The AP SHALL include the EDP (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (EDP_09). The EDP SHALL NOT be revealed to the RP through the presentation protocol (per [ETSI TS 119 472-3] section 4.2.5.1).
 
 !!! warning
 
@@ -120,10 +120,10 @@ Even a minor policy change (e.g., adding a single RP to the authorized list) req
 
 | Reference | Description |
 |-----------|-------------|
-| CIR 2024/2979 Article 2(9) | Definition of Embedded Disclosure Policy |
-| CIR 2024/2979 Article 10 | Wallet Provider obligations for EDP processing |
-| CIR 2024/2979 Annex III | Common EDP types |
-| ETSI TS 119 472-3 section 4.2.5 | EDP data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13) |
-| ETSI TS 119 475 Annex A.2 | Common entitlement URIs |
-| ETSI EN 319 412-1 section 5.1.4 | organizationIdentifier semantics |
+| [CIR 2024/2979] Article 2(9) | Definition of Embedded Disclosure Policy |
+| [CIR 2024/2979] Article 10 | Wallet Provider obligations for EDP processing |
+| [CIR 2024/2979] Annex III | Common EDP types |
+| [ETSI TS 119 472-3] section 4.2.5 | EDP data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13) |
+| [ETSI TS 119 475] Annex A.2 | Common entitlement URIs |
+| [ETSI EN 319 412-1] section 5.1.4 | organizationIdentifier semantics |
 | RFC 4514 | LDAP string representation of Distinguished Names |
