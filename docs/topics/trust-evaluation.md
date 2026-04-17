@@ -22,7 +22,7 @@ Depending on the artifact or attestation being verified, the validating Entity S
 To verify the authenticity of the retrieved Trusted Lists, the Entity SHALL perform the following validations:
 
 - [LoTE Validation](#list-of-trusted-entities-validation-process): Validate the digital signature of the LoTE by verifying it against the LoTE Provider certificate. This certificate is authenticated via the *Official Journal of the European Union* (OJEU).
-- [EUMS TL Validation](#european-union-member-state-trusted-list-validation-process): Validate the digital signature of the EUMS TL by verifying it against the corresponding Member State public keys published in the *List of Trusted Lists* (LoTL). The LoTL itself is authenticated by validating its digital signature against the *Official Journal of the European Union* (OJEU).
+- [EUMS TL Validation](#european-union-member-state-trusted-list-validation-process): Validate the digital signature of the EUMS TL by verifying it against the corresponding Member State public keys published in the *List of Trusted Lists* (LOTL). The LOTL itself is authenticated by validating its digital signature against the *Official Journal of the European Union* (OJEU).
 
 To support continuous key rotation, both artifacts implement a pivoting mechanism. This ensures that an Entity possessing the last known valid version can reliably discover the location of the next version and validate it using the unbroken chain of trust rooted in the OJEU.
 

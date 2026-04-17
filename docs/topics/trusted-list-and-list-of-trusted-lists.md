@@ -8,7 +8,7 @@ Furthermore, according to Chapter II of Annex I of The CID (EU) 2015/1505, furth
 
 Also in CID (EU) 2015/150, article 4(3) establishes that the Commission publishes the information received from MS about their Trust Lists in machine-readable format for automated processing. This is what is known by "List of Trusted Lists" (LOTL). Under article 4(4), the Commission may also publish the same information in human-readable format.
 
-Specifically for the EUDIW, the Commission defines the additional "Lists of Trusted Entities" (LOTE). The principles of the LOTEs are established under Articles 4 and 5 in CIR (EU) 2024/2980, which points the direction to the creation and publishing of two lists:
+Specifically for the EUDIW, the Commission defines the additional "Lists of Trusted Entities" (LoTE). The principles of the LoTEs are established under Articles 4 and 5 in CIR (EU) 2024/2980, which points the direction to the creation and publishing of two lists:
 
 1. one list to include:
    - registrars of wallet-relying parties
@@ -82,16 +82,16 @@ Afterwards, a follow up method of providing traceable changes to the LOTL is pro
 
 #### List of Trusted Entities
 
-The LOTE is a compilation of the information submitted by Member States about the following entities:
+The LoTE is a compilation of the information submitted by Member States about the following entities:
 
 1. providers of person identity data;
 1. wallet providers;
 1. providers of wallet relying party access certificates;
 1. public sector bodies issuing electronic attestations of attributes.
 
-The LOTE follows the same structure defined for TLs on ETSI TS 119 612, yet a specific data model is defined in ETSI TS 119 602 and 2 formats - JSON or XML - are allowed, depending on the type of LOTE.
+The LoTE follows the same structure defined for TLs on ETSI TS 119 612, yet a specific data model is defined in ETSI TS 119 602 and 2 formats - JSON or XML - are allowed, depending on the type of LoTE.
 
-The LOTE types can be one of the following, as defined in annex C.2:
+The LoTE types can be one of the following, as defined in annex C.2:
 
 - PID providers
 - Wallet providers
@@ -118,7 +118,7 @@ TLManager is licenced under LGPL and is available for download here:
 **eIDAS Dashboard:**
 The eIDAS Dashboard is a platform in the format of a dynamic website where all information and tools necessary to make use of the EUDI Wallet, Trust Services and eID schemes are openly available.
 
-The eIDAS Dashboard is available online here: <https://eidas.ec.europa.eu/efda/home>. Specifically for the EUDI Wallet ecosystem, the eIDAS Dashboard already has the placeholders for the several types of entities to be listed in the LOTEs, here: <https://eidas.ec.europa.eu/efda/wallet>.
+The eIDAS Dashboard is available online here: <https://eidas.ec.europa.eu/efda/home>. Specifically for the EUDI Wallet ecosystem, the eIDAS Dashboard already has the placeholders for the several types of entities to be listed in the LoTEs, here: <https://eidas.ec.europa.eu/efda/wallet>.
 
 #### Data Models
 
@@ -129,7 +129,7 @@ The following table dictates the governing standard, publication scope (i.e., at
 | List Type | Governing Standard | Publication Scope | Format |
 | :--- | :--- | :--- | :--- |
 | Traditional eIDAS Trusted Lists | TS 119 612 | Member State | XML |
-| List of Trusted Lists (LoTL) | TS 119 612 | European Union | XML |
+| List of Trusted Lists (LOTL) | TS 119 612 | European Union | XML |
 | PID Provider Lists | TS 119 602 Annex D | European Union | JSON |
 | Wallet Provider Lists | TS 119 602 Annex E | European Union | JSON |
 | Provider of WRPAC | TS 119 602 Annex F | European Union | JSON |
@@ -139,10 +139,10 @@ The following table dictates the governing standard, publication scope (i.e., at
 
 ##### Trusted List and List of Trusted Lists
 
-The following URLs provide the normative XML schemas required for implementing the EU Member State Trusted Lists (EUMS TL) and the List of Trusted Lists (LoTL):
+The following URLs provide the normative XML schemas required for implementing the EU Member State Trusted Lists (EUMS TL) and the List of Trusted Lists (LOTL):
 
 - **EU MSTL Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd)
-- **LoTL Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd)
+- **LOTL Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd)
 
 ##### List of Trusted Entities
 
@@ -152,7 +152,7 @@ The following repository provides the normative JSON and XML schemas required fo
 
 ###### Trusted List Terminology Comparison
 
-The LoTE and the LoTL / EUMS TL differ not only in their underlying schemas but also in their parameter nomenclature. The following table maps the equivalent terms between the two standards:
+The LoTE and the LOTL / EUMS TL differ not only in their underlying schemas but also in their parameter nomenclature. The following table maps the equivalent terms between the two standards:
 
 | TS 119 602 (LoTE) | TS 119 612 (TSL) |
 | :--- | :--- |
@@ -172,7 +172,7 @@ The following table details the governing standards, publication scopes, and man
 | List Type | Governing Standard | Publication Scope | Format |
 | :--- | :--- | :--- | :--- |
 | Traditional eIDAS Trusted Lists | TS 119 612 | Member State | XML |
-| List of Trusted Lists (LoTL) | TS 119 612 | European Union | XML |
+| List of Trusted Lists (LOTL) | TS 119 612 | European Union | XML |
 | PID Provider Lists | TS 119 602 Annex D | European Union | JSON |
 | Wallet Provider Lists | TS 119 602 Annex E | European Union | JSON |
 | Provider of WRPAC Lists | TS 119 602 Annex F | European Union | JSON |
