@@ -1,3 +1,7 @@
+---
+toc_depth: 3
+---
+
 # Implementation Profiles for the Trust Framework
 
 Version 0.1 (Draft)
@@ -32,28 +36,6 @@ Version 0.1 (Draft)
 **Feedback**:
 
 - Issue tracking system: <https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues>
-
-
-## Table of Contents
-
-- [1. Introduction](#1-introduction)
-- [2. Scope](#2-scope)
-  - [Out of Scope](#out-of-scope)
-- [3. Normative Language](#3-normative-language)
-- [4. Trust Architecture](#4-trust-architecture)
-- [5. Trust Artifacts](#5-trust-artifacts)
-  - [Register](#register)
-  - [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate)
-  - [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate)
-  - [List of Trusted Entities and List of Trusted Lists](#list-of-trusted-entities-and-list-of-trusted-lists)
-  - [Embedded Disclosure Policy](#embedded-disclosure-policy)
-- [6. Trust Evaluation Process](#6-trust-evaluation-process)
-  - [Trust Anchor Validation Process](#trust-anchor-validation-process)
-  - [Authentication Process](#authentication-process)
-  - [Authorization Process](#authorization-process)
-- [7. Trust Management and Lifecycle](#7-trust-management-and-lifecycle)
-  - [Revocation Mechanisms](#revocation-mechanisms)
-- [8. References](#8-references)
 
 ## 1. Introduction
 

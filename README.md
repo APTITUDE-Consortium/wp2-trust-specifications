@@ -11,18 +11,18 @@ The repository is structured according to the following organization:
 ```text
 .
 ├── docs
-    ├── topics
-    │   ├── access-certificate.md
-    │   ├── entitlement-policy.md
-    │   ├── registration-certificate.md
-    │   ├── registry.md
-    │   ├── revocation-mechanisms.md
-    │   ├── trust-architecture.md
-    │   ├── trust-evaluation-process-authentication.md
-    │   ├── trust-evaluation-process-authorization.md
-    │   ├── trust-management-process.md
-    │   └── trusted-list-and-list-of-trusted-lists.md
-    └── deliverable-2.1-trust.md
+│   ├── topics
+│   │   ├── access-certificate.md
+│   │   ├── entitlement-policy.md
+│   │   ├── registration-certificate.md
+│   │   ├── registry.md
+│   │   ├── revocation-mechanisms.md
+│   │   ├── trust-architecture.md
+│   │   ├── trust-evaluation-process-authentication.md
+│   │   ├── trust-evaluation-process-authorization.md
+│   │   ├── trust-management-process.md
+│   │   └── trusted-list-and-list-of-trusted-lists.md
+│   └── deliverable-2.1-trust.md
 ├── references
 ├── requirements
 │   ├── arf.md

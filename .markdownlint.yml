@@ -16,6 +16,7 @@ MD024:
   siblings_only: true # Allows duplicate headings under different parent heading.
 MD028: false          # Allows blank lines inside blockquotes.
 MD033: false          # Disables the "No Inline HTML" rule.
+MD036: false          # Disables the "Emphasis used instead of a heading" rule.
 MD041: false          # Disables the requirement that the first line must be an H1 header.
 MD051: false          # Disables checks on link fragments (as single topics may reference each other).
 
