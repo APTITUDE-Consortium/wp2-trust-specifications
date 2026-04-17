@@ -1,3 +1,14 @@
+This section specifies the authorization process that a Wallet Instance (WI) SHALL execute to determine whether an interaction with a Wallet-Relying Party (WRP) is allowed within the EUDI Wallet ecosystem. A wallet Instance SHALL implement all the authorization-processing rules defined in this section [AUTHZ-GEN-03].
+
+Authorization covers:
+
+- **Issuance authorization**: whether a PID Provider or Attestation Provider (AP) is registered for the relevant role and for the specific attestation type(s) to be issued. This applies to PID Providers, QEAA Providers, PuB-EAA Providers, and non-qualified EAA Providers.
+- **Presentation authorization**: whether a Relying Party (RP) request is within its registered scope, whether any Embedded Disclosure Policy permits disclosure, and whether the User approves. This applies to both direct RP and intermediated RP interactions, and both remote and proximity flows.
+
+!!! note
+
+    Authentication process is out of scope. This section does not define access certificate validation rules, LoTE validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the WRPRC (covered in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate)), nor Registrar online service API definition.
+
 #### Preconditions
 
 The authorization process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](#authentication-process)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the authorization process SHALL NOT start [AUTHZ-GEN-02].

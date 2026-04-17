@@ -1,3 +1,22 @@
+The **Authentication Process** enables the Wallet Unit to authenticate a Wallet Relying Party (WRP) during an interaction. It establishes trust by validating the WRP's X.509 certificate chain—from a trusted Provider of Wallet Relying Party Access Certificates (WRPAC) down to the presented WRPAC—and verifying the WRP's possession of the corresponding private key.
+
+To authenticate the WRP, the Wallet Unit SHALL verify the authenticity and integrity of the presented WRPAC by performing the following steps:
+
+1. **Retrieve the Trust Anchor:** Obtain the Provider of WRPAC's entry from the validated List of Trusted Entities (LoTE) (see [Trust Anchor Validation Process](#trust-anchor-validation-process)). The certificate(s) found in the `ServiceDigitalIdentity` field of the LoTE's `TrustedEntitiesList` constitute the Trust Anchor.
+2. **Construct the Certification Path:** Build a path starting from the certificate issued by the Provider of WRPAC (C_1) and ending with the WRPAC presented by the WRP (C_n). *(Note: The simplest path consists of just one certificate, where n=1).*
+3. **Execute Path Validation:** Run the algorithm defined in [Wallet Relying Party Access Certificate Path Validation](#wallet-relying-party-access-certificate-path-validation) using the retrieved Trust Anchor.
+4. **Verify the Signature:** Use the public key from the validated WRPAC to verify the WRP's signature on the metadata presented during the specific interaction.
+
+The method by which the WRP presents its WRPAC chain depends on the specific interaction flow:
+
+- **OpenID4VP (Remote Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed Request Object.
+- **ISO 18013-5 (Proximity Flow):** The certificate chain is presented within the WRP-signed `ReaderAuth` element of the mdoc request message.
+- **OpenID4VCI (Issuance Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed Issuer Metadata.
+
+!!! warning "Mitigating Blind Signing Attacks"
+
+    Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol nonce, the WRP SHALL NOT use the WRPAC private key to sign arbitrary data that could be controlled by an external party.
+
 #### Wallet Relying Party Authentication Sequence Diagram
 
 Below is a sequence diagram illustrating the Authentication Process, including the retrieval and validation of the LoTE, path construction, and certificate validation steps. The diagram also highlights the decision points for successful or failed authentication.

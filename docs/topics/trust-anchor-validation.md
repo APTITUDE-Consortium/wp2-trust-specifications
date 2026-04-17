@@ -1,3 +1,23 @@
+The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of Trusted Lists, which serve as the authoritative sources for Trust Anchors. A Trust Anchor is a self-signed X.509 certificate containing the names and public key used by a Wallet Unit or Wallet Relying Party (WRP) to validate an artifact or attestation.
+
+Depending on the artifact or attestation being verified, the validating Entity SHALL fetch, download, and validate the appropriate Trusted List:
+
+1. *List of Trusted Entities* (LoTE), used to retrieve Trust Anchors for validating the following:
+   - **Infrastructure Certificates**: WRPAC or WRPRC.
+   - **Wallet Artifacts**: Wallet Unit Attestation (WUA) or Wallet Instance Attestation (WIA).
+   - **PID Signatures**: Person Identification Data (PID).
+   - **Registrar-signed artifacts**: Register informations.
+2. *EU Member State Trusted Lists* (EUMS TL); used to retrieve Trust Anchors for validating the following:
+   - seal or signature on a Qualified Electronic Attestation of Attributes (QEAA); or
+   - seal or signature on a Public Electronic Attestation of Attributes (Pub-EAA).
+
+To verify the authenticity of the retrieved Trusted Lists, the Entity SHALL perform the following validations:
+
+- [LoTE Validation](#list-of-trusted-entities-validation-process): Validate the digital signature of the LoTE by verifying it against the LoTE Provider certificate. This certificate is authenticated via the *Official Journal of the European Union* (OJEU).
+- [EUMS TL Validation](#european-union-member-state-trusted-list-validation-process): Validate the digital signature of the EUMS TL by verifying it against the corresponding Member State public keys published in the *List of Trusted Lists* (LOTL). The LOTL itself is authenticated by validating its digital signature against the *Official Journal of the European Union* (OJEU).
+
+To support continuous key rotation, both artifacts implement a pivoting mechanism. This ensures that an Entity possessing the last known valid version can reliably discover the location of the next version and validate it using the unbroken chain of trust rooted in the OJEU.
+
 #### List of Trusted Entities Validation
 
 This section defines the validation of the EU-level List of Trusted Entities (LoTE). The LoTE is a digitally signed/sealed artifact (JWT format) containing metadata and public keys for entities operating at the EU level.
