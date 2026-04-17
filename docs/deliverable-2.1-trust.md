@@ -1,10 +1,3 @@
----
-toc_depth: 2
-render:
-  toc:
-    depth: 2
----
-
 # Implementation Profiles for the Trust Framework
 
 Version 0.1 (Draft)
