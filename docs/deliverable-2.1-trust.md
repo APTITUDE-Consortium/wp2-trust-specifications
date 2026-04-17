@@ -6,28 +6,33 @@ Version 0.1 (Draft)
 | ------- | ---------- | ----------- |
 | 0.1     | 2026-04-XX | First release |
 
-## Authors
+**Authors**:
 
-- Gianmario Cortese, Namirial S.p.A.
-- Henry Faure-Geors, Keynectis
-- Francesco Antonio Marino, Istituto Poligrafico e Zecca dello Stato S.p.A.
-- Andrea Moro, Fondazione Bruno Kessler
-- Marco Pernpruner, Fondazione Bruno Kessler
-- Nuno Ponte, Multicert
-- Andreea Prian, IDAKTO
-- Giada Sciarretta, Fondazione Bruno Kessler
-- Hoang Van Hoan, Keynectis
-- Maroš Zelenák, ARICOMA Digital S.R.O
+- Gianmario Cortese, *Namirial S.p.A.*
+- Henry Faure-Geors, *Keynectis*
+- Francesco Antonio Marino, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
+- Andrea Moro, *Fondazione Bruno Kessler*
+- Marco Pernpruner, *Fondazione Bruno Kessler*
+- Nuno Ponte, *Multicert*
+- Andreea Prian, *IDAKTO*
+- Giada Sciarretta, *Fondazione Bruno Kessler*
+- Hoang Van Hoan, *Keynectis*
+- Maroš Zelenák, *ARICOMA Digital S.R.O*
 
-## Reviewers
+**Reviewers**:
 
-- Dominik František Bučík, ARICOMA Digital S.R.O
-- Guillaume Hébert, Keynectis
-- Angel Palomares Perez, Atos IT Solutions
-- Leonardo Pio Palumbo, Istituto Poligrafico e Zecca dello Stato S.p.A.
-- Leone Riello, Infocert S.p.A.
-- Michal Šťava, ARICOMA Digital S.R.O
-- Nikolaos Triantafyllou, University of the Aegean
+- Dominik František Bučík, *ARICOMA Digital S.R.O*
+- Guillaume Hébert, *Keynectis*
+- Angel Palomares Perez, *Atos IT Solutions*
+- Leonardo Pio Palumbo, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
+- Leone Riello, *Infocert S.p.A.*
+- Michal Šťava, *ARICOMA Digital S.R.O*
+- Nikolaos Triantafyllou, *University of the Aegean*
+
+**Feedback**:
+
+- Issue tracking system: <https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues>
+
 
 ## Table of Contents
 

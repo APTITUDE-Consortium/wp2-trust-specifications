@@ -1,4 +1,4 @@
-This section describes the trust-related processes (i.e., Wallet Relying Party registration, Provider notification and publication in Trusted List, and trust evaluation) by detailing the entities involved, high level flows and their relationships. The trust evaluation process is further detailed in the [Trust Evaluation](#5-trust-evaluation) Section.
+This section describes the trust-related processes (i.e., Wallet Relying Party registration, Provider notification and publication in Trusted List, and trust evaluation) by detailing the entities involved, high level flows and their relationships. The trust evaluation process is further detailed in the [Trust Evaluation Process](#6-trust-evaluation-process) Section.
 
 The main entities involved in the EUDIW ecosystem are:
 
