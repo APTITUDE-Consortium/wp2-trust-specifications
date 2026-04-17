@@ -781,14 +781,20 @@
     WU ---|"Interacts (issue/present &lt;br/&gt;PID/Attestation)"| WRP </code></pre>
 <p>However, these entities alone are not enough to establish trust between each others. Indeed, to trust the interactions between these entities, the following processes are needed:</p>
 <ul>
-<li><em>Authentication Process</em>: a way to authenticate the entity they interact with. To achieve this:</li>
+<li><em>Authentication Process</em>: a way to authenticate the entity they interact with. To achieve this:<ul>
 <li>the Wallet Unit needs a Wallet Instance Attestation (WIA), an object that attests its integrity and is signed by the WP.</li>
 <li>the WRPs needs an WRP Access Certificate (WRPAC).</li>
-<li><em>Authorization Process</em>: a way to check the authorization of an entity (i.e., <em>(i)</em> the WRP entitlements, <em>(ii)</em> whether an Attestation Providers is eligible to issue an Attestation, and <em>(iii)</em> whether a Relying Party has the right to access the data he is requesting). To achieve this:</li>
+</ul>
+</li>
+<li><em>Authorization Process</em>: a way to check the authorization of an entity (i.e., <em>(i)</em> the WRP entitlements, <em>(ii)</em> whether an Attestation Providers is eligible to issue an Attestation, and <em>(iii)</em> whether a Relying Party has the right to access the data he is requesting). To achieve this:<ul>
 <li>the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).</li>
 <li>the Attestation Providers may write their own embedded disclosure policies.</li>
-<li><em>Trust Anchor Validation Process</em>: a way to check the integrity and authenticity of trusted lists which serve as the authentic source for Trust Anchors used to verify signed objects such as PIDs, Attestations, Access and Registration Certificates, and Register. To achieve this:</li>
+</ul>
+</li>
+<li><em>Trust Anchor Validation Process</em>: a way to check the integrity and authenticity of trusted lists which serve as the authentic source for Trust Anchors used to verify signed objects such as PIDs, Attestations, Access and Registration Certificates, and Register. To achieve this:<ul>
 <li>the public key of the corresponding private key used to sign is published on EU Member State Trusted List (EUMS TLs) or on List of Trusted Entities (LoTE) managed by the European Commission.</li>
+</ul>
+</li>
 </ul>
 <p>While these trust evaluation processes will be further detailed in the following sections, the processes to obtain and manage the artifacts needed for the trust evaluation are:</p>
 <ul>
@@ -838,10 +844,10 @@ MSReg ---|"Checks Catalogues"| Cat</code></pre>
 </li>
 <li>
 <p><em>Notification Process</em>: Based on the entity, the MS sends a set of the data to the EC Notification System.</p>
-</li>
+<ul>
 <li>For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC, MS Registrars, and Pub-EAA Providers, MS sends a set of the data to the EC. As result, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.</li>
-<li>
-<p>For QEAA Providers and QTSP, MS sends a set of the data (containing the URL of the EUMS TLs) to the EC. As result, the URL of the EUMS TLs is added in the EU List of Trusted List (LOTL).</p>
+<li>For QEAA Providers and QTSP, MS sends a set of the data (containing the URL of the EUMS TLs) to the EC. As result, the URL of the EUMS TLs is added in the EU List of Trusted List (LOTL).</li>
+</ul>
 <pre class="mermaid"><code>graph LR
 
 subgraph MS["Member State (MS)"]
@@ -8097,7 +8103,7 @@ If the User denies, the WI SHALL behave as if the Attestation does not exist (RP
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 17, 2026 11:42:02 UTC">April 17, 2026 11:42:02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 17, 2026 11:44:21 UTC">April 17, 2026 11:44:21</span>
   </span>
 
     
