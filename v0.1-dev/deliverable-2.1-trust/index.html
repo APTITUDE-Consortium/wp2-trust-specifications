@@ -702,7 +702,7 @@
 <li>Andrea Moro, <em>Fondazione Bruno Kessler</em></li>
 <li>Marco Pernpruner, <em>Fondazione Bruno Kessler</em></li>
 <li>Nuno Ponte, <em>Multicert</em></li>
-<li>Andreea Prian, <em>IDAKTO</em></li>
+<li>Andreea Prian, <em>iDAKTO</em></li>
 <li>Giada Sciarretta, <em>Fondazione Bruno Kessler</em></li>
 <li>Hoang Van Hoan, <em>Keynectis</em></li>
 <li>Maroš Zelenák, <em>ARICOMA Digital S.R.O</em></li>
@@ -738,9 +738,11 @@
 <p>The main entities involved in the EUDIW ecosystem are:</p>
 <ul>
 <li>the Wallet Unit, installed and activated by the User and provided through a Wallet Solution by the Wallet Provider (WP)</li>
-<li>Wallet Relying Parties (WRPs)</li>
+<li>Wallet Relying Parties (WRPs)<ul>
 <li>the PID Providers and Attestation Providers that interact with the Wallet Unit to issue Attestations</li>
 <li>the Relying Parties (RPs) and RP Intermediaries that interact with the Wallet Unit to request Attestations</li>
+</ul>
+</li>
 </ul>
 <pre class="mermaid"><code>graph TD
 
@@ -5727,10 +5729,12 @@ The validation SHALL perform the following steps:</p>
 <p>This section defines the validation of the certification path.</p>
 <ul>
 <li>The Trust Anchor is the certificate of the Provider of WRPAC obtained from the LoTE.</li>
-<li>The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:</li>
+<li>The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:<ul>
 <li>$C_1$ is the certificate issued by the Trust Anchor.</li>
 <li>$C_n$ is the WRPAC (the target certificate).</li>
 <li>For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.</li>
+</ul>
+</li>
 </ul>
 <p>The Wallet Unit initializes the validation with:</p>
 <ul>
@@ -6341,10 +6345,12 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
 <li>EDPs are applicable to QEAAs, PuB-EAAs, and non-qualified EAAs. They are not applicable to PIDs [AUTHZ-EDP-01].</li>
 <li>During issuance, when the User confirms, the WI SHALL retrieve and store locally the EDP if present in the Credential Issuer Metadata [AUTHZ-EDP-02].</li>
 <li>At presentation time, for each Attestation matching a request, the WI SHALL check its locally stored EDP and evaluate it against the requesting RP according to the <a href="#edp-evaluation-procedure">EDP Evaluation Procedure</a> defined in this section.</li>
-<li>Annex III of CIR 2024/2979 defines three policy types that the WI SHALL support. In particular:</li>
+<li>Annex III of CIR 2024/2979 defines three policy types that the WI SHALL support. In particular:<ul>
 <li>No Policy.</li>
 <li>Authorized Relying Parties Only.</li>
 <li>Specific Root of Trust.</li>
+</ul>
+</li>
 </ul>
 <h4 id="evaluation-procedures">Evaluation Procedures<a class="headerlink" href="#evaluation-procedures" title="Permanent link">&para;</a></h4>
 <p>This section defines the individual verification procedures that are composed into end-to-end flows in the <a href="#operational-flows">Operational Flows</a> section. Each procedure is self-contained: it specifies its inputs, its processing logic, and its output (a verification result code). The override behaviour for each procedure's negative outcome is detailed in the <a href="#override-rules">Override Rules</a> section.</p>
@@ -7249,12 +7255,16 @@ If the User denies, the WI SHALL behave as if the Attestation does not exist (RP
 <!-- BEGIN INCLUDE ./topics/revocation-mechanisms.md -->
 <p>This section describes the artifacts that are employed in <a href="#7-trust-management-and-lifecycle">Trust Management and Lifecycle</a> to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:</p>
 <ul>
-<li>To manage Wallet Relying Party Access Certificates (WRPACs), each Provider of WRPAC SHALL:</li>
+<li>To manage Wallet Relying Party Access Certificates (WRPACs), each Provider of WRPAC SHALL:<ul>
 <li>make available at least one revocation mechanism among <a href="#certificate-revocation-lists">Certificate Revocation Lists</a> and <a href="#online-certificate-status-protocol">Online Certificate Status Protocol</a>;</li>
 <li>issue Access Certificates with at least an extension corresponding to the provided revocation mechanism as illustrated in <a href="#wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate</a>.</li>
-<li>To manage Wallet Relying Party Registration Certificates (WRPRCs), each Provider of WRPRC SHALL:</li>
+</ul>
+</li>
+<li>To manage Wallet Relying Party Registration Certificates (WRPRCs), each Provider of WRPRC SHALL:<ul>
 <li>make available an endpoint to request <a href="#status-list-token">Status List Tokens</a>;</li>
 <li>issue WRPRC with the appropriate parameter <code>status</code> as described in <a href="#wallet-relying-party-registration-certificate">Wallet-Relying Party Registration Certificate</a>.</li>
+</ul>
+</li>
 </ul>
 <h4 id="token-status-list">Token Status List<a class="headerlink" href="#token-status-list" title="Permanent link">&para;</a></h4>
 <p>This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple WRPRCs. A Status List describes the status of the WRPRCs by encoding their validity in a bit array. Each WRPRC is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the WRPRC's status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows <a href="https://www.ietf.org/archive/id/draft-ietf-oauth-status-list-19.html">Token Status List</a>.</p>
@@ -8087,7 +8097,7 @@ If the User denies, the WI SHALL behave as if the Attestation does not exist (RP
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 17, 2026 09:28:28 UTC">April 17, 2026 09:28:28</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 17, 2026 11:42:02 UTC">April 17, 2026 11:42:02</span>
   </span>
 
     
