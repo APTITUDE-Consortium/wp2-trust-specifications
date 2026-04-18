@@ -1,25 +1,25 @@
-This section specifies requirements for the Registrar of Wallet-Relying Parties (WRPs) and the national Register of WRPs (the registry service) in the context of eIDAS2 and the EUDI Wallet ecosystem.
+This section specifies requirements for the <roles:Registrar> of Wallet-Relying Parties (WRPs) and the national <components:Register> of WRPs (the registry service) in the context of eIDAS2 and the <components:EUDI Wallet> ecosystem.
 
-Formally, a Registrar is the designated body that:
+Formally, a <roles:Registrar> is the designated body that:
 
 - manages the WRP registration lifecycle (onboarding, update, suspension, cancellation),
 - ensures the integrity and publication of registration information,
 - ensures interoperability by exposing WRP registration data via a national website and a single common REST API.
 
-The national Register of WRPs is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about WRPs and their authorisations/declared usage.
+The national <components:Register> of WRPs is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about WRPs and their authorisations/declared usage.
 
 !!! note
 
-    The national Register of WRPs is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a single coherent common REST API and return signed statements as required.<br>
+    The national <components:Register> of WRPs is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a single coherent common REST API and return signed statements as required.<br>
     
-    Additionally, sectorial registers may exist internally, but the decision regarding issuance of WRPAC is solely based on whether the WRP has been registered with an active status in the national Register.
+    Additionally, sectorial registers may exist internally, but the decision regarding issuance of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is solely based on whether the WRP has been registered with an active status in the national <components:Register>.
 
 #### References
 
 The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
 
-- **CIR 2025/848** on WRP registration and Registers.
-- **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for Register of WRPs.
+- **CIR 2025/848** on WRP registration and <components:Register|Registers>.
+- **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <components:Register> of WRPs.
 - **ETSI TS 119 475 v1.2.1**  on WRP attributes, entitlement URIs, RP authorisation decision support.
 - **TS05 V1.3** on common formats and API for WRP registration information.
 - **TS06 V1.0.1** on common set of WRP information to be registered.
@@ -33,14 +33,14 @@ The list below enumerates all the applicable standards and specifications that h
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
-| REGISTER-PUB-01 | Each Member State SHALL establish and maintain at least one national Register of WRPs. | [CIR 2025/848], Article 3(1) |
-| REGISTER-PUB-02 | The Register SHALL include at least the information set out in Annex I of [CIR 2025/848]. | [CIR 2025/848], Article 3(2) |
-| REGISTER-PUB-03 | Member States SHALL designate at least one Registrar to manage and operate at least one national Register. | [CIR 2025/848], Article 3(3) |
+| REGISTER-PUB-01 | Each Member State SHALL establish and maintain at least one national <components:Register> of WRPs. | [CIR 2025/848], Article 3(1) |
+| REGISTER-PUB-02 | The <components:Register> SHALL include at least the information set out in Annex I of [CIR 2025/848]. | [CIR 2025/848], Article 3(2) |
+| REGISTER-PUB-03 | Member States SHALL designate at least one <roles:Registrar> to manage and operate at least one national <components:Register>. | [CIR 2025/848], Article 3(3) |
 | REGISTER-PUB-04 | Member States SHALL make Annex I information publicly available online in human-readable and machine-processable form. | [CIR 2025/848], Article 3(4) |
-| REGISTER-PUB-05 | Annex I information included in the Register (as for REGISTER-PUB-02) SHALL be available through a national website and a single common API, and SHALL be electronically signed/sealed by/on behalf of the Registrar. | [CIR 2025/848], Article 3(5) |
+| REGISTER-PUB-05 | Annex I information included in the <components:Register> (as for REGISTER-PUB-02) SHALL be available through a national website and a single common API, and SHALL be electronically signed/sealed by/on behalf of the <roles:Registrar>. | [CIR 2025/848], Article 3(5) |
 | REGISTER-API-01 | The single common API SHALL be a REST API supporting JSON, and signed according to IETF RFC 7515. | [CIR 2025/848], Annex II §2(1)(a) |
 | REGISTER-API-02 | The API SHALL allow any requestor, without prior authentication, to search and request complete lists, allowing partial matches on defined parameters. | [CIR 2025/848], Annex II §2(1)(b) |
-| REGISTER-API-03 | Replies to request that match at least one WRP SHALL include statements covering Annex I information [CIR 2025/848], current/historic WRPACs and WRPRCs, excluding Annex I point 4 information. | [CIR 2025/848], Annex II §2(1)(c) |
+| REGISTER-API-03 | Replies to request that match at least one WRP SHALL include statements covering Annex I information [CIR 2025/848], current/historic <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>, excluding Annex I point 4 information. | [CIR 2025/848], Annex II §2(1)(c) |
 | REGISTER-API-04 | The API SHALL be published as OpenAPI v3 with documentation enabling interoperability across the Union. | [CIR 2025/848], Annex II §2(1)(d) |
 | REGISTER-API-05 | The API SHALL provide security-by-default and by-design to ensure availability and integrity. | [CIR 2025/848], Annex II §2(1)(e) |
 | REGISTER-API-06 | Statements referred to in REGISTER-API-03 SHALL be electronically signed/sealed JSON files as for IETF RFC 7515. | [CIR 2025/848], Annex II §2(2) |
@@ -53,36 +53,36 @@ The list below enumerates all the applicable standards and specifications that h
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
-| REGISTRAR-REG-01 | Registrars SHALL establish easy-to-use electronic, and where possible automated, registration processes. | [CIR 2025/848], Article 6(1) |
+| REGISTRAR-REG-01 | <roles:Registrar\|Registrars> SHALL establish easy-to-use electronic, and where possible automated, registration processes. | [CIR 2025/848], Article 6(1) |
 | REGISTRAR-REG-02 | WRPs SHALL provide at least Annex I information to national registers. | [CIR 2025/848], Article 5(1) |
 | REGISTRAR-REG-03 | WRPs SHALL ensure information is accurate and SHALL update without undue delay. | [CIR 2025/848], Article 5(2)–(3) |
-| REGISTRAR-REG-04 | Where possible, Registrars SHALL verify (automated) accuracy/validity, power of attorney (if applicable), entitlement type(s), and absence of existing registration in another national Register. | [CIR 2025/848], Article 6(3) |
-| REGISTRAR-REG-05 | Registrars SHALL verify against supporting documentation or appropriate authentic sources/official records. | [CIR 2025/848], Article 6(4) |
+| REGISTRAR-REG-04 | Where possible, <roles:Registrar\|Registrars> SHALL verify (automated) accuracy/validity, power of attorney (if applicable), entitlement type(s), and absence of existing registration in another national <components:Register>. | [CIR 2025/848], Article 6(3) |
+| REGISTRAR-REG-05 | <roles:Registrar\|Registrars> SHALL verify against supporting documentation or appropriate authentic sources/official records. | [CIR 2025/848], Article 6(4) |
 | REGISTRAR-REG-06 | Verification of entitlements SHALL be carried out according to Annex III of [CIR 2025/848]. | [CIR 2025/848], Article 6(5) |
-| REGISTRAR-REG-07 | If Registrar cannot verify according to Article 6(3)–(5) of [CIR 2025/848], Registrar SHALL reject the registration. | [CIR 2025/848], Article 6(6) |
-| REGISTRAR-GOV-01 | Registrars SHALL suspend/cancel a registration of a WRP where requested by a supervisory body (per eIDAS reference). | [CIR 2025/848], Article 9(1) |
-| REGISTRAR-GOV-02 | Registrars MAY suspend/cancel a registration of a WRP if info inaccurate/outdated/misleading, non-compliance, excessive attribute requests, breach of law. | [CIR 2025/848], Article 9(2) |
-| REGISTRAR-GOV-03 | Registrars SHALL suspend/cancel a registration of a WRP if requested by the WRP itself. | [CIR 2025/848], Article 9(3) |
-| REGISTRAR-GOV-04 | Registrar SHALL conduct proportionality assessment before suspension/cancellation under Article 9(2). | [CIR 2025/848], Article 9(4) |
-| REGISTRAR-GOV-05 | Registrar SHALL notify WRP and relevant Providers of WRPAC and WRPRC without undue delay and not later than 24 hours. | [CIR 2025/848], Article 9(5) |
-| REGISTRAR-GOV-06 | Providers of WRPAC and WRPRC SHALL revoke affected certificates without undue delay after notification (where applicable). | [CIR 2025/848], Article 9(6) |
-| REGISTRAR-GOV-07 |  Registrars SHALL keep records (Annex I + issuance data + changes) for 10 years. | [CIR 2025/848], Article 10 |
+| REGISTRAR-REG-07 | If <roles:Registrar> cannot verify according to Article 6(3)–(5) of [CIR 2025/848], <roles:Registrar> SHALL reject the registration. | [CIR 2025/848], Article 6(6) |
+| REGISTRAR-GOV-01 | <roles:Registrar\|Registrars> SHALL suspend/cancel a registration of a WRP where requested by a supervisory body (per eIDAS reference). | [CIR 2025/848], Article 9(1) |
+| REGISTRAR-GOV-02 | <roles:Registrar\|Registrars> MAY suspend/cancel a registration of a WRP if info inaccurate/outdated/misleading, non-compliance, excessive attribute requests, breach of law. | [CIR 2025/848], Article 9(2) |
+| REGISTRAR-GOV-03 | <roles:Registrar\|Registrars> SHALL suspend/cancel a registration of a WRP if requested by the WRP itself. | [CIR 2025/848], Article 9(3) |
+| REGISTRAR-GOV-04 | <roles:Registrar> SHALL conduct proportionality assessment before suspension/cancellation under Article 9(2). | [CIR 2025/848], Article 9(4) |
+| REGISTRAR-GOV-05 | <roles:Registrar> SHALL notify WRP and relevant Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> without undue delay and not later than 24 hours. | [CIR 2025/848], Article 9(5) |
+| REGISTRAR-GOV-06 | Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> SHALL revoke affected certificates without undue delay after notification (where applicable). | [CIR 2025/848], Article 9(6) |
+| REGISTRAR-GOV-07 |  <roles:Registrar\|Registrars> SHALL keep records (Annex I + issuance data + changes) for 10 years. | [CIR 2025/848], Article 10 |
 
 ##### Provider of WRPAC and WRPRC and Register Interactions Requirements
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
-| PROVIDER-WRPAC-01 | Providers of WRPAC SHALL verify at issuance time that the WRP is included with valid registration status in the national Register and certificate info is consistent with Register info. | [CIR 2025/848], Annex IV §3(c) |
-| PROVIDER-WRPAC-02 | Providers of WRPAC SHALL continuously monitor changes in the national Register and revoke when changes require (especially suspension/cancellation). | [CIR 2025/848], Annex IV §3(e) |
-| PROVIDER-WRPAC-03 | Providers of WRPAC SHALL publish revocation status timely and in any event within 24 hours after receipt of revocation request. | [CIR 2025/848], Annex IV §3(h) |
-| PROVIDER-WRPRC-01 | Where a Member State authorises WRPRCs, it SHALL ensure each intended use is expressed in the WRPRC and that WRPRCs include a privacy policy URL and a general access policy. | [CIR 2025/848], Article 8(2)(b)–(c) and (g), Article 8(3) |
-| PROVIDER-WRPRC-02 | Providers of WRPRC SHALL verify at issuance time Register status, consistency with Register info, and validity of the WRPAC (when relevant). | [CIR 2025/848], Annex V §3(c) |
-| PROVIDER-WRPRC-03 | Providers of WRPRC SHALL monitor Register changes, reissue/revoke when changes require. | [CIR 2025/848], Annex V §3(d) |
-| PROVIDER-WRPRC-04 | Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT). | [CIR 2025/848], Annex V §4; [ETSI TS 119 475] §4.4 |
+| PROVIDER-<artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>-01 | Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> SHALL verify at issuance time that the WRP is included with valid registration status in the national <components:Register> and certificate info is consistent with <components:Register> info. | [CIR 2025/848], Annex IV §3(c) |
+| PROVIDER-<artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>-02 | Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> SHALL continuously monitor changes in the national <components:Register> and revoke when changes require (especially suspension/cancellation). | [CIR 2025/848], Annex IV §3(e) |
+| PROVIDER-<artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>-03 | Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> SHALL publish revocation status timely and in any event within 24 hours after receipt of revocation request. | [CIR 2025/848], Annex IV §3(h) |
+| PROVIDER-<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>-01 | Where a Member State authorises <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>, it SHALL ensure each intended use is expressed in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> and that <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs> include a privacy policy URL and a general access policy. | [CIR 2025/848], Article 8(2)(b)–(c) and (g), Article 8(3) |
+| PROVIDER-<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>-02 | Providers of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> SHALL verify at issuance time <components:Register> status, consistency with <components:Register> info, and validity of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> (when relevant). | [CIR 2025/848], Annex V §3(c) |
+| PROVIDER-<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>-03 | Providers of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> SHALL monitor <components:Register> changes, reissue/revoke when changes require. | [CIR 2025/848], Annex V §3(d) |
+| PROVIDER-<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>-04 | Data exchange format for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT). | [CIR 2025/848], Annex V §4; [ETSI TS 119 475] §4.4 |
 
 #### Register Data Schema
 
-This section defines the data schema for each WRP registered in the national Register of WRPs. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].
+This section defines the data schema for each WRP registered in the national <components:Register> of WRPs. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].
 
 <!--format of the information exchanged via the Register API as JSON objects and JWS-signed statements. -->
 
@@ -108,7 +108,7 @@ This section defines the data schema for each WRP registered in the national Reg
 | `srvDescription` |  `MultiLangString[][]` | REQUIRED | Array of service descriptions, each being an array of localised strings (one inner array per service). |
 | `intendedUse` | `IntendedUse[]` | REQUIRED if the entity is not an intermediary | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. |
 | `isPSB` | `boolean` | REQUIRED | Whether the WRP is a public sector body (explicitly present; `false` if not PSB). |
-| `entitlement` |  `string[]` | REQUIRED | Entitlement URI(s) (see note below). |
+| `entitlement` |  `string[]` | REQUIRED | <data-elements:Entitlement> URI(s) (see note below). |
 | `providesAttestations` | `Credential[]` | REQUIRED if PID/Attestation Provider| Attestation types the WRP intends to issue to wallet units. It SHALL be present if any entitlement is `QEAA_Provider`, `Non_Q_EAA_Provider`, `PUB_EAA_Provider`, or `PID_Provider`. |
 | `supervisoryAuthority` | `LegalEntity` | REQUIRED | Competent supervisory authority (Art. 46a eIDAS) including contact information. |
 | `registryURI` | `string` | REQUIRED | URI of the API of the national register of WRPs. |
@@ -623,11 +623,11 @@ A small e-commerce business that relies on TrustBridge (see example above) to co
 
 #### Common Register API
 
-This section documents a [TS05 V1.3] aligned common Register API profile that satisfies [CIR 2025/848] Annex II and [CIR 2025/848-Amendment] constraints.
+This section documents a [TS05 V1.3] aligned common <components:Register> API profile that satisfies [CIR 2025/848] Annex II and [CIR 2025/848-Amendment] constraints.
 
 ##### API Methods on Registration and Updating of WRP Data
 
-The common API write methods (POST, PUT and DELETE) are defined for purposes of managing the Register information of MS Registrars.
+The common API write methods (POST, PUT and DELETE) are defined for purposes of managing the <components:Register> information of MS <roles:Registrar|Registrars>.
 
 !!! note
 
@@ -635,7 +635,7 @@ The common API write methods (POST, PUT and DELETE) are defined for purposes of 
 
 ###### `POST /wrp` — create (REQUIRED)
 
-POST is for creating a new WRP entry in the Register. Method expects a request body with the `WalletRelyingParty` schema, and returns a `201` on success.
+POST is for creating a new WRP entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and returns a `201` on success.
 
 **Request (body)**
 
@@ -656,7 +656,7 @@ POST is for creating a new WRP entry in the Register. Method expects a request b
 
 ###### `PUT /wrp` — update (REQUIRED)
 
-PUT is for updating an existing WRP entry in the Register. Method expects a request body with the `WalletRelyingParty` schema, and can return `200` on success or `404` if not found.
+PUT is for updating an existing WRP entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and can return `200` on success or `404` if not found.
 
 **Request (body)**
 
@@ -678,7 +678,7 @@ PUT is for updating an existing WRP entry in the Register. Method expects a requ
 
 ###### `DELETE /wrp` — delete (REQUIRED)
 
-DELETE is for deleting of an existing WRP entry in the Register. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
+DELETE is for deleting of an existing WRP entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
 
 **Request (body)**
 
@@ -748,7 +748,7 @@ A successful response (`200`) SHALL be JWS-signed response body.
 
 | HTTP Code | Media Type | Description |
 | --------- | ---------- | ----------- |
-| `200` | `application/jwt` | JWS compact string. Decoded payload SHALL contain an array of `WalletRelyingParty` objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by WRPAC history information in the statement/profile used by the Member State. (strict Annex VI form: array; profile envelope also allowed if documented). |
+| `200` | `application/jwt` | JWS compact string. Decoded payload SHALL contain an array of `WalletRelyingParty` objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> history information in the statement/profile used by the Member State. (strict Annex VI form: array; profile envelope also allowed if documented). |
 
 !!! note
 
@@ -780,7 +780,7 @@ A successful response (`200`) SHALL be JWS-signed response body.
 
 ###### `GET /wrp/check-intended-use` — intended use check (REQUIRED)
 
-A dedicated intended-use check endpoint for making narrowed-down intended use related queries from the Register.
+A dedicated intended-use check endpoint for making narrowed-down intended use related queries from the <components:Register>.
 
 **Request**
 
@@ -834,7 +834,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
-| `iss` | `string` | REQUIRED | Identifier of the Registry/Registrar issuing the statement. |
+| `iss` | `string` | REQUIRED | Identifier of the Registry/<roles:Registrar> issuing the statement. |
 | `iat` | `integer` | REQUIRED | Issued-at timestamp (Unix epoch seconds). |
 | `data` | `WRPEntry[]` | REQUIRED | Matching WRP entries (published view, address excluded), each bundled with its certificate history. |
 | `pagination` | `Pagination` | OPTIONAL | Cursor-based pagination metadata. |
@@ -851,11 +851,11 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
-| `iss` | `string` | REQUIRED | Registry/Registrar identifier. |
+| `iss` | `string` | REQUIRED | Registry/<roles:Registrar> identifier. |
 | `iat` | `integer` | REQUIRED | Issued-at timestamp. |
 | `data` | `WalletRelyingParty` | REQUIRED | Single WRP object (published view, address excluded). |
-| `wrpacHistory` | `CertificateHistoryEntry[]` | OPTIONAL | WRPAC history. |
-| `wrprcHistory` | `CertificateHistoryEntry[]` | OPTIONAL | WRPRC history (if supported). |
+| `wrpacHistory` | `CertificateHistoryEntry[]` | OPTIONAL | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> history. |
+| `wrprcHistory` | `CertificateHistoryEntry[]` | OPTIONAL | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> history (if supported). |
 
 ###### SignedIntendedUseCheckEnvelope (profile)
 

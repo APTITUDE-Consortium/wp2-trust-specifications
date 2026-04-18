@@ -1,11 +1,11 @@
-This section describes the trust-related processes (i.e., Wallet Relying Party registration, Provider notification and publication in Trusted List, and trust evaluation) by detailing the entities involved, high level flows and their relationships. 
+This section describes the trust-related processes (i.e., Wallet Relying Party registration, Provider notification and publication in <artifacts:Trusted List (TL)|Trusted List>, and trust evaluation) by detailing the entities involved, high level flows and their relationships. 
 
 The main entities involved in the EUDIW ecosystem are:
 
-- the Wallet Unit, installed and activated by the User and provided through a Wallet Solution by the Wallet Provider (WP)
+- the <components:Wallet Unit>, installed and activated by the User and provided through a <components:Wallet Solution> by the <roles:Wallet Provider (WP)> (WP)
 - Wallet Relying Parties (WRPs)
-    - the PID Providers and Attestation Providers that interact with the Wallet Unit to issue Attestations
-    - the Relying Parties (RPs) and RP Intermediaries that interact with the Wallet Unit to request Attestations
+    - the PID Providers and Attestation Providers that interact with the <components:Wallet Unit> to issue Attestations
+    - the Relying Parties (RPs) and RP Intermediaries that interact with the <components:Wallet Unit> to request Attestations
 
 ```mermaid
 graph TD
@@ -48,24 +48,24 @@ graph TD
 To trust the interactions between these entities, the following trust evaluation processes are needed:
 
 - *Authentication Process*: a way to authenticate the identity of an entity. To achieve this:
-    - the Wallet Unit needs a Wallet Instance Attestation (WIA), an object that attests its integrity and is signed by the WP.
-    - the WRPs needs a WRP Access Certificate (WRPAC) attesting its identity.
+    - the <components:Wallet Unit> needs a <components:Wallet Instance Attestation (WIA)>, an object that attests its integrity and is signed by the WP.
+    - the WRPs needs a WRP Access Certificate (<artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>) attesting its identity.
 - *Authorization Process*: a way to check the authorization of an entity (i.e., *(i)* the WRP entitlements, *(ii)* whether an Attestation Providers is eligible to issue an Attestation, and *(iii)* whether a Relying Party has the right to access the data he is requesting). To achieve this:
-    - the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).
+    - the intended use of a WRP is written in a signed <components:Register>, and optionally in a WRP Registration Certificate (<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>).
     - the Attestation Providers may write their own embedded disclosure policies.
-- *Trust Anchor Validation Process*: a way to check the integrity and authenticity of trusted lists which serve as the authentic source for Trust Anchors used to verify signed objects such as PIDs, Attestations, Access and Registration Certificates, and Register. To achieve this:
-    - the public key of the corresponding private key used to sign is published on EU Member State Trusted List (EUMS TLs) or on List of Trusted Entities (LoTE) managed by the European Commission.
+- *Trust Anchor Validation Process*: a way to check the integrity and authenticity of trusted lists which serve as the authentic source for Trust Anchors used to verify signed objects such as PIDs, Attestations, Access and Registration Certificates, and <components:Register>. To achieve this:
+    - the public key of the corresponding private key used to sign is published on <artifacts:EU Member State Trusted List (EUMS TL)|EU Member State Trusted List> (EUMS <artifacts:Trusted List (TL)|TLs>) or on List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>) managed by the European Commission.
 
-While these trust evaluation processes and its artifacts (i.e., Register and its common APIs, WRPAC, WRPRC, LoTE, EUMS TLs and embedded disclosure policies) will be further detailed in the [Trust Evaluation Process](#6-trust-evaluation-process) and [Trust Artifacts](#5-trust-artifacts) sections respectively, the processes to obtain and manage these artifacts are brieftly detailed below:
+While these trust evaluation processes and its artifacts (i.e., <components:Register> and its common APIs, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, <artifacts:List of Trusted Entities (LoTE)|LoTE>, EUMS <artifacts:Trusted List (TL)|TLs> and embedded disclosure policies) will be further detailed in the [Trust Evaluation Process](#6-trust-evaluation-process) and [Trust Artifacts](#5-trust-artifacts) sections respectively, the processes to obtain and manage these artifacts are brieftly detailed below:
 
-- *WRP Registration Process*: to rely on Wallet Units for the purpose of providing a service, WRPs register at a Registrar in the Member State where they are established. Based on the type of service registered, registration includes: the attributes that the RP intends to request from Wallet Units or the attestation type(s) the Attestation Provider wants to issue to Wallet Units. The following steps are in common to all WRPs:
-  1. *Identity and Catalogue Verification:*  Registrar verifies the identity of WRP according to requirements in [ETSI TS 119 461]. The specific identity proofing level may vary based on entity type and applicable regulatory framework (e.g. QTSP requirements or MS national legislation) and it is out of scope of the piloting. In this process, Registrar may use the Catalogue of Attributes and Catalogue of Schemes for the Attestation of Attributes managed by the Commission for evaluating the registration request.
-  2. *Registration Record Creation*: Registrar creates registration record in national Register and made available online both in human-readable and machine-readable format. Record contains at least:
+- *WRP Registration Process*: to rely on <components:Wallet Unit|Wallet Units> for the purpose of providing a service, WRPs register at a <roles:Registrar> in the Member State where they are established. Based on the type of service registered, registration includes: the attributes that the RP intends to request from <components:Wallet Unit|Wallet Units> or the attestation type(s) the Attestation Provider wants to issue to <components:Wallet Unit|Wallet Units>. The following steps are in common to all WRPs:
+  1. *Identity and Catalogue Verification:*  <roles:Registrar> verifies the identity of WRP according to requirements in [ETSI TS 119 461]. The specific identity proofing level may vary based on entity type and applicable regulatory framework (e.g. QTSP requirements or MS national legislation) and it is out of scope of the piloting. In this process, <roles:Registrar> may use the <artifacts:Catalogue of Attributes> and <artifacts:Catalogue of Schemes for the Attestation of Attributes> managed by the Commission for evaluating the registration request.
+  2. *Registration Record Creation*: <roles:Registrar> creates registration record in national <components:Register> and made available online both in human-readable and machine-readable format. Record contains at least:
      - WRP identification information.
-     - WRP type (RP, PID Provider, QEAA Provider, PuB-EAA Provider, EAA Provider).
+     - WRP type (RP, PID Provider, <roles:QEAA Provider>, <roles:PuB-EAA Provider>, EAA Provider).
      - Entity-specific capabilities
-  3. *WRPAC Issuance*: WRP obtains a WRPAC provided by a Provider of WRPAC.
-  4. [optionally] *WRPRC Issuance*: If the Member State mandates WRPRC issuance according to [CIR 2025/848] Article 8, the Provider of WRPRCs must issue a signed WRPRC containing registered capabilities. If it is not mandated, Wallet Instance may retrieve information from Register.
+  3. *<artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> Issuance*: WRP obtains a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> provided by a <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>.
+  4. [optionally] *<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> Issuance*: If the Member State mandates <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> issuance according to [CIR 2025/848] Article 8, the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> must issue a signed <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> containing registered capabilities. If it is not mandated, <components:Wallet Instance> may retrieve information from <components:Register>.
 
     ```mermaid
     graph TD
@@ -103,8 +103,8 @@ While these trust evaluation processes and its artifacts (i.e., Register and its
     ```
 
 - *Notification Process*: MS sends data related to the registered entity to the EC. As result:
-    - For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC, MS Registrars, and Pub-EAA Providers, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.
-    - For QEAA Providers and QTSP, the URL of the EUMS TLs is added in the EU List of Trusted List (LOTL).
+    - For WPs, PID Providers, Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, Providers of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, MS <roles:Registrar|Registrars>, and Pub-EAA Providers, the notified entities are included in a List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>) by a EC <artifacts:List of Trusted Entities (LoTE)|LoTE> Provider.
+    - For <roles:QEAA Provider|QEAA Providers> and QTSP, the URL of the EUMS <artifacts:Trusted List (TL)|TLs> is added in the EU List of <artifacts:Trusted List (TL)|Trusted List> (<artifacts:List Of Trusted Lists (LOTL)|LOTL>).
 
     ```mermaid
     graph LR

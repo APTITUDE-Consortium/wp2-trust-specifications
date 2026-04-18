@@ -41,7 +41,7 @@ This specification, *Implementation Profiles for the Trust Framework*, defines t
 
 ## 2. Scope
 
-This specification defines the trust framework profiles for the APTITUDE Large Scale Pilot. Its scope is limited to establishing the essential mechanisms for trust in interactions between Wallet Units and Wallet-Relying Parties. The scope of this document is organized as follows:
+This specification defines the trust framework profiles for the APTITUDE Large Scale Pilot. Its scope is limited to establishing the essential mechanisms for trust in interactions between <components:Wallet Unit|Wallet Units> and Wallet-Relying Parties. The scope of this document is organized as follows:
 
 - [**Trust Architecture**](#4-trust-architecture): Description of the roles and logical interaction flows within the APTITUDE pilot ecosystem.
 

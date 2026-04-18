@@ -1,32 +1,32 @@
 This section describes the artifacts that are employed in [Trust Management and Lifecycle](#7-trust-management-and-lifecycle) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
-- To manage Wallet Relying Party Access Certificates (WRPACs), each Provider of WRPAC SHALL:
+- To manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates> (<artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>), each <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> SHALL:
     - make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
     - issue Access Certificates with at least an extension corresponding to the provided revocation mechanism as illustrated in [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate).
-- To manage Wallet Relying Party Registration Certificates (WRPRCs), each Provider of WRPRC SHALL:
+- To manage <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates> (<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>), each <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
     - make available an endpoint to request [Status List Tokens](#status-list-token);
-    - issue WRPRC with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
+    - issue <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
 
 #### Token Status List
 
-This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple WRPRCs. A Status List describes the status of the WRPRCs by encoding their validity in a bit array. Each WRPRC is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the WRPRC's status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].
+This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>. A Status List describes the status of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> by encoding their validity in a bit array. Each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>'s status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].
 
-In this specification, the roles of the Provider of WRPRC and Status Issuer (i.e., the entity that issues the Status List Token about the status information of the WRPRC) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the Status List Token on a public endpoint) SHALL be the Provider of WRPRC itself.
+In this specification, the roles of the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and Status Issuer (i.e., the entity that issues the Status List Token about the status information of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the Status List Token on a public endpoint) SHALL be the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> itself.
 
-The Provider of WRPRC SHALL:
+The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
 
-- Define a number of bits, $k$, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each WRPRC within this Status List. The Provider of WRPRC SHALL configure this number. Each WRPRC will therefore have $2^k$ possible states.
-- Create a byte array of size $\geq$ (expected number of WRPRCs) * $k$ / 8. Depending on $k$, each byte in the array corresponds to 8/$k$ statuses (8 if $k=1$, 4 if $k=2$, 2 if $k=4$, or 1 if $k=8$). Each time a WRPRC is issued, the Provider of WRPRC assigns it to a position in the array.
-- Set the status values for all issued WRPRCs within the byte array. The status of each WRPRC is identified using an index that maps to one or more specific bits within the byte array. The index starts counting at 0 and ends with (number of WRPRC) - 1. All bits of the byte array at a particular index are set to a status value.
+- Define a number of bits, $k$, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> within this Status List. The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL configure this number. Each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> will therefore have $2^k$ possible states.
+- Create a byte array of size $\geq$ (expected number of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>) * $k$ / 8. Depending on $k$, each byte in the array corresponds to 8/$k$ statuses (8 if $k=1$, 4 if $k=2$, 2 if $k=4$, or 1 if $k=8$). Each time a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is issued, the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> assigns it to a position in the array.
+- Set the status values for all issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> within the byte array. The status of each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is identified using an index that maps to one or more specific bits within the byte array. The index starts counting at 0 and ends with (number of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) - 1. All bits of the byte array at a particular index are set to a status value.
 - Compress the byte array using DEFLATE [RFC 1951](https://datatracker.ietf.org/doc/html/rfc1951) with the ZLIB [RFC 1950](https://datatracker.ietf.org/doc/html/rfc1950) data format. Implementations are RECOMMENDED to use the highest compression level available.
-- Make an endpoint available to Wallet Units to request Status Lists Tokens.
+- Make an endpoint available to <components:Wallet Unit|Wallet Units> to request Status Lists Tokens.
 
-The Provider of WRPRC SHALL use the following values for the possible statuses of the issued WRPRCs:
+The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL use the following values for the possible statuses of the issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>:
 
-- `0x00` - `VALID` - The WRPRC is valid.
-- `0x01` - `INVALID` - The WRPRC is revoked.
+- `0x00` - `VALID` - The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is valid.
+- `0x01` - `INVALID` - The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is revoked.
 
-For example, if two states for a certain WRPRC are possible, then $k=1$. If the Credential Issuer creates an array to store the statuses of 6 WRPRCs, whose validity statuses are 0, 0, 0, 1, 1, 0, respectively; then:
+For example, if two states for a certain <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> are possible, then $k=1$. If the <roles:Credential Issuer> creates an array to store the statuses of 6 <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, whose validity statuses are 0, 0, 0, 1, 1, 0, respectively; then:
 
 - The bit array can be of the form `a=[0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 1, 1, 0, 0, 0, 0; 0, 0, 1, 0, 0, 0, 0, 1]` which, in hexadecimal notation, corresponds to the byte array `[0x00, 0x30, 0x21]`.
 - The status values are encoded in specific bit positions based on their assigned index.
@@ -34,13 +34,13 @@ For example, if two states for a certain WRPRC are possible, then $k=1$. If the 
 
 !!! note
 
-    When the Provider of WRPRC chooses the number of bits for conveying statuses of the WRPRCs it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a WRPRC SHALL, however, be carefully pondered, as it discloses information to Relying Parties.
+    When the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> chooses the number of bits for conveying statuses of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL, however, be carefully pondered, as it discloses information to Relying Parties.
 
-Once the Wallet Unit receives a WRPRC, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.
+Once the <components:Wallet Unit> receives a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.
 
 ##### Status List Token
 
-The **Status List Token** (SLT) is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the Provider of WRPRC and contains the following parameters:
+The **Status List Token** (SLT) is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and contains the following parameters:
 
 ###### Status List Token Header
 
@@ -54,12 +54,12 @@ The **Status List Token** (SLT) is available at the Status List Endpoint. It is 
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
-| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim SHALL specify the URI of the SLT. The value SHALL be equal to that of the `uri` claim contained in the `status*list.uri` claim of the WRPRC. |
+| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim SHALL specify the URI of the SLT. The value SHALL be equal to that of the `uri` claim contained in the `status*list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. |
 | `iat` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the SLT was issued. |
 | `exp` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the SLT expires. |
 | `status*list` | OAuth Status List Draft | REQUIRED | *JSON Object* | A JSON Object that contains the Status List configurations and payload. |
-| `status*list.bits` | OAuth Status List Draft | REQUIRED | *Integer* | Specifies the number of bits per WRPRC in the compressed byte array. The allowed values are 1, 2, 4, and 8. |
-| `status*list.lst` | OAuth Status List Draft | REQUIRED | *Base64url-encoded String* | Contains the status values for all the WRPRCs. The value SHALL be the base64url-encoded compressed byte array. |
+| `status*list.bits` | OAuth Status List Draft | REQUIRED | *Integer* | Specifies the number of bits per <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> in the compressed byte array. The allowed values are 1, 2, 4, and 8. |
+| `status*list.lst` | OAuth Status List Draft | REQUIRED | *Base64url-encoded String* | Contains the status values for all the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>. The value SHALL be the base64url-encoded compressed byte array. |
 | `ttl` | OAuth Status List Draft | RECOMMENDED | *Integer* | Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the Status List Token can be cached by a consumer before a fresh copy SHOULD be retrieved. |
 
 The following is an example of the Status List Token payload and header prior to signing and base64url encoding:
@@ -94,7 +94,7 @@ The following is an example of the Status List Token payload and header prior to
 
 ##### Status List Request
 
-The Wallet Unit SHALL request a Status List Token at the URI referenced within the `status.status_list.uri` claim of the WRPRC. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
+The <components:Wallet Unit> SHALL request a Status List Token at the URI referenced within the `status.status_list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
 
 Below it is represented an example of such a request.
 
@@ -120,7 +120,7 @@ The successful response SHALL contain a Status List Token and have HTTP status c
   Ql45Jfzd-Av4QzlKa3oVALpLwOEUOq-U*g
 ```
 
-If caching-related HTTP headers are present in the HTTP response, Wallet Units SHALL prioritize the `exp` and `ttl` claims within the Status List Token over the HTTP headers for determining caching behavior.
+If caching-related HTTP headers are present in the HTTP response, <components:Wallet Unit|Wallet Units> SHALL prioritize the `exp` and `ttl` claims within the Status List Token over the HTTP headers for determining caching behavior.
 
 #### Certificate Revocation Lists
 
@@ -186,7 +186,7 @@ An OCSP client issues a status request to an OCSP responder and SHALL suspend th
 
 If supported by the CA, the URI to which the OCSP Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](#wallet-relying-party-access-certificate).
 
-This protocol specifies the data that SHALL be exchanged between the OCSP client (which checks the status of one or more certificates) and the OCSP server (which provides the corresponding status). In this specific ecosystem, the OCSP client can be a WU checking the WRPAC of a WRP, and the OCSP server is the Provider of the WRPAC.
+This protocol specifies the data that SHALL be exchanged between the OCSP client (which checks the status of one or more certificates) and the OCSP server (which provides the corresponding status). In this specific ecosystem, the OCSP client can be a WU checking the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> of a WRP, and the OCSP server is the Provider of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
 
 ##### Online Certificate Status Protocol Request Format
 

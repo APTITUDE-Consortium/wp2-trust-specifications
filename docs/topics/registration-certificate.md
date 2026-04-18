@@ -1,4 +1,4 @@
-This section defines Wallet-Relying Party Registration Certificates (WRPRC), as described in [ARF]. The WRPRC provides detailed information about the provider's entitlements, the attestations they issue, and their intended use.
+This section defines <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates> (<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>), as described in [ARF]. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> provides detailed information about the provider's entitlements, the attestations they issue, and their intended use.
 
 #### References
 
@@ -13,9 +13,9 @@ This section defines Wallet-Relying Party Registration Certificates (WRPRC), as 
 
 #### Format
 
-1. The WRPRC shall be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
-2. The WRPRC shall comply with the syntactic and semantic requirements specified in Annex V paragraph 3 of CIR (EU) 2025/848 [i.2].
-3. The WRPRC shall be signed with the digital signature of provider of the wallet-relying party registration certificates.
+1. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> shall be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
+2. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> shall comply with the syntactic and semantic requirements specified in Annex V paragraph 3 of CIR (EU) 2025/848 [i.2].
+3. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> shall be signed with the digital signature of provider of the wallet-relying party registration certificates.
 4. The JWT shall be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1] [18].
 5. The CWT shall be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].
 
@@ -25,10 +25,10 @@ This section defines Wallet-Relying Party Registration Certificates (WRPRC), as 
 
 | Attribute group                                                       | Description                                                                               | Required |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-----------|
-| [Header Attributes](#header-attributes)                               | Required header fields used to identify, sign, and validate WRPRC.                        | Required |
+| [Header Attributes](#header-attributes)                               | Required header fields used to identify, sign, and validate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>.                        | Required |
 | [Core Identity Attributes](#core-identity-attributes)                 | Identity attributes of the WRP subject (natural person or legal entity).                  | Required |
 | [Service Description Attributes](#service-description-attributes)     | Multilingual service descriptions defining the WRP’s provided services.                   | Required |
-| [Entitlements Attribute](#entitlements-attribute)                     | Entitlements defining what the WRP is authorised to do.                                   | Required |
+| [Entitlements Attribute](#entitlements-attribute)                     | <data-elements:Entitlement\|Entitlements> defining what the WRP is authorised to do.                                   | Required |
 | [Privacy and Policy Attributes](#privacy-and-policy-attributes)       | Privacy policy information.                                                               | Some of them |
 | [Supervisory Authority Attributes](#supervisory-authority-attributes) | Supervisory authority contact details for reporting suspicious data-processing behaviour. | Required |
 | [Service Provider Attributes](#service-provider-attributes)           | Credential queries, purposes, and intended-use identifiers for service providers.         | Required for Service Provider |
@@ -64,7 +64,7 @@ This section defines Wallet-Relying Party Registration Certificates (WRPRC), as 
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `name` | *string* | The subject of the WRPRC trade name | Required | [ETSI TS 119 475] Table 7 - `tradeName` |
+| `name` | *string* | The subject of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> trade name | Required | [ETSI TS 119 475] Table 7 - `tradeName` |
 | `sub_gn` | *string* | Given Name of Natural Person | Required for Natural Person | [ETSI TS 119 475] Table 7 - `givenName` |
 | `sub_fn` | *string* | Family Name of Natural Person | Required for Natural Person | [ETSI TS 119 475] Table 7 - `familyName` |
 | `sub_ln` | *string* | Official legal name | Required for Legal Entity | [ETSI TS 119 475] Table 7 - `legalName` |
@@ -111,7 +111,7 @@ This section defines Wallet-Relying Party Registration Certificates (WRPRC), as 
 | `credentials` | *array[object]* | A set of credential queries, used to request credentials from the Wallet. The EUDIW will use this information to perform an over-asking validation | Required for Service Provider | [ETSI TS 119 475] Table 9 - `credential` |
 | `credentials[].format` | *string*         | Format of the attestation | Required for Service Provider | [ETSI TS 119 475] Table 9 - `format` |
 | `credentials[].meta` | *object*        | Object defining additional properties. | Required for Service Provider | [ETSI TS 119 475] Table 9 - `meta` |
-| `credentials[].claim` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If claim is absent, the WRPRC does not declare any specific attributes intended to be requested by the WRP | Required for Service Provide | [ETSI TS 119 475] Table 9 - `claim` |
+| `credentials[].claim` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If claim is absent, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> does not declare any specific attributes intended to be requested by the WRP | Required for Service Provide | [ETSI TS 119 475] Table 9 - `claim` |
 | `purpose` | *array[object]* | A list describing the data processing associated with the intended use | Required for Service Provider | [ETSI TS 119 475] Table 9 - `purpose` |
 | `purpose[].lang` | *string*        | Language identifier, referring the BCP 47 language tag format defined in [RFC 5646] | Required for Service Provider | [ETSI TS 119 475] Table 9 - `lang` |
 | `purpose[].value` | *string*        | Purpose description provided in the language specified above | Required for Service Provider | [ETSI TS 119 475] Table 9 - `value` |
@@ -134,7 +134,7 @@ This section defines Wallet-Relying Party Registration Certificates (WRPRC), as 
 | `certificate_policy` | *string* | URL to the certificate policy and certificate practice statement | Required | [ETSI TS 119 475] Table 7 - `technical` |
 | `iat` | *unix_timestamp* | Unix timestamp indicating when the WRP was issued | Required | [ETSI TS 119 475] Table 7 - `technical` |
 | `exp` | *unix_timestamp* | Expiration time of the JWT/CWT as a Unix timestamp | Optional | [ETSI TS 119 475] Table 10 - `technical` |
-| `status` | *object* | A URI to a status list presenting information about validity of the WRPRC  | Required | [ETSI TS 119 475] Table 7 - `technical` |
+| `status` | *object* | A URI to a status list presenting information about validity of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>  | Required | [ETSI TS 119 475] Table 7 - `technical` |
 | `status.status_list.idx` | *int* | Position in status bitstring | Required | [ETSI TS 119 475] GEN-6.2.6.1-04, GEN-6.2.6.1-05 |
 | `status.status_list.uri` | *string* | Status list credential URI | Required | [ETSI TS 119 475] GEN-6.2.6.1-04 |
 
@@ -143,8 +143,8 @@ This section defines Wallet-Relying Party Registration Certificates (WRPRC), as 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
 | `intermediary` | *object* | Used when the WRP operates via an intermediary | Required if Intermediary is used | [ETSI TS 119 475] Table 10 - `usesIntermediary` |
-| `intermediary.sub` | *string* | Identifier of the intermediary as specified by the intermediary WRPAC | Required if Intermediary is used | [ETSI TS 119 475] Table 10 - `usesIntermediary` |
-| `intermediary.sname` | *string* | commonName of the intermediary as specified by the intermediary WRPAC | Required if Intermediary is used | [ETSI TS 119 475] Table 10 - `usesIntermediary` |
+| `intermediary.sub` | *string* | Identifier of the intermediary as specified by the intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> | Required if Intermediary is used | [ETSI TS 119 475] Table 10 - `usesIntermediary` |
+| `intermediary.sname` | *string* | commonName of the intermediary as specified by the intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> | Required if Intermediary is used | [ETSI TS 119 475] Table 10 - `usesIntermediary` |
 
 ---
 
@@ -516,7 +516,7 @@ registration certificates.
 
 Per [ETSI TS 119 475] Annex A.2:
 
-| Entitlement | URI | OID | ETSI Reference | Description |
+| <data-elements:Entitlement> | URI | OID | ETSI Reference | Description |
 |-------------|-----|-----|----------------|-------------|
 | `Service_Provider` | `https://uri.etsi.org/19475/Entitlement/Service_Provider` | `id-etsi-wrpa-entitlement 1` | Annex A.2.1 | General service provider |
 | `QEAA_Provider` | `https://uri.etsi.org/19475/Entitlement/QEAA_Provider` | `id-etsi-wrpa-entitlement 2` | Annex A.2.2 | Qualified EAA provider |

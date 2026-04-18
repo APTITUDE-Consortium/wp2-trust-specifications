@@ -1,14 +1,14 @@
-This section describes the purpose, format and content of Wallet Relying Party Access Certificates (WRPACs).
+This section describes the purpose, format and content of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>.
 
-According to the Article 2 of CIR (EU) 2025/848, a WRPAC, is a certificate for electronic seals or signatures authenticating and validating the Wallet Relying Party (WRP).
-Issued by one or more designated provider under Member State supervision, the WRPAC serves to authenticate and verify the trustworthiness of the WRP when they interact with the EUDI Wallet. For more details on the authentication process, see [Authentication Process](#authentication-process).
-The suspension or cancellation of the WRP services, involves revocation of all valid WRPAC by the relevant issuing authority, such that the WRP is no longer able to interact with Wallet Units. For more detail on the Trust Management processes, see [Trust Management and Lifecycle](#7-trust-management-and-lifecycle).
+According to the Article 2 of CIR (EU) 2025/848, a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, is a certificate for electronic seals or signatures authenticating and validating the Wallet Relying Party (WRP).
+Issued by one or more designated provider under Member State supervision, the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> serves to authenticate and verify the trustworthiness of the WRP when they interact with the <components:EUDI Wallet>. For more details on the authentication process, see [Authentication Process](#authentication-process).
+The suspension or cancellation of the WRP services, involves revocation of all valid <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> by the relevant issuing authority, such that the WRP is no longer able to interact with <components:Wallet Unit|Wallet Units>. For more detail on the Trust Management processes, see [Trust Management and Lifecycle](#7-trust-management-and-lifecycle).
 
-The Annex IV of CIR (EU) 2025/848 also states that the WRPACs are meant for performing electronic signatures or seals and that they shall comply with at least the normalised certificate policy (‘NCP’) requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the WRPACs fall into.  
+The Annex IV of CIR (EU) 2025/848 also states that the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> are meant for performing electronic signatures or seals and that they shall comply with at least the normalised certificate policy (‘NCP’) requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> fall into.  
 
 #### References
 
-To guarantee the interoperability across all the wallets provided within the Union, WRPACs should adhere to common requirements, with respect to their content and format. The technical standard specific to these certificates is [ETSI TS 119 411-8]. However, multiple other standards are referenced either directly or indirectly by the [ETSI TS 119 411-8], containing requirements that are applicable to WRPACs as well. The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
+To guarantee the interoperability across all the wallets provided within the Union, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> should adhere to common requirements, with respect to their content and format. The technical standard specific to these certificates is [ETSI TS 119 411-8]. However, multiple other standards are referenced either directly or indirectly by the [ETSI TS 119 411-8], containing requirements that are applicable to <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> as well. The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
 
 - **CIR 2025/848**
 - **ETSI EN 319 411-1**
@@ -25,11 +25,11 @@ To guarantee the interoperability across all the wallets provided within the Uni
 
 #### Dependency Considerations
 
-The WRPAC attributes SHALL be derived from the information held in the Register as specified in clause 5.1.2 of [ETSI TS 119 475]. This also implies that for some specific attributes in the WRPAC the same value SHALL be encountered in the corresponding Wallet Relying Party Registration Certificate if any.
+The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> attributes SHALL be derived from the information held in the <components:Register> as specified in clause 5.1.2 of [ETSI TS 119 475]. This also implies that for some specific attributes in the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> the same value SHALL be encountered in the corresponding <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificate> if any.
 
 #### Wallet Relying Party Access Certificate Content
 
-The following table lists all the parameters and extensions that are mandatory in a WRPAC or mandatory with conditions. Optional parameters are not referenced and are not recommended, since they could cause conflicts with the content specified.
+The following table lists all the parameters and extensions that are mandatory in a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> or mandatory with conditions. Optional parameters are not referenced and are not recommended, since they could cause conflicts with the content specified.
 
 The column "Presence" contains the specification of the presence of the certificate parameter as follows:
 
@@ -53,7 +53,7 @@ The column "Presence" contains the specification of the presence of the certific
 | `subjectPublicKeyInfo.subjectPublicKey` | [RFC 5280] clause 4.1.2.7 | REQUIRED | *BIT STRING* | The public key itself. |
 | `extensions` | [RFC 5280] clause 4.1.2.9 | REQUIRED | *[3] EXPLICIT SEQUENCE* | A sequence of one or more certificate extensions. |
 
-The `extensions` field of the WRPAC SHALL contain various extensions, each of which is an *ASN.1 SEQUENCE* containing the following fields:
+The `extensions` field of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> SHALL contain various extensions, each of which is an *ASN.1 SEQUENCE* containing the following fields:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
@@ -74,7 +74,7 @@ Below there is a list of the mandatory extensions and their content, if applicab
 | `ext-etsi-valassured-ST-certs` | [ETSI EN 319 412-1] clause 5.2 | REQUIRED (C) | NC | *EXTENSION* | Extension with the OID `0.4.0.194121.2.1`.<br><br>**Applicable condition:** For short-term certificates which cannot be revoked.<br><br>Indicates that the certificate issuer ensures the validity of the certificate is assured at time of use of the corresponding private key. Upon presence of such statement, the WRP can decide not to check the certificate revocation status (e.g., when validating a digital signature). |
 | `noRevAvail` | [RFC 9608] clause 2 | REQUIRED (C) | NC | *EXTENSION* | Extension with the OID `2.5.29.56`.<br><br>**Applicable condition:** If the certificate includes the validity assured extension, but neither includes a CRL distribution point nor access location of an OCSP responder. |
 | `authorityInfoAccess` | [ETSI EN 319 412-2] clause 4.4.1 | REQUIRED | Non-critical | *SEQUENCE* | Extension with the OID `1.3.6.1.5.5.7.1.1`.<br><br>Sequence of `AccessDescription`, containing an `accessMethod` (OID) and an `accessLocation` (*GeneralName*).<br><br>It SHALL at least include the `id-ad-caIssuers` OID specifying at least one access location of a valid CA certificate of the issuing CA.<br><br>If OCSP is supported, it SHALL include the `id-ad-ocsp` OID specifying at least one access location of an OCSP responder providing status information for the present certificate.<br><br>If the certificate does not include any CRL distribution point and does not include the validity assured extension, a reference to at least one OCSP responder SHALL be present. |
-| `certificatePolicies` | [RFC 3647] clause 3.3.1 &<br>[RFC 5280] clause 4.2.1.4 | REQUIRED | NC | *SEQUENCE* | Sequence of `PolicyInformation` elements, each being a SEQUENCE of `policyIdentifier` (OID) and `policyQualifiers`.<br><br>The extension is mandatory as stated in [ETSI TS 119 411-8], requirement GEN-6.6.1-03. TS 119 411-8 defines the following policy identifiers:<ul><li>`0.4.0.194118.1.1` for `NCP-n-eudiwrp`</li><li>`0.4.0.194118.1.2` for `NCP-l-eudiwrp`</li><li>`0.4.0.194118.1.3` for `QCP-n-eudiwrp`</li><li>`0.4.0.194118.1.4` for `QCP-l-eudiwrp`</li></ul>The `cpsURI` under Certificate policies SHALL indicate a URL where the CPS of the Provider of WRPACs is located. |
+| `certificatePolicies` | [RFC 3647] clause 3.3.1 &<br>[RFC 5280] clause 4.2.1.4 | REQUIRED | NC | *SEQUENCE* | Sequence of `PolicyInformation` elements, each being a SEQUENCE of `policyIdentifier` (OID) and `policyQualifiers`.<br><br>The extension is mandatory as stated in [ETSI TS 119 411-8], requirement GEN-6.6.1-03. TS 119 411-8 defines the following policy identifiers:<ul><li>`0.4.0.194118.1.1` for `NCP-n-eudiwrp`</li><li>`0.4.0.194118.1.2` for `NCP-l-eudiwrp`</li><li>`0.4.0.194118.1.3` for `QCP-n-eudiwrp`</li><li>`0.4.0.194118.1.4` for `QCP-l-eudiwrp`</li></ul>The `cpsURI` under Certificate policies SHALL indicate a URL where the CPS of the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPACs> is located. |
 | `subjectAltName` | [RFC 5280] clause 4.2.1.6 | REQUIRED | NC | *SEQUENCE* | Extension with the OID `2.5.29.17`.<br><br>Sequence of `GeneralName` elements, each representing a possible alternative name for the subject of the certificate.<br><br> Each `GeneralName` element contains contact information of the WRP and there SHALL be at least one element among the following:<ul><li>`uniformResourceIdentifier` indicating a website where the WRP can be contacted for helpdesk/support matters.</li><li>`otherName` with type-id `id-at-telephoneNumber` indicating a phone number for WRP registration/usage matters.</li><li>`rfc822Name` indicating an email address for WRP registration/usage matters.</li></ul>The extension is mandatory as stated in [ETSI TS 119 411-8] clause 6.6.1. |
 | `qcStatements` (esi4-qcStatement-1) | [RFC 3739] clause 3.2.6 &<br>ETSI EN 319 412-5 clause 4.2.1 | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.1`.<br><br>**Applicable condition:** For qualified certificates. It indicates that the certificate is qualified within the defined legal framework. For the eIDAS regulatory environment, the `QcCClegislation` SHALL be absent. |
 | `qcStatements` (esi4-qcStatement-4) | [RFC 3739] clause 3.2.6 &<br>ETSI EN 319 412-5 clause 4.2.2 | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.4`.<br><br>**Applicable condition:** For qualified certificates. It indicates that the private key related to the certified public key resides in a QSCD according to eIDAS regulation. The extension is mandatory as stated in ETSI EN 319 411-2, GEN-6.6.1-03. |
@@ -82,7 +82,7 @@ Below there is a list of the mandatory extensions and their content, if applicab
 
 #### Examples
 
-The following is an example of a WRPAC for legal persons following the NCP policy.
+The following is an example of a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> for legal persons following the NCP policy.
 
 ```text
 AccessCertificate cert = {
@@ -206,7 +206,7 @@ AccessCertificate cert = {
 } 
 ```
 
-Below there is an example of a WRPAC for natural persons following the QCP policy that is short-term and therefore non-revocable.
+Below there is an example of a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> for natural persons following the QCP policy that is short-term and therefore non-revocable.
 
 ```text
 WRPAC cert = { 
@@ -343,17 +343,17 @@ WRPAC cert = {
 
 #### Security Considerations
 
-A WRPAC is a certificate for electronic seals or signatures that is used to authenticate and validate a WRP when interacting with Wallet Units. Because the corresponding private key is a signature/seal key, implementations SHALL prevent the WRPAC key from becoming a general-purpose signing oracle.
+A <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is a certificate for electronic seals or signatures that is used to authenticate and validate a WRP when interacting with <components:Wallet Unit|Wallet Units>. Because the corresponding private key is a signature/seal key, implementations SHALL prevent the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> key from becoming a general-purpose signing oracle.
 
 **SC-1 — No blind signing of attacker-controlled inputs.**
-The WRP (and any remote signing component used on its behalf, e.g., HSM/QSCD/remote seal) should only sign well-defined, locally constructed protocol artefacts and should not sign arbitrary bytes received from outside (e.g., *random* nonces, hashes, or opaque challenges supplied by an attacker).
-For instance, when the interaction with the Wallet Unit takes plase as described in the protocol [OpenID4VP], the WRP signs a self-constructed Request Object. Before signing, the WRP SHOULD validate that the Request Object is fully context-bound (e.g., correct `aud`, `client_id`/`iss`, `exp`, `nonce`, and correct endpoint binding such as `response_uri`/`redirect_uri`, and the intended presentation definition). Any signing API should enforce a strict schema/allowlist and reject unexpected fields. This is particularly important when the key usage is set to non-repudiation, since this protects against the signing entity falsely denying some action and allows a reliable third party to determine the authenticity of signed data in case of later conflict.
+The WRP (and any remote signing component used on its behalf, e.g., HSM/QSCD/remote seal) should only sign well-defined, locally constructed protocol artefacts and should not sign arbitrary bytes received from outside (e.g., *random* <artifacts:Nonce|nonces>, hashes, or opaque challenges supplied by an attacker).
+For instance, when the interaction with the <components:Wallet Unit> takes plase as described in the protocol [OpenID4VP], the WRP signs a self-constructed <protocols:Request Object>. Before signing, the WRP SHOULD validate that the <protocols:Request Object> is fully context-bound (e.g., correct `aud`, `client_id`/`iss`, `exp`, `nonce`, and correct endpoint binding such as `response_uri`/`redirect_uri`, and the intended presentation definition). Any signing API should enforce a strict schema/allowlist and reject unexpected fields. This is particularly important when the key usage is set to non-repudiation, since this protects against the signing entity falsely denying some action and allows a reliable third party to determine the authenticity of signed data in case of later conflict.
 
 **SC-2 — Bind signatures to the intended protocol context.**
 Signed protocol objects should be clearly typed and scoped to the protocol to reduce *cross-context* misuse. In particular:
 
-- Use an explicit JOSE `typ` value appropriate for secured authorization requests / OpenID4VP Request Objects.
+- Use an explicit JOSE `typ` value appropriate for secured authorization requests / OpenID4VP <protocols:Request Object|Request Objects>.
 - Constrain accepted JOSE algorithms and key types, and reject insecure or unexpected values (e.g., `alg=none`).
 
 **SC-3 — Key protection, access control, and monitoring.**
-Private keys corresponding to WRPACs SHOULD be protected and operated under strong controls (access control for key use, audit logging, incident response, and operational monitoring). For remote signing, apply rate limiting and anomaly detection to reduce abuse.
+Private keys corresponding to <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> SHOULD be protected and operated under strong controls (access control for key use, audit logging, incident response, and operational monitoring). For remote signing, apply rate limiting and anomaly detection to reduce abuse.
