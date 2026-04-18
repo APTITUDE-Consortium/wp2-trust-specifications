@@ -14,15 +14,15 @@ The national Register of WRPs is the publicly accessible system (dataset + API) 
     
     Additionally, sectorial registers may exist internally, but the decision regarding issuance of WRPAC is solely based on whether the WRP has been registered with an active status in the national Register.
 
-
 #### References
+
 The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
 
-- **CIR 2025/848** on WRP registration and Registers 
+- **CIR 2025/848** on WRP registration and Registers.
 - **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for Register of WRPs.
 - **ETSI TS 119 475 v1.2.1**  on WRP attributes, entitlement URIs, RP authorisation decision support.
-- **TS05 V1.3** on common formats and API for WRP registration information
-- **TS06 V1.0.1** on common set of WRP information to be registered
+- **TS05 V1.3** on common formats and API for WRP registration information.
+- **TS06 V1.0.1** on common set of WRP information to be registered.
 - **RFC 7515**
 - **RFC 7519**
 - **RFC 8392**
@@ -107,7 +107,7 @@ This section defines the data schema for each WRP registered in the national Reg
 | `tradeName` | `string` | OPTIONAL | User-facing trade/service name recognisable to users. |
 | `supportURI` | `string[]` | REQUIRED | Support/helpdesk URI(s) for the service. |
 | `srvDescription` |  `MultiLangString[][]` | REQUIRED | Array of service descriptions, each being an array of localised strings (one inner array per service). |
-| `intendedUse` | `IntendedUse[]` | OPTIONAL | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. | 
+| `intendedUse` | `IntendedUse[]` | REQUIRED if the entity is not an intermediary | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. | 
 | `isPSB` | `boolean` | REQUIRED | Whether the WRP is a public sector body (explicitly present; `false` if not PSB). | 
 | `entitlement` |  `string[]` | REQUIRED | Entitlement URI(s) (see note below). |
 | `providesAttestations` | `Credential[]` | REQUIRED if PID/Attestation Provider| Attestation types the WRP intends to issue to wallet units. It SHALL be present if any entitlement is `QEAA_Provider`, `Non_Q_EAA_Provider`, `PUB_EAA_Provider`, or `PID_Provider`. | 
@@ -222,7 +222,7 @@ Defined policy type URIs:
 
 ##### LegalEntity (for `supervisoryAuthority`)
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `legalPerson` | `LegalPerson` | OPTIONAL | Present when the authority is a legal person. |
 | `naturalPerson` | `NaturalPerson` | OPTIONAL | Present when the authority is a natural person. |
@@ -235,19 +235,19 @@ Defined policy type URIs:
 
 ##### LegalPerson
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `legalName` | `string[]` | REQUIRED | Legal name(s) as in official records. |
-| `establishedBylaw` | `Law[]` | REQUIRED if PSBs responsible for authentic sources| Legal basis for establishment. It SHALL be present for PSBs responsible for authentic sources; present for other PSBs where applicable. | 
+| `establishedBylaw` | `Law[]` | REQUIRED if PSBs responsible for authentic sources| Legal basis for establishment. It SHALL be present for PSBs responsible for authentic sources; present for other PSBs where applicable. |
 
 ##### NaturalPerson
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `givenName` | `string` | REQUIRED | Current first name(s), including middle names where applicable. |
-| `familyName` | `string` | REQUIRED | Current surname(s). | 
-| `dateOfBirth` | `string` | OPTIONAL | Date of birth (where present in official records). | 
-| `placeOfBirth` | `string`| OPTIONAL | Place of birth (where present in official records). | 
+| `familyName` | `string` | REQUIRED | Current surname(s). |
+| `dateOfBirth` | `string` | OPTIONAL | Date of birth (where present in official records). |
+| `placeOfBirth` | `string`| OPTIONAL | Place of birth (where present in official records). |
 
 ##### Law
 
@@ -256,281 +256,7 @@ Defined policy type URIs:
 | `lang` | `string` | REQUIRED | Two-letter language code (ISO 639-1 style). |
 | `legalBasis` | `string` | REQUIRED | Legal basis text establishing the legal person (or requiring/recommending access to a claim). |
 
-
-#### Registry statements
-
-Registry statements exposed through the common API SHALL be provided as electronically signed or sealed JSON files, using JWS in accordance with Annex II Section 1 and [RFC 7515].
-
-#### JWS requirements
-
-##### Serialization and header placement
-
-This profile uses **JWS Compact Serialization** for API responses (e.g., `application/jwt`), unless a Member State profile explicitly defines another serialization.
-In JWS Compact Serialization, there is **no unprotected header**; therefore, the JOSE Header is the **JWS Protected Header** and is integrity-protected by the signature.
-
-| Parameter | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| `statement` | `string` (JWS compact) | JWS compact serialisation containing the response payload. | CIR Annex II §1; [RFC 7515] |
-| `payload` | `JSON value` | Decoded payload. Depending on endpoint, this may be an object, an array, or a boolean. | [CIR 2025/848-Amendment] Annex VI §5; [RFC 7515] |
-| `integrityValidationInfo` | implementation-specific | Integrity-validation information as required by the applicable signature/seal profile. | Draft update; [RFC 9162] / [RFC 6962] |
-
-##### JOSE Protected Header parameters (profile)
-
-The following JOSE Protected Header requirements apply to registry statements:
-
-| Header parameter | Requirement | Description | Reference |
-| --- | --- | --- | --- |
-| `alg` | **REQUIRED** | Signature/seal algorithm identifier. SHALL be supported by producer and verifier. The value `none` SHALL NOT be used for registry statements. | [RFC 7515] §4.1.1; profile rule |
-| `x5c` | **RECOMMENDED** (SHALL if no trust-list/key-resolution profile is defined) | X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array. | [RFC 7515] §4.1.6 |
-| `kid` | **RECOMMENDED** | Key identifier to support key rollover and efficient verifier key selection. | [RFC 7515] §4.1.4 |
-| `x5t#S256` | **RECOMMENDED** | SHA-256 thumbprint of the signing certificate (useful for pinning / key matching). | [RFC 7515] §4.1.8 |
-| `x5u` | OPTIONAL | URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation. | [RFC 7515] §4.1.5 |
-| `typ` | OPTIONAL (RECOMMENDED) | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | [RFC 7515] §4.1.9 |
-| `crit` | OPTIONAL | If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. `crit` MUST appear only in the protected header. | [RFC 7515] §4.1.11 |
-
-!!! note
-
-    The JOSE header parameter `x5c` above is part of the JWS signature envelope. It is distinct from any `x5c` attribute defined in the registry payload/data schema (e.g., Annex VI data schema fields).
-
-#### Normative endpoint payloads
-
-##### `GET /wrp` payload
-
-The decoded JWS payload for `GET /wrp` SHALL be:
-
-- an array of `WalletRelyingParty` objects (matching the query),
-- with address field excluded from published entries,
-- and, where relevant, accompanied by WRPAC history information in the statement/profile used by the Member State.
-
-##### `GET /wrp/check-intended-use` payload
-
-The decoded JWS payload for `GET /wrp/check-intended-use` SHALL be:
-
-- a boolean `true` or `false`.
-
-#### Optional profile envelope (recommended for interoperability metadata)
-
-To preserve issuer/timestamp metadata and pagination in a stable schema, a Member State MAY define an envelope profile as follows (while still satisfying the endpoint semantics above):
-
-##### SignedWRPArrayEnvelope (profile)
-
-| Parameter | Type | Description |
-| --- | ---: | --- |
-| `iss` | `string` | Identifier of the Registry/Registrar issuing the statement. |
-| `iat` | `integer` | Issued-at timestamp (Unix epoch seconds). |
-| `data` | `WRPEntry[]` | Matching WRP entries (published view, address excluded), each bundled with its certificate history. |
-| `pagination` | `Pagination` (optional) | Cursor-based pagination metadata. |
-
-###### WRPEntry (per-WRP bundle)
-
-| Parameter | Type | Description |
-| --- | ---: | --- |
-| `wrp` | `WalletRelyingParty` | WRP registration information (published view, address excluded). |
-| `wrpacHistory` | `CertificateHistoryEntry[]` (optional) | WRP access certificate history for this WRP (including CT-related references where available). |
-| `wrprcHistory` | `CertificateHistoryEntry[]` (optional) | WRP registration certificate history for this WRP (if provided by national profile). |
-
-##### SignedWRPEnvelope (profile, for non-common helper endpoints)
-
-| Parameter | Type | Description |
-| --- | ---: | --- |
-| `iss` | `string` | Registry/Registrar identifier. |
-| `iat` | `integer` | Issued-at timestamp. |
-| `data` | `WalletRelyingParty` | Single WRP object (published view, address excluded). |
-| `wrpacHistory` | `CertificateHistoryEntry[]` (optional) | WRPAC history. |
-| `wrprcHistory` | `CertificateHistoryEntry[]` (optional) | WRPRC history (if supported). |
-
-##### SignedIntendedUseCheckEnvelope (profile)
-
-!!! note
-
-    Annex VI strictly allows a JWS-signed boolean response. This object envelope is a non-normative profile convenience.
-
-| Parameter | Type | Description |
-| --- | ---: | --- |
-| `iss` | `string` | Registry issuer. |
-| `iat` | `integer` | Issued-at timestamp. |
-| `data` | `boolean` | Result of intended-use check. |
-
-#### CertificateHistoryEntry (profile helper for certificate histories)
-
-| Parameter | Type | Description |
-| --- | ---: | --- |
-| `certificate` | `string` | Certificate (e.g., PEM/DER-encoded representation, profile-defined). |
-| `x5c` | `string[]` (optional) | Certificate chain for the certificate entry. |
-| `status` | `string` | Certificate status (e.g., `current`, `revoked`, `expired`, `historic`). |
-| `validFrom` | `string` (optional) | Validity start timestamp/date (profile-defined format). |
-| `validTo` | `string` (optional) | Validity end timestamp/date (profile-defined format). |
-| `ctLogEntries` | `object[]` (optional) | CT log / transparency references ([RFC 9162]-aligned, profile-defined structure). |
-
-#### Common Register API (TS5-aligned profile)
-
-This section documents a TS5-aligned common Register API profile that satisfies Annex II constraints.
-> The API is public (no prior authentication) and returns JWS-signed statements.
-
-#### `GET /wrp` — search/list
-
-##### Request (query parameters)
-
-The common API SHALL support parameterised queries on `GET /wrp`. The following names align with the [CIR 2025/848-Amendment] Annex VI query parameter naming.
-
-| Parameter | Type | R/O | Description | Reference |
-| --- | ---: | --- | --- | --- |
-| `identifier` | `string` | O | Filter by official/business registration number / identifier. | [CIR 2025/848-Amendment], Annex VI §2(a), §4(a) |
-| `legalname` | `string` | O | Filter by official company name. | [CIR 2025/848-Amendment], Annex VI §2(b), §4(a) |
-| `tradename` | `string` | O | Filter by trade name. | [CIR 2025/848-Amendment], Annex VI §2(b), §4(a) |
-| `policy` | `string` | O | Filter by privacy policy URL (or policy URI as profiled). | [CIR 2025/848-Amendment], Annex VI §2(c), §4(a) |
-| `entitlement` | `string` | O | Filter by entitlement type (URI). | [CIR 2025/848-Amendment], Annex VI §2(d), §4(a) |
-| `providesattestation` | `string` | O | Filter by attestation types provided (e.g., attestation schema type in `providesAttestations`). | [CIR 2025/848-Amendment], Annex VI §2(e), §4(a) |
-| `usesintermediary` | `string` or `boolean` | O | Filter by reliance on intermediary (presence of `usesIntermediary`). | [CIR 2025/848-Amendment], Annex VI §2(h), §4(a) |
-| `isintermediary` | `boolean` | O | Filter by intermediary status. | [CIR 2025/848-Amendment], Annex VI §4(a) |
-| `intendedUseIdentifier` | `string` | O | Filter by registrar-provided intended-use identifier. | [CIR 2025/848-Amendment], Annex VI §2(g), §4(a) |
-| `intendedUseClaimPath` | `string` | O | Filter by intended-use requested claim path. | [CIR 2025/848-Amendment], Annex VI §4(a) |
-| `intendedUseCredentialMeta` | `string` | O | Filter by intended-use credential metadata (format-specific). | [CIR 2025/848-Amendment], Annex VI §4(a) |
-| `intendedUseCredentialFormat` | `string` | O | Filter by intended-use credential format. | [CIR 2025/848-Amendment], Annex VI §2(f), §4(a) |
-| `cursor` | `string`  | O | Cursor for pagination (profile-defined token format). | [CIR 2025/848-Amendment], Annex VI §4(c) |
-| `limit` | `integer`  | O | Page size (profile-defined). | Implementation profile |
-
-##### Behaviour
-
-| Requirement | Reference |
-| --- | --- |
-| If no query parameters are provided, `GET /wrp` SHALL return the full list of registered WRPs (subject to pagination profile). | [CIR 2025/848-Amendment], Annex VI §4(b) |
-| The endpoint SHALL support cursor-based pagination. | [CIR 2025/848-Amendment], Annex VI §4(c) |
-| The endpoint SHALL support combined filters in a single query. | [CIR 2025/848-Amendment], Annex VI §4(d) |
-| A successful response (`200`) SHALL be JWS-signed. | [CIR 2025/848-Amendment], Annex VI §5; CIR Annex II §1 |
-
-##### Response
-
-| HTTP Code | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| `200` | `application/jwt` | JWS compact string. Decoded payload SHALL contain matching `WalletRelyingParty` entries (strict Annex VI form: array; profile envelope also allowed if documented). | [CIR 2025/848-Amendment], Annex VI §5; [RFC 7515] |
-
----
-
-#### `GET /wrp/check-intended-use` — intended use check (public, required)
-
-!!! warning
-
-    In the Annex VI [CIR 2025/848-Amendment], this endpoint is part of the public API and is not optional.
-
-##### Request
-
-The draft requires a dedicated intended-use check endpoint with **four required and one optional parameter**.  
-This profile uses the following mapping (strictly aligned names for intended-use filters):
-
-| Parameter | Type | R/O | Description | Reference |
-| --- | ---: | :--: | --- | --- |
-| `identifier` | `string` | R | Identifier of the WRP whose intended-use registration is being checked. | [CIR 2025/848-Amendment], Annex VI §5 (specific WRP check) |
-| `intendedUseIdentifier` | `string` | R | Intended-use identifier registered by the registrar. | [CIR 2025/848-Amendment], Annex VI §2(g), §5 |
-| `intendedUseClaimPath` | `string` | R | Requested claim path to check (serialised representation of path array; profile-defined encoding). | [CIR 2025/848-Amendment], Annex VI §4(c), §5 |
-| `intendedUseCredentialFormat` | `string` | R | Credential format to check. | [CIR 2025/848-Amendment], Annex VI §2(f), §4(c), §5 |
-| `intendedUseCredentialMeta` | `string` | O | Credential metadata filter (profile-defined serialisation). | [CIR 2025/848-Amendment], Annex VI §4(c), §5 |
-
-##### Response
-
-| HTTP Code | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| `200`  | `application/jwt` | JWS compact string; decoded payload is boolean `true` or `false` (strict Annex VI). | [CIR 2025/848-Amendment], Annex VI §5; [RFC 7515] |
-| `400` | - | Bad request (invalid or incomplete request parameter). | Implementation |
-
----
-
-#### `POST /wrp` — create (authorised write method)
-
-This is a common API write method in the [CIR 2025/848-Amendment], Annex VI.
-
-##### Request
-
-!!! note
-
-    This method is only accessible for entities which are authorized by Member State
-
-| Parameter | Type | R/O | Description | Reference |
-| --- | ---: | --- | --- | --- |
-| request body | `WalletRelyingParty` | R | Full WRP object compliant with Annex VI Table 1 schema (registration view). | [CIR 2025/848-Amendment], Annex VI §9(b); Table 1 |
-
-##### Response
-
-| HTTP Code | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| `201` | - | Created. | [CIR 2025/848-Amendment], Annex VI §9(b) |
-| `400` | - | Bad request (invalid or incomplete payload). | Implementation |
-| `401` | - | Unauthorized (missing or invalid authentication). | Implementation |
-| `403` | - | Forbidden (caller not authorised by Member State). | Implementation |
-
----
-
-#### `PUT /wrp` — update (authorized write method)
-
-##### Request
-
-!!! note
-
-    This method is only accessible for entities which are authorized by Member State
-
-| Parameter | Type | R/O | Description | Reference |
-| --- | ---: | --- | --- | --- |
-| request body | `WalletRelyingParty` | R | Full WRP object compliant with Annex VI Table 1 schema (registration view). | [CIR 2025/848-Amendment], Annex VI §9(b); Table 1 |
-
-##### Response
-
-| HTTP Code | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| `200` | - | Updated. | [CIR 2025/848-Amendment], Annex VI §9(b) |
-| `400` | - | Bad request (invalid or incomplete payload). | Implementation |
-| `401` | - | Unauthorized (missing or invalid authentication). | Implementation |
-| `403` | - | Forbidden (caller not authorised by Member State). | Implementation |
-| `404` | - | Not found. | [CIR 2025/848-Amendment], Annex VI §9(b) |
-
----
-
-#### `DELETE /wrp` — delete
-
-!!! note
-
-    This method is only accessible for entities which are authorized by Member State
-
-##### Request
-
-| Parameter | Type | R/O | Description | Reference |
-| --- | ---: | --- | --- | --- |
-| request body | `object` | R | Identifier payload for the WRP to delete (profile-defined body shape, based on `WalletRelyingParty.identifier`). | [CIR 2025/848-Amendment], Annex VI §9(b) |
-
-##### Response
-
-| HTTP Code | Type | Description | Reference |
-| --- | ---: | --- | --- |
-| `204` | - | Deleted. | [CIR 2025/848-Amendment], Annex VI §9(b) |
-| `400` | - | Bad request (invalid identifier payload). | Implementation |
-| `401` | - | Unauthorized (missing or invalid authentication). | Implementation |
-| `403` | - | Forbidden (caller not authorised by Member State). | Implementation |
-| `404` | - | Not found. | Implementation |
-
----
-
-#### `GET /wrp/{identifier}` — get by identifier (national/profile extension)
-
-!!! note
-
-    This endpoint is useful, but it is **not explicitly defined** in the [CIR 2025/848-Amendment], Annex VI common API method list. If kept, mark it as a national/profile extension.
-
-##### Request
-
-| Parameter | Type | R/O | Description |
-| --- | ---: | --- | --- |
-| `identifier` (path) | `string` | R | Identifier of the WRP to retrieve. |
-
-##### Response
-
-| HTTP Code | Type | Description |
-| --- | ---: | --- |
-| `200` | `application/jwt` | JWS compact string; decoded payload contains one `WalletRelyingParty` entry (or profile envelope). |
-| `404` | - | Not found. |
-
-
-#### Non-normative JSON examples
-
-#### Example: WRP object (registration view – includes postalAddress)
+##### Non-normative example: WRP object
 
 ````json
 {
@@ -626,90 +352,263 @@ This is a common API write method in the [CIR 2025/848-Amendment], Annex VI.
 }
 ````
 
-#### Example of a WRP object (published via API – excludes Annex I point 4 / physical address)
+#### Common Register API
 
-````json
-{
-  "legalPerson": {
-    "legalName": ["ExampleBank S.A."]
-  },
-  "identifier": [
-    {
-      "type": "http://data.europa.eu/eudi/id/EUID",
-      "identifier": "FR-EUID-123456789"
-    }
-  ],
-  "country": "FR",
-  "email": [
-    "wallet-rp-registration@examplebank.eu"
-  ],
-  "phone": [
-    "+33100000000"
-  ],
-  "infoURI": [
-    "https://examplebank.eu"
-  ],
-  "providerType": "WalletRelyingParty",
-  "policy": [
-    {
-      "type": "http://data.europa.eu/eudi/policy/privacy-policy",
-      "policyURI": "https://examplebank.eu/privacy"
-    }
-  ],
-  "tradeName": "ExampleBank Mobile",
-  "supportURI": [
-    "https://examplebank.eu/support"
-  ],
-  "srvDescription": [
-    [
-      { "lang": "en", "content": "Retail banking services for individuals." }
-    ]
-  ],
-  "isPSB": false,
-  "entitlement": [
-    "https://uri.etsi.org/19475/Entitlement/Service_Provider"
-  ],
-  "supervisoryAuthority": {
-    "legalPerson": {
-      "legalName": ["Autorité de supervision Exemple"]
-    },
-    "country": "FR",
-    "infoURI": ["https://supervisor.example.fr"]
-  },
-  "registryURI": "https://registry.example.fr/api",
-  "isIntermediary": false,
-  "intendedUse": [
-    {
-      "intendedUseIdentifier": "iu-001",
-      "purpose": [
-        { "lang": "en", "content": "Open a bank account remotely." }
-      ],
-      "privacyPolicy": [
-        {
-          "type": "http://data.europa.eu/eudi/policy/privacy-statement",
-          "policyURI": "https://examplebank.eu/privacy/wallet"
-        }
-      ],
-      "credential": [
-        {
-          "format": "dc+sd-jwt",
-          "meta": {
-            "vct": "https://example.eu/schema/pid"
-          },
-          "claim": [
-            { "path": ["family_name"] },
-            { "path": ["given_name"] },
-            { "path": ["birth_date"] }
-          ]
-        }
-      ],
-      "createdAt": "2026-01-01"
-    }
-  ]
-}
+This section documents a [TS05 V1.3] aligned common Register API profile that satisfies [CIR 2025/848] Annex II and [CIR 2025/848-Amendment] constraints.
 
-````
+##### API Methods on Registration and Updating of WRP Data
+
+The common API write methods (POST, PUT and DELETE) are defined for purposes of managing the Register information of MS Registrars.
 
 !!! note
 
-    The published API view excludes only `postalAddress` (Annex I point 4). All other fields, including intended-use credential claims, are published as registered.
+    These methods SHALL be accessible by authorised users only.
+
+###### `POST /wrp` — create (REQUIRED)
+
+POST is for creating a new WRP entry in the Register. Method expects a request body with the `WalletRelyingParty` schema, and returns a `201` on success.
+
+**Request (body)**
+
+| Type | Presence | Description |
+| ---- | -------- | ----------- |
+| `WalletRelyingParty` | REQUIRED | Full WRP object compliant with [CIR 2025/848-Amendment], Annex VI Table 1 schema. |
+
+**Response**
+
+| HTTP Code | Description |
+| ----------| ----------- |
+| `201` | Created. |
+| `400` | Bad request (invalid or incomplete payload). |
+| `401` | Unauthorized (missing or invalid authentication). |
+| `403` | Forbidden (caller not authorised by Member State). |
+
+---
+
+###### `PUT /wrp` — update (REQUIRED)
+
+PUT is for updating an existing WRP entry in the Register. Method expects a request body with the `WalletRelyingParty` schema, and can return `200` on success or `404` if not found.
+
+**Request (body)**
+
+| Type | Presence | Description |
+| ---- | -------- | ----------- |
+| `WalletRelyingParty` | REQUIRED | Full WRP object compliant with [CIR 2025/848-Amendment], Annex VI Table 1 schema. |
+
+**Response**
+
+| HTTP Code | Description |
+| ----------| ----------- |
+| `200` | Successfully updated. |
+| `400` | Bad request (invalid or incomplete payload). |
+| `401` | Unauthorized (missing or invalid authentication). |
+| `403` | Forbidden (caller not authorised by Member State). |
+| `404` | Not found. |
+
+---
+
+###### `DELETE /wrp` — delete (REQUIRED)
+
+DELETE is for deleting of an existing WRP entry in the Register. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
+
+**Request (body)**
+
+| Parameter | Presence | Description |
+| --------- | -------- | ----------- |
+| `identifier` | REQUIRED | Identifier payload for the WRP to delete (profile-defined body shape, based on `WalletRelyingParty.identifier`). |
+
+!!! warning
+
+    For [TS05 V1.3] and [CIR 2025/848-Amendment], this method expects a request body with the `WalletRelyingParty` identifier, while in the corresponding YAML file [ts5-openapi31-registrar-api.yml](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml) the identifier is sent as a query parameter. This profile follows the [CIR 2025/848-Amendment].
+
+**Response**
+
+| HTTP Code | Description |
+| ----------| ----------- |
+| `204` | Successfully deleted. |
+| `400` | Bad request (invalid or incomplete payload). |
+| `401` | Unauthorized (missing or invalid authentication). |
+| `403` | Forbidden (caller not authorised by Member State). |
+| `404` | Not found. |
+
+##### API Methods for Register Queries (Open API)
+
+The common API read methods (GET) SHALL be open for public access (no prior authentication) and returns JWS-signed statements.
+
+The public API SHALL provide methods for searching and querying complete data sets of registered WRPs matching with provided query parameters
+
+###### `GET /wrp` — search/list (REQUIRED)
+
+Get a list of WRPs (with optional filtering and pagination, list of all registered WRPs returned when no query parameters are provided).
+
+**Request (query parameters)**
+
+The common API SHALL support parameterised queries on `GET /wrp`. The following names align with the [CIR 2025/848-Amendment] Annex VI query parameter naming.
+
+| Parameter | Type | Presence | Description |
+| --------- | ---- | -------- | ----------- |
+| `identifier` | `string` | OPTIONAL | Filter by official/business registration number / identifier. |
+| `legalname` | `string` | OPTIONAL | Filter by official company name. |
+| `tradename` | `string` | OPTIONAL | Filter by trade name. |
+| `policy` | `string` | OPTIONAL | Filter by privacy policy URL (or policy URI as profiled). |
+| `entitlement` | `string` | OPTIONAL | Filter by entitlement type (URI). |
+| `usesintermediary` | `string` | OPTIONAL | Filter by intermediary identifier. |
+| `isintermediary` | `boolean` | OPTIONAL | Filter by intermediary status. |
+| `intendeduseidentifier` | `string` | OPTIONAL | Filter by registrar-provided intended-use identifier. |
+| `claimpath` | `string` | OPTIONAL | Filter by intended-use requested claim path. |
+| `credentialmeta` | `string` | OPTIONAL | Filter by intended-use credential metadata (format-specific). |
+| `credentialformat` | `string` | OPTIONAL | Filter by intended-use credential format. |
+| `cursor` | `string`  | OPTIONAL | Cursor for pagination (profile-defined token format). |
+| `limit` | `integer`  | OPTIONAL | The number of items to return per page (profile-defined). |
+| `providesattestation` | OPTIONAL | Filter by attestation types provided. |
+
+
+!!! warning
+
+    The name of some query parameters differ from [TS05 V1.3] and the corresponding YAML file [ts5-openapi31-registrar-api.yml](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml) containing the OpenAPI specification of the JSON and REST based application programming interfaces (e.g., `intendedusecredentialmeta` vs `credentialmeta`). This profile follows the OpenAPI specification.
+
+    In addition, this specification adds `providesattestation` to cover the [CIR 2025/848-Amendment] requirement for filtering parameter: type of attestations provided, returning the complete data set of each of the registered wallet-relying parties matching the value provided for this parameter.
+
+| Requirement |
+| ----------- |
+| If no query parameters are provided, `GET /wrp` SHALL return the full list of registered WRPs (subject to pagination profile). |
+| The endpoint SHALL support cursor-based pagination. |
+| The endpoint SHALL support combined filters in a single query. |
+
+**Response**
+A successful response (`200`) SHALL be JWS-signed response body.
+
+| HTTP Code | Media Type | Description | 
+| --------- | ---------- | ----------- |
+| `200` | `application/jwt` | JWS compact string. Decoded payload SHALL contain an array of `WalletRelyingParty` objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by WRPAC history information in the statement/profile used by the Member State. (strict Annex VI form: array; profile envelope also allowed if documented). | 
+
+!!! note
+
+    The published API view excludes only `postalAddress` ([CIR 2025/848-Amendment], Annex I point 4). All other fields, including intended-use credential claims, are published as registered.
+
+
+<!--
+!!! note
+
+    This implementation profile uses *JWS Compact Serialization* for API responses (e.g., `application/jwt`). In JWS Compact Serialization, there is *no unprotected header*; therefore, the JOSE Header is the *JWS Protected Header* and is integrity-protected by the signature.
+
+    The following JOSE Protected Header requirements apply to Registry statements:
+
+    | Header parameter | Presence | Description | Reference |
+    | --- | --- | --- | --- |
+    | `alg` | REQUIRED | Signature/seal algorithm identifier. The value `none` SHALL NOT be used for Registry statements. | [RFC 7515] §4.1.1; profile rule |
+    | `x5c` | RECOMMENDED (REQUIRED if no trust-list/key-resolution profile is defined) | X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array. | [RFC 7515] §4.1.6 |
+    | `kid` | RECOMMENDED | Key identifier to support key rollover and efficient verifier key selection. | [RFC 7515] §4.1.4 |
+    | `x5t#S256` | RECOMMENDED | SHA-256 thumbprint of the signing certificate (useful for pinning / key matching). | [RFC 7515] §4.1.8 |
+    | `x5u` | OPTIONAL | URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation. | [RFC 7515] §4.1.5 |
+    | `typ` | RECOMMENDED | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | [RFC 7515] §4.1.9 |
+    | `crit` | OPTIONAL | If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. `crit` MUST appear only in the protected header. | [RFC 7515] §4.1.11 |
+
+    !!! note
+
+        The JOSE header parameter `x5c` above is part of the JWS signature envelope. It is distinct from any `x5c` attribute defined in the registry payload/data schema (e.g., Annex VI data schema fields).
+-->
+
+---
+
+###### `GET /wrp/check-intended-use` — intended use check (REQUIRED)
+
+A dedicated intended-use check endpoint for making narrowed-down intended use related queries from the Register.
+
+**Request**
+
+This profile uses the following mapping (strictly aligned names for intended-use filters):
+
+| Parameter | Type | Presence | Description |
+| --------- | ---- | -------- | ----------- |
+| `rpidentifier` | `string` | REQUIRED | Identifier of the WRP whose intended-use registration is being checked. |
+| `intendeduseidentifier` | `string` | OPTIONAL | Intended-use identifier registered by the registrar. |
+| `claimpath` | `string` | OPTIONAL | Requested claim path to check (serialised representation of path array; profile-defined encoding). |
+| `credentialformat` | `string` | OPTIONAL | Credential format to check. |
+| `credentialmeta` | `string` | OPTIONAL | Credential metadata filter (profile-defined serialisation). |
+| `policyurl` | `string` | OPTIONAL | Used when checking if the privacy policy URL is registered for the identified WRP. |
+
+**Response**
+
+| HTTP Code | Media Type | Description | 
+| --------- | ---------- | ----------- |
+| `200`  | `application/jwt` | JWS compact string; decoded payload is boolean `true` or `false`. |
+| `400` | - | Bad request (invalid or incomplete request parameter). |
+| `404` | - | WRP with the given `rpidentifier` not found. |
+
+---
+
+###### `GET /wrp/{identifier}` — get by identifier (OPTIONAL)
+
+Get WRP by identifier.
+
+!!! note
+
+    This endpoint is useful, but it is **not explicitly defined** in the [CIR 2025/848-Amendment], Annex VI common API method list. If kept, mark it as a national/profile extension.
+
+**Request (query)**
+
+| Parameter | Type | Presence | Description |
+| --------- | ---- | -------- | ----------- |
+| `identifier` | `string` | REQUIRED | Identifier of the WRP to retrieve. |
+
+**Response** 
+
+| HTTP Code | Media Type | Description | 
+| --------- | ---------- | ----------- |
+| `200` | `application/jwt` | JWS compact string; decoded payload contains one `WalletRelyingParty` entry (or profile envelope). |
+| `404` | - | Not found. |
+
+##### Optional Profile Envelope (recommended for interoperability metadata)
+
+To preserve issuer/timestamp metadata and pagination in a stable schema, a Member State MAY define an envelope profile as follows (while still satisfying the endpoint semantics above):
+
+###### SignedWRPArrayEnvelope (profile)
+
+| Parameter | Type | Presence | Description |
+| --------- | ---- | -------- | ----------- |
+| `iss` | `string` | REQUIRED | Identifier of the Registry/Registrar issuing the statement. |
+| `iat` | `integer` | REQUIRED | Issued-at timestamp (Unix epoch seconds). |
+| `data` | `WRPEntry[]` | REQUIRED | Matching WRP entries (published view, address excluded), each bundled with its certificate history. |
+| `pagination` | `Pagination` | OPTIONAL | Cursor-based pagination metadata. |
+
+###### WRPEntry (per-WRP bundle)
+
+| Parameter | Type | Presence | Description |
+| --------- | ---- | -------- | ----------- |
+| `wrp` | `WalletRelyingParty` | REQUIRED | WRP registration information (published view, address excluded). |
+| `wrpacHistory` | `CertificateHistoryEntry[]` | OPTIONAL | WRP access certificate history for this WRP (including CT-related references where available). |
+| `wrprcHistory` | `CertificateHistoryEntry[]` | OPTIONAL | WRP registration certificate history for this WRP (if provided by national profile). |
+
+###### SignedWRPEnvelope (profile, for non-common helper endpoints)
+
+| Parameter | Type | Presence | Description |
+| --------- | ---- | -------- | ----------- |
+| `iss` | `string` | REQUIRED | Registry/Registrar identifier. |
+| `iat` | `integer` | REQUIRED | Issued-at timestamp. |
+| `data` | `WalletRelyingParty` | REQUIRED | Single WRP object (published view, address excluded). |
+| `wrpacHistory` | `CertificateHistoryEntry[]` | OPTIONAL | WRPAC history. |
+| `wrprcHistory` | `CertificateHistoryEntry[]` | OPTIONAL | WRPRC history (if supported). |
+
+###### SignedIntendedUseCheckEnvelope (profile)
+
+!!! note
+
+    Annex VI strictly allows a JWS-signed boolean response. This object envelope is a non-normative profile convenience.
+
+| Parameter | Type | Presence | Description |
+| --------- | ---- | -------- | ----------- |
+| `iss` | `string` | REQUIRED | Registry issuer. |
+| `iat` | `integer` | REQUIRED | Issued-at timestamp. |
+| `data` | `boolean` | REQUIRED | Result of intended-use check. |
+
+###### CertificateHistoryEntry (profile helper for certificate histories)
+
+| Parameter | Type | Presence | Description |
+| --------- | ---- | -------- | ----------- |
+| `certificate` | `string` | REQUIRED | Certificate (e.g., PEM/DER-encoded representation, profile-defined). |
+| `x5c` | `string[]`  | OPTIONAL | Certificate chain for the certificate entry. |
+| `status` | `string` | REQUIRED | Certificate status (e.g., `current`, `revoked`, `expired`, `historic`). |
+| `validFrom` | `string`  | OPTIONAL | Validity start timestamp/date (profile-defined format). |
+| `validTo` | `string`  | OPTIONAL | Validity end timestamp/date (profile-defined format). |
+| `ctLogEntries` | `object[]`  | OPTIONAL | CT log / transparency references ([RFC 9162]-aligned, profile-defined structure). |
