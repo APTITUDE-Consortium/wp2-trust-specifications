@@ -35,17 +35,31 @@ Version 0.1 (Draft)
 
 ## 1. Introduction
 
-*TBD*
+This specification, *Implementation Profiles for the Trust Framework*, defines the conceptual and architectural requirements for ensuring trust in the APTITUDE piloted environments. At this stage, the specification focuses on articulating the necessary trust architecture, defining the essential trust artifacts, and outlining the high-level evaluation processes. By setting these principles, this document serves as a shared reference to guide subsequent development, ensuring that all implementation efforts remain aligned with the project's objectives for security, privacy, and interoperability.
 
 ---
 
 ## 2. Scope
 
-*TBD*
+This specification defines the trust framework profiles for the APTITUDE Large Scale Pilot. Its scope is limited to establishing the essential mechanisms for trust in interactions between Wallet Units and Wallet-Relying Parties. The scope of this document is organized as follows:
+
+- [**Trust Architecture**](#4-trust-architecture): Description of the roles and logical interaction flows within the APTITUDE pilot ecosystem.
+
+- [**Trust Artifacts**](#5-trust-artifacts): Definition of the required trust objects and their conceptual roles in the ecosystem, including registers, Wallet-Relying Party Access and Registration Certificates, and the management of Trusted Lists (TLs), Lists of Trusted Entities (LoTE) and Embedded Disclosure Policies (EDPs).
+
+- [**Trust Evaluation Processes**](#6-trust-evaluation-process): Outlining the necessary stages for trust anchor validation, authentication and authorization processes.
+
+- [**Trust Management and Lifecycle**](#7-trust-management-and-lifecycle): Defines the mechanisms for managing the status of Trusted Entities, with a current focus on revocation procedures.
 
 ### Out of Scope
 
-*TBD*
+The current version of these specifications does not provide details on:
+
+- **Low-level Implementation**: These will be covered in subsequent versions of the specifications.
+
+- **Trust Management Process**: While this document defines revocation mechanisms, the broader Trust Management Process (covering full lifecycle management) is currently missing and will be addressed in future versions.
+
+- **Registration, Notification, and Publication Processes**: The administrative and regulatory processes governing the registration, notification, and publication of Trust Entities between Member States and the European Commission are excluded from this scope.
 
 ---
 
