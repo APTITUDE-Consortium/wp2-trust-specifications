@@ -27,9 +27,9 @@ The list below enumerates all the applicable standards and specifications that h
 - **RFC 7519**
 - **RFC 8392**
 
-#### Requirements 
+#### Requirements
 
-##### Register Requirements 
+##### Register Requirements
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
@@ -49,7 +49,7 @@ The list below enumerates all the applicable standards and specifications that h
 
     The set of WRP information listed in Annex I of [CIR 2025/848] and mentioned in REGISTER-PUB-05 and REGISTER-API-03 will be described in the [Register Data Schema](#register-data-schema) section.
 
-##### Registrar Requirements 
+##### Registrar Requirements
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
@@ -68,7 +68,7 @@ The list below enumerates all the applicable standards and specifications that h
 | REGISTRAR-GOV-06 | Providers of WRPAC and WRPRC SHALL revoke affected certificates without undue delay after notification (where applicable). | [CIR 2025/848], Article 9(6) |
 | REGISTRAR-GOV-07 |  Registrars SHALL keep records (Annex I + issuance data + changes) for 10 years. | [CIR 2025/848], Article 10 |
 
-##### Provider of WRPAC and WRPRC and Register Interactions Requirements 
+##### Provider of WRPAC and WRPRC and Register Interactions Requirements
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
@@ -80,7 +80,6 @@ The list below enumerates all the applicable standards and specifications that h
 | PROVIDER-WRPRC-03 | Providers of WRPRC SHALL monitor Register changes, reissue/revoke when changes require. | [CIR 2025/848], Annex V §3(d) |
 | PROVIDER-WRPRC-04 | Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT). | [CIR 2025/848], Annex V §4; [ETSI TS 119 475] §4.4 |
 
-
 #### Register Data Schema
 
 This section defines the data schema for each WRP registered in the national Register of WRPs. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].
@@ -91,30 +90,30 @@ This section defines the data schema for each WRP registered in the national Reg
 
     The draft Annex VI text says the published API payload excludes `WalletRelyingParty.physicalAddress`, while Table 1 uses the attribute name `postalAddress`. This document uses **`postalAddress`** as the schema field name and applies the publication rule to that field (i.e., do not publish it in API statements).
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
-| `legalPerson` | `LegalPerson` | REQUIRED if legal person | Specific attributes of a legal person. It SHALL be present if the legal entity is a legal person. | 
+| `legalPerson` | `LegalPerson` | REQUIRED if legal person | Specific attributes of a legal person. It SHALL be present if the legal entity is a legal person. |
 | `naturalPerson` | `NaturalPerson`| REQUIRED if natural person| Specific attributes of a natural person. It SHALL be present if the legal entity is a natural person.|
-| `identifier` | `Identifier[]` | REQUIRED | One or more identifiers from official records. | 
+| `identifier` | `Identifier[]` | REQUIRED | One or more identifiers from official records. |
 | `postalAddress` | `string[]` | OPTIONAL | Postal address(es) of the legal entity (**registration view only; excluded from published API statements**). Note: [ETSI TS 119 475] B.2.2 defines this as `[1..1] string`; Draft Annex VI Table 1 uses an array. This document follows Draft Annex VI. |
 | `country` |  `string` | REQUIRED | ISO 3166-1 alpha-2 country code, or `"EU"` for providers operating in the Union. |
-| `email` | `string[]` | OPTIONAL | Contact email address(es) (RFC 5322 format). | 
-| `phone` | `string[]` | OPTIONAL | Contact phone number(s), international form with `+` prefix. | 
+| `email` | `string[]` | OPTIONAL | Contact email address(es) (RFC 5322 format). |
+| `phone` | `string[]` | OPTIONAL | Contact phone number(s), international form with `+` prefix. |
 | `infoURI` | `string[]` | OPTIONAL | Web page URI(s) for information about the entity. |
 | `providerType` | `string` | REQUIRED | Provider subtype. For WRP records, typically `WalletRelyingParty`. |
-| `policy` | `Policy[]` | REQUIRED | Policy/terms/privacy/registration policy URL(s) with policy type URI. | 
-| `x5c` |  `string[]` | OPTIONAL | X.509 certificate chain(s) for provider services (JWS `x5c`-style chains; supports rollover). | 
+| `policy` | `Policy[]` | REQUIRED | Policy/terms/privacy/registration policy URL(s) with policy type URI. |
+| `x5c` |  `string[]` | OPTIONAL | X.509 certificate chain(s) for provider services (JWS `x5c`-style chains; supports rollover). |
 | `tradeName` | `string` | OPTIONAL | User-facing trade/service name recognisable to users. |
 | `supportURI` | `string[]` | REQUIRED | Support/helpdesk URI(s) for the service. |
 | `srvDescription` |  `MultiLangString[][]` | REQUIRED | Array of service descriptions, each being an array of localised strings (one inner array per service). |
-| `intendedUse` | `IntendedUse[]` | REQUIRED if the entity is not an intermediary | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. | 
-| `isPSB` | `boolean` | REQUIRED | Whether the WRP is a public sector body (explicitly present; `false` if not PSB). | 
+| `intendedUse` | `IntendedUse[]` | REQUIRED if the entity is not an intermediary | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. |
+| `isPSB` | `boolean` | REQUIRED | Whether the WRP is a public sector body (explicitly present; `false` if not PSB). |
 | `entitlement` |  `string[]` | REQUIRED | Entitlement URI(s) (see note below). |
-| `providesAttestations` | `Credential[]` | REQUIRED if PID/Attestation Provider| Attestation types the WRP intends to issue to wallet units. It SHALL be present if any entitlement is `QEAA_Provider`, `Non_Q_EAA_Provider`, `PUB_EAA_Provider`, or `PID_Provider`. | 
-| `supervisoryAuthority` | `LegalEntity` | REQUIRED | Competent supervisory authority (Art. 46a eIDAS) including contact information. | 
-| `registryURI` | `string` | REQUIRED | URI of the API of the national register of WRPs. | 
-| `usesIntermediary` | `WalletRelyingParty[]` | OPTIONAL | If present, indicates designated intermediary(ies). Only the subset `{identifier, tradeName, registryURI}` is needed for each intermediary reference. | 
-| `isIntermediary` | `boolean` | REQUIRED | Whether the registered entity is a designated intermediary. SHALL be `false` if `usesIntermediary` is present. | 
+| `providesAttestations` | `Credential[]` | REQUIRED if PID/Attestation Provider| Attestation types the WRP intends to issue to wallet units. It SHALL be present if any entitlement is `QEAA_Provider`, `Non_Q_EAA_Provider`, `PUB_EAA_Provider`, or `PID_Provider`. |
+| `supervisoryAuthority` | `LegalEntity` | REQUIRED | Competent supervisory authority (Art. 46a eIDAS) including contact information. |
+| `registryURI` | `string` | REQUIRED | URI of the API of the national register of WRPs. |
+| `usesIntermediary` | `WalletRelyingParty[]` | OPTIONAL | If present, indicates designated intermediary(ies). Only the subset `{identifier, tradeName, registryURI}` is needed for each intermediary reference. |
+| `isIntermediary` | `boolean` | REQUIRED | Whether the registered entity is a designated intermediary. SHALL be `false` if `usesIntermediary` is present. |
 
 !!! note
 
@@ -147,11 +146,10 @@ This section defines the data schema for each WRP registered in the national Reg
 
 ##### Identifier
 
-
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `identifier` | `string` | REQUIRED | Identifier value of the LegalEntity. |
-| `type`       | `string` | REQUIRED | Identifier scheme/type URI (see normative URIs below). | 
+| `type`       | `string` | REQUIRED | Identifier scheme/type URI (see normative URIs below). |
 
 Normative identifier type URIs defined in [ETSI TS 119 475]:
 
@@ -170,27 +168,27 @@ Normative identifier type URIs defined in [ETSI TS 119 475]:
 
 ##### MultiLangString
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
-| `lang`    | `string` | REQUIRED | Language tag (e.g., `en`, `fr`). | 
-| `content` | `string` | REQUIRED | Language-specific content. | 
+| `lang`    | `string` | REQUIRED | Language tag (e.g., `en`, `fr`). |
+| `content` | `string` | REQUIRED | Language-specific content. |
 
 ##### IntendedUse
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
-| `intendedUseIdentifier` | `string` |  REQUIRED | Registry-level unique identifier for the intended use. | 
+| `intendedUseIdentifier` | `string` |  REQUIRED | Registry-level unique identifier for the intended use. |
 | `purpose` | `MultiLangString[]` |  REQUIRED | Description of intended use of the data to request from wallet units. |
 | `privacyPolicy` | `Policy[]`|  REQUIRED | Privacy policy URL(s) for the intended use. |
-| `credential`| `Credential[]` |  REQUIRED | Machine-readable list of requested data (attestations/attributes). | 
-| `createdAt` | `string` | REQUIRED | Validity start date of the intended use in accordance with ISO86011  YYYY-MM-DD format. | 
-| `revokedAt` | `string` | OPTIONAL | End date for the validity of the intended use in accordance with ISO86011  YYYY-MM-DD format. | 
+| `credential`| `Credential[]` |  REQUIRED | Machine-readable list of requested data (attestations/attributes). |
+| `createdAt` | `string` | REQUIRED | Validity start date of the intended use in accordance with ISO86011  YYYY-MM-DD format. |
+| `revokedAt` | `string` | OPTIONAL | End date for the validity of the intended use in accordance with ISO86011  YYYY-MM-DD format. |
 
 ##### Policy
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
-| `type` | `string` | REQUIRED | Policy type URI (RFC 3986). See defined policy type URIs below. | 
+| `type` | `string` | REQUIRED | Policy type URI (RFC 3986). See defined policy type URIs below. |
 | `policyURI` | `string` | REQUIRED | URL where the policy is published. |
 
 Defined policy type URIs:
@@ -207,15 +205,15 @@ Defined policy type URIs:
 
 ##### Credential
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
-| `format`  |  `string` | REQUIRED | Credential format identifier (e.g., `dc+sd-jwt`, `mso_mdoc`). | 
-| `meta`    |  `object` | REQUIRED | Additional grouping/type metadata defined per credential format (e.g., `{"vct": "..."}` for `dc+sd-jwt`, `{"doctype_value": "..."}` for `mso_mdoc`). See OpenID4VP §6.1. | 
+| `format`  |  `string` | REQUIRED | Credential format identifier (e.g., `dc+sd-jwt`, `mso_mdoc`). |
+| `meta`    |  `object` | REQUIRED | Additional grouping/type metadata defined per credential format (e.g., `{"vct": "..."}` for `dc+sd-jwt`, `{"doctype_value": "..."}` for `mso_mdoc`). See OpenID4VP §6.1. |
 | `claim`   | `Claim[]` |  OPTIONAL | Requested claim paths and allowed values (if constrained). |
 
 ##### Claim
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `path` | `array` | REQUIRED | Non-empty path array of strings / `null` / non-negative integers (OpenID4VP-style path pointer segments). |
 | `values` | `array` | OPTIONAL | Optional allowed values; elements may be `string`, `integer`, or `boolean`. |
@@ -251,7 +249,7 @@ Defined policy type URIs:
 
 ##### Law
 
-| Parameter | Type | Presence | Description | 
+| Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `lang` | `string` | REQUIRED | Two-letter language code (ISO 639-1 style). |
 | `legalBasis` | `string` | REQUIRED | Legal basis text establishing the legal person (or requiring/recommending access to a claim). |
@@ -623,7 +621,6 @@ A small e-commerce business that relies on TrustBridge (see example above) to co
 }
 ````
 
-
 #### Common Register API
 
 This section documents a [TS05 V1.3] aligned common Register API profile that satisfies [CIR 2025/848] Annex II and [CIR 2025/848-Amendment] constraints.
@@ -732,8 +729,7 @@ The common API SHALL support parameterised queries on `GET /wrp`. The following 
 | `credentialformat` | `string` | OPTIONAL | Filter by intended-use credential format. |
 | `cursor` | `string`  | OPTIONAL | Cursor for pagination (profile-defined token format). |
 | `limit` | `integer`  | OPTIONAL | The number of items to return per page (profile-defined). |
-| `providesattestation` | OPTIONAL | Filter by attestation types provided. |
-
+| `providesattestation` | `Credential` | OPTIONAL | Filter by attestation types provided. |
 
 !!! warning
 
@@ -750,14 +746,13 @@ The common API SHALL support parameterised queries on `GET /wrp`. The following 
 **Response**
 A successful response (`200`) SHALL be JWS-signed response body.
 
-| HTTP Code | Media Type | Description | 
+| HTTP Code | Media Type | Description |
 | --------- | ---------- | ----------- |
-| `200` | `application/jwt` | JWS compact string. Decoded payload SHALL contain an array of `WalletRelyingParty` objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by WRPAC history information in the statement/profile used by the Member State. (strict Annex VI form: array; profile envelope also allowed if documented). | 
+| `200` | `application/jwt` | JWS compact string. Decoded payload SHALL contain an array of `WalletRelyingParty` objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by WRPAC history information in the statement/profile used by the Member State. (strict Annex VI form: array; profile envelope also allowed if documented). |
 
 !!! note
 
     The published API view excludes only `postalAddress` ([CIR 2025/848-Amendment], Annex I point 4). All other fields, including intended-use credential claims, are published as registered.
-
 
 <!--
 !!! note
@@ -802,7 +797,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 
 **Response**
 
-| HTTP Code | Media Type | Description | 
+| HTTP Code | Media Type | Description |
 | --------- | ---------- | ----------- |
 | `200`  | `application/jwt` | JWS compact string; decoded payload is boolean `true` or `false`. |
 | `400` | - | Bad request (invalid or incomplete request parameter). |
@@ -824,9 +819,9 @@ Get WRP by identifier.
 | --------- | ---- | -------- | ----------- |
 | `identifier` | `string` | REQUIRED | Identifier of the WRP to retrieve. |
 
-**Response** 
+**Response**
 
-| HTTP Code | Media Type | Description | 
+| HTTP Code | Media Type | Description |
 | --------- | ---------- | ----------- |
 | `200` | `application/jwt` | JWS compact string; decoded payload contains one `WalletRelyingParty` entry (or profile envelope). |
 | `404` | - | Not found. |
