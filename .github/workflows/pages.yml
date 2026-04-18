@@ -55,6 +55,11 @@ jobs:
                -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/overrides/partials/footer.html \
                -o docs/overrides/partials/footer/footer.html
 
+          mkdir -p docs/overrides/ezglossary/
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/overrides/ezglossary/link.html \
+               -o docs/overrides/ezglossary/link.html
+
           mkdir -p docs/media/
           curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
                -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/extra.css \
