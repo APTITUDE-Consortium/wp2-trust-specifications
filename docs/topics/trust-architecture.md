@@ -1,4 +1,4 @@
-This section describes the trust-related processes (i.e., Wallet Relying Party registration, Provider notification and publication in Trusted List, and trust evaluation) by detailing the entities involved, high level flows and their relationships. The trust evaluation process is further detailed in the [Trust Evaluation Process](#6-trust-evaluation-process) Section.
+This section describes the trust-related processes (i.e., Wallet Relying Party registration, Provider notification and publication in Trusted List, and trust evaluation) by detailing the entities involved, high level flows and their relationships. 
 
 The main entities involved in the EUDIW ecosystem are:
 
@@ -45,27 +45,27 @@ graph TD
     WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP 
 ```
 
-However, these entities alone are not enough to establish trust between each others. Indeed, to trust the interactions between these entities, the following processes are needed:
+To trust the interactions between these entities, the following trust evaluation processes are needed:
 
-- *Authentication Process*: a way to authenticate the entity they interact with. To achieve this:
+- *Authentication Process*: a way to authenticate the identity of an entity. To achieve this:
     - the Wallet Unit needs a Wallet Instance Attestation (WIA), an object that attests its integrity and is signed by the WP.
-    - the WRPs needs an WRP Access Certificate (WRPAC).
+    - the WRPs needs a WRP Access Certificate (WRPAC) attesting its identity.
 - *Authorization Process*: a way to check the authorization of an entity (i.e., *(i)* the WRP entitlements, *(ii)* whether an Attestation Providers is eligible to issue an Attestation, and *(iii)* whether a Relying Party has the right to access the data he is requesting). To achieve this:
     - the intended use of a WRP is written in a signed Register, and optionally in a WRP Registration Certificate (WRPRC).
     - the Attestation Providers may write their own embedded disclosure policies.
 - *Trust Anchor Validation Process*: a way to check the integrity and authenticity of trusted lists which serve as the authentic source for Trust Anchors used to verify signed objects such as PIDs, Attestations, Access and Registration Certificates, and Register. To achieve this:
     - the public key of the corresponding private key used to sign is published on EU Member State Trusted List (EUMS TLs) or on List of Trusted Entities (LoTE) managed by the European Commission.
 
-While these trust evaluation processes will be further detailed in the following sections, the processes to obtain and manage the artifacts needed for the trust evaluation are:
+While these trust evaluation processes and its artifacts (i.e., Register and its common APIs, WRPAC, WRPRC, LoTE, EUMS TLs and embedded disclosure policies) will be further detailed in the [Trust Evaluation Process](#6-trust-evaluation-process) and [Trust Artifacts](#5-trust-artifacts) sections respectively, the processes to obtain and manage these artifacts are brieftly detailed below:
 
 - *WRP Registration Process*: to rely on Wallet Units for the purpose of providing a service, WRPs register at a Registrar in the Member State where they are established. Based on the type of service registered, registration includes: the attributes that the RP intends to request from Wallet Units or the attestation type(s) the Attestation Provider wants to issue to Wallet Units. The following steps are in common to all WRPs:
-  1. *Identity and Catalogue Verification:*  Registrar verifies the identity of WRP according to requirements in ETSI TS 119 461. The specific identity proofing level may vary based on entity type and applicable regulatory framework (e.g. QTSP requirements or MS national legislation) and it is out of scope of the piloting. In this process, Registrar may use the Catalogue of Attributes and Catalogue of Schemes for the Attestation of Attributes managed by the Commission for evaluating the registration request.
+  1. *Identity and Catalogue Verification:*  Registrar verifies the identity of WRP according to requirements in [ETSI TS 119 461]. The specific identity proofing level may vary based on entity type and applicable regulatory framework (e.g. QTSP requirements or MS national legislation) and it is out of scope of the piloting. In this process, Registrar may use the Catalogue of Attributes and Catalogue of Schemes for the Attestation of Attributes managed by the Commission for evaluating the registration request.
   2. *Registration Record Creation*: Registrar creates registration record in national Register and made available online both in human-readable and machine-readable format. Record contains at least:
      - WRP identification information.
      - WRP type (RP, PID Provider, QEAA Provider, PuB-EAA Provider, EAA Provider).
      - Entity-specific capabilities
   3. *WRPAC Issuance*: WRP obtains a WRPAC provided by a Provider of WRPAC.
-  4. [optionally] *WRPRC Issuance*: If the Member State mandates WRPRC issuance according to CIR 2025/848 Article 8, the Provider of WRPRCs must issue a signed WRPRC containing registered capabilities. If it is not mandated, Wallet Instance may retrieve information from Register.
+  4. [optionally] *WRPRC Issuance*: If the Member State mandates WRPRC issuance according to [CIR 2025/848] Article 8, the Provider of WRPRCs must issue a signed WRPRC containing registered capabilities. If it is not mandated, Wallet Instance may retrieve information from Register.
 
     ```mermaid
     graph TD
@@ -102,9 +102,9 @@ While these trust evaluation processes will be further detailed in the following
     MSReg ---|"Checks Catalogues"| Cat
     ```
 
-- *Notification Process*: Based on the entity, the MS sends a set of the data to the EC Notification System.
-    - For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC, MS Registrars, and Pub-EAA Providers, MS sends a set of the data to the EC. As result, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.
-    - For QEAA Providers and QTSP, MS sends a set of the data (containing the URL of the EUMS TLs) to the EC. As result, the URL of the EUMS TLs is added in the EU List of Trusted List (LOTL).
+- *Notification Process*: MS sends data related to the registered entity to the EC. As result:
+    - For WPs, PID Providers, Providers of WRPAC, Providers of WRPRC, MS Registrars, and Pub-EAA Providers, the notified entities are included in a List of Trusted Entities (LoTE) by a EC LoTE Provider.
+    - For QEAA Providers and QTSP, the URL of the EUMS TLs is added in the EU List of Trusted List (LOTL).
 
     ```mermaid
     graph LR
