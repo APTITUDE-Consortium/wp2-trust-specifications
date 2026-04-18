@@ -55,6 +55,15 @@ jobs:
                -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/overrides/partials/footer.html \
                -o docs/overrides/partials/footer/footer.html
 
+          mkdir -p docs/media/
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/extra.css \
+               -o docs/media/extra.css
+
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/mermaid-init.js \
+               -o docs/media/mermaid-init.js
+
       - name: Deploy Pre-Release (from release-v* branch)
         if: startsWith(github.ref, 'refs/heads/release-v')
         run: |
