@@ -1062,11 +1062,11 @@ EC ---|"Notification Process &lt;br/&gt;(Trust Anchor or &lt;br/&gt;URL of the E
 <h4 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h4>
 <p>The list below enumerates all the applicable standards and specifications that have been used to populate the table below:</p>
 <ul>
-<li><strong>CIR 2025/848</strong> on WRP registration and Registers </li>
+<li><strong>CIR 2025/848</strong> on WRP registration and Registers.</li>
 <li><strong>CIR 2025/848-Amendment</strong>. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for Register of WRPs.</li>
 <li><strong>ETSI TS 119 475 v1.2.1</strong>  on WRP attributes, entitlement URIs, RP authorisation decision support.</li>
-<li><strong>TS05 V1.3</strong> on common formats and API for WRP registration information</li>
-<li><strong>TS06 V1.0.1</strong> on common set of WRP information to be registered</li>
+<li><strong>TS05 V1.3</strong> on common formats and API for WRP registration information.</li>
+<li><strong>TS06 V1.0.1</strong> on common set of WRP information to be registered.</li>
 <li><strong>RFC 7515</strong></li>
 <li><strong>RFC 7519</strong></li>
 <li><strong>RFC 8392</strong></li>
@@ -1377,7 +1377,7 @@ EC ---|"Notification Process &lt;br/&gt;(Trust Anchor or &lt;br/&gt;URL of the E
 <tr>
 <td><code>intendedUse</code></td>
 <td><code>IntendedUse[]</code></td>
-<td>OPTIONAL</td>
+<td>REQUIRED if the entity is not an intermediary</td>
 <td>Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary.</td>
 </tr>
 <tr>
@@ -1915,787 +1915,7 @@ EC ---|"Notification Process &lt;br/&gt;(Trust Anchor or &lt;br/&gt;URL of the E
 </tr>
 </tbody>
 </table>
-<h4 id="registry-statements">Registry statements<a class="headerlink" href="#registry-statements" title="Permanent link">&para;</a></h4>
-<p>Registry statements exposed through the common API SHALL be provided as electronically signed or sealed JSON files, using JWS in accordance with Annex II Section 1 and [RFC 7515].</p>
-<h4 id="jws-requirements">JWS requirements<a class="headerlink" href="#jws-requirements" title="Permanent link">&para;</a></h4>
-<h5 id="serialization-and-header-placement">Serialization and header placement<a class="headerlink" href="#serialization-and-header-placement" title="Permanent link">&para;</a></h5>
-<p>This profile uses <strong>JWS Compact Serialization</strong> for API responses (e.g., <code>application/jwt</code>), unless a Member State profile explicitly defines another serialization.
-In JWS Compact Serialization, there is <strong>no unprotected header</strong>; therefore, the JOSE Header is the <strong>JWS Protected Header</strong> and is integrity-protected by the signature.</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>statement</code></td>
-<td style="text-align: right;"><code>string</code> (JWS compact)</td>
-<td>JWS compact serialisation containing the response payload.</td>
-<td>CIR Annex II §1; [RFC 7515]</td>
-</tr>
-<tr>
-<td><code>payload</code></td>
-<td style="text-align: right;"><code>JSON value</code></td>
-<td>Decoded payload. Depending on endpoint, this may be an object, an array, or a boolean.</td>
-<td>[CIR 2025/848-Amendment] Annex VI §5; [RFC 7515]</td>
-</tr>
-<tr>
-<td><code>integrityValidationInfo</code></td>
-<td style="text-align: right;">implementation-specific</td>
-<td>Integrity-validation information as required by the applicable signature/seal profile.</td>
-<td>Draft update; [RFC 9162] / [RFC 6962]</td>
-</tr>
-</tbody>
-</table>
-<h5 id="jose-protected-header-parameters-profile">JOSE Protected Header parameters (profile)<a class="headerlink" href="#jose-protected-header-parameters-profile" title="Permanent link">&para;</a></h5>
-<p>The following JOSE Protected Header requirements apply to registry statements:</p>
-<table>
-<thead>
-<tr>
-<th>Header parameter</th>
-<th>Requirement</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>alg</code></td>
-<td><strong>REQUIRED</strong></td>
-<td>Signature/seal algorithm identifier. SHALL be supported by producer and verifier. The value <code>none</code> SHALL NOT be used for registry statements.</td>
-<td>[RFC 7515] §4.1.1; profile rule</td>
-</tr>
-<tr>
-<td><code>x5c</code></td>
-<td><strong>RECOMMENDED</strong> (SHALL if no trust-list/key-resolution profile is defined)</td>
-<td>X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array.</td>
-<td>[RFC 7515] §4.1.6</td>
-</tr>
-<tr>
-<td><code>kid</code></td>
-<td><strong>RECOMMENDED</strong></td>
-<td>Key identifier to support key rollover and efficient verifier key selection.</td>
-<td>[RFC 7515] §4.1.4</td>
-</tr>
-<tr>
-<td><code>x5t#S256</code></td>
-<td><strong>RECOMMENDED</strong></td>
-<td>SHA-256 thumbprint of the signing certificate (useful for pinning / key matching).</td>
-<td>[RFC 7515] §4.1.8</td>
-</tr>
-<tr>
-<td><code>x5u</code></td>
-<td>OPTIONAL</td>
-<td>URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation.</td>
-<td>[RFC 7515] §4.1.5</td>
-</tr>
-<tr>
-<td><code>typ</code></td>
-<td>OPTIONAL (RECOMMENDED)</td>
-<td>Media type hint for the complete JWS object (e.g., <code>JWT</code> / <code>application/jwt</code> or a profile-specific media type).</td>
-<td>[RFC 7515] §4.1.9</td>
-</tr>
-<tr>
-<td><code>crit</code></td>
-<td>OPTIONAL</td>
-<td>If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. <code>crit</code> MUST appear only in the protected header.</td>
-<td>[RFC 7515] §4.1.11</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The JOSE header parameter <code>x5c</code> above is part of the JWS signature envelope. It is distinct from any <code>x5c</code> attribute defined in the registry payload/data schema (e.g., Annex VI data schema fields).</p>
-</div>
-<h4 id="normative-endpoint-payloads">Normative endpoint payloads<a class="headerlink" href="#normative-endpoint-payloads" title="Permanent link">&para;</a></h4>
-<h5 id="get-wrp-payload"><code>GET /wrp</code> payload<a class="headerlink" href="#get-wrp-payload" title="Permanent link">&para;</a></h5>
-<p>The decoded JWS payload for <code>GET /wrp</code> SHALL be:</p>
-<ul>
-<li>an array of <code>WalletRelyingParty</code> objects (matching the query),</li>
-<li>with address field excluded from published entries,</li>
-<li>and, where relevant, accompanied by WRPAC history information in the statement/profile used by the Member State.</li>
-</ul>
-<h5 id="get-wrpcheck-intended-use-payload"><code>GET /wrp/check-intended-use</code> payload<a class="headerlink" href="#get-wrpcheck-intended-use-payload" title="Permanent link">&para;</a></h5>
-<p>The decoded JWS payload for <code>GET /wrp/check-intended-use</code> SHALL be:</p>
-<ul>
-<li>a boolean <code>true</code> or <code>false</code>.</li>
-</ul>
-<h4 id="optional-profile-envelope-recommended-for-interoperability-metadata">Optional profile envelope (recommended for interoperability metadata)<a class="headerlink" href="#optional-profile-envelope-recommended-for-interoperability-metadata" title="Permanent link">&para;</a></h4>
-<p>To preserve issuer/timestamp metadata and pagination in a stable schema, a Member State MAY define an envelope profile as follows (while still satisfying the endpoint semantics above):</p>
-<h5 id="signedwrparrayenvelope-profile">SignedWRPArrayEnvelope (profile)<a class="headerlink" href="#signedwrparrayenvelope-profile" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>iss</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Identifier of the Registry/Registrar issuing the statement.</td>
-</tr>
-<tr>
-<td><code>iat</code></td>
-<td style="text-align: right;"><code>integer</code></td>
-<td>Issued-at timestamp (Unix epoch seconds).</td>
-</tr>
-<tr>
-<td><code>data</code></td>
-<td style="text-align: right;"><code>WRPEntry[]</code></td>
-<td>Matching WRP entries (published view, address excluded), each bundled with its certificate history.</td>
-</tr>
-<tr>
-<td><code>pagination</code></td>
-<td style="text-align: right;"><code>Pagination</code> (optional)</td>
-<td>Cursor-based pagination metadata.</td>
-</tr>
-</tbody>
-</table>
-<h6 id="wrpentry-per-wrp-bundle">WRPEntry (per-WRP bundle)<a class="headerlink" href="#wrpentry-per-wrp-bundle" title="Permanent link">&para;</a></h6>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>wrp</code></td>
-<td style="text-align: right;"><code>WalletRelyingParty</code></td>
-<td>WRP registration information (published view, address excluded).</td>
-</tr>
-<tr>
-<td><code>wrpacHistory</code></td>
-<td style="text-align: right;"><code>CertificateHistoryEntry[]</code> (optional)</td>
-<td>WRP access certificate history for this WRP (including CT-related references where available).</td>
-</tr>
-<tr>
-<td><code>wrprcHistory</code></td>
-<td style="text-align: right;"><code>CertificateHistoryEntry[]</code> (optional)</td>
-<td>WRP registration certificate history for this WRP (if provided by national profile).</td>
-</tr>
-</tbody>
-</table>
-<h5 id="signedwrpenvelope-profile-for-non-common-helper-endpoints">SignedWRPEnvelope (profile, for non-common helper endpoints)<a class="headerlink" href="#signedwrpenvelope-profile-for-non-common-helper-endpoints" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>iss</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Registry/Registrar identifier.</td>
-</tr>
-<tr>
-<td><code>iat</code></td>
-<td style="text-align: right;"><code>integer</code></td>
-<td>Issued-at timestamp.</td>
-</tr>
-<tr>
-<td><code>data</code></td>
-<td style="text-align: right;"><code>WalletRelyingParty</code></td>
-<td>Single WRP object (published view, address excluded).</td>
-</tr>
-<tr>
-<td><code>wrpacHistory</code></td>
-<td style="text-align: right;"><code>CertificateHistoryEntry[]</code> (optional)</td>
-<td>WRPAC history.</td>
-</tr>
-<tr>
-<td><code>wrprcHistory</code></td>
-<td style="text-align: right;"><code>CertificateHistoryEntry[]</code> (optional)</td>
-<td>WRPRC history (if supported).</td>
-</tr>
-</tbody>
-</table>
-<h5 id="signedintendedusecheckenvelope-profile">SignedIntendedUseCheckEnvelope (profile)<a class="headerlink" href="#signedintendedusecheckenvelope-profile" title="Permanent link">&para;</a></h5>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Annex VI strictly allows a JWS-signed boolean response. This object envelope is a non-normative profile convenience.</p>
-</div>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>iss</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Registry issuer.</td>
-</tr>
-<tr>
-<td><code>iat</code></td>
-<td style="text-align: right;"><code>integer</code></td>
-<td>Issued-at timestamp.</td>
-</tr>
-<tr>
-<td><code>data</code></td>
-<td style="text-align: right;"><code>boolean</code></td>
-<td>Result of intended-use check.</td>
-</tr>
-</tbody>
-</table>
-<h4 id="certificatehistoryentry-profile-helper-for-certificate-histories">CertificateHistoryEntry (profile helper for certificate histories)<a class="headerlink" href="#certificatehistoryentry-profile-helper-for-certificate-histories" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>certificate</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Certificate (e.g., PEM/DER-encoded representation, profile-defined).</td>
-</tr>
-<tr>
-<td><code>x5c</code></td>
-<td style="text-align: right;"><code>string[]</code> (optional)</td>
-<td>Certificate chain for the certificate entry.</td>
-</tr>
-<tr>
-<td><code>status</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>Certificate status (e.g., <code>current</code>, <code>revoked</code>, <code>expired</code>, <code>historic</code>).</td>
-</tr>
-<tr>
-<td><code>validFrom</code></td>
-<td style="text-align: right;"><code>string</code> (optional)</td>
-<td>Validity start timestamp/date (profile-defined format).</td>
-</tr>
-<tr>
-<td><code>validTo</code></td>
-<td style="text-align: right;"><code>string</code> (optional)</td>
-<td>Validity end timestamp/date (profile-defined format).</td>
-</tr>
-<tr>
-<td><code>ctLogEntries</code></td>
-<td style="text-align: right;"><code>object[]</code> (optional)</td>
-<td>CT log / transparency references ([RFC 9162]-aligned, profile-defined structure).</td>
-</tr>
-</tbody>
-</table>
-<h4 id="common-register-api-ts5-aligned-profile">Common Register API (TS5-aligned profile)<a class="headerlink" href="#common-register-api-ts5-aligned-profile" title="Permanent link">&para;</a></h4>
-<p>This section documents a TS5-aligned common Register API profile that satisfies Annex II constraints.</p>
-<blockquote>
-<p>The API is public (no prior authentication) and returns JWS-signed statements.</p>
-</blockquote>
-<h4 id="get-wrp-searchlist"><code>GET /wrp</code> — search/list<a class="headerlink" href="#get-wrp-searchlist" title="Permanent link">&para;</a></h4>
-<h5 id="request-query-parameters">Request (query parameters)<a class="headerlink" href="#request-query-parameters" title="Permanent link">&para;</a></h5>
-<p>The common API SHALL support parameterised queries on <code>GET /wrp</code>. The following names align with the [CIR 2025/848-Amendment] Annex VI query parameter naming.</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>R/O</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>identifier</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by official/business registration number / identifier.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(a), §4(a)</td>
-</tr>
-<tr>
-<td><code>legalname</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by official company name.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(b), §4(a)</td>
-</tr>
-<tr>
-<td><code>tradename</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by trade name.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(b), §4(a)</td>
-</tr>
-<tr>
-<td><code>policy</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by privacy policy URL (or policy URI as profiled).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(c), §4(a)</td>
-</tr>
-<tr>
-<td><code>entitlement</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by entitlement type (URI).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(d), §4(a)</td>
-</tr>
-<tr>
-<td><code>providesattestation</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by attestation types provided (e.g., attestation schema type in <code>providesAttestations</code>).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(e), §4(a)</td>
-</tr>
-<tr>
-<td><code>usesintermediary</code></td>
-<td style="text-align: right;"><code>string</code> or <code>boolean</code></td>
-<td>O</td>
-<td>Filter by reliance on intermediary (presence of <code>usesIntermediary</code>).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(h), §4(a)</td>
-</tr>
-<tr>
-<td><code>isintermediary</code></td>
-<td style="text-align: right;"><code>boolean</code></td>
-<td>O</td>
-<td>Filter by intermediary status.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(a)</td>
-</tr>
-<tr>
-<td><code>intendedUseIdentifier</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by registrar-provided intended-use identifier.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(g), §4(a)</td>
-</tr>
-<tr>
-<td><code>intendedUseClaimPath</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by intended-use requested claim path.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(a)</td>
-</tr>
-<tr>
-<td><code>intendedUseCredentialMeta</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by intended-use credential metadata (format-specific).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(a)</td>
-</tr>
-<tr>
-<td><code>intendedUseCredentialFormat</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Filter by intended-use credential format.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(f), §4(a)</td>
-</tr>
-<tr>
-<td><code>cursor</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td>O</td>
-<td>Cursor for pagination (profile-defined token format).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(c)</td>
-</tr>
-<tr>
-<td><code>limit</code></td>
-<td style="text-align: right;"><code>integer</code></td>
-<td>O</td>
-<td>Page size (profile-defined).</td>
-<td>Implementation profile</td>
-</tr>
-</tbody>
-</table>
-<h5 id="behaviour">Behaviour<a class="headerlink" href="#behaviour" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Requirement</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>If no query parameters are provided, <code>GET /wrp</code> SHALL return the full list of registered WRPs (subject to pagination profile).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(b)</td>
-</tr>
-<tr>
-<td>The endpoint SHALL support cursor-based pagination.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(c)</td>
-</tr>
-<tr>
-<td>The endpoint SHALL support combined filters in a single query.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(d)</td>
-</tr>
-<tr>
-<td>A successful response (<code>200</code>) SHALL be JWS-signed.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §5; CIR Annex II §1</td>
-</tr>
-</tbody>
-</table>
-<h5 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>HTTP Code</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>200</code></td>
-<td style="text-align: right;"><code>application/jwt</code></td>
-<td>JWS compact string. Decoded payload SHALL contain matching <code>WalletRelyingParty</code> entries (strict Annex VI form: array; profile envelope also allowed if documented).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §5; [RFC 7515]</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="get-wrpcheck-intended-use-intended-use-check-public-required"><code>GET /wrp/check-intended-use</code> — intended use check (public, required)<a class="headerlink" href="#get-wrpcheck-intended-use-intended-use-check-public-required" title="Permanent link">&para;</a></h4>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>In the Annex VI [CIR 2025/848-Amendment], this endpoint is part of the public API and is not optional.</p>
-</div>
-<h5 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h5>
-<p>The draft requires a dedicated intended-use check endpoint with <strong>four required and one optional parameter</strong>.<br />
-This profile uses the following mapping (strictly aligned names for intended-use filters):</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th style="text-align: center;">R/O</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>identifier</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td style="text-align: center;">R</td>
-<td>Identifier of the WRP whose intended-use registration is being checked.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §5 (specific WRP check)</td>
-</tr>
-<tr>
-<td><code>intendedUseIdentifier</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td style="text-align: center;">R</td>
-<td>Intended-use identifier registered by the registrar.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(g), §5</td>
-</tr>
-<tr>
-<td><code>intendedUseClaimPath</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td style="text-align: center;">R</td>
-<td>Requested claim path to check (serialised representation of path array; profile-defined encoding).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(c), §5</td>
-</tr>
-<tr>
-<td><code>intendedUseCredentialFormat</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td style="text-align: center;">R</td>
-<td>Credential format to check.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §2(f), §4(c), §5</td>
-</tr>
-<tr>
-<td><code>intendedUseCredentialMeta</code></td>
-<td style="text-align: right;"><code>string</code></td>
-<td style="text-align: center;">O</td>
-<td>Credential metadata filter (profile-defined serialisation).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §4(c), §5</td>
-</tr>
-</tbody>
-</table>
-<h5 id="response_1">Response<a class="headerlink" href="#response_1" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>HTTP Code</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>200</code></td>
-<td style="text-align: right;"><code>application/jwt</code></td>
-<td>JWS compact string; decoded payload is boolean <code>true</code> or <code>false</code> (strict Annex VI).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §5; [RFC 7515]</td>
-</tr>
-<tr>
-<td><code>400</code></td>
-<td style="text-align: right;">-</td>
-<td>Bad request (invalid or incomplete request parameter).</td>
-<td>Implementation</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="post-wrp-create-authorised-write-method"><code>POST /wrp</code> — create (authorised write method)<a class="headerlink" href="#post-wrp-create-authorised-write-method" title="Permanent link">&para;</a></h4>
-<p>This is a common API write method in the [CIR 2025/848-Amendment], Annex VI.</p>
-<h5 id="request_1">Request<a class="headerlink" href="#request_1" title="Permanent link">&para;</a></h5>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This method is only accessible for entities which are authorized by Member State</p>
-</div>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>R/O</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>request body</td>
-<td style="text-align: right;"><code>WalletRelyingParty</code></td>
-<td>R</td>
-<td>Full WRP object compliant with Annex VI Table 1 schema (registration view).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §9(b); Table 1</td>
-</tr>
-</tbody>
-</table>
-<h5 id="response_2">Response<a class="headerlink" href="#response_2" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>HTTP Code</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>201</code></td>
-<td style="text-align: right;">-</td>
-<td>Created.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
-</tr>
-<tr>
-<td><code>400</code></td>
-<td style="text-align: right;">-</td>
-<td>Bad request (invalid or incomplete payload).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>401</code></td>
-<td style="text-align: right;">-</td>
-<td>Unauthorized (missing or invalid authentication).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>403</code></td>
-<td style="text-align: right;">-</td>
-<td>Forbidden (caller not authorised by Member State).</td>
-<td>Implementation</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="put-wrp-update-authorized-write-method"><code>PUT /wrp</code> — update (authorized write method)<a class="headerlink" href="#put-wrp-update-authorized-write-method" title="Permanent link">&para;</a></h4>
-<h5 id="request_2">Request<a class="headerlink" href="#request_2" title="Permanent link">&para;</a></h5>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This method is only accessible for entities which are authorized by Member State</p>
-</div>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>R/O</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>request body</td>
-<td style="text-align: right;"><code>WalletRelyingParty</code></td>
-<td>R</td>
-<td>Full WRP object compliant with Annex VI Table 1 schema (registration view).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §9(b); Table 1</td>
-</tr>
-</tbody>
-</table>
-<h5 id="response_3">Response<a class="headerlink" href="#response_3" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>HTTP Code</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>200</code></td>
-<td style="text-align: right;">-</td>
-<td>Updated.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
-</tr>
-<tr>
-<td><code>400</code></td>
-<td style="text-align: right;">-</td>
-<td>Bad request (invalid or incomplete payload).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>401</code></td>
-<td style="text-align: right;">-</td>
-<td>Unauthorized (missing or invalid authentication).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>403</code></td>
-<td style="text-align: right;">-</td>
-<td>Forbidden (caller not authorised by Member State).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>404</code></td>
-<td style="text-align: right;">-</td>
-<td>Not found.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="delete-wrp-delete"><code>DELETE /wrp</code> — delete<a class="headerlink" href="#delete-wrp-delete" title="Permanent link">&para;</a></h4>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This method is only accessible for entities which are authorized by Member State</p>
-</div>
-<h5 id="request_3">Request<a class="headerlink" href="#request_3" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>R/O</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>request body</td>
-<td style="text-align: right;"><code>object</code></td>
-<td>R</td>
-<td>Identifier payload for the WRP to delete (profile-defined body shape, based on <code>WalletRelyingParty.identifier</code>).</td>
-<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
-</tr>
-</tbody>
-</table>
-<h5 id="response_4">Response<a class="headerlink" href="#response_4" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>HTTP Code</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-<th>Reference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>204</code></td>
-<td style="text-align: right;">-</td>
-<td>Deleted.</td>
-<td>[CIR 2025/848-Amendment], Annex VI §9(b)</td>
-</tr>
-<tr>
-<td><code>400</code></td>
-<td style="text-align: right;">-</td>
-<td>Bad request (invalid identifier payload).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>401</code></td>
-<td style="text-align: right;">-</td>
-<td>Unauthorized (missing or invalid authentication).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>403</code></td>
-<td style="text-align: right;">-</td>
-<td>Forbidden (caller not authorised by Member State).</td>
-<td>Implementation</td>
-</tr>
-<tr>
-<td><code>404</code></td>
-<td style="text-align: right;">-</td>
-<td>Not found.</td>
-<td>Implementation</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="get-wrpidentifier-get-by-identifier-nationalprofile-extension"><code>GET /wrp/{identifier}</code> — get by identifier (national/profile extension)<a class="headerlink" href="#get-wrpidentifier-get-by-identifier-nationalprofile-extension" title="Permanent link">&para;</a></h4>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This endpoint is useful, but it is <strong>not explicitly defined</strong> in the [CIR 2025/848-Amendment], Annex VI common API method list. If kept, mark it as a national/profile extension.</p>
-</div>
-<h5 id="request_4">Request<a class="headerlink" href="#request_4" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th style="text-align: right;">Type</th>
-<th>R/O</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>identifier</code> (path)</td>
-<td style="text-align: right;"><code>string</code></td>
-<td>R</td>
-<td>Identifier of the WRP to retrieve.</td>
-</tr>
-</tbody>
-</table>
-<h5 id="response_5">Response<a class="headerlink" href="#response_5" title="Permanent link">&para;</a></h5>
-<table>
-<thead>
-<tr>
-<th>HTTP Code</th>
-<th style="text-align: right;">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>200</code></td>
-<td style="text-align: right;"><code>application/jwt</code></td>
-<td>JWS compact string; decoded payload contains one <code>WalletRelyingParty</code> entry (or profile envelope).</td>
-</tr>
-<tr>
-<td><code>404</code></td>
-<td style="text-align: right;">-</td>
-<td>Not found.</td>
-</tr>
-</tbody>
-</table>
-<h4 id="non-normative-json-examples">Non-normative JSON examples<a class="headerlink" href="#non-normative-json-examples" title="Permanent link">&para;</a></h4>
-<h4 id="example-wrp-object-registration-view-includes-postaladdress">Example: WRP object (registration view – includes postalAddress)<a class="headerlink" href="#example-wrp-object-registration-view-includes-postaladdress" title="Permanent link">&para;</a></h4>
+<h5 id="non-normative-example-wrp-object">Non-normative example: WRP object<a class="headerlink" href="#non-normative-example-wrp-object" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ExampleBank S.A.&quot;</span><span class="p">]</span>
@@ -2788,90 +2008,661 @@ This profile uses the following mapping (strictly aligned names for intended-use
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<h4 id="example-of-a-wrp-object-published-via-api-excludes-annex-i-point-4-physical-address">Example of a WRP object (published via API – excludes Annex I point 4 / physical address)<a class="headerlink" href="#example-of-a-wrp-object-published-via-api-excludes-annex-i-point-4-physical-address" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ExampleBank S.A.&quot;</span><span class="p">]</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/id/EUID&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR-EUID-123456789&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;wallet-rp-registration@examplebank.eu&quot;</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;+33100000000&quot;</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;https://examplebank.eu&quot;</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;providerType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WalletRelyingParty&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-policy&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://examplebank.eu/privacy&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;tradeName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExampleBank Mobile&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;supportURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;https://examplebank.eu/support&quot;</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;srvDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retail banking services for individuals.&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;isPSB&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;entitlement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;https://uri.etsi.org/19475/Entitlement/Service_Provider&quot;</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;supervisoryAuthority&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Autorité de supervision Exemple&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://supervisor.example.fr&quot;</span><span class="p">]</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;registryURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.example.fr/api&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;isIntermediary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;intendedUse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;intendedUseIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iu-001&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;purpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Open a bank account remotely.&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;privacyPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-statement&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://examplebank.eu/privacy/wallet&quot;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;credential&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dc+sd-jwt&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;vct&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.eu/schema/pid&quot;</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nt">&quot;claim&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;family_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;given_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;birth_date&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
-<span class="w">          </span><span class="p">]</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
+<h4 id="common-register-api">Common Register API<a class="headerlink" href="#common-register-api" title="Permanent link">&para;</a></h4>
+<p>This section documents a [TS05 V1.3] aligned common Register API profile that satisfies [CIR 2025/848] Annex II and [CIR 2025/848-Amendment] constraints.</p>
+<h5 id="api-methods-on-registration-and-updating-of-wrp-data">API Methods on Registration and Updating of WRP Data<a class="headerlink" href="#api-methods-on-registration-and-updating-of-wrp-data" title="Permanent link">&para;</a></h5>
+<p>The common API write methods (POST, PUT and DELETE) are defined for purposes of managing the Register information of MS Registrars.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The published API view excludes only <code>postalAddress</code> (Annex I point 4). All other fields, including intended-use credential claims, are published as registered.</p>
+<p>These methods SHALL be accessible by authorised users only.</p>
 </div>
+<h6 id="post-wrp-create-required"><code>POST /wrp</code> — create (REQUIRED)<a class="headerlink" href="#post-wrp-create-required" title="Permanent link">&para;</a></h6>
+<p>POST is for creating a new WRP entry in the Register. Method expects a request body with the <code>WalletRelyingParty</code> schema, and returns a <code>201</code> on success.</p>
+<p><strong>Request (body)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WalletRelyingParty</code></td>
+<td>REQUIRED</td>
+<td>Full WRP object compliant with [CIR 2025/848-Amendment], Annex VI Table 1 schema.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>201</code></td>
+<td>Created.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad request (invalid or incomplete payload).</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Unauthorized (missing or invalid authentication).</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Forbidden (caller not authorised by Member State).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h6 id="put-wrp-update-required"><code>PUT /wrp</code> — update (REQUIRED)<a class="headerlink" href="#put-wrp-update-required" title="Permanent link">&para;</a></h6>
+<p>PUT is for updating an existing WRP entry in the Register. Method expects a request body with the <code>WalletRelyingParty</code> schema, and can return <code>200</code> on success or <code>404</code> if not found.</p>
+<p><strong>Request (body)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WalletRelyingParty</code></td>
+<td>REQUIRED</td>
+<td>Full WRP object compliant with [CIR 2025/848-Amendment], Annex VI Table 1 schema.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>Successfully updated.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad request (invalid or incomplete payload).</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Unauthorized (missing or invalid authentication).</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Forbidden (caller not authorised by Member State).</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Not found.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h6 id="delete-wrp-delete-required"><code>DELETE /wrp</code> — delete (REQUIRED)<a class="headerlink" href="#delete-wrp-delete-required" title="Permanent link">&para;</a></h6>
+<p>DELETE is for deleting of an existing WRP entry in the Register. Method expects a request body with the <code>WalletRelyingParty</code> identifier, and returns a <code>204</code> on success.</p>
+<p><strong>Request (body)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifier</code></td>
+<td>REQUIRED</td>
+<td>Identifier payload for the WRP to delete (profile-defined body shape, based on <code>WalletRelyingParty.identifier</code>).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For [TS05 V1.3] and [CIR 2025/848-Amendment], this method expects a request body with the <code>WalletRelyingParty</code> identifier, while in the corresponding YAML file <a href="https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml">ts5-openapi31-registrar-api.yml</a> the identifier is sent as a query parameter. This profile follows the [CIR 2025/848-Amendment].</p>
+</div>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>204</code></td>
+<td>Successfully deleted.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad request (invalid or incomplete payload).</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Unauthorized (missing or invalid authentication).</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Forbidden (caller not authorised by Member State).</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Not found.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="api-methods-for-register-queries-open-api">API Methods for Register Queries (Open API)<a class="headerlink" href="#api-methods-for-register-queries-open-api" title="Permanent link">&para;</a></h5>
+<p>The common API read methods (GET) SHALL be open for public access (no prior authentication) and returns JWS-signed statements.</p>
+<p>The public API SHALL provide methods for searching and querying complete data sets of registered WRPs matching with provided query parameters</p>
+<h6 id="get-wrp-searchlist-required"><code>GET /wrp</code> — search/list (REQUIRED)<a class="headerlink" href="#get-wrp-searchlist-required" title="Permanent link">&para;</a></h6>
+<p>Get a list of WRPs (with optional filtering and pagination, list of all registered WRPs returned when no query parameters are provided).</p>
+<p><strong>Request (query parameters)</strong></p>
+<p>The common API SHALL support parameterised queries on <code>GET /wrp</code>. The following names align with the [CIR 2025/848-Amendment] Annex VI query parameter naming.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by official/business registration number / identifier.</td>
+</tr>
+<tr>
+<td><code>legalname</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by official company name.</td>
+</tr>
+<tr>
+<td><code>tradename</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by trade name.</td>
+</tr>
+<tr>
+<td><code>policy</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by privacy policy URL (or policy URI as profiled).</td>
+</tr>
+<tr>
+<td><code>entitlement</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by entitlement type (URI).</td>
+</tr>
+<tr>
+<td><code>usesintermediary</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intermediary identifier.</td>
+</tr>
+<tr>
+<td><code>isintermediary</code></td>
+<td><code>boolean</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intermediary status.</td>
+</tr>
+<tr>
+<td><code>intendeduseidentifier</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by registrar-provided intended-use identifier.</td>
+</tr>
+<tr>
+<td><code>claimpath</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intended-use requested claim path.</td>
+</tr>
+<tr>
+<td><code>credentialmeta</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intended-use credential metadata (format-specific).</td>
+</tr>
+<tr>
+<td><code>credentialformat</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intended-use credential format.</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Cursor for pagination (profile-defined token format).</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>integer</code></td>
+<td>OPTIONAL</td>
+<td>The number of items to return per page (profile-defined).</td>
+</tr>
+<tr>
+<td><code>providesattestation</code></td>
+<td>OPTIONAL</td>
+<td>Filter by attestation types provided.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The name of some query parameters differ from [TS05 V1.3] and the corresponding YAML file <a href="https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml">ts5-openapi31-registrar-api.yml</a> containing the OpenAPI specification of the JSON and REST based application programming interfaces (e.g., <code>intendedusecredentialmeta</code> vs <code>credentialmeta</code>). This profile follows the OpenAPI specification.</p>
+<p>In addition, this specification adds <code>providesattestation</code> to cover the [CIR 2025/848-Amendment] requirement for filtering parameter: type of attestations provided, returning the complete data set of each of the registered wallet-relying parties matching the value provided for this parameter.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>If no query parameters are provided, <code>GET /wrp</code> SHALL return the full list of registered WRPs (subject to pagination profile).</td>
+</tr>
+<tr>
+<td>The endpoint SHALL support cursor-based pagination.</td>
+</tr>
+<tr>
+<td>The endpoint SHALL support combined filters in a single query.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong>
+A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Media Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td><code>application/jwt</code></td>
+<td>JWS compact string. Decoded payload SHALL contain an array of <code>WalletRelyingParty</code> objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by WRPAC history information in the statement/profile used by the Member State. (strict Annex VI form: array; profile envelope also allowed if documented).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The published API view excludes only <code>postalAddress</code> ([CIR 2025/848-Amendment], Annex I point 4). All other fields, including intended-use credential claims, are published as registered.</p>
+</div>
+<!--
+!!! note
+
+    This implementation profile uses *JWS Compact Serialization* for API responses (e.g., `application/jwt`). In JWS Compact Serialization, there is *no unprotected header*; therefore, the JOSE Header is the *JWS Protected Header* and is integrity-protected by the signature.
+
+    The following JOSE Protected Header requirements apply to Registry statements:
+
+    | Header parameter | Presence | Description | Reference |
+    | --- | --- | --- | --- |
+    | `alg` | REQUIRED | Signature/seal algorithm identifier. The value `none` SHALL NOT be used for Registry statements. | [RFC 7515] §4.1.1; profile rule |
+    | `x5c` | RECOMMENDED (REQUIRED if no trust-list/key-resolution profile is defined) | X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array. | [RFC 7515] §4.1.6 |
+    | `kid` | RECOMMENDED | Key identifier to support key rollover and efficient verifier key selection. | [RFC 7515] §4.1.4 |
+    | `x5t#S256` | RECOMMENDED | SHA-256 thumbprint of the signing certificate (useful for pinning / key matching). | [RFC 7515] §4.1.8 |
+    | `x5u` | OPTIONAL | URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation. | [RFC 7515] §4.1.5 |
+    | `typ` | RECOMMENDED | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | [RFC 7515] §4.1.9 |
+    | `crit` | OPTIONAL | If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. `crit` MUST appear only in the protected header. | [RFC 7515] §4.1.11 |
+
+    !!! note
+
+        The JOSE header parameter `x5c` above is part of the JWS signature envelope. It is distinct from any `x5c` attribute defined in the registry payload/data schema (e.g., Annex VI data schema fields).
+-->
+
+<hr />
+<h6 id="get-wrpcheck-intended-use-intended-use-check-required"><code>GET /wrp/check-intended-use</code> — intended use check (REQUIRED)<a class="headerlink" href="#get-wrpcheck-intended-use-intended-use-check-required" title="Permanent link">&para;</a></h6>
+<p>A dedicated intended-use check endpoint for making narrowed-down intended use related queries from the Register.</p>
+<p><strong>Request</strong></p>
+<p>This profile uses the following mapping (strictly aligned names for intended-use filters):</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rpidentifier</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier of the WRP whose intended-use registration is being checked.</td>
+</tr>
+<tr>
+<td><code>intendeduseidentifier</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Intended-use identifier registered by the registrar.</td>
+</tr>
+<tr>
+<td><code>claimpath</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Requested claim path to check (serialised representation of path array; profile-defined encoding).</td>
+</tr>
+<tr>
+<td><code>credentialformat</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Credential format to check.</td>
+</tr>
+<tr>
+<td><code>credentialmeta</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Credential metadata filter (profile-defined serialisation).</td>
+</tr>
+<tr>
+<td><code>policyurl</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Used when checking if the privacy policy URL is registered for the identified WRP.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Media Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td><code>application/jwt</code></td>
+<td>JWS compact string; decoded payload is boolean <code>true</code> or <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>-</td>
+<td>Bad request (invalid or incomplete request parameter).</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>-</td>
+<td>WRP with the given <code>rpidentifier</code> not found.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h6 id="get-wrpidentifier-get-by-identifier-optional"><code>GET /wrp/{identifier}</code> — get by identifier (OPTIONAL)<a class="headerlink" href="#get-wrpidentifier-get-by-identifier-optional" title="Permanent link">&para;</a></h6>
+<p>Get WRP by identifier.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This endpoint is useful, but it is <strong>not explicitly defined</strong> in the [CIR 2025/848-Amendment], Annex VI common API method list. If kept, mark it as a national/profile extension.</p>
+</div>
+<p><strong>Request (query)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier of the WRP to retrieve.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong> </p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Media Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td><code>application/jwt</code></td>
+<td>JWS compact string; decoded payload contains one <code>WalletRelyingParty</code> entry (or profile envelope).</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>-</td>
+<td>Not found.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="optional-profile-envelope-recommended-for-interoperability-metadata">Optional Profile Envelope (recommended for interoperability metadata)<a class="headerlink" href="#optional-profile-envelope-recommended-for-interoperability-metadata" title="Permanent link">&para;</a></h5>
+<p>To preserve issuer/timestamp metadata and pagination in a stable schema, a Member State MAY define an envelope profile as follows (while still satisfying the endpoint semantics above):</p>
+<h6 id="signedwrparrayenvelope-profile">SignedWRPArrayEnvelope (profile)<a class="headerlink" href="#signedwrparrayenvelope-profile" title="Permanent link">&para;</a></h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iss</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier of the Registry/Registrar issuing the statement.</td>
+</tr>
+<tr>
+<td><code>iat</code></td>
+<td><code>integer</code></td>
+<td>REQUIRED</td>
+<td>Issued-at timestamp (Unix epoch seconds).</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>WRPEntry[]</code></td>
+<td>REQUIRED</td>
+<td>Matching WRP entries (published view, address excluded), each bundled with its certificate history.</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>Pagination</code></td>
+<td>OPTIONAL</td>
+<td>Cursor-based pagination metadata.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="wrpentry-per-wrp-bundle">WRPEntry (per-WRP bundle)<a class="headerlink" href="#wrpentry-per-wrp-bundle" title="Permanent link">&para;</a></h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wrp</code></td>
+<td><code>WalletRelyingParty</code></td>
+<td>REQUIRED</td>
+<td>WRP registration information (published view, address excluded).</td>
+</tr>
+<tr>
+<td><code>wrpacHistory</code></td>
+<td><code>CertificateHistoryEntry[]</code></td>
+<td>OPTIONAL</td>
+<td>WRP access certificate history for this WRP (including CT-related references where available).</td>
+</tr>
+<tr>
+<td><code>wrprcHistory</code></td>
+<td><code>CertificateHistoryEntry[]</code></td>
+<td>OPTIONAL</td>
+<td>WRP registration certificate history for this WRP (if provided by national profile).</td>
+</tr>
+</tbody>
+</table>
+<h6 id="signedwrpenvelope-profile-for-non-common-helper-endpoints">SignedWRPEnvelope (profile, for non-common helper endpoints)<a class="headerlink" href="#signedwrpenvelope-profile-for-non-common-helper-endpoints" title="Permanent link">&para;</a></h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iss</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Registry/Registrar identifier.</td>
+</tr>
+<tr>
+<td><code>iat</code></td>
+<td><code>integer</code></td>
+<td>REQUIRED</td>
+<td>Issued-at timestamp.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>WalletRelyingParty</code></td>
+<td>REQUIRED</td>
+<td>Single WRP object (published view, address excluded).</td>
+</tr>
+<tr>
+<td><code>wrpacHistory</code></td>
+<td><code>CertificateHistoryEntry[]</code></td>
+<td>OPTIONAL</td>
+<td>WRPAC history.</td>
+</tr>
+<tr>
+<td><code>wrprcHistory</code></td>
+<td><code>CertificateHistoryEntry[]</code></td>
+<td>OPTIONAL</td>
+<td>WRPRC history (if supported).</td>
+</tr>
+</tbody>
+</table>
+<h6 id="signedintendedusecheckenvelope-profile">SignedIntendedUseCheckEnvelope (profile)<a class="headerlink" href="#signedintendedusecheckenvelope-profile" title="Permanent link">&para;</a></h6>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Annex VI strictly allows a JWS-signed boolean response. This object envelope is a non-normative profile convenience.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iss</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Registry issuer.</td>
+</tr>
+<tr>
+<td><code>iat</code></td>
+<td><code>integer</code></td>
+<td>REQUIRED</td>
+<td>Issued-at timestamp.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>boolean</code></td>
+<td>REQUIRED</td>
+<td>Result of intended-use check.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="certificatehistoryentry-profile-helper-for-certificate-histories">CertificateHistoryEntry (profile helper for certificate histories)<a class="headerlink" href="#certificatehistoryentry-profile-helper-for-certificate-histories" title="Permanent link">&para;</a></h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>certificate</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Certificate (e.g., PEM/DER-encoded representation, profile-defined).</td>
+</tr>
+<tr>
+<td><code>x5c</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Certificate chain for the certificate entry.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Certificate status (e.g., <code>current</code>, <code>revoked</code>, <code>expired</code>, <code>historic</code>).</td>
+</tr>
+<tr>
+<td><code>validFrom</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Validity start timestamp/date (profile-defined format).</td>
+</tr>
+<tr>
+<td><code>validTo</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Validity end timestamp/date (profile-defined format).</td>
+</tr>
+<tr>
+<td><code>ctLogEntries</code></td>
+<td><code>object[]</code></td>
+<td>OPTIONAL</td>
+<td>CT log / transparency references ([RFC 9162]-aligned, profile-defined structure).</td>
+</tr>
+</tbody>
+</table>
 <!-- END INCLUDE -->
 
 <h3 id="wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate<a class="headerlink" href="#wallet-relying-party-access-certificate" title="Permanent link">&para;</a></h3>
