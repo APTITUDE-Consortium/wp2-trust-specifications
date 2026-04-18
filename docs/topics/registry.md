@@ -256,7 +256,9 @@ Defined policy type URIs:
 | `lang` | `string` | REQUIRED | Two-letter language code (ISO 639-1 style). |
 | `legalBasis` | `string` | REQUIRED | Legal basis text establishing the legal person (or requiring/recommending access to a claim). |
 
-##### Non-normative example: WRP object
+##### Non-normative example: WRP object for a Relying Party
+
+A bank registered as a service provider (requesting PID for KYC).
 
 ````json
 {
@@ -351,6 +353,276 @@ Defined policy type URIs:
   ]
 }
 ````
+
+##### Non-normative example: WRP object for a Relying Party that is also an Attestation Provider
+
+A bank registered as both a service provider (requesting PID for KYC) and a `QEAA_Provider` (issuing bank account attestations to wallet units). It has both `intendedUse` and `providesAttestations`.
+
+````json
+{
+  "legalPerson": {
+    "legalName": ["ExampleBank S.A."]
+  },
+  [...as previous example...] 
+  "srvDescription": [
+    [
+      { "lang": "en", "content": "Retail banking services for individuals." },
+      { "lang": "fr", "content": "Services bancaires pour particuliers." }
+    ],
+    [
+      { "lang": "en", "content": "Issuance of qualified bank account attestations." },
+      { "lang": "fr", "content": "Délivrance d'attestations de compte bancaire qualifiées." }
+    ]
+  ],
+  "isPSB": false,
+  "entitlement": [
+    "https://uri.etsi.org/19475/Entitlement/Service_Provider",
+    "https://uri.etsi.org/19475/Entitlement/QEAA_Provider"
+  ],
+  "providesAttestations": [
+    {
+      "format": "dc+sd-jwt",
+      "meta": {
+        "vct_values": ["https://examplebank.eu/schema/bank-account"]
+      },
+      "claim": [
+        { "path": ["iban"] },
+        { "path": ["account_holder_name"] },
+        { "path": ["account_type"] },
+        { "path": ["currency"] }
+      ]
+    }
+  ],
+  "intendedUse": [
+    {
+      "intendedUseIdentifier": "iu-account-opening",
+      "purpose": [
+        { "lang": "en", "content": "Open a bank account remotely." },
+        { "lang": "fr", "content": "Ouvrir un compte bancaire à distance." }
+      ],
+      "privacyPolicy": [
+        {
+          "type": "http://data.europa.eu/eudi/policy/privacy-statement",
+          "policyURI": "https://examplebank.eu/privacy/wallet/account-opening"
+        }
+      ],
+      "credential": [
+        {
+          "format": "dc+sd-jwt",
+          "meta": { "vct_values": ["https://example.eu/schema/pid"] },
+          "claim": [
+            { "path": ["family_name"] },
+            { "path": ["given_name"] },
+            { "path": ["birth_date"] },
+            { "path": ["nationalities"] }
+          ]
+        }
+      ],
+      "createdAt": "2026-01-01"
+    },
+    {
+      "intendedUseIdentifier": "iu-bank-account-attestation-issuance",
+      "purpose": [
+        {
+          "lang": "en",
+          "content": "Verify wallet holder identity to issue a bank account attestation."
+        }
+      ],
+      "privacyPolicy": [
+        {
+          "type": "http://data.europa.eu/eudi/policy/privacy-statement",
+          "policyURI": "https://examplebank.eu/privacy/wallet/attestation-issuance"
+        }
+      ],
+      "credential": [
+        {
+          "format": "dc+sd-jwt",
+          "meta": { "vct_values": ["https://example.eu/schema/pid"] },
+          "claim": [
+            { "path": ["family_name"] },
+            { "path": ["given_name"] },
+            { "path": ["birth_date"] }
+          ]
+        }
+      ],
+      "createdAt": "2026-01-01"
+    }
+  ],
+  "supervisoryAuthority": {
+    "legalPerson": {
+      "legalName": ["Autorité de supervision Exemple"]
+    },
+    "country": "FR",
+    "email": ["contact@supervisor.example.fr"],
+    "infoURI": ["https://supervisor.example.fr"]
+  },
+  "registryURI": "https://registry.example.fr/api",
+  "isIntermediary": false
+}
+````
+
+##### Non-normative example: WRP object for a designated Intermediary
+
+An entity registered as a designated Intermediary that acts on behalf of WRPs during Wallet interactions. It has `isIntermediary: true` and does not declare `intendedUse` (not required when registering solely as an intermediary).
+
+````json
+{
+  "legalPerson": {
+    "legalName": ["TrustBridge Services B.V."]
+  },
+  "identifier": [
+    {
+      "type": "http://data.europa.eu/eudi/id/EUID",
+      "identifier": "NL-EUID-112233445"
+    },
+    {
+      "type": "http://data.europa.eu/eudi/id/VATIN",
+      "identifier": "NL112233445B01"
+    }
+  ],
+  "postalAddress": [
+    "Keizersgracht 100, 1015 CN Amsterdam, NL"
+  ],
+  "country": "NL",
+  "email": ["wallet-intermediary@trustbridge.example"],
+  "phone": ["+31200000000"],
+  "infoURI": ["https://trustbridge.example"],
+  "providerType": "WalletRelyingParty",
+  "policy": [
+    {
+      "type": "http://data.europa.eu/eudi/policy/terms-and-conditions",
+      "policyURI": "https://trustbridge.example/terms"
+    },
+    {
+      "type": "http://data.europa.eu/eudi/policy/privacy-policy",
+      "policyURI": "https://trustbridge.example/privacy"
+    }
+  ],
+  "tradeName": "TrustBridge",
+  "supportURI": ["https://trustbridge.example/support"],
+  "srvDescription": [
+    [
+      {
+        "lang": "en",
+        "content": "Intermediary services for wallet-relying parties operating in the Netherlands."
+      },
+      {
+        "lang": "nl",
+        "content": "Intermediaire diensten voor wallet-relying parties in Nederland."
+      }
+    ]
+  ],
+  "isPSB": false,
+  "entitlement": [
+    "https://uri.etsi.org/19475/Entitlement/Service_Provider"
+  ],
+  "supervisoryAuthority": {
+    "legalPerson": {
+      "legalName": ["Autoriteit Persoonsgegevens"]
+    },
+    "country": "NL",
+    "email": ["info@autoriteitpersoonsgegevens.nl"],
+    "infoURI": ["https://autoriteitpersoonsgegevens.nl"]
+  },
+  "registryURI": "https://registry.example.nl/api",
+  "isIntermediary": true
+}
+````
+
+##### Non-normative example: WRP object for a WRP using a designated Intermediary
+
+A small e-commerce business that relies on TrustBridge (see example above) to conduct Wallet interactions on its behalf. It has `usesIntermediary` pointing to the Intermediary's registry entry, and `isIntermediary: false`.
+
+````json
+{
+  "legalPerson": {
+    "legalName": ["ShopExample N.V."]
+  },
+  "identifier": [
+    {
+      "type": "http://data.europa.eu/eudi/id/EUID",
+      "identifier": "NL-EUID-556677889"
+    }
+  ],
+  "postalAddress": [
+    "Damrak 50, 1012 LP Amsterdam, NL"
+  ],
+  "country": "NL",
+  "email": ["wallet-rp@shopexample.example"],
+  "infoURI": ["https://shopexample.example"],
+  "providerType": "WalletRelyingParty",
+  "policy": [
+    {
+      "type": "http://data.europa.eu/eudi/policy/terms-and-conditions",
+      "policyURI": "https://shopexample.example/terms"
+    },
+    {
+      "type": "http://data.europa.eu/eudi/policy/privacy-policy",
+      "policyURI": "https://shopexample.example/privacy"
+    }
+  ],
+  "tradeName": "ShopExample",
+  "supportURI": ["https://shopexample.example/support"],
+  "srvDescription": [
+    [
+      { "lang": "en", "content": "Online retail services." },
+      { "lang": "nl", "content": "Online detailhandel." }
+    ]
+  ],
+  "isPSB": false,
+  "entitlement": [
+    "https://uri.etsi.org/19475/Entitlement/Service_Provider"
+  ],
+  "intendedUse": [
+    {
+      "intendedUseIdentifier": "iu-age-verification",
+      "purpose": [
+        { "lang": "en", "content": "Verify the customer is of legal age for restricted product purchases." }
+      ],
+      "privacyPolicy": [
+        {
+          "type": "http://data.europa.eu/eudi/policy/privacy-statement",
+          "policyURI": "https://shopexample.example/privacy/wallet"
+        }
+      ],
+      "credential": [
+        {
+          "format": "mso_mdoc",
+          "meta": {
+            "doctype_value": "org.iso.18013.5.1.mDL"
+          },
+          "claim": [
+            { "path": ["org.iso.18013.5.1", "age_over_18"] }
+          ]
+        }
+      ],
+      "createdAt": "2026-01-01"
+    }
+  ],
+  "supervisoryAuthority": {
+    "legalPerson": {
+      "legalName": ["Autoriteit Persoonsgegevens"]
+    },
+    "country": "NL",
+    "infoURI": ["https://autoriteitpersoonsgegevens.nl"]
+  },
+  "registryURI": "https://registry.example.nl/api",
+  "isIntermediary": false,
+  "usesIntermediary": [
+    {
+      "identifier": [
+        {
+          "type": "http://data.europa.eu/eudi/id/EUID",
+          "identifier": "NL-EUID-112233445"
+        }
+      ],
+      "tradeName": "TrustBridge",
+      "registryURI": "https://registry.example.nl/api"
+    }
+  ]
+}
+````
+
 
 #### Common Register API
 
