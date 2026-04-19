@@ -55,19 +55,35 @@ jobs:
                -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/overrides/partials/footer.html \
                -o docs/overrides/partials/footer/footer.html
 
-      - name: Deploy Dev (from page-compile or release branch)
-        if: github.ref == 'refs/heads/page-compile' || startsWith(github.ref, 'refs/heads/release-v')
-        run: |
-          mike deploy --push dev
-          mike set-default --push dev
+          mkdir -p docs/overrides/ezglossary/
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/overrides/ezglossary/link.html \
+               -o docs/overrides/ezglossary/link.html
 
-      - name: Deploy Official Release (from Tag)
+          mkdir -p docs/media/
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/extra.css \
+               -o docs/media/extra.css
+
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/mermaid-init.js \
+               -o docs/media/mermaid-init.js
+
+      - name: Deploy Pre-Release (from release-v* branch)
+        if: startsWith(github.ref, 'refs/heads/release-v')
+        run: |
+          VERSION=$(echo "${GITHUB_REF_NAME}" | sed 's/release-//')
+          PATH_NAME="${VERSION}-dev"
+          mike deploy --push --allow-empty "$PATH_NAME"
+          mike set-default --push "$PATH_NAME"
+
+      - name: Deploy Official Release (from tag)
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          mike deploy --push --update-aliases ${GITHUB_REF_NAME} latest
+          mike deploy --push --allow-empty --update-aliases ${GITHUB_REF_NAME} latest
           mike set-default --push latest
 
-      - name: Deploy Main (Internal/Preview)
+      - name: Deploy Main
         if: github.ref == 'refs/heads/main'
         run: |
-          mike deploy --push main
+          mike deploy --push --allow-empty main

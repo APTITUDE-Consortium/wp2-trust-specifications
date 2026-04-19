@@ -48,7 +48,7 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  logo: img/logo.png
+  logo: https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png
 
 extra_css:
   - media/extra.css
@@ -69,6 +69,7 @@ plugins:
         - 'topics/**'
         - 'docs/topics/**'
         - 'docs/glossary-definitions.md'
+        - 'docs/references.md'
   - include-markdown:
       comments: true
   - search
@@ -111,6 +112,7 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - toc:
       permalink: true
+      toc_depth: 3
   - admonition
   - pymdownx.blocks.admonition
 
