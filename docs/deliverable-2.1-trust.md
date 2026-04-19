@@ -4,7 +4,7 @@ Version 0.1 (Draft)
 
 | Version | Date       | Description   |
 | ------- | ---------- | ------------- |
-| 0.1     | 2026-04-XX | First release |
+| 0.1     | 2026-04-19 | First release |
 
 **Authors**:
 

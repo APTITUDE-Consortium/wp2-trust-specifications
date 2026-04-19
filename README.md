@@ -42,6 +42,20 @@ The main files are as follows:
 | `references/`                   | Contains the reference material |
 | `requirements/`                 | Contains the lists of consolidated requirements from different sources |
 
+## Versioning and Preview
+
+This project uses the git *branches* and *tags* in the following way:
+
+- The branch `main` contains the last stable version of the documentation;
+- The [release page](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/releases) of this project contains all the released versions of the specifications.
+
+## Releases
+
+| Version | Built specifications |
+| ------- | -------------------- |
+| 0.1     | [HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.1/) |
+| latest  | [HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/latest/) |
+
 ## Funding
 
 ![Co-funded by the European Union](https://github.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/raw/main/docs/img/eu-cofunded.png)
