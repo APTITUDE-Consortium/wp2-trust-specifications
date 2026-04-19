@@ -89,7 +89,7 @@ The following JSON structure is derived from the [ETSI TS 119 472-3] data model 
 
 #### Distribution
 
-The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through <roles:Credential Issuer> Metadata at issuance time. The AP SHALL include the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (EDP_09). The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL NOT be revealed to the RP through the presentation protocol (per [ETSI TS 119 472-3] section 4.2.5.1).
+The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through Credential Issuer Metadata at issuance time. The AP SHALL include the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (EDP_09). The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL NOT be revealed to the RP through the presentation protocol (per [ETSI TS 119 472-3] section 4.2.5.1).
 
 !!! warning
 

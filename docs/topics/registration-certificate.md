@@ -1,4 +1,4 @@
-This section defines <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates> (<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>), as described in [ARF]. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> provides detailed information about the provider's entitlements, the attestations they issue, and their intended use.
+This section defines <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates> (<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>), as described in [ARF]. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> provides detailed information about the <roles:Attestation Provider (AP)|Attestation Provider>'s entitlements, the <credentials:Attestation|Attestations> they issue, and their intended use.
 
 #### References
 
@@ -506,15 +506,13 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ##### Algorithms
 
-Algorithms used should be one of the algorithms for digital signatures recommended by in [ETSI TS 119 312](https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.02.01_60/ts_11918201v010201p.pdf).
+Algorithms used should be one of the algorithms for digital signatures recommended by in [ETSI TS 119 312].
 
-[OpenID4VC High Assurance Interoperability Profile 1.0](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html#section-7)
-also defines its own requirements for digital signatures. However, those requirements are not directly related to
-registration certificates.
+[OpenID4VC High Assurance Interoperability Profile 1.0] also defines its own requirements for digital signatures. However, those requirements are not directly related to <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>.
 
 ##### List of Possible Entitlements
 
-Per [ETSI TS 119 475] Annex A.2:
+Per [ETSI TS 119 475, Annex A.2]:
 
 | <data-elements:Entitlement> | URI | OID | ETSI Reference | Description |
 |-------------|-----|-----|----------------|-------------|
@@ -544,4 +542,4 @@ Per [ETSI TS 119 475] clause 5.1.3 - Table 2 and 5.1.5 - Table 4:
 
 CWT token claims must be registered in a register created by IANA.
 
-The register is available at - <https://www.iana.org/assignments/cwt/cwt.xhtml>
+The register is available at <https://www.iana.org/assignments/cwt/cwt.xhtml>

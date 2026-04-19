@@ -1,21 +1,21 @@
-The **Authentication Process** enables the <components:Wallet Unit> to authenticate a Wallet Relying Party (WRP) during an interaction. It establishes trust by validating the WRP's X.509 certificate chain—from a trusted Provider of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates> (<artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>) down to the presented <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>—and verifying the WRP's possession of the corresponding private key.
+The **Authentication Process** enables the <components:Wallet Unit> to authenticate a <roles:Wallet-Relying Party (WRP)> during an interaction. It establishes trust by validating the <roles:Wallet-Relying Party (WRP)|WRP>'s X.509 certificate chain—from a trusted Provider of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates> (<artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>) down to the presented <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>—and verifying the <roles:Wallet-Relying Party (WRP)|WRP>'s possession of the corresponding private key.
 
-To authenticate the WRP, the <components:Wallet Unit> SHALL verify the authenticity and integrity of the presented <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> by performing the following steps:
+To authenticate the <roles:Wallet-Relying Party (WRP)|WRP>, the <components:Wallet Unit> SHALL verify the authenticity and integrity of the presented <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> by performing the following steps:
 
-1. **Retrieve the Trust Anchor:** Obtain the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>'s entry from the validated List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>) (see [Trust Anchor Validation Process](#trust-anchor-validation-process)). The certificate(s) found in the `ServiceDigitalIdentity` field of the <artifacts:List of Trusted Entities (LoTE)|LoTE>'s `TrustedEntitiesList` constitute the Trust Anchor.
+1. **Retrieve the Trust Anchor:** Obtain the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>'s entry from the validated List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>) (see [Trust Anchor Validation Process](#trust-anchor-validation-process)). The certificate(s) found in the `ServiceDigitalIdentity` field of the <artifacts:List of Trusted Entities (LoTE)|LoTE>'s `TrustedEntitiesList` constitute the <artifacts:Trust Anchor>.
 2. **Construct the Certification Path:** Build a path starting from the certificate issued by the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> (C_1) and ending with the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> presented by the WRP (C_n). *(Note: The simplest path consists of just one certificate, where n=1).*
-3. **Execute Path Validation:** Run the algorithm defined in [Wallet Relying Party Access Certificate Path Validation](#wallet-relying-party-access-certificate-path-validation) using the retrieved Trust Anchor.
+3. **Execute Path Validation:** Run the algorithm defined in [Wallet Relying Party Access Certificate Path Validation](#wallet-relying-party-access-certificate-path-validation) using the retrieved <artifacts:Trust Anchor>.
 4. **Verify the Signature:** Use the public key from the validated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> to verify the WRP's signature on the metadata presented during the specific interaction.
 
 The method by which the WRP presents its <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> chain depends on the specific interaction flow:
 
-- **OpenID4VP (Remote Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed <protocols:Request Object>.
+- **OpenID4VP (Remote Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed <artifacts:Request Object>.
 - **ISO 18013-5 (Proximity Flow):** The certificate chain is presented within the WRP-signed `ReaderAuth` element of the mdoc request message.
 - **OpenID4VCI (Issuance Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed Issuer Metadata.
 
 !!! warning "Mitigating Blind Signing Attacks"
 
-    Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol <artifacts:Nonce|nonce>, the WRP SHALL NOT use the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> private key to sign arbitrary data that could be controlled by an external party.
+    Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol <data-elements:Nonce|nonce>, the WRP SHALL NOT use the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> private key to sign arbitrary data that could be controlled by an external party.
 
 #### Wallet Relying Party Authentication Sequence Diagram
 
@@ -52,9 +52,9 @@ sequenceDiagram
 
 This section defines the validation of the certification path.
 
-- The Trust Anchor is the certificate of the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> obtained from the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+- The <artifacts:Trust Anchor> is the certificate of the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> obtained from the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 - The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:
-    - $C_1$ is the certificate issued by the Trust Anchor.
+    - $C_1$ is the certificate issued by the <artifacts:Trust Anchor>.
     - $C_n$ is the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> (the target certificate).
     - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
 

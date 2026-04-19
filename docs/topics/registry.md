@@ -1,18 +1,18 @@
-This section specifies requirements for the <roles:Registrar> of Wallet-Relying Parties (WRPs) and the national <components:Register> of WRPs (the registry service) in the context of eIDAS2 and the <components:EUDI Wallet> ecosystem.
+This section specifies requirements for the <roles:Registrar> of <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties (WRPs)> and the national <components:Register> of WRPs (the registry service) in the context of eIDAS2 and the <components:EUDI Wallet> ecosystem.
 
 Formally, a <roles:Registrar> is the designated body that:
 
-- manages the WRP registration lifecycle (onboarding, update, suspension, cancellation),
+- manages the <roles:Wallet-Relying Party (WRP)|WRP> registration lifecycle (onboarding, update, suspension, cancellation),
 - ensures the integrity and publication of registration information,
-- ensures interoperability by exposing WRP registration data via a national website and a single common REST API.
+- ensures interoperability by exposing <roles:Wallet-Relying Party (WRP)|WRP> registration data via a national website and a single common REST API.
 
-The national <components:Register> of WRPs is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about WRPs and their authorisations/declared usage.
+The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about <roles:Wallet-Relying Party (WRP)|WRPs> and their authorisations/declared usage.
 
 !!! note
 
     The national <components:Register> of WRPs is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a single coherent common REST API and return signed statements as required.<br>
     
-    Additionally, sectorial registers may exist internally, but the decision regarding issuance of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is solely based on whether the WRP has been registered with an active status in the national <components:Register>.
+    Additionally, sectorial registers may exist internally, but the decision regarding issuance of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is solely based on whether the <roles:Wallet-Relying Party (WRP)|WRP> has been registered with an active status in the national <components:Register>.
 
 #### References
 
@@ -20,12 +20,12 @@ The list below enumerates all the applicable standards and specifications that h
 
 - **CIR 2025/848** on WRP registration and <components:Register|Registers>.
 - **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <components:Register> of WRPs.
-- **ETSI TS 119 475 v1.2.1**  on WRP attributes, entitlement URIs, RP authorisation decision support.
-- **TS05 V1.3** on common formats and API for WRP registration information.
-- **TS06 V1.0.1** on common set of WRP information to be registered.
+- **ETSI TS 119 475**  on WRP attributes, entitlement URIs, RP authorisation decision support.
 - **RFC 7515**
 - **RFC 7519**
 - **RFC 8392**
+- **TS05** on common formats and API for WRP registration information.
+- **TS06** on common set of WRP information to be registered.
 
 #### Requirements
 
@@ -47,7 +47,7 @@ The list below enumerates all the applicable standards and specifications that h
 
 !!! note
 
-    The set of WRP information listed in Annex I of [CIR 2025/848] and mentioned in REGISTER-PUB-05 and REGISTER-API-03 will be described in the [Register Data Schema](#register-data-schema) section.
+    The set of <roles:Wallet-Relying Party (WRP)|WRP> information listed in Annex I of [CIR 2025/848] and mentioned in REGISTER-PUB-05 and REGISTER-API-03 will be described in the [Register Data Schema](#register-data-schema) section.
 
 ##### Registrar Requirements
 
@@ -82,11 +82,11 @@ The list below enumerates all the applicable standards and specifications that h
 
 #### Register Data Schema
 
-This section defines the data schema for each WRP registered in the national <components:Register> of WRPs. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].
+This section defines the data schema for each WRP registered in the national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].
 
 <!--format of the information exchanged via the Register API as JSON objects and JWS-signed statements. -->
 
-!!! note "Address field publication rule (important)"
+!!! warning "Address field publication rule"
 
     The draft Annex VI text says the published API payload excludes `WalletRelyingParty.physicalAddress`, while Table 1 uses the attribute name `postalAddress`. This document uses **`postalAddress`** as the schema field name and applies the publication rule to that field (i.e., do not publish it in API statements).
 
@@ -354,7 +354,7 @@ A bank registered as a service provider (requesting PID for KYC).
 
 ##### Non-normative example: WRP object for a Relying Party that is also an Attestation Provider
 
-A bank registered as both a service provider (requesting PID for KYC) and a `QEAA_Provider` (issuing bank account attestations to wallet units). It has both `intendedUse` and `providesAttestations`.
+A bank registered as both a service provider (requesting <credentials:Person Identification Data (PID)|PID> for KYC) and a `QEAA_Provider` (issuing bank account attestations to wallet units). It has both `intendedUse` and `providesAttestations`.
 
 ````json
 {
@@ -461,7 +461,7 @@ A bank registered as both a service provider (requesting PID for KYC) and a `QEA
 
 ##### Non-normative example: WRP object for a designated Intermediary
 
-An entity registered as a designated Intermediary that acts on behalf of WRPs during Wallet interactions. It has `isIntermediary: true` and does not declare `intendedUse` (not required when registering solely as an intermediary).
+An entity registered as a designated Intermediary that acts on behalf of <roles:Wallet-Relying Party (WRP)|WRPs> during Wallet interactions. It has `isIntermediary: true` and does not declare `intendedUse` (not required when registering solely as an intermediary).
 
 ````json
 {
@@ -623,7 +623,7 @@ A small e-commerce business that relies on TrustBridge (see example above) to co
 
 #### Common Register API
 
-This section documents a [TS05 V1.3] aligned common <components:Register> API profile that satisfies [CIR 2025/848] Annex II and [CIR 2025/848-Amendment] constraints.
+This section documents a [TS05] aligned common <components:Register> API profile that satisfies [CIR 2025/848] Annex II and [CIR 2025/848-Amendment] constraints.
 
 ##### API Methods on Registration and Updating of WRP Data
 
@@ -635,7 +635,7 @@ The common API write methods (POST, PUT and DELETE) are defined for purposes of 
 
 ###### `POST /wrp` — create (REQUIRED)
 
-POST is for creating a new WRP entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and returns a `201` on success.
+POST is for creating a new <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and returns a `201` on success.
 
 **Request (body)**
 
@@ -656,7 +656,7 @@ POST is for creating a new WRP entry in the <components:Register>. Method expect
 
 ###### `PUT /wrp` — update (REQUIRED)
 
-PUT is for updating an existing WRP entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and can return `200` on success or `404` if not found.
+PUT is for updating an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and can return `200` on success or `404` if not found.
 
 **Request (body)**
 
@@ -678,7 +678,7 @@ PUT is for updating an existing WRP entry in the <components:Register>. Method e
 
 ###### `DELETE /wrp` — delete (REQUIRED)
 
-DELETE is for deleting of an existing WRP entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
+DELETE is for deleting of an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
 
 **Request (body)**
 
@@ -688,7 +688,7 @@ DELETE is for deleting of an existing WRP entry in the <components:Register>. Me
 
 !!! warning
 
-    For [TS05 V1.3] and [CIR 2025/848-Amendment], this method expects a request body with the `WalletRelyingParty` identifier, while in the corresponding YAML file [ts5-openapi31-registrar-api.yml](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml) the identifier is sent as a query parameter. This profile follows the [CIR 2025/848-Amendment].
+    For [TS05] and [CIR 2025/848-Amendment], this method expects a request body with the `WalletRelyingParty` identifier, while in the corresponding YAML file [ts5-openapi31-registrar-api.yml](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml) the identifier is sent as a query parameter. This profile follows the [CIR 2025/848-Amendment].
 
 **Response**
 
@@ -704,11 +704,11 @@ DELETE is for deleting of an existing WRP entry in the <components:Register>. Me
 
 The common API read methods (GET) SHALL be open for public access (no prior authentication) and returns JWS-signed statements.
 
-The public API SHALL provide methods for searching and querying complete data sets of registered WRPs matching with provided query parameters
+The public API SHALL provide methods for searching and querying complete data sets of registered <roles:Wallet-Relying Party (WRP)|WRPs> matching with provided query parameters
 
 ###### `GET /wrp` — search/list (REQUIRED)
 
-Get a list of WRPs (with optional filtering and pagination, list of all registered WRPs returned when no query parameters are provided).
+Get a list of <roles:Wallet-Relying Party (WRP)|WRPs> (with optional filtering and pagination, list of all registered WRPs returned when no query parameters are provided).
 
 **Request (query parameters)**
 
@@ -733,7 +733,7 @@ The common API SHALL support parameterised queries on `GET /wrp`. The following 
 
 !!! warning
 
-    The name of some query parameters differ from [TS05 V1.3] and the corresponding YAML file [ts5-openapi31-registrar-api.yml](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml) containing the OpenAPI specification of the JSON and REST based application programming interfaces (e.g., `intendedusecredentialmeta` vs `credentialmeta`). This profile follows the OpenAPI specification.
+    The name of some query parameters differ from [TS05] and the corresponding YAML file [ts5-openapi31-registrar-api.yml](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml) containing the OpenAPI specification of the JSON and REST based application programming interfaces (e.g., `intendedusecredentialmeta` vs `credentialmeta`). This profile follows the OpenAPI specification.
 
     In addition, this specification adds `providesattestation` to cover the [CIR 2025/848-Amendment] requirement for filtering parameter: type of attestations provided, returning the complete data set of each of the registered wallet-relying parties matching the value provided for this parameter.
 
@@ -807,7 +807,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 
 ###### `GET /wrp/{identifier}` — get by identifier (OPTIONAL)
 
-Get WRP by identifier.
+Get <roles:Wallet-Relying Party (WRP)|WRP> by identifier.
 
 !!! note
 

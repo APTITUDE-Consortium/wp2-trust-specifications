@@ -1,26 +1,26 @@
-The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of <artifacts:Trusted List (TL)|Trusted Lists>, which serve as the authoritative sources for Trust Anchors. A Trust Anchor is a self-signed X.509 certificate containing the names and public key used by a <components:Wallet Unit> or Wallet Relying Party (WRP) to validate an artifact or attestation.
+The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of <artifacts:Trusted List (TL)|Trusted Lists>, which serve as the authoritative sources for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is a self-signed X.509 certificate containing the names and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)> to validate an artifact or <credentials:Attestation>.
 
-Depending on the artifact or attestation being verified, the validating Entity SHALL fetch, download, and validate the appropriate <artifacts:Trusted List (TL)|Trusted List>:
+Depending on the artifact or <credentials:Attestation> being verified, the validating Entity SHALL fetch, download, and validate the appropriate <artifacts:Trusted List (TL)|Trusted List>:
 
-1. *List of <roles:Trusted Entity|Trusted Entities>* (<artifacts:List of Trusted Entities (LoTE)|LoTE>), used to retrieve Trust Anchors for validating the following:
+1. *<artifacts:List of Trusted Entities (LoTE)>*, used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
    - **Infrastructure Certificates**: <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> or <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
-   - **Wallet Artifacts**: <components:Wallet Unit Attestation (WUA)> or <components:Wallet Instance Attestation (WIA)>.
+   - **Wallet Artifacts**: <artifacts:Wallet Unit Attestation (WUA)> or <artifacts:Wallet Instance Attestation (WIA)>.
    - **PID Signatures**: <credentials:Person Identification Data (PID)>.
    - **<roles:Registrar>-signed artifacts**: <components:Register> informations.
-2. *<artifacts:EU Member State Trusted List (EUMS TL)|EU Member State Trusted Lists>* (<artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>); used to retrieve Trust Anchors for validating the following:
+2. *<artifacts:EU Member State Trusted List (EUMS TL)|EU Member State Trusted Lists>* (<artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>); used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
    - seal or signature on a <credentials:Qualified Electronic Attestation of Attributes (QEAA)>; or
-   - seal or signature on a Public Electronic Attestation of Attributes (Pub-EAA).
+   - seal or signature on a <credentials:Public Electronic Attestation of Attributes (PuB-EAA)>.
 
 To verify the authenticity of the retrieved <artifacts:Trusted List (TL)|Trusted Lists>, the Entity SHALL perform the following validations:
 
-- [LoTE Validation](#list-of-trusted-entities-validation-process): Validate the digital signature of the LoTE by verifying it against the LoTE Provider certificate. This certificate is authenticated via the *Official Journal of the European Union* (OJEU).
-- [EUMS TL Validation](#european-union-member-state-trusted-list-validation-process): Validate the digital signature of the EUMS TL by verifying it against the corresponding Member State public keys published in the *List of Trusted Lists* (LOTL). The LOTL itself is authenticated by validating its digital signature against the *Official Journal of the European Union* (OJEU).
+- [LoTE Validation](#list-of-trusted-entities-validation-process): Validate the digital signature of the <artifacts:List of Trusted Entities (LoTE)|LoTE> by verifying it against the LoTE Provider certificate. This certificate is authenticated via the <artifacts:Official Journal of the European Union (OJEU)>.
+- [EUMS TL Validation](#european-union-member-state-trusted-list-validation-process): Validate the digital signature of the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> by verifying it against the corresponding Member State public keys published in the <artifacts:List Of Trusted Lists (LOTL)>. The <artifacts:List Of Trusted Lists (LOTL)|LOTL> itself is authenticated by validating its digital signature against the <artifacts:Official Journal of the European Union (OJEU)>.
 
 To support continuous key rotation, both artifacts implement a pivoting mechanism. This ensures that an Entity possessing the last known valid version can reliably discover the location of the next version and validate it using the unbroken chain of trust rooted in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>.
 
 #### List of Trusted Entities Validation
 
-This section defines the validation of the EU-level List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>). The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a digitally signed/sealed artifact (JWT format) containing metadata and public keys for entities operating at the EU level.
+This section defines the validation of the EU-level <artifacts:List of Trusted Entities (LoTE)>. The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a digitally signed/sealed artifact (JWT format) containing metadata and public keys for entities operating at the EU level.
 
 Prior to validating the <artifacts:List of Trusted Entities (LoTE)|LoTE>, the <components:Wallet Unit> SHALL download the <artifacts:List of Trusted Entities (LoTE)|LoTE> from the protected location (URI) published in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>.
 
@@ -95,11 +95,11 @@ The validation SHALL perform the following steps:
 
 **Remarks**:
 
-- Steps 4, 5 and 11 allow modifying the location of the <artifacts:List of Trusted Entities (LoTE)|LoTE> file without changing the Trust Anchor, as long as the both the old and the new location have the same content (otherwise the validation fails with `LoTE_FILE_CONFLICT` status). This allows the <artifacts:List of Trusted Entities (LoTE)|LoTE> to be retrieved from different locations (e.g., mirrors) without affecting the Trust Anchor validation as long as the content is the same.
+- Steps 4, 5 and 11 allow modifying the location of the <artifacts:List of Trusted Entities (LoTE)|LoTE> file without changing the <artifacts:Trust Anchor>, as long as the both the old and the new location have the same content (otherwise the validation fails with `LoTE_FILE_CONFLICT` status). This allows the <artifacts:List of Trusted Entities (LoTE)|LoTE> to be retrieved from different locations (e.g., mirrors) without affecting the <artifacts:Trust Anchor> validation as long as the content is the same.
 - In case of `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE` error, it is likely that the <artifacts:Official Journal of the European Union (OJEU)|OJEU> publication has been updated with a new location for the <artifacts:List of Trusted Entities (LoTE)|LoTE>, and the validation process needs to be restarted with the new location.
-- In step 8. the validator established the binding of the signer certificate of the `LoTE` XML with the certificate referenced in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>, effectively using the latter as a Trust Anchor.
+- In step 8, the validator established the binding of the signer certificate of the `LoTE` XML with the certificate referenced in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>, effectively using the latter as a <artifacts:Trust Anchor>.
 
-To validate a Pub-EAA <artifacts:List of Trusted Entities (LoTE)|LoTE> in XML format (XAdES) containing the sought Trust Anchor, the <components:Wallet Unit> or WRP SHALL perform the same steps as described in [List of Trusted Lists Validation Process](#list-of-trusted-lists-validation-process) for the <artifacts:List of Trusted Entities (LoTE)|LoTE>, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LOTL`.
+To validate a <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAA> <artifacts:List of Trusted Entities (LoTE)|LoTE> in XML format (XAdES) containing the sought <artifacts:Trust Anchor>, the <components:Wallet Unit> or WRP SHALL perform the same steps as described in [List of Trusted Lists Validation Process](#list-of-trusted-lists-validation-process) for the <artifacts:List of Trusted Entities (LoTE)|LoTE>, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LOTL`.
 
 Below is a flowchart summarizing the above steps for the validation of the <artifacts:List of Trusted Entities (LoTE)|LoTE>:
 
@@ -177,10 +177,10 @@ graph TD
 
 #### European Union Member State Trusted List Validation
 
-This section defines the validation of Member State <artifacts:Trusted List (TL)|Trusted Lists> (<artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>). The <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> is an XML artifact signed by a Member State Scheme Operator. In order to validate the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>, the <components:Wallet Unit> or WRP uses the following validation hierarchy:
+This section defines the validation of <artifacts:EU Member State Trusted List (EUMS TL)|EU Member State Trusted Lists (EUMS TLs)>. The <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> is an XML artifact signed by a Member State Scheme Operator. In order to validate the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>, the <components:Wallet Unit> or WRP uses the following validation hierarchy:
 
-1. The Wallet/WRP SHALL first validate the EU List of <artifacts:Trusted List (TL)|Trusted Lists> (<artifacts:List Of Trusted Lists (LOTL)|LOTL>).
-2. The Wallet/WRP uses the authenticated <artifacts:List Of Trusted Lists (LOTL)|LOTL> to discover and validate the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>.
+1. The <components:Wallet Instance|Wallet>/<roles:Wallet-Relying Party (WRP)|WRP> SHALL first validate the EU List of <artifacts:Trusted List (TL)|Trusted Lists> (<artifacts:List Of Trusted Lists (LOTL)|LOTL>).
+2. The <components:Wallet Instance|Wallet>/<roles:Wallet-Relying Party (WRP)|WRP> uses the authenticated <artifacts:List Of Trusted Lists (LOTL)|LOTL> to discover and validate the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>.
 
 ##### European Union Member State Trusted List Retrieval and Validation Sequence Diagram
 
@@ -200,7 +200,7 @@ sequenceDiagram
     Client->>Client: Validate EUMS TL Signature using LOTL certificate
 ```
 
-In the diagram above, a <components:Wallet Unit> or WRP downloads and validates an EUMS <artifacts:Trusted List (TL)|Trusted List> by performing the following steps:
+In the diagram above, a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> downloads and validates an EUMS <artifacts:Trusted List (TL)|Trusted List> by performing the following steps:
 
 1. requests the <artifacts:List Of Trusted Lists (LOTL)|LOTL> at the location indicated by the URL published in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>;
 2. the <artifacts:List Of Trusted Lists (LOTL)|LOTL> distribution point returns the <artifacts:List Of Trusted Lists (LOTL)|LOTL> XML document;
@@ -209,13 +209,13 @@ In the diagram above, a <components:Wallet Unit> or WRP downloads and validates 
 5. requests the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> at the location indicated by the `TSLLocation` field in the <artifacts:List Of Trusted Lists (LOTL)|LOTL>;
 6. the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> distribution point returns the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> XML document;
 7. validates the signature/seal on the downloaded MS <artifacts:Trusted List (TL)|TL> using the certificates obtained from the <artifacts:List Of Trusted Lists (LOTL)|LOTL> in Step 4.
-8. parses the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> to retrieve the metadata and public key certificates of the relevant entities (e.g., <roles:QEAA Provider|QEAA Providers>, Pub-EAA Providers) and use them as trustworthy Trust Anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
+8. parses the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> to retrieve the metadata and public key certificates of the relevant entities (e.g., <roles:QEAA Provider|QEAA Providers>, <roles:PuB-EAA Provider|Pub-EAA Providers>) and use them as trustworthy Trust Anchors for verifying signatures/seals on <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAAs> or <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAAs>.
 
-If any of the above verifications fail, the validation process SHALL be aborted and the <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be considered invalid. If all verifications succeed, the <components:Wallet Unit> or WRP can parse the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> to retrieve the metadata and public key certificates of the relevant entities (i.e., <roles:QEAA Provider|QEAA Providers> or Pub-EAA Providers) and use them as trustworthy Trust Anchors for verifying signatures/seals on QEAAs or Pub-EAAs.
+If any of the above verifications fail, the validation process SHALL be aborted and the <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be considered invalid. If all verifications succeed, the <components:Wallet Unit> or WRP can parse the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> to retrieve the metadata and public key certificates of the relevant entities (i.e., <roles:QEAA Provider|QEAA Providers> or <roles:PuB-EAA Provider|Pub-EAA Providers>) and use them as trustworthy <artifacts:Trust Anchor|Trust Anchors> for verifying signatures/seals on <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAAs> or <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAAs>.
 
 ##### European Union Member State Trusted List Validation Process
 
-To validate a <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> containing the sought Trust Anchor, the <components:Wallet Unit> or Relying Party SHALL validate both the <artifacts:List Of Trusted Lists (LOTL)|LOTL> and the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>. The validation of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is a prerequisite for the validation of the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>, as the Trust Anchor for validating the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> is obtained from the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
+To validate a <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> containing the sought <artifacts:Trust Anchor>, the <components:Wallet Unit> or <roles:Relying Party (RP)|Relying Party> SHALL validate both the <artifacts:List Of Trusted Lists (LOTL)|LOTL> and the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>. The validation of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is a prerequisite for the validation of the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>, as the <artifacts:Trust Anchor> for validating the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> is obtained from the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
 
 ###### List of Trusted Lists Validation Process
 
@@ -223,7 +223,7 @@ To validate a <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> contain
 
 - The XML Pivot logic (Step 6) includes a "Self-Consistency Check" not present in the JWT logic due to the fact that the `Signature` element is not integrity protected.
 
-The <components:Wallet Unit> or Relying Party initializes the following input variables for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> validation:
+The <components:Wallet Unit> or <roles:Relying Party (RP)|Relying Party> initializes the following input variables for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> validation:
 
 - `OJEU-Loc`: URI value referencing the latest publication of the <artifacts:Official Journal of the European Union (OJEU)|Official Journal of the European Union> (<artifacts:Official Journal of the European Union (OJEU)|OJEU>) related to data on <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>.
 - `OJEU-LOTL-Loc`: URI value representing the location where the last processed instance of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> XML file is available. If not available, this is initialized from the `OJEU-Loc` publication.
@@ -239,7 +239,7 @@ The operations described below produce the following output variables:
 - `LOTL-Status`: The status indication of the process of authenticating the current instance of the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
 - `LOTL-Sub-Status`: A list of indications supplementing <artifacts:List Of Trusted Lists (LOTL)|LOTL>-Status indication of the process of authenticating the current instance of the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
 
-The validation operations for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> SHALL perform the following steps (see [ETSI TS 119 615] clause 4.1.4 for reference):
+The validation operations for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> SHALL perform the following steps (see [ETSI TS 119 615, clause 4.1.4] for reference):
 
 1. [PRO-4.1.4-1] (Initialization) Set `LOTL` to the XML file downloaded from `OJEU-LOTL-Loc`.
 2. [PRO-4.1.4-2] (Parsing) Set `LOTL-Signer-Cert` to the certificate extracted from the `ds:X509Certificate` element within the `ds:Signature` of the `LOTL`.
@@ -274,7 +274,7 @@ The validation operations for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> 
 
 ###### European Union Member State Trusted List Validation Process
 
-The validation operations for the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> SHALL perform the following steps (see [ETSI TS 119 615] clause 4.2.4 for reference).
+The validation operations for the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> SHALL perform the following steps (see [ETSI TS 119 615, clause 4.2.4] for reference).
 
 **Input variables**: [PRO-4.2.4-01, PRO-4.2.4-02]
 

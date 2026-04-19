@@ -1,4 +1,4 @@
-This section describes the format and contents of the <artifacts:Trusted List (TL)|Trusted Lists> and how they are used for the purpose of the List of <artifacts:Trusted List (TL)|Trusted Lists> and List of <roles:Trusted Entity|Trusted Entities> within the context of the EUDIW.
+This section describes the format and contents of the <artifacts:Trusted List (TL)|Trusted Lists> and how they are used for the purpose of the <artifacts:List Of Trusted Lists (LOTL)> and <artifacts:List of Trusted Entities (LoTE)> within the context of the <components:EUDI Wallet>.
 
 #### Regulatory Background
 
@@ -6,17 +6,17 @@ The <artifacts:Trusted List (TL)|Trusted List> is defined in article 22 of eIDAS
 
 Furthermore, according to Chapter II of Annex I of The CID (EU) 2015/1505, further amended by CID (EU) 2025/2164, <artifacts:Trusted List (TL)|Trusted Lists> must follow the technical specification [ETSI TS 119 612] version 2.4.1, becoming effective and live on April 29th, 2026.
 
-Also in CID (EU) 2015/150, article 4(3) establishes that the Commission publishes the information received from MS about their Trust Lists in machine-readable format for automated processing. This is what is known by "List of <artifacts:Trusted List (TL)|Trusted Lists>" (<artifacts:List Of Trusted Lists (LOTL)|LOTL>). Under article 4(4), the Commission may also publish the same information in human-readable format.
+Also in CID (EU) 2015/150, article 4(3) establishes that the Commission publishes the information received from MS about their Trust Lists in machine-readable format for automated processing. This is what is known by "<artifacts:List Of Trusted Lists (LOTL)>". Under article 4(4), the Commission may also publish the same information in human-readable format.
 
-Specifically for the EUDIW, the Commission defines the additional "Lists of <roles:Trusted Entity|Trusted Entities>" (<artifacts:List of Trusted Entities (LoTE)|LoTE>). The principles of the LoTEs are established under Articles 4 and 5 in CIR (EU) 2024/2980, which points the direction to the creation and publishing of two lists:
+Specifically for the <components:EUDI Wallet>, the Commission defines the additional "<artifacts:List of Trusted Entities (LoTE)>". The principles of the LoTEs are established under Articles 4 and 5 in [CIR 2024/2980], which points the direction to the creation and publishing of two lists:
 
 1. one list to include:
-   - registrars of wallet-relying parties
-   - registers of wallet-relying parties
+   - <roles:Registrar|Registrars> of <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties>
+   - <components:Register|Registers> of <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties>
 1. another list to include:
-   - wallet providers
-   - providers of person identification data
-   - and providers of wallet-relying party access certificates
+   - <roles:Wallet Provider (WP)|Wallet Providers>
+   - <roles:PID Provider|PID Providers>
+   - and <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Providers of Wallet Relying Party Access Certificate>
 
 #### Trusted List
 
@@ -70,7 +70,7 @@ Within eIDAS, one <artifacts:Trusted List (TL)|TL> is maintained per Member Stat
 
 The <artifacts:Trusted List (TL)|Trusted List> standard [ETSI TS 119 612] allows a hierarchy of <artifacts:Trusted List (TL)|Trusted Lists> by means of referencing to other <artifacts:Trusted List (TL)|TLs> from a parent <artifacts:Trusted List (TL)|TL>.
 
-Within eIDAS, a decentralized trust model is established, where the parent <artifacts:Trusted List (TL)|TL> is the *List of <artifacts:Trusted List (TL)|Trusted Lists>* (<artifacts:List Of Trusted Lists (LOTL)|LOTL>), managed and operated by the Commission. For each Member State, the <artifacts:List Of Trusted Lists (LOTL)|LOTL> contains a URL that points to the respective Member State <artifacts:Trusted List (TL)|TL>.
+Within eIDAS, a decentralized trust model is established, where the parent <artifacts:Trusted List (TL)|TL> is the <artifacts:List Of Trusted Lists (LOTL)>, managed and operated by the Commission. For each Member State, the <artifacts:List Of Trusted Lists (LOTL)|LOTL> contains a URL that points to the respective <artifacts:EU Member State Trusted List (EUMS TL)>.
 
 Currently, the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is published in the following URI: <https://ec.europa.eu/tools/lotl/eu-lotl.xml>.
 
@@ -78,37 +78,37 @@ Currently, the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is published in the
 
 The <artifacts:List Of Trusted Lists (LOTL)|LOTL> is electronically signed with a XAdES-B-B signature as defined by [ETSI EN 319 132-1]. For verification of the signature, the original signing certificates were initially published on the <artifacts:Official Journal of the European Union (OJEU)|Official Journal of the European Union>, here <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2019.276.01.0001.01.ENG>.
 
-Afterwards, a follow up method of providing traceable changes to the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is provided through the "Pivot <artifacts:List Of Trusted Lists (LOTL)|LOTL>". Whenever the <artifacts:List Of Trusted Lists (LOTL)|LOTL> signing certificates are changed (as they expire over time and are replaced by new certificates), and/or the <artifacts:List Of Trusted Lists (LOTL)|LOTL> publishing URL is changed, a "Pivot <artifacts:List Of Trusted Lists (LOTL)|LOTL>" is created. A "snapshot" of the current <artifacts:List Of Trusted Lists (LOTL)|LOTL> is created and published at a specific URL and a reference to that Pivot <artifacts:List Of Trusted Lists (LOTL)|LOTL> is added to the new (main) <artifacts:List Of Trusted Lists (LOTL)|LOTL>. The <artifacts:List Of Trusted Lists (LOTL)|LOTL> contains the history of Pivot LOTLs, which allows participants in the eIDAS ecosystem to rebuild the history of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> trust any given point in time. More information about the Pivot <artifacts:List Of Trusted Lists (LOTL)|LOTL> mechanism is available here: <https://ec.europa.eu/tools/lotl/pivot-lotl-explanation.html>.
+Afterwards, a follow up method of providing traceable changes to the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is provided through the "Pivot LOTL". Whenever the <artifacts:List Of Trusted Lists (LOTL)|LOTL> signing certificates are changed (as they expire over time and are replaced by new certificates), and/or the <artifacts:List Of Trusted Lists (LOTL)|LOTL> publishing URL is changed, a "Pivot LOTL" is created. A "snapshot" of the current <artifacts:List Of Trusted Lists (LOTL)|LOTL> is created and published at a specific URL and a reference to that Pivot LOTL is added to the new (main) <artifacts:List Of Trusted Lists (LOTL)|LOTL>. The <artifacts:List Of Trusted Lists (LOTL)|LOTL> contains the history of Pivot LOTLs, which allows participants in the eIDAS ecosystem to rebuild the history of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> trust any given point in time. More information about the Pivot LOTL mechanism is available here: <https://ec.europa.eu/tools/lotl/pivot-lotl-explanation.html>.
 
 #### List of Trusted Entities
 
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a compilation of the information submitted by Member States about the following entities:
 
-1. providers of person identity data;
-1. wallet providers;
-1. providers of wallet relying party access certificates;
-1. public sector bodies issuing electronic attestations of attributes.
+1. <roles:PID Provider|PID Providers>;
+1. <roles:Wallet Provider (WP)|Wallet Providers>;
+1. <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Providers of Wallet Relying Party Access Certificate>;
+1. Public sector bodies issuing electronic attestations of attributes.
 
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> follows the same structure defined for <artifacts:Trusted List (TL)|TLs> on [ETSI TS 119 612], yet a specific data model is defined in [ETSI TS 119 602] and 2 formats - JSON or XML - are allowed, depending on the type of <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> types can be one of the following, as defined in annex C.2:
 
-- PID providers
-- Wallet providers
-- Relying Party access certificate providers
-- Relying Party registration certificates
+- <roles:PID Provider|PID Providers>;
+- <roles:Wallet Provider (WP)|Wallet Providers>;
+- <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Providers of Wallet Relying Party Access Certificates>;
+- <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Providers of Wallet Relying Party Registration Certificates>;
 - Public sector bodies issuing electronic attestations of attributes
-- List of registrars and registers
+- List of <roles:Registrar|Registrars> and <components:Register|Registers>.
 
 #### Tools
 
 This section presents a non-exhaustive list of tools to processing <artifacts:Trusted List (TL)|Trusted Lists>.
 
 **TLManager:**
-The TLManager is a tool for creating <artifacts:Trusted List (TL)|Trusted Lists> compliant withy ETSI TS 116 612. Examples of use of the TLManager are:
+The TLManager is a tool for creating <artifacts:Trusted List (TL)|Trusted Lists> compliant with [ETSI TS 119 612]. Examples of use of the TLManager are:
 
-- non-EU countries willing to establish a national trusted list compatible with eIDAS. Following the same standard may facilitate bilateral trust.
-- setup of a sector specific trusted list - for example, healthcare, energy production and distribution, transportation, etc.
+- non-EU countries willing to establish a national <artifacts:Trusted List (TL)|Trusted List> compatible with eIDAS. Following the same standard may facilitate bilateral trust.
+- setup of a sector specific <artifacts:Trusted List (TL)|Trusted List> - for example, healthcare, energy production and distribution, transportation, etc.
 - setup of a lab <artifacts:Trusted List (TL)|Trusted List> for testing purposes
 
 TLManager is licenced under LGPL and is available for download here:
@@ -118,7 +118,7 @@ TLManager is licenced under LGPL and is available for download here:
 **eIDAS Dashboard:**
 The eIDAS Dashboard is a platform in the format of a dynamic website where all information and tools necessary to make use of the <components:EUDI Wallet>, Trust Services and eID schemes are openly available.
 
-The eIDAS Dashboard is available online here: <https://eidas.ec.europa.eu/efda/home>. Specifically for the <components:EUDI Wallet> ecosystem, the eIDAS Dashboard already has the placeholders for the several types of entities to be listed in the LoTEs, here: <https://eidas.ec.europa.eu/efda/wallet>.
+The eIDAS Dashboard is available online here: <https://eidas.ec.europa.eu/efda/home>. Specifically for the <components:EUDI Wallet> ecosystem, the eIDAS Dashboard already has the placeholders for the several types of entities to be listed in the <artifacts:List of Trusted Entities (LoTE)|LoTEs>, here: <https://eidas.ec.europa.eu/efda/wallet>.
 
 #### Data Models
 
@@ -139,14 +139,14 @@ The following table dictates the governing standard, publication scope (i.e., at
 
 ##### Trusted List and List of Trusted Lists
 
-The following URLs provide the normative XML schemas required for implementing the <artifacts:EU Member State Trusted List (EUMS TL)|EU Member State Trusted Lists> (<artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>) and the List of <artifacts:Trusted List (TL)|Trusted Lists> (<artifacts:List Of Trusted Lists (LOTL)|LOTL>):
+The following URLs provide the normative XML schemas required for implementing the <artifacts:EU Member State Trusted List (EUMS TL)|EU Member State Trusted Lists (EUMS TLs)> and the <artifacts:List Of Trusted Lists (LOTL)>:
 
-- **EU MSTL Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd)
+- **<artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd)
 - **<artifacts:List Of Trusted Lists (LOTL)|LOTL> Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd)
 
 ##### List of Trusted Entities
 
-The following repository provides the normative JSON and XML schemas required for implementing the List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>):
+The following repository provides the normative JSON and XML schemas required for implementing the <artifacts:List of Trusted Entities (LoTE)>:
 
 - **<artifacts:List of Trusted Entities (LoTE)|LoTE> Schemas:** [https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities](https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities)
 
@@ -182,7 +182,7 @@ The following table details the governing standards, publication scopes, and man
 
 !!! note
 
-    Within the APTITUDE project, the Pub-EAA Provider Lists are published in JSON format.
+    Within the APTITUDE project, the <roles:PuB-EAA Provider> Lists are published in JSON format.
 
 ###### LoTE Additional Requirements
 
@@ -192,7 +192,7 @@ Following Annexes D - I in [ETSI TS 119 602], below are detailed the additional 
 | :-------: | :--------: | :------: | :----: | :---------- |
 | `LoTEVersionIdentifier` | [ETSI TS 119 602] clause 6.3.1 | REQUIRED | *Integer* | The value of the `LoTEVersionIdentifier` component SHALL be `1`. |
 | `LoTESequenceNumber` | [ETSI TS 119 602] clause 6.3.2 | REQUIRED | *Integer* | The first instance of the PID providers list SHALL be issued with the value of the `LoTESequenceNumber` component number set to `1`. |
-| `LoTEType` | [ETSI TS 119 602] clause 6.3.3 | REQUIRED | *String* | Depending on the <artifacts:List of Trusted Entities (LoTE)\|LoTE> type, the value of the `LoTEType` component SHALL be one of the following URIs:<ul><li>"http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList" for PID Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWalletProvidersList" for <roles:Wallet Provider (WP)\|Wallet Providers>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPACProvidersList" for Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList" for Providers of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList" for Pub-EAA Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/RegistrarsAndRegistersList" for <roles:Registrar\|Registrars>.</li></ul> |
+| `LoTEType` | [ETSI TS 119 602] clause 6.3.3 | REQUIRED | *String* | Depending on the <artifacts:List of Trusted Entities (LoTE)\|LoTE> type, the value of the `LoTEType` component SHALL be one of the following URIs:<ul><li>"http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList" for PID Providers;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWalletProvidersList" for <roles:Wallet Provider (WP)\|Wallet Providers>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPACProvidersList" for Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList" for Providers of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList" for <roles:PuB-EAA Provider\|Pub-EAA Providers>;</li><li>"http://uri.etsi.org/19602/LoTEType/RegistrarsAndRegistersList" for <roles:Registrar\|Registrars>.</li></ul> |
 | `SchemeOperatorName` | [ETSI TS 119 602] clause 6.3.4 | REQUIRED | *Object* | No additional requirements. |
 | `SchemeOperatorAddress` | [ETSI TS 119 602] clause 6.3.5 | REQUIRED | *Object* | No additional requirements. |
 | `SchemeName` | [ETSI TS 119 602] clause 6.3.6 | REQUIRED | *Object* | No additional requirements. |
@@ -220,7 +220,7 @@ The `TrustedEntitiesList` is an *Array* of *Objects*, each possessing two primar
 
 !!! warning
 
-    The `TEAddress` component's description for the Pub-EAA Providers <artifacts:List of Trusted Entities (LoTE)|LoTE> differs from c) of the `TEAddress` component's description in ETSI 119 602 Annex H.3, Table H.2, which states "*the URI "<http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC>" where "CC" is replaced by the ISO 3166-1 [2] Alpha 2 code of the Member State which is responsible for that Pub-EAA provider*". For conformance to the other <artifacts:List of Trusted Entities (LoTE)|LoTE> types, this has been moved to the `TEInformationURI` component's description, as it is more appropriate for the information it conveys.
+    The `TEAddress` component's description for the <roles:PuB-EAA Provider|Pub-EAA Providers> <artifacts:List of Trusted Entities (LoTE)|LoTE> differs from c) of the `TEAddress` component's description in ETSI 119 602 Annex H.3, Table H.2, which states "*the URI "<http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC>" where "CC" is replaced by the ISO 3166-1 [2] Alpha 2 code of the Member State which is responsible for that Pub-EAA provider*". For conformance to the other <artifacts:List of Trusted Entities (LoTE)|LoTE> types, this has been moved to the `TEInformationURI` component's description, as it is more appropriate for the information it conveys.
 
 The `TrustedEntityServices` is an *Array* of `TrustedEntityService` *Objects*. Each `TrustedEntityService` *Object* possesses two primary subcomponents: the `ServiceInformation` and `ServiceHistoryInstance` components. The following table details the additional requirements the `ServiceInformation` *Object* component SHALL satisfy depending on the <artifacts:List of Trusted Entities (LoTE)|LoTE> type.
 

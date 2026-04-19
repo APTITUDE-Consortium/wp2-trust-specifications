@@ -1,11 +1,11 @@
 This section describes the artifacts that are employed in [Trust Management and Lifecycle](#7-trust-management-and-lifecycle) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
-- To manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates> (<artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>), each <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> SHALL:
+- To manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>, each <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> SHALL:
     - make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
-    - issue Access Certificates with at least an extension corresponding to the provided revocation mechanism as illustrated in [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate).
-- To manage <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates> (<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>), each <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
+    - issue <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> with at least an extension corresponding to the provided revocation mechanism as illustrated in [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate).
+- To manage <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRCs)>, each <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
     - make available an endpoint to request [Status List Tokens](#status-list-token);
-    - issue <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
+    - issue <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
 
 #### Token Status List
 
@@ -26,7 +26,7 @@ The <roles:Provider of Wallet Relying Party Registration Certificate (Provider o
 - `0x00` - `VALID` - The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is valid.
 - `0x01` - `INVALID` - The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is revoked.
 
-For example, if two states for a certain <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> are possible, then $k=1$. If the <roles:Credential Issuer> creates an array to store the statuses of 6 <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, whose validity statuses are 0, 0, 0, 1, 1, 0, respectively; then:
+For example, if two states for a certain <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> are possible, then $k=1$. If the <roles:Attestation Provider (AP)|Attestation Provider> creates an array to store the statuses of 6 <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, whose validity statuses are 0, 0, 0, 1, 1, 0, respectively; then:
 
 - The bit array can be of the form `a=[0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 1, 1, 0, 0, 0, 0; 0, 0, 1, 0, 0, 0, 0, 1]` which, in hexadecimal notation, corresponds to the byte array `[0x00, 0x30, 0x21]`.
 - The status values are encoded in specific bit positions based on their assigned index.
@@ -176,7 +176,7 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 
 !!! note
 
-    Within the APTITUDE pilot we do not use Delta CRLs
+    Within the APTITUDE pilot, Delta CRLs are not used.
 
 #### Online Certificate Status Protocol
 

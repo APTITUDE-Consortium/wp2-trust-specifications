@@ -41,15 +41,15 @@ This specification, *Implementation Profiles for the Trust Framework*, defines t
 
 ## 2. Scope
 
-This specification defines the trust framework profiles for the APTITUDE Large Scale Pilot. Its scope is limited to establishing the essential mechanisms for trust in interactions between <components:Wallet Unit|Wallet Units> and Wallet-Relying Parties. The scope of this document is organized as follows:
+This specification defines the trust framework profiles for the APTITUDE Large Scale Pilot. Its scope is limited to establishing the essential mechanisms for trust in interactions between <components:Wallet Unit|Wallet Units> and <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties>. The scope of this document is organized as follows:
 
 - [**Trust Architecture**](#4-trust-architecture): Description of the roles and logical interaction flows within the APTITUDE pilot ecosystem.
 
-- [**Trust Artifacts**](#5-trust-artifacts): Definition of the required trust objects and their conceptual roles in the ecosystem, including registers, Wallet-Relying Party Access and Registration Certificates, and the management of Trusted Lists (TLs), Lists of Trusted Entities (LoTE) and Embedded Disclosure Policies (EDPs).
+- [**Trust Artifacts**](#5-trust-artifacts): Definition of the required trust objects and their conceptual roles in the ecosystem, including <components:Register|Registers>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPAC)> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRC)>, and the management of <artifacts:Trusted List (TL)|Trusted Lists (TLs)>, <artifacts:List of Trusted Entities (LoTE)|Lists of Trusted Entities (LoTE)> and <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policies (EDPs)>.
 
 - [**Trust Evaluation Processes**](#6-trust-evaluation-process): Outlining the necessary stages for trust anchor validation, authentication and authorization processes.
 
-- [**Trust Management and Lifecycle**](#7-trust-management-and-lifecycle): Defines the mechanisms for managing the status of Trusted Entities, with a current focus on revocation procedures.
+- [**Trust Management and Lifecycle**](#7-trust-management-and-lifecycle): Defines the mechanisms for managing the status of <roles:Trusted Entity|Trusted Entities>, with a current focus on revocation procedures.
 
 ### Out of Scope
 
@@ -59,7 +59,7 @@ The current version of these specifications does not provide details on:
 
 - **Trust Management Process**: While this document defines revocation mechanisms, the broader Trust Management Process (covering full lifecycle management) is currently missing and will be addressed in future versions.
 
-- **Registration, Notification, and Publication Processes**: The administrative and regulatory processes governing the registration, notification, and publication of Trust Entities between Member States and the European Commission are excluded from this scope.
+- **Registration, Notification, and Publication Processes**: The administrative and regulatory processes governing the registration, notification, and publication of <roles:Trusted Entity|Trust Entities> between Member States and the European Commission are excluded from this scope.
 
 ---
 
