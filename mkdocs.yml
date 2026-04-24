@@ -1,0 +1,125 @@
+# Project information
+site_name: APTITUDE | Implementation Profiles for the Trust Framework
+site_description: APTITUDE | Implementation Profiles for the Trust Framework
+site_author: APTITUDE Consortium
+site_url: https://aptitude-consortium.github.io/wp2-trust-specifications/
+
+# Repository
+repo_name: APTITUDE-Consortium/wp2-trust-specifications
+repo_url: https://github.com/APTITUDE-Consortium/wp2-trust-specifications
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: Copyright &copy; 2025 APTITUDE Consortium
+
+# Configuration for MkDocs Material theme
+theme:
+  name: material
+  custom_dir: docs/overrides
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.path
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+    - toc.follow
+    - toc.integrate
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png
+
+extra_css:
+  - media/extra.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js
+  - media/mermaid-init.js
+
+plugins:
+  - tags
+  - exclude:
+      glob:
+        - 'README.md'
+        - 'CONTRIBUTING.md'
+        - 'terminology.md'
+        - 'references/**'
+        - 'requirements/**'
+        - 'topics/**'
+        - 'docs/topics/**'
+        - 'docs/glossary-definitions.md'
+        - 'docs/references.md'
+  - include-markdown:
+      comments: true
+  - search
+  - ezglossary:
+      strict: true
+      ignore_case: true
+      plurals: en
+      markdown_links: true
+      tooltip: full
+      templates: docs/overrides/ezglossary
+      sections:
+        - roles
+        - components
+        - artifacts
+        - credentials
+        - protocols
+        - processes
+        - formats
+        - data-elements
+  - git-revision-date-localized:
+      locale: en
+      fallback_to_build_date: true
+      type: datetime
+      exclude:
+        - glossary-definitions.md
+        - overrides/partials/footer/
+
+
+markdown_extensions:
+  - footnotes
+  - sane_lists
+  - tables
+  - def_list
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - admonition
+  - pymdownx.blocks.admonition
+
+extra:
+  version:
+    provider: mike
+
+nav:
+  - Home: index.md
+  - Deliverable: deliverable-2.1-trust.md

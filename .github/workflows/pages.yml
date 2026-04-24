@@ -1,0 +1,89 @@
+name: Publish MkDocs site
+
+on:
+  push:
+    branches:
+      - main
+      - page-compile
+      - 'release-v*'
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Configure Git User
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch Remote Assets
+        run: |
+          mkdir -p docs/
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/glossary-definitions.md \
+               -o docs/glossary-definitions.md
+
+          mkdir -p docs/overrides/partials/footer/
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/overrides/partials/footer.html \
+               -o docs/overrides/partials/footer/footer.html
+
+          mkdir -p docs/overrides/ezglossary/
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/overrides/ezglossary/link.html \
+               -o docs/overrides/ezglossary/link.html
+
+          mkdir -p docs/media/
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/extra.css \
+               -o docs/media/extra.css
+
+          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
+               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/mermaid-init.js \
+               -o docs/media/mermaid-init.js
+
+      - name: Deploy Pre-Release (from release-v* branch)
+        if: startsWith(github.ref, 'refs/heads/release-v')
+        run: |
+          VERSION=$(echo "${GITHUB_REF_NAME}" | sed 's/release-//')
+          PATH_NAME="${VERSION}-dev"
+          mike deploy --push --allow-empty "$PATH_NAME"
+          mike set-default --push "$PATH_NAME"
+
+      - name: Deploy Official Release (from tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          mike deploy --push --allow-empty --update-aliases ${GITHUB_REF_NAME} latest
+          mike set-default --push latest
+
+      - name: Deploy Main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mike deploy --push --allow-empty main
