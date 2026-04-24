@@ -44,7 +44,9 @@ Other ETSI specifications that the previous specifications build upon:
 | ETSI EN 319 412-1  | V1.7.0      | 2026-02    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 1: Overview and common data structures |
 | ETSI EN 319 412-2  | V2.4.1      | 2025-06    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 2: Certificate profile for certificates issued to natural persons |
 | ETSI EN 319 412-3  | V1.3.1      | 2023-09    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 3: Certificate profile for certificates issued to legal persons |
+| ETSI EN 319 412-5  | V2.5        | 2025-06    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 5: QCStatements |
 | ETSI TS 119 182-1  | V1.2.1      | 2024-07    | Electronic Signatures and Trust Infrastructures (ESI); JAdES digital signatures; Part 1: Building blocks and JAdES baseline signatures |
+| ETSI TS 119 312    | V1.4        | 2023-08    | Electronic Signatures and Infrastructures (ESI); Cryptographic Suites |
 | ETSI TS 119 495    | V1.7.1      | 2024-07    | Electronic Signatures and Trust Infrastructures (ESI); Sector Specific Requirements; Certificate Profiles and TSP Policy Requirements for Open Banking |
 
 ### ISO/IEC Standards
@@ -57,6 +59,7 @@ Other ETSI specifications that the previous specifications build upon:
 
 | **Item Reference** | **Version** | **Date**   | **Standard Name/Details** |
 | ------------------ | ----------- | ---------- | ------------------------- |
+| OpenID4VC HAIP     | V1.0        | 2025-12    | OpenID4VC High Assurance Interoperability Profile |
 | OpenID4VCI         | V1.0        | 2025-09    | OpenID for Verifiable Credential Issuance |
 | OpenID4VP          | V1.0        | 2025-07    | OpenID Connect for Verifiable Presentations |
 

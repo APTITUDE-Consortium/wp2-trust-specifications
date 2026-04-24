@@ -508,7 +508,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 Algorithms used should be one of the algorithms for digital signatures recommended by in [ETSI TS 119 312].
 
-[OpenID4VC High Assurance Interoperability Profile 1.0] also defines its own requirements for digital signatures. However, those requirements are not directly related to <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>.
+[OpenID4VC HAIP] also defines its own requirements for digital signatures. However, those requirements are not directly related to <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>.
 
 ##### List of Possible Entitlements
 
