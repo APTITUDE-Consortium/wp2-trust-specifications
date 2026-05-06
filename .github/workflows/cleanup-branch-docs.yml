@@ -1,0 +1,31 @@
+name: Cleanup Branch Docs
+
+on:
+  delete:
+    branches-ignore:
+      - main
+      - 'release-v*'
+
+jobs:
+  delete-docs:
+    runs-on: ubuntu-latest
+    if: github.event.ref_type == 'branch'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install mike
+        run: pip install mike
+
+      - name: Delete branch documentation
+        run: |
+          CLEAN_NAME=$(echo "${{ github.event.ref }}" | sed 's/\//-/g')
+          VERSION_NAME="branch-${CLEAN_NAME}"
+          mike delete --push "${VERSION_NAME}"
