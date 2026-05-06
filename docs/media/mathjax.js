@@ -16,3 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     MathJax.typesetPromise();
   }
 });
+
+document.addEventListener("DOMContentSwitch", function() {
+  MathJax.typesetPromise();
+});
