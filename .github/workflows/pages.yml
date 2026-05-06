@@ -87,3 +87,12 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           mike deploy --push --allow-empty main
+
+      - name: Deploy Branch
+        if: |
+          github.ref_type == 'branch' &&
+          github.ref_name != 'main' &&
+          !startsWith(github.ref_name, 'release-v')
+        run: |
+          CLEAN_NAME=$(echo "${GITHUB_REF_NAME}" | sed 's/\//-/g')
+          mike deploy --push --allow-empty "branch-${CLEAN_NAME}"
