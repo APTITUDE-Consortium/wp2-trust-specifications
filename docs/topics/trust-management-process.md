@@ -40,12 +40,12 @@ flowchart LR
     ID --> RegID --> WRPAC
     Entity-.->|xx as| AUTH
     MSPolicy -.-> AUTH
-    AttType -.-> AUTH
+    AttType["Attestation Type"] -.-> AUTH
     AUTH --> RegAuth--> WRPRC
-    Role -.-> AUTH 
+    Role -.->|Authorization on| AUTH 
     Cat --> AttType
 
-    Role -.->|Authorization on| AttType["Attestation Type"]
+    
 Policy<-.->|Authorization requirements|AttType
 Cat["Catalogue of Schemes"]-.->|defines|AttType
 ```
