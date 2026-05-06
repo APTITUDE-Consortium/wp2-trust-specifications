@@ -3,9 +3,7 @@ name: Publish MkDocs site
 on:
   push:
     branches:
-      - main
-      - page-compile
-      - 'release-v*'
+      - '*'
     tags:
       - 'v*'
   workflow_dispatch:
