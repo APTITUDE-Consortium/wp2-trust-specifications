@@ -1,5 +1,59 @@
 ﻿# Trust Management Process
 
+- what is in scope of the TMng process?
+- high level overview of the section
+
+## Trust Management High Level picture
+
+- make a diagram Onboarding $\rightarrow$ Operations $\rightarrow$ Offboarding, highlighting the interactions between Member States, Supervisory Bodies, and the LoTE.
+- make a state machine diagram for entity types:
+  - Root Entity State Transitions (Registrars, CAs): (e.g., ACTIVE $\rightarrow$ COMPROMISED $\rightarrow$ REVOKED\SUSPENDED). Explain the triggers for these states.
+  - Leaf Entity (all the entities which undergo onboarding: WRP, WP, ) State Transitions: (e.g., REGISTERED $\rightarrow$ ACTIVE $\rightarrow$ SUSPENDED $\rightarrow$ TERMINATED).
+
+## Trust management operations
+
+### Onboarding??
+
+- link to the general section
+
+### Ongoing Operations Management
+
+- Administrative Updates: Name changes, address updates, business logic changes (e.g., adding a new attribute type they are allowed to issue).
+- Technical Configuration Management: Planned key rotations, endpoint URI updates, updating cryptographic suites.
+
+### Incident Management & Suspension
+
+- Emergency Key Rotation: What happens when an entity suspects a breach but isn't entirely compromised.
+- Temporary Suspension: The Supervisory Body temporarily freezing an entity in the LoTE pending a compliance audit.
+
+### Removal Processes
+
+- Voluntary Exit: An entity decides to stop issuing EAAs. How do they gracefully wind down, and what happens to the valid credentials they already issued?
+-  Supervisory Body Removal: Forced offboarding due to severe compliance failures or fatal breaches
+
+## Trust Management Event Table
+
+The following matrix serves as the operational reference guide for the Trust Management process. It maps every critical lifecycle event to its responsible actors, the required communication protocols, and the resulting technical impacts on the ecosystem.
+
+Table Legend:
+- **Event**: The specific operational, administrative, or security trigger occurring within the ecosystem.
+- **Sender**: The entity responsible for initiating the communication or action.
+- **Receiver**: The actor or system component that receives the notification and executes the necessary updates.
+- **Notification Protocol / Type**: The technical or administrative method used to transmit the event data (e.g., REST API, Out-of-Band email, automated sync).
+- **Consequence (State Change)**: The resulting lifecycle state transition for the affected entity (e.g., from ACTIVE to SUSPENDED).
+- **Impact on Trust Artifacts**: The exact technical modifications applied to the trust artifacts.
+
+| Event | Sender | Receiver | Notification Protocol / Type | Consequence (State Change) | Impact on Trust Artifacts |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Initial Registration Approval** | Supervisory Body | National LoTE Publisher | Secure API (POST /register) | `PROPOSED` $\rightarrow$ `ACTIVE` | Entity's public keys and metadata are appended to the next published LoTE sequence. |
+| **Planned Key Rotation** | Supervised Entity (Leaf) | Supervisory Body / LoTE Publisher | Secure API (PUT /update-key) | Remains `ACTIVE` | LoTE is updated with the new Trust Anchor/DS certificate; old key remains valid until expiration. |
+| **Suspected Key Compromise** | Supervised Entity (Leaf) | Supervisory Body | Out-of-Band (Emergency Contact) & API Alert | `ACTIVE` $\rightarrow$ `SUSPENDED` | `ServiceStatus` in LoTE changed to suspended; WRPAC may be temporarily added to CRL. |
+| **Administrative Update (e.g., Name Change)** | Supervised Entity (Leaf) | Supervisory Body | Secure API (PATCH /metadata) | Remains `ACTIVE` | LoTE `SchemeOperatorName` or `ServiceInformation` extensions updated; Sequence Number increments. |
+| **Voluntary Exit** | Supervised Entity (Leaf) | Supervisory Body | Formal Administrative Request | `ACTIVE` $\rightarrow$ `TERMINATED` | Entity removed from active LoTE; historical keys moved to archive/historical tracking for past validations. |
+| **Forced Supervisory Removal** | Supervisory Body | National LoTE Publisher & Ecosystem | Internal Auth API & Broadcast | `SUSPENDED` $\rightarrow$ `REVOKED` | WRPAC permanently added to CRL/OCSP; Entity entirely removed from the active Trusted Entities List. |
+
+---
+
 **Table of Contents**
 
 **Normative & technical references**  
