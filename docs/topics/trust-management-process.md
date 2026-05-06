@@ -43,7 +43,7 @@ flowchart LR
     AttType -.-> AUTH
     AUTH --> RegAuth--> WRPRC
     Role -.-> AUTH 
-    catalogue --> AttType
+    Cat --> AttType
 
     Role -.->|Authorization on| AttType["Attestation Type"]
 Policy<-.->|Authorization requirements|AttType
