@@ -115,10 +115,16 @@ markdown_extensions:
       toc_depth: 3
   - admonition
   - pymdownx.blocks.admonition
+  - pymdownx.arithmatex:
+      generic: true
 
 extra:
   version:
     provider: mike
+
+extra_javascript:
+  - media/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
   - Home: index.md
