@@ -6788,7 +6788,7 @@ The validation SHALL perform the following steps:</p>
 <ol>
 <li>(Initialization) Download the JWT file from <code>OJEU-LoTE-Loc</code> and assign it to <code>LoTE</code>.</li>
 <li>(Parsing) Extract the first certificate from the <code>x5c</code> header of <code>LoTE</code> and assign it to <code>LoTE-Signer-Cert</code>.</li>
-<li>(Pivot Discovery) Iterate through the <code>uriValue</code> claims in the <code>SchemeInformationURI</code> object. Count the number of valid URIs found before encountering the URI matching <code>OJEU-Loc</code>. Let $n$ be that count.<ul>
+<li>(Pivot Discovery) Iterate through the <code>uriValue</code> claims in the <code>SchemeInformationURI</code> object. Count the number of valid URIs found before encountering the URI matching <code>OJEU-Loc</code>. Let <span class="arithmatex">\(n\)</span> be that count.<ul>
 <li>If no URI matches <code>OJEU-Loc</code>: Validation SHALL fail with <code>LoTE-Status</code> set to <code>LoTE_VERIFICATION_FAILED</code> and <code>LoTE-Sub-Status</code> set to <code>OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE</code>. (This implies a Trust Anchor migration is required).</li>
 </ul>
 </li>
@@ -6813,9 +6813,9 @@ The validation SHALL perform the following steps:</p>
 </ul>
 </li>
 <li>(Intermediate Pivot Validation)<ul>
-<li>Case $n=0$ (No Pivots): Proceed directly to Step 8.</li>
-<li>Case $n&gt;0$ (History Chain):<ul>
-<li>Iterate $i$ from 1 to $n$ (from most recent Pivot to oldest). Let <code>Pivot</code> be the file downloaded from the $i$-th URI.</li>
+<li>Case <span class="arithmatex">\(n=0\)</span> (No Pivots): Proceed directly to Step 8.</li>
+<li>Case <span class="arithmatex">\(n&gt;0\)</span> (History Chain):<ul>
+<li>Iterate <span class="arithmatex">\(i\)</span> from 1 to <span class="arithmatex">\(n\)</span> (from most recent Pivot to oldest). Let <code>Pivot</code> be the file downloaded from the <span class="arithmatex">\(i\)</span>-th URI.</li>
 <li>(Link Check) Set <code>Pivot-Certs-Set</code> to the certificates in the <code>PointersToOtherLoTE</code> claim (territory <code>EU</code>) of <code>Pivot</code>. If <code>LoTESO-Cert</code> (the signer of the previous file in the chain) is not in <code>Pivot-Certs-Set</code>, validation SHALL fail with <code>LoTE-Sub-Status</code> set to <code>PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i</code>.</li>
 <li>(Update Signer) Set <code>LoTESO-Cert</code> to the first certificate in the <code>x5c</code> header parameter of <code>Pivot</code>.</li>
 <li>(Verify Signature) Validate the signature of <code>Pivot</code> using <code>LoTESO-Cert</code>. If it fails, validation SHALL fail with <code>LoTE-Status</code> set to <code>LoTE_VERIFICATION_FAILED</code>, and <code>LoTE-Sub-Status</code> set to <code>PIVOT_i_SIGNATURE_VERIFICATION_FAILED</code>.</li>
@@ -7365,7 +7365,7 @@ The validation SHALL perform the following steps:</p>
 <ol>
 <li>[PRO-4.1.4-1] (Initialization) Set <code>LOTL</code> to the XML file downloaded from <code>OJEU-LOTL-Loc</code>.</li>
 <li>[PRO-4.1.4-2] (Parsing) Set <code>LOTL-Signer-Cert</code> to the certificate extracted from the <code>ds:X509Certificate</code> element within the <code>ds:Signature</code> of the <code>LOTL</code>.</li>
-<li>[PRO-4.1.4-3, PRO-4.1.4-4] (Pivot Discovery) Iterate through the URIs in the <code>SchemeInformationURI</code> element. Count the number of successive valid XML URIs found before encountering the URI matching <code>OJEU-Loc</code>. Let $n$ be that count. If no URI matches <code>OJEU-Loc</code>, the validation SHALL fail with <code>LOTL-Status</code> set to <code>LOTL_VERIFICATION_FAILED</code> and <code>LOTL-Sub-Status</code> set to <code>OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LOTL</code>.</li>
+<li>[PRO-4.1.4-3, PRO-4.1.4-4] (Pivot Discovery) Iterate through the URIs in the <code>SchemeInformationURI</code> element. Count the number of successive valid XML URIs found before encountering the URI matching <code>OJEU-Loc</code>. Let <span class="arithmatex">\(n\)</span> be that count. If no URI matches <code>OJEU-Loc</code>, the validation SHALL fail with <code>LOTL-Status</code> set to <code>LOTL_VERIFICATION_FAILED</code> and <code>LOTL-Sub-Status</code> set to <code>OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LOTL</code>.</li>
 <li>[PRO-4.1.4-5] (<a class="mkdocs-ezglossary-link"
     id="bc2cf2e8d1ad5b95002ad62f39a77cbc"
     title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
@@ -7393,12 +7393,12 @@ The validation SHALL perform the following steps:</p>
 </ul>
 </li>
 <li>(Intermediate Pivot Validation)<ul>
-<li>[PRO-4.1.4-10] If $n = 0$ (No Pivots):<ul>
+<li>[PRO-4.1.4-10] If <span class="arithmatex">\(n = 0\)</span> (No Pivots):<ul>
 <li>If <code>LOTLSO-Cert</code> is not in <code>OJEU-LOTL-Certs-Set</code>, validation SHALL fail (Signer not authorized by Trust Anchor). Otherwise, proceed to Step 8.</li>
 </ul>
 </li>
-<li>[PRO-4.1.4-11] If $n &gt; 0$ (History Chain):<ul>
-<li>Iterate $i$ from 1 to $n$ (from most recent Pivot to oldest). Let <code>Pivot</code> be the file at the $i$-th URI.</li>
+<li>[PRO-4.1.4-11] If <span class="arithmatex">\(n &gt; 0\)</span> (History Chain):<ul>
+<li>Iterate <span class="arithmatex">\(i\)</span> from 1 to <span class="arithmatex">\(n\)</span> (from most recent Pivot to oldest). Let <code>Pivot</code> be the file at the <span class="arithmatex">\(i\)</span>-th URI.</li>
 <li>(Link Check) Set <code>Pivot-Certs-Set</code> to the certificates in the <code>PointersToOtherTSL</code> (territory <code>EU</code>) of <code>Pivot</code>. If <code>LOTLSO-Cert</code> (from the previous step) is not in <code>Pivot-Certs-Set</code>, validation SHALL fail with <code>LOTL-Sub-Status</code> set to <code>PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i</code>.</li>
 <li>(Extract Signer) Set <code>LOTLSO-Cert</code> to the certificate extracted from the signature of <code>Pivot</code>.</li>
 <li>(Self-Consistency Check) If <code>LOTLSO-Cert</code> is not in <code>Pivot-Certs-Set</code>, validation SHALL fail with <code>LOTL-Sub-Status</code> set to <code>PIVOT_i_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i</code>.</li>
@@ -7729,20 +7729,20 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
     name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
     href="../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> obtained from the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>.</li>
-<li>The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:<ul>
-<li>$C_1$ is the certificate issued by the <a class="mkdocs-ezglossary-link"
+<li>The Certification Path is the sequence of <span class="arithmatex">\(n\)</span> certificates (<span class="arithmatex">\(C_1 \dots C_n\)</span>) provided by the WRP, where:<ul>
+<li><span class="arithmatex">\(C_1\)</span> is the certificate issued by the <a class="mkdocs-ezglossary-link"
     id="cb253f592726ff3d8b48c636bc519c39"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>.</li>
-<li>$C_n$ is the <a class="mkdocs-ezglossary-link"
+<li><span class="arithmatex">\(C_n\)</span> is the <a class="mkdocs-ezglossary-link"
     id="e75beee460b0c3c598a3b863af9acb2e"
     title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> (the target certificate).</li>
-<li>For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.</li>
+<li>For any <span class="arithmatex">\(i\)</span> in <span class="arithmatex">\(1 \dots n-1\)</span>, <span class="arithmatex">\(C_i\)</span> is the issuer of <span class="arithmatex">\(C_{i+1}\)</span>.</li>
 </ul>
 </li>
 </ul>
@@ -7753,7 +7753,7 @@ The validation SHALL perform the following steps:</p>
     name="components:Wallet Unit"
     href="../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> initializes the validation with:</p>
 <ul>
-<li><code>path</code>: The sequence $C_1 \dots C_n$.</li>
+<li><code>path</code>: The sequence <span class="arithmatex">\(C_1 \dots C_n\)</span>.</li>
 <li><code>trust_anchor</code>: The certificate of the <a class="mkdocs-ezglossary-link"
     id="a5ae08f3e7d720b9a3228c9a547b2fd9"
     title="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
@@ -7766,34 +7766,34 @@ The validation SHALL perform the following steps:</p>
 Initialize the state variables:</p>
 <ul>
 <li><code>valid_policy_tree</code>: A single node (depth 0, <code>valid_policy</code>=<code>anyPolicy</code>, <code>qualifier_set</code>={}, <code>expected_policy_set</code>={ <code>anyPolicy</code> }).</li>
-<li><code>explicit_policy</code> (how many certificates in the chain are allowed to lack a specific, valid policy): $n+1$.</li>
-<li><code>inhibit_any_policy</code> (how many certificates are allowed to use the <code>anyPolicy</code> OID): $n+1$ (no inhibition of policies allowed).</li>
-<li><code>policy_mapping</code>: $n+1$ (no policy mapping allowed).</li>
+<li><code>explicit_policy</code> (how many certificates in the chain are allowed to lack a specific, valid policy): <span class="arithmatex">\(n+1\)</span>.</li>
+<li><code>inhibit_any_policy</code> (how many certificates are allowed to use the <code>anyPolicy</code> OID): <span class="arithmatex">\(n+1\)</span> (no inhibition of policies allowed).</li>
+<li><code>policy_mapping</code>: <span class="arithmatex">\(n+1\)</span> (no policy mapping allowed).</li>
 <li><code>working_public_key</code>: The public key of the <code>trust_anchor</code>.</li>
 <li><code>working_public_key_parameters</code>: The parameters of the <code>trust_anchor</code> public key.</li>
 <li><code>working_issuer_name</code>: The subject Distinguished Name (DN) of the <code>trust_anchor</code>.</li>
-<li><code>max_path_length</code>: $n$.</li>
+<li><code>max_path_length</code>: <span class="arithmatex">\(n\)</span>.</li>
 </ul>
 <p><strong>Step 2: Certificate Processing</strong>
-Iterate through the path for $i$ from $1$ to $n$:</p>
+Iterate through the path for <span class="arithmatex">\(i\)</span> from <span class="arithmatex">\(1\)</span> to <span class="arithmatex">\(n\)</span>:</p>
 <ol>
 <li>Basic Integrity &amp; Binding Checks:<ul>
-<li>Verify the signature of $C_i$ using <code>working_public_key</code>, <code>working_public_key_parameters</code>, and the algorithm identifier.</li>
-<li>Ensure <code>current_time</code> falls within the <code>notBefore</code> and <code>notAfter</code> validity period of $C_i$.</li>
+<li>Verify the signature of <span class="arithmatex">\(C_i\)</span> using <code>working_public_key</code>, <code>working_public_key_parameters</code>, and the algorithm identifier.</li>
+<li>Ensure <code>current_time</code> falls within the <code>notBefore</code> and <code>notAfter</code> validity period of <span class="arithmatex">\(C_i\)</span>.</li>
 <li>Check revocation status (CRL or OCSP) as defined in <a href="#revocation-checking">Revocation Checking</a>.</li>
-<li>Verify that the issuer name of $C_i$ matches <code>working_issuer_name</code>.</li>
+<li>Verify that the issuer name of <span class="arithmatex">\(C_i\)</span> matches <code>working_issuer_name</code>.</li>
 </ul>
 </li>
 <li>Policy Processing:<ul>
 <li>If <code>certificatePolicies</code> extension is present and <code>valid_policy_tree</code> is not NULL:<ul>
 <li>Process policy constraints, qualifiers, and mappings according to [RFC 5280] Section 6.1.3.</li>
-<li>for each policy $P$ not equal to <code>anyPolicy</code> in the certificate policies extension, let $P$-OID denote the OID for policy $P$ and $P$-Q denote the qualifier set for policy $P$.<ul>
-<li>for each node of depth $i-1$ in the <code>valid_policy_tree</code> where $P$-OID is in the node's <code>expected_policy_set</code>, create a child node with <code>valid_policy</code> $P$-OID, <code>qualifier_set</code> $P$-Q, and <code>expected_policy_set</code> set to {$P$-OID}.</li>
-<li>If no match is found for $P$-OID in any node of depth $i-1$ and the <code>valid_policy_tree</code> has a node of depth $i-1$ with <code>valid_policy</code> set to <code>anyPolicy</code>, generate a child node with <code>valid_policy</code> $P$-OID, <code>qualifier_set</code> $P$-Q, and <code>expected_policy_set</code> set to {<code>anyPolicy</code>}.</li>
+<li>for each policy <span class="arithmatex">\(P\)</span> not equal to <code>anyPolicy</code> in the certificate policies extension, let <span class="arithmatex">\(P\)</span>-OID denote the OID for policy <span class="arithmatex">\(P\)</span> and <span class="arithmatex">\(P\)</span>-Q denote the qualifier set for policy <span class="arithmatex">\(P\)</span>.<ul>
+<li>for each node of depth <span class="arithmatex">\(i-1\)</span> in the <code>valid_policy_tree</code> where <span class="arithmatex">\(P\)</span>-OID is in the node's <code>expected_policy_set</code>, create a child node with <code>valid_policy</code> <span class="arithmatex">\(P\)</span>-OID, <code>qualifier_set</code> <span class="arithmatex">\(P\)</span>-Q, and <code>expected_policy_set</code> set to {<span class="arithmatex">\(P\)</span>-OID}.</li>
+<li>If no match is found for <span class="arithmatex">\(P\)</span>-OID in any node of depth <span class="arithmatex">\(i-1\)</span> and the <code>valid_policy_tree</code> has a node of depth <span class="arithmatex">\(i-1\)</span> with <code>valid_policy</code> set to <code>anyPolicy</code>, generate a child node with <code>valid_policy</code> <span class="arithmatex">\(P\)</span>-OID, <code>qualifier_set</code> <span class="arithmatex">\(P\)</span>-Q, and <code>expected_policy_set</code> set to {<code>anyPolicy</code>}.</li>
 </ul>
 </li>
-<li>if the <code>certificatePolicies</code> extension contains <code>anyPolicy</code> with the qualifier set $AP$-Q, $i \leq n$, and the certificate is self issued, then for each node of depth $i-1$ in the <code>valid_policy_tree</code> and each value in the <code>expected_policy_set</code> of that node, generate a child node with <code>valid_policy</code> and <code>expected_policy_set</code> set to the <code>expected_policy_set</code> value, set the <code>qualifier_set</code> set to $AP$-Q.</li>
-<li>Update the <code>valid_policy_tree</code> by pruning nodes that do not match the policies in $C_i$.</li>
+<li>if the <code>certificatePolicies</code> extension contains <code>anyPolicy</code> with the qualifier set <span class="arithmatex">\(AP\)</span>-Q, <span class="arithmatex">\(i \leq n\)</span>, and the certificate is self issued, then for each node of depth <span class="arithmatex">\(i-1\)</span> in the <code>valid_policy_tree</code> and each value in the <code>expected_policy_set</code> of that node, generate a child node with <code>valid_policy</code> and <code>expected_policy_set</code> set to the <code>expected_policy_set</code> value, set the <code>qualifier_set</code> set to <span class="arithmatex">\(AP\)</span>-Q.</li>
+<li>Update the <code>valid_policy_tree</code> by pruning nodes that do not match the policies in <span class="arithmatex">\(C_i\)</span>.</li>
 </ul>
 </li>
 <li>If <code>certificatePolicies</code> is missing, set <code>valid_policy_tree</code> to NULL.</li>
@@ -7806,17 +7806,17 @@ Iterate through the path for $i$ from $1$ to $n$:</p>
 </ol>
 <p><strong>Step 3: Preparation for Next Certificate</strong></p>
 <ol>
-<li>If $i &lt; n$ (i.e., $C_i$ is an intermediate CA), perform the following updates:<ul>
-<li>Set <code>working_issuer_name</code> to the Subject DN of $C_i$.</li>
-<li>Set <code>working_public_key</code> to the Subject Public Key of $C_i$.</li>
-<li>Update <code>working_public_key_parameters</code> and <code>working_public_key_algorithm</code> from $C_i$.</li>
+<li>If <span class="arithmatex">\(i &lt; n\)</span> (i.e., <span class="arithmatex">\(C_i\)</span> is an intermediate CA), perform the following updates:<ul>
+<li>Set <code>working_issuer_name</code> to the Subject DN of <span class="arithmatex">\(C_i\)</span>.</li>
+<li>Set <code>working_public_key</code> to the Subject Public Key of <span class="arithmatex">\(C_i\)</span>.</li>
+<li>Update <code>working_public_key_parameters</code> and <code>working_public_key_algorithm</code> from <span class="arithmatex">\(C_i\)</span>.</li>
 </ul>
 </li>
 <li>Constraint Checks (Intermediates Only):<ul>
 <li>Verify <code>basicConstraints</code> extension is present and <code>cA</code> is set to TRUE.</li>
 <li>If <code>keyUsage</code> extension is present, verify the <code>keyCertSign</code> bit is set.</li>
 <li>Path Length: Verify <code>max_path_length</code> &gt; 0. Decrement <code>max_path_length</code> by 1.<ul>
-<li>If $C_i$ contains <code>pathLenConstraint</code>, set <code>max_path_length</code> to $\min(\text{current}, \text{pathLenConstraint})$.</li>
+<li>If <span class="arithmatex">\(C_i\)</span> contains <code>pathLenConstraint</code>, set <code>max_path_length</code> to <span class="arithmatex">\(\min(\text{current}, \text{pathLenConstraint})\)</span>.</li>
 </ul>
 </li>
 </ul>
@@ -7827,7 +7827,7 @@ Iterate through the path for $i$ from $1$ to $n$:</p>
 </li>
 </ol>
 <p><strong>Step 4: Wrap-up</strong>
-After processing $C_n$:</p>
+After processing <span class="arithmatex">\(C_n\)</span>:</p>
 <ol>
 <li>If <code>explicit_policy</code> &gt; 0, decrement it.</li>
 <li>If <code>explicit_policy</code> &gt; 0 OR <code>valid_policy_tree</code> is not NULL, the path is VALID.</li>
@@ -10944,7 +10944,7 @@ If the <a class="mkdocs-ezglossary-link"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL:</p>
 <ul>
-<li>Define a number of bits, $k$, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each <a class="mkdocs-ezglossary-link"
+<li>Define a number of bits, <span class="arithmatex">\(k\)</span>, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each <a class="mkdocs-ezglossary-link"
     id="01306c14dc54ac20d69d962b6507ecf8"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
@@ -10959,13 +10959,13 @@ If the <a class="mkdocs-ezglossary-link"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> will therefore have $2^k$ possible states.</li>
-<li>Create a byte array of size $\geq$ (expected number of <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> will therefore have <span class="arithmatex">\(2^k\)</span> possible states.</li>
+<li>Create a byte array of size <span class="arithmatex">\(\geq\)</span> (expected number of <a class="mkdocs-ezglossary-link"
     id="3456a7f1cd7112b829c68efd9a9347e8"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>) * $k$ / 8. Depending on $k$, each byte in the array corresponds to 8/$k$ statuses (8 if $k=1$, 4 if $k=2$, 2 if $k=4$, or 1 if $k=8$). Each time a <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>) * <span class="arithmatex">\(k\)</span> / 8. Depending on <span class="arithmatex">\(k\)</span>, each byte in the array corresponds to 8/<span class="arithmatex">\(k\)</span> statuses (8 if <span class="arithmatex">\(k=1\)</span>, 4 if <span class="arithmatex">\(k=2\)</span>, 2 if <span class="arithmatex">\(k=4\)</span>, or 1 if <span class="arithmatex">\(k=8\)</span>). Each time a <a class="mkdocs-ezglossary-link"
     id="1098d35f3c5a45d544aa3c2c69f24291"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
@@ -11030,7 +11030,7 @@ If the <a class="mkdocs-ezglossary-link"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> are possible, then $k=1$. If the <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> are possible, then <span class="arithmatex">\(k=1\)</span>. If the <a class="mkdocs-ezglossary-link"
     id="9055d2156577aee89650a9f69f98ba6e"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
@@ -12303,9 +12303,9 @@ If the <a class="mkdocs-ezglossary-link"
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+        <script src="../media/mathjax.js"></script>
       
-        <script src="../media/mermaid-init.js"></script>
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
