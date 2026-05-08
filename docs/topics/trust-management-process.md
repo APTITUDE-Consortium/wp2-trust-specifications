@@ -1,56 +1,241 @@
-﻿# Trust Management Process
+﻿
+This section specifies the Trust Management Lifecycle for entities participating in the Trust Framework. It defines the operational states, state transitions, and the specific events that trigger these transitions for subscribed entities. 
 
-- what is in scope of the TMng process?
-- high level overview of the section
+The scope of this process encompasses the complete lifecycle of an entity, from initial onboarding and active operational maintenance to temporary or permanent withdrawal from the framework. 
+
+By detailing the operational effects on trust artifacts—such as the List of Trusted Entities (LoTE), the EU Member State Trusted List (EUMS TL), and Wallet Relying Party certificates (WRPAC/WRPRC)—this specification details the practices that undergo various entities subscribing to the Trust Framework.
 
 ## Trust Management High Level picture
 
-- make a diagram Onboarding $\rightarrow$ Operations $\rightarrow$ Offboarding, highlighting the interactions between Member States, Supervisory Bodies, and the LoTE.
-- make a state machine diagram for entity types:
-  - Root Entity State Transitions (Registrars, CAs): (e.g., ACTIVE $\rightarrow$ COMPROMISED $\rightarrow$ REVOKED\SUSPENDED). Explain the triggers for these states.
-  - Leaf Entity (all the entities which undergo onboarding: WRP, WP, ) State Transitions: (e.g., REGISTERED $\rightarrow$ ACTIVE $\rightarrow$ SUSPENDED $\rightarrow$ TERMINATED).
+Entities participating in the EUDI Trust Framework MUST be classified into one of the following mutually exclusive lifecycle states at any given time. The state dictates the entity's authorization level, operational capabilities, and how other participants MUST interact with its cryptographic artifacts.
 
-## Trust management operations
+- `UNREGISTERED`: Indicates that an entity does not currently hold a valid subscription or registration within the EUDI Trust Framework. This is the default baseline state. Entities in this state are outside the trust boundary and MUST NOT participate in framework operations or federation protocols.
+- `ACTIVE`: Indicates that an entity has successfully completed the onboarding process, verified its identity, and is fully registered within the EUDI Trust Framework. An entity in the ACTIVE state is authorized to perform role-related operations, provide services, and issue or verify trust artifacts in accordance with framework policies.
+- `WITHDRAWN`: Indicates the revocation of an entity's operational privileges, enacted either temporarily (e.g., due to a pending investigation or minor security incident) or permanently (e.g., due to voluntary offboarding, a severe security breach, or a critical compliance failure).
+  - **Forward Operations**: Ecosystem participants MUST reject new interactions or transactions initiated by a WITHDRAWN entity, and all cryptographic keys, active attestations, and operational capabilities associated with the entity MUST be immediately revoked.
+  - **Historical Operations**: Participants MAY continue to validate and trust historical data, signatures, and attestations generated prior to the withdrawal timestamp, subject to local risk policies, UNLESS the severity of a permanent withdrawal event (as defined by the Supervisory Body's revocation broadcast) requires participants to retroactively invalidate historical actions.
+  - **Resolution**: If the withdrawal was enacted as a temporary measure, the entity MAY be transitioned back to the ACTIVE state upon successful remediation of the triggering issue. If the withdrawal was permanent, the entity is permanently removed from the Trust Framework.
 
-### Onboarding??
+```mermaid
+stateDiagram-v2
+    direction LR
 
-- link to the general section
+    UNREGISTERED --> ACTIVE : Onboarding Process
+    ACTIVE --> ACTIVE : Operation Management
+    ACTIVE --> WITHDRAWN : Withdrawal
+```
 
-### Ongoing Operations Management
+## Entity Lifecycle Operations
 
-- Administrative Updates: Name changes, address updates, business logic changes (e.g., adding a new attribute type they are allowed to issue).
-- Technical Configuration Management: Planned key rotations, endpoint URI updates, updating cryptographic suites.
+### Onboarding Process
 
-### Incident Management & Suspension
+The onboarding process governs the transition of an entity from the `UNREGISTERED` state to the `ACTIVE` state. Upon the successful completion of the onboarding process, the following trust artifacts and records SHALL be generated or updated:
 
-- Emergency Key Rotation: What happens when an entity suspects a breach but isn't entirely compromised.
-- Temporary Suspension: The Supervisory Body temporarily freezing an entity in the LoTE pending a compliance audit.
+- **Registry Update**: The entity's authoritative record is committed to the Register database.
+- **Trust Anchor Inclusion**: If applicable to the entity's role, its signature key trust chain Trust Anchor (TA) SHALL be included in the List of Trusted Entities (LoTE) or the European Union Member State Trusted List (EUMS TL).
+- **WRPAC Issuance**: A WRPAC SHALL be issued to the entity.
+- **WRPRC Issuance**:A WRPRC MAY be issued to the entity, depending on its role and authorization profile.
 
-### Removal Processes
+The specific operational effects and artifact configurations resulting from successful onboarding depend on the entity's classification within the Trust Framework ecosystem:
 
-- Voluntary Exit: An entity decides to stop issuing EAAs. How do they gracefully wind down, and what happens to the valid credentials they already issued?
--  Supervisory Body Removal: Forced offboarding due to severe compliance failures or fatal breaches
+#### Onboarding Effects on Entities
+
+PID Providers, Attestation Providers (AP), Relying Parties (RP), and Wallet Providers (WP) SHALL successfully complete all registration and notification processes as specified in Commission Implementing Regulations (EU) 2025/848 and (EU) 2024/2980 prior to onboarding completion.
+
+Upon successful onboarding, a these entities SHALL:
+- have its attestation key or wallet solution key trust anchors registered in the corresponding LoTE `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` component;
+- be registered in the Register by the MS Registrar;
+- obtain a valid WRPAC from the Provider of WRPAC; 
+- [OPTIONAL] obtain a valid WRPRC from the Provider of WRPAC; 
+- finalize the deployment of its issuance, presentation toolkit or wallet solution depending on the role.
+
+Registrars and Providers of WRPACs/WRPRCs, SHALL be explicitly listed in the appropriate LoTE with the respective trust anchor certificates upon successful onboarding. This listing formally enables trust checks on their core framework functions, such as responding to Register queries and issuing WRPACs and WRPRCs.
+
+QTSPs SHALL be explicitly listed in the appropriate EUMS TL with the respective trust anchor certificates upon successful onboarding. This listing formally enables trust checks on the QTSP-issued Qualified Electronic Seals and\or Qualified Signature certificates.
+
+To assert the entity's `ACTIVE` status, the trust framework infrastructure SHALL apply the following technical configurations.
+- **LoTE Status**: the `TrustedEntityServices.ServiceInformation.ServiceStatus` component of the LoTE corresponding to the registered trust anchor key in the `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
+- **TL Status**:  the `TrustServiceProviderInformation.ServiceInformation.ServiceStatus` component of the LoTE corresponding to the registered trust anchor key in the `TrustServiceProviderInformation.ServiceInformation.ServiceDigitalIdentity` SHALL be set to the URI `http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/granted` ([ETSI TS 119 612] clause 5.5.4)
+- **OCSP Status**: the validation status of the newly issued WRPAC in an Online Certificate Status Protocol (OCSP) response SHALL be returned as `good`.
+- **CRL Status**: the serial number of the WRPAC SHALL NOT be present in the active CRL.
+- **Token Status**: if a WRPRC is issued, its status value within the Status List Token SHALL be initialized to `0x00`.
+
+### Active Operations and Maintenance
+
+While in the `ACTIVE` state, entities MAY require updates to their registered profiles, cryptographic materials, or operational parameters. To ensure ecosystem stability and continuous non-repudiation, the Trust Framework categorizes these modifications into *Identity Information Updates*, *Technical Configuration Management* and *Policy and Authorization Updates*, each with distinct operational effects.
+
+#### Organizational Updates
+
+As their organizational or regulatory circumstances evolve, organizations SHALL update authentication, authorization and cryptographic information accordingly through standard Registrar channels as defined at MS level. Identity and cryptographic updates SHALL follow standard framework governance processes and SHOULD NOT affect the underlying technical operations of the trust framework. In particular, updates that directly affect federation protocol operations or cryptographic trust boundaries require strictly coordinated procedures. These technical updates SHALL be validated by the designated MS authority or Supervisory Body prior to deployment to maintain trust relationships and ecosystem operational integrity.
+
+Permitted authentication, authorization and cryptographic updates encompass the following categories:
+
+- Legal Entity Changes: Modifications to the company name, organizational restructuring, or changes in legal status.
+- Contact Information: Updates to official communication channels, address details, and designated responsible personnel.
+- Regulatory Status: Changes in active licenses, security certifications, or overall regulatory compliance status.
+- Service Scope: Modifications to business logic, service offerings, user base characteristics, or the specific types of attributes the entity is authorized to issue.
+- WRPAC Management: entity cryptographic key rotations, regular certificate renewals, identity information, and revocation handling.
+- Infrastructure Changes: Updates to endpoint URIs, service migrations, and capacity modifications.
+- Compliance Updates: Migrations to new cryptographic suites, security standard updates, policy alterations, and audit requirement fulfillment.
+- Policy Modifications: The addition or removal of functional service features, EDP.
+- WRPRC Updates: entitlements, policy attributes, Service Provider or Attestation Provider capabilities, entitlements. 
+
+#### Governance Update
+
+As policies, technical standards, and regulatory circumstances evolve at the European Union (EU) or Member State (MS) level, top-down regulatory changes MAY necessitate systemic modifications across the ecosystem. When such regulatory or policy shifts occur, the Trust Framework Supervisory Body SHALL formally notify the entity in charge of applying the new requirements (e.g., MS Registrars, TL Scheme Operators).
+
+These governance updates encapsulate external modifications that an organization does not actively pursue or initiate. Instead, they represent ecosystem-wide evolutions that legally or operationally mandate the entity to modify its associated trust artifacts to maintain compliance. The execution of these updates MUST strictly adhere to established framework governance processes and SHOULD NOT disrupt the underlying technical operations of the EUDI Trust Framework.
+
+Governance updates typically arise from legal, technical, or procedural evolutions at the highest levels of governance. Specific events triggering a governance update include, but are not limited to:
+- **Legal Publications**: The issuance of new regulations, implementing acts, or delegated acts in the Official Journal of the European Union (OJEU).
+- **Policy Revisions**: Modifications to specific credential guidelines, credential catalogue or attestation rulebooks published by the European Commission.
+- **Standardization Updates**: The release of new, or deprecation of old, technical specifications governing ecosystem cryptographic protocols or federation mechanisms.
+- **Infrastructure Evolutions**: Structural, schema, or governance updates applied to the List of the Trust Lists (LoTL), the List of Trusted Entities (LoTE), or the EU Member State Trusted List (EUMS TL).
+
+Upon receiving notification of a governance update from the MS Registrar, affected entities MUST initiate the necessary administrative or technical configuration workflows to align their trust artifacts with the new requirements. Depending on the nature of the update, this MAY require the entity to generate new cryptographic keys, update endpoint URIs, or request re-issuance of their WRPRC.
+
+#### Operational Effects of Updates
+
+When there are organizational updates, the Trust Framework infrastructure MUST propagate these changes to the relevant trust artifacts. The specific operational effects depend on the entity's role, and the artifacts it utilizes.
+
+**Trust Anchors Updates**: For entities needing updates on their trust anchor, or information attested in a Trusted List (e.g., Registrars, Providers of WRPACs/WRPRCs, QTSPs, PID Providers, Pub-EAA Providers, and Wallet Providers), the entity responsible for the publication of the LoTE or EUMS TL SHALL publish a new Trusted List where:
+- **Updates**: all values in the `TrustedEntityServices.ServiceInformation` (for a LoTE) or `TrustServiceProviderInformation.ServiceInformation` (for a EUMS TL) components have been updated; and
+- **LoTE Service Status**: for Registrars, Providers of WRPACs/WRPRCs, PID Providers, Pub-EAA Providers, and Wallet Providers, managed via LoTEs, the `TrustedEntityServices.ServiceInformation.ServiceStatus` component, SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
+- **EUMS TL Service Status**: for QTSPs managed via the EUMS TL, the `TrustServiceProviderInformation.ServiceInformation.ServiceStatus` component, SHALL be set to the URI `http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/granted` (in accordance with ETSI TS 119 612, clause 5.5.4).
+- **Historical Information** [UPDATE DEPENDENT]: to maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory` and `TrustServiceProviderInformation.ServiceHistory` components, depending on the Trusted List type.
+
+Furthermore, to ensure a continuous chain of trust, the newly published LoTE or EUMS TL SHALL utilize the pivoting mechanism described in Section [Trust Anchor Validation](#trust-anchor-validation). This is achieved by explicitly referencing the previous version of the list within the `SchemeInformationURI` component of the new Trusted List.
+
+**End-entity Updates**: For entities needing update on WRPAC, WRPRC, QSign, or Qseal certificates (e.g., PID Providers, APs, RPs, and WPs), the update event SHALL trigger the following sequential procedure:
+- **Registry Update**: The entity's updates SHALL be notified to the Registrar, which SHALL subsequently update the entity's corresponding information in the Register.
+- **Notification**: The Registrar SHALL immediately communicate the updated status to the corresponding providers of WRPAC and WRPRC.
+- **Certificate Revocation** [UPDATE DEPENDENT]: the WRPAC, WRPRC providers or QTSP SHALL immediately revoke the associated active certificates.
+  - **WRPAC Revocation**: revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
+  - **WRPRC Revocation**: revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to `0x01`.
+  - **QSeal/QSign Revocation**: revocation SHALL be executed by the method chosen by the QTSP which issued the certificate.
+- **Certificate Re-issuance** [UPDATE DEPENDENT]: following revocation, the entity updating its data SHALL request the issuance of a new WRPAC, and MAY request issuance of a new WRPRC, containing the updated parameter fields.
+
+### Withdrawal Process
+The withdrawal process defines the rapid-response workflows and administrative procedures executed to transition an entity from the `ACTIVE` state to the `WITHDRAWN` state. This transition MAY be initiated voluntarily by the entity or forcefully enacted by the Supervisory Body.
+
+#### Triggers for Withdrawal
+
+Withdrawal events are categorized based on their initiation source:
+- Voluntary Exit: Organizations MAY choose to exit the federation for standard business or operational reasons. Permitted reasons include:
+  - Business Changes: Organizational restructuring, mergers, acquisitions, or complete service discontinuation.
+  - Technical Migration: Transitioning to alternative technical solutions, infrastructure, or service providers outside the framework's scope.
+  - Regulatory Changes: Shifts in the local regulatory environment or the entity's inability to meet ongoing compliance requirements.
+- Supervisory Body Removal: The Supervisory Body MAY initiate a forced withdrawal due to severe compliance failures, fatal security breaches, or other critical ecosystem threats. Triggers for forced removal include:
+- Compliance Violations: Demonstrated failure to maintain regulatory compliance or adherence to federation policies.
+- Security Incidents: Suspected or confirmed compromise of the entity's security infrastructure, or a failure to maintain minimum security standards.
+- Operational Failures: Persistent technical outages or failures that negatively affect overall ecosystem security or reliability.
+- Policy Violations: Documented violations of federation operational policies, terms of service, or participation agreements.
+
+#### Operational Effects of Withdrawal
+
+When an entity is transitioned to the `WITHDRAWN` state, the Trust Framework infrastructure MUST immediately execute a series of cryptographic and registry updates to halt the entity's operations while preserving historical evidence.  The specific operational effects depend on the entity's role, and the artifacts it utilizes.
+
+**Trust Anchor Removal**: For entities whose trust anchor, or information attested in a Trusted List (e.g., Registrars, Providers of WRPACs/WRPRCs, QTSPs, PID Providers, Pub-EAA Providers, and Walle Providers) is being withdrawn, the entity responsible for the publication of the LoTE or EUMS TL SHALL publish a new Trusted List where:
+- **LoTE Service Status**: for Registrars, Providers of WRPACs/WRPRCs, PID Providers, Pub-EAA Providers, and Wallet Providers, managed via LoTEs, the `TrustedEntityServices.ServiceInformation.ServiceStatus` component, SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`.
+- **EUMS TL Service Status**: for QTSPs managed via the EUMS TL, the `TrustServiceProviderInformation.ServiceInformation.ServiceStatus` component, SHALL be set to the URI `http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/withdrawn` (in accordance with ETSI TS 119 612, clause 5.5.4).
+- **Historical Information**: to maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory` and `TrustServiceProviderInformation.ServiceHistory` components, depending on the Trusted List type.
+
+Furthermore, to ensure a continuous chain of trust, the newly published LoTE or EUMS TL SHALL utilize the pivoting mechanism described in Section [Trust Anchor Validation](#trust-anchor-validation). This is achieved by explicitly referencing the previous version of the list within the `SchemeInformationURI` component of the new Trusted List.
+
+**End-entity Removal**: For entities needing update on WRPAC, WRPRC, QSign, or Qseal certificates (e.g., PID Providers, APs, RPs, and WPs), the removal event SHALL trigger the following sequential procedure:
+- **Registry Removal**: The entity's removal SHALL be notified to the Registrar, which SHALL subsequently update the entity's corresponding information in the Register.
+- **Notification**: The Registrar SHALL immediately communicate the updated status to the corresponding providers of WRPAC and WRPRC.
+- **Certificate Revocation** [UPDATE DEPENDENT]: the WRPAC, WRPRC providers or QTSP SHALL immediately revoke the associated active certificates.
+  - **WRPAC Revocation**: revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
+  - **WRPRC Revocation**: revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to `0x01`.
+  - **QSeal/QSign Revocation**: revocation SHALL be executed by the method chosen by the QTSP which issued the certificate.
+
+!!! note
+    
+    When executing the revocation on the CRL, the ReasonFlag element MUST accurately reflect the nature of the withdrawal:
+    - If the withdrawal is a temporary suspension pending investigation, the ReasonFlag SHALL be set to (6): certificateHold.
+    - If the withdrawal is a permanent termination, the ReasonFlag SHALL be set to the appropriate code based on the circumstances, such as (1): keyCompromise, (2): cACompromise, or (5): cessationOfOperation.
+
+### Operational Effects Diagram
+
+The diagram below illustrates the Trust Management operational effects on the Trusted List and End-entity certificates. It is divided into Trust Anchor and End Entity effects as described into the previous sections.
+
+The top side is governed by the Trusted List Provider (TLP).
+- At the top is the public key ($pk_{TLP}$) of the Trusted List Provider. This key is used to sign the entire Trusted List.
+- The Trusted List container holds a list of Trust Service Providers (TSPs) and their Trust Anchor public key ($pk_{TA}$) certificates.
+- Primary Signature ($\sigma_{TLP}$): The transition from the root key to the Trusted List is secured by the $\sigma_{TLP}$ signature, ensuring the integrity of the list itself.
+- Trust Anchor updates or removals occur exclusively on this side of the diagram.
+
+The bottom side is governed by the entity which possesses the private key attested in the Trust Anchor public key ($pk_{TA}$) certificates. This entities issues and maintain WRPAC, WRPRC and certificates attesting signing capabilities. End entities updates or removal affect exclusively on this side of the diagram.
+
+
+```mermaid
+stateDiagram-v2
+    
+    state "pk_{TLP}" as pkTLP
+    %% Left Side: Trust Provisioning
+    state "TA Update/Removal " as LeftContext {
+        
+        state "Trusted List" as TL_Box {
+            direction TB
+            TSPs: TSP List Data
+            pkTA: pk_{TA} (Anchor Key Source)
+        }
+
+        pkTLP --> TL_Box : Signed by TLP (σ TLP)
+    }
+
+    %% Right Side: End-Entity Updates
+    state "End-Entity Context" as RightContext {
+        state "QSeal/QSign Certificate" as Q_Cert {
+            direction TB
+            pkop: pk_{op} (Sign/Seal Key)
+            Usage1: Scope: Signing Capabilities
+        }
+
+        state "WRPAC" as WRPAC_Cert {
+            direction TB
+            pkAuth: pk_{AuthN} (AuthN Key)
+            Usage2: Scope: AuthN
+        }
+
+        state "WRPRC" as WRPRC_Cert {
+            direction TB
+            Usage3: Scope: AuthZ
+        }
+    }
+
+    %% Connection Arrows (The Trust Anchoring)
+    TL_Box --> Q_Cert : Signs
+    TL_Box --> WRPAC_Cert : Signs
+    TL_Box --> WRPRC_Cert : Signs
+
+    %% Clarifying Notes
+    note left of LeftContext
+        TA updates/removal context.
+    end note
+
+    note right of RightContext
+        End-entity updates
+        affect WRPAC/WRPRC/Qseal.
+    end note
+```
 
 ## Trust Management Event Table
 
 The following matrix serves as the operational reference guide for the Trust Management process. It maps every critical lifecycle event to its responsible actors, the required communication protocols, and the resulting technical impacts on the ecosystem.
 
 Table Legend:
-- **Event**: The specific operational, administrative, or security trigger occurring within the ecosystem.
+- **Event**: The specific operational, organizational, or security trigger occurring within the ecosystem.
 - **Sender**: The entity responsible for initiating the communication or action.
 - **Receiver**: The actor or system component that receives the notification and executes the necessary updates.
-- **Notification Protocol / Type**: The technical or administrative method used to transmit the event data (e.g., REST API, Out-of-Band email, automated sync).
+- **Notification Protocol / Type**: The technical or indentity Information method used to transmit the event data (e.g., REST API, Out-of-Band email, automated sync).
 - **Consequence (State Change)**: The resulting lifecycle state transition for the affected entity (e.g., from ACTIVE to SUSPENDED).
 - **Impact on Trust Artifacts**: The exact technical modifications applied to the trust artifacts.
 
 | Event | Sender | Receiver | Notification Protocol / Type | Consequence (State Change) | Impact on Trust Artifacts |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Initial Registration Approval** | Supervisory Body | National LoTE Publisher | Secure API (POST /register) | `PROPOSED` $\rightarrow$ `ACTIVE` | Entity's public keys and metadata are appended to the next published LoTE sequence. |
-| **Planned Key Rotation** | Supervised Entity (Leaf) | Supervisory Body / LoTE Publisher | Secure API (PUT /update-key) | Remains `ACTIVE` | LoTE is updated with the new Trust Anchor/DS certificate; old key remains valid until expiration. |
-| **Suspected Key Compromise** | Supervised Entity (Leaf) | Supervisory Body | Out-of-Band (Emergency Contact) & API Alert | `ACTIVE` $\rightarrow$ `SUSPENDED` | `ServiceStatus` in LoTE changed to suspended; WRPAC may be temporarily added to CRL. |
-| **Administrative Update (e.g., Name Change)** | Supervised Entity (Leaf) | Supervisory Body | Secure API (PATCH /metadata) | Remains `ACTIVE` | LoTE `SchemeOperatorName` or `ServiceInformation` extensions updated; Sequence Number increments. |
-| **Voluntary Exit** | Supervised Entity (Leaf) | Supervisory Body | Formal Administrative Request | `ACTIVE` $\rightarrow$ `TERMINATED` | Entity removed from active LoTE; historical keys moved to archive/historical tracking for past validations. |
-| **Forced Supervisory Removal** | Supervisory Body | National LoTE Publisher & Ecosystem | Internal Auth API & Broadcast | `SUSPENDED` $\rightarrow$ `REVOKED` | WRPAC permanently added to CRL/OCSP; Entity entirely removed from the active Trusted Entities List. |
+
 
 ---
 
@@ -111,11 +296,8 @@ flowchart LR
     Event-.-> EvOwner
     EvOwner -.-> ObOwner
     ObOwner -.-> object
-        
     
 ```
-
-
 
 # Trust management overview
 Wallet Relying Parties (WRP) Identity shall be managed by national registrars, according to national trust framework policies. WRP shall apply for registration to the registrar.
@@ -160,11 +342,9 @@ subgraph C_A["Certificate Management"]
         
 end
 
-
     Registrar-->|Identification|IDReg
     Registrar-->|Identity_Revocation|IDReg
     Registrar<-.->IDPol
-
     Registrar<-.->Cred
     Registrar<-.->CredPol
     Registrar-->|Authorization|AuthReg
@@ -184,7 +364,6 @@ end
     CA-->|Issuance|WRPRC
     CA-->|Issuance|SEAL
     CA-->|Revocation|SEAL_CRL
-    
 ```
 The following graph aims to represent the interactions and dependencies between entities and lifecycle actions. 
 
@@ -321,4 +500,3 @@ All seal and signing certificates for attestation issuer will be provided by QTS
 
 # Annex I - Banking usecase
 TBD  
-
