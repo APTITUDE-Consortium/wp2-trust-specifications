@@ -45,8 +45,13 @@ jobs:
           fi
 
       - name: Lint changed markdown files
-        if: steps.changed_md.outputs.has_changes == 'true'
         run: |
+          # If no files changed, exit 0 (success) immediately
+          if [[ "${{ steps.changed_md.outputs.has_changes }}" != "true" ]]; then
+            echo "No markdown files to lint. Skipping."
+            exit 0
+          fi
+
           # Lint only files changed in this PR, using repo root markdownlint configuration.
           # Also convert markdownlint output into GitHub annotations on the affected lines.
           mapfile -d '' changed_files < changed_markdown_files.zlist
