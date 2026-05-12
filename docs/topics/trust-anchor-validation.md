@@ -4,7 +4,7 @@ Depending on the artifact or <credentials:Attestation> being verified, the valid
 
 1. *<artifacts:List of Trusted Entities (LoTE)>*, used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
    - **Infrastructure Certificates**: <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> or <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
-   - **Wallet Artifacts**: <artifacts:Wallet Unit Attestation (WUA)> or <artifacts:Wallet Instance Attestation (WIA)>.
+   - **<artifacts:Wallet Unit Attestations (WUAs)>**: <artifacts:Key Attestation (KA)> or <artifacts:Wallet Instance Attestation (WIA)>.
    - **PID Signatures**: <credentials:Person Identification Data (PID)>.
    - **<roles:Registrar>-signed artifacts**: <components:Register> informations.
 2. *<artifacts:EU Member State Trusted List (EUMS TL)|EU Member State Trusted Lists>* (<artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>); used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
