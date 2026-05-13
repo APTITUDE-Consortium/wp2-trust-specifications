@@ -48,9 +48,10 @@ PID Providers, Attestation Providers (AP), Relying Parties (RP), and Wallet Prov
 
 Upon successful onboarding, a these entities SHALL:
 - have its attestation key or wallet solution key trust anchors registered in the corresponding LoTE `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` component;
-- be registered in the Register by the MS Registrar;
-- obtain a valid WRPAC from the Provider of WRPAC; 
-- [OPTIONAL] obtain a valid WRPRC from the Provider of WRPAC; 
+- [ONLY for WRPs] be registered in the Register by the MS Registrar;
+- [ONLY for WRPs] have a valid WRPAC from the Provider of WRPAC; 
+- [OPTIONAL ONLY for WRPs] have a valid WRPRC from the Provider of WRPAC; 
+- [ONLY for AP and WP] have its signing or seal certificates; 
 - finalize the deployment of its issuance, presentation toolkit or wallet solution depending on the role.
 
 Registrars and Providers of WRPACs/WRPRCs, SHALL be explicitly listed in the appropriate LoTE with the respective trust anchor certificates upon successful onboarding. This listing formally enables trust checks on their core framework functions, such as responding to Register queries and issuing WRPACs and WRPRCs.
@@ -174,17 +175,19 @@ The bottom side is governed by the entity which possesses the private key attest
 
 ```mermaid
 stateDiagram-v2
-    
     %% state "pk_{TLP}" as pkTLP
     %% Left Side: Trust Provisioning
     state "TA Context " as LeftContext {
 
         state "Trusted List" as TL_Box {
-            state "TSP List" as TSP_Box {
+            direction LR
+            tlp: Trusted List Provider Id
+            tlpkey: pk_{tlp} 
+            state "Service List" as TSP_Box {
                 direction LR
-                TSPs: TSP Id
-                pkTA: pk_{TA} (TSP Trsut Anchor Key)
+                TSPs: Service Provider Id
                 hinfo: Historical Information
+                pkTA: pk_{TA} (TSP Trsut Anchor Key)
             }
         }
 
@@ -213,12 +216,12 @@ stateDiagram-v2
     }
 
     %% Connection Arrows (The Trust Anchoring)
-    pkTA --> Q_Cert : Signs
-    pkTA --> WRPAC_Cert : Signs
-    pkTA --> WRPRC_Cert : Signs
+    TSP_Box --> Q_Cert : Signs
+    TSP_Box --> WRPAC_Cert : Signs
+    TSP_Box --> WRPRC_Cert : Signs
 
     %% Clarifying Notes
-    note left of LeftContext
+    note left of TSP_Box
         TA updates/removal context.
     end note
 
