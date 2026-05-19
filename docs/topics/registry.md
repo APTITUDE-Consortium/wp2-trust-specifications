@@ -33,17 +33,17 @@ The list below enumerates all the applicable standards and specifications that h
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
-| REGISTER-PUB-01 | Each Member State SHALL establish and maintain at least one national <components:Register> of WRPs. | [CIR 2025/848], Article 3(1) |
-| REGISTER-PUB-02 | The <components:Register> SHALL include at least the information set out in Annex I of [CIR 2025/848]. | [CIR 2025/848], Article 3(2) |
-| REGISTER-PUB-03 | Member States SHALL designate at least one <roles:Registrar> to manage and operate at least one national <components:Register>. | [CIR 2025/848], Article 3(3) |
-| REGISTER-PUB-04 | Member States SHALL make Annex I information publicly available online in human-readable and machine-processable form. | [CIR 2025/848], Article 3(4) |
-| REGISTER-PUB-05 | Annex I information included in the <components:Register> (as for REGISTER-PUB-02) SHALL be available through a national website and a single common API, and SHALL be electronically signed/sealed by/on behalf of the <roles:Registrar>. | [CIR 2025/848], Article 3(5) |
-| REGISTER-API-01 | The single common API SHALL be a REST API supporting JSON, and signed according to IETF RFC 7515. | [CIR 2025/848], Annex II §2(1)(a) |
-| REGISTER-API-02 | The API SHALL allow any requestor, without prior authentication, to search and request complete lists, allowing partial matches on defined parameters. | [CIR 2025/848], Annex II §2(1)(b) |
-| REGISTER-API-03 | Replies to request that match at least one WRP SHALL include statements covering Annex I information [CIR 2025/848], current/historic <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>, excluding Annex I point 4 information. | [CIR 2025/848], Annex II §2(1)(c) |
-| REGISTER-API-04 | The API SHALL be published as OpenAPI v3 with documentation enabling interoperability across the Union. | [CIR 2025/848], Annex II §2(1)(d) |
-| REGISTER-API-05 | The API SHALL provide security-by-default and by-design to ensure availability and integrity. | [CIR 2025/848], Annex II §2(1)(e) |
-| REGISTER-API-06 | Statements referred to in REGISTER-API-03 SHALL be electronically signed/sealed JSON files as for IETF RFC 7515. | [CIR 2025/848], Annex II §2(2) |
+| REGISTER-PUB-01 | Each Member State SHALL establish and maintain at least one national Register of WRPs. | [CIR 2025/848, Article 3(1)] |
+| REGISTER-PUB-02 | The Register SHALL include at least the information set out in Annex I of [CIR 2025/848]. | [CIR 2025/848, Article 3(2)] |
+| REGISTER-PUB-03 | Member States SHALL designate at least one Registrar to manage and operate at least one national Register. | [CIR 2025/848, Article 3(3)] |
+| REGISTER-PUB-04 | Member States SHALL make Annex I information publicly available online in human-readable and machine-processable form. | [CIR 2025/848, Article 3(4)] |
+| REGISTER-PUB-05 | Annex I information included in the Register (as for REGISTER-PUB-02) SHALL be available through a national website and a single common API, and SHALL be electronically signed/sealed by/on behalf of the Registrar. | [CIR 2025/848, Article 3(5)] |
+| REGISTER-API-01 | The single common API SHALL be a REST API supporting JSON, and signed according to [RFC 7515]. | [CIR 2025/848, Annex II §2(1)(a)] |
+| REGISTER-API-02 | The API SHALL allow any requestor, without prior authentication, to search and request complete lists, allowing partial matches on defined parameters. | [CIR 2025/848, Annex II §2(1)(b)] |
+| REGISTER-API-03 | Replies to request that match at least one WRP SHALL include statements covering Annex I information [CIR 2025/848], current/historic WRPACs and WRPRCs, excluding Annex I point 4 information. | [CIR 2025/848, Annex II §2(1)(c)] |
+| REGISTER-API-04 | The API SHALL be published as OpenAPI v3 with documentation enabling interoperability across the Union. | [CIR 2025/848, Annex II §2(1)(d)] |
+| REGISTER-API-05 | The API SHALL provide security-by-default and by-design to ensure availability and integrity. | [CIR 2025/848, Annex II §2(1)(e)] |
+| REGISTER-API-06 | Statements referred to in REGISTER-API-03 SHALL be electronically signed/sealed JSON files as for [RFC 7515]. | [CIR 2025/848, Annex II §2(2)] |
 
 !!! note
 
@@ -95,7 +95,7 @@ This section defines the data schema for each WRP registered in the national <co
 | `legalPerson` | `LegalPerson` | REQUIRED if legal person | Specific attributes of a legal person. It SHALL be present if the legal entity is a legal person. |
 | `naturalPerson` | `NaturalPerson`| REQUIRED if natural person| Specific attributes of a natural person. It SHALL be present if the legal entity is a natural person.|
 | `identifier` | `Identifier[]` | REQUIRED | One or more identifiers from official records. |
-| `postalAddress` | `string[]` | OPTIONAL | Postal address(es) of the legal entity (**registration view only; excluded from published API statements**). Note: [ETSI TS 119 475] B.2.2 defines this as `[1..1] string`; Draft Annex VI Table 1 uses an array. This document follows Draft Annex VI. |
+| `postalAddress` | `string[]` | OPTIONAL | Postal address(es) of the legal entity (**registration view only; excluded from published API statements**). Note: [ETSI TS 119 475, B.2.2] defines this as `[1..1] string`; Draft Annex VI Table 1 uses an array. This document follows Draft Annex VI. |
 | `country` |  `string` | REQUIRED | ISO 3166-1 alpha-2 country code, or `"EU"` for providers operating in the Union. |
 | `email` | `string[]` | OPTIONAL | Contact email address(es) (RFC 5322 format). |
 | `phone` | `string[]` | OPTIONAL | Contact phone number(s), international form with `+` prefix. |
@@ -117,7 +117,7 @@ This section defines the data schema for each WRP registered in the national <co
 
 !!! note
 
-    Mapping between CIR entitlement label and [ETSI TS 119 475] (Annex A.2) normative URI:
+    Mapping between CIR entitlement label and [ETSI TS 119 475, Annex A.2] normative URI:
 
     | CIR entitlement label | Normative URI | 
     | --------------------- | ------------- |
@@ -132,7 +132,7 @@ This section defines the data schema for each WRP registered in the national <co
     | `rQSealCDs_Provider` | `https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider` | 
     | `ESig_ESeal_Creation_Provider` | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | 
 
-    [ETSI TS 119 475] v1.2.1 Annex A.3 defines additional sub-entitlement URIs for specific service provider roles. For example, Payment Service Provider sub-entitlements include:
+    [ETSI TS 119 475, Annex A.3] defines additional sub-entitlement URIs for specific service provider roles. For example, Payment Service Provider sub-entitlements include:
 
     | Sub-entitlement | URI |
     | --------------- | --- |
@@ -195,9 +195,9 @@ Defined policy type URIs:
 
 | Policy type | URI | Reference |
 | ----------- | --- | --------- |
-| Privacy policy | `http://data.europa.eu/eudi/policy/privacy-policy` | [ETSI TS 119 475] B.2.8; [CIR 2025/848] Article 8(2)(g) |
-| Terms and conditions | `http://data.europa.eu/eudi/policy/terms-and-conditions` | [CIR 2025/848-Amendment], Annex VI Table 7 |
-| Privacy statement (intended use) | `http://data.europa.eu/eudi/policy/privacy-statement` | [CIR 2025/848-Amendment], Annex VI Table 7 |
+| Privacy policy | `http://data.europa.eu/eudi/policy/privacy-policy` | [ETSI TS 119 475, B.2.8]; [CIR 2025/848, Article 8(2)(g)] |
+| Terms and conditions | `http://data.europa.eu/eudi/policy/terms-and-conditions` | [CIR 2025/848-Amendment, Annex VI, Table 7] |
+| Privacy statement (intended use) | `http://data.europa.eu/eudi/policy/privacy-statement` | [CIR 2025/848-Amendment, Annex VI, Table 7] |
 
 !!! note
 
@@ -623,7 +623,7 @@ A small e-commerce business that relies on TrustBridge (see example above) to co
 
 #### Common Register API
 
-This section documents a [TS05] aligned common <components:Register> API profile that satisfies [CIR 2025/848] Annex II and [CIR 2025/848-Amendment] constraints.
+This section documents a [TS05] aligned common <components:Register> API profile that satisfies [CIR 2025/848, Annex II] and [CIR 2025/848-Amendment] constraints.
 
 ##### API Methods on Registration and Updating of WRP Data
 
@@ -641,7 +641,7 @@ POST is for creating a new <roles:Wallet-Relying Party (WRP)|WRP> entry in the <
 
 | Type | Presence | Description |
 | ---- | -------- | ----------- |
-| `WalletRelyingParty` | REQUIRED | Full WRP object compliant with [CIR 2025/848-Amendment], Annex VI Table 1 schema. |
+| `WalletRelyingParty` | REQUIRED | Full WRP object compliant with [CIR 2025/848-Amendment, Annex VI, Table 1] schema. |
 
 **Response**
 
@@ -662,7 +662,7 @@ PUT is for updating an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in 
 
 | Type | Presence | Description |
 | ---- | -------- | ----------- |
-| `WalletRelyingParty` | REQUIRED | Full WRP object compliant with [CIR 2025/848-Amendment], Annex VI Table 1 schema. |
+| `WalletRelyingParty` | REQUIRED | Full WRP object compliant with [CIR 2025/848-Amendment, Annex VI, Table 1] schema. |
 
 **Response**
 
@@ -712,7 +712,7 @@ Get a list of <roles:Wallet-Relying Party (WRP)|WRPs> (with optional filtering a
 
 **Request (query parameters)**
 
-The common API SHALL support parameterised queries on `GET /wrp`. The following names align with the [CIR 2025/848-Amendment] Annex VI query parameter naming.
+The common API SHALL support parameterised queries on `GET /wrp`. The following names align with the [CIR 2025/848-Amendment, Annex VI] query parameter naming.
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -752,7 +752,7 @@ A successful response (`200`) SHALL be JWS-signed response body.
 
 !!! note
 
-    The published API view excludes only `postalAddress` ([CIR 2025/848-Amendment], Annex I point 4). All other fields, including intended-use credential claims, are published as registered.
+    The published API view excludes only `postalAddress` ([CIR 2025/848-Amendment, Annex I, point 4]). All other fields, including intended-use credential claims, are published as registered.
 
 <!--
 !!! note
@@ -763,13 +763,13 @@ A successful response (`200`) SHALL be JWS-signed response body.
 
     | Header parameter | Presence | Description | Reference |
     | --- | --- | --- | --- |
-    | `alg` | REQUIRED | Signature/seal algorithm identifier. The value `none` SHALL NOT be used for Registry statements. | [RFC 7515] §4.1.1; profile rule |
-    | `x5c` | RECOMMENDED (REQUIRED if no trust-list/key-resolution profile is defined) | X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array. | [RFC 7515] §4.1.6 |
-    | `kid` | RECOMMENDED | Key identifier to support key rollover and efficient verifier key selection. | [RFC 7515] §4.1.4 |
-    | `x5t#S256` | RECOMMENDED | SHA-256 thumbprint of the signing certificate (useful for pinning / key matching). | [RFC 7515] §4.1.8 |
-    | `x5u` | OPTIONAL | URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation. | [RFC 7515] §4.1.5 |
-    | `typ` | RECOMMENDED | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | [RFC 7515] §4.1.9 |
-    | `crit` | OPTIONAL | If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. `crit` MUST appear only in the protected header. | [RFC 7515] §4.1.11 |
+    | `alg` | REQUIRED | Signature/seal algorithm identifier. The value `none` SHALL NOT be used for Registry statements. | [RFC 7515, §4.1.1]; profile rule |
+    | `x5c` | RECOMMENDED (REQUIRED if no trust-list/key-resolution profile is defined) | X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array. | [RFC 7515, §4.1.6] |
+    | `kid` | RECOMMENDED | Key identifier to support key rollover and efficient verifier key selection. | [RFC 7515, §4.1.4] |
+    | `x5t#S256` | RECOMMENDED | SHA-256 thumbprint of the signing certificate (useful for pinning / key matching). | [RFC 7515, §4.1.8] |
+    | `x5u` | OPTIONAL | URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation. | [RFC 7515, §4.1.5] |
+    | `typ` | RECOMMENDED | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | [RFC 7515, §4.1.9] |
+    | `crit` | OPTIONAL | If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. `crit` MUST appear only in the protected header. | [RFC 7515, §4.1.11] |
 
     !!! note
 
@@ -811,7 +811,7 @@ Get <roles:Wallet-Relying Party (WRP)|WRP> by identifier.
 
 !!! note
 
-    This endpoint is useful, but it is **not explicitly defined** in the [CIR 2025/848-Amendment], Annex VI common API method list. If kept, mark it as a national/profile extension.
+    This endpoint is useful, but it is **not explicitly defined** in the [CIR 2025/848-Amendment, Annex VI] common API method list. If kept, mark it as a national/profile extension.
 
 **Request (query)**
 

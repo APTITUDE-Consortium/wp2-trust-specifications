@@ -153,7 +153,7 @@ Registration data is collected at the <roles:Registrar> and the <roles:Provider 
 
 ##### WRPRC Parameters for Authorization
 
-The following table lists the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> payload parameters used in authorization processing, with field names as defined in [ETSI TS 119 475] V1.2.1 section 5.2.4. Details about the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
+The following table lists the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> payload parameters used in authorization processing, with field names as defined in [ETSI TS 119 475, Section 5.2.4]. Details about the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
 The **Authorization Use** column indicates how each parameter is consumed: **Decision rule** means the <components:Wallet Instance|WI> enforces an automated check, **User transparency** means the information is displayed to support the <roles:User>'s decision, and **Wallet operation** means the <components:Wallet Instance|WI> uses it internally (e.g. for fallback query).
 
 | Field | Applicability | Authorization Use | Reference |
@@ -180,14 +180,14 @@ The **Authorization Use** column indicates how each parameter is consumed: **Dec
 
 **Presentation flows.** <roles:Relying Party (RP)|RPs> include the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in the presentation request by value (RPRC_19) in the:
 
-- `verifier_info` parameter included in the <artifacts:Request Object> JWT within the authorization request (remote flow, [ETSI TS 119 472-2] and [OpenID4VP] section 5.1). This is an array of JSON Objects containg <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in base64-encoded format and RPRC_19a data including the URL of <roles:Registrar> online service.
-- `euWrprc` (<formats:Concise Binary Object Representation (CBOR)|CBOR> byte string with serialized <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) member of `requestInfo` included in the ISO DeviceRequest (proximity flow, [ETSI TS 119 472-2] section 5.3).
+- `verifier_info` parameter included in the <artifacts:Request Object> JWT within the authorization request (remote flow, [ETSI TS 119 472-2] and [OpenID4VP, Section 5.1]). This is an array of JSON Objects containg <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in base64-encoded format and RPRC_19a data including the URL of <roles:Registrar> online service.
+- `euWrprc` (<formats:Concise Binary Object Representation (CBOR)|CBOR> byte string with serialized <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) member of `requestInfo` included in the ISO DeviceRequest (proximity flow, [ETSI TS 119 472-2, Section 5.3]).
 
 !!! warning
 
     Currently, the mapping of RPRC_19a data in the `requestInfo` map is not defined in [ETSI TS 119 472-2]
 
-**Issuance flow.** <roles:Attestation Provider (AP)|APs> include authorization data in Credential Issuer Metadata through the `issuer_info` array ([ETSI TS 119 472-3] section 4.2.3). This array contains:
+**Issuance flow.** <roles:Attestation Provider (AP)|APs> include authorization data in Credential Issuer Metadata through the `issuer_info` array ([ETSI TS 119 472-3, Section 4.2.3]). This array contains:
 
 - An element with format `"registration_cert"` containing the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> by value (ISS-MDATA-REG_CERT-4.2.3-04/05) (OPTIONAL).
 - An element with format `"registrar_dataset"` containing self-declared registration information including `identifier`, `srvDescription`, `registryURI`, and `providesAttestations` (ISS-MDATA-REG_CERT-4.2.3-07 through 13) (REQUIRED).
@@ -226,7 +226,7 @@ This section defines the individual verification procedures that are composed in
 
 When a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is available, the <components:Wallet Instance|WI> SHALL validate it before relying on it [AUTHZ-GEN-08]:
 
-1. **Format verification**: confirm `typ` is `rc-wrp+jwt` (remote) or `rc-wrp+cwt` (proximity)  ([ETSI TS 119 475] section 5.2.1).
+1. **Format verification**: confirm `typ` is `rc-wrp+jwt` (remote) or `rc-wrp+cwt` (proximity)  ([ETSI TS 119 475, Section 5.2.1]).
 2. **Algorithm verification**: verify the conformance of signature algorithm (neither `"none"` nor deprecated).
 3. **Signature and Certificate chain validation**: verify the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> signature and validate the chain.
 4. **Trust anchor resolution**: fetch the trust anchor for the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> from <artifacts:List of Trusted Entities (LoTE)|LoTE>. The WI SHALL accept <artifacts:Trust Anchor|Trust Anchors> from all <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> <artifacts:List of Trusted Entities (LoTE)|LoTE> (ISSU_33a).
@@ -304,7 +304,7 @@ In the intermediary scenario, the <components:Wallet Instance|WI> SHALL perform 
 
 **Step 2: Verify intermediary association.** The <components:Wallet Instance|WI> SHALL verify that the intermediary is authorized to act on behalf of the intermediated RP. The verification depends on the available data source:
 
-- **If a valid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is available**: the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> of the intermediated RP SHALL contain the `intermediary` structure (per [ETSI TS 119 475] Table 10). The WI SHALL verify that `intermediary.sub` matches the authenticated intermediary identifier from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>. The presence of the `intermediary` field in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, signed by the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs>, is authoritative evidence that the relationship is registered.
+- **If a valid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is available**: the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> of the intermediated RP SHALL contain the `intermediary` structure (per [ETSI TS 119 475, Table 10]). The WI SHALL verify that `intermediary.sub` matches the authenticated intermediary identifier from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>. The presence of the `intermediary` field in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, signed by the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs>, is authoritative evidence that the relationship is registered.
 - **If the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is not available or invalid**: the <components:Wallet Instance|WI> SHALL query the <components:Register> using the intermediated RP identifier (from RPRC_19a item b) and verify in the <components:Register> response that the authenticated intermediary is listed as an authorized intermediary for that RP.
 - **If both <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <components:Register> verification fail**: the <components:Wallet Instance|WI> SHALL NOT confirm the intermediary relationship.
 
@@ -710,8 +710,8 @@ flowchart TD
 | AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-01 | The WI SHALL support <artifacts:Embedded Disclosure Policy (EDP)\|EDP> for QEAAs, PuB-EAAs, non-qualified EAAs. SHALL NOT assume PIDs have <artifacts:Embedded Disclosure Policy (EDP)\|EDP>. | Presentation | EDP_01 |
 | AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-02 | During issuance, the WI SHALL store <artifacts:Embedded Disclosure Policy (EDP)\|EDP> locally if present. | Issuance | EDP_09, EDP_10 |
 | AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-03 | At presentation, the WI SHALL check locally stored <artifacts:Embedded Disclosure Policy (EDP)\|EDP> for each matching Attestation. | Presentation | EDP_06, EDP_10 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-04 | The WI SHALL support authorized relying parties only policy evaluation. | Presentation | [CIR 2024/2979] Annex III, Discussion Topic D Req 1 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-05 | The WI SHALL support specific root of trust policy evaluation. | Presentation | [CIR 2024/2979] Annex III, Discussion Topic D Req 2 |
+| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-04 | The WI SHALL support authorized relying parties only policy evaluation. | Presentation | [CIR 2024/2979, Annex III, Discussion Topic D, Requirement 1] |
+| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-05 | The WI SHALL support specific root of trust policy evaluation. | Presentation | [CIR 2024/2979, Annex III, Discussion Topic D, Requirement 2] |
 | AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-06 | The WI SHALL evaluate <artifacts:Embedded Disclosure Policy (EDP)\|EDP> together with RP information to determine access permission. | Presentation | EDP_06 |
 | AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-07 | If <artifacts:Embedded Disclosure Policy (EDP)\|EDP> satisfied and explanatory link present, display it. | Presentation | EDP_05 |
 | AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-08 | If <artifacts:Embedded Disclosure Policy (EDP)\|EDP> not satisfied, produce NOT_AUTHORIZED, present outcome, allow User override. | Presentation | EDP_07, RPA_11 |
