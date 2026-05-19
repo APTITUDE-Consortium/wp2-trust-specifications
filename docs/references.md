@@ -41,6 +41,7 @@ Other ETSI specifications that the previous specifications build upon:
 | ------------------ | ----------- | ---------- | ------------------------- |
 | ETSI EN 319 132-1  | V1.3.1      | 2024-07    | Electronic Signatures and Trust Infrastructures (ESI); XAdES digital signatures; Part 1: Building blocks and XAdES baseline signatures |
 | ETSI EN 319 411-1  | V1.5.1      | 2025-04    | Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 1: General requirements |
+| ETSI EN 319 411-2  | V2.6.1      | 2025-06    | Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 2: Requirements for trust service providers issuing EU qualified certificates |
 | ETSI EN 319 412-1  | V1.7.0      | 2026-02    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 1: Overview and common data structures |
 | ETSI EN 319 412-2  | V2.4.1      | 2025-06    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 2: Certificate profile for certificates issued to natural persons |
 | ETSI EN 319 412-3  | V1.3.1      | 2023-09    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 3: Certificate profile for certificates issued to legal persons |
