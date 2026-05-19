@@ -68,6 +68,8 @@ Other ETSI specifications that the previous specifications build upon:
 
 | **Item Reference**               | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ---------- | ------------------------- |
+| RFC 1950                         | 1996-05    | ZLIB Compressed Data Format Specification version 3.3 |
+| RFC 1951                         | 1996-05    | DEFLATE Compressed Data Format Specification version 1.3 |
 | RFC 3647                         | 2003-11    | Internet X.509 Public Key Infrastructure - Certificate Policy and Certification Practices Framework (CRL) Profile |
 | RFC 3739                         | 2004-03    | Internet X.509 Public Key Infrastructure - Qualified Certificates Profile |
 | RFC 5280                         | 2008-05    | Internet X.509 Public Key Infrastructure - Qualified Certificates Profile |
