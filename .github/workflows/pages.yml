@@ -65,7 +65,6 @@ jobs:
           VERSION=$(echo "${GITHUB_REF_NAME}" | sed 's/release-//')
           PATH_NAME="${VERSION}-dev"
           mike deploy --push --allow-empty "$PATH_NAME"
-          mike set-default --push "$PATH_NAME"
 
       - name: Deploy Official Release (from tag)
         if: startsWith(github.ref, 'refs/tags/')

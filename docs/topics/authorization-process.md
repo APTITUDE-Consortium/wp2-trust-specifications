@@ -2,7 +2,7 @@ This section specifies the authorization process that a <components:Wallet Insta
 
 Authorization covers:
 
-- **Issuance authorization**: whether a <roles:PID Provider> or <roles:Attestation Provider (AP)> is registered for the relevant role and for the specific <data-elements:Attestation type|Attestation type(s)> to be issued. This applies to <roles:PID Provider|PID Providers>, <roles:QEAA Provider|QEAA Providers>, <roles:PuB-EAA Provider|PuB-EAA Providers>, and non-qualified EAA Providers.
+- **Issuance authorization**: whether a <roles:PID Provider> or <roles:Attestation Provider (AP)> is registered for the relevant role and for the specific <data-elements:Attestation type|Attestation type(s)> to be issued. This applies to <roles:PID Provider|PID Providers>, <roles:QEAA Provider|QEAA Providers>, <roles:PuB-EAA Provider|PuB-EAA Providers>, and <roles:EAA Provider|EAA Providers>.
 - **Presentation authorization**: whether a <roles:Relying Party (RP)> request is within its registered scope, whether any <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policy> permits disclosure, and whether the <roles:User> approves. This applies to both direct <roles:Relying Party (RP)|RP> and <roles:Relying Party Intermediary (RPI)|intermediated RP> interactions, and both <protocols:Remote Flow|Remote Flows> and <protocols:Proximity Flow|Proximity Flows>.
 
 !!! note
@@ -149,7 +149,7 @@ class REGDATA,WRPRC_OBJ,EDP_OBJ obj
 class META,PRES transport
 ```
 
-Registration data is collected at the <roles:Registrar> and the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> get it from <roles:Registrar> to provide it through a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. Registration data can also be queried directly by the <components:Wallet Instance|WI> using <roles:Registrar> online services as a fallback mechanism. <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> are distributed to the <components:Wallet Instance|WI> through presentation requests (for RPs) or through Credential Issuer Metadata (for <roles:Attestation Provider (AP)|APs>). EDPs are defined by the <roles:Attestation Provider (AP)|AP>, distributed through Credential Issuer Metadata, stored locally by the <components:Wallet Instance|WI> during issuance, and evaluated at presentation time.
+Registration data is collected at the <roles:Registrar> and the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> get it from <roles:Registrar> to provide it through a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. Registration data can also be queried directly by the <components:Wallet Instance|WI> using <roles:Registrar> online services as a fallback mechanism. <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> are distributed to the <components:Wallet Instance|WI> through presentation requests (for RPs) or through <artifacts:Credential Issuer Metadata> (for <roles:Attestation Provider (AP)|APs>). EDPs are defined by the <roles:Attestation Provider (AP)|AP>, distributed through <artifacts:Credential Issuer Metadata>, stored locally by the <components:Wallet Instance|WI> during issuance, and evaluated at presentation time.
 
 ##### WRPRC Parameters for Authorization
 
@@ -187,12 +187,12 @@ The **Authorization Use** column indicates how each parameter is consumed: **Dec
 
     Currently, the mapping of RPRC_19a data in the `requestInfo` map is not defined in [ETSI TS 119 472-2]
 
-**Issuance flow.** <roles:Attestation Provider (AP)|APs> include authorization data in Credential Issuer Metadata through the `issuer_info` array ([ETSI TS 119 472-3, Section 4.2.3]). This array contains:
+**Issuance flow.** <roles:Attestation Provider (AP)|APs> include authorization data in <artifacts:Credential Issuer Metadata> through the `issuer_info` array ([ETSI TS 119 472-3, Section 4.2.3]). This array contains:
 
 - An element with format `"registration_cert"` containing the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> by value (ISS-MDATA-REG_CERT-4.2.3-04/05) (OPTIONAL).
 - An element with format `"registrar_dataset"` containing self-declared registration information including `identifier`, `srvDescription`, `registryURI`, and `providesAttestations` (ISS-MDATA-REG_CERT-4.2.3-07 through 13) (REQUIRED).
 
-Metadata is signed with the <roles:Attestation Provider (AP)|AP> <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> private key (ISSU_22a). Authorization data cointained in the <artifacts:Embedded Disclosure Policy (EDP)|EDP> is also distributed through Credential Issuer Metadata within `credential_configurations_supported` field.
+Metadata is signed with the <roles:Attestation Provider (AP)|AP> <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> private key (ISSU_22a). Authorization data cointained in the <artifacts:Embedded Disclosure Policy (EDP)|EDP> is also distributed through <artifacts:Credential Issuer Metadata> within `credential_configurations_supported` field.
 
 #### Registrar Online Service
 
@@ -211,7 +211,7 @@ The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is a set of rules defined b
 For authorization purposes, the following aspects are relevant:
 
 - <artifacts:Embedded Disclosure Policy (EDP)|EDPs> are applicable to <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAAs>, <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|PuB-EAAs>, and non-qualified EAAs. They are not applicable to <credentials:Person Identification Data (PID)|PIDs> [AUTHZ-EDP-01].
-- During issuance, when the <roles:User> confirms, the <components:Wallet Instance|WI> SHALL retrieve and store locally the <artifacts:Embedded Disclosure Policy (EDP)|EDP> if present in the Credential Issuer Metadata [AUTHZ-EDP-02].
+- During issuance, when the <roles:User> confirms, the <components:Wallet Instance|WI> SHALL retrieve and store locally the <artifacts:Embedded Disclosure Policy (EDP)|EDP> if present in the <artifacts:Credential Issuer Metadata> [AUTHZ-EDP-02].
 - At presentation time, for each <credentials:Attestation|Attestation> matching a request, the <components:Wallet Instance|WI> SHALL check its locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> and evaluate it against the requesting RP according to the [EDP Evaluation Procedure](#edp-evaluation-procedure) defined in this section.
 - Annex III of [CIR 2024/2979] defines three policy types that the WI SHALL support. In particular:
     - No Policy.
@@ -240,7 +240,7 @@ If any step fails, the procedure outputs `CERTIFICATE_INVALID`. This is not a fi
 
 When the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is not available or validation has failed, the <components:Wallet Instance|WI> SHALL attempt to contact the <components:Register> APIs [AUTHZ-GEN-10]:
 
-1. **Extract <roles:Registrar> URL** from the presentation request (`verifier_info` in remote scenario or `requestInfo` in proximity scanario) during presentation flow, or from Credential Issuer Metadata (`issuer_info.registry_uri`) during issuance flow. See [Distribution Methods](#distribution-methods) section for details.
+1. **Extract <roles:Registrar> URL** from the presentation request (`verifier_info` in remote scenario or `requestInfo` in proximity scanario) during presentation flow, or from <artifacts:Credential Issuer Metadata> (`issuer_info.registry_uri`) during issuance flow. See [Distribution Methods](#distribution-methods) section for details.
 2. **Connect** to the <roles:Registrar> online service using HTTPS.
 3. **Query** using entity identifier and `intended_use_id` (presentation) or AP identifier (issuance).
 4. **Verify response signature**: the <components:Wallet Instance|WI> SHALL verify the signature of the response data according to TS5.
@@ -268,7 +268,7 @@ All available sources SHALL be mutually consistent.
 
 ###### Issuance Binding
 
-During issuance, the <components:Wallet Instance|WI> SHALL verify that the <roles:Attestation Provider (AP)|AP> that signed the Credential Issuer Metadata (identified by the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> in the `x5c` header of the JWS) is the same entity described in the authorization data [AUTHZ-GEN-11]. The <components:Wallet Instance|WI> SHALL check coherence between:
+During issuance, the <components:Wallet Instance|WI> SHALL verify that the <roles:Attestation Provider (AP)|AP> that signed the <artifacts:Credential Issuer Metadata> (identified by the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> in the `x5c` header of the JWS) is the same entity described in the authorization data [AUTHZ-GEN-11]. The <components:Wallet Instance|WI> SHALL check coherence between:
 
 - The <roles:Attestation Provider (AP)|AP> identifier from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> subject (extracted during metadata signature verification).
 - The `sub` field from the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in `issuer_info` (if present).
@@ -352,7 +352,7 @@ If the `entitlements` array does not contain the expected value, the procedure S
 The <components:Wallet Instance|WI> SHALL verify that the <credentials:Person Identification Data (PID)|PID> or <data-elements:Attestation type> being requested is registered for the provider [AUTHZ-ISS-02]:
 
 - For <roles:PID Provider|PID Providers> issuing <credentials:Person Identification Data (PID)|PIDs>, the <components:Wallet Instance|WI> MAY skip this step.
-- Otherwise, the <components:Wallet Instance|WI> SHALL match the `provides_attestations[]` array against the `credential_configurations_supported` keys in Credential Issuer Metadata. Matching SHALL be case-sensitive and exact (`vct_value` for <formats:Selective Disclosure JWT (SD-JWT)|SD-JWT> VC, `doctype` for mDL).
+- Otherwise, the <components:Wallet Instance|WI> SHALL match the `provides_attestations[]` array against the `credential_configurations_supported` keys in <artifacts:Credential Issuer Metadata>. Matching SHALL be case-sensitive and exact (`vct_value` for <formats:Selective Disclosure JWT (SD-JWT)|SD-JWT> VC, `doctype` for mDL).
 
 If not found, the procedure SHALL output `ATTESTATION_TYPE_NOT_REGISTERED`.
 
@@ -456,7 +456,7 @@ sequenceDiagram
 
 ###### Step-by-step Operations
 
-**Steps 1-3: Obtain Credential Issuer Metadata.** The <components:Wallet Instance|WI> SHALL fetch metadata from the <roles:Attestation Provider (AP)|AP> using [OpenID4VCI] (ISSU_01) [AUTHZ-ISS-04]. These steps are not required if the <components:Wallet Instance|WI> already has the Credential Issuer Metadata stored locally, for example if it is already fetched during authentication process.
+**Steps 1-3: Obtain <artifacts:Credential Issuer Metadata>.** The <components:Wallet Instance|WI> SHALL fetch metadata from the <roles:Attestation Provider (AP)|AP> using [OpenID4VCI] (ISSU_01) [AUTHZ-ISS-04]. These steps are not required if the <components:Wallet Instance|WI> already has the <artifacts:Credential Issuer Metadata> stored locally, for example if it is already fetched during authentication process.
 
 **Step 4: Verify metadata signature.** The <components:Wallet Instance|WI> SHALL verify the metadata signature and <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> certificate chain [AUTHZ-ISS-05]. If verification fails, the <components:Wallet Instance|WI> provides `NOT_AUTHORIZED` code (non-overridable) [AUTHZ-ISS-06].
 
