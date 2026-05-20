@@ -12,12 +12,12 @@ jobs:
     if: github.event.ref_type == 'branch'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -30,6 +30,24 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch Remote Assets
+        uses: actions/checkout@v4
+        with:
+          repository: 'APTITUDE-Consortium/aptitude-eudi-wallet-specs'
+          token: ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}
+          path: 'temp_remote_assets'
+          clean: false
+          sparse-checkout: |
+            docs/glossary-definitions.md
+            docs/media/
+            docs/overrides/
+
+      - name: Merge Assets into Local Workspace
+        run: |
+          mkdir -p docs/media docs/overrides
+          cp -r temp_remote_assets/docs/* ./docs/
+          rm -rf temp_remote_assets
 
       - name: Delete branch documentation
         run: |
