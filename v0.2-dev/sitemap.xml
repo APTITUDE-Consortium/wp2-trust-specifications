@@ -2,18 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2-dev/</loc>
-         <lastmod>2026-05-19</lastmod>
-    </url>
-    <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2-dev/glossary-definitions/</loc>
-         <lastmod>2026-05-19</lastmod>
+         <lastmod>2026-05-20</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2-dev/references/</loc>
-         <lastmod>2026-05-19</lastmod>
+         <lastmod>2026-05-20</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2-dev/trust-framework/</loc>
-         <lastmod>2026-05-19</lastmod>
+         <lastmod>2026-05-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2-dev/docs/</loc>
+         <lastmod>2026-05-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2-dev/docs/glossary/</loc>
+         <lastmod>2026-05-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2-dev/docs/standards/</loc>
+         <lastmod>2026-05-20</lastmod>
     </url>
 </urlset>
