@@ -22,12 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -47,6 +47,7 @@ jobs:
           repository: 'APTITUDE-Consortium/aptitude-eudi-wallet-specs'
           token: ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}
           path: 'temp_remote_assets'
+          clean: false
           sparse-checkout: |
             docs/glossary-definitions.md
             docs/media/
@@ -55,7 +56,7 @@ jobs:
       - name: Merge Assets into Local Workspace
         run: |
           mkdir -p docs/media docs/overrides
-          cp -r temp_remote_assets/docs/ ./docs/
+          cp -r temp_remote_assets/docs/* ./docs/
           rm -rf temp_remote_assets
 
       - name: Deploy Pre-Release (from release-v* branch)
