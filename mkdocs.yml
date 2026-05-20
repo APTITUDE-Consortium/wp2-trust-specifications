@@ -56,6 +56,8 @@ extra_css:
 extra_javascript:
   - https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js
   - media/mermaid-init.js
+  - media/mathjax-init.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
   - tags
@@ -122,10 +124,6 @@ extra:
   version:
     provider: mike
 
-extra_javascript:
-  - media/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-
 nav:
   - Home: index.md
-  - Deliverable: deliverable-2.1-trust.md
+  - Trust Framework: trust-framework.md

@@ -42,30 +42,21 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Fetch Remote Assets
+        uses: actions/checkout@v4
+        with:
+          repository: 'APTITUDE-Consortium/aptitude-eudi-wallet-specs'
+          token: ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}
+          path: 'temp_remote_assets'
+          sparse-checkout: |
+            docs/glossary-definitions.md
+            docs/media/
+            docs/overrides/
+
+      - name: Merge Assets into Local Workspace
         run: |
-          mkdir -p docs/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/glossary-definitions.md \
-               -o docs/glossary-definitions.md
-
-          mkdir -p docs/overrides/partials/footer/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/overrides/partials/footer.html \
-               -o docs/overrides/partials/footer/footer.html
-
-          mkdir -p docs/overrides/ezglossary/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/overrides/ezglossary/link.html \
-               -o docs/overrides/ezglossary/link.html
-
-          mkdir -p docs/media/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/extra.css \
-               -o docs/media/extra.css
-
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/mermaid-init.js \
-               -o docs/media/mermaid-init.js
+          mkdir -p docs/media docs/overrides
+          cp -r temp_remote_assets/docs/ ./docs/
+          rm -rf temp_remote_assets
 
       - name: Deploy Pre-Release (from release-v* branch)
         if: startsWith(github.ref, 'refs/heads/release-v')
