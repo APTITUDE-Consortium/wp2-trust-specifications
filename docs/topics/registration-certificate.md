@@ -32,7 +32,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | [Privacy and Policy Attributes](#privacy-and-policy-attributes)       | Privacy policy information.                                                               | Some of them |
 | [Supervisory Authority Attributes](#supervisory-authority-attributes) | Supervisory authority contact details for reporting suspicious data-processing behaviour. | Required |
 | [Service Provider Attributes](#service-provider-attributes)           | Credential queries, purposes, and intended-use identifiers for service providers.         | Required for Service Provider |
-| [Attestation Provider Attributes](#attestation-provider-attributes)   | Attributes describing attestations issued by an EAA provider.                             | Required for EAA Provider |
+| [Attestation Provider Attributes](#attestation-provider-attributes)   | Attributes describing attestations issued by an <roles:EAA Provider>.                             | Required for <roles:EAA Provider> |
 | [Technical Attributes](#technical-attributes)                         | Technical metadata such as policies, timestamps, and status-list configuration.           | Some of them |
 | [Uses Intermediary Attributes](#uses-intermediary-attributes)         | Attributes required when the WRP operates through an intermediary entity.                 | Required if Intermediary is used |
 
@@ -121,10 +121,10 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
-| `provides_attestations` | *array[object]* | A set of credentials issued by the WRP with EAA entitlements. | Required for EAA Provider | [ETSI TS 119 475, Table 8] - `providesAttestations` |
-| `provides_attestations[].format` | *string* | Format of the credential. | Required for EAA Provider | [ETSI TS 119 475, Table 8] - `format` |
-| `provides_attestations[].meta` | *object* | Metadata to identify the credential type. | Required for EAA Provider | [ETSI TS 119 475, Table 8] - `meta` |
-| `provides_attestations[].claim` | *array[object]* | Objects that specifies attributes in the requested attestation. | Required for EAA Provider only if provided by registry| [ETSI TS 119 475, Table 8] - `claim` |
+| `provides_attestations` | *array[object]* | A set of credentials issued by the WRP with EAA entitlements. | Required for <roles:EAA Provider> | [ETSI TS 119 475, Table 8] - `providesAttestations` |
+| `provides_attestations[].format` | *string* | Format of the credential. | Required for <roles:EAA Provider> | [ETSI TS 119 475, Table 8] - `format` |
+| `provides_attestations[].meta` | *object* | Metadata to identify the credential type. | Required for <roles:EAA Provider> | [ETSI TS 119 475, Table 8] - `meta` |
+| `provides_attestations[].claim` | *array[object]* | Objects that specifies attributes in the requested attestation. | Required for <roles:EAA Provider> only if provided by registry. | [ETSI TS 119 475, Table 8] - `claim` |
 
 ##### Technical Attributes
 
@@ -517,9 +517,9 @@ Per [ETSI TS 119 475, Annex A.2]:
 | <data-elements:Entitlement> | URI | OID | ETSI Reference | Description |
 |-------------|-----|-----|----------------|-------------|
 | `Service_Provider` | `https://uri.etsi.org/19475/Entitlement/Service_Provider` | `id-etsi-wrpa-entitlement 1` | Annex A.2.1 | General service provider |
-| `QEAA_Provider` | `https://uri.etsi.org/19475/Entitlement/QEAA_Provider` | `id-etsi-wrpa-entitlement 2` | Annex A.2.2 | Qualified EAA provider |
-| `Non_Q_EAA_Provider` | `https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider` | `id-etsi-wrpa-entitlement 3` | Annex A.2.3 | Non-qualified EAA provider |
-| `PUB_EAA_Provider` | `https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider` | `id-etsi-wrpa-entitlement 4` | Annex A.2.4 | Public sector EAA provider |
+| `QEAA_Provider` | `https://uri.etsi.org/19475/Entitlement/QEAA_Provider` | `id-etsi-wrpa-entitlement 2` | Annex A.2.2 | <roles:QEAA Provider\|Qualified EAA provider> |
+| `Non_Q_EAA_Provider` | `https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider` | `id-etsi-wrpa-entitlement 3` | Annex A.2.3 | <roles:EAA Provider\|Non-qualified EAA provider> |
+| `PUB_EAA_Provider` | `https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider` | `id-etsi-wrpa-entitlement 4` | Annex A.2.4 | <roles:PuB-EAA Provider\|Public sector EAA provider> |
 | `PID_Provider` | `https://uri.etsi.org/19475/Entitlement/PID_Provider` | `id-etsi-wrpa-entitlement 5` | Annex A.2.5 | Provider of person identification data |
 | `QCert_for_ESeal_Provider` | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESeal_Provider` | `id-etsi-wrpa-entitlement 6` | Annex A.2.6 | QTSP issuing qualified certificates for electronic seals |
 | `QCert_for_ESig_Provider` | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider` | `id-etsi-wrpa-entitlement 7` | Annex A.2.7 | QTSP issuing qualified certificates for electronic signatures |
