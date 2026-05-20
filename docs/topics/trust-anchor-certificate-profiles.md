@@ -98,7 +98,7 @@ The following table lists all new or modified extensions that are mandatory or c
 
 | Parameter | Defined in | Presence | Criticality | Format | Description |
 | :-------: | :--------: | :------: | :---------: | :----- | :---------- |
-| `keyUsage` | [ETSI TS 119 412-6, clause 4.4.1] | REQUIRED | C | *BIT STRING* | Should contain one (and only one) of the key usage settings Type A, Type B, Type C, or Type F as defined in ETSI EN 319 412-2 ||
+| `keyUsage` | [ETSI TS 119 412-6, clause 4.4.1] | REQUIRED | C | *BIT STRING* | Should contain one (and only one) of the key usage settings Type A, Type B, Type C, or Type F as defined in ETSI EN 319 412-2 |
 | `subjectKeyIdentifier` | [ETSI TS 119 412-6, clause 4.4.2] | REQUIRED | NC | *BIT STRING* | For end entity certificates, the subject key identifier extension provides a means for identifying certificates containing the particular public key used in an application. The subject key identifier SHOULD be derived from the public key using methods defined in RFC 5280, clause 4.2.1.2 |
 | `authorityInfoAccess` | [ETSI TS 119 412-6, clause 4.4.3] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Aplicable condition:** Mandatory for not self-signed certificates. |
 | `qcStatements` (id-etsi-qct-pid) | [ETSI TS 119 412-6, clause 4.5] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.1` as defined in [ETSI TS 119 412-6, Annex A] |
