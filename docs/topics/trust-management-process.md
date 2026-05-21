@@ -1,7 +1,7 @@
 ﻿
 This section specifies the Trust Management Lifecycle for entities participating in the Trust Framework. It defines the operational states, state transitions, and the specific events that trigger these transitions for subscribed entities. 
 
-The scope of this process encompasses the complete lifecycle of an entity, from initial onboarding and active operational maintenance to temporary or permanent withdrawal from the framework. The entities which are described here are exclusively those which publish Trust Artifacts: WRPs, Wallet Providers, Registrars and Providers of WRPAC/WRPRC. The lifecicle of other entities involved in the Trust Framework is not described. 
+The scope of this process encompasses the complete lifecycle of an entity, from initial onboarding and active operational maintenance to temporary or permanent withdrawal from the framework. The entities which are described here are exclusively those which publish Trust Artifacts: WRPs, Wallet Providers, Registrars and Providers of WRPAC/WRPRC. The lifecycle of other entities involved in the Trust Framework is not described. 
 
 By detailing the operational effects on trust artifacts—such as the LoTE and WRP certificates (WRPAC/WRPRC)—this section details the management and lifecycle practices that undergo various entities subscribing to the Trust Framework.
 
@@ -84,10 +84,10 @@ flowchart LR
 The onboarding process governs the transition of a Tier II and Tier III Entity from the `UNREGISTERED` state to the `ACTIVE` state. Upon the successful completion of the onboarding process, the following Trust Artifacts and records SHALL be generated or updated:
 
 
-- **Register Update**[WRPs]: The entity's authoritative record is committed to the Register database.
-- **Trust Anchor Inclusion**[Tier II Entities and WRPs]: If applicable to the entity's role, its signature key trust chain Trust Anchor (TA) SHALL be included in the List of Trusted Entities (LoTE) or the European Union Member State Trusted List (EUMS TL).
-- **WRPAC Issuance**[WRPs]: A WRPAC SHALL be issued to the entity.
-- **WRPRC Issuance**[WRPs]:A WRPRC MAY be issued to the entity, depending on its role and authorization profile.
+- **Register Update** [WRPs]: The entity's authoritative record is committed to the Register database.
+- **Trust Anchor Inclusion** [Tier II Entities and WRPs]: If applicable to the entity's role, its signature key trust chain Trust Anchor (TA) SHALL be included in the List of Trusted Entities (LoTE) or the European Union Member State Trusted List (EUMS TL).
+- **WRPAC Issuance** [WRPs]: A WRPAC SHALL be issued to the entity.
+- **WRPRC Issuance** [WRPs]:A WRPRC MAY be issued to the entity, depending on its role and authorization profile.
 
 The specific operational effects and artifact configurations resulting from successful onboarding depend on the entity's classification within the Trust Framework ecosystem:
 
@@ -108,7 +108,7 @@ Registrars, Wallet Providers, and Providers of WRPACs/WRPRCs, SHALL onboard with
 QTSPs SHALL onboard with the respective Member States and SHALL be explicitly listed in the appropriate EUMS TL with the respective trust anchor certificates upon successful onboarding. This listing formally enables trust checks on the QTSP-issued Qualified Electronic Seals and\or Qualified Signature certificates.
 
 To assert the entity's `ACTIVE` status, the trust framework infrastructure SHALL apply the following technical configurations.
-- **LoTE Status**[Tier II Entities]: the `TrustedEntityServices.ServiceInformation.ServiceStatus` component of the LoTE corresponding to the registered trust anchor key in the `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
+- **LoTE Status** [Tier II Entities]: the `TrustedEntityServices.ServiceInformation.ServiceStatus` component of the LoTE corresponding to the registered trust anchor key in the `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
 - **TL Status**:  the `TrustServiceProviderInformation.ServiceInformation.ServiceStatus` component of the LoTE corresponding to the registered trust anchor key in the `TrustServiceProviderInformation.ServiceInformation.ServiceDigitalIdentity` SHALL be set to the URI `http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/granted` ([ETSI TS 119 612] clause 5.5.4)
 - **OCSP Status**: the validation status of the newly issued WRPAC in an Online Certificate Status Protocol (OCSP) response SHALL be returned as `good`.
 - **CRL Status**: the serial number of the WRPAC SHALL NOT be present in the active CRL.
@@ -162,19 +162,19 @@ When there are organizational updates, the Trust Framework infrastructure SHALL 
   - **WRPAC Re-issuance**:The Provider of WRPAC SHALL issue a new WRPAC with the updated data.
   - **WRPRC Revocation**: The Provider of WRPRC SHALL revoke the entity's current WRPRC if present. Revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to `0x01`.
   - **WRPRC Re-issuance**: The Provider of WRPRC SHALL issue a new WRPRC with the updated data if required.
-  - **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the PID/Pub-EAA Provider SHALL notify the LoTE Shcheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
+  - **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the PID/Pub-EAA Provider SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
 - **Technical Configurations Updates**:
   - **Signature/Seal Key update**: the WRP SHALL notify Signature/Seal Key updates to the Certificate Authority responsible for the issuance of these certificates.
     - **Signature/Seal Certificate Revocation**: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.
     - **Signature/Seal Certificate Re-issuance**:The Certificate Authority SHALL issue a new Signature/Seal certificate with the updated key.
-    - **LoTE Update** [ONLY for PID Providers TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the PID Procider SHALL notify the LoTE Shcheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the PID Provider's updated Signature/Seal certificate. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
-  - **AuthN Key update**: Tthe WRP SHALL notify WRPAC Key updates to the Provider of WRPAC.
+    - **LoTE Update** [ONLY for PID Providers TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the PID Provider SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the PID Providers' updated Signature/Seal certificate. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
+  - **AuthN Key update**: The WRP SHALL notify WRPAC Key updates to the Provider of WRPAC.
     - **WRPAC Revocation**: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
     - **WRPAC Re-issuance**:The Provider of WRPAC SHALL issue a new WRPAC with the updated key.
 
 The diagram below highlights these dependences between WRP attributes, artifacts in which these attributes are contained and entities that use this information to issue/publish additional Trust Artifacts:
 
-```mremaid
+```mermaid
 flowchart LR
     wrp["WRP"]
 
@@ -229,13 +229,13 @@ The diagram below highlights these dependences between Tier II Entity attributes
 
 **Tier II Entity Updates**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the update event SHALL trigger the following procedures:
 - **Identity Information Updates**:
-  - **LoTE Update**: the entity SHALL notify the LoTE Shcheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information. 
+  - **LoTE Update**: the entity SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information. 
 - **Technical Configurations Updates**:
-  - **Signature/Seal Key update**: the entity SHALL notify the Signature/Seal Key update to the Certificate Authority responsible for the issuance of these certificates.
+  - **Signature/Seal Key update**: the entity SHALL notify the Signature/Seal Key updates to the Certificate Authority responsible for the issuance of these certificates.
     - **Signature/Seal Certificate Revocation**: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.
     - **Signature/Seal Certificate Re-issuance**:The Certificate Authority SHALL issue a new Signature/Seal certificate with the updated key. 
-    - **LoTE Update** [ONLY for TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the entity SHALL notify the LoTE Shcheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the entity's updated Signature/Seal certificate. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
-  - **Endpoints Update** [ONLY for Registrars]: When updating endpoints, the Registrar SHALL notify the LoTE Shcheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the Registrar's updated endpoint.
+    - **LoTE Update** [ONLY for TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the entity SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the entity's updated Signature/Seal certificate. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
+  - **Endpoints Update** [ONLY for Registrars]: When updating endpoints, the Registrar SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the Registrar's updated endpoint.
 
 ```mermaid
 flowchart LR
@@ -296,9 +296,9 @@ When an entity is transitioned to the `WITHDRAWN` state, the Trust Framework inf
 - **WRPAC Revocation**: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
 - **WRPRC Revocation**: The Provider of WRPRC SHALL revoke the entity's current WRPRC if present. Revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to `0x01`.
 - **Signature/Seal Certificate Revocation**: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.
-- **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the WRP or Supervisory body SHALL notify the LoTE Shcheme Operator which will publish a new version of the LoTE using the pivoting mechanism where the PID/Pub-EAA Provider's `TrustedEntityServices.ServiceInformation.ServiceStatus` component SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`. To maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
+- **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the WRP or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism where the PID/Pub-EAA Provider's `TrustedEntityServices.ServiceInformation.ServiceStatus` component SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`. To maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
 **Tier II Entity Withdrawal or Removal**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the update event SHALL trigger the following procedures:
-- **LoTE Update**: the Tier II Entity or Supervisory body SHALL notify the LoTE Shcheme Operator which will publish a new version of the LoTE using the pivoting mechanism where the entity's `TrustedEntityServices.ServiceInformation.ServiceStatus` component SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`. To maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
+- **LoTE Update**: the Tier II Entity or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism where the entity's `TrustedEntityServices.ServiceInformation.ServiceStatus` component SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`. To maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
 
 !!! note
     
@@ -384,8 +384,8 @@ Table Legend:
 - **Event**: The specific operational, organizational, or security trigger occurring within the ecosystem.
 - **Sender**: The entity responsible for initiating the communication or action.
 - **Receiver**: The actor or system component that receives the notification and executes the necessary updates.
-- **Notification Protocol / Type**: The technical or indentity Information method used to transmit the event data (e.g., REST API, Out-of-Band email, automated sync).
-- **Consequence (State Change)**: The resulting lifecycle state transition for the affected entity (i.e., from ACTIVE to ).
+- **Notification Protocol / Type**: The technical or identity Information method used to transmit the event data (e.g., REST API, Out-of-Band email, automated sync).
+- **Consequence (State Change)**: The resulting lifecycle state transition for the affected entity (i.e., from `ACTIVE` to `ACTIVE` or `ACTIVE` to `WITHDRAWN`).
 - **Impact on Trust Artifacts**: The exact technical modifications applied to the trust artifacts.
 
 | Event | Sender | Receiver | Notification Protocol / Type | Consequence (State Change) | Impact on Trust Artifacts |
