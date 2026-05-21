@@ -105,7 +105,7 @@ The following table lists all new or modified extensions that are mandatory or c
 
 #### PID Provider Certificate Example
 
-The following is an example of a PID Provider's not self-signed certificate for legal persons.
+The following is an example of a PID Provider's not self-signed Trust Anchor certificate for legal persons.
 
 ```text
 AccessCertificate cert = {
@@ -218,11 +218,11 @@ AccessCertificate cert = {
         oid: "2.5.29.17",            // subjectAltName
         critical: false,
         value: SubjectAltName [
-          GeneralName.uniformResourceIdentifier("https://rp.example.test/support"),
-          GeneralName.rfc822Name("wallet-support@rp.example.test"),
+          GeneralName.uniformResourceIdentifier("https://pid.example.test/support"),
+          GeneralName.rfc822Name("support@pid.example.test"),
           GeneralName.otherName(
             typeId: "2.5.4.20",       // id-at-telephoneNumber
-            value: "+33-1-23-45-67-89"
+            value: "+420-111-222-333"
           )
         ]
       },
@@ -249,8 +249,181 @@ AccessCertificate cert = {
 
 ### Wallet Provider content
 
-### EAA Provider content
+The following table lists all new or modified parameters that are mandatory or conditional for Wallet Providers as further scoped in ETSI TS 119 412-6.
 
-### QEAA Provider content
+| Parameter | Defined in | Presence | Format | Description |
+| :-------: | :--------: | :------: | :----- | :---------- |
+| `issuer` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | *Name* | The same as in General Content above with an exception for selfsigned certificate. In such case, the content of issuer is the same as defined for the Subject parameter. |
 
-### PSBEAA Provider content
+The following table lists all new or modified extensions that are mandatory or conditional for Wallet Providers as further scoped in ETSI TS 119 412-6.
+
+| Parameter | Defined in | Presence | Criticality | Format | Description |
+| :-------: | :--------: | :------: | :---------: | :----- | :---------- |
+| `keyUsage` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | C | *BIT STRING* | Should contain one (and only one) of the key usage settings Type A, Type B, Type C, or Type F as defined in ETSI EN 319 412-2 |
+| `subjectKeyIdentifier` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | NC | *BIT STRING* | For end entity certificates, the subject key identifier extension provides a means for identifying certificates containing the particular public key used in an application. The subject key identifier SHOULD be derived from the public key using methods defined in RFC 5280, clause 4.2.1.2 |
+| `authorityInfoAccess` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Aplicable condition:** Mandatory for not self-signed certificates. |
+| `qcStatements` (id-etsi-qct-wal) | [ETSI TS 119 412-6, clause 5.2] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.2` as defined in [ETSI TS 119 412-6, Annex A] |
+
+#### Wallet Provider Certificate Example
+
+The following is an example of a Wallet Provider's not self-signed Trust Anchor certificate for legal persons.
+
+```text
+AccessCertificate cert = {
+
+  tbsCertificate: {
+
+    version: 2,                     // integer value 2 for v3
+    serialNumber: "0x6F3A0B91D2...",
+    signature: AlgorithmIdentifier {
+      oid: "1.2.840.113549.1.1.11",  // sha256WithRSAEncryption
+      params: NULL
+    },
+
+    issuer: DistinguishedName {      // issuer attributes for legal person
+      countryName: "CZ",
+      organizationName: "Example Trust Services CA",
+      commonName: "Example CA",
+      organizationIdentifier: "VATCZ-123456789"
+    },
+
+    validity: {
+      notBefore: "2026-01-27T00:00:00Z",
+      notAfter:  "2027-01-27T00:00:00Z"
+    },
+
+    subject: DistinguishedName {     // subject attributes for legal person
+      countryName: "CZ",
+      organizationName: "Example of Wallet Provider",
+      organizationIdentifier: "LEIXYZ-5493001KJTIIGC8Y1R12",
+      commonName: "Wallet Provider Example"
+    },
+
+    subjectPublicKeyInfo: {
+      algorithm: AlgorithmIdentifier {
+        oid: "1.2.840.113549.1.1.1",
+        params: NULL
+      },
+
+      subjectPublicKey: "BASE64(SPKI_PUBLIC_KEY_BYTES)"
+    },
+
+
+    extensions: [
+
+      Extension {
+        oid: "2.5.29.35",            // authorityKeyIdentifier
+        critical: false,
+        value: AuthorityKeyIdentifier {
+          keyIdentifier: "HEX(20B_KEYID_OF_ISSUING_CA_PUBLIC_KEY)"
+        }
+      },
+
+      Extension {
+        oid: "2.5.29.15",            // keyUsage
+        critical: true,
+        value: KeyUsage {
+          nonRepudiation: true        // Type A
+          // all others false
+        }
+      },
+
+      Extension {
+        oid: "2.5.29.14",    // subject key identifier
+        critical: false,
+        value: SubjectKeyIdentifier [
+          keyIdentifier: "SHA-1(SUBJECT_PUBLIC_KEY_VALUE)"
+        ]
+      },
+
+      Extension {
+        oid: "1.3.6.1.5.5.7.1.1",    // authority information access
+        critical: false,
+        value: AuthorityInfoAccess [
+          AccessDescription {
+            accessMethod: "1.3.6.1.5.5.7.48.2",            // id-ad-caIssuers
+            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer")
+          },
+
+          AccessDescription {
+            accessMethod: "1.3.6.1.5.5.7.48.1",            // id-ad-ocsp
+            accessLocation: URI("https://ocsp.example.test")
+          }
+        ]
+      },
+
+      Extension {
+        oid: "2.5.29.32",            // certificatePolicies
+        critical: false,
+        value: CertificatePolicies [
+          PolicyInformation {
+            policyIdentifier: "0.4.0.194112.1.3",          // qcp-legal-qcsd
+            policyQualifiers: [
+              CPSuri("https://rpca.example.test/cps")
+            ]
+          }
+        ]
+      },
+
+      Extension {
+        oid: "1.3.6.1.5.5.7.0.35",   // qcStatements-2 container
+        critical: false,
+        value: QCStatements [
+          QCStatement {
+            statementId: "0.4.0.194126.1.2",   // id-etsi-qct-wal
+          }
+        ]
+      },
+
+      Extension {
+        oid: "2.5.29.17",            // subjectAltName
+        critical: false,
+        value: SubjectAltName [
+          GeneralName.uniformResourceIdentifier("https://wp.example.test/support"),
+          GeneralName.rfc822Name("support@wp.example.test"),
+          GeneralName.otherName(
+            typeId: "2.5.4.20",       // id-at-telephoneNumber
+            value: "+420-111-222-333"
+          )
+        ]
+      },
+
+      Extension {
+        oid: "2.5.29.31",            // cRLDistributionPoints
+        critical: false,
+        value: CRLDistributionPoints [
+          DistributionPoint {
+            distributionPoint: URI("https://crl.example.test/issuing-ca.crl")
+          }
+        ]
+      }
+    ]
+  },
+
+  signatureAlgorithm: AlgorithmIdentifier {
+    oid: "1.2.840.113549.1.1.11",    // must match/align with tbsCertificate.signature
+    params: NULL
+  },
+  signatureValue: "BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))"
+}
+```
+
+### EAA Issuer content
+
+There are no new or modified parameters or extensions specific for EAA Issuer as described in ETSI TS 119 412-6, clause 6.
+
+There are other requirements that focus on signing of certificates connected to either OCSP Responder or CRL depending on used revocation policy. More information can be found in ETSI TS 119 412-6, clause 6.2.
+
+#### EAA Issuer attribute Certificate Example
+
+The following is an example of an EAA Issuer attribute not self-signed Trust Anchor certificate for legal persons.
+
+```text
+AccessCertificate cert = {
+  ...TO_BE_DONE...
+}
+```
+
+### QEAA Issuer content
+
+### PSBEAA Issuer content
