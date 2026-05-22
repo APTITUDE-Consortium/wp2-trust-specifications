@@ -30,9 +30,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Resolve Target Branch Reference
+        id: resolve_ref
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
+          if [ -n "$PR_NUM" ]; then
+            echo "Fetching branch name for PR #${PR_NUM}..."
+            BRANCH_REF=$(gh api repos/${{ github.repository }}/pulls/${PR_NUM} -q '.head.ref')
+            echo "resolved_ref=$BRANCH_REF" >> $GITHUB_OUTPUT
+          else
+            echo "resolved_ref=${{ github.ref }}" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Checkout
         uses: actions/checkout@v6
         with:
+          ref: ${{ steps.resolve_ref.outputs.resolved_ref }}
           fetch-depth: 0
 
       - name: Set up Python
