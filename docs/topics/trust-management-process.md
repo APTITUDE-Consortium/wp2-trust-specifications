@@ -380,7 +380,7 @@ Below are detailed the operational procedures, which affects the Properties of T
 
 ##### Onboarding Process
 
-The onboarding process governs the transition of a End-Entity (WRP or Wallet Provider) from the `UNREGISTERED` state to the `OPERATIONAL` state. During the onboarding process, it is up to the Entities running the process and necessary checks to take the onboardee's Properties and (depending on its role) issue the corresponding Trust Artifacts. Further details are found in (Onboarding Process)[#onboarding-process.md].
+The onboarding process governs the transition of a End-Entity (WRP or Wallet Provider) from the `UNREGISTERED` state to the `OPERATIONAL` state. During the onboarding process, it is up to the Entities running the process and necessary checks to take the onboardee's Properties and (depending on its role) issue the corresponding Trust Artifacts. Further details are found in [Onboarding Process](#onboarding-process.md).
 
 ##### Active Operations and Maintenance
 
