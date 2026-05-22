@@ -10,8 +10,8 @@ When a WRP's, Wallet Provider's, or Trust Artifacts Provider's Attributes change
 The entities in the ecosystem are divided in different groups depending on their role and the artifact that they issue.
 - *Supervisory Bodies* continuously *supervise* other ecosystem entities. Supervision affect the states of dependent Entities.
 - *Member States and the European Commission* *define* and *manage* Attestation Rulebooks, and *define* *Ecosystem Policies and Certification Schemas*. These affect dependent Entities during onboarding and their lifecycle.
-- *Trusted Lists Providers* (LoTE/LOTL Scheme Operators, EUMS TL Scheme Operators) *publish* and *manage* *Trusted Lists* (LoTE, LOTL, EUMS TL) that contain Trust Anchors and Attributes of other Entities. Inclusion in these artifacts is, by itself, also a statement about the role and authorization of the included entities within the ecosystem. 
-- *Trust Artifacts Providers* (MS Registrars, QTSPs, Providers of WRPAC/WRPRC) *publish* and *manage* *Trust Artifacts* (MS Registers, WRPACs, WRPRCs, Signature/Seal Certificates) which transports Attributes (Identity Information, Technical configurations, and Authorization Information) of End-Entities. 
+- *Trusted Lists Providers* (LoTE/LOTL Scheme Operators, EUMS TL Scheme Operators) *publish* and *manage* *Trusted Lists* (LoTE, LOTL, EUMS TL) that contain Trust Anchors and Attributes of other Entities. Inclusion in these artifacts is, by itself, also a statement about the role and authorization of the included entities within the ecosystem.
+- *Trust Artifacts Providers* (MS Registrars, QTSPs, Providers of WRPAC/WRPRC) *publish* and *manage* *Trust Artifacts* (MS Registers, WRPACs, WRPRCs, Signature/Seal Certificates) which transports Attributes (Identity Information, Technical configurations, and Authorization Information) of End-Entities.
 - *End-Entities* (Attestation Providers, PID Providers, Relying Parties, Wallet Provider) rely on Trusted Lists and Trust Artifacts for assessing their trustworthiness to other participants within the ecosystems. In addition, they *issue*, *receive* or *manage* User Attestations or Wallet Attestations to and from Wallet Units during issuance, presentation and WP-specific management flows respectively.
 
 The diagram below highlights the relationships between the aforementioned entities and artifacts, and the dependences between them in terms of supervision, publication, and the effects that changes in the artifacts have on the entities. The arrows indicate the direction of supervision, publication, and effect propagation.
@@ -30,7 +30,7 @@ flowchart LR
     end_ent_art{{"User Attestations, Wallet Attestations"}}
     %%end_ent_2["End-Entities <br>()"]
 
-    %%Modification propagation arrows 
+    %%Modification propagation arrows
     sup e1@=="Supervise"==> init_ent
     sup e2@=="Supervise"==> mid_ent
     sup e3@=="Supervise"==> end_ent
@@ -67,7 +67,7 @@ flowchart LR
 
 #### Entity Attribute Schema
 
-Trust Artifacts Providers and End-Entities are characterized by three main classes of *Attributes*: 
+Trust Artifacts Providers and End-Entities are characterized by three main classes of *Attributes*:
 - **Identity Information**: This includes the organization's name, contact information, and organizational policies.
 - **Technical Configuration**: This includes the cryptographic materials (signature/seal keys, authentication keys) and technical endpoints necessary for ecosystem interactions.
 - **Policy and Authorization Information**: This includes the entity's entitlements, attestation provision capabilities, attestation request capabilities, intermediary use permissions, intended use cases, and compliance with certification schemas.
@@ -99,7 +99,7 @@ In the table below are found the relationship between the aforementioned Attribu
 
 !!! note
 
-    The inclusion of Wallet Providers and PID/Pub-EAA Providers in the LoTE is an implicit assertion of their role and authorization within the ecosystem. In particular, their inclusion is a result of the succesful completion of the registration and notification procedures as defined in CIR 2025/848 (registration of WRP) and CIR 2024/2980 (notifications of WRP and WP). 
+    The inclusion of Wallet Providers and PID/Pub-EAA Providers in the LoTE is an implicit assertion of their role and authorization within the ecosystem. In particular, their inclusion is a result of the succesful completion of the registration and notification procedures as defined in CIR 2025/848 (registration of WRP) and CIR 2024/2980 (notifications of WRP and WP).
 
 The diagram below highlights the dependences between WRP's and Wallet Provider's Attributes, the Trusted Lists in which these Attributes are contained and the Entities that use the attribute's information to issue additional Trust Artifacts. For both WRPs and WPs, the inclusion in the Trusted Lists attests the implicit, ongoing, compliance to the polices set up by the EC and the MS during onboarding for the respective roles.
 
@@ -239,7 +239,7 @@ State Machines are described only for WRPs and Wallet Providers since they are t
 - `UNREGISTERED`: Indicates that an entity does not currently hold a valid subscription or registration within the APTITUDE Trust Framework. This is the default baseline state. Entities in this state are outside the trust boundary and SHALL NOT participate in framework operations or federation protocols.
 - `REGISTERED`: Indicates that an entity has successfully completed the onboarding process, verified its identity, and has established ecosystem access.
     - A WRP is in `REGISTERED` state if the Registrar has inserted its Identity information within the Register, and possesses the WRPAC binding this Identity information to a key controlled by the entity.
-    - The Wallet Provider is in `REGISTERED` when it has completed the necessary certification and successfully completed the onboarding process.  
+    - The Wallet Provider is in `REGISTERED` when it has completed the necessary certification and successfully completed the onboarding process.
 - `OPERATIONAL`: Indicates that an entity has successfully completed onboarding, and, crucially, has been authorized to perform role-related operations, provide services, and issue or verify artifacts in accordance with framework policies.
     - A RP or RP Intermediary is in `OPERATIONAL` state if it is `REGISTERED`, the Registrar has inserted its Authorization information within the Register, and (optionally) it possesses a valid WRPRC.
     - A (Q)EAA Provider is in `OPERATIONAL` state if it is `REGISTERED`, the Registrar has inserted its Authorization information within the Register, (optionally) it possesses a valid WRPRC and possesses a valid (qualified) Signature/Seal certificate to sign the attestations.
@@ -252,6 +252,7 @@ State Machines are described only for WRPs and Wallet Providers since they are t
     - **Historical Operations**: Ecosystem participants MAY continue to validate historical data, signatures, and attestations generated prior to the Removal timestamp, subject to local risk policies. These historical data are found in the corresponding Trusted List's `ServiceHistory` component.
 
 Below the state diagram of the various actors.
+
 ```mermaid
 stateDiagram-v2
     %% Define states
@@ -310,11 +311,11 @@ Depending on the circumstances, an entity in the `REMOVED` state MAY have its Si
 
 #### Entity Lifecycle Operations
 
-Below are detailed the operational procedures, which affects the Attributes of Trust Artifact Provider and End-Entities and the resulting effects on their State. 
+Below are detailed the operational procedures, which affects the Attributes of Trust Artifact Provider and End-Entities and the resulting effects on their State.
 
 ##### Onboarding Process
 
-The onboarding process governs the transition of a End-Entity (WRP or Wallet Provider) from the `UNREGISTERED` state to the `OPERATIONAL` state. During the onboarding process, it is up to the Entities running the process and necessary checks to take the onboardee's Attributes and (depending on its role) issue the corresponding Trust Artifacts. Further details are found in (Onboarding Process)[#onboarding-process.md]. 
+The onboarding process governs the transition of a End-Entity (WRP or Wallet Provider) from the `UNREGISTERED` state to the `OPERATIONAL` state. During the onboarding process, it is up to the Entities running the process and necessary checks to take the onboardee's Attributes and (depending on its role) issue the corresponding Trust Artifacts. Further details are found in (Onboarding Process)[#onboarding-process.md].
 
 ##### Active Operations and Maintenance
 
@@ -345,15 +346,13 @@ When there are organizational updates, the Trust Framework infrastructure SHALL 
         - **WRPAC Revocation**: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
         - **WRPAC Re-issuance**:The Provider of WRPAC SHALL issue a new WRPAC with the updated key.
 
-
-
 **Wallet Providers and Trust Artifact Provider Updates**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the update event SHALL trigger the following procedures:
 - **Identity Information Updates**:
-    - **LoTE Update**: the entity SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information. 
+    - **LoTE Update**: the entity SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information.
 - **Technical Configurations Updates**:
     - **Signature/Seal Key update**: the entity SHALL notify the Signature/Seal Key updates to the Certificate Authority responsible for the issuance of these certificates.
         - **Signature/Seal Certificate Revocation**: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.
-        - **Signature/Seal Certificate Re-issuance**:The Certificate Authority SHALL issue a new Signature/Seal certificate with the updated key. 
+        - **Signature/Seal Certificate Re-issuance**:The Certificate Authority SHALL issue a new Signature/Seal certificate with the updated key.
         - **LoTE Update** [ONLY for TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the entity SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the entity's updated Signature/Seal certificate. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
     - **Endpoints Update** [ONLY for Registrars or Wallet Providers]: When updating endpoint, the Registrar or Wallet Provider SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the updated endpoint.
 
