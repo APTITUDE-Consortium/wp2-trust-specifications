@@ -117,24 +117,7 @@ jobs:
             done
           fi
 
-          python3 -c "
-          from mkdocs.utils import yaml
-          
-          with open('mkdocs.yml', 'r') as f:
-              config = yaml.load(f)
-          
-          # Ensure nav exists
-          if 'nav' not in config:
-              config['nav'] = []
-              
-          # Append your dynamic workspace menu safely as a child of the existing nav array
-          config['nav'].append({
-              'PR Workspace (Changed Files Only)': ['pr-workspace/**/*.md']
-          })
-          
-          with open('mkdocs.yml', 'w') as f:
-              yaml.dump(config, f, default_flow_style=False, sort_keys=False)
-          "
+          yq -i '.nav += [{"PR Workspace (Changed Files Only)": ["pr-workspace/**/*.md"]}]' mkdocs.yml
 
           mike deploy --push --allow-empty "pr-${PR_NUM}"
           mike set-default --push --allow-undefined latest
