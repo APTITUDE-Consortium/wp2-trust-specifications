@@ -34,7 +34,7 @@ For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `
 
 !!! note
 
-    [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in [ETSI TS 119 475], held in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. [ETSI TS 119 475] Annex A.3 defines sub-entitlements for Service Providers, currently for Payment Service Providers (e.g. `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai`). Future versions may include additional sector-specific sub-entitlements at national or EU level. This specification supports both the subject DN and the entitlement URI identification mechanisms.
+    [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in [ETSI TS 119 475], held in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. [ETSI TS 119 475, Annex A.3] defines sub-entitlements for Service Providers, currently for Payment Service Providers (e.g. `https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai`). Future versions may include additional sector-specific sub-entitlements at national or EU level. This specification supports both the subject DN and the entitlement URI identification mechanisms.
 
 !!! note
 
@@ -44,7 +44,7 @@ For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `
 
 #### Data Model
 
-The data model of the <artifacts:Embedded Disclosure Policy (EDP)|EDP> is defined in [ETSI TS 119 472-3] section 4.2.5.2 through requirements ISS-MDATA-EBD-4.2.5.2-01 to ISS-MDATA-EBD-4.2.5.2-13.
+The data model of the <artifacts:Embedded Disclosure Policy (EDP)|EDP> is defined in [ETSI TS 119 472-3, Section 4.2.5.2] through requirements ISS-MDATA-EBD-4.2.5.2-01 to ISS-MDATA-EBD-4.2.5.2-13.
 
 ##### Data Model Requirements
 
@@ -71,7 +71,7 @@ The following JSON structure is derived from the [ETSI TS 119 472-3] data model 
 
 !!! warning
 
-    The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. [ETSI TS 119 472-3] section 4.2.5.2 defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of [ETSI TS 119 472-3]). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
+    The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. [ETSI TS 119 472-3, Section 4.2.5.2] defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of [ETSI TS 119 472-3]). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
 
 | Parameter | Type | Description | Based on |
 |-----------|------|-------------|----------|
@@ -82,14 +82,14 @@ The following JSON structure is derived from the [ETSI TS 119 472-3] data model 
 | `policy_info_url` | string (URL) | OPTIONAL. Link to a website explaining the policy in layman's terms. | ISS-MDATA-EBD-4.2.5.2-13, EDP_05 |
 | `authorized_parties` | array of objects | REQUIRED if `policy_type` is `"authorized_rp_only"`. List of authorized RPs. | ISS-MDATA-EBD-4.2.5.2-07 |
 | `authorized_parties[].subject_dn` | string | OPTIONAL. Subject DN of the RP from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, in LDAP string form as defined in RFC 4514. At least one of `subject_dn` or `entitlement_uri` SHALL be present in each element. | ISS-MDATA-EBD-4.2.5.2-07 |
-| `authorized_parties[].entitlement_uri` | string (URI) | OPTIONAL. URI-encoded entitlement or sub-entitlement as specified in [ETSI TS 119 475] Annex A, held in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. At least one of `subject_dn` or `entitlement_uri` SHALL be present in each element. | ISS-MDATA-EBD-4.2.5.2-07 |
+| `authorized_parties[].entitlement_uri` | string (URI) | OPTIONAL. URI-encoded entitlement or sub-entitlement as specified in [ETSI TS 119 475, Annex A], held in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. At least one of `subject_dn` or `entitlement_uri` SHALL be present in each element. | ISS-MDATA-EBD-4.2.5.2-07 |
 | `trusted_roots` | array of objects | REQUIRED if `policy_type` is `"specific_root_of_trust"`. List of trusted roots. | ISS-MDATA-EBD-4.2.5.2-08 |
 | `trusted_roots[].issuer_dn` | string | REQUIRED. Issuer DN in LDAP string form compliant with RFC 4514. | ISS-MDATA-EBD-4.2.5.2-09 |
 | `trusted_roots[].serial_number` | string | REQUIRED. Certificate serial number of the issuer. | ISS-MDATA-EBD-4.2.5.2-09 |
 
 #### Distribution
 
-The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through Credential Issuer Metadata at issuance time. The AP SHALL include the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (EDP_09). The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL NOT be revealed to the RP through the presentation protocol (per [ETSI TS 119 472-3] section 4.2.5.1).
+The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through <artifacts:Credential Issuer Metadata> at issuance time. The AP SHALL include the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (EDP_09). The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL NOT be revealed to the RP through the presentation protocol (per [ETSI TS 119 472-3] section 4.2.5.1).
 
 !!! warning
 
@@ -120,10 +120,10 @@ Even a minor policy change (e.g., adding a single RP to the authorized list) req
 
 | Reference | Description |
 |-----------|-------------|
-| [CIR 2024/2979] Article 2(9) | Definition of <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> |
-| [CIR 2024/2979] Article 10 | <roles:Wallet Provider (WP)> obligations for <artifacts:Embedded Disclosure Policy (EDP)\|EDP> processing |
-| [CIR 2024/2979] Annex III | Common <artifacts:Embedded Disclosure Policy (EDP)\|EDP> types |
-| [ETSI TS 119 472-3] section 4.2.5 | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13) |
+| [CIR 2024/2979, Article 2(9)] | Definition of <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> |
+| [CIR 2024/2979, Article 10] | <roles:Wallet Provider (WP)> obligations for <artifacts:Embedded Disclosure Policy (EDP)\|EDP> processing |
+| [CIR 2024/2979, Annex III] | Common <artifacts:Embedded Disclosure Policy (EDP)\|EDP> types |
+| [ETSI TS 119 472-3, Section 4.2.5] | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13) |
 | [ETSI TS 119 475] Annex A.2 | Common entitlement URIs |
-| [ETSI EN 319 412-1] section 5.1.4 | organizationIdentifier semantics |
+| [ETSI EN 319 412-1, Section 5.1.4] | organizationIdentifier semantics |
 | RFC 4514 | LDAP string representation of Distinguished Names |
