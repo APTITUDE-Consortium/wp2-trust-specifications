@@ -101,10 +101,11 @@ jobs:
           mkdir -p docs/pr-workspace
           
           if [ -z "$CHANGED_FILES" ]; then
+            # If no files changed in topics/, populate a placeholder so the menu isn't empty
             echo "No changes in topics/ for this PR." > docs/pr-workspace/no-changes.md
             yq -i '.nav += [{"PR Workspace (Changed Files Only)": ["pr-workspace/no-changes.md"]}]' mkdocs.yml
           else
-            yq -i '.nav += [{"PR Workspace (Changed Files Only)": []}]' mkdocs.yml
+            echo "files:" > tmp_paths.yml
             
             for FILE in $CHANGED_FILES; do
               RELATIVE_FILE=${FILE#docs/}
@@ -116,8 +117,11 @@ jobs:
               
               PR_WORKSPACE_FILE="pr-workspace/${RELATIVE_FILE#topics/}"
               
-              yq -i "(.nav[] | select(has(\"PR Workspace (Changed Files Only)\"))).\"PR Workspace (Changed Files Only)\" += [\"$PR_WORKSPACE_FILE\"]" mkdocs.yml
+              echo "  - $PR_WORKSPACE_FILE" >> tmp_paths.yml
             done
+            
+            yq -i ".nav += [{\"PR Workspace (Changed Files Only)\": load(\"tmp_paths.yml\").files}]" mkdocs.yml
+            rm tmp_paths.yml
           fi
           
           mike deploy --push --allow-empty "pr-${PR_NUM}"
