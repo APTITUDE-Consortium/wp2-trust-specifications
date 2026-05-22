@@ -8,6 +8,7 @@ When a WRP's, Wallet Provider's, or Trust Artifacts Provider's Attributes change
 #### Ecosystem Participants
 
 The entities in the ecosystem are divided in different groups depending on their role and the artifact that they issue.
+
 - *Supervisory Bodies* continuously *supervise* other ecosystem entities. Supervision affect the states of dependent Entities.
 - *Member States and the European Commission* *define* and *manage* Attestation Rulebooks, and *define* *Ecosystem Policies and Certification Schemas*. These affect dependent Entities during onboarding and their lifecycle.
 - *Trusted Lists Providers* (LoTE/LOTL Scheme Operators, EUMS TL Scheme Operators) *publish* and *manage* *Trusted Lists* (LoTE, LOTL, EUMS TL) that contain Trust Anchors and Attributes of other Entities. Inclusion in these artifacts is, by itself, also a statement about the role and authorization of the included entities within the ecosystem.
@@ -68,6 +69,7 @@ flowchart LR
 #### Entity Attribute Schema
 
 Trust Artifacts Providers and End-Entities are characterized by three main classes of *Attributes*:
+
 - **Identity Information**: This includes the organization's name, contact information, and organizational policies.
 - **Technical Configuration**: This includes the cryptographic materials (signature/seal keys, authentication keys) and technical endpoints necessary for ecosystem interactions.
 - **Policy and Authorization Information**: This includes the entity's entitlements, attestation provision capabilities, attestation request capabilities, intermediary use permissions, intended use cases, and compliance with certification schemas.
@@ -330,6 +332,7 @@ As their organizational or regulatory circumstances evolve, WRPs and Wallet Prov
 When there are organizational updates, the Trust Framework infrastructure SHALL propagate these changes to the relevant trust artifacts. The specific operational effects depend on the entity's role, and the artifacts it utilizes.
 
 **WRP Updates**: For WRP updating their Identity Information, Technical Configurations, and/or Policies and Authorizations, the update event SHALL trigger the following procedures:
+
 - **Identity Information and Policies and Authorizations Updates**:
     - **Registry Update**: the WRP SHALL update its information within the Register via the authenticated API.
     - **WRPAC Revocation**: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
@@ -347,6 +350,7 @@ When there are organizational updates, the Trust Framework infrastructure SHALL 
         - **WRPAC Re-issuance**:The Provider of WRPAC SHALL issue a new WRPAC with the updated key.
 
 **Wallet Providers and Trust Artifact Provider Updates**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the update event SHALL trigger the following procedures:
+
 - **Identity Information Updates**:
     - **LoTE Update**: the entity SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information.
 - **Technical Configurations Updates**:
@@ -363,6 +367,7 @@ The Removal process defines the rapid-response workflows and administrative proc
 ###### Triggers for Removal
 
 Removal events are categorized based on their initiation source:
+
 - Voluntary Exit: Organizations MAY choose to exit the federation for standard business or operational reasons. Permitted reasons include:
     - Business Changes: Organizational restructuring, mergers, acquisitions, or complete service discontinuation.
 - Supervisory Body Removal (use the MS, EC, CAB, NAB, DPA bodies): The Supervisory Body MAY initiate a forced Removal due to severe compliance failures, fatal security breaches, or other critical ecosystem threats.
@@ -372,6 +377,7 @@ Removal events are categorized based on their initiation source:
 When an entity is transitioned to the `REMOVED` state, the APTITUDE Trust Framework infrastructure SHALL immediately execute a series of cryptographic and registry updates to halt the entity's operations while preserving historical evidence.  The specific operational effects depend on the entity's role, and the artifacts it utilizes.
 
 **WRP Withdrawal or Removal**: For WRP updating their Identity Information, Technical Configurations, and/or Policies and Authorizations, the update event SHALL trigger the following procedures:
+
 - **Registry Update**: the WRP or Supervisory body MAY remove the WRP information within the Register.
 - **WRPAC Revocation**: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
 - **WRPRC Revocation**: The Provider of WRPRC SHALL revoke the entity's current WRPRC if present. Revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to `0x01`.
@@ -379,10 +385,11 @@ When an entity is transitioned to the `REMOVED` state, the APTITUDE Trust Framew
 - **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the WRP or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism where the PID/Pub-EAA Provider's `TrustedEntityServices.ServiceInformation.ServiceStatus` component SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`. To maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
 
 **Trust Artifact Provider Withdrawal or Removal**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the removal event SHALL trigger the following procedures:
+
 - **LoTE Update**: the Trust Artifact Provider or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism where the entity's `TrustedEntityServices.ServiceInformation.ServiceStatus` component SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`. To maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
 
 !!! note
-    
+
     When executing the revocation on the CRL, the `ReasonFlag` element SHALL accurately reflect the nature of the Removal:
     - If the Removal is a temporary suspension pending investigation, the `ReasonFlag` SHALL be set to `(6)`: `certificateHold`.
     - If the Removal is a permanent termination, the `ReasonFlag` SHALL be set to the appropriate code based on the circumstances, such as `(1)`: `keyCompromise`, `(2)`: `cACompromise`, or `(5)`: `cessationOfOperation`.
