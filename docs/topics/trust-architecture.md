@@ -106,6 +106,9 @@ While these trust evaluation processes and its artifacts (i.e., <components:Regi
     - For <roles:Wallet Provider (WP)|WPs>, <roles:PID Provider|PID Providers>, Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, MS <roles:Registrar|Registrars>, and <roles:PuB-EAA Provider|Pub-EAA Providers>, the notified entities are included in a <artifacts:List of Trusted Entities (LoTE)> by a EC <artifacts:List of Trusted Entities (LoTE)|LoTE> Provider.
     - For <roles:QEAA Provider|QEAA Providers> and QTSP, the URL of the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TLs> is added in the EU <artifacts:List Of Trusted Lists (LOTL)>.
 
+
+
+
     ```mermaid
     graph LR
 

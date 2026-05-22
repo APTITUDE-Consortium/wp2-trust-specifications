@@ -1,3 +1,7 @@
+
+
+
+
 This section describes the purpose, format and content of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>.
 
 According to the Article 2 of CIR (EU) 2025/848, a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, is a certificate for electronic seals or signatures authenticating and validating the <roles:Wallet-Relying Party (WRP)>.
