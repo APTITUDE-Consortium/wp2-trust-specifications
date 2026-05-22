@@ -93,32 +93,33 @@ jobs:
         run: |
           PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
           
-          # 1. Fetch the target branch (usually main) so git can compare against it
           git fetch origin ${{ github.event.pull_request.base.ref || 'main' }}
           TARGET_BRANCH="origin/${{ github.event.pull_request.base.ref || 'main' }}"
           
-          # 2. Find all markdown files added or changed in the topics/ folder
           CHANGED_FILES=$(git diff --name-only --diff-filter=AM $TARGET_BRANCH...HEAD | grep '^docs/topics/.*\.md$' || true)
           
-          # 3. Create a temporary review directory inside docs
           mkdir -p docs/pr-workspace
           
-          # 4. Copy or symlink only those changed files into the review directory
           if [ -z "$CHANGED_FILES" ]; then
-            # If no files changed in topics/, create a dummy file so MkDocs doesn't crash
             echo "No changes in topics/ for this PR." > docs/pr-workspace/no-changes.md
+            yq -i '.nav += [{"PR Workspace (Changed Files Only)": ["pr-workspace/no-changes.md"]}]' mkdocs.yml
           else
+            yq -i '.nav += [{"PR Workspace (Changed Files Only)": []}]' mkdocs.yml
+            
             for FILE in $CHANGED_FILES; do
-              # Strip the 'docs/' prefix for copying
               RELATIVE_FILE=${FILE#docs/}
+              
               TARGET_DIR="docs/pr-workspace/$(dirname ${RELATIVE_FILE#topics/})"
               mkdir -p "$TARGET_DIR"
+              
               cp "$FILE" "$TARGET_DIR/"
+              
+              PR_WORKSPACE_FILE="pr-workspace/${RELATIVE_FILE#topics/}"
+              
+              yq -i "(.nav[] | select(has(\"PR Workspace (Changed Files Only)\"))).\"PR Workspace (Changed Files Only)\" += [\"$PR_WORKSPACE_FILE\"]" mkdocs.yml
             done
           fi
-
-          yq -i '.nav += [{"PR Workspace (Changed Files Only)": ["pr-workspace/**/*.md"]}]' mkdocs.yml
-
+          
           mike deploy --push --allow-empty "pr-${PR_NUM}"
           mike set-default --push --allow-undefined latest
 
@@ -142,11 +143,11 @@ jobs:
             🚀 **Deployment Preview is ready!**
             
             You can view the rendered documentation for this PR here:
-            https://aptitude-consortium.github.io/wp2-trust-specifications/pr-${PR_NUM}/
+            https://aptitude-consortium.github.io/wp2-trust-specifications/pr-${{ env.PR_NUM }}/
+            
+            📂 **PR Workspace Active:** To make drafting and reviewing easier, the sidebar navigation has been dynamically updated to display **only the files changed or added in this PR** under the *"PR Workspace"* menu. 
             
             *Note: This preview updates automatically. When new commits are pushed, the changes will be live as soon as the related "Publish MkDocs site" action successfully finishes running.*
-
-      # --- AUTOMATIC CLEANUP STEPS (RUNS ONLY WHEN PR CLOSES/MERGES) ---
 
       - name: Delete Mike Documentation Branch
         if: github.event_name == 'pull_request' && github.event.action == 'closed'
