@@ -31,12 +31,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -51,30 +51,22 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Fetch Remote Assets
+        uses: actions/checkout@v6
+        with:
+          repository: 'APTITUDE-Consortium/aptitude-eudi-wallet-specs'
+          token: ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}
+          path: 'temp_remote_assets'
+          clean: false
+          sparse-checkout: |
+            docs/glossary-definitions.md
+            docs/media/
+            docs/overrides/
+
+      - name: Merge Assets into Local Workspace
         run: |
-          mkdir -p docs/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/glossary-definitions.md \
-               -o docs/glossary-definitions.md
-
-          mkdir -p docs/overrides/partials/footer/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/overrides/partials/footer.html \
-               -o docs/overrides/partials/footer/footer.html
-
-          mkdir -p docs/overrides/ezglossary/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/overrides/ezglossary/link.html \
-               -o docs/overrides/ezglossary/link.html
-
-          mkdir -p docs/media/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/extra.css \
-               -o docs/media/extra.css
-
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/mermaid-init.js \
-               -o docs/media/mermaid-init.js
+          mkdir -p docs/media docs/overrides
+          cp -r temp_remote_assets/docs/* ./docs/
+          rm -rf temp_remote_assets
 
       - name: Deploy Pre-Release (from release-v* branch)
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release-v')
@@ -100,6 +92,50 @@ jobs:
         if: (github.event_name == 'pull_request' && github.event.action != 'closed') || (github.event_name == 'workflow_dispatch' && inputs.pr_number != '')
         run: |
           PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
+          
+          # 1. Fetch the target branch (usually main) so git can compare against it
+          git fetch origin ${{ github.event.pull_request.base.ref || 'main' }}
+          TARGET_BRANCH="origin/${{ github.event.pull_request.base.ref || 'main' }}"
+          
+          # 2. Find all markdown files added or changed in the topics/ folder
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AM $TARGET_BRANCH...HEAD | grep '^docs/topics/.*\.md$' || true)
+          
+          # 3. Create a temporary review directory inside docs
+          mkdir -p docs/pr-workspace
+          
+          # 4. Copy or symlink only those changed files into the review directory
+          if [ -z "$CHANGED_FILES" ]; then
+            # If no files changed in topics/, create a dummy file so MkDocs doesn't crash
+            echo "No changes in topics/ for this PR." > docs/pr-workspace/no-changes.md
+          else
+            for FILE in $CHANGED_FILES; do
+              # Strip the 'docs/' prefix for copying
+              RELATIVE_FILE=${FILE#docs/}
+              TARGET_DIR="docs/pr-workspace/$(dirname ${RELATIVE_FILE#topics/})"
+              mkdir -p "$TARGET_DIR"
+              cp "$FILE" "$TARGET_DIR/"
+            done
+          fi
+
+          python3 -c "
+          import yaml
+          
+          with open('mkdocs.yml', 'r') as f:
+              config = yaml.safe_load(f)
+          
+          # Ensure nav exists
+          if 'nav' not in config:
+              config['nav'] = []
+              
+          # Append your dynamic workspace menu safely as a child of the existing nav array
+          config['nav'].append({
+              'PR Workspace (Changed Files Only)': ['pr-workspace/**/*.md']
+          })
+          
+          with open('mkdocs.yml', 'w') as f:
+              yaml.dump(config, f, default_flow_style=False, sort_keys=False)
+          "
+
           mike deploy --push --allow-empty "pr-${PR_NUM}"
           mike set-default --push --allow-undefined latest
 
