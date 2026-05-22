@@ -93,13 +93,15 @@ jobs:
         run: |
           PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
           
-          # 1. Fetch target base branch
+          echo "=== Debugging Git Changes ==="
+          # 1. Fetch the target base branch explicitly so the runner sees it
           git fetch origin ${{ github.event.pull_request.base.ref || 'main' }}
           TARGET_BRANCH="origin/${{ github.event.pull_request.base.ref || 'main' }}"
           
-          echo "=== Debugging Git Changes ==="
-          # 2. Extract changed markdown files inside docs/topics/
-          CHANGED_FILES=$(git diff --name-only --diff-filter=AM $TARGET_BRANCH...HEAD | grep '^docs/topics/.*\.md$' || true)
+          # 2. Get a list of all files changed across all commits unique to this PR branch.
+          # The -i flag makes the grep search case-insensitive.
+          CHANGED_FILES=$(git log $TARGET_BRANCH..HEAD --name-only --pretty_format="" | sort -u | grep -i '^docs/topics/.*\.md$' || true)
+          
           echo "Detected changed files:"
           echo "$CHANGED_FILES"
           echo "============================="
@@ -116,14 +118,22 @@ jobs:
             echo "files:" > tmp_paths.yml
             
             for FILE in $CHANGED_FILES; do
-              # Get just the filename itself (e.g., feature.md)
-              FILENAME=$(basename "$FILE")
+              # Ensure we use the exact file path case returned by Git
+              # Step A: Drop 'docs/' prefix (case-insensitive swap)
+              RELATIVE_PATH=$(echo "$FILE" | sed -E 's|^[Dd][Oo][Cc][Ss]/||')
               
-              # Copy the file directly into the flat pr-workspace directory
-              cp "$FILE" "docs/pr-workspace/$FILENAME"
+              # Step B: Drop 'topics/' prefix
+              SUB_PATH=$(echo "$RELATIVE_PATH" | sed -E 's|^[Tt][Oo][Pp][Ii][Cc][Ss]/||')
               
-              # Log the explicit nav path standard MkDocs needs
-              echo "  - pr-workspace/$FILENAME" >> tmp_paths.yml
+              # Step C: Replicate the structural directory path inside pr-workspace/
+              TARGET_DIR="docs/pr-workspace/$(dirname "$SUB_PATH")"
+              mkdir -p "$TARGET_DIR"
+              
+              # Step D: Copy the file to its isolated destination
+              cp "$FILE" "docs/pr-workspace/$SUB_PATH"
+              
+              # Step E: Log the exact path for the MkDocs nav tree
+              echo "  - pr-workspace/$SUB_PATH" >> tmp_paths.yml
             done
             
             echo "=== Generated Navigation Array ==="
@@ -136,7 +146,6 @@ jobs:
           fi
           
           # 5. Compile and deploy via mike
-          mike deploy --push --allow-empty "pr-${PR_NUM}"
           mike set-default --push --allow-undefined latest
 
       - name: Check for existing PR comment
