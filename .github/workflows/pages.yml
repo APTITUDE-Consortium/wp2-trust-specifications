@@ -118,10 +118,10 @@ jobs:
           fi
 
           python3 -c "
-          import yaml
+          from mkdocs.utils import yaml
           
           with open('mkdocs.yml', 'r') as f:
-              config = yaml.safe_load(f)
+              config = yaml.load(f)
           
           # Ensure nav exists
           if 'nav' not in config:
