@@ -412,14 +412,34 @@
 <dd>When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]</dd>
 
 <dt>
+	<a id="d417bf77697054dfcb62da273eb24024">Certificate Authority (CA)</a> 
+</dt>
+<dd>An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]</dd>
+
+<dt>
 	<a id="fa20ebfe739c2b52013c4be898fe73f2">Conformity Assessment Body (CAB)</a> 
 </dt>
 <dd>A conformity assessment body as defined in Article 2, point 13, of Regulation (EC) No 765/2008, which is accredited in accordance with that Regulation as competent to carry out conformity assessment of a qualified trust service provider and the qualified trust services it provides, or as competent to carry out certification of European Digital Identity Wallets or electronic identification means.</dd>
 
 <dt>
+	<a id="25618de6dced5276e214359c546b87e1">EAA Provider</a> 
+</dt>
+<dd>Provider of EEAs.</dd>
+
+<dt>
 	<a id="eed02fb11cf6e0c1a80ec44a047356d5">Issuer Authority Certificate Authority (IACA)</a> 
 </dt>
 <dd>The issuing authority/CA used in the mDL/mVRC trust infrastructure under ISO (may be shared with mDL or set up separately).</dd>
+
+<dt>
+	<a id="af49640b8119f41938d5a4b353c2695b">LoTE Provider</a> 
+</dt>
+<dd>A body responsible for maintaining, managing, and publishing Lists of Trusted Entities (LoTE). [ARF]</dd>
+
+<dt>
+	<a id="5c467dc2e4adf70c71bb4ec848f109bc">LOTL Scheme Operator (LOTLSO)</a> 
+</dt>
+<dd>An entity responsible for maintaining, updating, and digitally signing the List of Trusted Lists (LOTL).</dd>
 
 <dt>
 	<a id="d355400c0a1337e9b7e3ad79c5014f27">National Accreditation Bodies (NAB)</a> 
@@ -487,6 +507,11 @@
 <dd>An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]</dd>
 
 <dt>
+	<a id="05ea6b6136a0216bc137bb1cdcb63681">Trusted List Provider</a> 
+</dt>
+<dd>A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]</dd>
+
+<dt>
 	<a id="7db9d61b526a435034b8a82bac8c1422">User</a> 
 </dt>
 <dd>A natural or legal person, or a natural person representing another natural person or a legal person, that uses trust services or electronic identification means provided in accordance with the European Digital Identity Regulation. [ARF]</dd>
@@ -499,7 +524,7 @@
 <dt>
 	<a id="7355e42b188b5fd04aec331fbd8f0b2e">Wallet-Relying Party (WRP)</a> 
 </dt>
-<dd>An entity party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]</dd>
+<dd>An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]</dd>
 
 </dl>
 <hr />
@@ -531,9 +556,9 @@
 <dd>An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]</dd>
 
 <dt>
-	<a id="be653e4d00c172a2b4bf0d58b81a497e">Relying Application</a> 
+	<a id="2f9e325081d53589e48e481fca803165">Relying Party Instance</a> 
 </dt>
-<dd>User-facing application, service, or workflow in which credential verification is performed.</dd>
+<dd>A software and/or hardware module with the capability to interact with a Wallet Unit and to perform Relying Party authentication, that is controlled by a Relying Party. [ARF]</dd>
 
 <dt>
 	<a id="2f9e325081d53589e48e481fca803165">Relying Party Instance</a> 
@@ -590,6 +615,16 @@
 <dd>A digital repository listing schemes for the attestation of attributes registered in accordance with this Regulation and that is maintained (and published online) by the Commission. [CIR 2025/1569]</dd>
 
 <dt>
+	<a id="8e799a6a16a4b8d1fb6be5e962015e8b">Certificate Revocation List (CRL)</a> 
+</dt>
+<dd>A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]</dd>
+
+<dt>
+	<a id="5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</a> 
+</dt>
+<dd>Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]</dd>
+
+<dt>
 	<a id="0d1c6cd6d70eee422fa96493061341f2">Credential Offer</a> 
 </dt>
 <dd>Data structure created by a Credential Issuer to initiate issuer-initiated issuance, containing grant information and credential configuration references.</dd>
@@ -628,6 +663,11 @@
 	<a id="031388425bd438379deb45f5a630d4ff">mdoc</a> 
 </dt>
 <dd>Document or application that resides on a mobile device or requires a mobile device as part of the process to gain access to the document or application. [ISO/IEC 18013-5]</dd>
+
+<dt>
+	<a id="15b7c3e48c38a858af366b20b1a9d044">Normalised Certificate Policy (NCP)</a> 
+</dt>
+<dd>A standardized set of rules and requirements that a Trust Service Provider must adhere to when issuing digital certificates. These include, e.g., organizational liability, security management, data privacy, and rigorous identity verification of the certificate subscriber.</dd>
 
 <dt>
 	<a id="c46f2c1924108500a3ff8784480a361d">Official Journal of the European Union (OJEU)</a> 
@@ -670,14 +710,19 @@
 <dd>A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]</dd>
 
 <dt>
+	<a id="f7405728798f91963aa64d07988697c7">Key Attestation (KA)</a> 
+</dt>
+<dd>An artifact containing attested information about the security of cryptographic keys stored in the Wallet Unit. KAs allow PID Providers and Attestation Providers to determine the security level of the keys to which they are binding PIDs or attestations, and to revoke their credentials (if needed) in case a security vulnerability affecting the WSCD or keystore is identified, or -- when the Wallet Provider uses a per-KA index -- upon user request. [TS03]</dd>
+
+<dt>
 	<a id="36d49f2047662aac1b022c41e1ef95d5">Wallet Instance Attestation (WIA)</a> 
 </dt>
-<dd>Client attestation material presented by a Wallet Instance at the PAR and Token endpoints to authenticate the Wallet during issuance flows.</dd>
+<dd>An artifact containing attested information about the Wallet Instance. WIAs allow PID Providers and Attestation Providers to verify the integrity and authenticity of the Wallet Instance and to revoke their credentials (if needed) in case a Wallet Provider revokes a Wallet Instance. [TS03]</dd>
 
 <dt>
 	<a id="8b65d3aeb965c7ae9a28cf62c8382320">Wallet Unit Attestation (WUA)</a> 
 </dt>
-<dd>Data object describing Wallet Unit components or enabling their authentication/validation.</dd>
+<dd>A set of attestations provided by the Wallet Provider to PID Providers and Attestation Providers to ensure interoperability across the ecosystem. WUAs comprise two types: Wallet Instance Attestations (WIAs) and Key Attestations (KAs).</dd>
 
 <dt>
 	<a id="aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificate (WRPAC)</a> 
@@ -696,7 +741,7 @@
 <dt>
 	<a id="34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> 
 </dt>
-<dd>Collective term for QEAA, PuB-EAA, or non-qualified EAA.</dd>
+<dd>When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]</dd>
 
 <dt>
 	<a id="dfcc42ab104012c45cdd38ecda80ba17">electronic Certificate of Conformity (eCoC)</a> 
@@ -767,8 +812,11 @@
 </dt>
 <dd>Mechanism publishing status (valid/invalid) for relevant PIDs or attestations.</dd>
 
-<dt>protocol:Certificate Policy (CP)</dt>
+<dt>
+	<a id="07ce438a89fd34816d1524a875187de3">Certificate Policy (CP)</a> 
+</dt>
 <dd>A named set of rules that indicates the applicability of a certificate to a particular community and/or class of application with common security requirements.</dd>
+
 <dt>
 	<a id="f172f98cda3a5e7b2db4f1592a64839a">DPoP</a> 
 </dt>
@@ -778,6 +826,11 @@
 	<a id="ce1d969509e6bbdda2ade86ee953baf1">High Assurance Interoperability Profile (HAIP)</a> 
 </dt>
 <dd>OpenID4VC profile aimed at higher assurance interoperability.</dd>
+
+<dt>
+	<a id="3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</a> 
+</dt>
+<dd>Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]</dd>
 
 <dt>
 	<a id="58a5be9a1e264d868c06919368fa60bf">OpenID for Verifiable Credentials Issuance (OID4VCI)</a> 
@@ -831,7 +884,7 @@
 <dt>
 	<a id="bd658f99432f891c6fa3b6f5f2d88057">Notification</a> 
 </dt>
-<dd>The act of transferring information to the European Commission.</dd>
+<dd>The act of transferring information to the European Commission. [ARF]</dd>
 
 <dt>
 	<a id="b41d3820de59732c2a1cce718df01a60">Proof of Possession</a> 
