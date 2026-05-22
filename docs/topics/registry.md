@@ -1,5 +1,3 @@
-
-
 This section specifies requirements for the <roles:Registrar> of <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties (WRPs)> and the national <components:Register> of WRPs (the registry service) in the context of eIDAS2 and the <components:EUDI Wallet> ecosystem.
 
 Formally, a <roles:Registrar> is the designated body that:

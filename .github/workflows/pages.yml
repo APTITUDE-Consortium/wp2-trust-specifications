@@ -93,37 +93,49 @@ jobs:
         run: |
           PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
           
+          # 1. Fetch target base branch
           git fetch origin ${{ github.event.pull_request.base.ref || 'main' }}
           TARGET_BRANCH="origin/${{ github.event.pull_request.base.ref || 'main' }}"
           
+          echo "=== Debugging Git Changes ==="
+          # 2. Extract changed markdown files inside docs/topics/
           CHANGED_FILES=$(git diff --name-only --diff-filter=AM $TARGET_BRANCH...HEAD | grep '^docs/topics/.*\.md$' || true)
+          echo "Detected changed files:"
+          echo "$CHANGED_FILES"
+          echo "============================="
           
+          # 3. Create a clean temporary workspace directory
           mkdir -p docs/pr-workspace
           
+          # 4. Build the workspace matrix
           if [ -z "$CHANGED_FILES" ]; then
-            # If no files changed in topics/, populate a placeholder so the menu isn't empty
+            echo "No changes tracked in topics/."
             echo "No changes in topics/ for this PR." > docs/pr-workspace/no-changes.md
             yq -i '.nav += [{"PR Workspace (Changed Files Only)": ["pr-workspace/no-changes.md"]}]' mkdocs.yml
           else
             echo "files:" > tmp_paths.yml
             
             for FILE in $CHANGED_FILES; do
-              RELATIVE_FILE=${FILE#docs/}
+              # Get just the filename itself (e.g., feature.md)
+              FILENAME=$(basename "$FILE")
               
-              TARGET_DIR="docs/pr-workspace/$(dirname ${RELATIVE_FILE#topics/})"
-              mkdir -p "$TARGET_DIR"
+              # Copy the file directly into the flat pr-workspace directory
+              cp "$FILE" "docs/pr-workspace/$FILENAME"
               
-              cp "$FILE" "$TARGET_DIR/"
-              
-              PR_WORKSPACE_FILE="pr-workspace/${RELATIVE_FILE#topics/}"
-              
-              echo "  - $PR_WORKSPACE_FILE" >> tmp_paths.yml
+              # Log the explicit nav path standard MkDocs needs
+              echo "  - pr-workspace/$FILENAME" >> tmp_paths.yml
             done
             
+            echo "=== Generated Navigation Array ==="
+            cat tmp_paths.yml
+            echo "=================================="
+            
+            # Merge into the last position of the nav configuration
             yq -i ".nav += [{\"PR Workspace (Changed Files Only)\": load(\"tmp_paths.yml\").files}]" mkdocs.yml
             rm tmp_paths.yml
           fi
           
+          # 5. Compile and deploy via mike
           mike deploy --push --allow-empty "pr-${PR_NUM}"
           mike set-default --push --allow-undefined latest
 
