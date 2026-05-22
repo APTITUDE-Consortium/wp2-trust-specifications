@@ -90,8 +90,37 @@ jobs:
 
       - name: Deploy PR Branch
         if: (github.event_name == 'pull_request' && github.event.action != 'closed') || (github.event_name == 'workflow_dispatch' && inputs.pr_number != '')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
+          CHANGED_FILES=$(gh api repos/${{ github.repository }}/pulls/${PR_NUM}/files --paginate -q '.[].filename' | grep -i '^docs/topics/.*\.md$' || true)
+                    
+          mkdir -p docs/pr-workspace
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No changes tracked in topics/."
+            echo "No changes in topics/ for this PR." > docs/pr-workspace/no-changes.md
+            yq -i '.nav += [{"PR Workspace (Changed Files Only)": ["pr-workspace/no-changes.md"]}]' mkdocs.yml
+          else
+            echo "files:" > tmp_paths.yml
+            
+            for FILE in $CHANGED_FILES; do
+              if [ -f "$FILE" ]; then
+                RELATIVE_PATH=${FILE#docs/}
+                SUB_PATH=${RELATIVE_PATH#topics/}
+                
+                mkdir -p "docs/pr-workspace/$(dirname "$SUB_PATH")"
+                cp "$FILE" "docs/pr-workspace/$SUB_PATH"
+                
+                echo "  - pr-workspace/$SUB_PATH" >> tmp_paths.yml
+              fi
+            done
+            
+            yq -i ".nav += [{\"PR Workspace (Changed Files Only)\": load(\"tmp_paths.yml\").files}]" mkdocs.yml
+            rm tmp_paths.yml
+          fi
+          
           mike deploy --push --allow-empty "pr-${PR_NUM}"
           mike set-default --push --allow-undefined latest
 
@@ -115,11 +144,11 @@ jobs:
             🚀 **Deployment Preview is ready!**
             
             You can view the rendered documentation for this PR here:
-            https://aptitude-consortium.github.io/wp2-trust-specifications/pr-${PR_NUM}/
+            https://aptitude-consortium.github.io/wp2-trust-specifications/pr-${{ env.PR_NUM }}/
+            
+            📂 **PR Workspace Active:** To make drafting and reviewing easier, the sidebar navigation has been dynamically updated to display **only the files changed or added in this PR** under the *"PR Workspace"* menu. 
             
             *Note: This preview updates automatically. When new commits are pushed, the changes will be live as soon as the related "Publish MkDocs site" action successfully finishes running.*
-
-      # --- AUTOMATIC CLEANUP STEPS (RUNS ONLY WHEN PR CLOSES/MERGES) ---
 
       - name: Delete Mike Documentation Branch
         if: github.event_name == 'pull_request' && github.event.action == 'closed'
