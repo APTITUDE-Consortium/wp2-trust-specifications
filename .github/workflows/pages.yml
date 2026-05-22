@@ -3,15 +3,24 @@ name: Publish MkDocs site
 on:
   push:
     branches:
-      - '*'
+      - 'main'
+      - 'release-v*'
     tags:
       - 'v*'
+  pull_request:
+    types: [opened, synchronize, closed]
   workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to manually deploy and comment on (Optional)'
+        required: false
+        type: string
 
 permissions:
   contents: write
   pages: write
   id-token: write
+  pull-requests: write
 
 concurrency:
   group: "pages"
@@ -68,28 +77,80 @@ jobs:
                -o docs/media/mermaid-init.js
 
       - name: Deploy Pre-Release (from release-v* branch)
-        if: startsWith(github.ref, 'refs/heads/release-v')
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release-v')
         run: |
           VERSION=$(echo "${GITHUB_REF_NAME}" | sed 's/release-//')
           PATH_NAME="${VERSION}-dev"
           mike deploy --push --allow-empty "$PATH_NAME"
+          mike set-default --push --allow-undefined latest
 
       - name: Deploy Official Release (from tag)
-        if: startsWith(github.ref, 'refs/tags/')
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
         run: |
           mike deploy --push --allow-empty --update-aliases ${GITHUB_REF_NAME} latest
           mike set-default --push latest
 
       - name: Deploy Main
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           mike deploy --push --allow-empty main
+          mike set-default --push --allow-undefined latest
 
-      - name: Deploy Branch
-        if: |
-          github.ref_type == 'branch' &&
-          github.ref_name != 'main' &&
-          !startsWith(github.ref_name, 'release-v')
+      - name: Deploy PR Branch
+        if: (github.event_name == 'pull_request' && github.event.action != 'closed') || (github.event_name == 'workflow_dispatch' && inputs.pr_number != '')
         run: |
-          CLEAN_NAME=$(echo "${GITHUB_REF_NAME}" | sed 's/\//-/g')
-          mike deploy --push --allow-empty "branch-${CLEAN_NAME}"
+          PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
+          mike deploy --push --allow-empty "pr-${PR_NUM}"
+          mike set-default --push --allow-undefined latest
+
+      - name: Check for existing PR comment
+        if: (github.event_name == 'pull_request' && github.event.action != 'closed') || (github.event_name == 'workflow_dispatch' && inputs.pr_number != '')
+        id: find_comment
+        uses: peter-evans/find-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number || inputs.pr_number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Deployment Preview is ready!'
+
+      - name: Create PR comment (First time only)
+        if: ((github.event_name == 'pull_request' && github.event.action != 'closed') || (github.event_name == 'workflow_dispatch' && inputs.pr_number != '')) && steps.find_comment.outputs.comment-id == ''
+        uses: peter-evans/create-or-update-comment@v4
+        env:
+          PR_NUM: ${{ github.event.pull_request.number || inputs.pr_number }}
+        with:
+          issue-number: ${{ github.event.pull_request.number || inputs.pr_number }}
+          body: |
+            🚀 **Deployment Preview is ready!**
+            
+            You can view the rendered documentation for this PR here:
+            https://aptitude-consortium.github.io/wp2-trust-specifications/pr-${PR_NUM}/
+            
+            *Note: This preview updates automatically. When new commits are pushed, the changes will be live as soon as the related "Publish MkDocs site" action successfully finishes running.*
+
+      # --- AUTOMATIC CLEANUP STEPS (RUNS ONLY WHEN PR CLOSES/MERGES) ---
+
+      - name: Delete Mike Documentation Branch
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        run: |
+          mike delete --push "pr-${{ github.event.pull_request.number }}"
+          mike set-default --push --allow-undefined latest
+
+      - name: Find original preview comment to update
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        id: find_closed_comment
+        uses: peter-evans/find-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Deployment Preview is ready!'
+
+      - name: Update comment to expired status
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && steps.find_closed_comment.outputs.comment-id != ''
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.find_closed_comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            🗑️ **Deployment Preview Cleaned Up**
+            
+            This pull request has been closed or merged. The preview environment for this branch has been automatically removed.
