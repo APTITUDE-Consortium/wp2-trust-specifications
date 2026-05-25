@@ -2,8 +2,7 @@
 
 **Status**: First draft
 
-**Scope**: Presentation trust evaluation for Remote and Proximity flows  
-
+**Scope**: Presentation trust evaluation for Remote and Proximity flows
 
 ## 1. Objective
 
@@ -25,7 +24,6 @@ The objective is to identify:
 
 ### 2.1 Main entities
 
-
 | **Entity**                                | **Role in Presentation trust evaluation**                                                                                                                 |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Wallet Instance / Wallet Unit (WI/WU)** | Main trust evaluator. Authenticates the WRP, evaluates authorization evidence, checks scope, evaluates EDPs, and presents results/advisories to the User. |
@@ -37,9 +35,7 @@ The objective is to identify:
 | **LoTE / LOTL / EUMS TL**                 | Trusted-list infrastructure used to resolve trust anchors for WRPAC providers, WRPRC providers, registrars, and other trust entities.                     |
 | **User**                                  | Makes the final disclosure decision, after the Wallet displays identity, requested attributes, intended use, policy results and advisories.               |
 
-
 ### 2.2 Main artefacts
-
 
 | **Artefact**                             | **Used for**                                                                                                                                                                         |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -50,7 +46,6 @@ The objective is to identify:
 | **RPRC_19a / request registration data** | Presentation-request fields carrying RP/final RP information and registry URI (Relying Party Registration / Topic 44)                                                                |
 | **EDP**                                  | Embedded Disclosure Policy generated during issuance and stored locally by the Wallet during issuance and evaluated at presentation time.                                            |
 | **Requested attributes**                 | **Remote**: DCQL credential_queries.claims. **Proximity**: docRequest.itemRequest.nameSpaces.                                                                                        |
-
 
 ## 3. Common Presentation Trust Evaluation Model
 
@@ -109,12 +104,9 @@ StopBind --> End
 StopInt --> End
 ```
 
-
-
 ## 4. Remote Presentation Flow
 
 ### 4.1 Remote-specific inputs
-
 
 | **Item**                               | **Remote flow source**                                                                                                                                                                                                                                                                                                                                                     |
 | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -124,7 +116,6 @@ StopInt --> End
 | WRPRC format                           | JWT, typ = rc-wrp+jwt                                                                                                                                                                                                                                                                                                                                                      |
 | Register fallback URL / RP information | Part of verifier_info metadata, under key RPRC_19a. If no usable WRPRC is included, the Wallet still needs enough information to identify the RP/service and find the responsible Register/Registrar. For this reason registrar_url and RP information are included.                                                                                                       |
 | Requested attributes                   | DCQL credential_queries[].claims[]                                                                                                                                                                                                                                                                                                                                         |
-
 
 ### 4.2 Remote flow trust-check diagram
 
@@ -145,12 +136,9 @@ WI --> Eval[Perform binding, entitlement, scope and EDP checks]
 Eval --> User[Display results to User]
 ```
 
-
-
 ## 5. Proximity Presentation Flow
 
 ### 5.1 Proximity-specific inputs
-
 
 | **Item**                               | **Proximity flow source**                                                                                                                                                                                                          |
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -160,7 +148,6 @@ Eval --> User[Display results to User]
 | WRPRC format                           | CWT, typ = rc-wrp+cwt                                                                                                                                                                                                              |
 | Register fallback URL / RP information | The Registrar URL should be extracted from **requestInfo**; if no WRPRC is present or it is invalid, the Wallet applies Register validation using the registry_uri, RP identifier, and intended_use_id from the request extension. |
 | Requested attributes                   | docRequest.itemRequest.nameSpaces                                                                                                                                                                                                  |
-
 
 **Open point:** the current trust specification notes that the mapping of RPRC_19a data in requestInfo is not fully defined in ETSI TS 119 472-2. RFC003 should either define an APTITUDE pilot convention for this mapping or mark the related tests as dependent on the final ETSI / APTITUDE profile decision.
 
@@ -183,12 +170,9 @@ WI --> Eval[Perform binding, entitlement, scope and EDP checks]
 Eval --> User[Display results to User]
 ```
 
-
-
 ## 6. Detailed Trust Checks
 
 ### TC-PRES-001 — WRP/RPI authentication using WRPAC
-
 
 | **Field**                    | **Description**                                                                                                                                                                                                                     |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -202,9 +186,7 @@ Eval --> User[Display results to User]
 | **Negative result**          | Authentication failed. Authorization processing MUST NOT start.                                                                                                                                                                     |
 | **Test focus**               | Valid chain, invalid chain, unknown trust anchor, expired certificate, revoked certificate, invalid request signature, mismatched signing key.                                                                                      |
 
-
 ### TC-PRES-002 — User choice to verify RP registration information
-
 
 | **Field**                      | **Description**                                                                                                         |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
@@ -216,9 +198,7 @@ Eval --> User[Display results to User]
 | **Negative / disabled result** | Skip registration verification block and proceed directly to EDP evaluation and User approval.                          |
 | **Test focus**                 | Default-enabled setting; enabled path; disabled path; UI indication that registration verification was skipped.         |
 
-
 ### TC-PRES-003 — Authorization evidence extraction
-
 
 | **Field**                    | **Description**                                                                                                                                                              |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -232,9 +212,7 @@ Eval --> User[Display results to User]
 | **Negative result**          | Evidence cannot be obtained; Wallet records failed verification and proceeds with an advisory to the User, unless a later non-overridable check fails.                       |
 | **Test focus**               | WRPRC present; WRPRC absent but Register URL present; WRPRC absent and Register URL absent; malformed verifier_info; malformed requestInfo; missing intended-use identifier. |
 
-
 ### TC-PRES-004 — WRPRC format and algorithm validation
-
 
 | **Field**           | **Description**                                                                                                                  |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -248,9 +226,7 @@ Eval --> User[Display results to User]
 | **Negative result** | WRPRC validation returns CERTIFICATE_INVALID; Wallet falls back to Register validation.                                          |
 | **Test focus**      | Correct type; wrong type; unsupported format; none algorithm; deprecated algorithm; malformed JWT/CWT/COSE.                      |
 
-
 ### TC-PRES-005 — WRPRC signature, certificate chain, trust anchor, temporal validity and status
-
 
 | **Field**           | **Description**                                                                                                                                                                                                                                                   |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -262,9 +238,7 @@ Eval --> User[Display results to User]
 | **Negative result** | WRPRC validation returns CERTIFICATE_INVALID; Wallet falls back to Register validation.                                                                                                                                                                           |
 | **Test focus**      | Valid WRPRC; invalid signature; unknown WRPRC provider; expired WRPRC; not-yet-valid WRPRC; revoked WRPRC; subject/context mismatch.                                                                                                                              |
 
-
 ### TC-PRES-006 — Register fallback validation
-
 
 | **Field**           | **Description**                                                                                                                                                                                                                                                                                                                                       |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -276,9 +250,7 @@ Eval --> User[Display results to User]
 | **Negative result** | Register validation returns FAILED; for presentation, this is an advisory to the User and may be overridden.                                                                                                                                                                                                                                          |
 | **Test focus**      | Successful Register lookup; unavailable Register; TLS failure; unsigned response; invalid response signature; wrong subject; wrong intended use; unknown Registrar trust anchor; stale or revoked Registrar signing certificate.                                                                                                                      |
 
-
 ### TC-PRES-007 — Direct RP binding verification
-
 
 | **Field**           | **Description**                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -290,9 +262,7 @@ Eval --> User[Display results to User]
 | **Negative result** | BINDING_FAILED; non-overridable; presentation must not proceed on that authorization context.                                                                                                                                                                                                                                                                                                         |
 | **Test focus**      | All identifiers match; WRPRC sub mismatch; request RP identifier mismatch; Register subject mismatch; inconsistent mixed WRPRC/Register data; WRPAC subject DN present but organizationIdentifier absent or malformed.                                                                                                                                                                                |
 
-
 ### TC-PRES-008 — Intermediary detection
-
 
 | **Field**           | **Description**                                                                                                                                     |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -304,9 +274,7 @@ Eval --> User[Display results to User]
 | **Negative result** | Not applicable as a pass/fail check, but missing final RP information should lead to an intermediary authorization failure.                         |
 | **Test focus**      | Direct RP; valid intermediary; missing final RP identifier; ambiguous identifiers; same trade name but different legal identifier.                  |
 
-
 ### TC-PRES-009 — Intermediary association verification
-
 
 | **Field**           | **Description**                                                                                                                                                                                                                                                                                                                                                                          |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -318,9 +286,7 @@ Eval --> User[Display results to User]
 | **Negative result** | INTERMEDIARY_NOT_AUTHORIZED; non-overridable.                                                                                                                                                                                                                                                                                                                                            |
 | **Test focus**      | Valid intermediary in WRPRC; valid intermediary in Register fallback; intermediary not listed; intermediary listed for different RP; mismatched intermediary.sub; missing final RP info.                                                                                                                                                                                                 |
 
-
 ### TC-PRES-010 — Intermediated RP context coherence
-
 
 | **Field**           | **Description**                                                                                                                                                                                                           |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -332,9 +298,7 @@ Eval --> User[Display results to User]
 | **Negative result** | BINDING_FAILED; non-overridable.                                                                                                                                                                                          |
 | **Test focus**      | Consistent final RP; final RP mismatch between request and WRPRC; final RP mismatch between request and Register; Wallet incorrectly applies intermediary context to scope or EDP.                                        |
 
-
 ### TC-PRES-011 — Entitlement verification
-
 
 | **Field**           | **Description**                                                                                                                                                                                           |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -346,9 +310,7 @@ Eval --> User[Display results to User]
 | **Negative result** | WRONG_ENTITLEMENT; in presentation this is advisory and user-overridable.                                                                                                                                 |
 | **Test focus**      | Correct Service_Provider entitlement; missing entitlement; wrong entitlement such as issuer/provider entitlement; entitlement present only for intermediary but not final RP; malformed URI.              |
 
-
 ### TC-PRES-012 — Requested-attribute extraction
-
 
 | **Field**           | **Description**                                                                                                                                        |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -362,9 +324,7 @@ Eval --> User[Display results to User]
 | **Negative result** | Request cannot be reliably compared to registered scope; Wallet should present advisory or reject according to the profile’s request validation rules. |
 | **Test focus**      | Single claim; multiple claims; nested claim path; unknown namespace; duplicate claim; malformed DCQL; malformed mdoc namespace request.                |
 
-
 ### TC-PRES-013 — Scope comparison / over-asking detection
-
 
 | **Field**           | **Description**                                                                                                                                                                                                           |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -376,9 +336,7 @@ Eval --> User[Display results to User]
 | **Negative result** | OVERASKING_DETECTED; advisory and user-overridable. Wallet identifies unregistered attributes.                                                                                                                            |
 | **Test focus**      | Exact match; case mismatch; extra unregistered attribute; registered credential type but unregistered claim; unregistered credential/document type; scope defined through WRPRC; scope defined through Register fallback. |
 
-
 ### TC-PRES-014 — EDP presence check
-
 
 | **Field**           | **Description**                                                                                                                                |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -390,9 +348,7 @@ Eval --> User[Display results to User]
 | **Negative result** | Not applicable; absence of EDP is not a failure.                                                                                               |
 | **Test focus**      | Attestation with no EDP; attestation with EDP; PID with no EDP; multiple attestations with different EDPs.                                     |
 
-
 ### TC-PRES-015 — EDP evaluation: Authorized Relying Parties Only
-
 
 | **Field**           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -404,9 +360,7 @@ Eval --> User[Display results to User]
 | **Negative result** | EDP_NOT_SATISFIED; Wallet shows advisory / negative outcome and may allow User override.                                                                                                                                                                                                                                                                                                                       |
 | **Test focus**      | Authorized direct RP by subject DN; authorized final RP behind intermediary; intermediary authorized but final RP not authorized; entitlement match; no match; DN formatting comparison; wallet incorrectly using intermediary identity to satisfy EDP.                                                                                                                                                        |
 
-
 ### TC-PRES-016 — EDP evaluation: Specific Root of Trust
-
 
 | **Field**           | **Description**                                                                                                                                                                                                                                                                                                                                                                                         |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -418,9 +372,7 @@ Eval --> User[Display results to User]
 | **Negative result** | EDP_NOT_SATISFIED; Wallet shows advisory / negative outcome and may allow User override.                                                                                                                                                                                                                                                                                                                |
 | **Test focus**      | Matching trusted root; non-matching root; serial-number mismatch; issuer-DN normalization; direct RP vs intermediary behavior.                                                                                                                                                                                                                                                                          |
 
-
 ### TC-PRES-017 — User transparency and final approval
-
 
 | **Field**           | **Description**                                                                                                                                                                                                                                               |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -431,7 +383,6 @@ Eval --> User[Display results to User]
 | **Positive result** | If User approves and no non-overridable failure exists, selected attestations are presented.                                                                                                                                                                  |
 | **Negative result** | If User denies, presentation is cancelled. If User denies an attestation affected by EDP, Wallet behaves as if the attestation does not exist.                                                                                                                |
 | **Test focus**      | Display direct RP identity; display intermediary and final RP identity; display unregistered attributes; display missing verification advisory; display EDP negative result; block continuation after non-overridable failure.                                |
-
 
 ## 7. Trust Anchor and Trusted List Checks
 
@@ -452,10 +403,7 @@ V --> TA[Extract trust anchor]
 TA --> Use[Use trust anchor in certificate/path validation]
 ```
 
-
-
 ### TL-PRES-001 — Trusted-list authenticity, integrity and freshness
-
 
 | **Field**           | **Description**                                                                                                                                                                            |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -467,9 +415,7 @@ TA --> Use[Use trust anchor in certificate/path validation]
 | **Negative result** | Trust anchor cannot be used; dependent WRPAC/WRPRC/Register validation fails.                                                                                                              |
 | **Test focus**      | Valid list; invalid signature; expired list; signer not authorized; missing entity; wrong service type.                                                                                    |
 
-
 ## 8. Decision and Override Matrix
-
 
 | **Check**                          | **Negative result**         | **Effect in Presentation**                                                                                                       |
 | ---------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -484,11 +430,9 @@ TA --> Use[Use trust anchor in certificate/path validation]
 | EDP evaluation                     | EDP_NOT_SATISFIED           | Advisory / negative policy result; user-overridable in the current APTITUDE presentation profile.                                |
 | User final approval                | User denies                 | Presentation cancelled.                                                                                                          |
 
-
-# 9. APTITUDE Alignment and Traceability
+## 9. APTITUDE Alignment and Traceability
 
 The TC-PRES identifiers are local  test-check identifiers; the authoritative profile requirements remain the APTITUDE AUTHZ requirements and the authorization-process text.
-
 
 | **RFC003 check(s)**        | **APTITUDE concept / requirement**                                   | **Notes for test matrix**                                                                                                                       |
 | -------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -500,7 +444,3 @@ The TC-PRES identifiers are local  test-check identifiers; the authoritative pro
 | TC-PRES-012 to TC-PRES-013 | AUTHZ-PRES-01 / AUTHZ-PRES-02 scope comparison                       | Exact and case-sensitive comparison; OVERASKING_DETECTED must identify unregistered attributes and is user-overridable.                         |
 | TC-PRES-014 to TC-PRES-016 | AUTHZ-EDP-03 to AUTHZ-EDP-08                                         | EDP must be evaluated for each matching attestation. In intermediary scenarios evaluate the final RP, not the intermediary.                     |
 | TC-PRES-017                | AUTHZ-UI-07 to AUTHZ-UI-12; AUTHZ-INT-05                             | Display final RP, intermediary where applicable, requested attributes, intended use, privacy-policy link, and advisories before final approval. |
-
-
-
-
