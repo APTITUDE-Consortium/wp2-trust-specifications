@@ -4,9 +4,13 @@ This section describes the purpose, format and content of Trust Anchor Certifica
 
 ## Trust Anchor definition
 
-According to RFC 5914, a Trust Anchor is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the trust anchor is authoritative. They are widely used to verify digital signatures and validate certification paths. When we mention certificates in this document, we are always talking about X.509 certificates as described in RFC 5280.
+According to RFC 5914, a Trust Anchor is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the trust anchor is authoritative. They are widely used to verify digital signatures and validate certification paths.
 
 According to ETSI TS 119 602, each Trusted Entity in the list contains ServiceInformation component with sub-components of ServiceTypeIdentifier and ServiceDigitalIdentity. Those two sub-components together define necessary combination for the Trust Anchor of the entity where specified in article 6.6.3, the ServiceDigitalIdentity component specifies one or multiple digital identifiers identifying the service with the type that they are associated to (it is expected to list multiple identifiers per entity).
+
+**Note**: In this document, we use the term “Trust Anchor Certificate” to mean an X.509 certificate that is distributed and configured as a trust anchor (i.e., its subjectPublicKeyInfo and associated data are trusted directly by relying parties). This aligns with the RFC 5914 notion of a trust anchor as a public key with associated constraints/metadata, while using an X.509 certificate as the concrete container for distribution and configuration.
+
+A “Trust Anchor Certificate” may be self-signed or non-self-signed, as long as the entity validating the trust treats it as a trust anchor because it is distributed via (and selected from) the trusted LoTE context. The LoTE serves as a trust store. Entities and their repsective certificates published in the LoTE are treated as trust anchors (i.e., other entities trust their subjectPublicKeyInfo as an initial trust input for path validation). Entities SHALL build and validate the presented certificate chain up to a LoTE-published trust anchor and SHALL NOT require a further issuer chain above that trust anchor, even if the trust anchor certificate is not self-signed.
 
 ## References
 
