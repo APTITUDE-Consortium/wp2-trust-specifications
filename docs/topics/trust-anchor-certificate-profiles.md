@@ -1,19 +1,19 @@
-# Trust Anchor Certificates Profiles
+# Trust Anchor Certificate Profiles
 
-This section describes the purpose, format and content of Trust Anchor Certificates for entities concerning European Digital Identity Wallet ecosystem that according to the CIRs and ETSI specifications will be included into the List of Trusted Entities together with their respective Certificates.
+This section describes the purpose, format and content of Trust Anchor Certificates for entities concerning European Digital Identity Wallet ecosystem that, according to the CIRs and ETSI specifications will be included in the List of Trusted Entities together with their respective Certificates.
 
 ## Trust Anchor definition
 
-According to RFC 5914, a Trust Anchor is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the trust anchor is authoritative. They are widely used to verify digital signatures and validate certification paths. When we are mentioning certificates in this document, we are always talking about X.509 certificates as described in RFC 5280.
+According to RFC 5914, a Trust Anchor is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the trust anchor is authoritative. They are widely used to verify digital signatures and validate certification paths. When we mention certificates in this document, we are always talking about X.509 certificates as described in RFC 5280.
 
-According to ETSI TS 119 602, each Trusted Entity in the list containts ServiceInformation component with sub-components of ServiceTypeIdentifier and ServiceDigitalIdentity. Those two sub-components together define necesarry combination for the Trust Anchor of the entity where as specified in arcticle 6.6.3, the ServiceDigitalIdentity of component specifies one or multiple digital identifiers identifying the service with the type that they are ssociated to (it is expected to list multiple identifiers per entity).
+According to ETSI TS 119 602, each Trusted Entity in the list contains ServiceInformation component with sub-components of ServiceTypeIdentifier and ServiceDigitalIdentity. Those two sub-components together define necessary combination for the Trust Anchor of the entity where specified in article 6.6.3, the ServiceDigitalIdentity component specifies one or multiple digital identifiers identifying the service with the type that they are associated to (it is expected to list multiple identifiers per entity).
 
 ## References
 
 To guarantee the interoperability across all entities of the EUDIW ecosystem, Trust Anchor certificates should adhere to common requirements, with respect to their content and format. The technical specifications describing such content are distributed between multiple documents and for a purpose of proper referencing are listed below:
 
 - **CIR 2024/2977**
-- **CIR 2026/2980**
+- **CIR 2024/2980**
 - **RFC 3986**
 - **RFC 5280**
 - **RFC 5914*
@@ -28,7 +28,7 @@ To guarantee the interoperability across all entities of the EUDIW ecosystem, Tr
 
 ## Trust Anchor Certificate Content
 
-In the following sections we are providing tables with parameters and extensions that are mandatory for the specific entity Trust Anchor certificate as described in ETSI specifications. For simplifications, optional attributes are out of scope of this document, unless their requirement is conditional or there could be useful to mention them.
+In the following sections we are providing tables with parameters and extensions that are mandatory for the specific entity Trust Anchor certificate as described in ETSI specifications. For simplicity, optional attributes are out of scope of this document, unless their requirement is conditional or it could be useful to mention them.
 
 The column "Presence" in tables below contains the specification of the presence of the certificate parameter as follows:
 
@@ -44,7 +44,7 @@ The `extensions` field of the Trust Anchor Certificates SHALL contain various ex
 | `[extension_name].critical` | [RFC 5280] clause 4.1.2.9 | OPTIONAL | *BOOLEAN* | Indicates whether the extension is critical. DEFAULT is `FALSE`. |
 | `[extension_name].extnValue` | [RFC 5280] clause 4.1.2.9 | REQUIRED | *OCTET STRING* | Contains the DER encoding of the ASN.1 value corresponding to the extension type identified by `extnID`. |
 
-The column "Criticality" of the certificate extensions takes the semantics defined in [RFC 5280, clause 4.2] and uses the following acronyms:
+The column "Criticality" of the certificate extensions has the semantics defined in [RFC 5280, clause 4.2] and uses the following acronyms:
 
 - C: The extension SHALL be considered critical.
 - NC: The extension SHALL be considered non-critical.
@@ -80,7 +80,7 @@ The following table lists all the common extensions that are mandatory or condit
 | `ext-etsi-valassured-ST-certs` | [ETSI EN 319 412-1, clause 5.2] | REQUIRED (C) | NC | *EXTENSION* | Extension with the OID `0.4.0.194121.2.1`.<br><br>**Applicable condition:** For short-term certificates which cannot be revoked.<br><br>Indicates that the certificate issuer ensures the validity of the certificate is assured at time of use of the corresponding private key. Upon presence of such statement, the verifier can decide not to check the certificate revocation status (e.g., when validating a digital signature). |
 | `noRevAvail` | [RFC 9608] clause 2 | REQUIRED (C) | NC | *EXTENSION* | Extension with the OID `2.5.29.56`.<br><br>**Applicable condition:** If the certificate includes the validity assured extension, but neither includes a CRL distribution point nor access location of an OCSP responder. |
 | `authorityInfoAccess` | [ETSI EN 319 412-2, clause 4.4.1] | REQUIRED | NC | *SEQUENCE* | Extension with the OID `1.3.6.1.5.5.7.1.1`.<br><br>Sequence of `AccessDescription`, containing an `accessMethod` (OID) and an `accessLocation` (*GeneralName*).<br><br>It SHALL at least include the `id-ad-caIssuers` OID specifying at least one access location of a valid CA certificate of the issuing CA.<br><br>If OCSP is supported, it SHALL include the `id-ad-ocsp` OID specifying at least one access location of an OCSP responder providing status information for the present certificate.<br><br>If the certificate does not include any CRL distribution point and does not include the validity assured extension, a reference to at least one OCSP responder SHALL be present. |
-| `certificatePolicies` | [RFC 3647, clause 3.3.1] &<br>[RFC 5280, clause 4.2.1.4] | REQUIRED | NC | *SEQUENCE* | Sequence of `PolicyInformation` elements, each being a SEQUENCE of `policyIdentifier` (OID) and `policyQualifiers`.<br><br>The extension is mandatory as stated in [ETSI EN 319 412-2], and i SHALL contain the identifier of at least one certificate policy which reflects the practices and procedures undertaken by the CA. |
+| `certificatePolicies` | [RFC 3647, clause 3.3.1] &<br>[RFC 5280, clause 4.2.1.4] | REQUIRED | NC | *SEQUENCE* | Sequence of `PolicyInformation` elements, each being a SEQUENCE of `policyIdentifier` (OID) and `policyQualifiers`.<br><br>The extension is mandatory as stated in [ETSI EN 319 412-2], and it SHALL contain the identifier of at least one certificate policy which reflects the practices and procedures undertaken by the CA. |
 | `subjectAltName` | [RFC 5280, clause 4.2.1.6] | REQUIRED | NC | *SEQUENCE* | Extension with the OID `2.5.29.17`.<br><br>Sequence of `GeneralName` elements, each representing a possible alternative name for the subject of the certificate.<br><br> Each `GeneralName` element contains contact information of the WRP and there SHALL be at least one element among the following:<ul><li>`uniformResourceIdentifier` indicating a website where the WRP can be contacted for helpdesk/support matters.</li><li>`otherName` with type-id `id-at-telephoneNumber` indicating a phone number for WRP registration/usage matters.</li><li>`rfc822Name` indicating an email address for WRP registration/usage matters.</li></ul>The extension is mandatory as stated in [ETSI TS 119 411-8] clause 6.6.1. |
 | `qcStatements` (esi4-qcStatement-1) | [RFC 3739, clause 3.2.6] &<br>[ETSI EN 319 412-5, clause 4.2.1] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.1`.<br><br>**Applicable condition:** For qualified certificates. It indicates that the certificate is qualified within the defined legal framework. For the eIDAS regulatory environment, the `QcCClegislation` SHALL be absent. |
 | `qcStatements` (esi4-qcStatement-4) | [RFC 3739, clause 3.2.6] &<br>[ETSI EN 319 412-5, clause 4.2.2] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.4`.<br><br>**Applicable condition:** For qualified certificates. It indicates that the private key related to the certified public key resides in a QSCD according to eIDAS regulation. The extension is mandatory as stated in ETSI EN 319 411-2, GEN-6.6.1-03. |
@@ -92,20 +92,20 @@ The following table lists all new or modified parameters that are mandatory or c
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `issuer` | [ETSI TS 119 412-6, clause 4.2] | REQUIRED | *Name* | The same as in General Content above with an exception for selfsigned certificate. In such case, the content of issuer is the same as defined for the Subject parameter. |
+| `issuer` | [ETSI TS 119 412-6, clause 4.2] | REQUIRED | *Name* | The same as in General Content above, with an exception for a self-signed certificate. In that case, the content of issuer is the same as defined for the Subject parameter. |
 
 The following table lists all new or modified extensions that are mandatory or conditional for PID Providers as further scoped in ETSI TS 119 412-6, clause 4.4.
 
 | Parameter | Defined in | Presence | Criticality | Format | Description |
 | :-------: | :--------: | :------: | :---------: | :----- | :---------- |
-| `keyUsage` | [ETSI TS 119 412-6, clause 4.4.1] | REQUIRED | C | *BIT STRING* | Should contain one (and only one) of the key usage settings Type A, Type B, Type C, or Type F as defined in ETSI EN 319 412-2 |
-| `subjectKeyIdentifier` | [ETSI TS 119 412-6, clause 4.4.2] | REQUIRED | NC | *BIT STRING* | For end entity certificates, the subject key identifier extension provides a means for identifying certificates containing the particular public key used in an application. The subject key identifier SHOULD be derived from the public key using methods defined in RFC 5280, clause 4.2.1.2 |
-| `authorityInfoAccess` | [ETSI TS 119 412-6, clause 4.4.3] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Aplicable condition:** Mandatory for not self-signed certificates. |
+| `keyUsage` | [ETSI TS 119 412-6, clause 4.4.1] | REQUIRED | C | *BIT STRING* | It SHOULD contain one (and only one) of the key-usage settings Type A, Type B, Type C, or Type F, as defined in ETSI EN 319 412-2. |
+| `subjectKeyIdentifier` | [ETSI TS 119 412-6, clause 4.4.2] | REQUIRED | NC | *BIT STRING* | For end entity certificates, the subject key identifier extension provides a means of identifying certificates that contain the particular public key used in an application. The subject key identifier SHOULD be derived from the public key using the methods defined in RFC 5280, clause 4.2.1.2. |
+| `authorityInfoAccess` | [ETSI TS 119 412-6, clause 4.4.3] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Applicable condition:** Mandatory for non-self-signed certificates. |
 | `qcStatements` (id-etsi-qct-pid) | [ETSI TS 119 412-6, clause 4.5] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.1` as defined in [ETSI TS 119 412-6, Annex A] |
 
 #### PID Provider Certificate Example
 
-The following is an example of a PID Provider's not self-signed Trust Anchor certificate for legal persons.
+The following is an example of a PID Provider's non-self-signed Trust Anchor certificate for legal persons.
 
 ```text
 AccessCertificate cert = {
@@ -253,20 +253,20 @@ The following table lists all new or modified parameters that are mandatory or c
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `issuer` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | *Name* | The same as in General Content above with an exception for selfsigned certificate. In such case, the content of issuer is the same as defined for the Subject parameter. |
+| `issuer` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | *Name* | The same as in the General Content above, with an exception for self-signed certificate. In that case, the content of issuer is the same as defined for the Subject parameter. |
 
 The following table lists all new or modified extensions that are mandatory or conditional for Wallet Providers as further scoped in ETSI TS 119 412-6, clause 5.1 and 5.2.
 
 | Parameter | Defined in | Presence | Criticality | Format | Description |
 | :-------: | :--------: | :------: | :---------: | :----- | :---------- |
-| `keyUsage` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | C | *BIT STRING* | Should contain one (and only one) of the key usage settings Type A, Type B, Type C, or Type F as defined in ETSI EN 319 412-2 |
-| `subjectKeyIdentifier` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | NC | *BIT STRING* | For end entity certificates, the subject key identifier extension provides a means for identifying certificates containing the particular public key used in an application. The subject key identifier SHOULD be derived from the public key using methods defined in RFC 5280, clause 4.2.1.2 |
-| `authorityInfoAccess` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Aplicable condition:** Mandatory for not self-signed certificates. |
+| `keyUsage` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | C | *BIT STRING* | It SHOULD contain one (and only one) of the key-usage settings Type A, Type B, Type C, or Type F, as defined in ETSI EN 319 412-2. |
+| `subjectKeyIdentifier` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED | NC | *BIT STRING* | For end entity certificates, the subject key identifier extension provides a means of identifying certificates that contain the particular public key used in an application. The subject key identifier SHOULD be derived from the public key using the methods defined in RFC 5280, clause 4.2.1.2. |
+| `authorityInfoAccess` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Applicable condition:** Mandatory for non-self-signed certificates. |
 | `qcStatements` (id-etsi-qct-wal) | [ETSI TS 119 412-6, clause 5.2] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.2` as defined in [ETSI TS 119 412-6, Annex A] |
 
 #### Wallet Provider Certificate Example
 
-The following is an example of a Wallet Provider's not self-signed Trust Anchor certificate for legal persons.
+The following is an example of a Wallet Provider's non-self-signed Trust Anchor certificate for legal persons.
 
 ```text
 AccessCertificate cert = {
