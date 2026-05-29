@@ -5,10 +5,12 @@ This document defines an interoperable **X.509 certificate profile** for **entit
 A **trust anchor** is a trusted public key (and associated data) used as an input to certification path validation. In this profile, the trust anchor is represented and distributed as an **X.509 certificate**, and it is expected to be published as a service digital identity through the **List of Trusted Entities (LoTE)** / **Trusted List** infrastructure.
 
 According to OID4VC High Assurance Interoperability Profile 1.0 (HAIP), clause 6.1:
+
  - Issuer’s signing certificate MUST be present in the SD-JWT x5c header (The x5c header MUST NOT be empty)
  - Trust Anchor certificate of the Issuer MUST NOT be present in the SD-JWT x5c header.
 
 The implication of that is:
+
 - **The Issuer's sign/seal certificate SHALL NOT be a Trust Anchor certificate.**
 
 > **Out of scope:** End-entity “provider sign/seal certificates” issued to PID Providers, Wallet Providers, EAA/QEAA Providers, and PSBEAA Providers. Those are profiled by ETSI TS 119 412-6 and referenced ETSI EN 319 412 parts.
