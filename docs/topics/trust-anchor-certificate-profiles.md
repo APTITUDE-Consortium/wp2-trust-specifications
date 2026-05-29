@@ -6,8 +6,8 @@ A **trust anchor** is a trusted public key (and associated data) used as an inpu
 
 According to OID4VC High Assurance Interoperability Profile 1.0 (HAIP), clause 6.1:
 
- - Issuer’s signing certificate MUST be present in the SD-JWT x5c header (The x5c header MUST NOT be empty)
- - Trust Anchor certificate of the Issuer MUST NOT be present in the SD-JWT x5c header.
+- Issuer’s signing certificate MUST be present in the SD-JWT x5c header (The x5c header MUST NOT be empty)
+- Trust Anchor certificate of the Issuer MUST NOT be present in the SD-JWT x5c header.
 
 The implication of that is:
 
