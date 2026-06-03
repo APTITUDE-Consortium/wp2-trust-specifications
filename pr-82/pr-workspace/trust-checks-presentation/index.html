@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-82/pr-workspace/trust-checks-presentation/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../trust-checks-issuance/">
       
       
       
@@ -268,7 +268,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../digital-signature-requirements/" class="md-tabs__link">
           
   
   
@@ -401,6 +401,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -446,6 +454,118 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../digital-signature-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital signature requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -571,6 +691,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. Common Presentation Trust Evaluation Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-flowchart-to-detailed-trust-check-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Flowchart to detailed trust-check index
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -965,7 +1102,7 @@
     
     
       <li class="md-path__item">
-        <a href="./" class="md-path__link">
+        <a href="../digital-signature-requirements/" class="md-path__link">
           
   <span class="md-ellipsis">
     PR Workspace (Changed Files Only)
@@ -1156,6 +1293,124 @@ Deny2 --&gt; End
 StopAuth --&gt; End
 StopBind --&gt; End
 StopInt --&gt; End</code></pre>
+<h3 id="31-flowchart-to-detailed-trust-check-index">3.1 Flowchart to detailed trust-check index<a class="headerlink" href="#31-flowchart-to-detailed-trust-check-index" title="Permanent link">&para;</a></h3>
+<p>Section 3 uses coarse step labels (<strong>Check 1</strong>…<strong>Check 9</strong>) for control flow. Section 6 decomposes the same logic into RFC003 test-case identifiers (<strong>TC-PRES-001</strong>…<strong>TC-PRES-017</strong>). The correspondence is mostly one-to-many: one flowchart label may map to several TC-PRES checks, and some TC-PRES checks have no separate box in the flowchart. Trust-list resolution (<strong>TL-PRES-001</strong>, Section 7) is a cross-cutting dependency of WRPAC, WRPRC, and Register validation rather than its own flowchart step.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Section 3 (flowchart)</strong></th>
+<th><strong>Section 6 trust check(s)</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Check 1</strong> — Authenticate WRP/RPI using WRPAC</td>
+<td>TC-PRES-001</td>
+<td>Direct match</td>
+</tr>
+<tr>
+<td><strong>U1</strong> — User opted in to RP verification?</td>
+<td>TC-PRES-002</td>
+<td>Same step; not numbered “Check <em>N</em>” in the diagram</td>
+</tr>
+<tr>
+<td><strong>Check 2</strong> — Extract authorization evidence</td>
+<td>TC-PRES-003</td>
+<td>Direct match</td>
+</tr>
+<tr>
+<td><strong>Check 3A</strong> — Validate WRPRC</td>
+<td>TC-PRES-004, TC-PRES-005</td>
+<td>One diagram box; Section 6 splits format/algorithm validation from signature, chain, trust anchor, temporal validity, and status</td>
+</tr>
+<tr>
+<td><strong>Check 3B</strong> — Query and validate Register data</td>
+<td>TC-PRES-006</td>
+<td>Direct match; also used when WRPRC is absent or Check 3A fails</td>
+</tr>
+<tr>
+<td><strong>Check 4</strong> — Binding verification</td>
+<td>TC-PRES-007, TC-PRES-010</td>
+<td>TC-PRES-007 covers direct RP binding; TC-PRES-010 (final RP context coherence) is not a separate flowchart box</td>
+</tr>
+<tr>
+<td><strong>I1</strong> — Intermediary scenario?</td>
+<td>TC-PRES-008</td>
+<td>Intermediary detection; decision diamond, not a “Check <em>N</em>” label</td>
+</tr>
+<tr>
+<td><strong>Check 5</strong> — Verify intermediary association</td>
+<td>TC-PRES-009</td>
+<td>Direct match</td>
+</tr>
+<tr>
+<td><strong>Check 6</strong> — Entitlement verification</td>
+<td>TC-PRES-011</td>
+<td>Direct match</td>
+</tr>
+<tr>
+<td><strong>Check 7</strong> — Scope comparison</td>
+<td>TC-PRES-012, TC-PRES-013</td>
+<td>Diagram merges attribute extraction and scope comparison</td>
+</tr>
+<tr>
+<td><strong>Check 8</strong> — EDP evaluation</td>
+<td>TC-PRES-014, TC-PRES-015, TC-PRES-016</td>
+<td>One diagram box; Section 6 splits presence, Authorized Relying Parties Only, and Specific Root of Trust</td>
+</tr>
+<tr>
+<td><strong>Check 9</strong> — Display trust results and User approval</td>
+<td>TC-PRES-017</td>
+<td>Direct match</td>
+</tr>
+<tr>
+<td><em>(implicit in WRPAC / WRPRC / Register validation)</em></td>
+<td>TL-PRES-001</td>
+<td>LoTE / LOTL / EUMS TL checks (Section 7); no dedicated flowchart node</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Checks in Section 6 without a Section 3 “Check <em>N</em>” label:</strong> TC-PRES-008 (intermediary detection, see <strong>I1</strong>), TC-PRES-010 (intermediated RP context coherence, folded into binding in the diagram), TC-PRES-012 (requested-attribute extraction, prerequisite to Check 7).</p>
+<p><strong>Flowchart outcomes (not separate trust checks):</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Flowchart node</strong></th>
+<th><strong>Typical source check</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StopAuth</td>
+<td>TC-PRES-001 failure</td>
+</tr>
+<tr>
+<td>AdvNoData</td>
+<td>TC-PRES-003 / TC-PRES-006 (incomplete evidence or Register validation failed)</td>
+</tr>
+<tr>
+<td>StopBind</td>
+<td>TC-PRES-007 / TC-PRES-010</td>
+</tr>
+<tr>
+<td>StopInt</td>
+<td>TC-PRES-009</td>
+</tr>
+<tr>
+<td>AdvEnt</td>
+<td>TC-PRES-011</td>
+</tr>
+<tr>
+<td>AdvScope</td>
+<td>TC-PRES-013</td>
+</tr>
+<tr>
+<td>AdvEDP</td>
+<td>TC-PRES-014 to TC-PRES-016</td>
+</tr>
+</tbody>
+</table>
 <h2 id="4-remote-presentation-flow">4. Remote Presentation Flow<a class="headerlink" href="#4-remote-presentation-flow" title="Permanent link">&para;</a></h2>
 <h3 id="41-remote-specific-inputs">4.1 Remote-specific inputs<a class="headerlink" href="#41-remote-specific-inputs" title="Permanent link">&para;</a></h3>
 <table>
@@ -1227,7 +1482,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 <tr>
 <td>WRPRC</td>
-<td>The WRPRC is the registration/authorisation evidence of the RP is extracted from the euWrprc member inside requestInfo in the ISO DeviceReques</td>
+<td>The WRPRC is the registration/authorisation evidence of the RP is extracted from the euWrprc member inside requestInfo in the ISO DeviceRequest</td>
 </tr>
 <tr>
 <td>WRPRC format</td>
@@ -1260,6 +1515,7 @@ WI --&gt; Reg[Query Register if WRPRC missing or invalid]
 WI --&gt; Eval[Perform binding, entitlement, scope and EDP checks]
 Eval --&gt; User[Display results to User]</code></pre>
 <h2 id="6-detailed-trust-checks">6. Detailed Trust Checks<a class="headerlink" href="#6-detailed-trust-checks" title="Permanent link">&para;</a></h2>
+<p>For the mapping from Section 3 flowchart labels to the identifiers below, see <strong>§3.1 Flowchart to detailed trust-check index</strong>.</p>
 <h3 id="tc-pres-001-wrprpi-authentication-using-wrpac">TC-PRES-001 — WRP/RPI authentication using WRPAC<a class="headerlink" href="#tc-pres-001-wrprpi-authentication-using-wrpac" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2143,7 +2399,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 25, 2026 07:11:14 UTC">May 25, 2026 07:11:14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 3, 2026 16:07:39 UTC">June 3, 2026 16:07:39</span>
   </span>
 
     
