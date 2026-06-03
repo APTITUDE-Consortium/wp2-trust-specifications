@@ -104,6 +104,40 @@ StopBind --> End
 StopInt --> End
 ```
 
+### 3.1 Flowchart to detailed trust-check index
+
+Section 3 uses coarse step labels (**Check 1**…**Check 9**) for control flow. Section 6 decomposes the same logic into RFC003 test-case identifiers (**TC-PRES-001**…**TC-PRES-017**). The correspondence is mostly one-to-many: one flowchart label may map to several TC-PRES checks, and some TC-PRES checks have no separate box in the flowchart. Trust-list resolution (**TL-PRES-001**, Section 7) is a cross-cutting dependency of WRPAC, WRPRC, and Register validation rather than its own flowchart step.
+
+| **Section 3 (flowchart)** | **Section 6 trust check(s)** | **Notes** |
+| ------------------------- | ---------------------------- | --------- |
+| **Check 1** — Authenticate WRP/RPI using WRPAC | TC-PRES-001 | Direct match |
+| **U1** — User opted in to RP verification? | TC-PRES-002 | Same step; not numbered “Check *N*” in the diagram |
+| **Check 2** — Extract authorization evidence | TC-PRES-003 | Direct match |
+| **Check 3A** — Validate WRPRC | TC-PRES-004, TC-PRES-005 | One diagram box; Section 6 splits format/algorithm validation from signature, chain, trust anchor, temporal validity, and status |
+| **Check 3B** — Query and validate Register data | TC-PRES-006 | Direct match; also used when WRPRC is absent or Check 3A fails |
+| **Check 4** — Binding verification | TC-PRES-007, TC-PRES-010 | TC-PRES-007 covers direct RP binding; TC-PRES-010 (final RP context coherence) is not a separate flowchart box |
+| **I1** — Intermediary scenario? | TC-PRES-008 | Intermediary detection; decision diamond, not a “Check *N*” label |
+| **Check 5** — Verify intermediary association | TC-PRES-009 | Direct match |
+| **Check 6** — Entitlement verification | TC-PRES-011 | Direct match |
+| **Check 7** — Scope comparison | TC-PRES-012, TC-PRES-013 | Diagram merges attribute extraction and scope comparison |
+| **Check 8** — EDP evaluation | TC-PRES-014, TC-PRES-015, TC-PRES-016 | One diagram box; Section 6 splits presence, Authorized Relying Parties Only, and Specific Root of Trust |
+| **Check 9** — Display trust results and User approval | TC-PRES-017 | Direct match |
+| *(implicit in WRPAC / WRPRC / Register validation)* | TL-PRES-001 | LoTE / LOTL / EUMS TL checks (Section 7); no dedicated flowchart node |
+
+**Checks in Section 6 without a Section 3 “Check *N*” label:** TC-PRES-008 (intermediary detection, see **I1**), TC-PRES-010 (intermediated RP context coherence, folded into binding in the diagram), TC-PRES-012 (requested-attribute extraction, prerequisite to Check 7).
+
+**Flowchart outcomes (not separate trust checks):**
+
+| **Flowchart node** | **Typical source check** |
+| ------------------ | ------------------------ |
+| StopAuth | TC-PRES-001 failure |
+| AdvNoData | TC-PRES-003 / TC-PRES-006 (incomplete evidence or Register validation failed) |
+| StopBind | TC-PRES-007 / TC-PRES-010 |
+| StopInt | TC-PRES-009 |
+| AdvEnt | TC-PRES-011 |
+| AdvScope | TC-PRES-013 |
+| AdvEDP | TC-PRES-014 to TC-PRES-016 |
+
 ## 4. Remote Presentation Flow
 
 ### 4.1 Remote-specific inputs
@@ -144,7 +178,7 @@ Eval --> User[Display results to User]
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Signed request artefact                | The reader sends a **DeviceRequest**, which contains one or more document requests. The signed/security-relevant part is the ReaderAuth structure                                                                                  |
 | WRPAC chain                            | The certificate chain is presented within the WRP-signed **ReaderAuth** element of the mdoc request message.                                                                                                                       |
-| WRPRC                                  | The WRPRC is the registration/authorisation evidence of the RP is extracted from the euWrprc member inside requestInfo in the ISO DeviceReques                                                                                     |
+| WRPRC                                  | The WRPRC is the registration/authorisation evidence of the RP is extracted from the euWrprc member inside requestInfo in the ISO DeviceRequest                                                                                     |
 | WRPRC format                           | CWT, typ = rc-wrp+cwt                                                                                                                                                                                                              |
 | Register fallback URL / RP information | The Registrar URL should be extracted from **requestInfo**; if no WRPRC is present or it is invalid, the Wallet applies Register validation using the registry_uri, RP identifier, and intended_use_id from the request extension. |
 | Requested attributes                   | docRequest.itemRequest.nameSpaces                                                                                                                                                                                                  |
@@ -171,6 +205,8 @@ Eval --> User[Display results to User]
 ```
 
 ## 6. Detailed Trust Checks
+
+For the mapping from Section 3 flowchart labels to the identifiers below, see **§3.1 Flowchart to detailed trust-check index**.
 
 ### TC-PRES-001 — WRP/RPI authentication using WRPAC
 
