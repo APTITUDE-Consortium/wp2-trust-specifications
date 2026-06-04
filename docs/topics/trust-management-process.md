@@ -84,6 +84,7 @@ Trust Artifacts Providers and End-Entities are characterized by three main class
 In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Relying Party (Intermediary), PID Providers, Attestation Providers, and Wallet Providers. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities. 
 
 All WRP (Relying Parties, Intermediaries, PID Providers, and Attestation Providers) properties are embedded in various Trust Artifacts as follows:
+
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
 | WRP | Identity Information | Organization name | WRPAC, WRPRC, Register |
@@ -96,6 +97,7 @@ All WRP (Relying Parties, Intermediaries, PID Providers, and Attestation Provide
 | WRP | Authorization Information | Supervision information | WRPRC, Register |
 
 All PID Providers and Attestation Providers have additional specific property requirements embedded in various Trust Artifacts as follows:
+
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
 | PID Provider or Attestation Provider | Technical Configuration | Signature/Seal key | Signature/Seal Certificate |
@@ -103,11 +105,13 @@ All PID Providers and Attestation Providers have additional specific property re
 | PID Provider or Attestation Provider | Authorization Information | Attestation provision capabilities | WRPRC, Register |
 
 All Relying Parties and Intermediaries have additional specific property requirements embedded in various Trust Artifacts as follows:
+
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
 | RP or RP Intermediaries | Authorization Information | Attestation request capabilities | WRPRC, Register |
 
 All Wallet Providers, PID Providers, and Pub-EAA Providers, being referenced in the LoTE as entities authorized to provide services to the ecosystem, have additional specific properties embedded in the LoTE as follows: 
+
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
 | WP, PID and Pub-EAA Provider | Identity Information | Organization name | LoTE |
@@ -195,9 +199,11 @@ flowchart LR
 
     abst_wp --"used by"--> tlp
 ```
+
 In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Registrars, Providers of WRPAC/WRPRC, and QTSP. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.
 
 The following table describes the relationship between the Properties of Registrars and Providers of WRPAC/WRPRC and the Trusted Lists in which these Properties are contained. 
+
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
 | Registrar, Provider of WRPAC/WRPRC | Identity Information | Organization name | LoTE |
@@ -210,6 +216,7 @@ The following table describes the relationship between the Properties of Registr
 | Registrar, Provider of WRPAC/WRPRC | Technical Configuration | Signature/Seal Trust Anchor | LoTE |
 
 The following table describes the relationship between the Properties of QTSPs and the Trusted Lists in which these Properties are contained.
+
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
 | QTSP | Identity Information | Organization name | EUMS TL |
