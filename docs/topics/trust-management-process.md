@@ -3,7 +3,7 @@ This section describes the high level trust management process within the APTITU
 
 In particular, this section is structured as follows:
 
-- in ([Ecosystem Partecipants](#ecosystem-participants)) are described the various entities within the ecosystem, their roles and relationships.
+- in ([Ecosystem Participants](#ecosystem-participants)) are described the various entities within the ecosystem, their roles and relationships.
 - in ([Entity Properties Schema](#entity-properties-schema)) are described the various Properties of WRP and Wallet Providers, the Trust Artifacts in which these Properties are contained, and the relationships between them.
 - in ([Abstract State Machine](#abstract-state-machine)) are described the lifecycle *State* (an abstraction at the governance level that captures the current operational status and trustworthiness within the ecosystem) of WRPs, Wallet Providers, Trust Artifacts, Trusted Lists, their definitions, and the effects that these states have on the entities' operational capabilities and trustworthiness.
 - in ([Entity Lifecycle Operations](#entity-lifecycle-operations)) are described the operational procedures triggered by changes in the Properties of WRP and Wallet Providers, and the resulting effects on their lifecycle states and trustworthiness within the ecosystem.
@@ -20,7 +20,7 @@ The entities in the ecosystem are divided in different groups depending on their
 - *Trust Artifacts Providers* (MS Registrars, QTSPs, Providers of WRPAC/WRPRC) *publish* and *manage* *Trust Artifacts* (MS Registers, WRPACs, WRPRCs, Signature/Seal Certificates) which transports Properties (Identity Information, Technical configurations, and Authorization Information) of End-Entities.
 - *End-Entities* (Attestation Providers, PID Providers, Relying Parties, Wallet Provider) rely on Trusted Lists and Trust Artifacts for assessing their trustworthiness to other participants within the ecosystems. In addition, they *issue*, *receive* or *manage* User Attestations or Wallet Attestations to and from Wallet Units during issuance, presentation and WP-specific management flows respectively.
 
-The diagram below highlights the relationships between the aforementioned entities and artifacts, and the dependences between them in terms of supervision, publication, and the effects that changes in the artifacts have on the entities. The arrows indicate the direction of supervision, publication, and effect propagation.
+The diagram below highlights the relationships between the aforementioned entities and artifacts, and the dependences between them in terms of supervision, publication, and the effects that changes in the artifacts (represented as diamond shaped objects in the diagram) have on the entities (represented as rectangular objects in the diagram). The arrows indicate the direction of supervision, publication, and effect propagation.
 
 ```mermaid
 flowchart LR
@@ -81,22 +81,35 @@ Trust Artifacts Providers and End-Entities are characterized by three main class
 
 ##### Properties Schema and associated Trust Artifacts
 
-In the table below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for both WRP and Wallet Providers.
+In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Relying Party (Intermediary), PID Providers, Attestation Providers, and Wallet Providers. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities. 
 
+All WRP (Relying Parties, Intermediaries, PID Providers, and Attestation Providers) properties are embedded in various Trust Artifacts as follows:
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
 | WRP | Identity Information | Organization name | WRPAC, WRPRC, Register |
 | WRP | Identity Information | Contact information | WRPAC, Register |
 | WRP | Identity Information | Organizational Policy | WRPAC, WRPRC, Register |
-| PID Provider or Attestation Provider | Technical Configuration | Signature/Seal key | Signature/Seal Certificate |
 | WRP | Technical Configuration | Authentication key | WRPAC |
-| PID Provider or Attestation Provider | Authorization Information | RP Permissions | EDP |
-| PID Provider or Attestation Provider | Authorization Information | Attestation provision capabilities | WRPRC, Register |
-| RP | Authorization Information | Attestation request capabilities | WRPRC, Register |
 | WRP | Authorization Information | Entitlements | WRPRC, Register |
 | WRP | Authorization Information | Intermediary use permissions | WRPRC, Register |
 | WRP | Authorization Information | Service descriptions | WRPRC, Register |
 | WRP | Authorization Information | Supervision information | WRPRC, Register |
+
+All PID Providers and Attestation Providers have additional specific property requirements embedded in various Trust Artifacts as follows:
+| Entity Type | Properties Class | Entity Properties | Trust Artifacts |
+| :--- | :--- | :--- | :--- |
+| PID Provider or Attestation Provider | Technical Configuration | Signature/Seal key | Signature/Seal Certificate |
+| PID Provider or Attestation Provider | Authorization Information | RP Permissions | EDP |
+| PID Provider or Attestation Provider | Authorization Information | Attestation provision capabilities | WRPRC, Register |
+
+All Relying Parties and Intermediaries have additional specific property requirements embedded in various Trust Artifacts as follows:
+| Entity Type | Properties Class | Entity Properties | Trust Artifacts |
+| :--- | :--- | :--- | :--- |
+| RP or RP Intermediaries | Authorization Information | Attestation request capabilities | WRPRC, Register |
+
+All Wallet Providers, PID Providers, and Pub-EAA Providers, being referenced in the LoTE as entities authorized to provide services to the ecosystem, have additional specific properties embedded in the LoTE as follows: 
+| Entity Type | Properties Class | Entity Properties | Trust Artifacts |
+| :--- | :--- | :--- | :--- |
 | WP, PID and Pub-EAA Provider | Identity Information | Organization name | LoTE |
 | WP, PID and Pub-EAA Provider | Identity Information | Contact information | LoTE |
 | WP, PID and Pub-EAA Provider | Identity Information | Organizational Policy | LoTE |
@@ -110,7 +123,7 @@ In the table below are found the relationship between the aforementioned Propert
 
     The inclusion of Wallet Providers and PID/Pub-EAA Providers in the LoTE is an implicit assertion of their role and authorization within the ecosystem. In particular, their inclusion is a result of the succesful completion of the registration and notification procedures as defined in CIR 2025/848 (registration of WRP) and CIR 2024/2980 (notifications of WRP and WP).
 
-The diagram below highlights the dependences between WRP's and Wallet Provider's Properties, the Trusted Lists in which these Properties are contained and the Entities that use the Properties' information to issue additional Trust Artifacts. For both WRPs and WPs, the inclusion in the Trusted Lists attests the implicit, ongoing, compliance to the polices set up by the EC and the MS during onboarding for the respective roles.
+The diagram below highlights the dependences between WRP's and Wallet Provider's Properties, the Trusted Lists (diamond shaped boxes) in which these Properties (round shaped boxes) are contained and the Entities (square boxes) that use the Properties' information to issue additional Trust Artifacts. For both WRPs and WPs, the inclusion in the Trusted Lists attests the implicit, ongoing, compliance to the polices set up by the EC and the MS during onboarding for the respective roles.
 
 ```mermaid
 flowchart LR
@@ -120,7 +133,7 @@ flowchart LR
         direction LR
         id(["Identity Information<br>(organization name, contact information, organization policies)"])
         tech(["Technical Configuration<br>(signature/seal key,<br>AuthN key, endpoints)"])
-        authz(["Policy and Authorization<br>(entitlements, attestation provvision, attestation request, intermediary use, intended use, compliance to certification schema)"])
+        authz(["Policy and Authorization<br>(entitlements, attestation provision, attestation request, intermediary use, intended use, compliance to certification schema)"])
     end
 
     subgraph arti["WRP Artifacts"]
@@ -182,9 +195,9 @@ flowchart LR
 
     abst_wp --"used by"--> tlp
 ```
+In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Registrars, Providers of WRPAC/WRPRC, and QTSP. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.
 
-In the table below we map the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for Trust Artifacts Providers.
-
+The following table describes the relationship between the Properties of Registrars and Providers of WRPAC/WRPRC and the Trusted Lists in which these Properties are contained. 
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
 | Registrar, Provider of WRPAC/WRPRC | Identity Information | Organization name | LoTE |
@@ -195,6 +208,10 @@ In the table below we map the relationship between the aforementioned Properties
 | Registrar, Provider of WRPAC/WRPRC | Authorization Information | Service status | LoTE |
 | Registrar, Provider of WRPAC/WRPRC | Technical Configuration | Signature/Seal key | Signature/Seal Certificate |
 | Registrar, Provider of WRPAC/WRPRC | Technical Configuration | Signature/Seal Trust Anchor | LoTE |
+
+The following table describes the relationship between the Properties of QTSPs and the Trusted Lists in which these Properties are contained.
+| Entity Type | Properties Class | Entity Properties | Trust Artifacts |
+| :--- | :--- | :--- | :--- |
 | QTSP | Identity Information | Organization name | EUMS TL |
 | QTSP | Identity Information | Contact information | EUMS TL |
 | QTSP | Identity Information | Organizational Policy | EUMS TL |
@@ -241,13 +258,13 @@ flowchart LR
     authz --"is reflected in"--> tl
 ```
 
-##### Abstract State Machine
+#### Abstract State Machine
 
 This section describes the lifecycle *State* of WRPs and Wallet Providers and of Trust Artifacts and Trusted Lists.
 
-###### Entity Lifecycle State Machine
+##### Entity Lifecycle State Machine
 
-State Machines are described only for WRPs and Wallet Providers since they are the only entities that have a direct, active role in the ecosystem operations and protocols. Wallet Providers and WRPs participating in the APTITUDE Trust Framework are classified into one of the following mutually exclusive lifecycle States at any given time. The State dictates the entity's authorization level, operational capabilities, and how other participants SHALL interact with its cryptographic artifacts.
+State Machines are described only for WRPs, Wallet Providers, and Trust Artifacts Providers. Their status is determined through Trust Artifacts or Trusted Lists entries. WRPs, Wallet Providers, and Trust Artifacts Providers participating in the APTITUDE Trust Framework are classified into one of the following mutually exclusive lifecycle States at any given time. The State dictates the entity's authorization level, operational capabilities, and how other participants SHALL interact with its cryptographic artifacts.
 
 - `UNREGISTERED`: Indicates that an entity does not currently hold a valid subscription or registration within the APTITUDE Trust Framework. This is the default baseline state. Entities in this state are outside the trust boundary and SHALL NOT participate in framework operations or federation protocols.
 - `REGISTERED`: Indicates that an entity has successfully completed the onboarding process, verified its identity, and has established ecosystem access.
@@ -256,8 +273,8 @@ State Machines are described only for WRPs and Wallet Providers since they are t
 - `OPERATIONAL`: Indicates that an entity has successfully completed onboarding, and, crucially, has been authorized to perform role-related operations, provide services, and issue or verify artifacts in accordance with framework policies.
     - A RP or RP Intermediary is in `OPERATIONAL` state if it is `REGISTERED`, the Registrar has inserted its Authorization information within the Register, and (optionally) it possesses a valid WRPRC.
     - A (Q)EAA Provider is in `OPERATIONAL` state if it is `REGISTERED`, the Registrar has inserted its Authorization information within the Register, (optionally) it possesses a valid WRPRC and possesses a valid (qualified) Signature/Seal certificate to sign the attestations.
-    - A PID Provider, Pub-EAA Provider is in `OPERATIONAL` state if it is `REGISTERED`, the Registrar has inserted its Authorization information within the Register, (optionally) it possesses a valid WRPRC, it possesses valid Signature/Seal certificate, and is listed in the relevant LoTE with `ServiceStatus` set to `granted`.
-    - A Wallet Provider or Trust Artifacts Provider is in the `OPERATIONAL` state if it is `REGISTERED`, listed in the relevant Trusted List with `ServiceStatus` set to `granted`, and possesses valid Signature/Seal certificate.
+    - A PID Provider, Pub-EAA Provider is in `OPERATIONAL` state if it is `REGISTERED`, the Registrar has inserted its Authorization information within the Register, (optionally) it possesses a valid WRPRC, it possesses valid Signature/Seal certificate, and is listed in the relevant LoTE.
+    - A Wallet Provider or Trust Artifacts Provider is in the `OPERATIONAL` state if it is `REGISTERED`, listed in the relevant Trusted List, and possesses valid Signature/Seal certificate.
 - `REMOVED`: Indicates the revocation of an entity's `REGISTERED` status due to voluntary offboarding, a severe security breach, or a critical compliance failure.
     - A WRP is in `REMOVED` state if the WRPAC is `revoked`.
     - A Wallet Provider or Trust Artifacts Provider is in `REMOVED` state when it is not listed in the latest version of the relevant LoTE or EUMS TL.
@@ -279,9 +296,9 @@ stateDiagram-v2
     %% Define transitions
     Unreg --> Reg : Onboarding & Identity Verification<br>(WRPAC Issued & Register Inclusion)
     
-    Reg --> Op : Authorization Granted<br>(Signature/Seal Issued & LoTE ServiceState `granted`)
+    Reg --> Op : Authorization Granted<br>(Signature/Seal Issued & listed in LoTE)
     
-    Op --> Reg : Authorization Lost<br>(e.g., Signature Cert Expired, LoTE  ServiceState `withdrawn`)
+    Op --> Reg : Authorization Lost<br>(e.g., Signature Cert Expired, LoTE  ServiceStatus `withdrawn`)
     
     Reg --> Withdrawn : Registration Revoked<br>(WRPAC Revoked, Exclusion from Register)
     
@@ -316,9 +333,9 @@ The table below summarizes the lifecycle states, their definitions, the entity t
 | State | Definition | Applicable Entities | Asserting Trust Artifacts | Technical Mean |
 | :--- | :--- | :--- | :--- | :--- |
 | `UNREGISTERED` | Indicates that an entity does not currently hold a valid subscription or registration within the APTITUDE Trust Framework. | All potential ecosystem participants prior to onboarding. | N/A | N/A |
-| `REGISTERED` | Indicates that an entity has successfully completed onboarding, verified its identity, and established baseline ecosystem network access. | WRPs (RPs, PID, and EAA Providers) and Wallet Providers. | WRP: Valid WRPAC and identity inclusion in the Register.<br>Wallet Provider: Finalized certification and onboarding records. | WRP: OCSP response with good status (or absence in CRL) for the WRPAC; active status in the Register. |
-| `OPERATIONAL` | Indicates that an entity is explicitly authorized to perform role-related operations, provide services, and issue or verify artifacts. | `REGISTERED` WRPs and Wallet Providers. | **RP (Intermediary)**: Authorization in Register, WRPRC (optional).<br>**(Q)EAA Provider**: Valid Signature/Seal certificate, Authorization in Register, WRPRC (optional).<br>**PID / Pub-EAA**: Valid Signature/Seal certificate, entry in the relevant LoTE, Authorization in Register, WRPRC (optional).<br>**Wallet Provider**: Valid Signature/Seal certificate, entry in the relevant Trusted List. | **Certificates**: OCSP response with `good` status or absence in CRL for Signature/Seal certificates and WRPACs; SLT with status set to `0x00`.<br>**LoTE**: Entry matching the entity with `ServiceStatus` set to `granted`.<br>Register: Validated role-specific authorization schema Properties. |
-| `REMOVED` | Indicates the revocation of an entity's `REGISTERED` status due to voluntary offboarding, a severe security breach, or a critical compliance failure. | All deactivated, offboarded, or permanently banned framework participants. | **WRP**: Revoked WRPAC, removal from LoTE (if applicable) and Register entry.<br>**Wallet Provider**: Removal from the current active LoTE. | OCSP response with `revoked` status or presence in a CRL for the WRPAC.<br>Complete absence from the active Register or Trusted List (if applicable); resolution of historical status via the `ServiceHistory` component. |
+| `REGISTERED` | Indicates that an entity has successfully completed onboarding, verified its identity, and established baseline ecosystem network access. | WRPs (RPs, PID, and EAA Providers) and Wallet Providers. | WRP: Valid WRPAC and identity inclusion in the Register.<br><br>Wallet Provider: Finalized certification and onboarding records. | WRP: OCSP response with good status (or absence in CRL) for the WRPAC; active status in the Register. |
+| `OPERATIONAL` | Indicates that an entity is explicitly authorized to perform role-related operations, provide services, and issue or verify artifacts. | `REGISTERED` WRPs and Wallet Providers. | **RP (Intermediary)**: Authorization in Register, WRPRC (optional).<br><br>**(Q)EAA Provider**: Valid Signature/Seal certificate, Authorization in Register, WRPRC (optional).<br><br>**PID / Pub-EAA**: Valid Signature/Seal certificate, entry in the relevant LoTE, Authorization in Register, WRPRC (optional).<br><br>**Wallet Provider**: Valid Signature/Seal certificate, entry in the relevant Trusted List. | **Certificates**: OCSP response with `good` status or absence in CRL for Signature/Seal certificates and WRPACs; SLT with status set to `0x00`.<br><br>**LoTE**: Entry matching the entity.<br><br>**Register**: Validated role-specific authorization schema Properties. |
+| `REMOVED` | Indicates the revocation of an entity's `REGISTERED` status due to voluntary offboarding, a severe security breach, or a critical compliance failure. | All deactivated, offboarded, or permanently banned framework participants. | **WRP**: Revoked WRPAC, removal from LoTE (if applicable) and Register entry.<br><br>**Wallet Provider**: Removal from the current active LoTE. | OCSP response with `revoked` status or presence in a CRL for the WRPAC.<br><br>Complete absence from the active Register or Trusted List (if applicable); resolution of historical status via the `ServiceHistory` component. |
 
 Depending on the circumstances, an entity in the `REMOVED` state MAY have its Signature/Seal certificates revoked, when this is not the case, all artifacts the entity has issued SHALL be considered valid for historical operations. Further details on this are found in the [Operational Effects of Removal](#operational-effects-of-Removal) section.
 
@@ -329,8 +346,8 @@ State Machines for Trust Artifacts and Trusted Lists are described below:
 - For WRPAC, WRPRC and Signature/Seal Certificates, the lifecycle states are `VALID` and `REVOKED`. The transition from `VALID` to `REVOKED` is triggered by the revocation of the artifact, which can be initiated by the corresponding Trust Artifact Provider due to various reasons such as key compromise, organizational changes, or non-compliance with framework policies. Once an artifact is in the `REVOKED` state, it SHALL NOT be trusted for any operational use within the ecosystem, and any entity relying on it MUST reject it for authentication, authorization, or any other trust-related operations.
     - A WRPAC in `VALID` state SHALL NOT be present in the designated CRL and/or SHALL return a `good` status in the OCSP response. A WRPAC in `REVOKED` state SHALL be present in the designated CRL and/or SHALL return a `revoked` status in the OCSP response.
     - A WRPRC in `VALID` state SHALL return a `0x00` status in the corresponding Status List token. A WRPRC in `REVOKED` state SHALL have status value `0x01` within the corresponding Status List token.
-- For Trusted Lists (LoTE, LOTL, EUMS TL), the lifecycle states are `UPDATED` and `HISTORICAL`. The transition from `UPDATED` to `HISTORICAL` is triggered by the publication of a new version of the Trusted List that replaces the previous version. Once a Trusted List is in the `HISTORICAL` state, it SHALL NOT be used for any operational use within the ecosystem, the only exception being the validation of Trusted List trustworthiness via the pivoting mechanism (see [Trust Anchor Validation](#trust-anchor-validation.md)) and the validation of historical operations via the `ServiceHistory` component of the Trusted Lists.
-- For Registers, EDP, Status Lists, the lifecycle state is only `UPDATED`, since any change in these artifacts is reflected as an update of the artifact itself, and the previous version is not retained as a historical record.
+- For Trusted Lists (LoTE, LOTL, EUMS TL), the lifecycle states are `CURRENT` and `HISTORICAL`. The transition from `CURRENT` to `HISTORICAL` is triggered by the publication of a new version of the Trusted List that replaces the previous version. Once a Trusted List is in the `HISTORICAL` state, it SHALL NOT be used for any operational use within the ecosystem, the only exception being the validation of Trusted List trustworthiness via the pivoting mechanism (see [Trust Anchor Validation](#trust-anchor-validation.md)) and the validation of historical operations via the `ServiceHistory` component of the Trusted Lists.
+- For Registers, EDP, Status Lists, the lifecycle state is only `CURRENT`, since any change in these artifacts is reflected as an update of the artifact itself, and the previous version is not retained as a historical record.
 
 The diagram below highlights the state machine of the aforementioned artifacts:
 
@@ -348,31 +365,37 @@ stateDiagram-v2
 
     %% 2. Trusted Lists Lifecycle Group
     state "Trusted Lists (LoTE, LOTL, EUMS TL)" as TLGroup {
-        [*] --> TL_UPDATED : Publication of Current Version
-        state "UPDATED" as TL_UPDATED
+        [*] --> TL_CURRENT : Publication of Current Version
+        state "CURRENT" as TL_CURRENT
         
-        TL_UPDATED --> HISTORICAL : Superseded by New Version<br>(Archived to `ServiceHistory`)
+        TL_CURRENT --> HISTORICAL : Superseded by New Version<br>(The old one is archived to `ServiceHistory`)
         HISTORICAL --> [*]
     }
 
     %% 3. Registers, EDP, and Status Lists Lifecycle Group
     state "Registers, EDP, and Status Lists" as RegGroup {
-        [*] --> REG_UPDATED : Initial Publication
-        state "UPDATED" as REG_UPDATED
+        [*] --> REG_CURRENT : Initial Publication
+        state "CURRENT" as REG_CURRENT
         
-        REG_UPDATED --> REG_UPDATED : In-place Content Mutation<br>(No History Retained)
+        REG_CURRENT --> REG_CURRENT : In-place Content Mutation<br>(No History Retained)
     }
 ```
 
-The table below summarizes the lifecycle states, their definitions, the applicable Trust Artifacts and Trusted Lists, and the technical mean that conveys the validity of these artifacts.
+The table below summarizes the lifecycle states, their definitions, the applicable Trust Artifacts and Trusted Lists, and the technical mean that conveys the validity of these artifacts. The three tables are divided by artifact type since they have different lifecycle states and transition triggers, these are respectively: `VALID` and `REVOKED` for WRPAC, WRPRC and Signature/Seal Certificates, `CURRENT` and `HISTORICAL` for Trusted Lists, and only `CURRENT` for Registers, EDP and Status Lists.
 
 | State | Definition | Applicable Artifacts | Technical Mean |
 | :--- | :--- | :--- | :--- |
 | `VALID` | Indicates that a Trust Artifact is currently valid and can be trusted for operational use within the ecosystem. | WRPAC, WRPRC, Signature/Seal Certificates. | OCSP response with `good` status or absence in CRL for WRPACs and Signature/Seal certificates; SLT with status set to `0x00` for WRPRCs. |
 | `REVOKED` | Indicates that a Trust Artifact has been revoked and SHALL NOT be trusted for any operational use within the ecosystem. | WRPAC, WRPRC, Signature/Seal Certificates. | OCSP response with `revoked` status or presence in CRL for WRPACs and Signature/Seal certificates; SLT with status set to `0x01` for WRPRCs. |
-| `UPDATED` | Indicates that a Trusted List has been updated with a new version, and the previous version is no longer valid for operational use within the ecosystem. | LoTE, LOTL, EUMS TL, Registers, EDP, Status Lists. | Publication of a new version of the Trusted List; resolution of historical status via the `ServiceHistory` component for LoTE, LOTL, and EUMS TL. |
+
+| State | Definition | Applicable Artifacts | Technical Mean |
+| :--- | :--- | :--- | :--- |
+| `CURRENT` | Indicates that the current Trusted List is the newest version, previous versions are no longer valid for operational use within the ecosystem. | LoTE, LOTL, EUMS TL, Registers, EDP, Status Lists. | Publication of a new version of the Trusted List; resolution of historical status via the `ServiceHistory` component for LoTE, LOTL, and EUMS TL. |
 | `HISTORICAL` | Indicates that a Trusted List is a historical record and SHALL NOT be used for any operational use within the ecosystem, except for validating historical operations and trustworthiness via the pivoting mechanism. | LoTE, LOTL, EUMS TL. | Resolution of historical status via the `ServiceHistory` component; validation of trustworthiness via the pivoting mechanism. |
-| `UPDATED` | Indicates that a Register, EDP, or Status List has been updated with new information, and the previous version is no longer valid for operational use within the ecosystem. | Registers, EDP, Status Lists. | Publication of an updated version of the artifact. |
+
+| State | Definition | Applicable Artifacts | Technical Mean |
+| :--- | :--- | :--- | :--- |
+| `CURRENT` | Indicates that the current version of a Register, EDP, or Status List has the newest information, previous versions are no longer valid, SHOULD NOT be published and SHALL NOT be used for operational use within the ecosystem. | Registers, EDP, Status Lists. | Publication of an updated version of the artifact. |
 
 #### Entity Lifecycle Operations
 
@@ -380,21 +403,21 @@ Below are detailed the operational procedures, which affects the Properties of T
 
 ##### Onboarding Process
 
-The onboarding process governs the transition of a End-Entity (WRP or Wallet Provider) from the `UNREGISTERED` state to the `OPERATIONAL` state. During the onboarding process, it is up to the Entities running the process and necessary checks to take the onboardee's Properties and (depending on its role) issue the corresponding Trust Artifacts. Further details are found in [Onboarding Process](#onboarding-process.md).
+The onboarding process governs the transition of an End-Entity (WRP or Wallet Provider) from the `UNREGISTERED` state to the `REGISTERED` state. During the onboarding process, it is up to the Entities running the process and necessary validations to collect the onboardee's Properties and (depending on its role) issue the corresponding Trust Artifacts. Further details are found in [Onboarding Process](#onboarding-process.md).
 
 ##### Active Operations and Maintenance
 
-While in the `OPERATIONAL` state, entities MAY require *organizational updates* to their registered Properties including, entities profile, cryptographic materials, or operational parameters. Below we describe these updates and their operational effects on the trust artifacts and the entity's state.
+While in the `OPERATIONAL` state, entities MAY require *organizational updates* to their registered Properties, including their entity profiles, cryptographic materials, or operational parameters. Below we describe these updates and their operational effects on the trust artifacts and the entity's state.
 
 ###### Organizational Updates
 
-As their organizational or regulatory circumstances evolve, WRPs and Wallet Providers SHALL update identity, authorization information and technical configurations accordingly through the standard channels as defined at Member State and European Commission level. Identity and cryptographic updates SHALL follow standard framework governance processes and SHOULD NOT affect the underlying technical operations of the Trust Framework. In particular, updates that directly affect federation protocol operations or cryptographic trust boundaries require strictly coordinated procedures. These technical updates SHALL be validated by the designated MS authority or EC designated body prior to deployment to maintain trust relationships and ecosystem operational integrity.
+As their organizational or regulatory circumstances evolve, WRPs and Wallet Providers SHALL update identity, authorization information and technical configurations accordingly through the standard channels as defined at Member State or European Commission level. Identity and cryptographic updates SHALL follow standard framework governance processes and SHOULD NOT affect the underlying technical operations of the Trust Framework. In particular, updates that directly affect federation protocol operations or cryptographic trust boundaries require strictly coordinated procedures. These technical updates SHALL be validated by the designated MS authority or EC designated body prior to deployment to maintain trust relationships and ecosystem operational integrity.
 
 ###### Operational Effects of Organizational Updates
 
 When there are organizational updates, the Trust Framework infrastructure SHALL propagate these changes to the relevant trust artifacts. The specific operational effects depend on the entity's role, and the artifacts it utilizes.
 
-**WRP Updates**: For WRP updating their Identity Information, Technical Configurations, and/or Policies and Authorizations, the update event SHALL trigger the following procedures:
+**WRP Updates**: For WRP updating their Identity Information, Technical Configurations, and/or Policies and Authorizations, the update SHALL trigger the following procedures:
 
 - **Identity Information and Policies and Authorizations Updates**:
     - **Registry Update**: the WRP SHALL update its information within the Register via the authenticated API.
@@ -402,26 +425,26 @@ When there are organizational updates, the Trust Framework infrastructure SHALL 
     - **WRPAC Re-issuance**:The Provider of WRPAC SHALL issue a new WRPAC with the updated data.
     - **WRPRC Revocation**: The Provider of WRPRC SHALL revoke the entity's current WRPRC if present. Revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to `0x01`.
     - **WRPRC Re-issuance**: The Provider of WRPRC SHALL issue a new WRPRC with the updated data if required.
-    - **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the PID/Pub-EAA Provider SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
+    - **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the PID/Pub-EAA Provider SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE with the updated `ServiceInformation` component using the pivoting mechanism with the PID/Pub-EAA Provider's updated information.
 - **Technical Configurations Updates**:
     - **Signature/Seal Key update**: the WRP SHALL notify Signature/Seal Key updates to the Certificate Authority responsible for the issuance of these certificates.
         - **Signature/Seal Certificate Revocation**: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.
         - **Signature/Seal Certificate Re-issuance**:The Certificate Authority SHALL issue a new Signature/Seal certificate with the updated key.
-        - **LoTE Update** [ONLY for PID Providers TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the PID Provider SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the PID Providers' updated Signature/Seal certificate. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
+        - **LoTE Update** [ONLY for PID Providers TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the PID Provider SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE with the updated `ServiceInformation` component using the pivoting mechanism with the PID Providers' updated Signature/Seal certificate.
     - **AuthN Key update**: The WRP SHALL notify WRPAC Key updates to the Provider of WRPAC.
         - **WRPAC Revocation**: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
         - **WRPAC Re-issuance**:The Provider of WRPAC SHALL issue a new WRPAC with the updated key.
 
-**Wallet Providers and Trust Artifact Provider Updates**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the update event SHALL trigger the following procedures:
+**Wallet Providers and Trust Artifact Provider Updates**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the update SHALL trigger the following procedures:
 
 - **Identity Information Updates**:
-    - **LoTE Update**: the entity SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE using the pivoting mechanism with the PID/Pub-EAA Provider's updated information.
+    - **LoTE Update**: the entity SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE with the updated `ServiceInformation` component using the pivoting mechanism with the PID/Pub-EAA Provider's updated information.
 - **Technical Configurations Updates**:
     - **Signature/Seal Key update**: the entity SHALL notify the Signature/Seal Key updates to the Certificate Authority responsible for the issuance of these certificates.
         - **Signature/Seal Certificate Revocation**: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.
         - **Signature/Seal Certificate Re-issuance**:The Certificate Authority SHALL issue a new Signature/Seal certificate with the updated key.
-        - **LoTE Update** [ONLY for TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the entity SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the entity's updated Signature/Seal certificate. The `TrustedEntityServices.ServiceInformation.ServiceDigitalIdentity` SHALL stay to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/granted`.
-    - **Endpoints Update** [ONLY for Registrars or Wallet Providers]: When updating endpoint, the Registrar or Wallet Provider SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism with the updated endpoint.
+        - **LoTE Update** [ONLY for TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the entity SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE with the updated `ServiceInformation` component using the pivoting mechanism with the entity's updated Signature/Seal certificate.
+    - **Endpoints Update** [ONLY for Registrars or Wallet Providers]: When updating endpoint, the Registrar or Wallet Provider SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE with the updated `ServiceInformation` component using the pivoting mechanism with the updated endpoint.
 
 ##### Removal Process
 
@@ -437,22 +460,17 @@ Removal events are categorized based on their initiation source:
 
 ###### Operational Effects of Removal
 
-When an entity is transitioned to the `REMOVED` state, the APTITUDE Trust Framework infrastructure SHALL immediately execute a series of cryptographic and registry updates to halt the entity's operations while preserving historical evidence.  The specific operational effects depend on the entity's role, and the artifacts it utilizes.
+When an entity transitions to the `REMOVED` state, the relevant Trust Artifacts Providers and Trusted Lists Providers SHALL immediately execute the necessary operations to halt the entity's operations while preserving historical evidence.  The specific operational effects depend on the entity's role, and the artifacts it utilizes.
 
-**WRP Withdrawal or Removal**: For WRP updating their Identity Information, Technical Configurations, and/or Policies and Authorizations, the update event SHALL trigger the following procedures:
+**WRP Withdrawal or Removal**: For WRP withdrawing or being removed from the Trust Framework following security incidents or policy violations, the removal event SHALL trigger the following procedures:
 
 - **Registry Update**: the WRP or Supervisory body MAY remove the WRP information within the Register.
 - **WRPAC Revocation**: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a `revoked` status in the OCSP response.
 - **WRPRC Revocation**: The Provider of WRPRC SHALL revoke the entity's current WRPRC if present. Revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to `0x01`.
 - **Signature/Seal Certificate Revocation**: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.
-- **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the WRP or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism where the PID/Pub-EAA Provider's `TrustedEntityServices.ServiceInformation.ServiceStatus` component SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`. To maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
+- **LoTE Update** [ONLY for PID and Pub-EAA Providers]: the WRP or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism without the PID/Pub-EAA/Wallet Provider's `ServiceInformation` component. To maintain non-repudiation for past transactions, the superseded parameters MAY be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
 
-**Trust Artifact Provider Withdrawal or Removal**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the removal event SHALL trigger the following procedures:
+**Wallet Providers and Trust Artifact Provider Withdrawal or Removal**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the removal event SHALL trigger the following procedures:
 
-- **LoTE Update**: the Trust Artifact Provider or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism where the entity's `TrustedEntityServices.ServiceInformation.ServiceStatus` component SHALL be set to the URI `http://uri.aptitude.org/TrstSvc/TrustedList/Svcstatus/withdrawn`. To maintain non-repudiation for past transactions, the superseded parameters SHALL be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
+- **LoTE Update**: the Trust Artifact Provider or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism without the PID/Pub-EAA/Wallet Provider's `ServiceInformation` component. To maintain non-repudiation for past transactions, the superseded parameters MAY be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
 
-!!! note
-
-    When executing the revocation on the CRL, the `ReasonFlag` element SHALL accurately reflect the nature of the Removal:
-    - If the Removal is a temporary suspension pending investigation, the `ReasonFlag` SHALL be set to `(6)`: `certificateHold`.
-    - If the Removal is a permanent termination, the `ReasonFlag` SHALL be set to the appropriate code based on the circumstances, such as `(1)`: `keyCompromise`, `(2)`: `cACompromise`, or `(5)`: `cessationOfOperation`.
