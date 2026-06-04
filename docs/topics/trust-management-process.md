@@ -81,7 +81,7 @@ Trust Artifacts Providers and End-Entities are characterized by three main class
 
 ##### Properties Schema and associated Trust Artifacts
 
-In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Relying Party (Intermediary), PID Providers, Attestation Providers, and Wallet Providers. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities. 
+In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Relying Party (Intermediary), PID Providers, Attestation Providers, and Wallet Providers. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.
 
 All WRP (Relying Parties, Intermediaries, PID Providers, and Attestation Providers) properties are embedded in various Trust Artifacts as follows:
 
@@ -110,7 +110,7 @@ All Relying Parties and Intermediaries have additional specific property require
 | :--- | :--- | :--- | :--- |
 | RP or RP Intermediaries | Authorization Information | Attestation request capabilities | WRPRC, Register |
 
-All Wallet Providers, PID Providers, and Pub-EAA Providers, being referenced in the LoTE as entities authorized to provide services to the ecosystem, have additional specific properties embedded in the LoTE as follows: 
+All Wallet Providers, PID Providers, and Pub-EAA Providers, being referenced in the LoTE as entities authorized to provide services to the ecosystem, have additional specific properties embedded in the LoTE as follows:
 
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
@@ -202,7 +202,7 @@ flowchart LR
 
 In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Registrars, Providers of WRPAC/WRPRC, and QTSP. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.
 
-The following table describes the relationship between the Properties of Registrars and Providers of WRPAC/WRPRC and the Trusted Lists in which these Properties are contained. 
+The following table describes the relationship between the Properties of Registrars and Providers of WRPAC/WRPRC and the Trusted Lists in which these Properties are contained.
 
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
@@ -480,4 +480,3 @@ When an entity transitions to the `REMOVED` state, the relevant Trust Artifacts 
 **Wallet Providers and Trust Artifact Provider Withdrawal or Removal**: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the removal event SHALL trigger the following procedures:
 
 - **LoTE Update**: the Trust Artifact Provider or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism without the PID/Pub-EAA/Wallet Provider's `ServiceInformation` component. To maintain non-repudiation for past transactions, the superseded parameters MAY be retained as historical records within the `TrustedEntityServices.ServiceHistory`.
-
