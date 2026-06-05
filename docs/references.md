@@ -79,6 +79,6 @@ Other ETSI specifications that the previous specifications build upon:
 
 ### IETF Drafts
 
-| **Item Reference**               | **Date**   | **Standard Name/Details** |
-| -------------------------------- | ---------- | ------------------------- |
-| draft-ietf-oauth-status-list-19  | 2026-03    | Token Status List (TSL)   |
+| **Item Reference**               | **Version** | **Date**   | **Standard Name/Details** |
+| -------------------------------- | ----------- | ---------- | ------------------------- |
+| draft-ietf-oauth-status-list     | 20          | 2026-06-04 | Token Status List (TSL)   |

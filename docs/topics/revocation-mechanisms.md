@@ -9,9 +9,9 @@ This section describes the artifacts that are employed in [Trust Management and 
 
 #### Token Status List
 
-This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>. A Status List describes the status of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> by encoding their validity in a bit array. Each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>'s status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].
+This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>. A Status List describes the status of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> by encoding their validity in a bit array. Each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>'s status. A Status List is provided within a cryptographically signed <artifacts:Status List Token> in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].
 
-In this specification, the roles of the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and Status Issuer (i.e., the entity that issues the Status List Token about the status information of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the Status List Token on a public endpoint) SHALL be the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> itself.
+In this specification, the roles of the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and Status Issuer (i.e., the entity that issues the <artifacts:Status List Token> about the status information of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the <artifacts:Status List Token> on a public endpoint) SHALL be the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> itself.
 
 The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
 
@@ -40,7 +40,7 @@ Once the <components:Wallet Unit> receives a <artifacts:Wallet-Relying Party Reg
 
 ##### Status List Token
 
-The **Status List Token** (SLT) is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and contains the following parameters:
+The **<artifacts:Status List Token>** is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and contains the following parameters:
 
 ###### Status List Token Header
 
@@ -48,21 +48,21 @@ The **Status List Token** (SLT) is available at the Status List Endpoint. It is 
 | :-------: | :--------: | :------: | :----: | :---------- |
 | `alg` | [RFC 7515] | REQUIRED | *String* | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It SHALL NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
 | `typ` | [RFC 7515] | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
-| `x5c` | [RFC 7515] | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the SLT's signature. |
+| `x5c` | [RFC 7515] | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the <artifacts:Status List Token>'s signature. |
 
 ###### Status List Token Payload
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
-| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim SHALL specify the URI of the SLT. The value SHALL be equal to that of the `uri` claim contained in the `status*list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. |
-| `iat` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the SLT was issued. |
-| `exp` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the SLT expires. |
+| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim SHALL specify the URI of the <artifacts:Status List Token>. The value SHALL be equal to that of the `uri` claim contained in the `status*list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. |
+| `iat` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the <artifacts:Status List Token> was issued. |
+| `exp` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the <artifacts:Status List Token> expires. |
 | `status*list` | OAuth Status List Draft | REQUIRED | *JSON Object* | A JSON Object that contains the Status List configurations and payload. |
 | `status*list.bits` | OAuth Status List Draft | REQUIRED | *Integer* | Specifies the number of bits per <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> in the compressed byte array. The allowed values are 1, 2, 4, and 8. |
 | `status*list.lst` | OAuth Status List Draft | REQUIRED | *Base64url-encoded String* | Contains the status values for all the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>. The value SHALL be the base64url-encoded compressed byte array. |
-| `ttl` | OAuth Status List Draft | RECOMMENDED | *Integer* | Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the Status List Token can be cached by a consumer before a fresh copy SHOULD be retrieved. |
+| `ttl` | OAuth Status List Draft | RECOMMENDED | *Integer* | Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the <artifacts:Status List Token> can be cached by a consumer before a fresh copy SHOULD be retrieved. |
 
-The following is an example of the Status List Token payload and header prior to signing and base64url encoding:
+The following is an example of the <artifacts:Status List Token> payload and header prior to signing and base64url encoding:
 
 **Header:**
 
@@ -94,7 +94,7 @@ The following is an example of the Status List Token payload and header prior to
 
 ##### Status List Request
 
-The <components:Wallet Unit> SHALL request a Status List Token at the URI referenced within the `status.status_list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
+The <components:Wallet Unit> SHALL request a <artifacts:Status List Token> at the URI referenced within the `status.status_list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
 
 Below it is represented an example of such a request.
 
@@ -106,7 +106,7 @@ Below it is represented an example of such a request.
 
 ##### Status List Response
 
-The successful response SHALL contain a Status List Token and have HTTP status code 200. The content type of the successful response SHALL be `application/statuslist+jwt`.
+The successful response SHALL contain a <artifacts:Status List Token> and have HTTP status code 200. The content type of the successful response SHALL be `application/statuslist+jwt`.
 
 ```text
   HTTP/1.1 200 OK
@@ -120,7 +120,7 @@ The successful response SHALL contain a Status List Token and have HTTP status c
   Ql45Jfzd-Av4QzlKa3oVALpLwOEUOq-U*g
 ```
 
-If caching-related HTTP headers are present in the HTTP response, <components:Wallet Unit|Wallet Units> SHALL prioritize the `exp` and `ttl` claims within the Status List Token over the HTTP headers for determining caching behavior.
+If caching-related HTTP headers are present in the HTTP response, <components:Wallet Unit|Wallet Units> SHALL prioritize the `exp` and `ttl` claims within the <artifacts:Status List Token> over the HTTP headers for determining caching behavior.
 
 #### Certificate Revocation Lists
 
