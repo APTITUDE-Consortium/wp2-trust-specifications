@@ -927,7 +927,7 @@
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a> SHALL ensure that Attestations with common EDPs (as listed in Annex III of [CIR 2024/2979]) can be processed by their <a class="mkdocs-ezglossary-link"
-    id="3650dc1921a7f542e48def35e04da509"
+    id="f8837244fe4f1b5bec436a544f00133b"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
     name="components:Wallet Instance"
@@ -1102,7 +1102,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <p>The following JSON structure is derived from the [ETSI TS 119 472-3] data model requirements.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. [ETSI TS 119 472-3, Section 4.2.5.2] defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of [ETSI TS 119 472-3]). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.</p>
+<p>The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. [ETSI TS 119 472-3, Section 4.2.5.2] defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see [ETSI TS 119 472-3, Annex C]). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.</p>
 </div>
 <table>
 <thead>
@@ -1193,7 +1193,12 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     title="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
     data-tooltip="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
     name="artifacts:Credential Issuer Metadata"
-    href="../../glossary-definitions/#5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</a> at issuance time. The AP SHALL include the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</a> at issuance time. The <a class="mkdocs-ezglossary-link"
+    id="68da5b45bd988a95d335f984a89ab9e3"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> SHALL include the <a class="mkdocs-ezglossary-link"
     id="5bf5fcda2347aea5ea80f2ca5e74736f"
     title="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     data-tooltip="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
@@ -1203,17 +1208,42 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     title="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     data-tooltip="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
-    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL NOT be revealed to the RP through the presentation protocol (per [ETSI TS 119 472-3] section 4.2.5.1).</p>
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL NOT be revealed to the <a class="mkdocs-ezglossary-link"
+    id="a6d37b5de1184d5713bbd2d1f9061063"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RP</a> through the presentation protocol (per [ETSI TS 119 472-3, Section 4.2.5.1]).</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>According to ISS-MDATA-EBD-4.2.5.2-03, the AP may provide only the <code>policy_uri</code> if the policy data set has already been pre-loaded into the WI. As the mechanism for pre-loading policies into a WI is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.</p>
+<p>According to ISS-MDATA-EBD-4.2.5.2-03, the <a class="mkdocs-ezglossary-link"
+    id="1c109578e28b9ec2ce36b9c2d9bda357"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> may provide only the <code>policy_uri</code> if the policy data set has already been pre-loaded into the <a class="mkdocs-ezglossary-link"
+    id="7e6b3718df28b1ec61f4603fc8dc7f1b"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a>. As the mechanism for pre-loading policies into a <a class="mkdocs-ezglossary-link"
+    id="fcbb40fe68497349d436583c10f14d30"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.</p>
 </div>
 <p>As described in section <a href="#authorization-process">Authorization Process</a>, during attestation issuance, the <a class="mkdocs-ezglossary-link"
     id="df0151b10a22dcf180c6897d235e47b2"
     title="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     data-tooltip="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
-    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> (if available) is stored locally by the WI and it is associated with the specific Attestation for which it was retrieved.</p>
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> (if available) is stored locally by the <a class="mkdocs-ezglossary-link"
+    id="c0835c1ba06d2e28783e116dc5cbe2ec"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> and it is associated with the specific Attestation for which it was retrieved.</p>
 <h4 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h4>
 <h5 id="validity-binding">Validity Binding<a class="headerlink" href="#validity-binding" title="Permanent link">&para;</a></h5>
 <p>The locally stored <a class="mkdocs-ezglossary-link"
@@ -1228,28 +1258,98 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL NOT have an independent validity status or revocation mechanism separate from the Attestation.</p>
 <h5 id="update-mechanism">Update Mechanism<a class="headerlink" href="#update-mechanism" title="Permanent link">&para;</a></h5>
-<p>If an AP adds, changes, or deletes an <a class="mkdocs-ezglossary-link"
+<p>If an <a class="mkdocs-ezglossary-link"
+    id="4682a48c86dc3914bb9685a84f613caf"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> adds, changes, or deletes an <a class="mkdocs-ezglossary-link"
     id="b681e6ee42f5490dc6b4a9895a9baf0c"
     title="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     data-tooltip="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
-    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> for an Attestation, the AP SHALL revoke that Attestation (EDP_11). The WI detects the policy change indirectly through the normal Attestation status checking mechanism (Status List), which will report that the Attestation as revoked. The locally stored <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> for an <a class="mkdocs-ezglossary-link"
+    id="9ef518e860520ee6994aefa643b98b48"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>, the <a class="mkdocs-ezglossary-link"
+    id="afbcf44c134c2eaf0b673a61d606957a"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> SHALL revoke that <a class="mkdocs-ezglossary-link"
+    id="a5cf957a6a93743208af8ce323334097"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> (EDP_11). The <a class="mkdocs-ezglossary-link"
+    id="3c8adf384f8bfb994d5db606d491d788"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> detects the policy change indirectly through the normal Attestation status checking mechanism (Status List), which will report that the <a class="mkdocs-ezglossary-link"
+    id="352129fdd2fffa880fc3e5eae8e82c05"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> as revoked. The locally stored <a class="mkdocs-ezglossary-link"
     id="3b56348065429cc64e97d4f9de966b4f"
     title="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     data-tooltip="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
-    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is then implicitly invalidated together with the Attestation. The User needs to request a new issuance to obtain the Attestation with the updated policy.</p>
-<p>Even a minor policy change (e.g., adding a single RP to the authorized list) requires revocation and re-issuance. The timing of detection depends on when the WI checks the Attestation status: if the WI checks only at presentation time, a policy change will not be detected until the next presentation attempt.</p>
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is then implicitly invalidated together with the <a class="mkdocs-ezglossary-link"
+    id="e57fa98fbf714b6502c9aaf41230e051"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>. The User needs to request a new issuance to obtain the <a class="mkdocs-ezglossary-link"
+    id="bd6904cbaa053a6010bf92535883f493"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> with the updated policy.</p>
+<p>Even a minor policy change (e.g., adding a single RP to the authorized list) requires revocation and re-issuance. The timing of detection depends on when the <a class="mkdocs-ezglossary-link"
+    id="780c873f6a698558f480a6c20e94550a"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> checks the <a class="mkdocs-ezglossary-link"
+    id="a95052b924a7d6d344cfd3a3fa476546"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> status: if the WI checks only at presentation time, a policy change will not be detected until the next presentation attempt.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Proactive refresh. The AP MAY provide <a class="mkdocs-ezglossary-link"
+<p>Proactive refresh. The <a class="mkdocs-ezglossary-link"
+    id="3132c28ade533ed020cb31f55f35a78c"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> MAY provide <a class="mkdocs-ezglossary-link"
     id="abc2dfebc66e498fa9d43ce81f735250"
     title="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     data-tooltip="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
-    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> though its URI. In this case, the WI MAY proactively fetch the policy content at the <code>policy_uri</code> to check for updates, without waiting for an Attestation revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:</p>
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> though its URI. In this case, the <a class="mkdocs-ezglossary-link"
+    id="f5444913ab87a9e777191a8c8877df35"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> MAY proactively fetch the policy content at the <code>policy_uri</code> to check for updates, without waiting for an <a class="mkdocs-ezglossary-link"
+    id="a8dd3c09cbf7b43726e1f8dabc7ca202"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:</p>
 <ul>
-<li>It enables AP to unilaterally change an <a class="mkdocs-ezglossary-link"
+<li>It enables <a class="mkdocs-ezglossary-link"
+    id="dd7e73b6b9e5733c532a4a7183f31338"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider. [ARF]"
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> to unilaterally change an <a class="mkdocs-ezglossary-link"
     id="c38daa7ebe1ad2cc0f7cfc0d498f6866"
     title="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
     data-tooltip="A set of rules, embedded in an EAAs by its APs, that indicates the conditions that a WRP has to meet to access the EAAs. [ARF, CIR 2024/2979]"
@@ -1322,7 +1422,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 5, 2026 06:49:31 UTC">June 5, 2026 06:49:31</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 5, 2026 11:26:01 UTC">June 5, 2026 11:26:01</span>
   </span>
 
     
