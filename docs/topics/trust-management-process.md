@@ -30,7 +30,6 @@ The entities in the ecosystem are divided in different groups depending on their
     | Trusted List (TL) | Trusted List (TL) | Trusted List (TL) Provider | Trusted Lists Scheme Operator (TLSO) | [ETSI TS 119 612], [ARF, Annex I] | TL  | Trusted List (TL) Provider |
     | -- | EUMS TL | -- | EUMS TLSO | [ETSI TS 119 615] | -- | -- |
 
-
 The diagram below highlights the relationships between the aforementioned entities and artifacts, and the dependences between them in terms of supervision, publication, and the effects that changes in the artifacts (represented as diamond shaped objects in the diagram) have on the entities (represented as rectangular objects in the diagram). The arrows indicate the direction of supervision, publication, and effect propagation.
 
 ```mermaid

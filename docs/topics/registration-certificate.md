@@ -93,7 +93,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
 | `privacy_policy` | *string* | URL to the WRP's privacy policy explaining data processing and storage practices | Required | [ETSI TS 119 475, Table 7] - `policyURI` |
-| `public_body` | *boolean* | Boolean indicating whether the WRP is a public sector body | Optional | [ETSI TS 119 475, Table 10] - `isPSB` |
+| `public_body` | *boolean* | Boolean indicating whether the WRP is a <roles:Public Sector Body> | Optional | [ETSI TS 119 475, Table 10] - `isPSB` |
 
 ##### Supervisory Authority Attributes
 
@@ -108,7 +108,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 | Attribute | Type            | Description | Required | Reference |
 |-----------|-----------------|-------------|-----------|-----------|
-| `credentials` | *array[object]* | A set of credential queries, used to request credentials from the Wallet. The EUDIW will use this information to perform an over-asking validation | Required for Service Provider | [ETSI TS 119 475, Table 9] - `credential` |
+| `credentials` | *array[object]* | A set of credential queries, used to request credentials from the Wallet. The <components:EUDI Wallet> will use this information to perform an over-asking validation | Required for Service Provider | [ETSI TS 119 475, Table 9] - `credential` |
 | `credentials[].format` | *string*         | Format of the attestation | Required for Service Provider | [ETSI TS 119 475, Table 9] - `format` |
 | `credentials[].meta` | *object*        | Object defining additional properties. | Required for Service Provider | [ETSI TS 119 475, Table 9] - `meta` |
 | `credentials[].claim` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If claim is absent, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> does not declare any specific attributes intended to be requested by the WRP | Required for Service Provide | [ETSI TS 119 475, Table 9] - `claim` |

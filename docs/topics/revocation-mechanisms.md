@@ -130,7 +130,7 @@ If caching-related HTTP headers are present in the HTTP response, <components:Wa
 
 !!! note
 
-    Within APTITUDE the <artifacts:Certificate Revocation List (CRL)|CRL> Issuer SHALL be the Trust Anchor.
+    Within APTITUDE the <artifacts:Certificate Revocation List (CRL)|CRL> Issuer SHALL be the <artifacts:Trust Anchor>.
 
 CAs publish <artifacts:Certificate Revocation List (CRL)|CRLs> to provide status information about the certificates they issued. Each <artifacts:Certificate Revocation List (CRL)|CRL> has a particular scope. The <artifacts:Certificate Revocation List (CRL)|CRL> scope is the set of certificates that could appear on a given <artifacts:Certificate Revocation List (CRL)|CRL>. For example, the scope could be "all certificates issued by CA X". A complete <artifacts:Certificate Revocation List (CRL)|CRL> lists all unexpired certificates, within its scope, that have been revoked for one of the revocation reasons covered by the <artifacts:Certificate Revocation List (CRL)|CRL> scope.
 

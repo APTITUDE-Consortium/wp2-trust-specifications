@@ -53,20 +53,20 @@ The list below enumerates all the applicable standards and specifications that h
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
-| REGISTRAR-REG-01 | Registrars SHALL establish easy-to-use electronic, and where possible automated, registration processes. | [CIR 2025/848, Article 6(1)] |
+| REGISTRAR-REG-01 | <roles:Registrar\|Registrars> SHALL establish easy-to-use electronic, and where possible automated, registration processes. | [CIR 2025/848, Article 6(1)] |
 | REGISTRAR-REG-02 | WRPs SHALL provide at least Annex I information to national registers. | [CIR 2025/848, Article 5(1)] |
 | REGISTRAR-REG-03 | WRPs SHALL ensure information is accurate and SHALL update without undue delay. | [CIR 2025/848, Article 5(2)–(3)] |
-| REGISTRAR-REG-04 | Where possible, Registrars SHALL verify (automated) accuracy/validity, power of attorney (if applicable), entitlement type(s), and absence of existing registration in another national Register. | [CIR 2025/848, Article 6(3)] |
-| REGISTRAR-REG-05 | Registrars SHALL verify against supporting documentation or appropriate authentic sources/official records. | [CIR 2025/848, Article 6(4)] |
+| REGISTRAR-REG-04 | Where possible, <roles:Registrar\|Registrars> SHALL verify (automated) accuracy/validity, power of attorney (if applicable), entitlement type(s), and absence of existing registration in another national Register. | [CIR 2025/848, Article 6(3)] |
+| REGISTRAR-REG-05 | <roles:Registrar\|Registrars> SHALL verify against supporting documentation or appropriate <components:Authentic Source\|Authentic Sources>/official records. | [CIR 2025/848, Article 6(4)] |
 | REGISTRAR-REG-06 | Verification of entitlements SHALL be carried out according to Annex III of [CIR 2025/848]. | [CIR 2025/848, Article 6(5)] |
 | REGISTRAR-REG-07 | If Registrar cannot verify according to Article 6(3)–(5) of [CIR 2025/848], Registrar SHALL reject the registration. | [CIR 2025/848, Article 6(6)] |
-| REGISTRAR-GOV-01 | Registrars SHALL suspend/cancel a registration of a WRP where requested by a <roles:Supervisory Body\|supervisory body> (per eIDAS reference). | [CIR 2025/848, Article 9(1)] |
-| REGISTRAR-GOV-02 | Registrars MAY suspend/cancel a registration of a WRP if info inaccurate/outdated/misleading, non-compliance, excessive attribute requests, breach of law. | [CIR 2025/848, Article 9(2)] |
-| REGISTRAR-GOV-03 | Registrars SHALL suspend/cancel a registration of a WRP if requested by the WRP itself. | [CIR 2025/848, Article 9(3)] |
+| REGISTRAR-GOV-01 | <roles:Registrar\|Registrars> SHALL suspend/cancel a registration of a WRP where requested by a <roles:Supervisory Body\|supervisory body> (per eIDAS reference). | [CIR 2025/848, Article 9(1)] |
+| REGISTRAR-GOV-02 | <roles:Registrar\|Registrars> MAY suspend/cancel a registration of a WRP if info inaccurate/outdated/misleading, non-compliance, excessive attribute requests, breach of law. | [CIR 2025/848, Article 9(2)] |
+| REGISTRAR-GOV-03 | <roles:Registrar\|Registrars> SHALL suspend/cancel a registration of a WRP if requested by the WRP itself. | [CIR 2025/848, Article 9(3)] |
 | REGISTRAR-GOV-04 | Registrar SHALL conduct proportionality assessment before suspension/cancellation under Article 9(2). | [CIR 2025/848, Article 9(4)] |
 | REGISTRAR-GOV-05 | Registrar SHALL notify WRP and relevant Providers of WRPAC and WRPRC without undue delay and not later than 24 hours. | [CIR 2025/848, Article 9(5)] |
 | REGISTRAR-GOV-06 | Providers of WRPAC and WRPRC SHALL revoke affected certificates without undue delay after notification (where applicable). | [CIR 2025/848, Article 9(6)] |
-| REGISTRAR-GOV-07 | Registrars SHALL keep records (Annex I + issuance data + changes) for 10 years. | [CIR 2025/848, Article 10] |
+| REGISTRAR-GOV-07 | <roles:Registrar\|Registrars> SHALL keep records (Annex I + issuance data + changes) for 10 years. | [CIR 2025/848, Article 10] |
 
 ##### Provider of WRPAC and WRPRC and Register Interactions Requirements
 
@@ -107,7 +107,7 @@ This section defines the data schema for each <roles:Wallet-Relying Party (WRP)\
 | `supportURI` | `string[]` | REQUIRED | Support/helpdesk URI(s) for the service. |
 | `srvDescription` |  `MultiLangString[][]` | REQUIRED | Array of service descriptions, each being an array of localised strings (one inner array per service). |
 | `intendedUse` | `IntendedUse[]` | REQUIRED if the entity is not an intermediary | Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary. |
-| `isPSB` | `boolean` | REQUIRED | Whether the WRP is a public sector body (explicitly present; `false` if not PSB). |
+| `isPSB` | `boolean` | REQUIRED | Whether the WRP is a <roles:Public Sector Body> (explicitly present; `false` if not PSB). |
 | `entitlement` |  `string[]` | REQUIRED | Entitlement URI(s) (see note below). |
 | `providesAttestations` | `Credential[]` | REQUIRED if PID/Attestation Provider| Attestation types the WRP intends to issue to wallet units. It SHALL be present if any entitlement is `QEAA_Provider`, `Non_Q_EAA_Provider`, `PUB_EAA_Provider`, or `PID_Provider`. |
 | `supervisoryAuthority` | `LegalEntity` | REQUIRED | Competent supervisory authority (Art. 46a eIDAS) including contact information. |
@@ -236,7 +236,7 @@ Defined policy type URIs:
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `legalName` | `string[]` | REQUIRED | Legal name(s) as in official records. |
-| `establishedBylaw` | `Law[]` | REQUIRED if PSBs responsible for authentic sources| Legal basis for establishment. It SHALL be present for PSBs responsible for authentic sources; present for other PSBs where applicable. |
+| `establishedBylaw` | `Law[]` | REQUIRED if PSBs responsible for <components:Authentic Source\|Authentic Sources> | Legal basis for establishment. It SHALL be present for PSBs responsible for <components:Authentic Source\|Authentic Sources>; present for other PSBs where applicable. |
 
 ##### NaturalPerson
 

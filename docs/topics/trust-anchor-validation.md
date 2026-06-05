@@ -46,7 +46,7 @@ The validator initializes the following variables as described in [ETSI TS 119 6
 
 - `OJEU-Loc`: URI of the latest (known) <artifacts:Official Journal of the European Union (OJEU)|OJEU> publication.
 - `OJEU-LoTE-Loc`: URI of the last processed <artifacts:List of Trusted Entities (LoTE)|LoTE>. Defaults to the value in `OJEU-Loc`.
-- `OJEU-LoTE-Certs-Set`: The set of Trust Anchor certificates from the `OJEU-Loc` publication.
+- `OJEU-LoTE-Certs-Set`: The set of <artifacts:Trust Anchor> certificates from the `OJEU-Loc` publication.
 - `LoTE`: The <artifacts:List of Trusted Entities (LoTE)|LoTE> JWT currently being processed. Initialized as NULL.
 - `LoTE-Signer-Cert`: The certificate extracted from the x5c header parameter of the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 - `LoTESO-Cert`: Temporary variable for the Scheme Operator certificate being validated. Initialized as NULL.
@@ -85,13 +85,13 @@ The validation SHALL perform the following steps:
         - (Update Signer) Set `LoTESO-Cert` to the first certificate in the `x5c` header parameter of `Pivot`.
         - (Verify Signature) Validate the signature of `Pivot` using `LoTESO-Cert`. If it fails, validation SHALL fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED`, and `LoTE-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
         - The loop continues, walking backwards until LoTESO-Cert represents the signer of the oldest Pivot.
-8. (Trust Anchor Validation) Verify the end of the chain. If `LoTESO-Cert` (from the last Pivot or current <artifacts:List of Trusted Entities (LoTE)|LoTE>) is not in `OJEU-LoTE-Certs-Set` (the Trust Anchor), validation SHALL fail with `LoTE-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
+8. (<artifacts:Trust Anchor> Validation) Verify the end of the chain. If `LoTESO-Cert` (from the last Pivot or current <artifacts:List of Trusted Entities (LoTE)|LoTE>) is not in `OJEU-LoTE-Certs-Set` (the <artifacts:Trust Anchor>), validation SHALL fail with `LoTE-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
 9. (Expiration) If current time > `NextUpdate` claim of `LoTE`, validation SHALL fail.
 10. (Success) Set `Authenticated-LoTE` to `LoTE`, `LoTE-Status` to `LoTE_VERIFICATION_PASSED`.
 11. (Update Bookmark) If `OJEU-LoTE-Loc` does not match the `LoTELocation` in `Authenticated-LoTE` (territory `EU`), update `OJEU-LoTE-Loc` to that value.
 12. (Update Anchor) [Caution: This step modifies the Root of Trust configuration]
     - If `OJEU-Loc` does not match the first URI in `SchemeInformationURI`, update `OJEU-LoTE-Loc`.
-    - Update `OJEU-LoTE-Certs-Set` according to the new Trust Anchor either in `Authenticated-LoTE` or from a new <artifacts:Official Journal of the European Union (OJEU)|OJEU> publication.
+    - Update `OJEU-LoTE-Certs-Set` according to the new <artifacts:Trust Anchor> either in `Authenticated-LoTE` or from a new <artifacts:Official Journal of the European Union (OJEU)|OJEU> publication.
 
 **Remarks**:
 
@@ -256,7 +256,7 @@ The validation operations for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> 
     - [PRO-4.1.4-9] If successful: Set `LOTLSO-Cert` to `LOTL-Signer-Cert`. Set `LOTLSO-Certs-Set` to the certificates found in the `PointersToOtherTSL` tuple (territory `EU`) of the current `LOTL`.
 7. (Intermediate Pivot Validation)
     - [PRO-4.1.4-10] If $n = 0$ (No Pivots):
-        - If `LOTLSO-Cert` is not in `OJEU-LOTL-Certs-Set`, validation SHALL fail (Signer not authorized by Trust Anchor). Otherwise, proceed to Step 8.
+        - If `LOTLSO-Cert` is not in `OJEU-LOTL-Certs-Set`, validation SHALL fail (Signer not authorized by <artifacts:Trust Anchor>). Otherwise, proceed to Step 8.
     - [PRO-4.1.4-11] If $n > 0$ (History Chain):
         - Iterate $i$ from 1 to $n$ (from most recent Pivot to oldest). Let `Pivot` be the file at the $i$-th URI.
         - (Link Check) Set `Pivot-Certs-Set` to the certificates in the `PointersToOtherTSL` (territory `EU`) of `Pivot`. If `LOTLSO-Cert` (from the previous step) is not in `Pivot-Certs-Set`, validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
@@ -264,7 +264,7 @@ The validation operations for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> 
         - (Self-Consistency Check) If `LOTLSO-Cert` is not in `Pivot-Certs-Set`, validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_i_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
         - (Verify Signature) Validate the signature of `Pivot` using `LOTLSO-Cert`. If it fails, validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
         - The loop continues with the new `LOTLSO-Cert` acting as the input for the next Pivot or the Anchor.
-8. [PRO-4.1.4-12] (Trust Anchor Validation) If `LOTLSO-Cert` (from the last Pivot) is not in `OJEU-LOTL-Certs-Set` (the Trust Anchor), validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
+8. [PRO-4.1.4-12] (<artifacts:Trust Anchor> Validation) If `LOTLSO-Cert` (from the last Pivot) is not in `OJEU-LOTL-Certs-Set` (the <artifacts:Trust Anchor>), validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
 9. [PRO-4.1.4-13] (Expiration) If current time > `NextUpdate` of `LOTL`, validation SHALL fail with `LOTL-Sub-Status` set to `LOTL_NEXTUPDATE_PASSED`.
 10. [PRO-4.1.4-14, 15] (Success) Set `Authenticated-LOTL` to `LOTL`, `LOTL-Status` to `LOTL_VERIFICATION_PASSED`.
 11. [PRO-4.1.4-16] (Location Update) If `OJEU-LOTL-Loc` does not match the `TSLLocation` in `Authenticated-LOTL` (territory `EU`), update `OJEU-LOTL-Loc` to that value.

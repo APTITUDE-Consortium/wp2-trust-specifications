@@ -15,9 +15,9 @@ An <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policy> is de
 
 The <artifacts:Embedded Disclosure Policy (EDP)|EDP> allows APs to indicate which RPs can access specific Attestations. APs can optionally express an <artifacts:Embedded Disclosure Policy (EDP)|EDP> for their Attestations (EDP_01). The Article 10 of [CIR 2024/2979] establishes that <roles:Wallet Provider (WP)|Wallet Providers> SHALL ensure that Attestations with common EDPs (as listed in Annex III of [CIR 2024/2979]) can be processed by their <components:Wallet Instance|Wallet Instances>.
 
-EDPs are applicable to QEAAs, PuB-EAAs, and non-qualified EAAs. They are not applicable to PIDs as the EUDIW Regulation does not provide any requirement for PIDs to contain an <artifacts:Embedded Disclosure Policy (EDP)|EDP> (EDP_01 note).
+EDPs are applicable to <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAAs>, <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|PuB-EAAs>, and <credentials:Electronic Attestation of Attributes (EAA)|non-qualified EAAs>. They are not applicable to <credentials:Person Identification Data (PID)|PIDs> as the <components:EUDI Wallet> Regulation does not provide any requirement for <credentials:Person Identification Data (PID)|PIDs> to contain an <artifacts:Embedded Disclosure Policy (EDP)|EDP> (EDP_01 note).
 
-The main use cases enabled by EDPs are:
+The main use cases enabled by <artifacts:Embedded Disclosure Policy (EDP)|EDPs> are:
 
 - Implementing sector-specific access control (e.g., only public sector RPs or only healthcare RPs).
 - Implementing Member-State-specific access control (e.g., only RPs registered within a specific Member State).
@@ -58,12 +58,12 @@ The data model defines the following elements:
 - The <artifacts:Embedded Disclosure Policy (EDP)|EDP> MAY contain a list of authorized RPs, identified by subject DN as described in the *Policy Types* section (ISS-MDATA-EBD-4.2.5.2-07).
 - The <artifacts:Embedded Disclosure Policy (EDP)|EDP> MAY define a specific list of roots of trust, identified by issuer DN and certificate serial number (ISS-MDATA-EBD-4.2.5.2-08/09).
 - Other information MAY be included in an <artifacts:Embedded Disclosure Policy (EDP)|EDP> Extension which MAY be ignored by the WI (ISS-MDATA-EBD-4.2.5.2-10). The WI SHOULD be able to process the <artifacts:Embedded Disclosure Policy (EDP)|EDP> even if unrecognized extensions are present (ISS-MDATA-EBD-4.2.5.2-11).
-- An <artifacts:Embedded Disclosure Policy (EDP)|EDP> Extension MAY contain alternative policy rules to be applied to specified attributes within the EAA which are subject to selective disclosure (ISS-MDATA-EBD-4.2.5.2-12).
+- An <artifacts:Embedded Disclosure Policy (EDP)|EDP> Extension MAY contain alternative policy rules to be applied to specified attributes within the EAA which are subject to <processes:Selective Disclosure> (ISS-MDATA-EBD-4.2.5.2-12).
 - The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHOULD contain a link to a website of the AP explaining the disclosure policy in layman's terms (ISS-MDATA-EBD-4.2.5.2-13, EDP_05).
 
 !!! note
 
-    [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-12) provides for attribute-level policies, where alternative policy rules (no policy, authorized RP only, or specific root of trust) can be defined for specific attributes within an EAA that are subject to selective disclosure. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level <artifacts:Embedded Disclosure Policy (EDP)|EDP> will be addressed when the ETSI JSON schema for <artifacts:Embedded Disclosure Policy (EDP)|EDP> is finalized and the policy mechanisms are fully defined.
+    [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-12) provides for attribute-level policies, where alternative policy rules (no policy, authorized RP only, or specific root of trust) can be defined for specific attributes within an EAA that are subject to <processes:Selective Disclosure>. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level <artifacts:Embedded Disclosure Policy (EDP)|EDP> will be addressed when the ETSI JSON schema for <artifacts:Embedded Disclosure Policy (EDP)|EDP> is finalized and the policy mechanisms are fully defined.
 
 ##### Structure and Encoding
 
