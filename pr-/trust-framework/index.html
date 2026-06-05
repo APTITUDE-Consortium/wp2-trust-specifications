@@ -12011,18 +12011,18 @@ If the <a class="mkdocs-ezglossary-link"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>'s status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].</p>
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>'s status. A Status List is provided within a cryptographically signed <a href="artifacts:Status List Token">Status List Token</a> in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].</p>
 <p>In this specification, the roles of the <a class="mkdocs-ezglossary-link"
     id="ec968fd3de8d0ed0ed077d526ef33e98"
     title="A natural or legal person mandated by a Member State to issue wallet-relying party registration certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2025/848]"
     data-tooltip="A natural or legal person mandated by a Member State to issue wallet-relying party registration certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2025/848]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> and Status Issuer (i.e., the entity that issues the Status List Token about the status information of the <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> and Status Issuer (i.e., the entity that issues the <a href="artifacts:Status List Token">Status List Token</a> about the status information of the <a class="mkdocs-ezglossary-link"
     id="bc4f223aaf7ab64ddd8cdc7210ae4ee0"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the Status List Token on a public endpoint) SHALL be the <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the <a href="artifacts:Status List Token">Status List Token</a> on a public endpoint) SHALL be the <a class="mkdocs-ezglossary-link"
     id="c4ff59088d0ad881dff51ace012a61aa"
     title="A natural or legal person mandated by a Member State to issue wallet-relying party registration certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2025/848]"
     data-tooltip="A natural or legal person mandated by a Member State to issue wallet-relying party registration certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2025/848]"
@@ -12168,7 +12168,7 @@ If the <a class="mkdocs-ezglossary-link"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.</p>
 <h5 id="status-list-token">Status List Token<a class="headerlink" href="#status-list-token" title="Permanent link">&para;</a></h5>
-<p>The <strong>Status List Token</strong> (SLT) is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <a class="mkdocs-ezglossary-link"
+<p>The <strong><a href="artifacts:Status List Token">Status List Token</a></strong> is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <a class="mkdocs-ezglossary-link"
     id="d1d922c55f670b590ee30e2dad590f28"
     title="A natural or legal person mandated by a Member State to issue wallet-relying party registration certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2025/848]"
     data-tooltip="A natural or legal person mandated by a Member State to issue wallet-relying party registration certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2025/848]"
@@ -12205,7 +12205,7 @@ If the <a class="mkdocs-ezglossary-link"
 <td style="text-align: center;">[RFC 7515]</td>
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>Array of Strings</em></td>
-<td style="text-align: left;">Contains the Base64-encoded certificate chain required to verify the SLT's signature.</td>
+<td style="text-align: left;">Contains the Base64-encoded certificate chain required to verify the <a href="artifacts:Status List Token">Status List Token</a>'s signature.</td>
 </tr>
 </tbody>
 </table>
@@ -12226,21 +12226,21 @@ If the <a class="mkdocs-ezglossary-link"
 <td style="text-align: center;">RFC 7519</td>
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>String</em></td>
-<td style="text-align: left;">The subject claim SHALL specify the URI of the SLT. The value SHALL be equal to that of the <code>uri</code> claim contained in the <code>status*list.uri</code> claim of the <a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRC</a>.</td>
+<td style="text-align: left;">The subject claim SHALL specify the URI of the <a href="artifacts:Status List Token">Status List Token</a>. The value SHALL be equal to that of the <code>uri</code> claim contained in the <code>status*list.uri</code> claim of the <a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRC</a>.</td>
 </tr>
 <tr>
 <td style="text-align: center;"><code>iat</code></td>
 <td style="text-align: center;">RFC 7519</td>
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>NumericDate</em></td>
-<td style="text-align: left;">A timestamp indicating when the SLT was issued.</td>
+<td style="text-align: left;">A timestamp indicating when the <a href="artifacts:Status List Token">Status List Token</a> was issued.</td>
 </tr>
 <tr>
 <td style="text-align: center;"><code>exp</code></td>
 <td style="text-align: center;">RFC 7519</td>
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>NumericDate</em></td>
-<td style="text-align: left;">A timestamp indicating when the SLT expires.</td>
+<td style="text-align: left;">A timestamp indicating when the <a href="artifacts:Status List Token">Status List Token</a> expires.</td>
 </tr>
 <tr>
 <td style="text-align: center;"><code>status*list</code></td>
@@ -12268,11 +12268,11 @@ If the <a class="mkdocs-ezglossary-link"
 <td style="text-align: center;">OAuth Status List Draft</td>
 <td style="text-align: center;">RECOMMENDED</td>
 <td style="text-align: center;"><em>Integer</em></td>
-<td style="text-align: left;">Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the Status List Token can be cached by a consumer before a fresh copy SHOULD be retrieved.</td>
+<td style="text-align: left;">Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the <a href="artifacts:Status List Token">Status List Token</a> can be cached by a consumer before a fresh copy SHOULD be retrieved.</td>
 </tr>
 </tbody>
 </table>
-<p>The following is an example of the Status List Token payload and header prior to signing and base64url encoding:</p>
+<p>The following is an example of the <a href="artifacts:Status List Token">Status List Token</a> payload and header prior to signing and base64url encoding:</p>
 <p><strong>Header:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;alg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ES256&quot;</span><span class="p">,</span>
@@ -12301,7 +12301,7 @@ If the <a class="mkdocs-ezglossary-link"
     title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
     data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
     name="components:Wallet Unit"
-    href="../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL request a Status List Token at the URI referenced within the <code>status.status_list.uri</code> claim of the <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL request a <a href="artifacts:Status List Token">Status List Token</a> at the URI referenced within the <code>status.status_list.uri</code> claim of the <a class="mkdocs-ezglossary-link"
     id="f783cb3e96b6bb1f121c4d60dd81711b"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
@@ -12313,7 +12313,7 @@ If the <a class="mkdocs-ezglossary-link"
   Accept: application/statuslist+jwt
 </code></pre></div>
 <h5 id="status-list-response">Status List Response<a class="headerlink" href="#status-list-response" title="Permanent link">&para;</a></h5>
-<p>The successful response SHALL contain a Status List Token and have HTTP status code 200. The content type of the successful response SHALL be <code>application/statuslist+jwt</code>.</p>
+<p>The successful response SHALL contain a <a href="artifacts:Status List Token">Status List Token</a> and have HTTP status code 200. The content type of the successful response SHALL be <code>application/statuslist+jwt</code>.</p>
 <div class="highlight"><pre><span></span><code>  HTTP/1.1 200 OK
   Content-Type: application/statuslist+jwt
 
@@ -12329,7 +12329,7 @@ If the <a class="mkdocs-ezglossary-link"
     title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
     data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
     name="components:Wallet Unit"
-    href="../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a> SHALL prioritize the <code>exp</code> and <code>ttl</code> claims within the Status List Token over the HTTP headers for determining caching behavior.</p>
+    href="../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a> SHALL prioritize the <code>exp</code> and <code>ttl</code> claims within the <a href="artifacts:Status List Token">Status List Token</a> over the HTTP headers for determining caching behavior.</p>
 <h4 id="certificate-revocation-lists">Certificate Revocation Lists<a class="headerlink" href="#certificate-revocation-lists" title="Permanent link">&para;</a></h4>
 <p><strong><a class="mkdocs-ezglossary-link"
     id="c0de226891dd10f5da0df2113b152abc"
@@ -13505,14 +13505,16 @@ If the <a class="mkdocs-ezglossary-link"
 <thead>
 <tr>
 <th><strong>Item Reference</strong></th>
+<th><strong>Version</strong></th>
 <th><strong>Date</strong></th>
 <th><strong>Standard Name/Details</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>draft-ietf-oauth-status-list-19</td>
-<td>2026-03</td>
+<td>draft-ietf-oauth-status-list</td>
+<td>20</td>
+<td>2026-06-04</td>
 <td>Token Status List (TSL)</td>
 </tr>
 </tbody>

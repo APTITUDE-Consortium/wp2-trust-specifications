@@ -2110,7 +2110,7 @@
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>, <a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRC</a> (optional).<br><br><strong><a href="roles:Wallet Provider (WP)\">Wallet Provider</a></strong>: Valid <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> certificate, entry in the relevant Trusted List.</td>
-<td style="text-align: left;"><strong>Certificates</strong>: <a href="protocols:Online Certificate Status Protocol (OCSP)\">OCSP</a> response with <code>good</code> status or absence in <a href="artifacts:Certificate Revocation List (CRL)\">CRL</a> for <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> certificates and WRPACs; SLT with status set to <code>0x00</code>.<br><br><strong><a href="artifacts:List of Trusted Entities (LoTE)\">LoTE</a></strong>: Entry matching the entity.<br><br><strong><a class="mkdocs-ezglossary-link"
+<td style="text-align: left;"><strong>Certificates</strong>: <a href="protocols:Online Certificate Status Protocol (OCSP)\">OCSP</a> response with <code>good</code> status or absence in <a href="artifacts:Certificate Revocation List (CRL)\">CRL</a> for <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> certificates and WRPACs; <a href="artifacts:Status List Token">Status List Token</a> with status set to <code>0x00</code>.<br><br><strong><a href="artifacts:List of Trusted Entities (LoTE)\">LoTE</a></strong>: Entry matching the entity.<br><br><strong><a class="mkdocs-ezglossary-link"
     id="1268d1e8642c04e5632f72e8cd4de5f0"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
@@ -2197,12 +2197,12 @@
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> in <code>VALID</code> state SHALL return a <code>0x00</code> status in the corresponding Status List token. A <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> in <code>VALID</code> state SHALL return a <code>0x00</code> status in the corresponding <a href="artifacts:Status List Token">Status List Token</a>. A <a class="mkdocs-ezglossary-link"
     id="5c9593eb3d50b52c7b52d48b3449e66f"
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> in <code>REVOKED</code> state SHALL have status value <code>0x01</code> within the corresponding Status List token.</li>
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> in <code>REVOKED</code> state SHALL have status value <code>0x01</code> within the corresponding <a href="artifacts:Status List Token">Status List Token</a>.</li>
 </ul>
 </li>
 <li>For <a class="mkdocs-ezglossary-link"
@@ -2336,13 +2336,13 @@
 <td style="text-align: left;"><code>VALID</code></td>
 <td style="text-align: left;">Indicates that a Trust Artifact is currently valid and can be trusted for operational use within the ecosystem.</td>
 <td style="text-align: left;"><a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPAC</a>, <a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRC</a>, <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> Certificates.</td>
-<td style="text-align: left;"><a href="protocols:Online Certificate Status Protocol (OCSP)\">OCSP</a> response with <code>good</code> status or absence in <a href="artifacts:Certificate Revocation List (CRL)\">CRL</a> for <a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPACs</a> and <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> certificates; SLT with status set to <code>0x00</code> for &lt;artifacts:Wallet-Relying Party Registration Certificate (WRPRC)</td>
+<td style="text-align: left;"><a href="protocols:Online Certificate Status Protocol (OCSP)\">OCSP</a> response with <code>good</code> status or absence in <a href="artifacts:Certificate Revocation List (CRL)\">CRL</a> for <a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPACs</a> and <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> certificates; <a href="artifacts:Status List Token">Status List Token</a> with status set to <code>0x00</code> for <a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRCs</a>.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>REVOKED</code></td>
 <td style="text-align: left;">Indicates that a Trust Artifact has been revoked and SHALL NOT be trusted for any operational use within the ecosystem.</td>
 <td style="text-align: left;"><a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPAC</a>, <a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRC</a>, <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> Certificates.</td>
-<td style="text-align: left;"><a href="protocols:Online Certificate Status Protocol (OCSP)\">OCSP</a> response with <code>revoked</code> status or presence in <a href="artifacts:Certificate Revocation List (CRL)\">CRL</a> for <a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPACs</a> and <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> certificates; SLT with status set to <code>0x01</code> for <a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRCs</a>.</td>
+<td style="text-align: left;"><a href="protocols:Online Certificate Status Protocol (OCSP)\">OCSP</a> response with <code>revoked</code> status or presence in <a href="artifacts:Certificate Revocation List (CRL)\">CRL</a> for <a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPACs</a> and <a href="artifacts:Electronic Signature\">Signature</a>/<a href="artifacts:Electronic Seal\">Seal</a> certificates; <a href="artifacts:Status List Token">Status List Token</a> with status set to <code>0x01</code> for <a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRCs</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -2504,7 +2504,7 @@
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> within the corresponding Status List token to <code>0x01</code>.</li>
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> within the corresponding <a href="artifacts:Status List Token">Status List Token</a> to <code>0x01</code>.</li>
 <li><strong>WRPRC Re-issuance</strong>: The <a class="mkdocs-ezglossary-link"
     id="e9c428ca9b06b24b2f98be1d8968db87"
     title="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
@@ -2973,7 +2973,7 @@
     title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> within the corresponding Status List token to <code>0x01</code>.</li>
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> within the corresponding <a href="artifacts:Status List Token">Status List Token</a> to <code>0x01</code>.</li>
 <li><strong><a class="mkdocs-ezglossary-link"
     id="7d365394fbb93002a0ec7492bc1e2629"
     title="Data in electronic form which is attached to or logically associated with other data in electronic form and which is used by the signatory to sign."
@@ -3076,7 +3076,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 5, 2026 06:42:33 UTC">June 5, 2026 06:42:33</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 5, 2026 06:49:31 UTC">June 5, 2026 06:49:31</span>
   </span>
 
     
