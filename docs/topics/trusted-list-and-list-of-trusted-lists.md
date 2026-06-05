@@ -70,7 +70,7 @@ Within eIDAS, one <artifacts:Trusted List (TL)|TL> is maintained per Member Stat
 
 The <artifacts:Trusted List (TL)|Trusted List> standard [ETSI TS 119 612] allows a hierarchy of <artifacts:Trusted List (TL)|Trusted Lists> by means of referencing to other <artifacts:Trusted List (TL)|TLs> from a parent <artifacts:Trusted List (TL)|TL>.
 
-Within eIDAS, a decentralized trust model is established, where the parent <artifacts:Trusted List (TL)|TL> is the <artifacts:List Of Trusted Lists (LOTL)>, managed and operated by the Commission. For each Member State, the <artifacts:List Of Trusted Lists (LOTL)|LOTL> contains a URL that points to the respective <artifacts:EU Member State Trusted List (EUMS TL)>.
+Within eIDAS, a decentralized trust model is established, where the parent <artifacts:Trusted List (TL)|TL> is the <artifacts:List Of Trusted Lists (LOTL)>, managed and operated by the Commission. For each Member State, the <artifacts:List Of Trusted Lists (LOTL)|LOTL> contains a URL that points to the respective <artifacts:Trusted List (TL)|TL>.
 
 Currently, the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is published in the following URI: <https://ec.europa.eu/tools/lotl/eu-lotl.xml>.
 
@@ -139,9 +139,9 @@ The following table dictates the governing standard, publication scope (i.e., at
 
 ##### Trusted List and List of Trusted Lists
 
-The following URLs provide the normative XML schemas required for implementing the <artifacts:EU Member State Trusted List (EUMS TL)|EU Member State Trusted Lists (EUMS TLs)> and the <artifacts:List Of Trusted Lists (LOTL)>:
+The following URLs provide the normative XML schemas required for implementing the <artifacts:Trusted List (TL)|TLs> and the <artifacts:List Of Trusted Lists (LOTL)|LOTL>:
 
-- **<artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd)
+- **<artifacts:Trusted List (TL)|TL> Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd)
 - **<artifacts:List Of Trusted Lists (LOTL)|LOTL> Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd)
 
 ##### List of Trusted Entities
@@ -152,7 +152,7 @@ The following repository provides the normative JSON and XML schemas required fo
 
 ###### Trusted List Terminology Comparison
 
-The <artifacts:List of Trusted Entities (LoTE)|LoTE> and the <artifacts:List Of Trusted Lists (LOTL)|LOTL> / <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> differ not only in their underlying schemas but also in their parameter nomenclature. The following table maps the equivalent terms between the two standards:
+The <artifacts:List of Trusted Entities (LoTE)|LoTE> and the <artifacts:List Of Trusted Lists (LOTL)|LOTL> / <artifacts:Trusted List (TL)|TL> differ not only in their underlying schemas but also in their parameter nomenclature. The following table maps the equivalent terms between the two standards:
 
 | TS 119 602 (<artifacts:List of Trusted Entities (LoTE)\|LoTE>) | TS 119 612 (TSL) |
 | :--- | :--- |
@@ -228,7 +228,7 @@ The `TrustedEntityServices` is an *Array* of `TrustedEntityService` *Objects*. E
 | :-------: | :--------: | :------: | :----: | :---------- |
 | `ServiceTypeIdentifier` | [ETSI TS 119 602, clause 6.6.1] | REQUIRED | *String* | Depending on the <artifacts:List of Trusted Entities (LoTE)\|LoTE> type, specific URIs MAY be used as the value of the `ServiceTypeIdentifier` component, to the exclusion of any other (e.g., `.../SvcType/PID/Issuance` and `.../Revocation` for PID services). |
 | `ServiceName` | [ETSI TS 119 602, clause 6.6.2] | REQUIRED | *Array* | For a <roles:Wallet Provider (WP)>, the `ServiceName` component SHALL be the name of the <components:Wallet Solution> it provides.<br><br>For a <roles:Registrar>, the `ServiceName` component SHALL contain the name of the <components:Register> for which the <roles:Registrar> is responsible.<br><br>No additional requirements for the other <artifacts:List of Trusted Entities (LoTE)\|LoTE> types. |
-| `ServiceDigitalIdentity` | [ETSI TS 119 602, clause 6.6.3] | REQUIRED | *Object* | Depending on the <artifacts:List of Trusted Entities (LoTE)\|LoTE> type, the `ServiceDigitalIdentity` component SHALL contain one or more X.509 (Trust Anchor) certificates used to verify the signature or seal created by the provider to validate and authenticate their respective artifacts. The certified identity data MUST include the name and registration number as specified in the `TEName` and `TETradeName` components.<br><br><roles:PuB-EAA Provider> <artifacts:List of Trusted Entities (LoTE)\|LoTE> types MAY contain one or more X.509 certificates, which SHALL nonetheless be referenced on a QTSP <artifacts:EU Member State Trusted List (EUMS TL)\|EUMS TL>. |
+| `ServiceDigitalIdentity` | [ETSI TS 119 602, clause 6.6.3] | REQUIRED | *Object* | Depending on the <artifacts:List of Trusted Entities (LoTE)\|LoTE> type, the `ServiceDigitalIdentity` component SHALL contain one or more X.509 (Trust Anchor) certificates used to verify the signature or seal created by the provider to validate and authenticate their respective artifacts. The certified identity data MUST include the name and registration number as specified in the `TEName` and `TETradeName` components.<br><br><roles:PuB-EAA Provider> <artifacts:List of Trusted Entities (LoTE)\|LoTE> types MAY contain one or more X.509 certificates, which SHALL nonetheless be referenced on a QTSP <artifacts:Trusted List (TL)\|TL>. |
 | `ServiceStatus` | [ETSI TS 119 602, clause 6.6.4] | REQUIRED | *String* | The `ServiceStatus` component SHALL be present for <roles:PuB-EAA Provider> <artifacts:List of Trusted Entities (LoTE)\|LoTE>. Specific URIs MAY be used as the value to indicate if the entity is notified or withdrawn.<br><br>The `ServiceStatus` component SHALL NOT be used for the other <artifacts:List of Trusted Entities (LoTE)\|LoTE> types. |
 | `StatusStartingTime` | [ETSI TS 119 602, clause 6.6.5] | REQUIRED | *String* | The `StatusStartingTime` component SHALL be present for <roles:PuB-EAA Provider> <artifacts:List of Trusted Entities (LoTE)\|LoTE>.<br><br>The `StatusStartingTime` component SHALL NOT be used for the other <artifacts:List of Trusted Entities (LoTE)\|LoTE> types. |
 | `SchemeServiceDefinitionURI` | [ETSI TS 119 602, clause 6.6.6] | REQUIRED | *Array* | No additional requirements. |

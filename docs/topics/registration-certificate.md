@@ -134,9 +134,9 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `certificate_policy` | *string* | URL to the certificate policy and certificate practice statement | Required | [ETSI TS 119 475, Table 7] - `technical` |
 | `iat` | *unix_timestamp* | Unix timestamp indicating when the WRP was issued | Required | [ETSI TS 119 475, Table 7] - `technical` |
 | `exp` | *unix_timestamp* | Expiration time of the JWT/CWT as a Unix timestamp | Optional | [ETSI TS 119 475, Table 10] - `technical` |
-| `status` | *object* | A URI to a status list presenting information about validity of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>  | Required | [ETSI TS 119 475, Table 7] - `technical` |
+| `status` | *object* | A URI to a <artifacts:Status List Token> presenting information about validity of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>  | Required | [ETSI TS 119 475, Table 7] - `technical` |
 | `status.status_list.idx` | *int* | Position in status bitstring | Required | [ETSI TS 119 475] GEN-6.2.6.1-04, GEN-6.2.6.1-05 |
-| `status.status_list.uri` | *string* | Status list credential URI | Required | [ETSI TS 119 475] GEN-6.2.6.1-04 |
+| `status.status_list.uri` | *string* | <artifacts:Status List Token> URI | Required | [ETSI TS 119 475] GEN-6.2.6.1-04 |
 
 ##### Uses Intermediary Attributes
 

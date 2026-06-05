@@ -15,7 +15,6 @@
 | -------------------------------- | ---------- | ------------------------- |
 | REG-EU-2024/1183                 | 2024-04-11 | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
 
-
 ### ETSI Specifications
 
 ETSI specifications for EU Digital Identity Wallets of main interest for the trust framework:

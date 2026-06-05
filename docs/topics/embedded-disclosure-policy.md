@@ -71,7 +71,7 @@ The following JSON structure is derived from the [ETSI TS 119 472-3] data model 
 
 !!! warning
 
-    The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. [ETSI TS 119 472-3, Section 4.2.5.2] defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see Annex C of [ETSI TS 119 472-3]). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
+    The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. [ETSI TS 119 472-3, Section 4.2.5.2] defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see [ETSI TS 119 472-3, Annex C]). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.
 
 | Parameter | Type | Description | Based on |
 |-----------|------|-------------|----------|
@@ -89,13 +89,13 @@ The following JSON structure is derived from the [ETSI TS 119 472-3] data model 
 
 #### Distribution
 
-The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through <artifacts:Credential Issuer Metadata> at issuance time. The AP SHALL include the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (EDP_09). The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL NOT be revealed to the RP through the presentation protocol (per [ETSI TS 119 472-3] section 4.2.5.1).
+The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through <artifacts:Credential Issuer Metadata> at issuance time. The <roles:Attestation Provider (AP)|AP> SHALL include the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (EDP_09). The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL NOT be revealed to the <roles:Relying Party (RP)|RP> through the presentation protocol (per [ETSI TS 119 472-3, Section 4.2.5.1]).
 
 !!! warning
 
-    According to ISS-MDATA-EBD-4.2.5.2-03, the AP may provide only the `policy_uri` if the policy data set has already been pre-loaded into the WI. As the mechanism for pre-loading policies into a WI is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
+    According to ISS-MDATA-EBD-4.2.5.2-03, the <roles:Attestation Provider (AP)|AP> may provide only the `policy_uri` if the policy data set has already been pre-loaded into the <components:Wallet Instance|WI>. As the mechanism for pre-loading policies into a <components:Wallet Instance|WI> is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
 
-As described in section [Authorization Process](#authorization-process), during attestation issuance, the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if available) is stored locally by the WI and it is associated with the specific Attestation for which it was retrieved.
+As described in section [Authorization Process](#authorization-process), during attestation issuance, the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if available) is stored locally by the <components:Wallet Instance|WI> and it is associated with the specific Attestation for which it was retrieved.
 
 #### Lifecycle
 
@@ -105,15 +105,15 @@ The locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL remain
 
 ##### Update Mechanism
 
-If an AP adds, changes, or deletes an <artifacts:Embedded Disclosure Policy (EDP)|EDP> for an Attestation, the AP SHALL revoke that Attestation (EDP_11). The WI detects the policy change indirectly through the normal Attestation status checking mechanism (Status List), which will report that the Attestation as revoked. The locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> is then implicitly invalidated together with the Attestation. The User needs to request a new issuance to obtain the Attestation with the updated policy.
+If an <roles:Attestation Provider (AP)|AP> adds, changes, or deletes an <artifacts:Embedded Disclosure Policy (EDP)|EDP> for an <credentials:Attestation>, the <roles:Attestation Provider (AP)|AP> SHALL revoke that <credentials:Attestation> (EDP_11). The <components:Wallet Instance|WI> detects the policy change indirectly through the normal Attestation status checking mechanism (Status List), which will report that the <credentials:Attestation> as revoked. The locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> is then implicitly invalidated together with the <credentials:Attestation>. The User needs to request a new issuance to obtain the <credentials:Attestation> with the updated policy.
 
-Even a minor policy change (e.g., adding a single RP to the authorized list) requires revocation and re-issuance. The timing of detection depends on when the WI checks the Attestation status: if the WI checks only at presentation time, a policy change will not be detected until the next presentation attempt.
+Even a minor policy change (e.g., adding a single RP to the authorized list) requires revocation and re-issuance. The timing of detection depends on when the <components:Wallet Instance|WI> checks the <credentials:Attestation> status: if the WI checks only at presentation time, a policy change will not be detected until the next presentation attempt.
 
 !!! warning
 
-    Proactive refresh. The AP MAY provide <artifacts:Embedded Disclosure Policy (EDP)|EDP> though its URI. In this case, the WI MAY proactively fetch the policy content at the `policy_uri` to check for updates, without waiting for an Attestation revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:
+    Proactive refresh. The <roles:Attestation Provider (AP)|AP> MAY provide <artifacts:Embedded Disclosure Policy (EDP)|EDP> though its URI. In this case, the <components:Wallet Instance> MAY proactively fetch the policy content at the `policy_uri` to check for updates, without waiting for an <credentials:Attestation> revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:
     
-    - It enables AP to unilaterally change an <artifacts:Embedded Disclosure Policy (EDP)|EDP>, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
+    - It enables <roles:Attestation Provider (AP)|AP> to unilaterally change an <artifacts:Embedded Disclosure Policy (EDP)|EDP>, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
     - Technical details of this mechanism are not defined within ETSI standard.
 
 #### Normative References

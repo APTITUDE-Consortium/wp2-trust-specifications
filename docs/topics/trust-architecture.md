@@ -54,9 +54,9 @@ To trust the interactions between these entities, the following trust evaluation
     - The intended use of a <roles:Wallet-Relying Party (WRP)|WRP> is written in a signed <components:Register>, and optionally in a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)>.
     - The <roles:Attestation Provider (AP)|AP> may write their own <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policies (EDPs)>.
 - *Trust Anchor Validation Process*: a way to check the integrity and authenticity of <artifacts:Trusted List (TL)|Trusted Lists (TL)> which serve as the authentic source for <artifacts:Trust Anchor|Trust Anchors> used to verify signed objects such as <credentials:Person Identification Data (PID)|PIDs>, <credentials:Attestation|Attestations>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, and <components:Register>. To achieve this:
-    - The public key of the corresponding private key used to sign is published on the <artifacts:EU Member State Trusted List (EUMS TL)> or on the <artifacts:List of Trusted Entities (LoTE)> managed by the European Commission.
+    - The public key of the corresponding private key used to sign is published on the <artifacts:Trusted List (TL)|TL> or on the <artifacts:List of Trusted Entities (LoTE)|LoTE> managed by the European Commission.
 
-While these trust evaluation processes and their artifacts (i.e., the <components:Register> and its common APIs, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, <artifacts:List of Trusted Entities (LoTE)|LoTE>, <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TLs> and <artifacts:Embedded Disclosure Policy (EDP)|EDPs>) will be further detailed in the [Trust Evaluation Process](#6-trust-evaluation-process) and [Trust Artifacts](#5-trust-artifacts) sections respectively, the processes to obtain and manage these artifacts are briefly detailed below:
+While these trust evaluation processes and their artifacts (i.e., the <components:Register> and its common APIs, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, <artifacts:List of Trusted Entities (LoTE)|LoTE>, <artifacts:Trusted List (TL)|TLs> and <artifacts:Embedded Disclosure Policy (EDP)|EDPs>) will be further detailed in the [Trust Evaluation Process](#6-trust-evaluation-process) and [Trust Artifacts](#5-trust-artifacts) sections respectively, the processes to obtain and manage these artifacts are briefly detailed below:
 
 - *WRP Registration Process*: To rely on <components:Wallet Unit|Wallet Units> for the purpose of providing a service, <roles:Wallet-Relying Party (WRP)|WRPs> register at a <roles:Registrar> in the Member State where they are established. Based on the type of service registered, registration includes: the attributes that the <roles:Relying Party (RP)|RP> intends to request from <components:Wallet Unit|Wallet Units> or the <data-elements:Attestation type|Attestation type(s)> the <roles:Attestation Provider (AP)|AP> wants to issue to <components:Wallet Unit|Wallet Units>. The following steps are in common to all <roles:Wallet-Relying Party (WRP)|WRPs>:
     1. *Identity and Catalogue Verification:* The <roles:Registrar> verifies the identity of the <roles:Wallet-Relying Party (WRP)|WRP> according to requirements in [ETSI TS 119 461]. The specific identity proofing level may vary based on entity type and applicable regulatory framework (e.g., <roles:Qualified Trust Service Provider (QTSP)|Qualified Trust Service Provider (QTSP)> requirements or Member State national legislation) and it is out of scope of the piloting. In this process, the <roles:Registrar> may use the <artifacts:Catalogue of Attributes> and <artifacts:Catalogue of Schemes for the Attestation of Attributes> managed by the European Commission for evaluating the registration request.
@@ -104,13 +104,13 @@ While these trust evaluation processes and their artifacts (i.e., the <component
 
 - *Notification Process*: the Member State sends data related to the registered entity to the European Commission. As result:
     - For <roles:Wallet Provider (WP)|WPs>, <roles:PID Provider|PID Providers>, <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, Member State <roles:Registrar|Registrars>, and <roles:PuB-EAA Provider|Pub-EAA Providers>: the notified entities are included in a <artifacts:List of Trusted Entities (LoTE)|LoTE> by a European Commission <artifacts:List of Trusted Entities (LoTE)|LoTE> Provider.
-    - For <roles:QEAA Provider|QEAA Providers> and <roles:Qualified Trust Service Provider (QTSP)|QTSP>, the URL of the <artifacts:EU Member State Trusted List (EUMS TL)> is added in the EU <artifacts:List Of Trusted Lists (LOTL)>.
+    - For <roles:QEAA Provider|QEAA Providers> and <roles:Qualified Trust Service Provider (QTSP)|QTSP>, the URL of the <artifacts:Trusted List (TL)|TL> is added in the EU <artifacts:List Of Trusted Lists (LOTL)>.
 
     ```mermaid
     graph LR
 
     subgraph MS["Member State (MS)"]
-        MSTLP["MS  <br/>Trusted List Provider  <br/>(TLP)"]
+        MSTLP["MS  <br/>Scheme Operator  <br/>(SO)"]
         TLs[/TLs/]
         MSTLP ---|"publish"| TLs
     end
@@ -147,7 +147,7 @@ While these trust evaluation processes and their artifacts (i.e., the <component
     class MSTLP,TLs green;
 
     %% Arrows
-    EC ---|"Notification Process <br/>(Trust Anchor or <br/>URL of the EUMS TL)"| MS
+    EC ---|"Notification Process <br/>(Trust Anchor or <br/>URL of the TL)"| MS
     ```
 
 The following figure add these two processes to the previous architecture.
@@ -175,8 +175,8 @@ graph TD
         MSReg[MS <br/>Registrar]
         ProvAC[Provider of <br/>WRPAC]
         ProvRC[Provider of <br/>WRPRC]
-        MSTLP["MS  <br/>Trusted List Provider  <br/>(TLP)"]
-        TLs[/EUMS TLs/]
+        MSTLP["MS  <br/>Scheme Operator  <br/>(SO)"]
+        TLs[/TLs/]
         Reg[/"Register(s)"/]
         MSTLP --- TLs
         MSReg--- Reg

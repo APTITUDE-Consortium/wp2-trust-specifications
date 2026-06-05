@@ -173,7 +173,7 @@ The **Authorization Use** column indicates how each parameter is consumed: **Dec
 | `credentials[]` | RPs (OPTIONAL) | **Decision rule**: scope comparison bertween `claim[]` paths and `meta.vct_values`/`doctype_value` and requested attributes | [ETSI TS 119 475, Table 9] RPRC_09, RPRC_21 |
 | `provides_attestations[]` | APs (REQUIRED) | **Decision rule**: attestation type verification of registered types against requested type during issuance | [ETSI TS 119 475, Table 8] RPRC_15, RPRC_23, ISSU_34b |
 | `intermediary` | WRPs (OPTIONAL) | **Decision rule**: `intermediary.sub` used to check against authenticated intermediary identity | [ETSI TS 119 475, Table 10], [CIR 2025/848, Annex I.14] |
-| `status` | WRPs (REQUIRED) | **Decision rule**: <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> revocation check via Status List | [ETSI TS 119 475] GEN-6.2.6.1-04, RPRC_17 |
+| `status` | WRPs (REQUIRED) | **Decision rule**: <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> revocation check via <artifacts:Status List Token> | [ETSI TS 119 475] GEN-6.2.6.1-04, RPRC_17 |
 | `iat` / `exp` | WRPs (REQUIRED) | **Decision rule**: temporal validity check | [ETSI TS 119 475] |
 
 ##### Distribution Methods
