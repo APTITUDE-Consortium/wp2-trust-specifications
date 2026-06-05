@@ -60,7 +60,7 @@ The list below enumerates all the applicable standards and specifications that h
 | REGISTRAR-REG-05 | Registrars SHALL verify against supporting documentation or appropriate authentic sources/official records. | [CIR 2025/848, Article 6(4)] |
 | REGISTRAR-REG-06 | Verification of entitlements SHALL be carried out according to Annex III of [CIR 2025/848]. | [CIR 2025/848, Article 6(5)] |
 | REGISTRAR-REG-07 | If Registrar cannot verify according to Article 6(3)–(5) of [CIR 2025/848], Registrar SHALL reject the registration. | [CIR 2025/848, Article 6(6)] |
-| REGISTRAR-GOV-01 | Registrars SHALL suspend/cancel a registration of a WRP where requested by a supervisory body (per eIDAS reference). | [CIR 2025/848, Article 9(1)] |
+| REGISTRAR-GOV-01 | Registrars SHALL suspend/cancel a registration of a WRP where requested by a <roles:Supervisory Body\|supervisory body> (per eIDAS reference). | [CIR 2025/848, Article 9(1)] |
 | REGISTRAR-GOV-02 | Registrars MAY suspend/cancel a registration of a WRP if info inaccurate/outdated/misleading, non-compliance, excessive attribute requests, breach of law. | [CIR 2025/848, Article 9(2)] |
 | REGISTRAR-GOV-03 | Registrars SHALL suspend/cancel a registration of a WRP if requested by the WRP itself. | [CIR 2025/848, Article 9(3)] |
 | REGISTRAR-GOV-04 | Registrar SHALL conduct proportionality assessment before suspension/cancellation under Article 9(2). | [CIR 2025/848, Article 9(4)] |

@@ -9,15 +9,12 @@
 | CIR 2025/1569                    | 2025-07-29 | Qualified electronic attestations of attributes and electronic attestations of attributes provided by or on behalf of a public sector body responsible for an authentic source |
 | CIR 2025/848-Amendment           |            | Applicable standards and specifications (draft) |
 
-### ARF and Technical Specifications (TS)
+### EU Regulations
 
-| **Item Reference** | **Version** | **Date**   | **Standard Name/Details** |
-| ------------------ | ----------- | ---------- | ------------------------- |
-| ARF                | V2.8.0      | 2026-02-02 | Architecture and Reference Framework |
-| TS02               | V1.0.1      | 2026-01-30 | Specification of systems enabling the notification and subsequent publication of Provider information |
-| TS05               | V1.3        | 2026-02-13 | Specification of common formats and API for Relying Party Registration information |
-| TS06               | V1.0.1      | 2026-01-30 | Common Set of Relying Party Information to be Registered |
-| TS11               | V1.0.1      | 2026-01-30 | Specification of interfaces and formats for the catalogue of attributes and the catalogue of attestations |
+| **Item Reference**               | **Date**   | **Standard Name/Details** |
+| -------------------------------- | ---------- | ------------------------- |
+| REG-EU-2024/1183                 | 2024-04-11 | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
+
 
 ### ETSI Specifications
 
