@@ -1,0 +1,3061 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-/pr-workspace/registry/">
+      
+      
+        <link rel="prev" href="../registration-certificate/">
+      
+      
+        <link rel="next" href="../revocation-mechanisms/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Registry - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../media/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Registry
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../trust-framework/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Trust Framework
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access-certificate/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trust-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedded-disclosure-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revocation-mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-management-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust management process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trusted-list-and-list-of-trusted-lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trusted list and list of trusted lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../access-certificate/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    PR Workspace (Changed Files Only)
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/registry.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/registry.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Registry</h1>
+
+<p>This section specifies requirements for the <a class="mkdocs-ezglossary-link"
+    id="5df4cff0dfbeb30fb6eede9163fd6837"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> of <a class="mkdocs-ezglossary-link"
+    id="417bfa34d52ab25e73394af84ff910b2"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and the national <a class="mkdocs-ezglossary-link"
+    id="c76df4c463078793b9fbf85793391ebf"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
+    id="721b0b3069ab773978fb46f05a1209fe"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> (the registry service) in the context of eIDAS2 and the <a class="mkdocs-ezglossary-link"
+    id="a7c113540b432177c25709d135e8fb46"
+    title="European Digital Identity Wallet used in APTITUDE pilots."
+    data-tooltip="European Digital Identity Wallet used in APTITUDE pilots."
+    name="components:EUDI Wallet"
+    href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a> ecosystem.</p>
+<p>Formally, a <a class="mkdocs-ezglossary-link"
+    id="0774776c16ded592be6d56e05b85cefa"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> is the designated body that:</p>
+<ul>
+<li>Manages the <a class="mkdocs-ezglossary-link"
+    id="404162473381b897956dd12d4a1ee39b"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registration lifecycle (onboarding, update, suspension, cancellation),</li>
+<li>Ensures the integrity and publication of registration information,</li>
+<li>Ensures interoperability by exposing <a class="mkdocs-ezglossary-link"
+    id="6381e43e2b73862d964511bf395d5afb"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registration data via a national website and a single common REST API.</li>
+</ul>
+<p>The national <a class="mkdocs-ezglossary-link"
+    id="ebce52c473cdc17eb90ee8d5a52118d2"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
+    id="1c0059877c32463385c0f7395f876e63"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about <a class="mkdocs-ezglossary-link"
+    id="fb7a242c29b629e7436b0f74d61a86a7"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and their authorisations/declared usage.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The national <a class="mkdocs-ezglossary-link"
+    id="0ed145d2b1b2363a76d4c2c42ca8f1ba"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
+    id="608adb5e39236939c5d045088097f689"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a single coherent common REST API and return signed statements as required.</p>
+<p>Additionally, sectorial registers may exist internally, but the decision regarding issuance of <a class="mkdocs-ezglossary-link"
+    id="fa545efc6c8c84eeffca3ea4babd48cb"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is solely based on whether the <a class="mkdocs-ezglossary-link"
+    id="c9dfa5db5b544f377ca84c139b2a71ff"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> has been registered with an active status in the national <a class="mkdocs-ezglossary-link"
+    id="fff9d12ebd72c67c3d4c4bf0af6effaf"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>.</p>
+</div>
+<h4 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h4>
+<p>The list below enumerates all the applicable standards and specifications that have been used to populate the table below:</p>
+<ul>
+<li><strong>CIR 2025/848</strong> on <a class="mkdocs-ezglossary-link"
+    id="7d4a067e7194081595383876bc435a4c"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registration and <a class="mkdocs-ezglossary-link"
+    id="55e04fd2866a093e8d7ed2c977672827"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Registers</a>.</li>
+<li><strong>CIR 2025/848-Amendment</strong>. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <a class="mkdocs-ezglossary-link"
+    id="c4c9a58c3d99324a264a9096143692b0"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
+    id="395d2d5bcda3d08596457d16b097d3a5"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>.</li>
+<li><strong>ETSI TS 119 475</strong> on <a class="mkdocs-ezglossary-link"
+    id="52912a0bccf9b0606418ffba92e85fa3"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> attributes, entitlement URIs, <a class="mkdocs-ezglossary-link"
+    id="f94a0d28a771e80032a869d5835cef26"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RP</a> authorisation decision support.</li>
+<li><strong>RFC 7515</strong></li>
+<li><strong>RFC 7519</strong></li>
+<li><strong>RFC 8392</strong></li>
+<li><strong>TS05</strong> on common formats and API for <a class="mkdocs-ezglossary-link"
+    id="269abfb4b66f77cc15ba564811ae65b0"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registration information.</li>
+<li><strong>TS06</strong> on common set of <a class="mkdocs-ezglossary-link"
+    id="e9ccb1b38752653766709c8d8b2c4e16"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> information to be registered.</li>
+</ul>
+<h4 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h4>
+<h5 id="register-requirements">Register Requirements<a class="headerlink" href="#register-requirements" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REGISTER-PUB-01</td>
+<td>Each Member State SHALL establish and maintain at least one national Register of WRPs.</td>
+<td>[CIR 2025/848, Article 3(1)]</td>
+</tr>
+<tr>
+<td>REGISTER-PUB-02</td>
+<td>The Register SHALL include at least the information set out in Annex I of [CIR 2025/848].</td>
+<td>[CIR 2025/848, Article 3(2)]</td>
+</tr>
+<tr>
+<td>REGISTER-PUB-03</td>
+<td>Member States SHALL designate at least one Registrar to manage and operate at least one national Register.</td>
+<td>[CIR 2025/848, Article 3(3)]</td>
+</tr>
+<tr>
+<td>REGISTER-PUB-04</td>
+<td>Member States SHALL make Annex I information publicly available online in human-readable and machine-processable form.</td>
+<td>[CIR 2025/848, Article 3(4)]</td>
+</tr>
+<tr>
+<td>REGISTER-PUB-05</td>
+<td>Annex I information included in the Register (as for REGISTER-PUB-02) SHALL be available through a national website and a single common API, and SHALL be electronically signed/sealed by/on behalf of the Registrar.</td>
+<td>[CIR 2025/848, Article 3(5)]</td>
+</tr>
+<tr>
+<td>REGISTER-API-01</td>
+<td>The single common API SHALL be a REST API supporting JSON, and signed according to [RFC 7515].</td>
+<td>[CIR 2025/848, Annex II §2(1)(a)]</td>
+</tr>
+<tr>
+<td>REGISTER-API-02</td>
+<td>The API SHALL allow any requestor, without prior authentication, to search and request complete lists, allowing partial matches on defined parameters.</td>
+<td>[CIR 2025/848, Annex II §2(1)(b)]</td>
+</tr>
+<tr>
+<td>REGISTER-API-03</td>
+<td>Replies to request that match at least one WRP SHALL include statements covering Annex I information [CIR 2025/848], current/historic WRPACs and WRPRCs, excluding Annex I point 4 information.</td>
+<td>[CIR 2025/848, Annex II §2(1)(c)]</td>
+</tr>
+<tr>
+<td>REGISTER-API-04</td>
+<td>The API SHALL be published as OpenAPI v3 with documentation enabling interoperability across the Union.</td>
+<td>[CIR 2025/848, Annex II §2(1)(d)]</td>
+</tr>
+<tr>
+<td>REGISTER-API-05</td>
+<td>The API SHALL provide security-by-default and by-design to ensure availability and integrity.</td>
+<td>[CIR 2025/848, Annex II §2(1)(e)]</td>
+</tr>
+<tr>
+<td>REGISTER-API-06</td>
+<td>Statements referred to in REGISTER-API-03 SHALL be electronically signed/sealed JSON files as for [RFC 7515].</td>
+<td>[CIR 2025/848, Annex II §2(2)]</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The set of <a class="mkdocs-ezglossary-link"
+    id="9906e91a8320964cef3075d757ff92a0"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> information listed in Annex I of [CIR 2025/848] and mentioned in REGISTER-PUB-05 and REGISTER-API-03 will be described in the <a href="#register-data-schema">Register Data Schema</a> section.</p>
+</div>
+<h5 id="registrar-requirements">Registrar Requirements<a class="headerlink" href="#registrar-requirements" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REGISTRAR-REG-01</td>
+<td>Registrars SHALL establish easy-to-use electronic, and where possible automated, registration processes.</td>
+<td>[CIR 2025/848, Article 6(1)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-REG-02</td>
+<td>WRPs SHALL provide at least Annex I information to national registers.</td>
+<td>[CIR 2025/848, Article 5(1)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-REG-03</td>
+<td>WRPs SHALL ensure information is accurate and SHALL update without undue delay.</td>
+<td>[CIR 2025/848, Article 5(2)–(3)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-REG-04</td>
+<td>Where possible, Registrars SHALL verify (automated) accuracy/validity, power of attorney (if applicable), entitlement type(s), and absence of existing registration in another national Register.</td>
+<td>[CIR 2025/848, Article 6(3)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-REG-05</td>
+<td>Registrars SHALL verify against supporting documentation or appropriate authentic sources/official records.</td>
+<td>[CIR 2025/848, Article 6(4)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-REG-06</td>
+<td>Verification of entitlements SHALL be carried out according to Annex III of [CIR 2025/848].</td>
+<td>[CIR 2025/848, Article 6(5)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-REG-07</td>
+<td>If Registrar cannot verify according to Article 6(3)–(5) of [CIR 2025/848], Registrar SHALL reject the registration.</td>
+<td>[CIR 2025/848, Article 6(6)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-01</td>
+<td>Registrars SHALL suspend/cancel a registration of a WRP where requested by a supervisory body (per eIDAS reference).</td>
+<td>[CIR 2025/848, Article 9(1)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-02</td>
+<td>Registrars MAY suspend/cancel a registration of a WRP if info inaccurate/outdated/misleading, non-compliance, excessive attribute requests, breach of law.</td>
+<td>[CIR 2025/848, Article 9(2)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-03</td>
+<td>Registrars SHALL suspend/cancel a registration of a WRP if requested by the WRP itself.</td>
+<td>[CIR 2025/848, Article 9(3)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-04</td>
+<td>Registrar SHALL conduct proportionality assessment before suspension/cancellation under Article 9(2).</td>
+<td>[CIR 2025/848, Article 9(4)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-05</td>
+<td>Registrar SHALL notify WRP and relevant Providers of WRPAC and WRPRC without undue delay and not later than 24 hours.</td>
+<td>[CIR 2025/848, Article 9(5)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-06</td>
+<td>Providers of WRPAC and WRPRC SHALL revoke affected certificates without undue delay after notification (where applicable).</td>
+<td>[CIR 2025/848, Article 9(6)]</td>
+</tr>
+<tr>
+<td>REGISTRAR-GOV-07</td>
+<td>Registrars SHALL keep records (Annex I + issuance data + changes) for 10 years.</td>
+<td>[CIR 2025/848, Article 10]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="provider-of-wrpac-and-wrprc-and-register-interactions-requirements">Provider of WRPAC and WRPRC and Register Interactions Requirements<a class="headerlink" href="#provider-of-wrpac-and-wrprc-and-register-interactions-requirements" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PROVIDER-WRPAC-01</td>
+<td>Providers of <a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPAC</a> SHALL verify at issuance time that the WRP is included with valid registration status in the national Register and certificate info is consistent with Register info.</td>
+<td>[CIR 2025/848, Annex IV §3(c)]</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPAC-02</td>
+<td>Providers of <a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPAC</a> SHALL continuously monitor changes in the national Register and revoke when changes require (especially suspension/cancellation).</td>
+<td>[CIR 2025/848, Annex IV §3(e)]</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPAC-03</td>
+<td>Providers of WRPAC SHALL publish revocation status timely and in any event within 24 hours after receipt of revocation request.</td>
+<td>[CIR 2025/848, Annex IV §3(h)]</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPRC-01</td>
+<td>Where a Member State authorises WRPRCs, it SHALL ensure each intended use is expressed in the WRPRC and that WRPRCs include a privacy policy URL and a general access policy.</td>
+<td>[CIR 2025/848, Article 8(2)(b)–(c) and (g), Article 8(3)]</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPRC-02</td>
+<td>Providers of WRPRC SHALL verify at issuance time Register status, consistency with Register info, and validity of the WRPAC (when relevant).</td>
+<td>[CIR 2025/848, Annex V §3(c)]</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPRC-03</td>
+<td>Providers of WRPRC SHALL monitor Register changes, reissue/revoke when changes require.</td>
+<td>[CIR 2025/848, Annex V §3(d)]</td>
+</tr>
+<tr>
+<td>PROVIDER-WRPRC-04</td>
+<td>Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT).</td>
+<td>[CIR 2025/848, Annex V §4]; [ETSI TS 119 475, Section 4.4]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="register-data-schema">Register Data Schema<a class="headerlink" href="#register-data-schema" title="Permanent link">&para;</a></h4>
+<p>This section defines the data schema for each <a href="roles:Wallet-Relying Party (WRP)\">WRP</a> registered in the national <a class="mkdocs-ezglossary-link"
+    id="d8ffb0203b41f127324dfd3004659d8c"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
+    id="5466ff42c2d8590e4395e11906c987a4"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].</p>
+<!--format of the information exchanged via the Register API as JSON objects and JWS-signed statements. -->
+
+<div class="admonition warning">
+<p class="admonition-title">Address field publication rule</p>
+<p>The draft Annex VI text says the published API payload excludes <code>WalletRelyingParty.physicalAddress</code>, while Table 1 uses the attribute name <code>postalAddress</code>. This document uses <strong><code>postalAddress</code></strong> as the schema field name and applies the publication rule to that field (i.e., do not publish it in API statements).</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>legalPerson</code></td>
+<td><code>LegalPerson</code></td>
+<td>REQUIRED if legal person</td>
+<td>Specific attributes of a legal person. It SHALL be present if the legal entity is a legal person.</td>
+</tr>
+<tr>
+<td><code>naturalPerson</code></td>
+<td><code>NaturalPerson</code></td>
+<td>REQUIRED if natural person</td>
+<td>Specific attributes of a natural person. It SHALL be present if the legal entity is a natural person.</td>
+</tr>
+<tr>
+<td><code>identifier</code></td>
+<td><code>Identifier[]</code></td>
+<td>REQUIRED</td>
+<td>One or more identifiers from official records.</td>
+</tr>
+<tr>
+<td><code>postalAddress</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Postal address(es) of the legal entity (<strong>registration view only; excluded from published API statements</strong>). Note: [ETSI TS 119 475, B.2.2] defines this as <code>[1..1] string</code>; Draft Annex VI Table 1 uses an array. This document follows Draft Annex VI.</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>ISO 3166-1 alpha-2 country code, or <code>"EU"</code> for providers operating in the Union.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Contact email address(es) (RFC 5322 format).</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Contact phone number(s), international form with <code>+</code> prefix.</td>
+</tr>
+<tr>
+<td><code>infoURI</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Web page URI(s) for information about the entity.</td>
+</tr>
+<tr>
+<td><code>providerType</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Provider subtype. For WRP records, typically <code>WalletRelyingParty</code>.</td>
+</tr>
+<tr>
+<td><code>policy</code></td>
+<td><code>Policy[]</code></td>
+<td>REQUIRED</td>
+<td>Policy/terms/privacy/registration policy URL(s) with policy type URI.</td>
+</tr>
+<tr>
+<td><code>x5c</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>X.509 certificate chain(s) for provider services (JWS <code>x5c</code>-style chains; supports rollover).</td>
+</tr>
+<tr>
+<td><code>tradeName</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>User-facing trade/service name recognisable to users.</td>
+</tr>
+<tr>
+<td><code>supportURI</code></td>
+<td><code>string[]</code></td>
+<td>REQUIRED</td>
+<td>Support/helpdesk URI(s) for the service.</td>
+</tr>
+<tr>
+<td><code>srvDescription</code></td>
+<td><code>MultiLangString[][]</code></td>
+<td>REQUIRED</td>
+<td>Array of service descriptions, each being an array of localised strings (one inner array per service).</td>
+</tr>
+<tr>
+<td><code>intendedUse</code></td>
+<td><code>IntendedUse[]</code></td>
+<td>REQUIRED if the entity is not an intermediary</td>
+<td>Intended-use definitions and requested attestation data. Not required if registering only as a designated intermediary.</td>
+</tr>
+<tr>
+<td><code>isPSB</code></td>
+<td><code>boolean</code></td>
+<td>REQUIRED</td>
+<td>Whether the WRP is a public sector body (explicitly present; <code>false</code> if not PSB).</td>
+</tr>
+<tr>
+<td><code>entitlement</code></td>
+<td><code>string[]</code></td>
+<td>REQUIRED</td>
+<td>Entitlement URI(s) (see note below).</td>
+</tr>
+<tr>
+<td><code>providesAttestations</code></td>
+<td><code>Credential[]</code></td>
+<td>REQUIRED if PID/Attestation Provider</td>
+<td>Attestation types the WRP intends to issue to wallet units. It SHALL be present if any entitlement is <code>QEAA_Provider</code>, <code>Non_Q_EAA_Provider</code>, <code>PUB_EAA_Provider</code>, or <code>PID_Provider</code>.</td>
+</tr>
+<tr>
+<td><code>supervisoryAuthority</code></td>
+<td><code>LegalEntity</code></td>
+<td>REQUIRED</td>
+<td>Competent supervisory authority (Art. 46a eIDAS) including contact information.</td>
+</tr>
+<tr>
+<td><code>registryURI</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>URI of the API of the national register of WRPs.</td>
+</tr>
+<tr>
+<td><code>usesIntermediary</code></td>
+<td><code>WalletRelyingParty[]</code></td>
+<td>OPTIONAL</td>
+<td>If present, indicates designated intermediary(ies). Only the subset <code>{identifier, tradeName, registryURI}</code> is needed for each intermediary reference.</td>
+</tr>
+<tr>
+<td><code>isIntermediary</code></td>
+<td><code>boolean</code></td>
+<td>REQUIRED</td>
+<td>Whether the registered entity is a designated intermediary. SHALL be <code>false</code> if <code>usesIntermediary</code> is present.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mapping between CIR entitlement label and [ETSI TS 119 475, Annex A.2] normative URI:</p>
+<table>
+<thead>
+<tr>
+<th>CIR entitlement label</th>
+<th>Normative URI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Service_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/Service_Provider</code></td>
+</tr>
+<tr>
+<td><code>QEAA_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/QEAA_Provider</code></td>
+</tr>
+<tr>
+<td><code>Non_Q_EAA_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider</code></td>
+</tr>
+<tr>
+<td><code>PUB_EAA_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider</code></td>
+</tr>
+<tr>
+<td><code>PID_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/PID_Provider</code></td>
+</tr>
+<tr>
+<td><code>QCert_for_ESeal_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/QCert_for_ESeal_Provider</code></td>
+</tr>
+<tr>
+<td><code>QCert_for_ESig_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider</code></td>
+</tr>
+<tr>
+<td><code>rQSigCDs_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider</code></td>
+</tr>
+<tr>
+<td><code>rQSealCDs_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider</code></td>
+</tr>
+<tr>
+<td><code>ESig_ESeal_Creation_Provider</code></td>
+<td><code>https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider</code></td>
+</tr>
+</tbody>
+</table>
+<p>[ETSI TS 119 475, Annex A.3] defines additional sub-entitlement URIs for specific service provider roles. For example, Payment Service Provider sub-entitlements include:</p>
+<table>
+<thead>
+<tr>
+<th>Sub-entitlement</th>
+<th>URI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Account Servicing PSP</td>
+<td><code>https://uri.etsi.org/19475/SubEntitlement/psp/psp-as</code></td>
+</tr>
+<tr>
+<td>Payment Initiation Service Provider</td>
+<td><code>https://uri.etsi.org/19475/SubEntitlement/psp/psp-pi</code></td>
+</tr>
+<tr>
+<td>Account Information Service Provider</td>
+<td><code>https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai</code></td>
+</tr>
+<tr>
+<td>PSP issuing card-based payment instruments</td>
+<td><code>https://uri.etsi.org/19475/SubEntitlement/psp/psp-ic</code></td>
+</tr>
+<tr>
+<td>Unspecified PSP</td>
+<td><code>https://uri.etsi.org/19475/SubEntitlement/psp/unspecified</code></td>
+</tr>
+</tbody>
+</table>
+<p>Future editions may define additional sub-entitlements at national or EU level.</p>
+</div>
+<h5 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier value of the LegalEntity.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier scheme/type URI (see normative URIs below).</td>
+</tr>
+</tbody>
+</table>
+<p>Normative identifier type URIs defined in [ETSI TS 119 475]:</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Normative URI</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EORI-No</td>
+<td><code>http://data.europa.eu/eudi/id/EORI-No</code></td>
+<td>Economic Operator Registration and Identification Number according to (EU) No 1352/2013.</td>
+</tr>
+<tr>
+<td>LEI</td>
+<td><code>http://data.europa.eu/eudi/id/LEI</code></td>
+<td>Legal Entity Identifier according to (EU) 2022/1860; [ISO 17442-1].</td>
+</tr>
+<tr>
+<td>EUID</td>
+<td><code>http://data.europa.eu/eudi/id/EUID</code></td>
+<td>European Unique Identifier according to (EU) 2020/2244; (EU) 2021/1042.</td>
+</tr>
+<tr>
+<td>VATIN</td>
+<td><code>http://data.europa.eu/eudi/id/VATIN</code></td>
+<td>Value Added Tax Identification Number according to Council Directive 2006/112/EC.</td>
+</tr>
+<tr>
+<td>TIN</td>
+<td><code>http://data.europa.eu/eudi/id/TIN</code></td>
+<td>Taxpayer Identification Number.</td>
+</tr>
+<tr>
+<td>Excise</td>
+<td><code>http://data.europa.eu/eudi/id/Excise</code></td>
+<td>Excise Number according to Art. 2 (12) of the Council Regulation (EC) No 389/2012.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Additional type identifiers may be defined at national or EU level.</p>
+</div>
+<h5 id="multilangstring">MultiLangString<a class="headerlink" href="#multilangstring" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lang</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Language tag (e.g., <code>en</code>, <code>fr</code>).</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Language-specific content.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="intendeduse">IntendedUse<a class="headerlink" href="#intendeduse" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>intendedUseIdentifier</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Registry-level unique identifier for the intended use.</td>
+</tr>
+<tr>
+<td><code>purpose</code></td>
+<td><code>MultiLangString[]</code></td>
+<td>REQUIRED</td>
+<td>Description of intended use of the data to request from wallet units.</td>
+</tr>
+<tr>
+<td><code>privacyPolicy</code></td>
+<td><code>Policy[]</code></td>
+<td>REQUIRED</td>
+<td>Privacy policy URL(s) for the intended use.</td>
+</tr>
+<tr>
+<td><code>credential</code></td>
+<td><code>Credential[]</code></td>
+<td>REQUIRED</td>
+<td>Machine-readable list of requested data (attestations/attributes).</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Validity start date of the intended use in accordance with ISO86011  YYYY-MM-DD format.</td>
+</tr>
+<tr>
+<td><code>revokedAt</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>End date for the validity of the intended use in accordance with ISO86011  YYYY-MM-DD format.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="policy">Policy<a class="headerlink" href="#policy" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Policy type URI (RFC 3986). See defined policy type URIs below.</td>
+</tr>
+<tr>
+<td><code>policyURI</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>URL where the policy is published.</td>
+</tr>
+</tbody>
+</table>
+<p>Defined policy type URIs:</p>
+<table>
+<thead>
+<tr>
+<th>Policy type</th>
+<th>URI</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Privacy policy</td>
+<td><code>http://data.europa.eu/eudi/policy/privacy-policy</code></td>
+<td>[ETSI TS 119 475, B.2.8]; [CIR 2025/848, Article 8(2)(g)]</td>
+</tr>
+<tr>
+<td>Terms and conditions</td>
+<td><code>http://data.europa.eu/eudi/policy/terms-and-conditions</code></td>
+<td>[CIR 2025/848-Amendment, Annex VI, Table 7]</td>
+</tr>
+<tr>
+<td>Privacy statement (intended use)</td>
+<td><code>http://data.europa.eu/eudi/policy/privacy-statement</code></td>
+<td>[CIR 2025/848-Amendment, Annex VI, Table 7]</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Additional policy type URIs may be defined at national or EU level.</p>
+</div>
+<h5 id="credential">Credential<a class="headerlink" href="#credential" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Credential format identifier (e.g., <code>dc+sd-jwt</code>, <code>mso_mdoc</code>).</td>
+</tr>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>REQUIRED</td>
+<td>Additional grouping/type metadata defined per credential format (e.g., <code>{"vct": "..."}</code> for <code>dc+sd-jwt</code>, <code>{"doctype_value": "..."}</code> for <code>mso_mdoc</code>). See OpenID4VP §6.1.</td>
+</tr>
+<tr>
+<td><code>claim</code></td>
+<td><code>Claim[]</code></td>
+<td>OPTIONAL</td>
+<td>Requested claim paths and allowed values (if constrained).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="claim">Claim<a class="headerlink" href="#claim" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>array</code></td>
+<td>REQUIRED</td>
+<td>Non-empty path array of strings / <code>null</code> / non-negative integers (OpenID4VP-style path pointer segments).</td>
+</tr>
+<tr>
+<td><code>values</code></td>
+<td><code>array</code></td>
+<td>OPTIONAL</td>
+<td>Optional allowed values; elements may be <code>string</code>, <code>integer</code>, or <code>boolean</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="legalentity-for-supervisoryauthority">LegalEntity (for <code>supervisoryAuthority</code>)<a class="headerlink" href="#legalentity-for-supervisoryauthority" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>legalPerson</code></td>
+<td><code>LegalPerson</code></td>
+<td>OPTIONAL</td>
+<td>Present when the authority is a legal person.</td>
+</tr>
+<tr>
+<td><code>naturalPerson</code></td>
+<td><code>NaturalPerson</code></td>
+<td>OPTIONAL</td>
+<td>Present when the authority is a natural person.</td>
+</tr>
+<tr>
+<td><code>identifier</code></td>
+<td><code>Identifier[]</code></td>
+<td>OPTIONAL</td>
+<td>Identifier(s) of the authority.</td>
+</tr>
+<tr>
+<td><code>postalAddress</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Postal address(es) of the authority.</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Country code (or <code>EU</code> where applicable).</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Email address(es) of the authority.</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Phone number(s) of the authority.</td>
+</tr>
+<tr>
+<td><code>infoURI</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Information URI(s) of the authority.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="legalperson">LegalPerson<a class="headerlink" href="#legalperson" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>legalName</code></td>
+<td><code>string[]</code></td>
+<td>REQUIRED</td>
+<td>Legal name(s) as in official records.</td>
+</tr>
+<tr>
+<td><code>establishedBylaw</code></td>
+<td><code>Law[]</code></td>
+<td>REQUIRED if PSBs responsible for authentic sources</td>
+<td>Legal basis for establishment. It SHALL be present for PSBs responsible for authentic sources; present for other PSBs where applicable.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="naturalperson">NaturalPerson<a class="headerlink" href="#naturalperson" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>givenName</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Current first name(s), including middle names where applicable.</td>
+</tr>
+<tr>
+<td><code>familyName</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Current surname(s).</td>
+</tr>
+<tr>
+<td><code>dateOfBirth</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Date of birth (where present in official records).</td>
+</tr>
+<tr>
+<td><code>placeOfBirth</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Place of birth (where present in official records).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="law">Law<a class="headerlink" href="#law" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lang</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Two-letter language code (ISO 639-1 style).</td>
+</tr>
+<tr>
+<td><code>legalBasis</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Legal basis text establishing the legal person (or requiring/recommending access to a claim).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="non-normative-example-wrp-object-for-a-relying-party">Non-normative example: WRP object for a Relying Party<a class="headerlink" href="#non-normative-example-wrp-object-for-a-relying-party" title="Permanent link">&para;</a></h5>
+<p>A bank registered as a service provider (requesting PID for KYC).</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ExampleBank S.A.&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/id/EUID&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR-EUID-123456789&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/id/VATIN&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR12345678901&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;postalAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;10 Rue Exemple, 75000 Paris, FR&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;wallet-rp-registration@examplebank.eu&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;+33100000000&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://examplebank.eu&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;providerType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WalletRelyingParty&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/terms-and-conditions&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://examplebank.eu/terms&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-policy&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://examplebank.eu/privacy&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;tradeName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExampleBank Mobile&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;supportURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://examplebank.eu/support&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;srvDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retail banking services for individuals.&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fr&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Services bancaires pour particuliers.&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;isPSB&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entitlement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://uri.etsi.org/19475/Entitlement/Service_Provider&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;supervisoryAuthority&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Autorité de supervision Exemple&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;contact@supervisor.example.fr&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://supervisor.example.fr&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;registryURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.example.fr/api&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;isIntermediary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;intendedUse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;intendedUseIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iu-001&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;purpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Open a bank account remotely.&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;privacyPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-statement&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://examplebank.eu/privacy/wallet&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;credential&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dc+sd-jwt&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;vct&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.eu/schema/pid&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;claim&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;family_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;given_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;birth_date&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="non-normative-example-wrp-object-for-a-relying-party-that-is-also-an-attestation-provider">Non-normative example: WRP object for a Relying Party that is also an Attestation Provider<a class="headerlink" href="#non-normative-example-wrp-object-for-a-relying-party-that-is-also-an-attestation-provider" title="Permanent link">&para;</a></h5>
+<p>A bank registered as both a service provider (requesting <a class="mkdocs-ezglossary-link"
+    id="6ac3c4ad4862ab4251542362169dfb8c"
+    title="Data set that enables the establishment of a person's identity."
+    data-tooltip="Data set that enables the establishment of a person's identity."
+    name="credentials:Person Identification Data (PID)"
+    href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">PID</a> for KYC) and a <code>QEAA_Provider</code> (issuing bank account attestations to wallet units). It has both <code>intendedUse</code> and <code>providesAttestations</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ExampleBank S.A.&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">[</span><span class="err">...as</span><span class="w"> </span><span class="err">previous</span><span class="w"> </span><span class="err">example...</span><span class="p">]</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">&quot;srvDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retail banking services for individuals.&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fr&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Services bancaires pour particuliers.&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Issuance of qualified bank account attestations.&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fr&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Délivrance d&#39;attestations de compte bancaire qualifiées.&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;isPSB&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entitlement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://uri.etsi.org/19475/Entitlement/Service_Provider&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://uri.etsi.org/19475/Entitlement/QEAA_Provider&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;providesAttestations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dc+sd-jwt&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;vct_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://examplebank.eu/schema/bank-account&quot;</span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;claim&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;iban&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;account_holder_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;account_type&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;currency&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;intendedUse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;intendedUseIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iu-account-opening&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;purpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Open a bank account remotely.&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fr&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ouvrir un compte bancaire à distance.&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;privacyPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-statement&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://examplebank.eu/privacy/wallet/account-opening&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;credential&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dc+sd-jwt&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;vct_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://example.eu/schema/pid&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;claim&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;family_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;given_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;birth_date&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nationalities&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;intendedUseIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iu-bank-account-attestation-issuance&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;purpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Verify wallet holder identity to issue a bank account attestation.&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;privacyPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-statement&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://examplebank.eu/privacy/wallet/attestation-issuance&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;credential&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dc+sd-jwt&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;vct_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://example.eu/schema/pid&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;claim&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;family_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;given_name&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;birth_date&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;supervisoryAuthority&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Autorité de supervision Exemple&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;contact@supervisor.example.fr&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://supervisor.example.fr&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;registryURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.example.fr/api&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;isIntermediary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="non-normative-example-wrp-object-for-a-designated-intermediary">Non-normative example: WRP object for a designated Intermediary<a class="headerlink" href="#non-normative-example-wrp-object-for-a-designated-intermediary" title="Permanent link">&para;</a></h5>
+<p>An entity registered as a designated Intermediary that acts on behalf of <a class="mkdocs-ezglossary-link"
+    id="06da3ff063ead6e8806b3fc2ba5b3288"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> during Wallet interactions. It has <code>isIntermediary: true</code> and does not declare <code>intendedUse</code> (not required when registering solely as an intermediary).</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;TrustBridge Services B.V.&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/id/EUID&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NL-EUID-112233445&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/id/VATIN&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NL112233445B01&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;postalAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Keizersgracht 100, 1015 CN Amsterdam, NL&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;wallet-intermediary@trustbridge.example&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;+31200000000&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://trustbridge.example&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;providerType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WalletRelyingParty&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/terms-and-conditions&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://trustbridge.example/terms&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-policy&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://trustbridge.example/privacy&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;tradeName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TrustBridge&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;supportURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://trustbridge.example/support&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;srvDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediary services for wallet-relying parties operating in the Netherlands.&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nl&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediaire diensten voor wallet-relying parties in Nederland.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;isPSB&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entitlement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://uri.etsi.org/19475/Entitlement/Service_Provider&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;supervisoryAuthority&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Autoriteit Persoonsgegevens&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;info@autoriteitpersoonsgegevens.nl&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://autoriteitpersoonsgegevens.nl&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;registryURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.example.nl/api&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;isIntermediary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="non-normative-example-wrp-object-for-a-wrp-using-a-designated-intermediary">Non-normative example: WRP object for a WRP using a designated Intermediary<a class="headerlink" href="#non-normative-example-wrp-object-for-a-wrp-using-a-designated-intermediary" title="Permanent link">&para;</a></h5>
+<p>A small e-commerce business that relies on TrustBridge (see example above) to conduct Wallet interactions on its behalf. It has <code>usesIntermediary</code> pointing to the Intermediary's registry entry, and <code>isIntermediary: false</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ShopExample N.V.&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/id/EUID&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NL-EUID-556677889&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;postalAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Damrak 50, 1012 LP Amsterdam, NL&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;wallet-rp@shopexample.example&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://shopexample.example&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;providerType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WalletRelyingParty&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/terms-and-conditions&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://shopexample.example/terms&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-policy&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://shopexample.example/privacy&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;tradeName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ShopExample&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;supportURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://shopexample.example/support&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;srvDescription&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Online retail services.&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nl&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Online detailhandel.&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;isPSB&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entitlement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://uri.etsi.org/19475/Entitlement/Service_Provider&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;intendedUse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;intendedUseIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iu-age-verification&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;purpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Verify the customer is of legal age for restricted product purchases.&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;privacyPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/policy/privacy-statement&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;policyURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://shopexample.example/privacy/wallet&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;credential&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mso_mdoc&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;doctype_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;org.iso.18013.5.1.mDL&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;claim&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;org.iso.18013.5.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;age_over_18&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;supervisoryAuthority&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Autoriteit Persoonsgegevens&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;infoURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://autoriteitpersoonsgegevens.nl&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;registryURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.example.nl/api&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;isIntermediary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;usesIntermediary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://data.europa.eu/eudi/id/EUID&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NL-EUID-112233445&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;tradeName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TrustBridge&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;registryURI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://registry.example.nl/api&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="common-register-api">Common Register API<a class="headerlink" href="#common-register-api" title="Permanent link">&para;</a></h4>
+<p>This section documents a [TS05] aligned common <a class="mkdocs-ezglossary-link"
+    id="8e07d261978b0ecceea7fd45e135296f"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> API profile that satisfies [CIR 2025/848, Annex II] and [CIR 2025/848-Amendment] constraints.</p>
+<h5 id="api-methods-on-registration-and-updating-of-wrp-data">API Methods on Registration and Updating of WRP Data<a class="headerlink" href="#api-methods-on-registration-and-updating-of-wrp-data" title="Permanent link">&para;</a></h5>
+<p>The common API write methods (POST, PUT and DELETE) are defined for purposes of managing the <a class="mkdocs-ezglossary-link"
+    id="a6bca06f316aa53d39c3ca6faac43355"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> information of MS <a class="mkdocs-ezglossary-link"
+    id="275263b2d86043d2cbece8928955130e"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These methods SHALL be accessible by authorised users only.</p>
+</div>
+<h6 id="post-wrp-create-required"><code>POST /wrp</code> — create (REQUIRED)<a class="headerlink" href="#post-wrp-create-required" title="Permanent link">&para;</a></h6>
+<p>POST is for creating a new <a class="mkdocs-ezglossary-link"
+    id="20148bee09965b1f4f954a25cf16566c"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> entry in the <a class="mkdocs-ezglossary-link"
+    id="114c70354dfa22cac0a565d405d18c31"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>. Method expects a request body with the <code>WalletRelyingParty</code> schema, and returns a <code>201</code> on success.</p>
+<p><strong>Request (body)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WalletRelyingParty</code></td>
+<td>REQUIRED</td>
+<td>Full WRP object compliant with [CIR 2025/848-Amendment, Annex VI, Table 1] schema.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>201</code></td>
+<td>Created.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad request (invalid or incomplete payload).</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Unauthorized (missing or invalid authentication).</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Forbidden (caller not authorised by Member State).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h6 id="put-wrp-update-required"><code>PUT /wrp</code> — update (REQUIRED)<a class="headerlink" href="#put-wrp-update-required" title="Permanent link">&para;</a></h6>
+<p>PUT is for updating an existing <a class="mkdocs-ezglossary-link"
+    id="04d1478048c14206c6c3aa4509d07dc3"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> entry in the <a class="mkdocs-ezglossary-link"
+    id="7169af2e96adc8fe3fdf2b3ce7cc0714"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>. Method expects a request body with the <code>WalletRelyingParty</code> schema, and can return <code>200</code> on success or <code>404</code> if not found.</p>
+<p><strong>Request (body)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WalletRelyingParty</code></td>
+<td>REQUIRED</td>
+<td>Full WRP object compliant with [CIR 2025/848-Amendment, Annex VI, Table 1] schema.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>Successfully updated.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad request (invalid or incomplete payload).</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Unauthorized (missing or invalid authentication).</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Forbidden (caller not authorised by Member State).</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Not found.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h6 id="delete-wrp-delete-required"><code>DELETE /wrp</code> — delete (REQUIRED)<a class="headerlink" href="#delete-wrp-delete-required" title="Permanent link">&para;</a></h6>
+<p>DELETE is for deleting of an existing <a class="mkdocs-ezglossary-link"
+    id="1fbb4c96cb71976c924743f67b2a25b1"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> entry in the <a class="mkdocs-ezglossary-link"
+    id="24723c1c371dda4a735d4d85380e8606"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>. Method expects a request body with the <code>WalletRelyingParty</code> identifier, and returns a <code>204</code> on success.</p>
+<p><strong>Request (body)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifier</code></td>
+<td>REQUIRED</td>
+<td>Identifier payload for the WRP to delete (profile-defined body shape, based on <code>WalletRelyingParty.identifier</code>).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For [TS05] and [CIR 2025/848-Amendment], this method expects a request body with the <code>WalletRelyingParty</code> identifier, while in the corresponding YAML file <a href="https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml">ts5-openapi31-registrar-api.yml</a> the identifier is sent as a query parameter. This profile follows the [CIR 2025/848-Amendment].</p>
+</div>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>204</code></td>
+<td>Successfully deleted.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad request (invalid or incomplete payload).</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Unauthorized (missing or invalid authentication).</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Forbidden (caller not authorised by Member State).</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Not found.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="api-methods-for-register-queries-open-api">API Methods for Register Queries (Open API)<a class="headerlink" href="#api-methods-for-register-queries-open-api" title="Permanent link">&para;</a></h5>
+<p>The common API read methods (GET) SHALL be open for public access (no prior authentication) and returns JWS-signed statements.</p>
+<p>The public API SHALL provide methods for searching and querying complete data sets of registered <a class="mkdocs-ezglossary-link"
+    id="17dd2e3372fa27a6ea9aed8ef4a0be59"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> matching with provided query parameters</p>
+<h6 id="get-wrp-searchlist-required"><code>GET /wrp</code> — search/list (REQUIRED)<a class="headerlink" href="#get-wrp-searchlist-required" title="Permanent link">&para;</a></h6>
+<p>Get a list of <a class="mkdocs-ezglossary-link"
+    id="65ca09bea969250bf44ec41821482ce2"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> (with optional filtering and pagination, list of all registered WRPs returned when no query parameters are provided).</p>
+<p><strong>Request (query parameters)</strong></p>
+<p>The common API SHALL support parameterised queries on <code>GET /wrp</code>. The following names align with the [CIR 2025/848-Amendment, Annex VI] query parameter naming.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by official/business registration number / identifier.</td>
+</tr>
+<tr>
+<td><code>legalname</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by official company name.</td>
+</tr>
+<tr>
+<td><code>tradename</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by trade name.</td>
+</tr>
+<tr>
+<td><code>policy</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by privacy policy URL (or policy URI as profiled).</td>
+</tr>
+<tr>
+<td><code>entitlement</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by entitlement type (URI).</td>
+</tr>
+<tr>
+<td><code>usesintermediary</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intermediary identifier.</td>
+</tr>
+<tr>
+<td><code>isintermediary</code></td>
+<td><code>boolean</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intermediary status.</td>
+</tr>
+<tr>
+<td><code>intendeduseidentifier</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by registrar-provided intended-use identifier.</td>
+</tr>
+<tr>
+<td><code>claimpath</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intended-use requested claim path.</td>
+</tr>
+<tr>
+<td><code>credentialmeta</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intended-use credential metadata (format-specific).</td>
+</tr>
+<tr>
+<td><code>credentialformat</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Filter by intended-use credential format.</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Cursor for pagination (profile-defined token format).</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>integer</code></td>
+<td>OPTIONAL</td>
+<td>The number of items to return per page (profile-defined).</td>
+</tr>
+<tr>
+<td><code>providesattestation</code></td>
+<td><code>Credential</code></td>
+<td>OPTIONAL</td>
+<td>Filter by attestation types provided.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The name of some query parameters differ from [TS05] and the corresponding YAML file <a href="https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml">ts5-openapi31-registrar-api.yml</a> containing the OpenAPI specification of the JSON and REST based application programming interfaces (e.g., <code>intendedusecredentialmeta</code> vs <code>credentialmeta</code>). This profile follows the OpenAPI specification.</p>
+<p>In addition, this specification adds <code>providesattestation</code> to cover the [CIR 2025/848-Amendment] requirement for filtering parameter: type of attestations provided, returning the complete data set of each of the registered wallet-relying parties matching the value provided for this parameter.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>If no query parameters are provided, <code>GET /wrp</code> SHALL return the full list of registered WRPs (subject to pagination profile).</td>
+</tr>
+<tr>
+<td>The endpoint SHALL support cursor-based pagination.</td>
+</tr>
+<tr>
+<td>The endpoint SHALL support combined filters in a single query.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong>
+A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Media Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td><code>application/jwt</code></td>
+<td>JWS compact string. Decoded payload SHALL contain an array of <code>WalletRelyingParty</code> objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by <a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPAC</a> history information in the statement/profile used by the Member State. (strict Annex VI form: array; profile envelope also allowed if documented).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The published API view excludes only <code>postalAddress</code> ([CIR 2025/848-Amendment, Annex I, point 4]). All other fields, including intended-use credential claims, are published as registered.</p>
+</div>
+<!--
+!!! note
+
+    This implementation profile uses *JWS Compact Serialization* for API responses (e.g., `application/jwt`). In JWS Compact Serialization, there is *no unprotected header*; therefore, the JOSE Header is the *JWS Protected Header* and is integrity-protected by the signature.
+
+    The following JOSE Protected Header requirements apply to Registry statements:
+
+    | Header parameter | Presence | Description | Reference |
+    | --- | --- | --- | --- |
+    | `alg` | REQUIRED | Signature/seal algorithm identifier. The value `none` SHALL NOT be used for Registry statements. | [RFC 7515, §4.1.1]; profile rule |
+    | `x5c` | RECOMMENDED (REQUIRED if no trust-list/key-resolution profile is defined) | X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array. | [RFC 7515, §4.1.6] |
+    | `kid` | RECOMMENDED | Key identifier to support key rollover and efficient verifier key selection. | [RFC 7515, §4.1.4] |
+    | `x5t#S256` | RECOMMENDED | SHA-256 thumbprint of the signing certificate (useful for pinning / key matching). | [RFC 7515, §4.1.8] |
+    | `x5u` | OPTIONAL | URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation. | [RFC 7515, §4.1.5] |
+    | `typ` | RECOMMENDED | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | [RFC 7515, §4.1.9] |
+    | `crit` | OPTIONAL | If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. `crit` MUST appear only in the protected header. | [RFC 7515, §4.1.11] |
+
+    !!! note
+
+        The JOSE header parameter `x5c` above is part of the JWS signature envelope. It is distinct from any `x5c` attribute defined in the registry payload/data schema (e.g., Annex VI data schema fields).
+-->
+
+<hr />
+<h6 id="get-wrpcheck-intended-use-intended-use-check-required"><code>GET /wrp/check-intended-use</code> — intended use check (REQUIRED)<a class="headerlink" href="#get-wrpcheck-intended-use-intended-use-check-required" title="Permanent link">&para;</a></h6>
+<p>A dedicated intended-use check endpoint for making narrowed-down intended use related queries from the <a class="mkdocs-ezglossary-link"
+    id="ff9fdacc05dc65451e10c1ffbd6cf19b"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>.</p>
+<p><strong>Request</strong></p>
+<p>This profile uses the following mapping (strictly aligned names for intended-use filters):</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rpidentifier</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier of the WRP whose intended-use registration is being checked.</td>
+</tr>
+<tr>
+<td><code>intendeduseidentifier</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Intended-use identifier registered by the registrar.</td>
+</tr>
+<tr>
+<td><code>claimpath</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Requested claim path to check (serialised representation of path array; profile-defined encoding).</td>
+</tr>
+<tr>
+<td><code>credentialformat</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Credential format to check.</td>
+</tr>
+<tr>
+<td><code>credentialmeta</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Credential metadata filter (profile-defined serialisation).</td>
+</tr>
+<tr>
+<td><code>policyurl</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Used when checking if the privacy policy URL is registered for the identified WRP.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Media Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td><code>application/jwt</code></td>
+<td>JWS compact string; decoded payload is boolean <code>true</code> or <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>-</td>
+<td>Bad request (invalid or incomplete request parameter).</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>-</td>
+<td>WRP with the given <code>rpidentifier</code> not found.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h6 id="get-wrpidentifier-get-by-identifier-optional"><code>GET /wrp/{identifier}</code> — get by identifier (OPTIONAL)<a class="headerlink" href="#get-wrpidentifier-get-by-identifier-optional" title="Permanent link">&para;</a></h6>
+<p>Get <a class="mkdocs-ezglossary-link"
+    id="a63406b5d3dbaf4ed07f2d4cfa4875fa"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> by identifier.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This endpoint is useful, but it is <strong>not explicitly defined</strong> in the [CIR 2025/848-Amendment, Annex VI] common API method list. If kept, mark it as a national/profile extension.</p>
+</div>
+<p><strong>Request (query)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier of the WRP to retrieve.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<table>
+<thead>
+<tr>
+<th>HTTP Code</th>
+<th>Media Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td><code>application/jwt</code></td>
+<td>JWS compact string; decoded payload contains one <code>WalletRelyingParty</code> entry (or profile envelope).</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>-</td>
+<td>Not found.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="optional-profile-envelope-recommended-for-interoperability-metadata">Optional Profile Envelope (recommended for interoperability metadata)<a class="headerlink" href="#optional-profile-envelope-recommended-for-interoperability-metadata" title="Permanent link">&para;</a></h5>
+<p>To preserve issuer/timestamp metadata and pagination in a stable schema, a Member State MAY define an envelope profile as follows (while still satisfying the endpoint semantics above):</p>
+<h6 id="signedwrparrayenvelope-profile">SignedWRPArrayEnvelope (profile)<a class="headerlink" href="#signedwrparrayenvelope-profile" title="Permanent link">&para;</a></h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iss</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Identifier of the Registry/<a class="mkdocs-ezglossary-link"
+    id="c6bfb67cf8c568d33572b18d4eb11258"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> issuing the statement.</td>
+</tr>
+<tr>
+<td><code>iat</code></td>
+<td><code>integer</code></td>
+<td>REQUIRED</td>
+<td>Issued-at timestamp (Unix epoch seconds).</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>WRPEntry[]</code></td>
+<td>REQUIRED</td>
+<td>Matching WRP entries (published view, address excluded), each bundled with its certificate history.</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>Pagination</code></td>
+<td>OPTIONAL</td>
+<td>Cursor-based pagination metadata.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="wrpentry-per-wrp-bundle">WRPEntry (per-WRP bundle)<a class="headerlink" href="#wrpentry-per-wrp-bundle" title="Permanent link">&para;</a></h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wrp</code></td>
+<td><code>WalletRelyingParty</code></td>
+<td>REQUIRED</td>
+<td>WRP registration information (published view, address excluded).</td>
+</tr>
+<tr>
+<td><code>wrpacHistory</code></td>
+<td><code>CertificateHistoryEntry[]</code></td>
+<td>OPTIONAL</td>
+<td>WRP access certificate history for this WRP (including CT-related references where available).</td>
+</tr>
+<tr>
+<td><code>wrprcHistory</code></td>
+<td><code>CertificateHistoryEntry[]</code></td>
+<td>OPTIONAL</td>
+<td>WRP registration certificate history for this WRP (if provided by national profile).</td>
+</tr>
+</tbody>
+</table>
+<h6 id="signedwrpenvelope-profile-for-non-common-helper-endpoints">SignedWRPEnvelope (profile, for non-common helper endpoints)<a class="headerlink" href="#signedwrpenvelope-profile-for-non-common-helper-endpoints" title="Permanent link">&para;</a></h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iss</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Registry/<a class="mkdocs-ezglossary-link"
+    id="68997d75bba8df7ee5701da13a0d7057"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> identifier.</td>
+</tr>
+<tr>
+<td><code>iat</code></td>
+<td><code>integer</code></td>
+<td>REQUIRED</td>
+<td>Issued-at timestamp.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>WalletRelyingParty</code></td>
+<td>REQUIRED</td>
+<td>Single WRP object (published view, address excluded).</td>
+</tr>
+<tr>
+<td><code>wrpacHistory</code></td>
+<td><code>CertificateHistoryEntry[]</code></td>
+<td>OPTIONAL</td>
+<td><a href="artifacts:Wallet-Relying Party Access Certificate (WRPAC)\">WRPAC</a> history.</td>
+</tr>
+<tr>
+<td><code>wrprcHistory</code></td>
+<td><code>CertificateHistoryEntry[]</code></td>
+<td>OPTIONAL</td>
+<td><a href="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\">WRPRC</a> history (if supported).</td>
+</tr>
+</tbody>
+</table>
+<h6 id="signedintendedusecheckenvelope-profile">SignedIntendedUseCheckEnvelope (profile)<a class="headerlink" href="#signedintendedusecheckenvelope-profile" title="Permanent link">&para;</a></h6>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Annex VI strictly allows a JWS-signed boolean response. This object envelope is a non-normative profile convenience.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iss</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Registry issuer.</td>
+</tr>
+<tr>
+<td><code>iat</code></td>
+<td><code>integer</code></td>
+<td>REQUIRED</td>
+<td>Issued-at timestamp.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>boolean</code></td>
+<td>REQUIRED</td>
+<td>Result of intended-use check.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="certificatehistoryentry-profile-helper-for-certificate-histories">CertificateHistoryEntry (profile helper for certificate histories)<a class="headerlink" href="#certificatehistoryentry-profile-helper-for-certificate-histories" title="Permanent link">&para;</a></h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>certificate</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Certificate (e.g., PEM/DER-encoded representation, profile-defined).</td>
+</tr>
+<tr>
+<td><code>x5c</code></td>
+<td><code>string[]</code></td>
+<td>OPTIONAL</td>
+<td>Certificate chain for the certificate entry.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>REQUIRED</td>
+<td>Certificate status (e.g., <code>current</code>, <code>revoked</code>, <code>expired</code>, <code>historic</code>).</td>
+</tr>
+<tr>
+<td><code>validFrom</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Validity start timestamp/date (profile-defined format).</td>
+</tr>
+<tr>
+<td><code>validTo</code></td>
+<td><code>string</code></td>
+<td>OPTIONAL</td>
+<td>Validity end timestamp/date (profile-defined format).</td>
+</tr>
+<tr>
+<td><code>ctLogEntries</code></td>
+<td><code>object[]</code></td>
+<td>OPTIONAL</td>
+<td>CT log / transparency references ([RFC 9162]-aligned, profile-defined structure).</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 5, 2026 05:16:01 UTC">June 5, 2026 05:16:01</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../media/mermaid-init.js"></script>
+      
+        <script src="../../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

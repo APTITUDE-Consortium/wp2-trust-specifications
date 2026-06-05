@@ -1,0 +1,1619 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-/pr-workspace/authentication-process/">
+      
+      
+        <link rel="prev" href="../access-certificate/">
+      
+      
+        <link rel="next" href="../authorization-process/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Authentication process - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../media/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Authentication process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../trust-framework/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Trust Framework
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access-certificate/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trust-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedded-disclosure-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revocation-mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-management-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust management process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trusted-list-and-list-of-trusted-lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trusted list and list of trusted lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../access-certificate/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    PR Workspace (Changed Files Only)
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/authentication-process.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/authentication-process.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Authentication process</h1>
+
+<p>The <strong>Authentication Process</strong> enables the <a class="mkdocs-ezglossary-link"
+    id="97e88773b76248afdad4aa1012b54dfc"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> to authenticate a <a class="mkdocs-ezglossary-link"
+    id="c88e0ceaa441c63eb814bedb5162ed99"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">Wallet-Relying Party (WRP)</a> during an interaction. It establishes trust by validating the <a class="mkdocs-ezglossary-link"
+    id="027ac189d5d2a96514e175dd3360d7f6"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>'s X.509 certificate chain—from a trusted Provider of <a class="mkdocs-ezglossary-link"
+    id="ad6ec8a657f4bc6481db9ccbda73132b"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates</a> (<a class="mkdocs-ezglossary-link"
+    id="15549953269edd31753f22c693267381"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>) down to the presented <a class="mkdocs-ezglossary-link"
+    id="62080f9fda2bc15b9ecf2d3e169a80ca"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>—and verifying the <a class="mkdocs-ezglossary-link"
+    id="7c1cc7e8580080d6ae2c2a89a47d06ca"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>'s possession of the corresponding private key.</p>
+<p>To authenticate the <a class="mkdocs-ezglossary-link"
+    id="c207d66a1136840f8ad147f6d7940513"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>, the <a class="mkdocs-ezglossary-link"
+    id="87673deb57cffb5ceb25648f364071e0"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL verify the authenticity and integrity of the presented <a class="mkdocs-ezglossary-link"
+    id="eb29a92e66b86cb8d99a841c60689ea8"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> by performing the following steps:</p>
+<ol>
+<li><strong>Retrieve the Trust Anchor:</strong> Obtain the <a class="mkdocs-ezglossary-link"
+    id="439832e776ca4a7b064c5c99dac5ba14"
+    title="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a>'s entry from the validated List of <a class="mkdocs-ezglossary-link"
+    id="9cde257529e4b9ce6a993a1c0b78a7fe"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entities</a> (<a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>) (see <a href="#trust-anchor-validation-process">Trust Anchor Validation Process</a>). The certificate(s) found in the <code>ServiceDigitalIdentity</code> field of the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>'s <code>TrustedEntitiesList</code> constitute the <a class="mkdocs-ezglossary-link"
+    id="45244f149d86684e194e4d84ff546e0a"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>.</li>
+<li><strong>Construct the Certification Path:</strong> Build a path starting from the certificate issued by the <a class="mkdocs-ezglossary-link"
+    id="de874fcb716caa29dee2f37c2d825672"
+    title="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> (C_1) and ending with the <a class="mkdocs-ezglossary-link"
+    id="57c7893eb073d6a46b74b35426cd99d6"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> presented by the WRP (C_n). <em>(Note: The simplest path consists of just one certificate, where n=1).</em></li>
+<li><strong>Execute Path Validation:</strong> Run the algorithm defined in <a href="#wallet-relying-party-access-certificate-path-validation">Wallet Relying Party Access Certificate Path Validation</a> using the retrieved <a class="mkdocs-ezglossary-link"
+    id="c9cbda657ecc42f27fd32ff2c6ddf456"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>.</li>
+<li><strong>Verify the Signature:</strong> Use the public key from the validated <a class="mkdocs-ezglossary-link"
+    id="966d46b72689a31de1e25a8b8c7958d6"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> to verify the WRP's signature on the metadata presented during the specific interaction.</li>
+</ol>
+<p>The method by which the WRP presents its <a class="mkdocs-ezglossary-link"
+    id="a3131eccf3a6039a69752ecda71b3274"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> chain depends on the specific interaction flow:</p>
+<ul>
+<li><strong>OpenID4VP (Remote Flow):</strong> The certificate chain is presented in the <code>x5c</code> field of the WRP-signed <a class="mkdocs-ezglossary-link"
+    id="7369b39fc6c0a8e8d72eade17456ba2b"
+    title="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
+    data-tooltip="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
+    name="artifacts:Request Object"
+    href="../../glossary-definitions/#1213fa5e24bc0f9597bc7a6701069add">Request Object</a>.</li>
+<li><strong>ISO 18013-5 (Proximity Flow):</strong> The certificate chain is presented within the WRP-signed <code>ReaderAuth</code> element of the mdoc request message.</li>
+<li><strong>OpenID4VCI (Issuance Flow):</strong> The certificate chain is presented in the <code>x5c</code> field of the WRP-signed Issuer Metadata.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Mitigating Blind Signing Attacks</p>
+<p>Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol <a class="mkdocs-ezglossary-link"
+    id="1e54e15562b0f3332054eaa1e59448a2"
+    title="A single-use, unpredictable value issued by a server to prevent replay attacks; Wallets must include it verbatim in proofs or responses."
+    data-tooltip="A single-use, unpredictable value issued by a server to prevent replay attacks; Wallets must include it verbatim in proofs or responses."
+    name="data-elements:Nonce"
+    href="../../glossary-definitions/#30a68316857dc67701ca83b68abd8019">nonce</a>, the WRP SHALL NOT use the <a class="mkdocs-ezglossary-link"
+    id="a7f15a558b29622ffcee728b71bc69bd"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> private key to sign arbitrary data that could be controlled by an external party.</p>
+</div>
+<h4 id="wallet-relying-party-authentication-sequence-diagram">Wallet Relying Party Authentication Sequence Diagram<a class="headerlink" href="#wallet-relying-party-authentication-sequence-diagram" title="Permanent link">&para;</a></h4>
+<p>Below is a sequence diagram illustrating the Authentication Process, including the retrieval and validation of the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>, path construction, and certificate validation steps. The diagram also highlights the decision points for successful or failed authentication.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant WRP as WRP (Entity)
+    participant Wallet as Wallet Unit
+    participant LoTE as LoTE Distribution Point
+
+    WRP-&gt;&gt;Wallet: Signed Artifact + WRPAC Chain
+    Wallet-&gt;&gt;LoTE: Retrieve/Check LoTE
+    LoTE--&gt;&gt;Wallet: Return Valid LoTE
+
+    Note over Wallet: 1. Trust Anchor Discovery
+    Wallet-&gt;&gt;Wallet: Extract Provider of WRPAC Cert (Trust Anchor) from LoTE
+
+    Note over Wallet: 2. Path Construction
+    Wallet-&gt;&gt;Wallet: Build Path: [Intermediate CAs] -&gt; WRPAC
+
+    Note over Wallet: 3. Validation
+    Wallet-&gt;&gt;Wallet: Validate Path ([RFC 5280], [RFC 6960])
+    Wallet-&gt;&gt;Wallet: Verify WRP Artifact Signature
+
+    alt Validation Successful
+        Wallet--&gt;&gt;WRP: Proceed with Interaction
+    else Validation Failed
+        Wallet--&gt;&gt;WRP: Abort / Error Response
+    end</code></pre>
+<h4 id="wallet-relying-party-access-certificate-path-validation">Wallet Relying Party Access Certificate Path Validation<a class="headerlink" href="#wallet-relying-party-access-certificate-path-validation" title="Permanent link">&para;</a></h4>
+<p>This section defines the validation of the certification path.</p>
+<ul>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="7c7882bc972c5bc3b800b574eb1702b3"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is the certificate of the <a class="mkdocs-ezglossary-link"
+    id="f7be3f35dd7de0e42ad146c487c8bd9e"
+    title="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> obtained from the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>.</li>
+<li>The Certification Path is the sequence of <span class="arithmatex">\(n\)</span> certificates (<span class="arithmatex">\(C_1 \dots C_n\)</span>) provided by the WRP, where:<ul>
+<li><span class="arithmatex">\(C_1\)</span> is the certificate issued by the <a class="mkdocs-ezglossary-link"
+    id="7e75347bd9c0dcdd9e51d30d655100f4"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>.</li>
+<li><span class="arithmatex">\(C_n\)</span> is the <a class="mkdocs-ezglossary-link"
+    id="22a33ad8c834fb8dad1e1382d1fc336a"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> (the target certificate).</li>
+<li>For any <span class="arithmatex">\(i\)</span> in <span class="arithmatex">\(1 \dots n-1\)</span>, <span class="arithmatex">\(C_i\)</span> is the issuer of <span class="arithmatex">\(C_{i+1}\)</span>.</li>
+</ul>
+</li>
+</ul>
+<p>The <a class="mkdocs-ezglossary-link"
+    id="aabf809b827b079a45126590d2bd6551"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> initializes the validation with:</p>
+<ul>
+<li><code>path</code>: The sequence <span class="arithmatex">\(C_1 \dots C_n\)</span>.</li>
+<li><code>trust_anchor</code>: The certificate of the <a class="mkdocs-ezglossary-link"
+    id="4eb7b9339e281e2d86c00723aa36ae4f"
+    title="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue relying party access certificates to wallet-relying parties registered in that Member State. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a>.</li>
+<li><code>current_time</code>: The current date and time.</li>
+</ul>
+<p><strong>Step 1: Initialization</strong>
+Initialize the state variables:</p>
+<ul>
+<li><code>valid_policy_tree</code>: A single node (depth 0, <code>valid_policy</code>=<code>anyPolicy</code>, <code>qualifier_set</code>={}, <code>expected_policy_set</code>={ <code>anyPolicy</code> }).</li>
+<li><code>explicit_policy</code> (how many certificates in the chain are allowed to lack a specific, valid policy): <span class="arithmatex">\(n+1\)</span>.</li>
+<li><code>inhibit_any_policy</code> (how many certificates are allowed to use the <code>anyPolicy</code> OID): <span class="arithmatex">\(n+1\)</span> (no inhibition of policies allowed).</li>
+<li><code>policy_mapping</code>: <span class="arithmatex">\(n+1\)</span> (no policy mapping allowed).</li>
+<li><code>working_public_key</code>: The public key of the <code>trust_anchor</code>.</li>
+<li><code>working_public_key_parameters</code>: The parameters of the <code>trust_anchor</code> public key.</li>
+<li><code>working_issuer_name</code>: The subject Distinguished Name (DN) of the <code>trust_anchor</code>.</li>
+<li><code>max_path_length</code>: <span class="arithmatex">\(n\)</span>.</li>
+</ul>
+<p><strong>Step 2: Certificate Processing</strong>
+Iterate through the path for <span class="arithmatex">\(i\)</span> from <span class="arithmatex">\(1\)</span> to <span class="arithmatex">\(n\)</span>:</p>
+<ol>
+<li>Basic Integrity &amp; Binding Checks:<ul>
+<li>Verify the signature of <span class="arithmatex">\(C_i\)</span> using <code>working_public_key</code>, <code>working_public_key_parameters</code>, and the algorithm identifier.</li>
+<li>Ensure <code>current_time</code> falls within the <code>notBefore</code> and <code>notAfter</code> validity period of <span class="arithmatex">\(C_i\)</span>.</li>
+<li>Check revocation status (<a class="mkdocs-ezglossary-link"
+    id="b495ac5747334f07e266f470adbf2559"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> or <a class="mkdocs-ezglossary-link"
+    id="ec1ef3cedd1711f9699edbf5191fedcf"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a>) as defined in <a href="#revocation-checking">Revocation Checking</a>.</li>
+<li>Verify that the issuer name of <span class="arithmatex">\(C_i\)</span> matches <code>working_issuer_name</code>.</li>
+</ul>
+</li>
+<li>Policy Processing:<ul>
+<li>If <code>certificatePolicies</code> extension is present and <code>valid_policy_tree</code> is not NULL:<ul>
+<li>Process policy constraints, qualifiers, and mappings according to [RFC 5280, Section 6.1.3].</li>
+<li>for each policy <span class="arithmatex">\(P\)</span> not equal to <code>anyPolicy</code> in the certificate policies extension, let <span class="arithmatex">\(P\)</span>-OID denote the OID for policy <span class="arithmatex">\(P\)</span> and <span class="arithmatex">\(P\)</span>-Q denote the qualifier set for policy <span class="arithmatex">\(P\)</span>.<ul>
+<li>for each node of depth <span class="arithmatex">\(i-1\)</span> in the <code>valid_policy_tree</code> where <span class="arithmatex">\(P\)</span>-OID is in the node's <code>expected_policy_set</code>, create a child node with <code>valid_policy</code> <span class="arithmatex">\(P\)</span>-OID, <code>qualifier_set</code> <span class="arithmatex">\(P\)</span>-Q, and <code>expected_policy_set</code> set to {<span class="arithmatex">\(P\)</span>-OID}.</li>
+<li>If no match is found for <span class="arithmatex">\(P\)</span>-OID in any node of depth <span class="arithmatex">\(i-1\)</span> and the <code>valid_policy_tree</code> has a node of depth <span class="arithmatex">\(i-1\)</span> with <code>valid_policy</code> set to <code>anyPolicy</code>, generate a child node with <code>valid_policy</code> <span class="arithmatex">\(P\)</span>-OID, <code>qualifier_set</code> <span class="arithmatex">\(P\)</span>-Q, and <code>expected_policy_set</code> set to {<code>anyPolicy</code>}.</li>
+</ul>
+</li>
+<li>if the <code>certificatePolicies</code> extension contains <code>anyPolicy</code> with the qualifier set <span class="arithmatex">\(AP\)</span>-Q, <span class="arithmatex">\(i \leq n\)</span>, and the certificate is self issued, then for each node of depth <span class="arithmatex">\(i-1\)</span> in the <code>valid_policy_tree</code> and each value in the <code>expected_policy_set</code> of that node, generate a child node with <code>valid_policy</code> and <code>expected_policy_set</code> set to the <code>expected_policy_set</code> value, set the <code>qualifier_set</code> set to <span class="arithmatex">\(AP\)</span>-Q.</li>
+<li>Update the <code>valid_policy_tree</code> by pruning nodes that do not match the policies in <span class="arithmatex">\(C_i\)</span>.</li>
+</ul>
+</li>
+<li>If <code>certificatePolicies</code> is missing, set <code>valid_policy_tree</code> to NULL.</li>
+</ul>
+</li>
+<li>Policy State Verification:<ul>
+<li>Verify that either <code>explicit_policy &gt; 0</code> OR <code>valid_policy_tree</code> is not NULL. If this fails, abort.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Step 3: Preparation for Next Certificate</strong></p>
+<ol>
+<li>If <span class="arithmatex">\(i &lt; n\)</span> (i.e., <span class="arithmatex">\(C_i\)</span> is an intermediate <a class="mkdocs-ezglossary-link"
+    id="cec8c8502f725a8d5d17568b2d099717"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>), perform the following updates:<ul>
+<li>Set <code>working_issuer_name</code> to the Subject DN of <span class="arithmatex">\(C_i\)</span>.</li>
+<li>Set <code>working_public_key</code> to the Subject Public Key of <span class="arithmatex">\(C_i\)</span>.</li>
+<li>Update <code>working_public_key_parameters</code> and <code>working_public_key_algorithm</code> from <span class="arithmatex">\(C_i\)</span>.</li>
+</ul>
+</li>
+<li>Constraint Checks (Intermediates Only):<ul>
+<li>Verify <code>basicConstraints</code> extension is present and <code>cA</code> is set to TRUE.</li>
+<li>If <code>keyUsage</code> extension is present, verify the <code>keyCertSign</code> bit is set.</li>
+<li>Path Length: Verify <code>max_path_length</code> &gt; 0. Decrement <code>max_path_length</code> by 1.<ul>
+<li>If <span class="arithmatex">\(C_i\)</span> contains <code>pathLenConstraint</code>, set <code>max_path_length</code> to <span class="arithmatex">\(\min(\text{current}, \text{pathLenConstraint})\)</span>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Policy Counters:<ul>
+<li>Decrement <code>explicit_policy</code> and <code>inhibit_any_policy</code> (if &gt; 0).</li>
+</ul>
+</li>
+</ol>
+<p><strong>Step 4: Wrap-up</strong>
+After processing <span class="arithmatex">\(C_n\)</span>:</p>
+<ol>
+<li>If <code>explicit_policy</code> &gt; 0, decrement it.</li>
+<li>If <code>explicit_policy</code> &gt; 0 OR <code>valid_policy_tree</code> is not NULL, the path is VALID.</li>
+<li>Otherwise, the path is INVALID.</li>
+</ol>
+<pre class="mermaid"><code>graph TD
+    Start([Start Validation]) --&gt; DefineInputs[Inputs:&lt;br/&gt;path C1..Cn, trust_anchor, current_time]
+
+    %% Step 1: Initialization
+    DefineInputs --&gt; Step1[Step 1: Initialization&lt;br/&gt;Initialize state variables:&lt;br/&gt;valid_policy_tree, explicit_policy=n+1,&lt;br/&gt; inhibit_any_policy=n+1, policy_mapping=n+1, &lt;br/&gt; working_public_key,&lt;br/&gt;working_public_key_parameters, &lt;br/&gt; working_issuer_name, max_path_length=n, etc.]
+    Step1 --&gt; SetIndex[Set loop index i = 1]
+
+    %% Start Loop
+    SetIndex --&gt; LoopCondition{Is i &lt;= n?}
+
+    %% Loop Body - Step 2: Certificate Processing
+    LoopCondition -- Yes --&gt; GetCi[Process Certificate Ci]
+    GetCi --&gt; Step2_1[Step 2.1: Basic Integrity &amp; Binding Checks&lt;br/&gt;&lt;br/&gt;- Verify signature using working_public_key&lt;br/&gt;- Check validity period against current_time&lt;br/&gt;- Check revocation status&lt;br/&gt;- Verify issuer name matches working_issuer_name]
+
+    Step2_1 --&gt; Check2_1{Basic Checks Pass?}
+    Check2_1 -- No --&gt; AbortFailure([Validation FAILED])
+
+    Check2_1 -- Yes --&gt; Step2_2[Step 2.2: Policy Processing&lt;br/&gt;- If present, process certificatePolicies&lt;br/&gt;- Update/prune valid_policy_tree based on Ci]
+
+    Step2_2 --&gt; Step2_3[Step 2.3: Policy State Verification&lt;br/&gt;Check if explicit_policy &gt; 0 OR valid_policy_tree is not NULL]
+
+    Step2_3 --&gt; Check2_3{Policy State Verified?}
+    Check2_3 -- No --&gt; AbortPolicy([Validation FAILED])
+
+    %% Loop Body - Step 3: Preparation for Next Certificate
+    Check2_3 -- Yes --&gt; CheckIntermediate{Is i &lt; n?&lt;br/&gt;Intermediate CA check}
+
+    %% Branch: Intermediate CA (i &lt; n)
+    CheckIntermediate -- Yes --&gt; Step3_1[Step 3.1: Update Working State&lt;br/&gt;&lt;br/&gt;- Update working_issuer_name from Ci&lt;br/&gt;- Update working_public_key parameters from Ci]
+    Step3_1 --&gt; Step3_2[Step 3.2: Constraint Checks&lt;br/&gt;- Verify basicConstraints cA=TRUE&lt;br/&gt;- Verify keyUsage keyCertSign bit&lt;br/&gt;- Verify max_path_length &gt; 0, decrement it&lt;br/&gt;- Handle pathLenConstraint if present]
+
+    Step3_2 --&gt; Check3_2{Constraints Pass?}
+    Check3_2 -- No --&gt; AbortConstraints([Validation FAILED])
+
+    Check3_2 -- Yes --&gt; Step3_3[Step 3.3: Policy Counters&lt;br/&gt;Decrement explicit_policy and inhibit_any_policy if &gt; 0]
+    Step3_3 --&gt; IncrementIndex
+
+    %% Branch: Target Certificate (i = n) skip Step 3
+    CheckIntermediate -- No (Target Cert Cn)--&gt; IncrementIndex[Increment i : i = i + 1]
+
+    %% Loop back
+    IncrementIndex --&gt; LoopCondition
+
+    %% Loop Finished - Step 4: Wrap-up
+    LoopCondition -- No --&gt; Step4_1[Step 4. Wrap-up&lt;br/&gt;If explicit_policy &gt; 0, decrement it.]
+    Step4_1 --&gt; FinalDecision{Final Decision:&lt;br/&gt;Is explicit_policy &gt; 0 OR&lt;br/&gt;valid_policy_tree is NOT NULL?}
+
+    FinalDecision -- Yes --&gt; Success([Path Validation SUCCESSFUL])
+    FinalDecision -- No --&gt; Failure([Path Validation FAILED])
+
+    %% Styling
+    classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:1px;
+    classDef decision fill:#fff9c4,stroke:#fbc02d,stroke-width:1px;
+    classDef terminator fill:#dcedc8,stroke:#33691e,stroke-width:2px;
+    classDef abort fill:#ffcdd2,stroke:#b71c1c,stroke-width:2px;
+
+    class Step1,SetIndex,GetCi,Step2_1,Step2_2,Step2_3,Step3_1,Step3_2,Step3_3,IncrementIndex,Step4_1 process;
+    class LoopCondition,Check2_1,Check2_3,CheckIntermediate,Check3_2,FinalDecision decision;
+    class Start,DefineInputs,Success terminator;
+    class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;</code></pre>
+<h5 id="revocation-checking">Revocation Checking<a class="headerlink" href="#revocation-checking" title="Permanent link">&para;</a></h5>
+<p>The <a class="mkdocs-ezglossary-link"
+    id="19bfc49cedc74d90f2e568bdfd03d6b8"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL determine the revocation status for every certificate in the path with one of the following methods:</p>
+<ul>
+<li>If the certificate contains the <code>noRevAvail</code> extension AND the <code>ETSIValAssuredCertMod</code> extension (see <a href="#wallet-relying-party-access-certificate-content">Wallet Relying Party Access Certificate Content</a>), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).</li>
+<li>If the <code>cRLDistributionPoints</code> extension is present, the <a class="mkdocs-ezglossary-link"
+    id="cf39a6626776463e59cb84f29c08095a"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> MAY retrieve and validate the <a class="mkdocs-ezglossary-link"
+    id="714625affff816aa64760ed7474250ff"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</li>
+<li>If the <code>authorityInfoAccess</code> extension (with <code>id-ad-ocsp</code>) is present, the <a class="mkdocs-ezglossary-link"
+    id="f00f12f0755fb52f9764ad124c203359"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> MAY perform an <a class="mkdocs-ezglossary-link"
+    id="4567d3617401d676202fbe3d867d9bc2"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> lookup.</li>
+</ul>
+<p>For details regarding the formats and parameters of <a class="mkdocs-ezglossary-link"
+    id="dae3e4b8dca091c8c80eb532c0564ef3"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</a> and <a class="mkdocs-ezglossary-link"
+    id="a9ed04492cde551325c07f605ee5aa4d"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responses, see <a href="#revocation-mechanisms">Revocation Mechanism</a>.</p>
+<h6 id="crl-validation">CRL Validation<a class="headerlink" href="#crl-validation" title="Permanent link">&para;</a></h6>
+<p>When using a <a class="mkdocs-ezglossary-link"
+    id="218fac514efc02c217da76895b7f01b1"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>, the <a class="mkdocs-ezglossary-link"
+    id="3cae61d2915f1dd2e912b89b7af219ce"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL:</p>
+<ol>
+<li>Verify <code>current_time</code> is between <code>thisUpdate</code> and <code>nextUpdate</code>. If the <a class="mkdocs-ezglossary-link"
+    id="f66e27e60678dcc47081df1aa606ab2e"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> is expired, the <a class="mkdocs-ezglossary-link"
+    id="023454eedfb589766a8f4a263b35ca08"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHOULD attempt to retrieve an updated <a class="mkdocs-ezglossary-link"
+    id="33d7e2d41cfcab6fe6dfc62a856a456b"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</li>
+<li>Verify the <a class="mkdocs-ezglossary-link"
+    id="3a56119826e190935faeb82155e1294b"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> is signed by the certificate issuer (or an authorized <a class="mkdocs-ezglossary-link"
+    id="80d71f35412b1694cc2f75fe5423ea1f"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuer) by:<ul>
+<li>matching the <code>issuer</code> field of the <a class="mkdocs-ezglossary-link"
+    id="fcf54cced47a85ac39bd70caca7b154a"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> with the <code>issuer</code> field of the certificate being checked;</li>
+</ul>
+</li>
+<li>Verify the <code>issuingDistributionPoint</code> matches the certificate's distribution point.<ul>
+<li><code>distributionPoint</code> field of the <code>cRLDistributionPoints</code> extension matches the <code>distributionPoint</code> field of the <code>IssuingDistributionPoint</code> extension of the <a class="mkdocs-ezglossary-link"
+    id="89057b42b9b32653c5c98cf112901267"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> (if present);</li>
+<li>if the <code>BasicConstraints</code> extension is present in the certificate being checked, and has <code>cA</code> set to <code>TRUE</code> (respectively <code>FALSE</code>), the <a class="mkdocs-ezglossary-link"
+    id="1d208902756f744a37562372e797a23b"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> Issuing Distribution Point extension SHALL have the <code>onlyContainsCACerts</code> field set to <code>TRUE</code> (respectively have the <code>onlyContainsUserCerts</code> field set to <code>TRUE</code>)</li>
+</ul>
+</li>
+<li>Validate the <a class="mkdocs-ezglossary-link"
+    id="23d1389f78f21c125a624caab36c1120"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> signature using the issuer's public key. If a key usage extension is present in the <a class="mkdocs-ezglossary-link"
+    id="df0dab5243a4d7a5bf50e0bd5241a6ee"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuer's certificate, verify that the <code>cRLSign</code> bit is set.</li>
+<li>Check if the certificate's serial number is listed in <code>revokedCertificates</code>. If an entry is found then the certificate status is set to <code>revoked</code>.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this case it is assumed that the issuer of both the <a class="mkdocs-ezglossary-link"
+    id="79c5cf2b44b020c7de9526cbaa4146a5"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> and certificate do coincide, and that the <a class="mkdocs-ezglossary-link"
+    id="04559fd99385ca1c9b7498b823f56cd9"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> is not signed by a delegated <a class="mkdocs-ezglossary-link"
+    id="dc9eac4948b350d2b7d3749dfc3acba4"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuer.</p>
+</div>
+<p>If any of the steps 1-4 fail or the <a class="mkdocs-ezglossary-link"
+    id="ed0c1e921d4a05b66ea56c6b9a963048"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> is unavailable, the <a class="mkdocs-ezglossary-link"
+    id="d31badfec887a5f6a7e0bed0fcf70d4b"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL consider the certificate status as <code>unknown</code>. When all steps 1-4 succeed and the certificate serial number is not found in the <a class="mkdocs-ezglossary-link"
+    id="cff185e74a47119e4d78c44fd097b5c5"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>, the certificate SHALL be considered <code>good</code>.</p>
+<pre class="mermaid"><code>graph TD
+    Start([Start CRL Validation]) --&gt; Step1{Step 1: Time Check&lt;br/&gt;Is current_time between&lt;br/&gt;thisUpdate and nextUpdate?}
+
+    %% Step 1: Time Verification and Update Logic
+    Step1 -- Yes --&gt; Step2
+    Step1 -- No --&gt; FetchUpdate[Attempt to retrieve updated CRL]
+    FetchUpdate --&gt; GotUpdate{Update Retrieved?}
+    GotUpdate -- Yes --&gt; Step1
+    GotUpdate -- No --&gt; Revoked([Certificate status: unknown&lt;br/&gt;Reason: CRL Expired/Unavailable])
+
+    %% Step 2: Issuer Verification
+    Step2[Step 2: Verify Issuer] --&gt; CheckIssuer{Does CRL Issuer match&lt;br/&gt;Certificate Issuer?}
+    CheckIssuer -- Yes --&gt; Step3
+    CheckIssuer -- No --&gt; Revoked2([Certificate status: UNKNOWN&lt;br/&gt;Reason: Issuer Mismatch])
+
+    %% Step 3: Distribution Point Verification
+    Step3[Step 3: Verify Distribution Point] --&gt; CheckDP{Do Distribution Points match?}
+    CheckDP -- No --&gt; Revoked3([Certificate status: UNKNOWN&lt;br/&gt;Reason: Distribution Point Mismatch])
+    CheckDP -- Yes --&gt; CheckBasicConstraints{Check BasicConstraints}
+
+    CheckBasicConstraints -- Certificate&lt;br/&gt;has `CA=TRUE` --&gt; CheckCRL_CA{Is CRL onlyContainsCACerts=TRUE?}
+    CheckBasicConstraints -- Certificate defaults&lt;br/&gt;to `CA=FALSE` --&gt; CheckCRL_User{Is CRL onlyContainsUserCerts=TRUE?}
+
+    CheckCRL_CA -- No --&gt; Revoked3
+    CheckCRL_User -- No --&gt; Revoked3
+    CheckCRL_CA -- Yes --&gt; Step4
+    CheckCRL_User -- Yes --&gt; Step4
+
+    %% Step 4: Signature &amp; Key Usage
+    Step4[Step 4: Signature &amp; Key Usage] --&gt; ValidateSig{Validate CRL Signature}
+    ValidateSig -- Invalid --&gt; Revoked4([Certificate status: UNKNOWN&lt;br/&gt;Reason: Invalid CRL Signature])
+    ValidateSig -- Valid --&gt; CheckKeyUsage{If KeyUsage present:&lt;br/&gt;Is cRLSign bit set?}
+    CheckKeyUsage -- No --&gt; Revoked4
+    CheckKeyUsage -- Yes --&gt; Step5
+
+    %% Step 5: Revocation Lookup
+    Step5[Step 5: Revocation Lookup] --&gt; LookupSerial{Is Certificate Serial Number&lt;br/&gt;in revokedCertificates?}
+
+    LookupSerial -- Yes --&gt; Revoked5([Certificate status: REVOKED])
+    LookupSerial -- No --&gt; Valid([Certificate status: GOOD])
+
+    %% Styling
+    classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:1px;
+    classDef decision fill:#fff9c4,stroke:#fbc02d,stroke-width:1px;
+    classDef valid fill:#dcedc8,stroke:#33691e,stroke-width:2px;
+    classDef revoked fill:#ffcdd2,stroke:#b71c1c,stroke-width:2px;
+
+    class Start,FetchUpdate,Step2,Step3,Step4,Step5 process;
+    class Step1,GotUpdate,CheckIssuer,CheckDP,CheckBasicConstraints,CheckCRL_CA,CheckCRL_User,ValidateSig,CheckKeyUsage,LookupSerial decision;
+    class Valid valid;
+    class Revoked,Revoked2,Revoked3,Revoked4,Revoked5 revoked;</code></pre>
+<h6 id="ocsp-response-validation">OCSP Response Validation<a class="headerlink" href="#ocsp-response-validation" title="Permanent link">&para;</a></h6>
+<p>When using <a class="mkdocs-ezglossary-link"
+    id="e2f4540f85379aeb3dae2c5d1d4f48d3"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a>, the <a class="mkdocs-ezglossary-link"
+    id="87ca520b69a700e2899357dd43b40970"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL:</p>
+<ol>
+<li>Verify <code>responseStatus</code> is <code>successful (0)</code>. If the <code>responseStatus</code> is not <code>successful</code>, the <a class="mkdocs-ezglossary-link"
+    id="890895f96235054c5564683640360700"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHOULD attempt to retrieve an updated <a class="mkdocs-ezglossary-link"
+    id="87e4745b9129448078c08224bba038bf"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> response, and if that fails, the certificate status SHALL be considered <code>unknown</code>.</li>
+<li>Verify <code>responseType</code> is <code>id-pkix-ocsp-basic</code>.</li>
+<li>Verify the response <code>signature</code> using the Responder's public key (<code>certs</code> field in the <a class="mkdocs-ezglossary-link"
+    id="25cb0756ebe361e096b6cc88d063e49f"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> response).<ul>
+<li><em>Note</em>: To ensure the <a class="mkdocs-ezglossary-link"
+    id="88b8aa54589f3a3c0c5db0d871e1b663"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> Responder is authorized, match the Issuer's key or check the delegation certificate signed by the Issuer.</li>
+</ul>
+</li>
+<li>Verify <code>responderID</code> matches the signer, and the <code>CertID</code> hash fields match the certificate being checked.<ul>
+<li><code>issuerNameHash</code> field value is the hash (via <code>hashAlgorithm</code>) of the DER encoding of the issuer's Name.</li>
+<li><code>issuerKeyHash</code> field value is the hash (via <code>hashAlgorithm</code>) of the issuer’s <code>subjectPublicKey</code> BIT STRING (excluding tag/length/unused-bits).</li>
+<li><code>serialNumber</code> field value is the certificate’s serial number.</li>
+</ul>
+</li>
+<li>Check <code>thisUpdate</code> and <code>nextUpdate</code> (or <code>producedAt</code>) against local freshness policies.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is assumed that only basic <a class="mkdocs-ezglossary-link"
+    id="b91574324adf8715fcf65c125f2b62be"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responses (i.e., where <code>responseType</code> is <code>id-pkix-ocsp-basic</code>) are supported.</p>
+</div>
+<p>If any of the checks in 2-4 fail, the certificate status SHALL be considered <code>unknown</code>. If all checks succeed, update the status of each certificate by matching the <code>certStatus</code> value in the <code>SingleResponse</code> to the requested <code>CertID</code>.</p>
+<pre class="mermaid"><code>graph TD
+    Start([Receive OCSP Response]) --&gt; Step1{Step 1: Verify response Status}
+
+    %% Step 1: Status Verification &amp; Retry Logic
+    Step1 -- "Status == successful (0)" --&gt; Step2{"Step 2: Verify response Type"}
+    Step1 -- "Status != successful" --&gt; Retry{Retry Available?}
+
+    Retry -- Yes --&gt; FetchNew[Attempt to retrieve&lt;br/&gt;updated OCSP response]
+    FetchNew --&gt; Step1
+    Retry -- No --&gt; StatusUnknown([Certificate Status: UNKNOWN])
+
+    %% Step 2: Response Type
+    Step2 -- "id-pkix-ocsp-basic" --&gt; Step3["Step 3: Verify Signature &amp; Auth"]
+    Step2 -- Other --&gt; Invalid([Certificate Status: UNKNOWN&lt;br/&gt;Reason: Invalid Response Type])
+
+    %% Step 3: Signature Verification
+    Step3 --&gt; CheckSig{Signature Valid?}
+
+    CheckSig -- Yes --&gt; Step4["Step 4: Verify ResponderID &amp; CertID"]
+    CheckSig -- No --&gt; InvalidSig([Certificate Status: UNKNOWN&lt;br/&gt;Reason: Invalid Signature])
+
+    %% Step 4: ID Matching
+    Step4 --&gt; CheckIDs{Do IDs Match?}
+
+    CheckIDs -- Yes --&gt; Step5["Step 5: Check Freshness"]
+    CheckIDs -- No --&gt; InvalidIDs([Certificate Status: UNKNOWN&lt;br/&gt;Reason: ID Mismatch])
+
+    %% Step 5: Freshness
+    Step5 --&gt; CheckTime{"Time Check&lt;br/&gt;Is current_time between&lt;br/&gt;thisUpdate and nextUpdate?"}
+
+    CheckTime -- No --&gt; Stale([Certificate Status: UNKNOWN&lt;br/&gt;Reason: OCSP Response Expired])
+    CheckTime -- Yes --&gt; ProcessStatus[Parse SingleResponse certStatus]
+
+    %% Final Status Mapping
+    ProcessStatus --&gt; CheckCertStatus{Check certStatus Value}
+    CheckCertStatus -- good --&gt; StatusGood([Certificate Status: GOOD])
+    CheckCertStatus -- revoked --&gt; StatusRevoked([Certificate Status: REVOKED])
+    CheckCertStatus -- unknown --&gt; StatusUnknownResponse([Certificate Status: UNKNOWN])
+
+    %% Styling
+    classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:1px;
+    classDef decision fill:#fff9c4,stroke:#fbc02d,stroke-width:1px;
+    classDef outcome fill:#dcedc8,stroke:#33691e,stroke-width:2px;
+    classDef fail fill:#ffcdd2,stroke:#b71c1c,stroke-width:2px;
+
+    class Start,FetchNew,Step3,Step4,Step5,ProcessStatus process;
+    class Step1,Step2,Retry,CheckSig,CheckIDs,CheckTime,CheckCertStatus decision;
+    class StatusGood outcome;
+    class Invalid,InvalidSig,InvalidIDs,Stale,StatusRevoked,StatusUnknown,StatusUnknownResponse fail;</code></pre>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 5, 2026 05:16:01 UTC">June 5, 2026 05:16:01</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../media/mermaid-init.js"></script>
+      
+        <script src="../../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1732 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-/pr-workspace/trust-management-process/">
+      
+      
+        <link rel="prev" href="../trust-architecture/">
+      
+      
+        <link rel="next" href="../trusted-list-and-list-of-trusted-lists/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Trust management process - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../media/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trust management process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../trust-framework/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Trust Framework
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access-certificate/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trust-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedded-disclosure-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revocation-mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust management process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trusted-list-and-list-of-trusted-lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trusted list and list of trusted lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../access-certificate/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    PR Workspace (Changed Files Only)
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/trust-management-process.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/trust-management-process.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Trust management process</h1>
+
+<p>This section describes the high level trust management process within the APTITUDE Trust Framework. Its scope is describing the lifecycle of Entities and Trust Artifacts related to WRP and Wallet Providers within the ecosystem, and the relationships between them. Trust Artifacts are the transport mechanism of the Properties (specific Entity attributes categorized in Identity Information, Technical Information, and Policy and Authorization Information) which characterize the entities within the ecosystem, and they are issued and managed by other entities within the ecosystem (Trusted Lists and Trust Artifacts Providers).</p>
+<p>In particular, this section is structured as follows:</p>
+<ul>
+<li>in (<a href="#ecosystem-participants">Ecosystem Participants</a>) are described the various entities within the ecosystem, their roles and relationships.</li>
+<li>in (<a href="#entity-properties-schema">Entity Properties Schema</a>) are described the various Properties of WRP and Wallet Providers, the Trust Artifacts in which these Properties are contained, and the relationships between them.</li>
+<li>in (<a href="#abstract-state-machine">Abstract State Machine</a>) are described the lifecycle <em>State</em> (an abstraction at the governance level that captures the current operational status and trustworthiness within the ecosystem) of WRPs, Wallet Providers, Trust Artifacts, Trusted Lists, their definitions, and the effects that these states have on the entities' operational capabilities and trustworthiness.</li>
+<li>in (<a href="#entity-lifecycle-operations">Entity Lifecycle Operations</a>) are described the operational procedures triggered by changes in the Properties of WRP and Wallet Providers, and the resulting effects on their lifecycle states and trustworthiness within the ecosystem.</li>
+</ul>
+<p>When a WRP's, Wallet Provider's, or Trust Artifacts Properties change (e.g., key rotation), the Trust Artifact Providers or Trusted Lists Providers have to update, revoke and issue or re-sign the corresponding Trust Artifacts or Trusted Lists, without necessarily altering the underlying Abstract State of the WRP. These operational procedures are defined in <a href="#entity-lifecycle-operations">Entity Lifecycle Operations</a>.</p>
+<h4 id="ecosystem-participants">Ecosystem Participants<a class="headerlink" href="#ecosystem-participants" title="Permanent link">&para;</a></h4>
+<p>The entities in the ecosystem are divided in different groups depending on their role and the artifact that they issue.</p>
+<ul>
+<li><em>Supervisory Bodies</em> continuously <em>supervise</em> other ecosystem entities. Supervision affect the states of dependent Entities.</li>
+<li><em>Member States and the European Commission</em> <em>define</em> and <em>manage</em> Attestation Rulebooks, and <em>define</em> <em>Ecosystem Policies and Certification Schemas</em>. These affect dependent Entities during onboarding and their lifecycle.</li>
+<li><em>Trusted Lists Providers</em> (LoTE/LOTL Scheme Operators, EUMS TL Scheme Operators) <em>publish</em> and <em>manage</em> <em>Trusted Lists</em> (LoTE, LOTL, EUMS TL) that contain Trust Anchors and Properties of other Entities. Inclusion in these artifacts is, by itself, also a statement about the role and authorization of the included entities within the ecosystem.</li>
+<li><em>Trust Artifacts Providers</em> (MS Registrars, QTSPs, Providers of WRPAC/WRPRC) <em>publish</em> and <em>manage</em> <em>Trust Artifacts</em> (MS Registers, WRPACs, WRPRCs, Signature/Seal Certificates) which transports Properties (Identity Information, Technical configurations, and Authorization Information) of End-Entities.</li>
+<li><em>End-Entities</em> (Attestation Providers, PID Providers, Relying Parties, Wallet Provider) rely on Trusted Lists and Trust Artifacts for assessing their trustworthiness to other participants within the ecosystems. In addition, they <em>issue</em>, <em>receive</em> or <em>manage</em> User Attestations or Wallet Attestations to and from Wallet Units during issuance, presentation and WP-specific management flows respectively.</li>
+</ul>
+<p>The diagram below highlights the relationships between the aforementioned entities and artifacts, and the dependences between them in terms of supervision, publication, and the effects that changes in the artifacts (represented as diamond shaped objects in the diagram) have on the entities (represented as rectangular objects in the diagram). The arrows indicate the direction of supervision, publication, and effect propagation.</p>
+<pre class="mermaid"><code>flowchart LR
+    %%Entities and Artifacts
+    ms["Member States and European Commission"]
+    sup["Supervisory Body&lt;br&gt;(EC, CAB, NAB, Member States)"]
+    sup_art{{"Ecosystem Artifacts&lt;br&gt;(Attestation Rulebboks, Ecosystem Policies, Certification Schemas)"}}
+    init_ent["Trusted Lists Providers&lt;br&gt;(LoTE/LOTL Scheme Operators, EUMS TL Scheme Operators)"]
+    init_ent_art{{"Trusted Lists&lt;br&gt;(LoTE, LOTL, EUMS TL)"}}
+    mid_ent["Trust Artifacts Providers&lt;br&gt;(MS Registrars, QTSP, Providers of WRPAC/WRPRC)"]
+    mid_ent_art{{"Trust Artifacts&lt;br&gt;(MS Registers, WRPAC, WRPRC, Signature/Seal Certificate)"}}
+    end_ent["End-Entities&lt;br&gt;(Attestation Providers, PID Providers, Wallet Providers, Relying Parties, Relying Party Intermediaries)"]
+    end_ent_art{{"User Attestations, Wallet Attestations"}}
+    %%end_ent_2["End-Entities &lt;br&gt;()"]
+
+    %%Modification propagation arrows
+    sup e1@=="Supervise"==&gt; init_ent
+    sup e2@=="Supervise"==&gt; mid_ent
+    sup e3@=="Supervise"==&gt; end_ent
+    %%sup e8@=="Supervise"==&gt; end_ent_2
+    ms --"Provides/Publishes"--&gt; sup_art
+    sup_art e4@--"Affects"--&gt; init_ent
+    sup_art e5@--"Affects"--&gt; mid_ent
+    sup_art e6@--"Affects"--&gt; end_ent
+    %%sup_art e7@--"Affects"--&gt; end_ent_2
+    mid_ent -."Are included".-&gt; init_ent_art
+    end_ent -."Are included".-&gt; init_ent_art
+    mid_ent_art --"to"----&gt; end_ent
+    init_ent --"Publishes"--&gt; init_ent_art
+    %%init_ent --"Impacts"--&gt; mid_ent
+    mid_ent --"Issue"--&gt; mid_ent_art
+    %%mid_ent --"Impacts"--&gt; end_ent
+    end_ent --"Issue"--&gt; end_ent_art --"to"--&gt; wi["Wallet Units"]
+    wi["Wallet Units"] --"Present Attestations"--&gt; end_ent
+
+
+    e1@{ animate: true }
+    e2@{ animation: fast }
+    e3@{ animation: fast }
+    %%e8@{ animation: fast }
+    %%Artifacts inclusion arrows
+    %%mid_ent e4@-. Referenced in.-&gt; init_ent_art
+    %%end_ent e5@-. Referenced in.-&gt; init_ent_art
+    %%end_ent e6@-. Referenced in.-&gt; mid_ent_art
+    e4@{ animation: fast }
+    e5@{ animation: fast }
+    e6@{ animation: fast }
+    %%e7@{ animation: fast }</code></pre>
+<h4 id="entity-properties-schema">Entity Properties Schema<a class="headerlink" href="#entity-properties-schema" title="Permanent link">&para;</a></h4>
+<p>Trust Artifacts Providers and End-Entities are characterized by three main classes of <em>Properties</em>:</p>
+<ul>
+<li><strong>Identity Information</strong>: This includes the organization's name, contact information, and organizational policies.</li>
+<li><strong>Technical Configuration</strong>: This includes the cryptographic materials (signature/seal keys, authentication keys) and technical endpoints necessary for ecosystem interactions.</li>
+<li><strong>Policy and Authorization Information</strong>: This includes the entity's entitlements, attestation provision capabilities, attestation request capabilities, intermediary use permissions, intended use cases, EDPs, and compliance with certification schemas.</li>
+</ul>
+<h5 id="properties-schema-and-associated-trust-artifacts">Properties Schema and associated Trust Artifacts<a class="headerlink" href="#properties-schema-and-associated-trust-artifacts" title="Permanent link">&para;</a></h5>
+<p>In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Relying Party (Intermediary), PID Providers, Attestation Providers, and Wallet Providers. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.</p>
+<p>All WRP (Relying Parties, Intermediaries, PID Providers, and Attestation Providers) properties are embedded in various Trust Artifacts as follows:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Type</th>
+<th style="text-align: left;">Properties Class</th>
+<th style="text-align: left;">Entity Properties</th>
+<th style="text-align: left;">Trust Artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">WRP</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Organization name</td>
+<td style="text-align: left;">WRPAC, WRPRC, Register</td>
+</tr>
+<tr>
+<td style="text-align: left;">WRP</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Contact information</td>
+<td style="text-align: left;">WRPAC, Register</td>
+</tr>
+<tr>
+<td style="text-align: left;">WRP</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Organizational Policy</td>
+<td style="text-align: left;">WRPAC, WRPRC, Register</td>
+</tr>
+<tr>
+<td style="text-align: left;">WRP</td>
+<td style="text-align: left;">Technical Configuration</td>
+<td style="text-align: left;">Authentication key</td>
+<td style="text-align: left;">WRPAC</td>
+</tr>
+<tr>
+<td style="text-align: left;">WRP</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Entitlements</td>
+<td style="text-align: left;">WRPRC, Register</td>
+</tr>
+<tr>
+<td style="text-align: left;">WRP</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Intermediary use permissions</td>
+<td style="text-align: left;">WRPRC, Register</td>
+</tr>
+<tr>
+<td style="text-align: left;">WRP</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service descriptions</td>
+<td style="text-align: left;">WRPRC, Register</td>
+</tr>
+<tr>
+<td style="text-align: left;">WRP</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Supervision information</td>
+<td style="text-align: left;">WRPRC, Register</td>
+</tr>
+</tbody>
+</table>
+<p>All PID Providers and Attestation Providers have additional specific property requirements embedded in various Trust Artifacts as follows:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Type</th>
+<th style="text-align: left;">Properties Class</th>
+<th style="text-align: left;">Entity Properties</th>
+<th style="text-align: left;">Trust Artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">PID Provider or Attestation Provider</td>
+<td style="text-align: left;">Technical Configuration</td>
+<td style="text-align: left;">Signature/Seal key</td>
+<td style="text-align: left;">Signature/Seal Certificate</td>
+</tr>
+<tr>
+<td style="text-align: left;">PID Provider or Attestation Provider</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">RP Permissions</td>
+<td style="text-align: left;">EDP</td>
+</tr>
+<tr>
+<td style="text-align: left;">PID Provider or Attestation Provider</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Attestation provision capabilities</td>
+<td style="text-align: left;">WRPRC, Register</td>
+</tr>
+</tbody>
+</table>
+<p>All Relying Parties and Intermediaries have additional specific property requirements embedded in various Trust Artifacts as follows:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Type</th>
+<th style="text-align: left;">Properties Class</th>
+<th style="text-align: left;">Entity Properties</th>
+<th style="text-align: left;">Trust Artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">RP or RP Intermediaries</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Attestation request capabilities</td>
+<td style="text-align: left;">WRPRC, Register</td>
+</tr>
+</tbody>
+</table>
+<p>All Wallet Providers, PID Providers, and Pub-EAA Providers, being referenced in the LoTE as entities authorized to provide services to the ecosystem, have additional specific properties embedded in the LoTE as follows:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Type</th>
+<th style="text-align: left;">Properties Class</th>
+<th style="text-align: left;">Entity Properties</th>
+<th style="text-align: left;">Trust Artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">WP, PID and Pub-EAA Provider</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Organization name</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">WP, PID and Pub-EAA Provider</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Contact information</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">WP, PID and Pub-EAA Provider</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Organizational Policy</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">WP, PID and Pub-EAA Provider</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service descriptions</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">WP, PID and Pub-EAA Provider</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service endpoints</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">WP, PID and Pub-EAA Provider</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service status</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">WP, PID and Pub-EAA Provider</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Compliance to certification schema</td>
+<td style="text-align: left;">LoTE (implicit via inclusion)</td>
+</tr>
+<tr>
+<td style="text-align: left;">WP, PID and Pub-EAA Provider</td>
+<td style="text-align: left;">Technical Configuration</td>
+<td style="text-align: left;">Signature/Seal trust anchors</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The inclusion of Wallet Providers and PID/Pub-EAA Providers in the LoTE is an implicit assertion of their role and authorization within the ecosystem. In particular, their inclusion is a result of the succesful completion of the registration and notification procedures as defined in CIR 2025/848 (registration of WRP) and CIR 2024/2980 (notifications of WRP and WP).</p>
+</div>
+<p>The diagram below highlights the dependences between WRP's and Wallet Provider's Properties, the Trusted Lists (diamond shaped boxes) in which these Properties (round shaped boxes) are contained and the Entities (square boxes) that use the Properties' information to issue additional Trust Artifacts. For both WRPs and WPs, the inclusion in the Trusted Lists attests the implicit, ongoing, compliance to the polices set up by the EC and the MS during onboarding for the respective roles.</p>
+<pre class="mermaid"><code>flowchart LR
+    wrp["WRP"]
+
+    subgraph abst["WRP Properties"]
+        direction LR
+        id(["Identity Information&lt;br&gt;(organization name, contact information, organization policies)"])
+        tech(["Technical Configuration&lt;br&gt;(signature/seal key,&lt;br&gt;AuthN key, endpoints)"])
+        authz(["Policy and Authorization&lt;br&gt;(entitlements, attestation provision, attestation request, intermediary use, intended use, compliance to certification schema)"])
+    end
+
+    subgraph arti["WRP Artifacts"]
+        direction LR
+        ac{{"WRPAC"}}
+        csig{{"Signature/Seal Certificate"}}
+        rc{{"WRPRC"}}
+    end
+
+    tl{{"LoTE"}}
+    reg{{"Register"}}
+
+    ca["Signature/Seal&lt;br&gt;Certificate Authority or QTSP"]
+    acca["Provider of WRPAC"]
+    rcca["Provider of WRPRC"]
+    ent_reg["Registrar"]
+    tlp["LoTE Scheme Operator"]
+
+    ent_reg --"publishes/manages"--&gt; reg
+    wrp --"characterized by"--&gt; abst
+
+    reg --"used by"--&gt; acca
+    tech --"used by"--&gt; acca
+    acca --"issues/manages"--&gt; ac
+
+    reg --"used by"--&gt; ca
+    tech --"used by"--&gt; ca
+    ca --"issues/manages"--&gt; csig
+
+    reg -."used by".-&gt; rcca
+    rcca --"issues/manages"--&gt; rc
+
+    id --"contained in"--&gt; reg
+    authz --"reflected in"--&gt; tl
+    authz --"contained in"--&gt; reg
+    abst --"used by&lt;br&gt;(when PID/Pub-EAA Provider)"--&gt; tlp
+    tlp --"issues/manages"--&gt; tl
+
+
+    wp["Wallet Provider"]
+
+    subgraph abst_wp["WP Properties"]
+        direction LR
+        id_wp(["Identity Information&lt;br&gt;(organization name, contact information, organization policies)"])
+        tech_wp(["Technical Configuration&lt;br&gt;(signature/seal key,&lt;br&gt;endpoints)"])
+        authz_wp(["Policy and Authorization&lt;br&gt;(wallet attestation provvision, compliance to certification schema)"])
+    end
+
+    subgraph arti_wp["WP Artifacts"]
+        direction LR
+        csig_wp{{"Signature/Seal Certificate"}}
+    end
+    ca_wp["Signature/Seal&lt;br&gt;Certificate Authority or QTSP"]
+
+    wp --"characterized by"--&gt; abst_wp
+    authz_wp --"reflected in"--&gt; tl
+    tech_wp --"used by"--&gt; ca_wp
+    ca_wp --"issues/manages"--&gt; csig_wp
+
+    abst_wp --"used by"--&gt; tlp</code></pre>
+<p>In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: Registrars, Providers of WRPAC/WRPRC, and QTSP. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.</p>
+<p>The following table describes the relationship between the Properties of Registrars and Providers of WRPAC/WRPRC and the Trusted Lists in which these Properties are contained.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Type</th>
+<th style="text-align: left;">Properties Class</th>
+<th style="text-align: left;">Entity Properties</th>
+<th style="text-align: left;">Trust Artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Registrar, Provider of WRPAC/WRPRC</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Organization name</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">Registrar, Provider of WRPAC/WRPRC</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Contact information</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">Registrar, Provider of WRPAC/WRPRC</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Organizational Policy</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">Registrar, Provider of WRPAC/WRPRC</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service descriptions</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">Registrar, Provider of WRPAC/WRPRC</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service endpoints</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">Registrar, Provider of WRPAC/WRPRC</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service status</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+<tr>
+<td style="text-align: left;">Registrar, Provider of WRPAC/WRPRC</td>
+<td style="text-align: left;">Technical Configuration</td>
+<td style="text-align: left;">Signature/Seal key</td>
+<td style="text-align: left;">Signature/Seal Certificate</td>
+</tr>
+<tr>
+<td style="text-align: left;">Registrar, Provider of WRPAC/WRPRC</td>
+<td style="text-align: left;">Technical Configuration</td>
+<td style="text-align: left;">Signature/Seal Trust Anchor</td>
+<td style="text-align: left;">LoTE</td>
+</tr>
+</tbody>
+</table>
+<p>The following table describes the relationship between the Properties of QTSPs and the Trusted Lists in which these Properties are contained.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Type</th>
+<th style="text-align: left;">Properties Class</th>
+<th style="text-align: left;">Entity Properties</th>
+<th style="text-align: left;">Trust Artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">QTSP</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Organization name</td>
+<td style="text-align: left;">EUMS TL</td>
+</tr>
+<tr>
+<td style="text-align: left;">QTSP</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Contact information</td>
+<td style="text-align: left;">EUMS TL</td>
+</tr>
+<tr>
+<td style="text-align: left;">QTSP</td>
+<td style="text-align: left;">Identity Information</td>
+<td style="text-align: left;">Organizational Policy</td>
+<td style="text-align: left;">EUMS TL</td>
+</tr>
+<tr>
+<td style="text-align: left;">QTSP</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service descriptions</td>
+<td style="text-align: left;">EUMS TL</td>
+</tr>
+<tr>
+<td style="text-align: left;">QTSP</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service endpoints</td>
+<td style="text-align: left;">EUMS TL</td>
+</tr>
+<tr>
+<td style="text-align: left;">QTSP</td>
+<td style="text-align: left;">Authorization Information</td>
+<td style="text-align: left;">Service status</td>
+<td style="text-align: left;">EUMS TL</td>
+</tr>
+<tr>
+<td style="text-align: left;">QTSP</td>
+<td style="text-align: left;">Technical Configuration</td>
+<td style="text-align: left;">Signature/Seal key</td>
+<td style="text-align: left;">EUMS TL</td>
+</tr>
+</tbody>
+</table>
+<p>The diagram below highlights these dependences between Trust Artifact Provider Properties, artifacts in which these Properties are contained and entities that use this information to issue/publish Trust Artifacts:</p>
+<pre class="mermaid"><code>flowchart LR
+    mid_ent["Trust Artifact Provider&lt;br&gt;(Registrar, Provider of WRPAC/WRPRC, QTSP)"]
+
+    subgraph abst["Entity Properties"]
+        direction LR
+        id(["Identity Information&lt;br&gt;(organization name, contact information, organization policies)"])
+        tech(["Technical Configuration&lt;br&gt;(signature/seal key,&lt;br&gt; endpoints)"])
+        authz(["Policy and Authorization&lt;br&gt;(compliance to certification schema)"])
+    end
+
+    subgraph arti["Entity Artifacts"]
+        direction LR
+        csig{{"Signature/Seal Certificate"}}
+    end
+
+    ms["Member State, European Commission"]
+
+    tl{{"LoTE or EUMS TL"}}
+
+    ca["Signature/Seal&lt;br&gt;Certificate Authority"]
+    tlp["LoTE/EUMS TL Scheme Operator"]
+
+    mid_ent --"characterized by"--&gt; abst
+
+    id --"used by"--&gt; ca
+    tech --"used by"--&gt; ca
+    ca --"issues/manages"--&gt; csig
+
+    abst --"used by"--&gt; tlp
+    tlp --"publishes/maintains"--&gt; tl
+
+    ms --"defines"--&gt; authz
+    authz --"is reflected in"--&gt; tl</code></pre>
+<h4 id="abstract-state-machine">Abstract State Machine<a class="headerlink" href="#abstract-state-machine" title="Permanent link">&para;</a></h4>
+<p>This section describes the lifecycle <em>State</em> of WRPs and Wallet Providers and of Trust Artifacts and Trusted Lists.</p>
+<h5 id="entity-lifecycle-state-machine">Entity Lifecycle State Machine<a class="headerlink" href="#entity-lifecycle-state-machine" title="Permanent link">&para;</a></h5>
+<p>State Machines are described only for WRPs, Wallet Providers, and Trust Artifacts Providers. Their status is determined through Trust Artifacts or Trusted Lists entries. WRPs, Wallet Providers, and Trust Artifacts Providers participating in the APTITUDE Trust Framework are classified into one of the following mutually exclusive lifecycle States at any given time. The State dictates the entity's authorization level, operational capabilities, and how other participants SHALL interact with its cryptographic artifacts.</p>
+<ul>
+<li><code>UNREGISTERED</code>: Indicates that an entity does not currently hold a valid subscription or registration within the APTITUDE Trust Framework. This is the default baseline state. Entities in this state are outside the trust boundary and SHALL NOT participate in framework operations or federation protocols.</li>
+<li><code>REGISTERED</code>: Indicates that an entity has successfully completed the onboarding process, verified its identity, and has established ecosystem access.<ul>
+<li>A WRP is in <code>REGISTERED</code> state if the Registrar has inserted its Identity information within the Register, and possesses the WRPAC binding this Identity information to a key controlled by the entity.</li>
+<li>The Wallet Provider is in <code>REGISTERED</code> when it has completed the necessary certification and successfully completed the onboarding process.</li>
+</ul>
+</li>
+<li><code>OPERATIONAL</code>: Indicates that an entity has successfully completed onboarding, and, crucially, has been authorized to perform role-related operations, provide services, and issue or verify artifacts in accordance with framework policies.<ul>
+<li>A RP or RP Intermediary is in <code>OPERATIONAL</code> state if it is <code>REGISTERED</code>, the Registrar has inserted its Authorization information within the Register, and (optionally) it possesses a valid WRPRC.</li>
+<li>A (Q)EAA Provider is in <code>OPERATIONAL</code> state if it is <code>REGISTERED</code>, the Registrar has inserted its Authorization information within the Register, (optionally) it possesses a valid WRPRC and possesses a valid (qualified) Signature/Seal certificate to sign the attestations.</li>
+<li>A PID Provider, Pub-EAA Provider is in <code>OPERATIONAL</code> state if it is <code>REGISTERED</code>, the Registrar has inserted its Authorization information within the Register, (optionally) it possesses a valid WRPRC, it possesses valid Signature/Seal certificate, and is listed in the relevant LoTE.</li>
+<li>A Wallet Provider or Trust Artifacts Provider is in the <code>OPERATIONAL</code> state if it is <code>REGISTERED</code>, listed in the relevant Trusted List, and possesses valid Signature/Seal certificate.</li>
+</ul>
+</li>
+<li><code>REMOVED</code>: Indicates the revocation of an entity's <code>REGISTERED</code> status due to voluntary offboarding, a severe security breach, or a critical compliance failure.<ul>
+<li>A WRP is in <code>REMOVED</code> state if the WRPAC is <code>revoked</code>.</li>
+<li>A Wallet Provider or Trust Artifacts Provider is in <code>REMOVED</code> state when it is not listed in the latest version of the relevant LoTE or EUMS TL.</li>
+<li><strong>Forward Operations</strong>: Ecosystem participants SHALL reject new interactions or transactions initiated by a <code>REMOVED</code> entity, and all cryptographic keys, active attestations, and operational capabilities associated with the entity SHALL be immediately revoked.</li>
+<li><strong>Historical Operations</strong>: Ecosystem participants MAY continue to validate historical data, signatures, and attestations generated prior to the Removal timestamp, subject to local risk policies. These historical data are found in the corresponding Trusted List's <code>ServiceHistory</code> component.</li>
+</ul>
+</li>
+</ul>
+<p>Below the state diagram of the various actors.</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    %% Define states
+    [*] --&gt; Unreg
+
+    state "UNREGISTERED" as Unreg
+    state "REGISTERED" as Reg
+    state "OPERATIONAL" as Op
+    state "REMOVED" as Withdrawn
+
+    %% Define transitions
+    Unreg --&gt; Reg : Onboarding &amp; Identity Verification&lt;br&gt;(WRPAC Issued &amp; Register Inclusion)
+
+    Reg --&gt; Op : Authorization Granted&lt;br&gt;(Signature/Seal Issued &amp; listed in LoTE)
+
+    Op --&gt; Reg : Authorization Lost&lt;br&gt;(e.g., Signature Cert Expired, LoTE  ServiceStatus `withdrawn`)
+
+    Reg --&gt; Withdrawn : Registration Revoked&lt;br&gt;(WRPAC Revoked, Exclusion from Register)
+
+    Op --&gt; Withdrawn : Critical Failure / Offboarding&lt;br&gt;(WRPAC, Signature/Seal Cert. Revoked, &amp; Removed from LoTE)
+
+    Withdrawn --&gt; [*] : Terminal State
+
+    %% Add descriptive notes
+    note right of Unreg
+        Baseline state. 
+        Outside the trust boundary.
+    end note
+
+    note right of Reg
+        Identity established. 
+        Ecosystem access granted.
+    end note
+
+    note right of Op
+        Fully authorized. 
+        Can issue/verify artifacts.
+    end note
+
+    note right of Withdrawn
+        Forward operations rejected. 
+        Historical operations may be validated.
+    end note</code></pre>
+<p>The table below summarizes the lifecycle states, their definitions, the entity to which it refers, the Trust Artifacts that assert the entity's state, and the technical mean that conveys the validity of the Trust Artifacts.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">State</th>
+<th style="text-align: left;">Definition</th>
+<th style="text-align: left;">Applicable Entities</th>
+<th style="text-align: left;">Asserting Trust Artifacts</th>
+<th style="text-align: left;">Technical Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>UNREGISTERED</code></td>
+<td style="text-align: left;">Indicates that an entity does not currently hold a valid subscription or registration within the APTITUDE Trust Framework.</td>
+<td style="text-align: left;">All potential ecosystem participants prior to onboarding.</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>REGISTERED</code></td>
+<td style="text-align: left;">Indicates that an entity has successfully completed onboarding, verified its identity, and established baseline ecosystem network access.</td>
+<td style="text-align: left;">WRPs (RPs, PID, and EAA Providers) and Wallet Providers.</td>
+<td style="text-align: left;">WRP: Valid WRPAC and identity inclusion in the Register.<br><br>Wallet Provider: Finalized certification and onboarding records.</td>
+<td style="text-align: left;">WRP: OCSP response with good status (or absence in CRL) for the WRPAC; active status in the Register.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>OPERATIONAL</code></td>
+<td style="text-align: left;">Indicates that an entity is explicitly authorized to perform role-related operations, provide services, and issue or verify artifacts.</td>
+<td style="text-align: left;"><code>REGISTERED</code> WRPs and Wallet Providers.</td>
+<td style="text-align: left;"><strong>RP (Intermediary)</strong>: Authorization in Register, WRPRC (optional).<br><br><strong>(Q)EAA Provider</strong>: Valid Signature/Seal certificate, Authorization in Register, WRPRC (optional).<br><br><strong>PID / Pub-EAA</strong>: Valid Signature/Seal certificate, entry in the relevant LoTE, Authorization in Register, WRPRC (optional).<br><br><strong>Wallet Provider</strong>: Valid Signature/Seal certificate, entry in the relevant Trusted List.</td>
+<td style="text-align: left;"><strong>Certificates</strong>: OCSP response with <code>good</code> status or absence in CRL for Signature/Seal certificates and WRPACs; SLT with status set to <code>0x00</code>.<br><br><strong>LoTE</strong>: Entry matching the entity.<br><br><strong>Register</strong>: Validated role-specific authorization schema Properties.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>REMOVED</code></td>
+<td style="text-align: left;">Indicates the revocation of an entity's <code>REGISTERED</code> status due to voluntary offboarding, a severe security breach, or a critical compliance failure.</td>
+<td style="text-align: left;">All deactivated, offboarded, or permanently banned framework participants.</td>
+<td style="text-align: left;"><strong>WRP</strong>: Revoked WRPAC, removal from LoTE (if applicable) and Register entry.<br><br><strong>Wallet Provider</strong>: Removal from the current active LoTE.</td>
+<td style="text-align: left;">OCSP response with <code>revoked</code> status or presence in a CRL for the WRPAC.<br><br>Complete absence from the active Register or Trusted List (if applicable); resolution of historical status via the <code>ServiceHistory</code> component.</td>
+</tr>
+</tbody>
+</table>
+<p>Depending on the circumstances, an entity in the <code>REMOVED</code> state MAY have its Signature/Seal certificates revoked, when this is not the case, all artifacts the entity has issued SHALL be considered valid for historical operations. Further details on this are found in the <a href="#operational-effects-of-Removal">Operational Effects of Removal</a> section.</p>
+<h5 id="trust-artifacts-and-trusted-lists-lifecycle-state-machine">Trust Artifacts and Trusted Lists Lifecycle State Machine<a class="headerlink" href="#trust-artifacts-and-trusted-lists-lifecycle-state-machine" title="Permanent link">&para;</a></h5>
+<p>State Machines for Trust Artifacts and Trusted Lists are described below:</p>
+<ul>
+<li>For WRPAC, WRPRC and Signature/Seal Certificates, the lifecycle states are <code>VALID</code> and <code>REVOKED</code>. The transition from <code>VALID</code> to <code>REVOKED</code> is triggered by the revocation of the artifact, which can be initiated by the corresponding Trust Artifact Provider due to various reasons such as key compromise, organizational changes, or non-compliance with framework policies. Once an artifact is in the <code>REVOKED</code> state, it SHALL NOT be trusted for any operational use within the ecosystem, and any entity relying on it MUST reject it for authentication, authorization, or any other trust-related operations.<ul>
+<li>A WRPAC in <code>VALID</code> state SHALL NOT be present in the designated CRL and/or SHALL return a <code>good</code> status in the OCSP response. A WRPAC in <code>REVOKED</code> state SHALL be present in the designated CRL and/or SHALL return a <code>revoked</code> status in the OCSP response.</li>
+<li>A WRPRC in <code>VALID</code> state SHALL return a <code>0x00</code> status in the corresponding Status List token. A WRPRC in <code>REVOKED</code> state SHALL have status value <code>0x01</code> within the corresponding Status List token.</li>
+</ul>
+</li>
+<li>For Trusted Lists (LoTE, LOTL, EUMS TL), the lifecycle states are <code>CURRENT</code> and <code>HISTORICAL</code>. The transition from <code>CURRENT</code> to <code>HISTORICAL</code> is triggered by the publication of a new version of the Trusted List that replaces the previous version. Once a Trusted List is in the <code>HISTORICAL</code> state, it SHALL NOT be used for any operational use within the ecosystem, the only exception being the validation of Trusted List trustworthiness via the pivoting mechanism (see <a href="#trust-anchor-validation.md">Trust Anchor Validation</a>) and the validation of historical operations via the <code>ServiceHistory</code> component of the Trusted Lists.</li>
+<li>For Registers, EDP, Status Lists, the lifecycle state is only <code>CURRENT</code>, since any change in these artifacts is reflected as an update of the artifact itself, and the previous version is not retained as a historical record.</li>
+</ul>
+<p>The diagram below highlights the state machine of the aforementioned artifacts:</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    %% Define Layout Orientation
+    direction TB
+
+    %% 1. Certificates Lifecycle Group
+    state "Certificates (WRPAC, WRPRC, Signature/Seal)" as CertGroup {
+        [*] --&gt; VALID : Issuance / Provisioning
+        VALID --&gt; REVOKED : Revocation Trigger&lt;br&gt;(CRL, OCSP, or Status List)
+        REVOKED --&gt; [*] : Terminal State
+    }
+
+    %% 2. Trusted Lists Lifecycle Group
+    state "Trusted Lists (LoTE, LOTL, EUMS TL)" as TLGroup {
+        [*] --&gt; TL_CURRENT : Publication of Current Version
+        state "CURRENT" as TL_CURRENT
+
+        TL_CURRENT --&gt; HISTORICAL : Superseded by New Version&lt;br&gt;(The old one is archived to `ServiceHistory`)
+        HISTORICAL --&gt; [*]
+    }
+
+    %% 3. Registers, EDP, and Status Lists Lifecycle Group
+    state "Registers, EDP, and Status Lists" as RegGroup {
+        [*] --&gt; REG_CURRENT : Initial Publication
+        state "CURRENT" as REG_CURRENT
+
+        REG_CURRENT --&gt; REG_CURRENT : In-place Content Mutation&lt;br&gt;(No History Retained)
+    }</code></pre>
+<p>The table below summarizes the lifecycle states, their definitions, the applicable Trust Artifacts and Trusted Lists, and the technical mean that conveys the validity of these artifacts. The three tables are divided by artifact type since they have different lifecycle states and transition triggers, these are respectively: <code>VALID</code> and <code>REVOKED</code> for WRPAC, WRPRC and Signature/Seal Certificates, <code>CURRENT</code> and <code>HISTORICAL</code> for Trusted Lists, and only <code>CURRENT</code> for Registers, EDP and Status Lists.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">State</th>
+<th style="text-align: left;">Definition</th>
+<th style="text-align: left;">Applicable Artifacts</th>
+<th style="text-align: left;">Technical Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>VALID</code></td>
+<td style="text-align: left;">Indicates that a Trust Artifact is currently valid and can be trusted for operational use within the ecosystem.</td>
+<td style="text-align: left;">WRPAC, WRPRC, Signature/Seal Certificates.</td>
+<td style="text-align: left;">OCSP response with <code>good</code> status or absence in CRL for WRPACs and Signature/Seal certificates; SLT with status set to <code>0x00</code> for WRPRCs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>REVOKED</code></td>
+<td style="text-align: left;">Indicates that a Trust Artifact has been revoked and SHALL NOT be trusted for any operational use within the ecosystem.</td>
+<td style="text-align: left;">WRPAC, WRPRC, Signature/Seal Certificates.</td>
+<td style="text-align: left;">OCSP response with <code>revoked</code> status or presence in CRL for WRPACs and Signature/Seal certificates; SLT with status set to <code>0x01</code> for WRPRCs.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">State</th>
+<th style="text-align: left;">Definition</th>
+<th style="text-align: left;">Applicable Artifacts</th>
+<th style="text-align: left;">Technical Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>CURRENT</code></td>
+<td style="text-align: left;">Indicates that the current Trusted List is the newest version, previous versions are no longer valid for operational use within the ecosystem.</td>
+<td style="text-align: left;">LoTE, LOTL, EUMS TL, Registers, EDP, Status Lists.</td>
+<td style="text-align: left;">Publication of a new version of the Trusted List; resolution of historical status via the <code>ServiceHistory</code> component for LoTE, LOTL, and EUMS TL.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>HISTORICAL</code></td>
+<td style="text-align: left;">Indicates that a Trusted List is a historical record and SHALL NOT be used for any operational use within the ecosystem, except for validating historical operations and trustworthiness via the pivoting mechanism.</td>
+<td style="text-align: left;">LoTE, LOTL, EUMS TL.</td>
+<td style="text-align: left;">Resolution of historical status via the <code>ServiceHistory</code> component; validation of trustworthiness via the pivoting mechanism.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">State</th>
+<th style="text-align: left;">Definition</th>
+<th style="text-align: left;">Applicable Artifacts</th>
+<th style="text-align: left;">Technical Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>CURRENT</code></td>
+<td style="text-align: left;">Indicates that the current version of a Register, EDP, or Status List has the newest information, previous versions are no longer valid, SHOULD NOT be published and SHALL NOT be used for operational use within the ecosystem.</td>
+<td style="text-align: left;">Registers, EDP, Status Lists.</td>
+<td style="text-align: left;">Publication of an updated version of the artifact.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="entity-lifecycle-operations">Entity Lifecycle Operations<a class="headerlink" href="#entity-lifecycle-operations" title="Permanent link">&para;</a></h4>
+<p>Below are detailed the operational procedures, which affects the Properties of Trust Artifact Provider and End-Entities and the resulting effects on their State.</p>
+<h5 id="onboarding-process">Onboarding Process<a class="headerlink" href="#onboarding-process" title="Permanent link">&para;</a></h5>
+<p>The onboarding process governs the transition of an End-Entity (WRP or Wallet Provider) from the <code>UNREGISTERED</code> state to the <code>REGISTERED</code> state. During the onboarding process, it is up to the Entities running the process and necessary validations to collect the onboardee's Properties and (depending on its role) issue the corresponding Trust Artifacts. Further details are found in <a href="#onboarding-process.md">Onboarding Process</a>.</p>
+<h5 id="active-operations-and-maintenance">Active Operations and Maintenance<a class="headerlink" href="#active-operations-and-maintenance" title="Permanent link">&para;</a></h5>
+<p>While in the <code>OPERATIONAL</code> state, entities MAY require <em>organizational updates</em> to their registered Properties, including their entity profiles, cryptographic materials, or operational parameters. Below we describe these updates and their operational effects on the trust artifacts and the entity's state.</p>
+<h6 id="organizational-updates">Organizational Updates<a class="headerlink" href="#organizational-updates" title="Permanent link">&para;</a></h6>
+<p>As their organizational or regulatory circumstances evolve, WRPs and Wallet Providers SHALL update identity, authorization information and technical configurations accordingly through the standard channels as defined at Member State or European Commission level. Identity and cryptographic updates SHALL follow standard framework governance processes and SHOULD NOT affect the underlying technical operations of the Trust Framework. In particular, updates that directly affect federation protocol operations or cryptographic trust boundaries require strictly coordinated procedures. These technical updates SHALL be validated by the designated MS authority or EC designated body prior to deployment to maintain trust relationships and ecosystem operational integrity.</p>
+<h6 id="operational-effects-of-organizational-updates">Operational Effects of Organizational Updates<a class="headerlink" href="#operational-effects-of-organizational-updates" title="Permanent link">&para;</a></h6>
+<p>When there are organizational updates, the Trust Framework infrastructure SHALL propagate these changes to the relevant trust artifacts. The specific operational effects depend on the entity's role, and the artifacts it utilizes.</p>
+<p><strong>WRP Updates</strong>: For WRP updating their Identity Information, Technical Configurations, and/or Policies and Authorizations, the update SHALL trigger the following procedures:</p>
+<ul>
+<li><strong>Identity Information and Policies and Authorizations Updates</strong>:<ul>
+<li><strong>Registry Update</strong>: the WRP SHALL update its information within the Register via the authenticated API.</li>
+<li><strong>WRPAC Revocation</strong>: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a <code>revoked</code> status in the OCSP response.</li>
+<li><strong>WRPAC Re-issuance</strong>:The Provider of WRPAC SHALL issue a new WRPAC with the updated data.</li>
+<li><strong>WRPRC Revocation</strong>: The Provider of WRPRC SHALL revoke the entity's current WRPRC if present. Revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to <code>0x01</code>.</li>
+<li><strong>WRPRC Re-issuance</strong>: The Provider of WRPRC SHALL issue a new WRPRC with the updated data if required.</li>
+<li><strong>LoTE Update</strong> [ONLY for PID and Pub-EAA Providers]: the PID/Pub-EAA Provider SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE with the updated <code>ServiceInformation</code> component using the pivoting mechanism with the PID/Pub-EAA Provider's updated information.</li>
+</ul>
+</li>
+<li><strong>Technical Configurations Updates</strong>:<ul>
+<li><strong>Signature/Seal Key update</strong>: the WRP SHALL notify Signature/Seal Key updates to the Certificate Authority responsible for the issuance of these certificates.<ul>
+<li><strong>Signature/Seal Certificate Revocation</strong>: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.</li>
+<li><strong>Signature/Seal Certificate Re-issuance</strong>:The Certificate Authority SHALL issue a new Signature/Seal certificate with the updated key.</li>
+<li><strong>LoTE Update</strong> [ONLY for PID Providers TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the PID Provider SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE with the updated <code>ServiceInformation</code> component using the pivoting mechanism with the PID Providers' updated Signature/Seal certificate.</li>
+</ul>
+</li>
+<li><strong>AuthN Key update</strong>: The WRP SHALL notify WRPAC Key updates to the Provider of WRPAC.<ul>
+<li><strong>WRPAC Revocation</strong>: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a <code>revoked</code> status in the OCSP response.</li>
+<li><strong>WRPAC Re-issuance</strong>:The Provider of WRPAC SHALL issue a new WRPAC with the updated key.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Wallet Providers and Trust Artifact Provider Updates</strong>: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the update SHALL trigger the following procedures:</p>
+<ul>
+<li><strong>Identity Information Updates</strong>:<ul>
+<li><strong>LoTE Update</strong>: the entity SHALL notify the LoTE Scheme Operator with the update, the latter which will publish a new version of the LoTE with the updated <code>ServiceInformation</code> component using the pivoting mechanism with the PID/Pub-EAA Provider's updated information.</li>
+</ul>
+</li>
+<li><strong>Technical Configurations Updates</strong>:<ul>
+<li><strong>Signature/Seal Key update</strong>: the entity SHALL notify the Signature/Seal Key updates to the Certificate Authority responsible for the issuance of these certificates.<ul>
+<li><strong>Signature/Seal Certificate Revocation</strong>: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.</li>
+<li><strong>Signature/Seal Certificate Re-issuance</strong>:The Certificate Authority SHALL issue a new Signature/Seal certificate with the updated key.</li>
+<li><strong>LoTE Update</strong> [ONLY for TA certificates]: Upon obtaining a new Signature/Seal certificate with the updated key the entity SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE with the updated <code>ServiceInformation</code> component using the pivoting mechanism with the entity's updated Signature/Seal certificate.</li>
+</ul>
+</li>
+<li><strong>Endpoints Update</strong> [ONLY for Registrars or Wallet Providers]: When updating endpoint, the Registrar or Wallet Provider SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE with the updated <code>ServiceInformation</code> component using the pivoting mechanism with the updated endpoint.</li>
+</ul>
+</li>
+</ul>
+<h5 id="removal-process">Removal Process<a class="headerlink" href="#removal-process" title="Permanent link">&para;</a></h5>
+<p>The Removal process defines the rapid-response workflows and administrative procedures executed to transition an entity from the <code>OPERATIONAL</code> state to the <code>REMOVED</code> state. This transition MAY be initiated voluntarily by the entity or forcefully enacted by the Supervisory Body.</p>
+<h6 id="triggers-for-removal">Triggers for Removal<a class="headerlink" href="#triggers-for-removal" title="Permanent link">&para;</a></h6>
+<p>Removal events are categorized based on their initiation source:</p>
+<ul>
+<li>Voluntary Exit: Organizations MAY choose to exit the federation for standard business or operational reasons. Permitted reasons include:<ul>
+<li>Business Changes: Organizational restructuring, mergers, acquisitions, or complete service discontinuation.</li>
+</ul>
+</li>
+<li>Supervisory Body Removal (use the MS, EC, CAB, NAB, DPA bodies): The Supervisory Body MAY initiate a forced Removal due to severe compliance failures, fatal security breaches, or other critical ecosystem threats.</li>
+</ul>
+<h6 id="operational-effects-of-removal">Operational Effects of Removal<a class="headerlink" href="#operational-effects-of-removal" title="Permanent link">&para;</a></h6>
+<p>When an entity transitions to the <code>REMOVED</code> state, the relevant Trust Artifacts Providers and Trusted Lists Providers SHALL immediately execute the necessary operations to halt the entity's operations while preserving historical evidence.  The specific operational effects depend on the entity's role, and the artifacts it utilizes.</p>
+<p><strong>WRP Withdrawal or Removal</strong>: For WRP withdrawing or being removed from the Trust Framework following security incidents or policy violations, the removal event SHALL trigger the following procedures:</p>
+<ul>
+<li><strong>Registry Update</strong>: the WRP or Supervisory body MAY remove the WRP information within the Register.</li>
+<li><strong>WRPAC Revocation</strong>: The Provider of WRPAC SHALL revoke the entity's current WRPAC. Revocation SHALL be executed by appending the certificate's serial number to the active CRL or by returning a <code>revoked</code> status in the OCSP response.</li>
+<li><strong>WRPRC Revocation</strong>: The Provider of WRPRC SHALL revoke the entity's current WRPRC if present. Revocation SHALL be executed by setting the status value of the WRPRC within the corresponding Status List token to <code>0x01</code>.</li>
+<li><strong>Signature/Seal Certificate Revocation</strong>: The Certificate Authority SHALL revoke the entity's current Signature/Seal certificate.</li>
+<li><strong>LoTE Update</strong> [ONLY for PID and Pub-EAA Providers]: the WRP or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism without the PID/Pub-EAA/Wallet Provider's <code>ServiceInformation</code> component. To maintain non-repudiation for past transactions, the superseded parameters MAY be retained as historical records within the <code>TrustedEntityServices.ServiceHistory</code>.</li>
+</ul>
+<p><strong>Wallet Providers and Trust Artifact Provider Withdrawal or Removal</strong>: For Wallet Providers, Registrars, Providers of WRPAC/WRPRC updating their Identity Information and/or Technical Configurations, the removal event SHALL trigger the following procedures:</p>
+<ul>
+<li><strong>LoTE Update</strong>: the Trust Artifact Provider or Supervisory body SHALL notify the LoTE Scheme Operator which will publish a new version of the LoTE using the pivoting mechanism without the PID/Pub-EAA/Wallet Provider's <code>ServiceInformation</code> component. To maintain non-repudiation for past transactions, the superseded parameters MAY be retained as historical records within the <code>TrustedEntityServices.ServiceHistory</code>.</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 5, 2026 05:16:01 UTC">June 5, 2026 05:16:01</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../media/mermaid-init.js"></script>
+      
+        <script src="../../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

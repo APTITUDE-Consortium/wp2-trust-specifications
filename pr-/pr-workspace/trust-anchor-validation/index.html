@@ -1,0 +1,1954 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-/pr-workspace/trust-anchor-validation/">
+      
+      
+        <link rel="prev" href="../revocation-mechanisms/">
+      
+      
+        <link rel="next" href="../trust-architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Trust anchor validation - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../media/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trust anchor validation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../trust-framework/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Trust Framework
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access-certificate/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trust-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedded-disclosure-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revocation-mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-management-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust management process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trusted-list-and-list-of-trusted-lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trusted list and list of trusted lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../access-certificate/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    PR Workspace (Changed Files Only)
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/trust-anchor-validation.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/trust-anchor-validation.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Trust anchor validation</h1>
+
+<p>The <strong>Trust Anchor Validation Process</strong> establishes the cryptographic integrity and authenticity of <a class="mkdocs-ezglossary-link"
+    id="3a836318c482401477c893c144b57b66"
+    title="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    data-tooltip="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</a>, which serve as the authoritative sources for <a class="mkdocs-ezglossary-link"
+    id="102d9e41deb0200756c407693b065ce7"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a>. A <a class="mkdocs-ezglossary-link"
+    id="85e9f421befe04977511815ef2d72f7a"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is a self-signed X.509 certificate containing the names and public key used by a <a class="mkdocs-ezglossary-link"
+    id="837010b4fb95aa7053dbacad23e8ac45"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or <a class="mkdocs-ezglossary-link"
+    id="bcfa52a9f0975272ace62a61be0a501b"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">Wallet-Relying Party (WRP)</a> to validate an artifact or <a class="mkdocs-ezglossary-link"
+    id="f9d60906429ad79d38d4d51d0a829619"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>.</p>
+<p>Depending on the artifact or <a class="mkdocs-ezglossary-link"
+    id="df5ecd2cd88139a5934a6cfd7cbea6cd"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> being verified, the validating Entity SHALL fetch, download, and validate the appropriate <a class="mkdocs-ezglossary-link"
+    id="98099a7e7d2fd6a9b8b3182e8758953c"
+    title="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    data-tooltip="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</a>:</p>
+<ol>
+<li><em><a href="artifacts:List of Trusted Entities (LoTE)">List of Trusted Entities (LoTE)</a></em>, used to retrieve <a class="mkdocs-ezglossary-link"
+    id="9de5fcf449009ed71adcd8b5d3df9317"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> for validating the following:
+   - <strong>Infrastructure Certificates</strong>: <a class="mkdocs-ezglossary-link"
+    id="261a7aa34d860065b12caf1ef17ada33"
+    title="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the WRP issued by a Provider of WRPAC. [ARF, CIR 2024/2979, CIR 2024/2980, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> or <a class="mkdocs-ezglossary-link"
+    id="baaf7dc4b13a5e7ed90430393943b34c"
+    title="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
+    data-tooltip="Signed data object containing registered information about RPs or APs issued by Provider of WRPRCs. It indicates the intended use and attributes the RPs or APs has registered to request from users or issue to users. [Revised from ARF, CIR 2025/848, ETSI TS 119 475]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>.
+   - <strong><a href="artifacts:Wallet Unit Attestations (WUAs)">Wallet Unit Attestations (WUAs)</a></strong>: <a class="mkdocs-ezglossary-link"
+    id="29fe33ab245bbe039dfa18d88d2ba58e"
+    title="An artifact containing attested information about the security of cryptographic keys stored in the Wallet Unit. KAs allow PID Providers and Attestation Providers to determine the security level of the keys to which they are binding PIDs or attestations, and to revoke their credentials (if needed) in case a security vulnerability affecting the WSCD or keystore is identified, or -- when the Wallet Provider uses a per-KA index -- upon user request. [TS03]"
+    data-tooltip="An artifact containing attested information about the security of cryptographic keys stored in the Wallet Unit. KAs allow PID Providers and Attestation Providers to determine the security level of the keys to which they are binding PIDs or attestations, and to revoke their credentials (if needed) in case a security vulnerability affecting the WSCD or keystore is identified, or -- when the Wallet Provider uses a per-KA index -- upon user request. [TS03]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">Key Attestation (KA)</a> or <a class="mkdocs-ezglossary-link"
+    id="b7f1b2f41cbb1c4ac87caee823b9e621"
+    title="An artifact containing attested information about the Wallet Instance. WIAs allow PID Providers and Attestation Providers to verify the integrity and authenticity of the Wallet Instance and to revoke their credentials (if needed) in case a Wallet Provider revokes a Wallet Instance. [TS03]"
+    data-tooltip="An artifact containing attested information about the Wallet Instance. WIAs allow PID Providers and Attestation Providers to verify the integrity and authenticity of the Wallet Instance and to revoke their credentials (if needed) in case a Wallet Provider revokes a Wallet Instance. [TS03]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">Wallet Instance Attestation (WIA)</a>.
+   - <strong>PID Signatures</strong>: <a class="mkdocs-ezglossary-link"
+    id="0192b3974ad77450ce5f06b5e1d3114f"
+    title="Data set that enables the establishment of a person's identity."
+    data-tooltip="Data set that enables the establishment of a person's identity."
+    name="credentials:Person Identification Data (PID)"
+    href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">Person Identification Data (PID)</a>.
+   - <strong><a class="mkdocs-ezglossary-link"
+    id="35a9047330f22353f336aeef341d3327"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF, CIR 2024/2980, CIR 2025/848, ETSI TS 119 475]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a>-signed artifacts</strong>: <a class="mkdocs-ezglossary-link"
+    id="b4b0dbf520ce0418f8e2f222fecf4634"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> informations.</li>
+<li><em><a class="mkdocs-ezglossary-link"
+    id="b91894faef61bcb9f9298d6321c19c80"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EU Member State Trusted Lists</a></em> (<a class="mkdocs-ezglossary-link"
+    id="0c014fe9f76af1f30d07ff6a2e1ad745"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>); used to retrieve <a class="mkdocs-ezglossary-link"
+    id="0e7950c531526ca190ce153664bbf3e4"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> for validating the following:
+   - seal or signature on a <a class="mkdocs-ezglossary-link"
+    id="3f38f33fe4827ca4e28382a8dac9f533"
+    title="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">Qualified Electronic Attestation of Attributes (QEAA)</a>; or
+   - seal or signature on a <a class="mkdocs-ezglossary-link"
+    id="d33503e39aee0e83b302c6e55b69b75d"
+    title="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
+    href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">Public Electronic Attestation of Attributes (PuB-EAA)</a>.</li>
+</ol>
+<p>To verify the authenticity of the retrieved <a class="mkdocs-ezglossary-link"
+    id="11fcfc7fdebcfef79907e700560572b7"
+    title="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    data-tooltip="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</a>, the Entity SHALL perform the following validations:</p>
+<ul>
+<li><a href="#list-of-trusted-entities-validation-process">LoTE Validation</a>: Validate the digital signature of the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> by verifying it against the <a class="mkdocs-ezglossary-link"
+    id="7236feff5aec2c3188f5c30fceb80499"
+    title="A body responsible for maintaining, managing, and publishing Lists of Trusted Entities (LoTE). [ARF]"
+    data-tooltip="A body responsible for maintaining, managing, and publishing Lists of Trusted Entities (LoTE). [ARF]"
+    name="roles:LoTE Provider"
+    href="../../glossary-definitions/#af49640b8119f41938d5a4b353c2695b">LoTE Provider</a> certificate. This certificate is authenticated via the <a class="mkdocs-ezglossary-link"
+    id="2935ff354c4ff0c96f4e953a5b7d9a42"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">Official Journal of the European Union (OJEU)</a>.</li>
+<li><a href="#european-union-member-state-trusted-list-validation-process">EUMS TL Validation</a>: Validate the digital signature of the <a class="mkdocs-ezglossary-link"
+    id="b30fae5a000c07dad7307e20b43b441f"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> by verifying it against the corresponding Member State public keys published in the <a class="mkdocs-ezglossary-link"
+    id="3d9ee9cede735e5a966669fc3a146476"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists (LOTL)</a>. The <a class="mkdocs-ezglossary-link"
+    id="3827b5daa0478050d6f9754d507cd10c"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> itself is authenticated by validating its digital signature against the <a class="mkdocs-ezglossary-link"
+    id="c73011c726bc7601803818e1819c33f2"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">Official Journal of the European Union (OJEU)</a>.</li>
+</ul>
+<p>To support continuous key rotation, both artifacts implement a pivoting mechanism. This ensures that an Entity possessing the last known valid version can reliably discover the location of the next version and validate it using the unbroken chain of trust rooted in the <a class="mkdocs-ezglossary-link"
+    id="3d427ecd21dbba1400342845f180fbd2"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>.</p>
+<h4 id="list-of-trusted-entities-validation">List of Trusted Entities Validation<a class="headerlink" href="#list-of-trusted-entities-validation" title="Permanent link">&para;</a></h4>
+<p>This section defines the validation of the EU-level <a href="artifacts:List of Trusted Entities (LoTE)">List of Trusted Entities (LoTE)</a>. The <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> is a digitally signed/sealed artifact (JWT format) containing metadata and public keys for entities operating at the EU level.</p>
+<p>Prior to validating the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>, the <a class="mkdocs-ezglossary-link"
+    id="58986bdb4daa0dec746bca5f7ca1ab6f"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL download the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> from the protected location (URI) published in the <a class="mkdocs-ezglossary-link"
+    id="fd83c554d0b5bf10c9fbecd1e30ae0ea"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>.</p>
+<h5 id="list-of-trusted-entities-retrieval-and-validation-sequence-diagram">List of Trusted Entities Retrieval and Validation Sequence Diagram<a class="headerlink" href="#list-of-trusted-entities-retrieval-and-validation-sequence-diagram" title="Permanent link">&para;</a></h5>
+<pre class="mermaid"><code>sequenceDiagram
+  participant Client as Wallet/WRP
+  participant EU_API as EU LoTE Distribution Point
+
+  Client-&gt;&gt;EU_API: Request LoTE (URL from OJEU or Bookmark)
+  EU_API--&gt;&gt;Client: Return LoTE (JWT)
+  Client-&gt;&gt;Client: 1. Pivot Discovery (Find path to Trust Anchor)
+  Client-&gt;&gt;Client: 2. Validate Trust Chain (OJEU -&gt; Pivot n ... -&gt; LoTE)
+  Client-&gt;&gt;Client: 3. Parse Payload for Target Entity</code></pre>
+<h5 id="list-of-trusted-entities-validation-process">List of Trusted Entities Validation Process<a class="headerlink" href="#list-of-trusted-entities-validation-process" title="Permanent link">&para;</a></h5>
+<p>The validator initializes the following variables as described in [ETSI TS 119 615].</p>
+<p><strong>Input Variables</strong>:</p>
+<ul>
+<li><code>OJEU-Loc</code>: URI of the latest (known) <a class="mkdocs-ezglossary-link"
+    id="0795389de545646a7c38459a788d2bd3"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a> publication.</li>
+<li><code>OJEU-LoTE-Loc</code>: URI of the last processed <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>. Defaults to the value in <code>OJEU-Loc</code>.</li>
+<li><code>OJEU-LoTE-Certs-Set</code>: The set of Trust Anchor certificates from the <code>OJEU-Loc</code> publication.</li>
+<li><code>LoTE</code>: The <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> JWT currently being processed. Initialized as NULL.</li>
+<li><code>LoTE-Signer-Cert</code>: The certificate extracted from the x5c header parameter of the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>.</li>
+<li><code>LoTESO-Cert</code>: Temporary variable for the Scheme Operator certificate being validated. Initialized as NULL.</li>
+<li><code>LoTESO-Certs-Set</code>: Trusted certificates extracted from the <code>PointersToOtherLoTE</code> claim (<code>SchemeTerritory</code> <code>EU</code>) of a <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> or Pivot. Initialized as NULL.</li>
+</ul>
+<p><strong>Output Variables</strong>:</p>
+<ul>
+<li><code>Authenticated-LoTE</code>: The validated JSON payload.</li>
+<li><code>LoTE-Status</code>: The validation result (e.g., <code>LoTE_VERIFICATION_PASSED</code>).</li>
+<li><code>LoTE-Sub-Status</code>: detailed error codes.</li>
+</ul>
+<p><strong>Validation Steps</strong>:
+The validation SHALL perform the following steps:</p>
+<ol>
+<li>(Initialization) Download the JWT file from <code>OJEU-LoTE-Loc</code> and assign it to <code>LoTE</code>.</li>
+<li>(Parsing) Extract the first certificate from the <code>x5c</code> header of <code>LoTE</code> and assign it to <code>LoTE-Signer-Cert</code>.</li>
+<li>(Pivot Discovery) Iterate through the <code>uriValue</code> claims in the <code>SchemeInformationURI</code> object. Count the number of valid URIs found before encountering the URI matching <code>OJEU-Loc</code>. Let <span class="arithmatex">\(n\)</span> be that count.<ul>
+<li>If no URI matches <code>OJEU-Loc</code>: Validation SHALL fail with <code>LoTE-Status</code> set to <code>LoTE_VERIFICATION_FAILED</code> and <code>LoTE-Sub-Status</code> set to <code>OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE</code>. (This implies a Trust Anchor migration is required).</li>
+</ul>
+</li>
+<li>(<a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> Location Conflict) Check the condition: <code>OJEU-LoTE-Loc != LoTELocation</code> AND <code>LoTE != Content at LoTELocation</code>.<ul>
+<li>(<code>LoTELocation</code> is the URI in the <code>PointersToOtherLoTE</code> claim of <code>LoTE</code> with <code>SchemeTerritory</code> = <code>EU</code>).</li>
+<li>If <code>TRUE</code>: Validation SHALL stop with <code>LoTE-Status</code> set to <code>LoTE_VERIFICATION_FAILED</code> and <code>LoTE-Sub-Status</code> set to <code>LoTE_FILE_CONFLICT</code>.</li>
+<li>If <code>FALSE</code>, proceed to the next step.</li>
+</ul>
+</li>
+<li>(<a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> Freshness) Check the condition: <code>OJEU-LoTE-Loc == LoTELocation</code> AND <code>LoTE !=</code> Content at <code>LoTELocation</code>.<ul>
+<li>If <code>TRUE</code>: Set <code>OJEU-LoTE-Loc</code> to <code>LoTELocation</code> and restart from Step 1.</li>
+<li>If <code>FALSE</code>, proceed to the next step.</li>
+</ul>
+</li>
+<li>(Digital Signature Validation) Validate the cryptographic signature of the current <code>LoTE</code> using the public key from <code>LoTE-Signer-Cert</code>.<ul>
+<li>If validation fails: Stop with <code>LoTE-Status</code> set to <code>LoTE_VERIFICATION_FAILED</code> and <code>LoTE-Sub-Status</code> set to <code>LoTE_SIGNATURE_VERIFICATION_FAILED</code>.</li>
+<li>If successful:<ul>
+<li>Set <code>LoTESO-Cert</code> to <code>LoTE-Signer-Cert</code>.</li>
+<li>Set <code>LoTESO-Certs-Set</code> to the certificates found in the <code>PointersToOtherLoTE</code> claim (territory <code>EU</code>) of the current <code>LoTE</code> payload.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(Intermediate Pivot Validation)<ul>
+<li>Case <span class="arithmatex">\(n=0\)</span> (No Pivots): Proceed directly to Step 8.</li>
+<li>Case <span class="arithmatex">\(n&gt;0\)</span> (History Chain):<ul>
+<li>Iterate <span class="arithmatex">\(i\)</span> from 1 to <span class="arithmatex">\(n\)</span> (from most recent Pivot to oldest). Let <code>Pivot</code> be the file downloaded from the <span class="arithmatex">\(i\)</span>-th URI.</li>
+<li>(Link Check) Set <code>Pivot-Certs-Set</code> to the certificates in the <code>PointersToOtherLoTE</code> claim (territory <code>EU</code>) of <code>Pivot</code>. If <code>LoTESO-Cert</code> (the signer of the previous file in the chain) is not in <code>Pivot-Certs-Set</code>, validation SHALL fail with <code>LoTE-Sub-Status</code> set to <code>PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i</code>.</li>
+<li>(Update Signer) Set <code>LoTESO-Cert</code> to the first certificate in the <code>x5c</code> header parameter of <code>Pivot</code>.</li>
+<li>(Verify Signature) Validate the signature of <code>Pivot</code> using <code>LoTESO-Cert</code>. If it fails, validation SHALL fail with <code>LoTE-Status</code> set to <code>LoTE_VERIFICATION_FAILED</code>, and <code>LoTE-Sub-Status</code> set to <code>PIVOT_i_SIGNATURE_VERIFICATION_FAILED</code>.</li>
+<li>The loop continues, walking backwards until LoTESO-Cert represents the signer of the oldest Pivot.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(Trust Anchor Validation) Verify the end of the chain. If <code>LoTESO-Cert</code> (from the last Pivot or current <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>) is not in <code>OJEU-LoTE-Certs-Set</code> (the Trust Anchor), validation SHALL fail with <code>LoTE-Sub-Status</code> set to <code>PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU</code>.</li>
+<li>(Expiration) If current time &gt; <code>NextUpdate</code> claim of <code>LoTE</code>, validation SHALL fail.</li>
+<li>(Success) Set <code>Authenticated-LoTE</code> to <code>LoTE</code>, <code>LoTE-Status</code> to <code>LoTE_VERIFICATION_PASSED</code>.</li>
+<li>(Update Bookmark) If <code>OJEU-LoTE-Loc</code> does not match the <code>LoTELocation</code> in <code>Authenticated-LoTE</code> (territory <code>EU</code>), update <code>OJEU-LoTE-Loc</code> to that value.</li>
+<li>(Update Anchor) [Caution: This step modifies the Root of Trust configuration]<ul>
+<li>If <code>OJEU-Loc</code> does not match the first URI in <code>SchemeInformationURI</code>, update <code>OJEU-LoTE-Loc</code>.</li>
+<li>Update <code>OJEU-LoTE-Certs-Set</code> according to the new Trust Anchor either in <code>Authenticated-LoTE</code> or from a new <a class="mkdocs-ezglossary-link"
+    id="dec26c65dcf3a5f662cbf42f1a34981c"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a> publication.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Remarks</strong>:</p>
+<ul>
+<li>Steps 4, 5 and 11 allow modifying the location of the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> file without changing the <a class="mkdocs-ezglossary-link"
+    id="8bef51f512da74603ae833193b0cc007"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>, as long as the both the old and the new location have the same content (otherwise the validation fails with <code>LoTE_FILE_CONFLICT</code> status). This allows the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> to be retrieved from different locations (e.g., mirrors) without affecting the <a class="mkdocs-ezglossary-link"
+    id="1fc4c1e16938a7ce563a0b58573d65a9"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> validation as long as the content is the same.</li>
+<li>In case of <code>OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE</code> error, it is likely that the <a class="mkdocs-ezglossary-link"
+    id="f617b4ca915c6c341e120d9be830b08a"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a> publication has been updated with a new location for the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>, and the validation process needs to be restarted with the new location.</li>
+<li>In step 8, the validator established the binding of the signer certificate of the <code>LoTE</code> XML with the certificate referenced in the <a class="mkdocs-ezglossary-link"
+    id="dbb331ea7c9e2119e407c82550270339"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>, effectively using the latter as a <a class="mkdocs-ezglossary-link"
+    id="011c1f072e460a74b515f00a24e4c818"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>.</li>
+</ul>
+<p>To validate a <a class="mkdocs-ezglossary-link"
+    id="202936f1f000cd70478886dd503d671e"
+    title="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
+    href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">Pub-EAA</a> <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> in XML format (XAdES) containing the sought <a class="mkdocs-ezglossary-link"
+    id="5c573337166ad9ff72faa4e6cef602dc"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>, the <a class="mkdocs-ezglossary-link"
+    id="2a88dc558039d0f7424c3ba34ab2e183"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or WRP SHALL perform the same steps as described in <a href="#list-of-trusted-lists-validation-process">List of Trusted Lists Validation Process</a> for the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>, with the following difference: the variables and status codes used throughout have <code>LoTE</code> in place of <code>LOTL</code>.</p>
+<p>Below is a flowchart summarizing the above steps for the validation of the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a>:</p>
+<pre class="mermaid"><code>graph TD
+    classDef failure fill:#f8d7da,stroke:#721c24,color:#721c24,font-weight:bold;
+    classDef success fill:#d4edda,stroke:#155724,color:#155724,font-weight:bold;
+    classDef warning fill:#fff3cd,stroke:#856404,color:#856404;
+    classDef process fill:#fff,stroke:#333,stroke-width:1px;
+    classDef decision fill:#e7f3fe,stroke:#0056b3,stroke-width:1px;
+
+    Start([Start LoTE JWT Validation]) --&gt; Init[1. Init &amp; Download LoTE&lt;br/&gt;from OJEU-LoTE-Loc]:::process
+    Init --&gt; Parse[2. Parse Header:&lt;br/&gt;Extract Signer Cert x5c]:::process
+
+    %% Step 3: Pivot Discovery
+    Parse --&gt; S3{3. Found OJEU-Loc URI in history?}:::decision
+    S3 -- "No (NotFound)" --&gt; F3[Fail: OJEU Loc Not Found&lt;br/&gt;Trust Anchor Migration Needed]:::failure
+
+    %% Steps 4 &amp; 5: Location &amp; Freshness Checks
+    S3 -- "Yes (Set n)" --&gt; S4{4. Location Conflict?&lt;br/&gt;Old-LoTE-Loc != New-LoTE-Loc AND &lt;br/&gt; Old-LoTE != New-LoTE}:::decision
+    S4 -- Yes --&gt; F4[Fail: File Conflict / Spoofing]:::failure
+    S4 -- No --&gt; S5{5. Freshness Check&lt;br/&gt;Old-LoTE-Loc == New-LoTE-Loc AND &lt;br/&gt; Old-LoTE != New-LoTE}:::decision
+    S5 -- "Yes (New Version Detected)" --&gt; UpdateLoc[Update OJEU-LoTE-Loc]:::warning
+    UpdateLoc --&gt; Init
+    S5 -- "No (Current is Fresh)" --&gt; S6
+
+    %% Step 6: Signature &amp; Setup
+    S6{6. Validate current LoTE Signature}:::decision
+    S6 -- Invalid --&gt; F6[Fail: LoTE Sig Verification Failed]:::failure
+    S6 -- Valid --&gt; SetupVars[Set Variables:&lt;br/&gt;Current Signer = LoTE-Signer-Cert&lt;br/&gt;Extract Trusted Set from Payload]:::process
+
+    %% Step 7: The Loop
+    SetupVars --&gt; S7Check{"7. Is n = 0 (no Pivots)?"}:::decision
+    S7Check -- Yes --&gt; S8
+    S7Check -- "No (n &gt; 0, Start Loop)" --&gt; LoopStart[Start Pivot Loop i=1 to n]:::process
+
+    subgraph Pivot Validation Chain
+        LoopStart --&gt; DownloadPivot[Download Pivot i]:::process
+        DownloadPivot --&gt; LinkCheck{Link Check:&lt;br/&gt;Is Current Signer trusted by Pivot i payload?}:::decision
+        LinkCheck -- No --&gt; FLink[Fail: Broken Trust Chain]:::failure
+        LinkCheck -- Yes --&gt; UpdateSigner[Update Current Signer:&lt;br/&gt;Extract Signer from Pivot i Header]:::process
+        UpdateSigner --&gt; SigCheckPivot{Validate Pivot i Signature}:::decision
+        SigCheckPivot -- Invalid --&gt; FSigPivot[Fail: Pivot Sig Invalid]:::failure
+        SigCheckPivot -- Valid --&gt; LoopNext{i &lt; n ?&lt;br/&gt;More Pivots?}:::decision
+    end
+
+    LoopNext -- "Yes (i++)" --&gt; DownloadPivot
+    LoopNext -- No --&gt; S8
+
+    %% Step 8: Trust Anchor Validation
+    S8{8. Trust Anchor Validation:&lt;br/&gt;Is Final Signer in OJEU-LoTE-Certs-Set?}:::decision
+    S8 -- No --&gt; F8[Fail: Not authenticated by OJEU]:::failure
+
+    %% Step 9: Expiration
+    S8 -- Yes --&gt; S9{9. Expiration Check:&lt;br/&gt;Now &gt; NextUpdate?}:::decision
+    S9 -- Yes --&gt; F9[Fail: LoTE Expired]:::failure
+
+    %% Step 10: Success
+    S9 -- No --&gt; Success[10. Validation PASSED]:::success
+
+    %% Steps 11 &amp; 12: Updates
+    Success --&gt; UpdateBM[11. Update Local Bookmark OJEU-LoTE-Loc&lt;br/&gt;if changed in payload]:::process
+    UpdateBM --&gt; UpdateTA[12. Update Trust Anchor &lt;br/&gt; Config if OJEU moved]:::warning
+    UpdateTA --&gt; End([End Process])
+
+    %% Consolidation of failure endpoints
+    F3 --&gt; EndFail([Stop: Validation FAILED]):::failure
+    F4 --&gt; EndFail
+    F6 --&gt; EndFail
+    FLink --&gt; EndFail
+    FSigPivot --&gt; EndFail
+    F8 --&gt; EndFail
+    F9 --&gt; EndFail</code></pre>
+<h4 id="european-union-member-state-trusted-list-validation">European Union Member State Trusted List Validation<a class="headerlink" href="#european-union-member-state-trusted-list-validation" title="Permanent link">&para;</a></h4>
+<p>This section defines the validation of <a class="mkdocs-ezglossary-link"
+    id="9f8109446705eb3cbae6c1b6d009f110"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EU Member State Trusted Lists (EUMS TLs)</a>. The <a class="mkdocs-ezglossary-link"
+    id="0558fd3a4c764d8690f9cfd148030289"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> is an XML artifact signed by a Member State Scheme Operator. In order to validate the <a class="mkdocs-ezglossary-link"
+    id="42cfec8f8d07e77f1e43e7cc100781cc"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>, the <a class="mkdocs-ezglossary-link"
+    id="4be77e4563c1f90be804ee47a59e0807"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or WRP uses the following validation hierarchy:</p>
+<ol>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="1263e5bcc660274e1bfdeee091cc3e36"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet</a>/<a class="mkdocs-ezglossary-link"
+    id="a331fbe8d4b3651f7e80461967d31854"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> SHALL first validate the EU List of <a class="mkdocs-ezglossary-link"
+    id="70015708dda688540f9e1d57584c5708"
+    title="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    data-tooltip="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</a> (<a class="mkdocs-ezglossary-link"
+    id="a46139c7442a49a2c39317667e2dc5a6"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>).</li>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="d86e765ca193ae5d56275f8f63f30388"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet</a>/<a class="mkdocs-ezglossary-link"
+    id="7f6f85e11f90ee729e7fe1c56ba7c943"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> uses the authenticated <a class="mkdocs-ezglossary-link"
+    id="5750f305ce458f0c131d4c70e487c351"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> to discover and validate the <a class="mkdocs-ezglossary-link"
+    id="5ad1624c68e1f1e71a4f6c465e9a1dc2"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>.</li>
+</ol>
+<h5 id="european-union-member-state-trusted-list-retrieval-and-validation-sequence-diagram">European Union Member State Trusted List Retrieval and Validation Sequence Diagram<a class="headerlink" href="#european-union-member-state-trusted-list-retrieval-and-validation-sequence-diagram" title="Permanent link">&para;</a></h5>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Client
+    participant EU_API as EU LOTL Distribution Point
+    participant MS_Repo as MS TL Distribution Point
+
+    Client-&gt;&gt;EU_API: Request LOTL (URL from OJEU) 
+    EU_API--&gt;&gt;Client: Returns EU List of Trusted Lists (XML)
+    Client-&gt;&gt;Client: Validate LOTL
+    Client-&gt;&gt;Client: Parse LOTL to find Target MS TL Pointer &amp; Signing Keys
+
+    Client-&gt;&gt;MS_Repo: Request EUMS TL (URL from LOTL)
+    MS_Repo--&gt;&gt;Client: Returns EUMS Trusted List (XML)
+    Client-&gt;&gt;Client: Validate EUMS TL Signature using LOTL certificate</code></pre>
+<p>In the diagram above, a <a class="mkdocs-ezglossary-link"
+    id="8f761e6ac20dc1d3be512cbbe24fe8f7"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or <a class="mkdocs-ezglossary-link"
+    id="8ac2ac21d1ad430b1feab13bd6ae39f2"
+    title="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    data-tooltip="An entity that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [Revised from ARF, CIR 2024/2979, CIR 2024/2980, CIR 2025/848]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> downloads and validates an EUMS <a class="mkdocs-ezglossary-link"
+    id="dc064c3be25f3298d4bd6f5b95be267c"
+    title="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    data-tooltip="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</a> by performing the following steps:</p>
+<ol>
+<li>requests the <a class="mkdocs-ezglossary-link"
+    id="27479a800a7212c80e410efc55b3bb36"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> at the location indicated by the URL published in the <a class="mkdocs-ezglossary-link"
+    id="8f2425d95ec224214323814cdc1d2583"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>;</li>
+<li>the <a class="mkdocs-ezglossary-link"
+    id="be9400dbd82d2e4ae2ab4a75a7cd0978"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> distribution point returns the <a class="mkdocs-ezglossary-link"
+    id="17cb94ca6a64f31db4c4b7b688a73408"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> XML document;</li>
+<li>validates the signature/seal on the downloaded <a class="mkdocs-ezglossary-link"
+    id="de2efdb41f403f58e5376611ba427ac1"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> and verifies its validity;</li>
+<li>parses the <a class="mkdocs-ezglossary-link"
+    id="aafb8b8886f469ab1a8114429969b1c9"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> to retrieve the location (<code>TSLLocation</code>) and the associated validation certificates (<code>DigitalId</code>) for the target Member State's <a class="mkdocs-ezglossary-link"
+    id="53ba2f2ec7b462a9d075cc8701282093"
+    title="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    data-tooltip="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</a> Service Operator.</li>
+<li>requests the <a class="mkdocs-ezglossary-link"
+    id="4de44bfd28652b607cbe0db4278610a4"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> at the location indicated by the <code>TSLLocation</code> field in the <a class="mkdocs-ezglossary-link"
+    id="892a20216d2ab65ad3b738f6155edaff"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>;</li>
+<li>the <a class="mkdocs-ezglossary-link"
+    id="2980a49b1a2e1b6e8a0377b8bb68e618"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> distribution point returns the <a class="mkdocs-ezglossary-link"
+    id="17e388142faf85af726b526bba9913c1"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> XML document;</li>
+<li>validates the signature/seal on the downloaded MS <a class="mkdocs-ezglossary-link"
+    id="a73b2b217349103d3f50402c33dfb3e4"
+    title="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    data-tooltip="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</a> using the certificates obtained from the <a class="mkdocs-ezglossary-link"
+    id="248dc4ab1f76fe6a4e9b820c78f06136"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> in Step 4.</li>
+<li>parses the <a class="mkdocs-ezglossary-link"
+    id="ba423d2e5d28814db2b47802c3259b67"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> to retrieve the metadata and public key certificates of the relevant entities (e.g., <a class="mkdocs-ezglossary-link"
+    id="344d2a4eb2a267d5bb8c0a3495c72b9b"
+    title="Provider of Qualified Electronic Attestation of Attributes (QEEAs)."
+    data-tooltip="Provider of Qualified Electronic Attestation of Attributes (QEEAs)."
+    name="roles:QEAA Provider"
+    href="../../glossary-definitions/#ba9c7de719dc10bf2f0637af443116a3">QEAA Providers</a>, <a class="mkdocs-ezglossary-link"
+    id="b7e5c85a34b513f0a7728a341cfd9502"
+    title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    name="roles:PuB-EAA Provider"
+    href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">Pub-EAA Providers</a>) and use them as trustworthy Trust Anchors for verifying signatures/seals on <a class="mkdocs-ezglossary-link"
+    id="4913ea9b5261b7647a45f43e1b5c2669"
+    title="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAAs</a> or <a class="mkdocs-ezglossary-link"
+    id="e7c4f0e4cf5b78b6893d53cbe51b63d0"
+    title="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
+    href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">Pub-EAAs</a>.</li>
+</ol>
+<p>If any of the above verifications fail, the validation process SHALL be aborted and the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> SHALL be considered invalid. If all verifications succeed, the <a class="mkdocs-ezglossary-link"
+    id="0a6446036450812d82c8282b1477b370"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or WRP can parse the <a class="mkdocs-ezglossary-link"
+    id="c91364262f0877f6faf7b97f34eb8ca2"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> to retrieve the metadata and public key certificates of the relevant entities (i.e., <a class="mkdocs-ezglossary-link"
+    id="e79918c9a43b3274adbd6b2cb12820fb"
+    title="Provider of Qualified Electronic Attestation of Attributes (QEEAs)."
+    data-tooltip="Provider of Qualified Electronic Attestation of Attributes (QEEAs)."
+    name="roles:QEAA Provider"
+    href="../../glossary-definitions/#ba9c7de719dc10bf2f0637af443116a3">QEAA Providers</a> or <a class="mkdocs-ezglossary-link"
+    id="4a6ad4b91a7a92fb82bac5d7add0b7a7"
+    title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    name="roles:PuB-EAA Provider"
+    href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">Pub-EAA Providers</a>) and use them as trustworthy <a class="mkdocs-ezglossary-link"
+    id="1fbf8f82981dd642015ba27714670237"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> for verifying signatures/seals on <a class="mkdocs-ezglossary-link"
+    id="af430684178b6509b651c5c7f3e36f04"
+    title="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAAs</a> or <a class="mkdocs-ezglossary-link"
+    id="f2448fe776881ac86270744d6527059b"
+    title="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
+    href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">Pub-EAAs</a>.</p>
+<h5 id="european-union-member-state-trusted-list-validation-process">European Union Member State Trusted List Validation Process<a class="headerlink" href="#european-union-member-state-trusted-list-validation-process" title="Permanent link">&para;</a></h5>
+<p>To validate a <a class="mkdocs-ezglossary-link"
+    id="7a0bccab8ecb4f902823248625fe6907"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> containing the sought <a class="mkdocs-ezglossary-link"
+    id="1aa7ce216b9aad3f5e875334bb63fb80"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>, the <a class="mkdocs-ezglossary-link"
+    id="be5ea95854c8b1f673687c8cdbd1a716"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or <a class="mkdocs-ezglossary-link"
+    id="a6d37b5de1184d5713bbd2d1f9061063"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Party</a> SHALL validate both the <a class="mkdocs-ezglossary-link"
+    id="6cde0f9a26c61459c9a3bba15b55d7d8"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> and the <a class="mkdocs-ezglossary-link"
+    id="f3d63287c498651fb7d3a4d22134c406"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>. The validation of the <a class="mkdocs-ezglossary-link"
+    id="193ea72f9dde8f6aa5bb3271b79688a9"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> is a prerequisite for the validation of the <a class="mkdocs-ezglossary-link"
+    id="5c434db727292ed7685793894af5f268"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>, as the <a class="mkdocs-ezglossary-link"
+    id="b565ef7ed6fb92323ed2d57c4b283a9a"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> for validating the <a class="mkdocs-ezglossary-link"
+    id="f0373dad4bfc108fe62967d0f6bfe364"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> is obtained from the <a class="mkdocs-ezglossary-link"
+    id="3d26847e231d793e5d5a79c0691b026b"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>.</p>
+<h6 id="list-of-trusted-lists-validation-process">List of Trusted Lists Validation Process<a class="headerlink" href="#list-of-trusted-lists-validation-process" title="Permanent link">&para;</a></h6>
+<p><strong>Remarks</strong>: The logic mirrors the <a href="artifacts:List of Trusted Entities (LoTE)">LoTE</a> validation but uses XML signatures and <a class="mkdocs-ezglossary-link"
+    id="9e3eff63ffad6497a970c3d3c0a090a3"
+    title="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    data-tooltip="A repository of information about authoritative entities in a particular legal or contractual context which provides information about their current and historical status. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</a>-specific elements. The validation process is as described in [ETSI TS 119 615].</p>
+<ul>
+<li>The XML Pivot logic (Step 6) includes a "Self-Consistency Check" not present in the JWT logic due to the fact that the <code>Signature</code> element is not integrity protected.</li>
+</ul>
+<p>The <a class="mkdocs-ezglossary-link"
+    id="52229607036454c7b97138eb29024e96"
+    title="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    data-tooltip="A unique configuration of a wallet solution that includes wallet instances, wallet secure cryptographic applications and wallet secure cryptographic devices provided by a wallet provider to an individual User. [CIR 2024/2979, CIR 2024/2980, CIR 2025/848, CIR 2025/1569]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or <a class="mkdocs-ezglossary-link"
+    id="e91af7befc18429ded564cc4c399cd71"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Party</a> initializes the following input variables for the <a class="mkdocs-ezglossary-link"
+    id="cb382a407649a900114ba3f1c49dd4f0"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> validation:</p>
+<ul>
+<li><code>OJEU-Loc</code>: URI value referencing the latest publication of the <a class="mkdocs-ezglossary-link"
+    id="3d1b36bcd372ade067ac156566fed18f"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">Official Journal of the European Union</a> (<a class="mkdocs-ezglossary-link"
+    id="28d0b0387edceaa3300f9b9f7cf30cd5"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>) related to data on <a class="mkdocs-ezglossary-link"
+    id="ca5ebed4b1fedf5df92d1ac2063345df"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>.</li>
+<li><code>OJEU-LOTL-Loc</code>: URI value representing the location where the last processed instance of the <a class="mkdocs-ezglossary-link"
+    id="56d634a9e39c6d5836c62f68679a7e72"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> XML file is available. If not available, this is initialized from the <code>OJEU-Loc</code> publication.</li>
+<li><code>OJEU-LOTL-Certs-Set</code>: The set of certificates used to ensure the authenticity and integrity of the <a class="mkdocs-ezglossary-link"
+    id="e56efcbe1fbd0b25c87da6e97a0090a9"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>. Initialized from the <code>OJEU-Loc</code> publication.</li>
+<li><code>LOTL</code>: The XML file of the <a class="mkdocs-ezglossary-link"
+    id="835d9dfd2f13823d7c537c4c77a06d91"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> currently being processed. Initialized as <code>null</code>.</li>
+<li><code>LOTL-Signer-Cert</code>: Extracted from <code>ds:X509Certificate</code> in the <a class="mkdocs-ezglossary-link"
+    id="01c1027d170ac57141739919231e6106"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> signature. Initialized as <code>null</code>.</li>
+<li><code>LOTLSO-Cert</code>: The certificate of the <a class="mkdocs-ezglossary-link"
+    id="4571c3323e30e0d5fc56be46daead3f3"
+    title="An entity responsible for maintaining, updating, and digitally signing the List of Trusted Lists (LOTL)."
+    data-tooltip="An entity responsible for maintaining, updating, and digitally signing the List of Trusted Lists (LOTL)."
+    name="roles:LOTL Scheme Operator (LOTLSO)"
+    href="../../glossary-definitions/#5c467dc2e4adf70c71bb4ec848f109bc">LOTL Scheme Operator (LOTLSO)</a> extracted from the <code>KeyInfo</code> element of the <a class="mkdocs-ezglossary-link"
+    id="b8eb93e47e7f3188578b80e7563cbaeb"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> signature. Initialized as <code>null</code>.</li>
+<li><code>LOTLSO-Cert-Sets</code>: The set of trusted certificates extracted from the <code>PointersToOtherTSL</code> element (with <code>SchemeTerritory</code> = <code>EU</code>) within a <a class="mkdocs-ezglossary-link"
+    id="2a7eee9ff74b226ce51d7e80009a102c"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> or Pivot file. Initialized as <code>null</code>.</li>
+</ul>
+<p>The operations described below produce the following output variables:</p>
+<ul>
+<li><code>Authenticated-LOTL</code>: The authenticated XML version of the current instance of the <a class="mkdocs-ezglossary-link"
+    id="e440985243f4688a75c26ffa4c4d374c"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>.</li>
+<li><code>LOTL-Status</code>: The status indication of the process of authenticating the current instance of the <a class="mkdocs-ezglossary-link"
+    id="fd8e1fa23e141591d78f5a1dea91886c"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>.</li>
+<li><code>LOTL-Sub-Status</code>: A list of indications supplementing <a class="mkdocs-ezglossary-link"
+    id="dbe9ad6f754e172843e37ca97edcacf0"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>-Status indication of the process of authenticating the current instance of the <a class="mkdocs-ezglossary-link"
+    id="11a9701477b2d107c06144528ec1e6f0"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>.</li>
+</ul>
+<p>The validation operations for the <a class="mkdocs-ezglossary-link"
+    id="dfa44cac0268e39481163cdf9aa9ad51"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> SHALL perform the following steps (see [ETSI TS 119 615, clause 4.1.4] for reference):</p>
+<ol>
+<li>[PRO-4.1.4-1] (Initialization) Set <code>LOTL</code> to the XML file downloaded from <code>OJEU-LOTL-Loc</code>.</li>
+<li>[PRO-4.1.4-2] (Parsing) Set <code>LOTL-Signer-Cert</code> to the certificate extracted from the <code>ds:X509Certificate</code> element within the <code>ds:Signature</code> of the <code>LOTL</code>.</li>
+<li>[PRO-4.1.4-3, PRO-4.1.4-4] (Pivot Discovery) Iterate through the URIs in the <code>SchemeInformationURI</code> element. Count the number of successive valid XML URIs found before encountering the URI matching <code>OJEU-Loc</code>. Let <span class="arithmatex">\(n\)</span> be that count. If no URI matches <code>OJEU-Loc</code>, the validation SHALL fail with <code>LOTL-Status</code> set to <code>LOTL_VERIFICATION_FAILED</code> and <code>LOTL-Sub-Status</code> set to <code>OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LOTL</code>.</li>
+<li>[PRO-4.1.4-5] (<a class="mkdocs-ezglossary-link"
+    id="2b98e22a7a61f6f9f6f018318fff0ed1"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> Location Conflict) Check the condition: <code>OJEU-LOTL-Loc != TSLLocation</code> AND <code>LOTL != Content at TSLLocation</code>.<ul>
+<li>(<code>TSLLocation</code> is the URI in the <code>PointersToOtherTSL</code> element of <code>LOTL</code> with <code>SchemeTerritory</code> = <code>EU</code>).</li>
+<li>If TRUE: Validation SHALL stop with <code>LOTL-Status</code> set to <code>LOTL_VERIFICATION_FAILED</code> and <code>LOTL-Sub-Status</code> set to <code>LOTL_FILE_CONFLICT</code>.</li>
+<li>If FALSE: Proceed to the next step.</li>
+</ul>
+</li>
+<li>[PRO-4.1.4-6] (<a class="mkdocs-ezglossary-link"
+    id="704774cc43b18f9bd4c9eb25135443f7"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> Freshness) Check the condition: <code>OJEU-LOTL-Loc == TSLLocation</code> AND <code>LOTL != Content at TSLLocation</code>.<ul>
+<li>If TRUE: Set <code>OJEU-LOTL-Loc</code> to <code>TSLLocation</code> and restart from Step 1.</li>
+<li>If the result is <code>FALSE</code>, proceed to the next step.</li>
+</ul>
+</li>
+<li>[PRO-4.1.4-7] Validate the digital signature of the current <code>LOTL</code> using the public key from <code>LOTL-Signer-Cert</code>.<ul>
+<li>[PRO-4.1.4-8] If validation fails: Stop with <code>LOTL-Status</code> set to <code>LOTL_VERIFICATION_FAILED</code>.</li>
+<li>[PRO-4.1.4-9] If successful: Set <code>LOTLSO-Cert</code> to <code>LOTL-Signer-Cert</code>. Set <code>LOTLSO-Certs-Set</code> to the certificates found in the <code>PointersToOtherTSL</code> tuple (territory <code>EU</code>) of the current <code>LOTL</code>.</li>
+</ul>
+</li>
+<li>(Intermediate Pivot Validation)<ul>
+<li>[PRO-4.1.4-10] If <span class="arithmatex">\(n = 0\)</span> (No Pivots):<ul>
+<li>If <code>LOTLSO-Cert</code> is not in <code>OJEU-LOTL-Certs-Set</code>, validation SHALL fail (Signer not authorized by Trust Anchor). Otherwise, proceed to Step 8.</li>
+</ul>
+</li>
+<li>[PRO-4.1.4-11] If <span class="arithmatex">\(n &gt; 0\)</span> (History Chain):<ul>
+<li>Iterate <span class="arithmatex">\(i\)</span> from 1 to <span class="arithmatex">\(n\)</span> (from most recent Pivot to oldest). Let <code>Pivot</code> be the file at the <span class="arithmatex">\(i\)</span>-th URI.</li>
+<li>(Link Check) Set <code>Pivot-Certs-Set</code> to the certificates in the <code>PointersToOtherTSL</code> (territory <code>EU</code>) of <code>Pivot</code>. If <code>LOTLSO-Cert</code> (from the previous step) is not in <code>Pivot-Certs-Set</code>, validation SHALL fail with <code>LOTL-Sub-Status</code> set to <code>PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i</code>.</li>
+<li>(Extract Signer) Set <code>LOTLSO-Cert</code> to the certificate extracted from the signature of <code>Pivot</code>.</li>
+<li>(Self-Consistency Check) If <code>LOTLSO-Cert</code> is not in <code>Pivot-Certs-Set</code>, validation SHALL fail with <code>LOTL-Sub-Status</code> set to <code>PIVOT_i_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i</code>.</li>
+<li>(Verify Signature) Validate the signature of <code>Pivot</code> using <code>LOTLSO-Cert</code>. If it fails, validation SHALL fail with <code>LOTL-Sub-Status</code> set to <code>PIVOT_i_SIGNATURE_VERIFICATION_FAILED</code>.</li>
+<li>The loop continues with the new <code>LOTLSO-Cert</code> acting as the input for the next Pivot or the Anchor.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>[PRO-4.1.4-12] (Trust Anchor Validation) If <code>LOTLSO-Cert</code> (from the last Pivot) is not in <code>OJEU-LOTL-Certs-Set</code> (the Trust Anchor), validation SHALL fail with <code>LOTL-Sub-Status</code> set to <code>PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU</code>.</li>
+<li>[PRO-4.1.4-13] (Expiration) If current time &gt; <code>NextUpdate</code> of <code>LOTL</code>, validation SHALL fail with <code>LOTL-Sub-Status</code> set to <code>LOTL_NEXTUPDATE_PASSED</code>.</li>
+<li>[PRO-4.1.4-14, 15] (Success) Set <code>Authenticated-LOTL</code> to <code>LOTL</code>, <code>LOTL-Status</code> to <code>LOTL_VERIFICATION_PASSED</code>.</li>
+<li>[PRO-4.1.4-16] (Location Update) If <code>OJEU-LOTL-Loc</code> does not match the <code>TSLLocation</code> in <code>Authenticated-LOTL</code> (territory <code>EU</code>), update <code>OJEU-LOTL-Loc</code> to that value.</li>
+<li>[PRO-4.1.4-17] (Update Anchor) [Caution: This step modifies the Root of Trust configuration]<ul>
+<li>If the <code>OJEU-Loc</code> does not match the URI to the first <code>SchemeInformationURI</code> tuple, set the <code>OJEU-Loc</code> variable to that URI.</li>
+<li>Update <code>OJEU-LOTL-Certs-Set</code> to the certificates found in <code>Authenticated-LOTL</code> (or from the new <a class="mkdocs-ezglossary-link"
+    id="1205e118e8c1883d13a63dd6026bf73a"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a> publication).</li>
+</ul>
+</li>
+</ol>
+<h6 id="european-union-member-state-trusted-list-validation-process_1">European Union Member State Trusted List Validation Process<a class="headerlink" href="#european-union-member-state-trusted-list-validation-process_1" title="Permanent link">&para;</a></h6>
+<p>The validation operations for the <a class="mkdocs-ezglossary-link"
+    id="e2021793fae3fe040f7d0b9791da895a"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> SHALL perform the following steps (see [ETSI TS 119 615, clause 4.2.4] for reference).</p>
+<p><strong>Input variables</strong>: [PRO-4.2.4-01, PRO-4.2.4-02]</p>
+<ul>
+<li><code>Authenticated-LOTL</code>: The authenticated XML version of the current instance of the <a class="mkdocs-ezglossary-link"
+    id="660c29bf7980d022ed644dc9778c275b"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a> obtained from the validation of the <a class="mkdocs-ezglossary-link"
+    id="d03f62724cad186e88803b3aa3d7d83c"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List of Trusted Lists (LoTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>.</li>
+<li><code>EUTL-Status</code>: The XML file of the <a class="mkdocs-ezglossary-link"
+    id="94cb58cfea225bde3d105bc9f2d560f3"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> currently being processed. This variable is initialized as <code>null</code>.</li>
+<li><code>EUTL-Sub-Status</code>: A list of indications supplementing <code>EUTL-Status</code> indication of the process of authenticating the current instance of the <a class="mkdocs-ezglossary-link"
+    id="b6845e4a3d1ffe15e42900679845e641"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>.</li>
+<li><code>EUTL</code>: The XML file of the <a class="mkdocs-ezglossary-link"
+    id="a94f98c1e7394f7d85a10b1126c7f7ac"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> currently being processed. This variable is initialized as <code>null</code>.</li>
+<li><code>EUTL-Certs-Set</code>: The full set of certificates used for ensuring authenticity and integrity of the <a class="mkdocs-ezglossary-link"
+    id="b414d96be01bb0435454533a69059830"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>. This variable is initialized as <code>null</code>.</li>
+<li><code>EUTL-Signer-Cert</code>: The certificate extracted from the XML signature of the <a class="mkdocs-ezglossary-link"
+    id="e2d9f5039b1077bf1899f9ff8ec92202"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>. This variable is initialized as <code>null</code>.</li>
+</ul>
+<p><strong>Validation Steps</strong>:</p>
+<ol>
+<li>[PRO-4.2.4-03] (Parsing) Parse the <code>Authenticated-LOTL</code> to find the <code>TSLLocation</code> field in the <code>PointersToOtherTSL</code> element with <code>SchemeTerritory</code> value matching the target Member State.</li>
+<li>[PRO-4.2.4-04] (<a class="mkdocs-ezglossary-link"
+    id="c1d2942cf395df0a7dd46cbe1f5cf4c3"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> Download) Download the XML file from the <code>TSLLocation</code> found in the previous step and set the <code>EUTL</code> variable to the downloaded XML file.</li>
+<li>[PRO-4.2.4-05, PRO-4.2.4-06] (<a class="mkdocs-ezglossary-link"
+    id="97e2fa7e05dc098d92a9b7c588e52e80"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> Parsing) Parse the <code>Authenticated-LOTL</code> to find the <code>X509Certificates</code> tuple in the <code>ServiceDigitalIdentity</code> element of the <code>PointersToOtherTSL</code> element with <code>SchemeTerritory</code> value matching the target Member State, and set the <code>EUTL-Certs-Set</code> variable to the full set of certificates available in that tuple. The set the <code>EUTL-Signer-Cert</code> variable to the certificate extracted from the XML in the <code>ds:X509Certificate</code> element in the <code>ds:KeyInfo</code> element in the <code>Signature</code> element of the <code>EUTL</code>.</li>
+<li>[PRO-4.2.4-07, PRO-4.2.4-08, PRO-4.2.4-09] (<a class="mkdocs-ezglossary-link"
+    id="5c9549c21ab0a73e5fbd37c0b3d85913"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> Integrity and Authenticity Validation)<ul>
+<li>Validate the digital signature of the <code>EUTL</code> using the <code>EUTL-Signer-Cert</code>. If the signature validation fails, or it is undetermined, the validation SHALL fail with <code>EUTL-Status</code> set to <code>EUTL_VERIFICATION_FAILED</code>, and <code>EUTL-Sub-Status</code> set to <code>EUTL_SIGNATURE_VERIFICATION_FAILED</code>.</li>
+<li>If the signature validation is successful, check that the <code>EUTL-Signer-Cert</code> is in the <code>EUTL-Certs-Set</code> (i.e., the signing certificate of the <a class="mkdocs-ezglossary-link"
+    id="9eba18f14eb30e546962e2d9a687620b"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> has not been tampered with). If the check fails, the validation SHALL fail with <code>EUTL-Status</code> set to <code>EUTL_VERIFICATION_FAILED</code>, <code>Authenticated-LOTL</code> set to <code>null</code>, and <code>EUTL-Sub-Status</code> set to <code>EUTLSO_SIGNER_CERT_NOT_AUTHENTICATED_BY_LOTL</code>.</li>
+</ul>
+</li>
+<li>[PRO-4.2.4-10] (<a class="mkdocs-ezglossary-link"
+    id="144b12d24041f9bb8c3343aaaea3b09b"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a> Validity Check) Check the <code>NextUpdate</code> field in the <code>EUTL</code>.<ul>
+<li>If the current date/time is greater than the <code>NextUpdate</code> value, the validation SHALL fail with <code>EUTL-Status</code> set to <code>EUTL_VERIFICATION_FAILED</code>, and <code>EUTL-Sub-Status</code> set to <code>WARNING_EUTL_NEXTUPDATE_PASSED</code>.</li>
+</ul>
+</li>
+<li>[PRO-4.2.4-11, PRO-4.2.4-12] If all the above checks are successful, set <code>Authenticated-EUTL</code> to the value of the currently validated <code>EUTL</code>, <code>EUTL-Status</code> to <code>EUTL_VERIFICATION_PASSED</code>, and <code>EUTL-Sub-Status</code> to an empty list.</li>
+</ol>
+<p>Below is a flowchart summarizing the above steps for the validation of the <a class="mkdocs-ezglossary-link"
+    id="8f0b8e243f41daa2249df32069bcbff3"
+    title="European Member State Trusted List."
+    data-tooltip="European Member State Trusted List."
+    name="artifacts:EU Member State Trusted List (EUMS TL)"
+    href="../../glossary-definitions/#847c70bebc48c528541d924458d1bdf9">EUMS TL</a>:</p>
+<pre class="mermaid"><code>graph TD
+    Start([Start EUMS TL Validation]) --&gt; Init[Initialize Variables:&lt;br/&gt;Authenticated-LOTL&lt;br/&gt;EUTL-Status = null&lt;br/&gt;EUTL = null&lt;br/&gt;EUTL-Sub-Status = null&lt;br/&gt;EUTL-Certs-Set = null&lt;br/&gt;EUTL-Signer-Cert = null]
+
+    %% Step 1: Parse LOTL for Location
+    Init --&gt; Step1[Step 1: Parse Authenticated-LOTL&lt;br/&gt;Find TSLLocation for target Member State]
+    Step1 --&gt; Step2[Step 2: Download EUMS TL&lt;br/&gt;Set EUTL = Downloaded XML]
+
+    %% Step 3: Parse Certs
+    Step2 --&gt; Step3[Step 3: Extract Certificates&lt;br/&gt;1. Set EUTL-Certs-Set from LOTL&lt;br/&gt;2. Set EUTL-Signer-Cert from EUTL Signature]
+
+    %% Step 4: Integrity &amp; Authenticity
+    Step3 --&gt; Step4_Sig{Step 4a: Validate EUTL Signature&lt;br/&gt;using EUTL-Signer-Cert}
+
+    %% 4a Failure
+    Step4_Sig -- Invalid/Undetermined --&gt; FailSig([FAILED&lt;br/&gt;Status: EUTL_VERIFICATION_FAILED])
+
+    %% 4b Trust Check
+    Step4_Sig -- Valid --&gt; Step4_Trust{Step 4b: Trust Check&lt;br/&gt;Is EUTL-Signer-Cert in&lt;br/&gt;EUTL-Certs-Set?}
+
+    %% 4b Failure
+    Step4_Trust -- No --&gt; FailTrust([FAILED&lt;br/&gt;Status: EUTL_VERIFICATION_FAILED])
+
+    %% Step 5: Validity Check
+    Step4_Trust -- Yes --&gt; Step5_Time{Step 5: Check NextUpdate&lt;br/&gt;Is Current Time &gt; NextUpdate?}
+
+    %% 5 Failure
+    Step5_Time -- Yes (Expired) --&gt; FailTime([FAILED&lt;br/&gt;Status: EUTL_VERIFICATION_FAILED])
+
+    %% Step 6: Success
+    Step5_Time -- No (Valid) --&gt; Success([SUCCESS&lt;br/&gt;Set Authenticated-EUTL = EUTL&lt;br/&gt;Status: EUTL_VERIFICATION_PASSED])
+
+    %% Styling
+    classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:1px;
+    classDef decision fill:#fff9c4,stroke:#fbc02d,stroke-width:1px;
+    classDef success fill:#dcedc8,stroke:#33691e,stroke-width:2px;
+    classDef fail fill:#ffcdd2,stroke:#b71c1c,stroke-width:2px;
+
+    class Init,Step1,Step2,Step3 process;
+    class Step4_Sig,Step4_Trust,Step5_Time decision;
+    class Success success;
+    class FailSig,FailTrust,FailTime fail;</code></pre>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 5, 2026 05:16:01 UTC">June 5, 2026 05:16:01</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../media/mermaid-init.js"></script>
+      
+        <script src="../../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
