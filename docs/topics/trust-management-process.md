@@ -60,13 +60,6 @@ flowchart LR
     mid_ent --"Issue"--> mid_ent_art
     end_ent --"Issue"--> end_ent_art --"to"--> wi["Wallet Units"]
     wi["Wallet Units"] --"Present Attestations"--> end_ent
-
-    e1@{ animate: true }
-    e2@{ animation: fast }
-    e3@{ animation: fast }
-    e4@{ animation: fast }
-    e5@{ animation: fast }
-    e6@{ animation: fast }
 ```
 
 #### Entity Properties Schema
