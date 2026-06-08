@@ -118,7 +118,7 @@ After processing $C_n$:
 3. Otherwise, the path is INVALID.
 
 ```mermaid
-flowchart
+flowchart TD
     Start([Start Validation]) --> DefineInputs[Inputs:<br/>path C1..Cn, trust_anchor, current_time]
 
     %% Step 1: Initialization

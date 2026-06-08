@@ -54,6 +54,7 @@ This project uses the git *branches* and *tags* in the following way:
 | Version | Built specifications |
 | ------- | -------------------- |
 | 0.1     | [HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.1/) |
+| 0.2     | [HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2/) |
 | latest  | [HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/latest/) |
 
 ## Funding
