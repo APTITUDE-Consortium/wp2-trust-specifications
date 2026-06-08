@@ -5,7 +5,7 @@ Version 0.2 (Draft)
 | Version | Date       | Description   |
 | ------- | ---------- | ------------- |
 | 0.1     | 2026-04-19 | First release |
-| 0.2     | 2026-06-05 | New section on Trust Management Process, editorial changes |
+| 0.2     | 2026-06-08 | New section on Trust Management Process, editorial changes |
 
 **Authors**:
 
