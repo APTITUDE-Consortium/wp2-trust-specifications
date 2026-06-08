@@ -104,7 +104,7 @@ To validate a <credentials:Public Electronic Attestation of Attributes (PuB-EAA)
 Below is a flowchart summarizing the above steps for the validation of the <artifacts:List of Trusted Entities (LoTE)|LoTE>:
 
 ```mermaid
-graph TD
+flowchart TD
     classDef failure fill:#f8d7da,stroke:#721c24,color:#721c24,font-weight:bold;
     classDef success fill:#d4edda,stroke:#155724,color:#155724,font-weight:bold;
     classDef warning fill:#fff3cd,stroke:#856404,color:#856404;
@@ -300,7 +300,7 @@ The validation operations for the <artifacts:Trusted List (TL)|TL> SHALL perform
 Below is a flowchart summarizing the above steps for the validation of the <artifacts:Trusted List (TL)|TL>:
 
 ```mermaid
-graph TD
+flowchart TD
     Start([Start TL Validation]) --> Init[Initialize Variables:<br/>Authenticated-LOTL<br/>EUTL-Status = null<br/>EUTL = null<br/>EUTL-Sub-Status = null<br/>EUTL-Certs-Set = null<br/>EUTL-Signer-Cert = null]
 
     %% Step 1: Parse LOTL for Location
