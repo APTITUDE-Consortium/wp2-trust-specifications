@@ -9,7 +9,6 @@ The main entities involved in the <components:EUDI Wallet> ecosystem are:
 
 ```mermaid
 flowchart TD
-
     WP["Wallet Provider (WP)"]
     User((User))
     WU["Wallet Unit <br/> [WIA]"]
@@ -32,17 +31,16 @@ flowchart TD
     RP ~~~ RPI
 
     %% Style
-    classDef WRP_entities fill:#ffefd5, stroke:#ffdab9
-    style WRP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-    style AP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    classDef WRP_entities fill:#ffefd5,stroke:#ffdab9;
+    style WRP fill:#ffffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style AP fill:#ffffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
 
     class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
 
-
     %% Arrows
-    WP ---|Provides Wallet Solution| User 
-    User ---|Controls/activates| WU
-    WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP 
+    WP ---|"Provides Wallet Solution"| User 
+    User ---|"Controls/activates"| WU
+    WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP
 ```
 
 To trust the interactions between these entities, the following trust evaluation processes are needed:

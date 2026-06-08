@@ -118,7 +118,7 @@ After processing $C_n$:
 3. Otherwise, the path is INVALID.
 
 ```mermaid
-sequenceDiagram
+flowchart
     Start([Start Validation]) --> DefineInputs[Inputs:<br/>path C1..Cn, trust_anchor, current_time]
 
     %% Step 1: Initialization
