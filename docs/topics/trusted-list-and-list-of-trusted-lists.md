@@ -16,7 +16,7 @@ Specifically for the <components:EUDI Wallet>, the Commission defines the additi
 1. another list to include:
    - <roles:Wallet Provider (WP)|Wallet Providers>
    - <roles:Provider of Person Identification Data (PID Provider)|PID Providers>
-   - and <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Providers of Wallet Relying Party Access Certificate>
+   - and <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Providers of Wallet Relying Party Access Certificates>
 
 #### Trusted List
 
