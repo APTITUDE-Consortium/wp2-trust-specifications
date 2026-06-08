@@ -3,11 +3,14 @@ The **Trust Anchor Validation Process** establishes the cryptographic integrity 
 Depending on the artifact or <credentials:Attestation> being verified, the validating Entity SHALL fetch, download, and validate the appropriate <artifacts:Trusted List (TL)|Trusted List>:
 
 1. *<artifacts:List of Trusted Entities (LoTE)>*, used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
+
    - **Infrastructure Certificates**: <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> or <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
    - **<artifacts:Wallet Unit Attestations (WUAs)>**: <artifacts:Key Attestation (KA)> or <artifacts:Wallet Instance Attestation (WIA)>.
    - **PID Signatures**: <credentials:Person Identification Data (PID)>.
    - **<roles:Registrar>-signed artifacts**: <components:Register> informations.
+
 2. *<artifacts:Trusted List (TL)|Trusted Lists>* (<artifacts:Trusted List (TL)|TL>); used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
+
    - seal or signature on a <credentials:Qualified Electronic Attestation of Attributes (QEAA)>; or
    - seal or signature on a <credentials:Public Electronic Attestation of Attributes (PuB-EAA)>.
 
