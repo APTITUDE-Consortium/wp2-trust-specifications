@@ -55,7 +55,7 @@ flowchart LR
     sup_art --"Affects"--> end_ent
     mid_ent -."Are included".-> init_ent_art
     end_ent -."Are included".-> init_ent_art
-    mid_ent_art ----"to"----> end_ent
+    mid_ent_art --"to"--> end_ent
     init_ent --"Publishes"--> init_ent_art
     mid_ent --"Issue"--> mid_ent_art
     end_ent --"Issue"--> end_ent_art --"to"--> wi["Wallet Units"]
