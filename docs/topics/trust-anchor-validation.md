@@ -14,7 +14,7 @@ Depending on the artifact or <credentials:Attestation> being verified, the valid
 To verify the authenticity of the retrieved <artifacts:Trusted List (TL)|Trusted Lists>, the Entity SHALL perform the following validations:
 
 - [LoTE Validation](#list-of-trusted-entities-validation-process): Validate the digital signature of the <artifacts:List of Trusted Entities (LoTE)|LoTE> by verifying it against the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> certificate. This certificate is authenticated via the <artifacts:Official Journal of the European Union (OJEU)>.
-- [TL Validation](#trusted-list-validation-process): Validate the digital signature of the <artifacts:Trusted List (TL)|TL> by verifying it against the corresponding Member State public keys published in the <artifacts:List Of Trusted Lists (LOTL)>. The <artifacts:List Of Trusted Lists (LOTL)|LOTL> itself is authenticated by validating its digital signature against the <artifacts:Official Journal of the European Union (OJEU)>.
+- [TL Validation](#trusted-list-validation): Validate the digital signature of the <artifacts:Trusted List (TL)|TL> by verifying it against the corresponding Member State public keys published in the <artifacts:List Of Trusted Lists (LOTL)>. The <artifacts:List Of Trusted Lists (LOTL)|LOTL> itself is authenticated by validating its digital signature against the <artifacts:Official Journal of the European Union (OJEU)>.
 
 To support continuous key rotation, both artifacts implement a pivoting mechanism. This ensures that an Entity possessing the last known valid version can reliably discover the location of the next version and validate it using the unbroken chain of trust rooted in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>.
 
@@ -104,7 +104,7 @@ To validate a <credentials:Public Electronic Attestation of Attributes (PuB-EAA)
 Below is a flowchart summarizing the above steps for the validation of the <artifacts:List of Trusted Entities (LoTE)|LoTE>:
 
 ```mermaid
-graph TD
+flowchart TD
     classDef failure fill:#f8d7da,stroke:#721c24,color:#721c24,font-weight:bold;
     classDef success fill:#d4edda,stroke:#155724,color:#155724,font-weight:bold;
     classDef warning fill:#fff3cd,stroke:#856404,color:#856404;
@@ -300,7 +300,7 @@ The validation operations for the <artifacts:Trusted List (TL)|TL> SHALL perform
 Below is a flowchart summarizing the above steps for the validation of the <artifacts:Trusted List (TL)|TL>:
 
 ```mermaid
-graph TD
+flowchart TD
     Start([Start TL Validation]) --> Init[Initialize Variables:<br/>Authenticated-LOTL<br/>EUTL-Status = null<br/>EUTL = null<br/>EUTL-Sub-Status = null<br/>EUTL-Certs-Set = null<br/>EUTL-Signer-Cert = null]
 
     %% Step 1: Parse LOTL for Location

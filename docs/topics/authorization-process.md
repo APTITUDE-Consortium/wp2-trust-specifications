@@ -105,7 +105,7 @@ WRPs are registered with a <roles:Registrar> in their Member State before operat
 The following diagram shows the authorization evidences and how they flow between the entities in the ecosystem.
 
 ```mermaid
-graph LR
+flowchart LR
     subgraph Entities
     AP([Attestation Provider])
     RP([Relying Party])

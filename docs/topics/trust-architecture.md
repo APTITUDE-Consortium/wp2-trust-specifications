@@ -8,8 +8,7 @@ The main entities involved in the <components:EUDI Wallet> ecosystem are:
     - The <roles:Relying Party (RP)|Relying Parties (RPs)> and <roles:Relying Party Intermediary (RPI)|Relying Party Intermediaries (RPI)> that interact with the <components:Wallet Unit> to request <credentials:Attestation|Attestations>.
 
 ```mermaid
-graph TD
-
+flowchart TD
     WP["Wallet Provider (WP)"]
     User((User))
     WU["Wallet Unit <br/> [WIA]"]
@@ -32,17 +31,16 @@ graph TD
     RP ~~~ RPI
 
     %% Style
-    classDef WRP_entities fill:#ffefd5, stroke:#ffdab9
-    style WRP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-    style AP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    classDef WRP_entities fill:#ffefd5,stroke:#ffdab9;
+    style WRP fill:#ffffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style AP fill:#ffffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
 
     class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
 
-
     %% Arrows
-    WP ---|Provides Wallet Solution| User 
-    User ---|Controls/activates| WU
-    WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP 
+    WP ---|"Provides Wallet Solution"| User 
+    User ---|"Controls/activates"| WU
+    WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP
 ```
 
 To trust the interactions between these entities, the following trust evaluation processes are needed:
@@ -68,7 +66,7 @@ While these trust evaluation processes and their artifacts (i.e., the <component
     4. [optionally] *WRPRC Issuance*: If the Member State mandates <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> issuance according to [CIR 2025/848, Article 8], the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> must issue a signed <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> containing registered capabilities. If it is not mandated, the <components:Wallet Instance> may retrieve information from <components:Register>.
 
     ```mermaid
-    graph TD
+    flowchart TD
 
     WRP["Wallet Relying Parties <br/> (WRPs)"]
 
@@ -107,7 +105,7 @@ While these trust evaluation processes and their artifacts (i.e., the <component
     - For <roles:QEAA Provider|QEAA Providers> and <roles:Qualified Trust Service Provider (QTSP)|QTSP>, the URL of the <artifacts:Trusted List (TL)|TL> is added in the EU <artifacts:List Of Trusted Lists (LOTL)>.
 
     ```mermaid
-    graph LR
+    flowchart LR
 
     subgraph MS["Member State (MS)"]
         MSTLP["MS  <br/>Scheme Operator  <br/>(SO)"]
@@ -153,7 +151,7 @@ While these trust evaluation processes and their artifacts (i.e., the <component
 The following figure add these two processes to the previous architecture.
 
 ```mermaid
-graph TD
+flowchart TD
 
     WP["Wallet Provider (WP)"]
     User((User))

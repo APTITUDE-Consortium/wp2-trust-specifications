@@ -118,7 +118,7 @@ After processing $C_n$:
 3. Otherwise, the path is INVALID.
 
 ```mermaid
-graph TD
+flowchart TD
     Start([Start Validation]) --> DefineInputs[Inputs:<br/>path C1..Cn, trust_anchor, current_time]
 
     %% Step 1: Initialization
@@ -210,7 +210,7 @@ When using a <artifacts:Certificate Revocation List (CRL)|CRL>, the <components:
 If any of the steps 1-4 fail or the <artifacts:Certificate Revocation List (CRL)|CRL> is unavailable, the <components:Wallet Unit> SHALL consider the certificate status as `unknown`. When all steps 1-4 succeed and the certificate serial number is not found in the <artifacts:Certificate Revocation List (CRL)|CRL>, the certificate SHALL be considered `good`.
 
 ```mermaid
-graph TD
+flowchart TD
     Start([Start CRL Validation]) --> Step1{Step 1: Time Check<br/>Is current_time between<br/>thisUpdate and nextUpdate?}
 
     %% Step 1: Time Verification and Update Logic
@@ -284,7 +284,7 @@ When using <protocols:Online Certificate Status Protocol (OCSP)|OCSP>, the <comp
 If any of the checks in 2-4 fail, the certificate status SHALL be considered `unknown`. If all checks succeed, update the status of each certificate by matching the `certStatus` value in the `SingleResponse` to the requested `CertID`.
 
 ```mermaid
-graph TD
+flowchart TD
     Start([Receive OCSP Response]) --> Step1{Step 1: Verify response Status}
 
     %% Step 1: Status Verification & Retry Logic
