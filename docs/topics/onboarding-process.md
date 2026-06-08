@@ -260,11 +260,11 @@ sequenceDiagram
     participant E as Operational Entity
     participant UI as Onboarding UI
     participant RegServ as Registration Service
-    actor Register@{ "type": "database" }  as WRP Register
+    participant Register as WRP Register
     participant ACServ as WRPAC Issuance Service
     participant RCServ as WRPRC Issuance Service
     participant PubServ as Publication Service
-    actor TL@{ "type": "database" }  as LoTE / EUMS TL
+    participant TL as LoTE / EUMS TL
 
     E->>UI: submit onboarding data
     alt entity registers (any WRP type)
