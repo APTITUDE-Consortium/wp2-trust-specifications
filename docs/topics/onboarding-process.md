@@ -5,6 +5,7 @@ This section describes the Onboarding Process within APTITUDE, where it is reali
 Onboarding collects all the information needed to make entities operational and recognisable, and it replaces the administrative and regulatory processes that, outside the pilot, manage the registration, notification and publication of <roles:Trusted Entity|Trusted Entities> between Member States and the European Commission.
 
 Within the pilot, the boundary is as follows.
+
 - The **implemented** elements are the creation of the registration records, the issuance of the certificates, and the signing and publication of the trusted lists, because these are what trust evaluation is tested against.
 - The **mocked** elements are the notification act between a Member State and the European Commission, the publication in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>, and the identity proofing of entities.
 - **Out of scope** is the certification of technical products such as a Wallet Solution, together with the data schemas, certificate profiles, trusted-list formats, and low-level protocols, which are defined in the referenced sections and only pointed to here.
@@ -303,7 +304,6 @@ sequenceDiagram
     end
 ```
 
-
 ### Connection to Lifecycle Management
 
 Onboarding is the first phase of the lifecycle of an entity and of the artifacts produced for it. This subsection summarises how onboarding connects to the Trust Management Process and distinguishes the lifecycle of registered entities from that of notified entities.
@@ -376,3 +376,4 @@ Finally, the artifacts produced by onboarding are consumed in the trust-evaluati
 | ONBOARD-LC-02 | The suspended/cancelled distinction SHALL be read from the Register, which maintains the registration status including suspension and cancellation; for status-less lists it is not available on the list. | Onboarding | [CIR 2025/848] Art. 9 |
 | ONBOARD-LC-03 | Lifecycle actions (suspension, cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates. | Onboarding | [CIR 2025/848] Art. 9 |
 | ONBOARD-LC-04 | A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a notification update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its suspension or cancellation (effects of ONBOARD-LC-01 and ONBOARD-LC-02). | Onboarding | -- |
+
