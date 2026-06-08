@@ -1234,7 +1234,6 @@
 </li>
 </ul>
 <pre class="mermaid"><code>flowchart TD
-
     WP["Wallet Provider (WP)"]
     User((User))
     WU["Wallet Unit &lt;br/&gt; [WIA]"]
@@ -1257,17 +1256,16 @@
     RP ~~~ RPI
 
     %% Style
-    classDef WRP_entities fill:#ffefd5, stroke:#ffdab9
-    style WRP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-    style AP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    classDef WRP_entities fill:#ffefd5,stroke:#ffdab9;
+    style WRP fill:#ffffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style AP fill:#ffffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
 
     class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
 
-
     %% Arrows
-    WP ---|Provides Wallet Solution| User 
-    User ---|Controls/activates| WU
-    WU ---|"Interacts (issue/present &lt;br/&gt;PID/Attestation)"| WRP </code></pre>
+    WP ---|"Provides Wallet Solution"| User 
+    User ---|"Controls/activates"| WU
+    WU ---|"Interacts (issue/present &lt;br/&gt;PID/Attestation)"| WRP</code></pre>
 <p>To trust the interactions between these entities, the following trust evaluation processes are needed:</p>
 <ul>
 <li><em>Authentication Process</em>: a way to authenticate the identity of an entity. To achieve this:<ul>
@@ -9117,7 +9115,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
 <li>If <code>explicit_policy</code> &gt; 0 OR <code>valid_policy_tree</code> is not NULL, the path is VALID.</li>
 <li>Otherwise, the path is INVALID.</li>
 </ol>
-<pre class="mermaid"><code>sequenceDiagram
+<pre class="mermaid"><code>flowchart
     Start([Start Validation]) --&gt; DefineInputs[Inputs:&lt;br/&gt;path C1..Cn, trust_anchor, current_time]
 
     %% Step 1: Initialization
