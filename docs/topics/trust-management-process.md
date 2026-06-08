@@ -45,21 +45,24 @@ flowchart LR
     end_ent["End-Entities<br>(Attestation Providers, PID Providers, Wallet Providers, Relying Parties, Relying Party Intermediaries)"]
     end_ent_art{{"User Attestations, Wallet Attestations"}}
 
-    %%Modification propagation arrows
-    sup e1@=="Supervise"==> init_ent
-    sup e2@=="Supervise"==> mid_ent
-    sup e3@=="Supervise"==> end_ent
+    %% Modification propagation arrows
+    sup =="Supervise"==> init_ent
+    sup =="Supervise"==> mid_ent
+    sup =="Supervise"==> end_ent
     ms --"Provides/Publishes"--> sup_art
-    sup_art e4@--"Affects"--> init_ent
-    sup_art e5@--"Affects"--> mid_ent
-    sup_art e6@--"Affects"--> end_ent
+    sup_art --"Affects"--> init_ent
+    sup_art --"Affects"--> mid_ent
+    sup_art --"Affects"--> end_ent
     mid_ent -."Are included".-> init_ent_art
     end_ent -."Are included".-> init_ent_art
-    mid_ent_art --"to"----> end_ent
+    mid_ent_art ----"to"----> end_ent
     init_ent --"Publishes"--> init_ent_art
     mid_ent --"Issue"--> mid_ent_art
     end_ent --"Issue"--> end_ent_art --"to"--> wi["Wallet Units"]
     wi["Wallet Units"] --"Present Attestations"--> end_ent
+
+    linkStyle 0,1,2 stroke:#2ecc71,stroke-width:3px;
+    linkStyle 4,5,6 stroke:#e74c3c,stroke-width:2px;
 ```
 
 #### Entity Properties Schema
