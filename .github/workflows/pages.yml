@@ -41,7 +41,7 @@ jobs:
             BRANCH_REF=$(gh api repos/${{ github.repository }}/pulls/${PR_NUM} -q '.head.ref')
             echo "resolved_ref=$BRANCH_REF" >> $GITHUB_OUTPUT
           else
-            echo "resolved_ref=${{ github.ref }}" >> $GITHUB_OUTPUT
+            echo "resolved_ref=${{ github.ref_name }}" >> $GITHUB_OUTPUT
           fi
       
       - name: Checkout
@@ -85,10 +85,6 @@ jobs:
 
       - name: Prepare Dynamic Workspace & Changed Files
         id: prep_workspace
-        if: |
-          (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release-v')) ||
-          github.event_name == 'pull_request' ||
-          (github.event_name == 'workflow_dispatch' && inputs.pr_number != '')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -135,8 +131,10 @@ jobs:
 
       - name: Deploy PR Branch
         if: |
-          (github.event_name == 'pull_request' && github.event.action != 'closed' && !startsWith(steps.resolve_ref.outputs.resolved_ref, 'release-v')) ||
-          (github.event_name == 'workflow_dispatch' && inputs.pr_number != '' && !startsWith(steps.resolve_ref.outputs.resolved_ref, 'release-v'))
+          github.event.action != 'closed' && 
+          !startsWith(steps.resolve_ref.outputs.resolved_ref, 'release-v') && 
+          steps.resolve_ref.outputs.resolved_ref != 'main' && 
+          !startsWith(github.ref, 'refs/tags/')
         run: |
           for i in {1..5}; do
             echo "Attempt $i: Deploying PR branch..."
@@ -145,7 +143,7 @@ jobs:
           done
 
       - name: Deploy Pre-Release (from release-v* branch)
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release-v')
+        if: github.event.action != 'closed' && startsWith(steps.resolve_ref.outputs.resolved_ref, 'release-v')
         run: |
           for i in {1..5}; do
             echo "Attempt $i: Deploying Pre-Release branch..."
@@ -154,7 +152,7 @@ jobs:
           done
 
       - name: Deploy Official Release (from tag)
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
           for i in {1..5}; do
             echo "Attempt $i: Deploying Official Release..."
