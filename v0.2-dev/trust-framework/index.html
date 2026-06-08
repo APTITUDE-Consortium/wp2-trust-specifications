@@ -18,7 +18,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../pr-workspace/trust-anchor-validation/">
+        <link rel="next" href="../pr-workspace/authentication-process/">
       
       
         
@@ -270,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pr-workspace/trust-anchor-validation/" class="md-tabs__link">
+        <a href="../pr-workspace/authentication-process/" class="md-tabs__link">
           
   
   
@@ -766,6 +766,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -816,6 +822,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../pr-workspace/authentication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-workspace/authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pr-workspace/trust-anchor-validation/" class="md-nav__link">
         
   
@@ -824,6 +886,34 @@
     
   
     Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-workspace/trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
   
 
     
@@ -1143,7 +1233,7 @@
 </ul>
 </li>
 </ul>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
 
     WP["Wallet Provider (WP)"]
     User((User))
@@ -1525,7 +1615,7 @@
     name="components:Register"
     href="../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>.</li>
 </ol>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
 
 WRP["Wallet Relying Parties &lt;br/&gt; (WRPs)"]
 
@@ -1629,7 +1719,7 @@ MSReg ---|"Checks Catalogues"| Cat</code></pre>
     name="artifacts:List Of Trusted Lists (LOTL)"
     href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists (LOTL)</a>.</li>
 </ul>
-<pre class="mermaid"><code>graph LR
+<pre class="mermaid"><code>flowchart LR
 
 subgraph MS["Member State (MS)"]
     MSTLP["MS  &lt;br/&gt;Scheme Operator  &lt;br/&gt;(SO)"]
@@ -1673,7 +1763,7 @@ EC ---|"Notification Process &lt;br/&gt;(Trust Anchor or &lt;br/&gt;URL of the T
 </li>
 </ul>
 <p>The following figure add these two processes to the previous architecture.</p>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
 
     WP["Wallet Provider (WP)"]
     User((User))
@@ -8011,7 +8101,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>:</p>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
     classDef failure fill:#f8d7da,stroke:#721c24,color:#721c24,font-weight:bold;
     classDef success fill:#d4edda,stroke:#155724,color:#155724,font-weight:bold;
     classDef warning fill:#fff3cd,stroke:#856404,color:#856404;
@@ -8665,7 +8755,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</a>:</p>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
     Start([Start TL Validation]) --&gt; Init[Initialize Variables:&lt;br/&gt;Authenticated-LOTL&lt;br/&gt;EUTL-Status = null&lt;br/&gt;EUTL = null&lt;br/&gt;EUTL-Sub-Status = null&lt;br/&gt;EUTL-Certs-Set = null&lt;br/&gt;EUTL-Signer-Cert = null]
 
     %% Step 1: Parse LOTL for Location
@@ -9027,7 +9117,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
 <li>If <code>explicit_policy</code> &gt; 0 OR <code>valid_policy_tree</code> is not NULL, the path is VALID.</li>
 <li>Otherwise, the path is INVALID.</li>
 </ol>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>sequenceDiagram TD
     Start([Start Validation]) --&gt; DefineInputs[Inputs:&lt;br/&gt;path C1..Cn, trust_anchor, current_time]
 
     %% Step 1: Initialization
@@ -9241,7 +9331,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>, the certificate SHALL be considered <code>good</code>.</p>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
     Start([Start CRL Validation]) --&gt; Step1{Step 1: Time Check&lt;br/&gt;Is current_time between&lt;br/&gt;thisUpdate and nextUpdate?}
 
     %% Step 1: Time Verification and Update Logic
@@ -9349,7 +9439,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     href="../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responses (i.e., where <code>responseType</code> is <code>id-pkix-ocsp-basic</code>) are supported.</p>
 </div>
 <p>If any of the checks in 2-4 fail, the certificate status SHALL be considered <code>unknown</code>. If all checks succeed, update the status of each certificate by matching the <code>certStatus</code> value in the <code>SingleResponse</code> to the requested <code>CertID</code>.</p>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
     Start([Receive OCSP Response]) --&gt; Step1{Step 1: Verify response Status}
 
     %% Step 1: Status Verification &amp; Retry Logic
@@ -9884,7 +9974,7 @@ This section does define how the <a class="mkdocs-ezglossary-link"
     href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> of the intermediated RP contains the <code>intermediary</code> structure identifying the authorized intermediary per [ETSI TS 119 475, Table 10].</p>
 <h5 id="data-object-lifecycle">Data Object Lifecycle<a class="headerlink" href="#data-object-lifecycle" title="Permanent link">&para;</a></h5>
 <p>The following diagram shows the authorization evidences and how they flow between the entities in the ecosystem.</p>
-<pre class="mermaid"><code>graph LR
+<pre class="mermaid"><code>flowchart LR
     subgraph Entities
     AP([Attestation Provider])
     RP([Relying Party])
