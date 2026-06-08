@@ -376,4 +376,3 @@ Finally, the artifacts produced by onboarding are consumed in the trust-evaluati
 | ONBOARD-LC-02 | The suspended/cancelled distinction SHALL be read from the Register, which maintains the registration status including suspension and cancellation; for status-less lists it is not available on the list. | Onboarding | [CIR 2025/848] Art. 9 |
 | ONBOARD-LC-03 | Lifecycle actions (suspension, cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates. | Onboarding | [CIR 2025/848] Art. 9 |
 | ONBOARD-LC-04 | A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a notification update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its suspension or cancellation (effects of ONBOARD-LC-01 and ONBOARD-LC-02). | Onboarding | -- |
-
