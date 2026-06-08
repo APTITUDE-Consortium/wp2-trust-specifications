@@ -82,7 +82,7 @@ The list below enumerates all the applicable standards and specifications that h
 
 #### Register Data Schema
 
-This section defines the data schema for each <roles:Wallet-Relying Party (WRP)\|WRP> registered in the national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].
+This section defines the data schema for each <roles:Wallet-Relying Party (WRP)\|WRP> registered in the national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>. The values are extracted from Annex VI of the [CIR 2025/848-Amendment].
 
 <!--format of the information exchanged via the Register API as JSON objects and JWS-signed statements. -->
 
@@ -678,7 +678,7 @@ PUT is for updating an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in 
 
 ###### `DELETE /wrp` — delete (REQUIRED)
 
-DELETE is for deleting of an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
+DELETE is for deleting an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
 
 **Request (body)**
 

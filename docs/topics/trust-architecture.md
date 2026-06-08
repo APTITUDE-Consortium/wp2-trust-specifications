@@ -148,7 +148,7 @@ While these trust evaluation processes and their artifacts (i.e., the <component
     EC ---|"Notification Process <br/>(Trust Anchor or <br/>URL of the TL)"| MS
     ```
 
-The following figure add these two processes to the previous architecture.
+The following figure adds these two processes to the previous architecture.
 
 ```mermaid
 flowchart TD
