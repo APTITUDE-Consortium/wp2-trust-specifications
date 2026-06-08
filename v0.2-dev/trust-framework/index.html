@@ -12566,21 +12566,24 @@ If the <a class="mkdocs-ezglossary-link"
     end_ent["End-Entities&lt;br&gt;(Attestation Providers, PID Providers, Wallet Providers, Relying Parties, Relying Party Intermediaries)"]
     end_ent_art{{"User Attestations, Wallet Attestations"}}
 
-    %%Modification propagation arrows
-    sup e1@=="Supervise"==&gt; init_ent
-    sup e2@=="Supervise"==&gt; mid_ent
-    sup e3@=="Supervise"==&gt; end_ent
+    %% Modification propagation arrows
+    sup =="Supervise"==&gt; init_ent
+    sup =="Supervise"==&gt; mid_ent
+    sup =="Supervise"==&gt; end_ent
     ms --"Provides/Publishes"--&gt; sup_art
-    sup_art e4@--"Affects"--&gt; init_ent
-    sup_art e5@--"Affects"--&gt; mid_ent
-    sup_art e6@--"Affects"--&gt; end_ent
+    sup_art --"Affects"--&gt; init_ent
+    sup_art --"Affects"--&gt; mid_ent
+    sup_art --"Affects"--&gt; end_ent
     mid_ent -."Are included".-&gt; init_ent_art
     end_ent -."Are included".-&gt; init_ent_art
-    mid_ent_art --"to"----&gt; end_ent
+    mid_ent_art ----"to"----&gt; end_ent
     init_ent --"Publishes"--&gt; init_ent_art
     mid_ent --"Issue"--&gt; mid_ent_art
     end_ent --"Issue"--&gt; end_ent_art --"to"--&gt; wi["Wallet Units"]
-    wi["Wallet Units"] --"Present Attestations"--&gt; end_ent</code></pre>
+    wi["Wallet Units"] --"Present Attestations"--&gt; end_ent
+
+    linkStyle 0,1,2 stroke:#2ecc71,stroke-width:3px;
+    linkStyle 4,5,6 stroke:#e74c3c,stroke-width:2px;</code></pre>
 <h4 id="entity-properties-schema">Entity Properties Schema<a class="headerlink" href="#entity-properties-schema" title="Permanent link">&para;</a></h4>
 <p>Trust Artifacts Providers and End-Entities are characterized by three main classes of <em>Properties</em>:</p>
 <ul>
