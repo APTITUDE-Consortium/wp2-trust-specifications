@@ -1,0 +1,12 @@
+.md-typeset table td, 
+.md-typeset table th {
+    word-break: break-word;
+    white-space: normal;
+}
+
+.md-typeset table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
