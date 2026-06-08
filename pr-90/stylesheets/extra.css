@@ -1,12 +1,16 @@
-.md-typeset table td, 
+.md-typeset table {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.75rem;
+}
+
+.md-typeset table td,
 .md-typeset table th {
     word-break: break-word;
     white-space: normal;
-}
-
-.md-typeset table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
