@@ -25,7 +25,7 @@ Version 0.2 (Draft)
 
 - Dominik František Bučík, *ARICOMA Digital S.R.O*
 - Guillaume Hébert, *Keynectis*
-- Angel Palomares Perez, *Atos IT Solutions*
+- Angel Palomares Perez, *Bull*
 - Leonardo Pio Palumbo, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
 - Michal Šťava, *ARICOMA Digital S.R.O*
 - Nikolaos Triantafyllou, *University of the Aegean*
