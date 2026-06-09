@@ -22,6 +22,7 @@ Version 0.1 (Draft)
 **Reviewers**:
 
 - Dominik František Bučík, *ARICOMA Digital S.R.O*
+- George Fourtounis, *GRNET*
 - Guillaume Hébert, *Keynectis*
 - Angel Palomares Perez, *Atos IT Solutions*
 - Leonardo Pio Palumbo, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
