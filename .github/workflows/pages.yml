@@ -3,33 +3,55 @@ name: Publish MkDocs site
 on:
   push:
     branches:
-      - main
-      - page-compile
+      - 'main'
       - 'release-v*'
     tags:
       - 'v*'
+  pull_request:
+    types: [opened, synchronize, closed]
   workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to manually deploy and comment on (Optional)'
+        required: false
+        type: string
 
 permissions:
   contents: write
   pages: write
   id-token: write
+  pull-requests: write
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Resolve Target Branch Reference
+        id: resolve_ref
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
+          if [ -n "$PR_NUM" ]; then
+            echo "Fetching branch name for PR #${PR_NUM}..."
+            BRANCH_REF=$(gh api repos/${{ github.repository }}/pulls/${PR_NUM} -q '.head.ref')
+            echo "resolved_ref=$BRANCH_REF" >> $GITHUB_OUTPUT
+          else
+            echo "resolved_ref=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
+          ref: ${{ steps.resolve_ref.outputs.resolved_ref }}
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -44,46 +66,180 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Fetch Remote Assets
+        uses: actions/checkout@v6
+        with:
+          repository: 'APTITUDE-Consortium/aptitude-eudi-wallet-specs'
+          token: ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}
+          path: 'temp_remote_assets'
+          clean: false
+          sparse-checkout: |
+            docs/glossary-definitions.md
+            docs/media/
+            docs/overrides/
+
+      - name: Merge Assets into Local Workspace
         run: |
-          mkdir -p docs/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/glossary-definitions.md \
-               -o docs/glossary-definitions.md
+          mkdir -p docs/media docs/overrides
+          cp -r temp_remote_assets/docs/* ./docs/
+          rm -rf temp_remote_assets
 
-          mkdir -p docs/overrides/partials/footer/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/main/docs/overrides/partials/footer.html \
-               -o docs/overrides/partials/footer/footer.html
+      - name: Prepare Dynamic Workspace & Changed Files
+        id: prep_workspace
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SRC_BRANCH="${{ steps.resolve_ref.outputs.resolved_ref }}"
+          PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
 
-          mkdir -p docs/overrides/ezglossary/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/overrides/ezglossary/link.html \
-               -o docs/overrides/ezglossary/link.html
+          if [[ "$SRC_BRANCH" == release-v* ]]; then
+            VERSION=$(echo "$SRC_BRANCH" | sed 's/release-//')
+            TARGET_DIR="${VERSION}-dev"
+          else
+            TARGET_DIR="pr-${PR_NUM}"
+          fi
+          echo "version=${VERSION:-none}" >> $GITHUB_OUTPUT
+          echo "target_dir=$TARGET_DIR" >> $GITHUB_OUTPUT
 
-          mkdir -p docs/media/
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/extra.css \
-               -o docs/media/extra.css
+          if [ "${{ github.event.action }}" != "closed" ]; then
+            if [ -n "$PR_NUM" ]; then
+              CHANGED_FILES=$(gh api repos/${{ github.repository }}/pulls/${PR_NUM}/files --paginate -q '.[].filename' | grep -i '^docs/topics/.*\.md$' || true)
+            else
+              CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep -i '^docs/topics/.*\.md$' || true)
+            fi
 
-          curl -H "Authorization: token ${{ secrets.APTITUDE_REPO_UPDATE_PAT }}" \
-               -L https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/media/mermaid-init.js \
-               -o docs/media/mermaid-init.js
+            mkdir -p docs/pr-workspace
+
+            if [ -z "$CHANGED_FILES" ]; then
+              echo "No changes in topics/ for this revision." > docs/pr-workspace/no-changes.md
+              yq -i '.nav += [{"PR Workspace (Changed Files Only)": ["pr-workspace/no-changes.md"]}]' mkdocs.yml
+            else
+              echo "files:" > tmp_paths.yml
+              for FILE in $CHANGED_FILES; do
+                if [ -f "$FILE" ]; then
+                  RELATIVE_PATH=${FILE#docs/}
+                  SUB_PATH=${RELATIVE_PATH#topics/}
+                  mkdir -p "docs/pr-workspace/$(dirname "$SUB_PATH")"
+                  cp "$FILE" "docs/pr-workspace/$SUB_PATH"
+                  echo "  - pr-workspace/$SUB_PATH" >> tmp_paths.yml
+                fi
+              done
+              
+              yq -i ".nav += [{\"PR Workspace (Changed Files Only)\": load(\"tmp_paths.yml\").files}]" mkdocs.yml
+              rm tmp_paths.yml
+            fi
+          fi
+
+      - name: Deploy PR Branch
+        if: |
+          github.event.action != 'closed' && 
+          !startsWith(steps.resolve_ref.outputs.resolved_ref, 'release-v') && 
+          steps.resolve_ref.outputs.resolved_ref != 'main' && 
+          !startsWith(github.ref, 'refs/tags/')
+        run: |
+          for i in {1..5}; do
+            echo "Attempt $i: Deploying PR branch..."
+            if mike deploy --push --allow-empty "${{ steps.prep_workspace.outputs.target_dir }}"; then break; fi
+            sleep 5; git fetch origin gh-pages:gh-pages || true
+          done
 
       - name: Deploy Pre-Release (from release-v* branch)
-        if: startsWith(github.ref, 'refs/heads/release-v')
+        if: github.event.action != 'closed' && startsWith(steps.resolve_ref.outputs.resolved_ref, 'release-v')
         run: |
-          VERSION=$(echo "${GITHUB_REF_NAME}" | sed 's/release-//')
-          PATH_NAME="${VERSION}-dev"
-          mike deploy --push --allow-empty "$PATH_NAME"
-          mike set-default --push "$PATH_NAME"
+          for i in {1..5}; do
+            echo "Attempt $i: Deploying Pre-Release branch..."
+            if mike deploy --push --allow-empty ${{ steps.prep_workspace.outputs.target_dir }} && mike set-default --push --allow-undefined latest; then break; fi
+            sleep 5; git fetch origin gh-pages:gh-pages || true
+          done
 
       - name: Deploy Official Release (from tag)
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          mike deploy --push --allow-empty --update-aliases ${GITHUB_REF_NAME} latest
-          mike set-default --push latest
+          for i in {1..5}; do
+            echo "Attempt $i: Deploying Official Release..."
+            if mike deploy --push --allow-empty --update-aliases ${GITHUB_REF_NAME} latest && mike set-default --push latest; then break; fi
+            sleep 5; git fetch origin gh-pages:gh-pages || true
+          done
 
       - name: Deploy Main
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          mike deploy --push --allow-empty main
+          for i in {1..5}; do
+            echo "Attempt $i: Deploying Main branch..."
+            if mike deploy --push --allow-empty main && mike set-default --push --allow-undefined latest; then break; fi
+            sleep 5; git fetch origin gh-pages:gh-pages || true
+          done
+
+      - name: Check for existing PR comment
+        if: |
+          (github.event_name == 'pull_request' && github.event.action != 'closed') ||
+          (github.event_name == 'workflow_dispatch' && inputs.pr_number != '')
+        id: find_comment
+        uses: peter-evans/find-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number || inputs.pr_number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Deployment Preview is ready!'
+
+      - name: Create PR comment (if not yet existing)
+        if: |
+          (
+            (github.event_name == 'pull_request' && github.event.action != 'closed') ||
+            (github.event_name == 'workflow_dispatch' && inputs.pr_number != '')
+          ) &&
+          steps.find_comment.outputs.comment-id == ''
+        uses: peter-evans/create-or-update-comment@v4
+        env:
+          TARGET_DIR: ${{ steps.prep_workspace.outputs.target_dir }}
+        with:
+          issue-number: ${{ github.event.pull_request.number || inputs.pr_number }}
+          body: |
+            🚀 **Deployment Preview is ready!**
+            
+            You can view the rendered documentation for this PR here:
+            https://aptitude-consortium.github.io/wp2-trust-specifications/${{ env.TARGET_DIR }}/
+            
+            📂 **PR Workspace Active:** To make drafting and reviewing easier, the sidebar navigation has been dynamically updated to display **only the files changed or added in this PR** under the *"PR Workspace"* menu. 
+            
+            *Note: This preview updates automatically. When new commits are pushed, the changes will be live as soon as the related "Publish MkDocs site" action successfully finishes running.*
+
+      - name: Delete Mike Documentation Branch
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        env:
+          TARGET_DIR: ${{ steps.prep_workspace.outputs.target_dir }}
+          SRC_BRANCH: ${{ steps.resolve_ref.outputs.resolved_ref }}
+        run: |
+          for i in {1..5}; do
+            echo "Attempt $i: Deleting workspace (${TARGET_DIR})..."
+            if mike delete --push "${TARGET_DIR}"; then
+              if [[ "$SRC_BRANCH" != release-v* ]]; then
+                mike set-default --push --allow-undefined latest || true
+              fi
+              break
+            fi
+            sleep 5; git fetch origin gh-pages:gh-pages || true
+          done
+
+      - name: Find original preview comment to update
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        id: find_closed_comment
+        uses: peter-evans/find-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Deployment Preview is ready!'
+
+      - name: Update comment to expired status
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && steps.find_closed_comment.outputs.comment-id != ''
+        uses: peter-evans/create-or-update-comment@v4
+        env:
+          SRC_BRANCH: ${{ steps.resolve_ref.outputs.resolved_ref }}
+          VERSION: ${{ steps.prep_workspace.outputs.version }}
+        with:
+          comment-id: ${{ steps.find_closed_comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            🗑️ **Deployment Preview Cleaned Up**
+            
+            This pull request has been closed or merged. The preview environment for this branch has been automatically removed.
+
+            ${{ (env.VERSION != 'none' && startsWith(env.SRC_BRANCH, 'release-v')) && format('ℹ️ *Note: The final documentation for this release will be available at the following link:\nhttps://aptitude-consortium.github.io/wp2-trust-specifications/{0}/*', env.VERSION) || '' }}

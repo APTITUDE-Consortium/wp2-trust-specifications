@@ -2,15 +2,15 @@ The **Authentication Process** enables the <components:Wallet Unit> to authentic
 
 To authenticate the <roles:Wallet-Relying Party (WRP)|WRP>, the <components:Wallet Unit> SHALL verify the authenticity and integrity of the presented <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> by performing the following steps:
 
-1. **Retrieve the Trust Anchor:** Obtain the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>'s entry from the validated List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>) (see [Trust Anchor Validation Process](#trust-anchor-validation-process)). The certificate(s) found in the `ServiceDigitalIdentity` field of the <artifacts:List of Trusted Entities (LoTE)|LoTE>'s `TrustedEntitiesList` constitute the <artifacts:Trust Anchor>.
+1. **Retrieve the <artifacts:Trust Anchor>:** Obtain the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>'s entry from the validated List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>) (see [Trust Anchor Validation Process](#trust-anchor-validation-process)). The certificate(s) found in the `ServiceDigitalIdentity` field of the <artifacts:List of Trusted Entities (LoTE)|LoTE>'s `TrustedEntitiesList` constitute the <artifacts:Trust Anchor>.
 2. **Construct the Certification Path:** Build a path starting from the certificate issued by the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> (C_1) and ending with the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> presented by the WRP (C_n). *(Note: The simplest path consists of just one certificate, where n=1).*
 3. **Execute Path Validation:** Run the algorithm defined in [Wallet Relying Party Access Certificate Path Validation](#wallet-relying-party-access-certificate-path-validation) using the retrieved <artifacts:Trust Anchor>.
 4. **Verify the Signature:** Use the public key from the validated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> to verify the WRP's signature on the metadata presented during the specific interaction.
 
 The method by which the WRP presents its <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> chain depends on the specific interaction flow:
 
-- **OpenID4VP (Remote Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed <artifacts:Request Object>.
-- **ISO 18013-5 (Proximity Flow):** The certificate chain is presented within the WRP-signed `ReaderAuth` element of the mdoc request message.
+- **OpenID4VP (<protocols:Remote Flow>):** The certificate chain is presented in the `x5c` field of the WRP-signed <artifacts:Request Object>.
+- **ISO 18013-5 (<protocols:Proximity Flow>):** The certificate chain is presented within the WRP-signed `ReaderAuth` element of the mdoc request message.
 - **OpenID4VCI (Issuance Flow):** The certificate chain is presented in the `x5c` field of the WRP-signed Issuer Metadata.
 
 !!! warning "Mitigating Blind Signing Attacks"
@@ -82,11 +82,11 @@ Iterate through the path for $i$ from $1$ to $n$:
 1. Basic Integrity & Binding Checks:
     - Verify the signature of $C_i$ using `working_public_key`, `working_public_key_parameters`, and the algorithm identifier.
     - Ensure `current_time` falls within the `notBefore` and `notAfter` validity period of $C_i$.
-    - Check revocation status (CRL or OCSP) as defined in [Revocation Checking](#revocation-checking).
+    - Check revocation status (<artifacts:Certificate Revocation List (CRL)|CRL> or <protocols:Online Certificate Status Protocol (OCSP)|OCSP>) as defined in [Revocation Checking](#revocation-checking).
     - Verify that the issuer name of $C_i$ matches `working_issuer_name`.
 2. Policy Processing:
     - If `certificatePolicies` extension is present and `valid_policy_tree` is not NULL:
-        - Process policy constraints, qualifiers, and mappings according to [RFC 5280] Section 6.1.3.
+        - Process policy constraints, qualifiers, and mappings according to [RFC 5280, Section 6.1.3].
         - for each policy $P$ not equal to `anyPolicy` in the certificate policies extension, let $P$-OID denote the OID for policy $P$ and $P$-Q denote the qualifier set for policy $P$.
             - for each node of depth $i-1$ in the `valid_policy_tree` where $P$-OID is in the node's `expected_policy_set`, create a child node with `valid_policy` $P$-OID, `qualifier_set` $P$-Q, and `expected_policy_set` set to {$P$-OID}.
             - If no match is found for $P$-OID in any node of depth $i-1$ and the `valid_policy_tree` has a node of depth $i-1$ with `valid_policy` set to `anyPolicy`, generate a child node with `valid_policy` $P$-OID, `qualifier_set` $P$-Q, and `expected_policy_set` set to {`anyPolicy`}.
@@ -98,7 +98,7 @@ Iterate through the path for $i$ from $1$ to $n$:
 
 **Step 3: Preparation for Next Certificate**
 
-1. If $i < n$ (i.e., $C_i$ is an intermediate CA), perform the following updates:
+1. If $i < n$ (i.e., $C_i$ is an intermediate <roles:Certificate Authority (CA)|CA>), perform the following updates:
     - Set `working_issuer_name` to the Subject DN of $C_i$.
     - Set `working_public_key` to the Subject Public Key of $C_i$.
     - Update `working_public_key_parameters` and `working_public_key_algorithm` from $C_i$.
@@ -118,7 +118,7 @@ After processing $C_n$:
 3. Otherwise, the path is INVALID.
 
 ```mermaid
-graph TD
+flowchart TD
     Start([Start Validation]) --> DefineInputs[Inputs:<br/>path C1..Cn, trust_anchor, current_time]
 
     %% Step 1: Initialization
@@ -185,32 +185,32 @@ graph TD
 The <components:Wallet Unit> SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
 - If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see [Wallet Relying Party Access Certificate Content](#wallet-relying-party-access-certificate-content)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
-- If the `cRLDistributionPoints` extension is present, the <components:Wallet Unit> MAY retrieve and validate the CRL.
-- If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the <components:Wallet Unit> MAY perform an OCSP lookup.
+- If the `cRLDistributionPoints` extension is present, the <components:Wallet Unit> MAY retrieve and validate the <artifacts:Certificate Revocation List (CRL)|CRL>.
+- If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the <components:Wallet Unit> MAY perform an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> lookup.
 
-For details regarding the formats and parameters of CRLs and OCSP responses, see [Revocation Mechanism](#revocation-mechanisms).
+For details regarding the formats and parameters of <artifacts:Certificate Revocation List (CRL)|CRLs> and <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responses, see [Revocation Mechanism](#revocation-mechanisms).
 
 ###### CRL Validation
 
-When using a CRL, the <components:Wallet Unit> SHALL:
+When using a <artifacts:Certificate Revocation List (CRL)|CRL>, the <components:Wallet Unit> SHALL:
 
-1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the CRL is expired, the <components:Wallet Unit> SHOULD attempt to retrieve an updated CRL.
-2. Verify the CRL is signed by the certificate issuer (or an authorized CRL issuer) by:
-    - matching the `issuer` field of the CRL with the `issuer` field of the certificate being checked;
+1. Verify `current_time` is between `thisUpdate` and `nextUpdate`. If the <artifacts:Certificate Revocation List (CRL)|CRL> is expired, the <components:Wallet Unit> SHOULD attempt to retrieve an updated <artifacts:Certificate Revocation List (CRL)|CRL>.
+2. Verify the <artifacts:Certificate Revocation List (CRL)|CRL> is signed by the certificate issuer (or an authorized <artifacts:Certificate Revocation List (CRL)|CRL> issuer) by:
+    - matching the `issuer` field of the <artifacts:Certificate Revocation List (CRL)|CRL> with the `issuer` field of the certificate being checked;
 3. Verify the `issuingDistributionPoint` matches the certificate's distribution point.
-    - `distributionPoint` field of the `cRLDistributionPoints` extension matches the `distributionPoint` field of the `IssuingDistributionPoint` extension of the CRL (if present);
-    - if the `BasicConstraints` extension is present in the certificate being checked, and has `cA` set to `TRUE` (respectively `FALSE`), the CRL Issuing Distribution Point extension SHALL have the `onlyContainsCACerts` field set to `TRUE` (respectively have the `onlyContainsUserCerts` field set to `TRUE`)
-4. Validate the CRL signature using the issuer's public key. If a key usage extension is present in the CRL issuer's certificate, verify that the `cRLSign` bit is set.
+    - `distributionPoint` field of the `cRLDistributionPoints` extension matches the `distributionPoint` field of the `IssuingDistributionPoint` extension of the <artifacts:Certificate Revocation List (CRL)|CRL> (if present);
+    - if the `BasicConstraints` extension is present in the certificate being checked, and has `cA` set to `TRUE` (respectively `FALSE`), the <artifacts:Certificate Revocation List (CRL)|CRL> Issuing Distribution Point extension SHALL have the `onlyContainsCACerts` field set to `TRUE` (respectively have the `onlyContainsUserCerts` field set to `TRUE`)
+4. Validate the <artifacts:Certificate Revocation List (CRL)|CRL> signature using the issuer's public key. If a key usage extension is present in the <artifacts:Certificate Revocation List (CRL)|CRL> issuer's certificate, verify that the `cRLSign` bit is set.
 5. Check if the certificate's serial number is listed in `revokedCertificates`. If an entry is found then the certificate status is set to `revoked`.
 
 !!! note
 
-    In this case it is assumed that the issuer of both the CRL and certificate do coincide, and that the CRL is not signed by a delegated CRL issuer.
+    In this case it is assumed that the issuer of both the <artifacts:Certificate Revocation List (CRL)|CRL> and certificate do coincide, and that the <artifacts:Certificate Revocation List (CRL)|CRL> is not signed by a delegated <artifacts:Certificate Revocation List (CRL)|CRL> issuer.
 
-If any of the steps 1-4 fail or the CRL is unavailable, the <components:Wallet Unit> SHALL consider the certificate status as `unknown`. When all steps 1-4 succeed and the certificate serial number is not found in the CRL, the certificate SHALL be considered `good`.
+If any of the steps 1-4 fail or the <artifacts:Certificate Revocation List (CRL)|CRL> is unavailable, the <components:Wallet Unit> SHALL consider the certificate status as `unknown`. When all steps 1-4 succeed and the certificate serial number is not found in the <artifacts:Certificate Revocation List (CRL)|CRL>, the certificate SHALL be considered `good`.
 
 ```mermaid
-graph TD
+flowchart TD
     Start([Start CRL Validation]) --> Step1{Step 1: Time Check<br/>Is current_time between<br/>thisUpdate and nextUpdate?}
 
     %% Step 1: Time Verification and Update Logic
@@ -265,26 +265,26 @@ graph TD
 
 ###### OCSP Response Validation
 
-When using OCSP, the <components:Wallet Unit> SHALL:
+When using <protocols:Online Certificate Status Protocol (OCSP)|OCSP>, the <components:Wallet Unit> SHALL:
 
-1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the <components:Wallet Unit> SHOULD attempt to retrieve an updated OCSP response, and if that fails, the certificate status SHALL be considered `unknown`.
+1. Verify `responseStatus` is `successful (0)`. If the `responseStatus` is not `successful`, the <components:Wallet Unit> SHOULD attempt to retrieve an updated <protocols:Online Certificate Status Protocol (OCSP)|OCSP> response, and if that fails, the certificate status SHALL be considered `unknown`.
 2. Verify `responseType` is `id-pkix-ocsp-basic`.
-3. Verify the response `signature` using the Responder's public key (`certs` field in the OCSP response).
-    - *Note*: To ensure the OCSP Responder is authorized, match the Issuer's key or check the delegation certificate signed by the Issuer.
+3. Verify the response `signature` using the Responder's public key (`certs` field in the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> response).
+    - *Note*: To ensure the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> Responder is authorized, match the Issuer's key or check the delegation certificate signed by the Issuer.
 4. Verify `responderID` matches the signer, and the `CertID` hash fields match the certificate being checked.
-    - `issuerNameHash` field value is the hash (via `hashAlgorithm`) of the DER encoding of the issuer’s Name.
+    - `issuerNameHash` field value is the hash (via `hashAlgorithm`) of the DER encoding of the issuer's Name.
     - `issuerKeyHash` field value is the hash (via `hashAlgorithm`) of the issuer’s `subjectPublicKey` BIT STRING (excluding tag/length/unused-bits).
     - `serialNumber` field value is the certificate’s serial number.
 5. Check `thisUpdate` and `nextUpdate` (or `producedAt`) against local freshness policies.
 
 !!! note
 
-    It is assumed that only basic OCSP responses (i.e., where `responseType` is `id-pkix-ocsp-basic`) are supported.
+    It is assumed that only basic <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responses (i.e., where `responseType` is `id-pkix-ocsp-basic`) are supported.
 
 If any of the checks in 2-4 fail, the certificate status SHALL be considered `unknown`. If all checks succeed, update the status of each certificate by matching the `certStatus` value in the `SingleResponse` to the requested `CertID`.
 
 ```mermaid
-graph TD
+flowchart TD
     Start([Receive OCSP Response]) --> Step1{Step 1: Verify response Status}
 
     %% Step 1: Status Verification & Retry Logic
