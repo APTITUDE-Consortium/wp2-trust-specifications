@@ -1,5 +1,4 @@
 
-
 ```mermaid
 sequenceDiagram
     participant User
@@ -75,7 +74,6 @@ sequenceDiagram
     Note over EAAProvider: 10b. Validate the KA contents
     end
     EAAProvider-->>Wallet: Credential response
- 
 ```
 Note 1: EAA Providers can have a dedicated Authorization server that makes authorization-related endpoints available. That kind of implementation details are hidden in this schema, since the EAA Provider bears the overall responsibility for responding to the Wallet Instance's requests.
 
