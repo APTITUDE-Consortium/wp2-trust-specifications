@@ -8,7 +8,12 @@ Within the pilot, the boundary is as follows.
 
 - The **implemented** elements are the creation of the registration records, the issuance of the certificates, and the signing and publication of the trusted lists, because these are what trust evaluation is tested against.
 - The **mocked** elements are the notification act between a Member State and the European Commission, the publication in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>, and the identity proofing of entities.
-- **Out of scope** is the certification of technical products such as a Wallet Solution, together with the data schemas, certificate profiles, trusted-list formats, and low-level protocols, which are defined in the referenced sections and only pointed to here.
+
+!!! note
+
+    The certification of technical products such as a Wallet Solution is **out of scope**, together with the data schemas, certificate profiles, trusted-list formats, and low-level protocols, which are defined in the referenced sections and only pointed to here.
+
+This boundary is mapped onto the components of the onboarding system in the summary table at the end of [Onboarding System](#onboarding-system).
 
 !!! note
 
@@ -56,50 +61,7 @@ graph LR
 
 ### Onboarding System
 
-This subsection describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the EUDI Wallet normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document.
-
-```mermaid
-graph TB
-
-    WRP(["Operational Entity (requesting onboarding)"])
-
-    subgraph SYS["APTITUDE Onboarding System - components"]
-        direction LR
-        UI["Onboarding UI"]
-        RegSvc["Registration Service<br/>verification, record and status management (+ REST API)"]
-        WRPReg[("WRP Register<br/>CIR 2025/848 records")]
-        ACsvc["WRPAC Issuance Service<br/>issue / revoke WRPAC"]
-        RCsvc["WRPRC Issuance Service<br/>issue / revoke WRPRC"]
-        PubSvc["Publication Service<br/>(mocked EC / MS-TLP)<br/>consolidate and publish"]
-        NotifDS[("Notification dataset<br/>CIR 2024/2980 notifiable info")]
-        Lists[("Trusted Lists<br/>LoTE / LOTL / EUMS TL")]
-
-        UI -->|"create / check / update registration"| RegSvc
-        UI -->|"request WRPAC"| ACsvc
-        UI -.->|"request WRPRC (where applicable)"| RCsvc
-        UI -->|"submit notifiable data"| PubSvc
-        RegSvc -->|"CRUD operations"| WRPReg
-        ACsvc -->|"status and data for verification"| RegSvc
-        RCsvc -->|"status and data for verification"| RegSvc
-        RCsvc -.->|"check WRPAC validity (when relevant)"| ACsvc
-        RCsvc ~~~ PubSvc
-        PubSvc -->|"manage notifiable data"| NotifDS
-        PubSvc -->|"publish / set entry status"| Lists
-    end
-
-    WRP <-->|"submit data, receive WRPAC/WRPRC and check registration status"| UI
-
-    %% Style
-    style SYS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
-    classDef green fill:#8fbc8f,stroke:#2f4f4f
-    classDef blue fill:#e8f0fe,stroke:#abb2bf
-    classDef cand fill:#ffefd5,stroke:#ffdab9
-    classDef ui fill:#d5e8d4,stroke:#2f4f4f
-    class RegSvc,ACsvc,RCsvc,WRPReg green;
-    class PubSvc,NotifDS,Lists blue;
-    class WRP cand;
-    class UI ui;
-```
+This subsection describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the EUDI Wallet normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document. How an entity requesting onboarding interacts with these components is shown in the diagram opening [Operational Entity Onboarding](#operational-entity-onboarding).
 
 The components, and the role each realises, are:
 
@@ -120,7 +82,7 @@ The onboarding system SHALL keep the WRP Register and the Notification dataset a
 
 The datasets above overlap only in part (identification), and the infrastructure entities that are notified but not registered as WRPs (Wallet Providers, Providers of WRPAC/WRPRC, Registrars) are not present in the WRP Register at all.
 
-Against this decomposition, the pilot boundary is summarised below.
+Against this decomposition, the pilot boundary set out in the introduction of this section is summarised below.
 
 | Element | In the pilot |
 | --- | --- |
@@ -178,6 +140,51 @@ The same LoTE / Trusted List Provider also signs the lists populated during oper
 ### Operational Entity Onboarding
 
 This section describes the recurring process through which operational entities become active in the ecosystem. It presupposes that the trust infrastructure prerequisites described in [Trust Infrastructure Prerequisites](#trust-infrastructure-prerequisites) are already in place.
+
+The diagram below shows how the operational entity requesting onboarding interacts with the components of the onboarding system, whose roles are described in [Onboarding System](#onboarding-system).
+
+```mermaid
+graph TB
+
+    WRP(["Operational Entity (requesting onboarding)"])
+
+    subgraph SYS["APTITUDE Onboarding System - components"]
+        direction LR
+        UI["Onboarding UI"]
+        RegSvc["Registration Service<br/>verification, record and status management (+ REST API)"]
+        WRPReg[("WRP Register<br/>CIR 2025/848 records")]
+        ACsvc["WRPAC Issuance Service<br/>issue / revoke WRPAC"]
+        RCsvc["WRPRC Issuance Service<br/>issue / revoke WRPRC"]
+        PubSvc["Publication Service<br/>(mocked EC / MS-TLP)<br/>consolidate and publish"]
+        NotifDS[("Notification dataset<br/>CIR 2024/2980 notifiable info")]
+        Lists[("Trusted Lists<br/>LoTE / LOTL / EUMS TL")]
+
+        UI -->|"create / check / update registration"| RegSvc
+        UI -->|"request WRPAC"| ACsvc
+        UI -.->|"request WRPRC (where applicable)"| RCsvc
+        UI -->|"submit notifiable data"| PubSvc
+        RegSvc -->|"CRUD operations"| WRPReg
+        ACsvc -->|"status and data for verification"| RegSvc
+        RCsvc -->|"status and data for verification"| RegSvc
+        RCsvc -.->|"check WRPAC validity (when relevant)"| ACsvc
+        RCsvc ~~~ PubSvc
+        PubSvc -->|"manage notifiable data"| NotifDS
+        PubSvc -->|"publish / set entry status"| Lists
+    end
+
+    WRP <-->|"submit data, receive WRPAC/WRPRC and check registration status"| UI
+
+    %% Style
+    style SYS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+    classDef green fill:#8fbc8f,stroke:#2f4f4f
+    classDef blue fill:#e8f0fe,stroke:#abb2bf
+    classDef cand fill:#ffefd5,stroke:#ffdab9
+    classDef ui fill:#d5e8d4,stroke:#2f4f4f
+    class RegSvc,ACsvc,RCsvc,WRPReg green;
+    class PubSvc,NotifDS,Lists blue;
+    class WRP cand;
+    class UI ui;
+```
 
 #### Input
 
