@@ -11,15 +11,15 @@ Within the pilot, the boundary is as follows.
 
 !!! note
 
-    The certification of technical products such as a Wallet Solution is **out of scope**, together with the data schemas, certificate profiles, trusted-list formats, and low-level protocols, which are defined in the referenced sections and only pointed to here.
+    The certification of technical products such as a Wallet Solution is **out of scope of the pilot**: it is an external process, and only its outcome is referenced. The data schemas, certificate profiles, trusted-list formats, and low-level protocols are instead **out of scope of this section only**: they are normatively defined in the referenced sections of this specification and are only pointed to from here.
 
-This boundary is mapped onto the components of the onboarding system in the summary table at the end of [Onboarding System](#onboarding-system).
+This boundary is mapped onto the components of the Onboarding System in the summary table at the end of [Onboarding System](#onboarding-system).
 
 !!! note
 
     Requirements specific to the APTITUDE pilot are identified inline with the prefix `[ONBOARD-...]` and consolidated in [Onboarding Requirements](#onboarding-requirements). Obligations defined in other sections of this specification, or in the normative baseline, are referenced where they apply, keeping their own identifiers.
 
-The APTITUDE onboarding system SHALL implement the Onboarding Process defined in this section [ONBOARD-GEN-01].
+The APTITUDE Onboarding System SHALL implement the Onboarding Process defined in this section [ONBOARD-GEN-01].
 
 ### Overview
 
@@ -38,7 +38,7 @@ graph LR
 
         subgraph PRE["Trust Infrastructure Prerequisites (one-time)"]
             direction TB
-            S1["Establish the trust infrastructure entities\nthat operate the onboarding system"]
+            S1["Establish the trust infrastructure entities\nthat operate the Onboarding System"]
         end
 
         subgraph ONB["Operational Entity Onboarding (recurring)"]
@@ -59,42 +59,9 @@ graph LR
     class O1 cand;
 ```
 
-### Onboarding System
-
-This subsection describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the EUDI Wallet normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document. How an entity requesting onboarding interacts with these components is shown in the diagram opening [Operational Entity Onboarding](#operational-entity-onboarding).
-
-The components, and the role each realises, are:
-
-- **Onboarding UI** (APTITUDE-specific orchestrator). It is the single point of contact of the entities requesting onboarding and coordinates the other services. It collects the data submitted by the entity, and it SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the trusted-list entry [ONBOARD-GEN-03].
-- **Registration Service**. It implements the <roles:Registrar> role, handling verification and the management of the registration record and its status. It exposes the common REST API (see [Common Register API](#common-register-api)).
-- **WRP Register**. It is the <components:Register> defined by [CIR 2025/848], which stores the registration records.
-- **WRPAC Issuance Service** and **WRPRC Issuance Service**. They realise the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> and the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>.
-- **Publication Service**. It realises the LoTE / Trusted List Provider that signs and publishes the trusted lists. Within APTITUDE it mocks the EC LoTE Provider and the Member State Trusted List Provider (see [Trust Architecture](#4-trust-architecture)), which can be played by the same subject.
-
-!!! note
-
-    Within the pilot, the Onboarding UI is an abstract orchestrator, and it could be implemented as a structured intake (for example a web form or a portal) that drives the services, and the specific user interface is an implementation matter.
-
-The onboarding system SHALL keep the WRP Register and the Notification dataset as two distinct data stores [ONBOARD-GEN-04], because the data needed for notification does not fully coincide with the data that populates the WRP Register:
-
-- the **WRP Register** holds the WRP registration records ([CIR 2025/848]), namely identification, intended use, and related data, as defined in [Register Data Schema](#register-data-schema);
-- the **Notification dataset** holds the notifiable information related to the notifiable entity ([CIR 2024/2980]), namely identification, trust anchors, and service supply points, whose fields are defined as LoTE entries in [List of Trusted Entities](#list-of-trusted-entities).
-
-The datasets above overlap only in part (identification), and the infrastructure entities that are notified but not registered as WRPs (Wallet Providers, Providers of WRPAC/WRPRC, Registrars) are not present in the WRP Register at all.
-
-Against this decomposition, the pilot boundary set out in the introduction of this section is summarised below.
-
-| Element | In the pilot |
-| --- | --- |
-| Onboarding UI, Registration Service (with the WRP Register and its API), WRPAC and WRPRC Issuance Services, Publication Service (with the trusted lists) | implemented as pilot software |
-| Trust infrastructure setup (prerequisites) | performed out of band; no pilot software |
-| The Member State to European Commission notification act, and the OJEU publication | mocked, respectively by the Publication Service and by the pilot |
-| The certification of a Wallet Solution | external; out of scope and only referenced |
-| Data schemas, certificate profiles, trusted-list formats, low-level protocols | defined in the referenced sections, not redefined here |
-
 ### Trust Infrastructure Prerequisites
 
-The onboarding system operates on top of a trust infrastructure whose entities must be established and have their trust anchors published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [ONBOARD-GEN-02].
+The [Onboarding System](#onboarding-system) operates on top of a trust infrastructure whose entities must be established and have their trust anchors published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [ONBOARD-GEN-02].
 
 Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software [ONBOARD-PRE-01]. The trust anchors of the infrastructure entities are provided and shared among the participants as a one-time operational setup. What is implemented and testable is the result, i.e. the signed, published trusted lists against which trust is later evaluated (see [Trust Anchor Validation Process](#trust-anchor-validation-process)). The operations below describe the trust infrastructure setup process.
 
@@ -141,7 +108,9 @@ The same LoTE / Trusted List Provider also signs the lists populated during oper
 
 This section describes the recurring process through which operational entities become active in the ecosystem, once the [Trust Infrastructure Prerequisites](#trust-infrastructure-prerequisites) are in place (ONBOARD-GEN-02).
 
-The diagram below shows how the operational entity requesting onboarding interacts with the components of the onboarding system, whose roles are described in [Onboarding System](#onboarding-system).
+#### Onboarding System
+
+This subsection describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the EUDI Wallet normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document. The diagram below shows how the operational entity requesting onboarding interacts with these components.
 
 ```mermaid
 graph TB
@@ -186,6 +155,35 @@ graph TB
     class UI ui;
 ```
 
+The components, and the role each realises, are:
+
+- **Onboarding UI** (APTITUDE-specific orchestrator). It is the single point of contact of the entities requesting onboarding and coordinates the other services. It collects the data submitted by the entity, and it SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the trusted-list entry [ONBOARD-GEN-03].
+- **Registration Service**. It implements the <roles:Registrar> role, handling verification and the management of the registration record and its status. It exposes the common REST API (see [Common Register API](#common-register-api)).
+- **WRP Register**. It is the <components:Register> defined by [CIR 2025/848], which stores the registration records.
+- **WRPAC Issuance Service** and **WRPRC Issuance Service**. They realise the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> and the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>.
+- **Publication Service**. It realises the LoTE / Trusted List Provider that signs and publishes the trusted lists. Within APTITUDE it mocks the EC LoTE Provider and the Member State Trusted List Provider (see [Trust Architecture](#4-trust-architecture)), which can be played by the same subject.
+
+!!! note
+
+    Within the pilot, the Onboarding UI is an abstract orchestrator, and it could be implemented as a structured intake (for example a web form or a portal) that drives the services, and the specific user interface is an implementation matter.
+
+The Onboarding System SHALL keep the WRP Register and the Notification dataset as two distinct data stores [ONBOARD-GEN-04], because the data needed for notification does not fully coincide with the data that populates the WRP Register:
+
+- the **WRP Register** holds the WRP registration records ([CIR 2025/848]), namely identification, intended use, and related data, as defined in [Register Data Schema](#register-data-schema);
+- the **Notification dataset** holds the notifiable information related to the notifiable entity ([CIR 2024/2980]), namely identification, trust anchors, and service supply points, whose fields are defined as LoTE entries in [List of Trusted Entities](#list-of-trusted-entities).
+
+The datasets above overlap only in part (identification), and the infrastructure entities that are notified but not registered as WRPs (Wallet Providers, Providers of WRPAC/WRPRC, Registrars) are not present in the WRP Register at all.
+
+Against this decomposition, the pilot boundary set out in the introduction of the Onboarding Process section is summarised below.
+
+| Element | In the pilot |
+| --- | --- |
+| Onboarding UI, Registration Service (with the WRP Register and its API), WRPAC and WRPRC Issuance Services, Publication Service (with the trusted lists) | implemented as pilot software |
+| Trust infrastructure setup (prerequisites) | performed out of band; no pilot software |
+| The Member State to European Commission notification act, and the OJEU publication | mocked, respectively by the Publication Service and by the pilot |
+| The certification of a Wallet Solution | external; out of scope of the pilot and only referenced |
+| Data schemas, certificate profiles, trusted-list formats, low-level protocols | defined in the referenced sections of this specification, not redefined here |
+
 #### Input
 
 The required inputs to onboard an operational entity depend on its type and on the onboarding path it follows (see [Onboarding paths by entity type](#onboarding-paths-by-entity-type)). The following inputs SHALL be required:
@@ -229,7 +227,7 @@ This step produces the registration record for a <roles:Wallet-Relying Party (WR
 
 The entity submits its registration data through the **Onboarding UI**, which forwards the request to the Registration Service (<roles:Registrar>).
 
-Within APTITUDE, registration SHALL be restricted to APTITUDE participants, and the onboarding system SHALL enforce this restriction [ONBOARD-REG-01]. This replaces the identity proofing of [ETSI TS 119 461] and the verification duties of [CIR 2025/848] Article 6 (`REGISTRAR-REG-04` to `REGISTRAR-REG-07`, not restated here). The mechanism by which participation is established, for example a pre-provisioned list of participants, or a membership check, is an implementation choice; a non-participant SHALL NOT be registered, and onboarding does not proceed.
+Within APTITUDE, registration SHALL be restricted to APTITUDE participants, and the Onboarding System SHALL enforce this restriction [ONBOARD-REG-01]. This replaces the identity proofing of [ETSI TS 119 461] and the verification duties of [CIR 2025/848] Article 6 (`REGISTRAR-REG-04` to `REGISTRAR-REG-07`, not restated here). The mechanism by which participation is established, for example a pre-provisioned list of participants, or a membership check, is an implementation choice; a non-participant SHALL NOT be registered, and onboarding does not proceed.
 
 On successful verification, the <roles:Registrar> SHALL create the record through the common Register write API (`POST /wrp`, see [Common Register API](#common-register-api)), using a body conforming to the `WalletRelyingParty` schema of [Register Data Schema](#register-data-schema), and SHALL set the registration status to `active`. Write access to the API SHALL be authenticated and restricted to the <roles:Registrar> [ONBOARD-REG-02]; the concrete credential mechanism (for example a bearer token or mutual TLS) is an implementation choice. When published or queried, the record is electronically signed/sealed by or on behalf of the <roles:Registrar> (`REGISTER-PUB-05`).
 
@@ -239,10 +237,14 @@ This step issues the certificates for a <roles:Wallet-Relying Party (WRP)|WRP>, 
 
 The request/issuance protocol is an implementation choice (for example ACME, EST, or a manual exchange); the enrolment SHOULD include a proof of possession of the private key corresponding to the certified public key, a property inherited from the certificate-policy framework underlying [ETSI TS 119 411-8]. The verifications below apply regardless of the protocol.
 
-- **WRPAC.** The <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> issues a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, whose content and format are defined in [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate). At issuance time it SHALL verify that the WRP has an active registration status and that the certificate information is consistent with the <components:Register> (requirement `PROVIDER-WRPAC-01` in [Register](#register), from [CIR 2025/848] Annex IV 3(c)); its attributes are derived from the <components:Register> information ([ETSI TS 119 475], clause 5.1.2). If the registration is not active or the data are inconsistent, the Provider SHALL refuse to issue the certificate.
+- **WRPAC.** The <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> issues one or more <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, whose content and format are defined in [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate). A <roles:Relying Party (RP)|Relying Party> receives a separate <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> for each of its Relying Party Instances (`Reg_10a`). At issuance time it SHALL verify that the WRP has an active registration status and that the certificate information is consistent with the <components:Register> (requirement `PROVIDER-WRPAC-01` in [Register](#register), from [CIR 2025/848] Annex IV 3(c)); its attributes are derived from the <components:Register> information ([ETSI TS 119 475], clause 5.1.2). If the registration is not active or the data are inconsistent, the Provider SHALL refuse to issue the certificate.
 - **WRPRC** (where mandated by [CIR 2025/848] Article 8). The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> issues a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, whose content and format are defined in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate). At issuance time it SHALL verify the <components:Register> status, the consistency with the <components:Register> information, and the validity of the corresponding <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> when relevant (requirement `PROVIDER-WRPRC-02` in [Register](#register), from [CIR 2025/848] Annex V 3(c)). The same failure handling applies.
 
-Identity proofing is not repeated here; it is performed by the <roles:Registrar> at [Registration Record Creation](#registration-record-creation). After issuance, the entity provides its <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> to its Relying Party Instances or service supply points and, for an Attestation Provider, includes it in the credential issuer metadata used at issuance (`RPRC_10`, `RPRC_14`, `RPRC_22`).
+!!! note
+
+    In the normative baseline, the registration certificate is created during the registration process by a Provider of registration certificates associated to the <roles:Registrar> (`RPRC_09`, `RPRC_13`), and no certificate-based request step is described. The presentation of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> when requesting the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, shown in the [Detailed flow](#detailed-flow), is therefore an APTITUDE-specific design choice, which gives the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> direct evidence for the WRPAC validity verification required by `PROVIDER-WRPRC-02`.
+
+Identity proofing is not repeated here; it is performed by the <roles:Registrar> at [Registration Record Creation](#registration-record-creation). After issuance, the entity deploys each <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> at the Relying Party Instance for which it was issued (`Reg_10a`), provides its <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> to its Relying Party Instances or service supply points and, for an Attestation Provider, includes it in the credential issuer metadata used at issuance (`RPRC_10`, `RPRC_14`, `RPRC_22`).
 
 #### Notification and Publication
 
@@ -349,10 +351,10 @@ Finally, the artifacts produced by onboarding are consumed in the trust-evaluati
 
 | ID | Requirement | Scope | Related external requirement |
 | --- | --- | --- | --- |
-| ONBOARD-GEN-01 | The APTITUDE onboarding system SHALL implement the Onboarding Process defined in this section. | Both | -- |
+| ONBOARD-GEN-01 | The APTITUDE Onboarding System SHALL implement the Onboarding Process defined in this section. | Both | -- |
 | ONBOARD-GEN-02 | Operational entity onboarding SHALL NOT start before the trust infrastructure prerequisites have been established. | Both | -- |
 | ONBOARD-GEN-03 | The Onboarding UI SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the trusted-list entry. | Onboarding | -- |
-| ONBOARD-GEN-04 | The onboarding system SHALL keep the WRP Register and the Notification dataset as two distinct data stores. | Both | -- |
+| ONBOARD-GEN-04 | The Onboarding System SHALL keep the WRP Register and the Notification dataset as two distinct data stores. | Both | -- |
 
 #### Prerequisites
 
