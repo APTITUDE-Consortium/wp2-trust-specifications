@@ -249,7 +249,7 @@ This step publishes a notified entity, together with the trust anchor of the tec
 
 !!! note
 
-    The trust anchor published for an attestation provider is the key with which its credential issuer (the service supply points) signs the attestations; for a <roles:Wallet Provider (WP)|Wallet Provider> it is the key signing the <artifacts:Wallet Unit Attestation (WUA)|WUAs> of its Wallet Solution. The trusted-list entry therefore binds the organisational entity to the technical component that operates at runtime.
+    The trust anchor published for an Attestation Provider is the key with which its credential issuer (the service supply points) signs the attestations; for a <roles:Wallet Provider (WP)|Wallet Provider> it is the key signing the <artifacts:Wallet Unit Attestation (WUA)|WUAs> of its Wallet Solution. The trusted-list entry therefore binds the organisational entity to the technical component that operates at runtime.
 
 On failure, if publication does not complete, the entity may be registered and hold a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> but is not yet present in the trusted list, and is therefore not trusted by relying parties until the entry is published.
 
