@@ -1222,7 +1222,12 @@
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
-    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> at <a href="#registration-record-creation">Registration Record Creation</a>. After issuance, the entity provides its registration certificate to its Relying Party Instances or service supply points and, for an Attestation Provider, includes it in the credential issuer metadata used at issuance (<code>RPRC_10</code>, <code>RPRC_14</code>, <code>RPRC_22</code>).</p>
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> at <a href="#registration-record-creation">Registration Record Creation</a>. After issuance, the entity provides its <a class="mkdocs-ezglossary-link"
+    id="0bc554df77639d84d247b4d7f4847c74"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> to its Relying Party Instances or service supply points and, for an Attestation Provider, includes it in the credential issuer metadata used at issuance (<code>RPRC_10</code>, <code>RPRC_14</code>, <code>RPRC_22</code>).</p>
 <h4 id="notification-and-publication">Notification and Publication<a class="headerlink" href="#notification-and-publication" title="Permanent link">&para;</a></h4>
 <p>This step publishes a notified entity, together with the trust anchor of the technical component it operates, in the appropriate trusted list. Notification is a separate, Member State level process ([CIR 2024/2980]) and is not a duty of the <a class="mkdocs-ezglossary-link"
     id="f61dde723a3ebd0646f88d9c94506ef4"
@@ -1324,7 +1329,7 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The trust anchor published for an attestation provider is the key with which its credential issuer (the service supply points) signs the attestations; for a <a class="mkdocs-ezglossary-link"
+<p>The trust anchor published for an Attestation Provider is the key with which its credential issuer (the service supply points) signs the attestations; for a <a class="mkdocs-ezglossary-link"
     id="87008d0abb527c36a1d5f118284c43a1"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
@@ -1341,7 +1346,7 @@
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> but is not yet present in the trusted list, and is therefore not trusted by relying parties until the entry is published.</p>
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> but is not yet present in the trusted list, and is therefore not trusted by Relying Parties until the entry is published.</p>
 <h4 id="detailed-flow">Detailed flow<a class="headerlink" href="#detailed-flow" title="Permanent link">&para;</a></h4>
 <pre class="mermaid"><code>sequenceDiagram
     participant E as Operational Entity
@@ -1427,7 +1432,7 @@
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> / <a class="mkdocs-ezglossary-link"
-    id="0bc554df77639d84d247b4d7f4847c74"
+    id="b1cbcb5b8cc082e2757ae94f5a38e43d"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1438,7 +1443,7 @@
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> and <a class="mkdocs-ezglossary-link"
-    id="b1cbcb5b8cc082e2757ae94f5a38e43d"
+    id="1b9f5ee1733a9678f5dea17bc3e5f375"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1488,7 +1493,7 @@
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is used in the <a href="#authentication-process">Authentication Process</a>, the <a class="mkdocs-ezglossary-link"
-    id="1b9f5ee1733a9678f5dea17bc3e5f375"
+    id="e24dfdc1ecaccb182655abf478b054c9"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1672,7 +1677,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 8, 2026 21:16:00 UTC">June 8, 2026 21:16:00</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 11, 2026 08:05:39 UTC">June 11, 2026 08:05:39</span>
   </span>
 
     
