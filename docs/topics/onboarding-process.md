@@ -139,7 +139,7 @@ The same LoTE / Trusted List Provider also signs the lists populated during oper
 
 ### Operational Entity Onboarding
 
-This section describes the recurring process through which operational entities become active in the ecosystem. It presupposes that the trust infrastructure prerequisites described in [Trust Infrastructure Prerequisites](#trust-infrastructure-prerequisites) are already in place.
+This section describes the recurring process through which operational entities become active in the ecosystem, once the [Trust Infrastructure Prerequisites](#trust-infrastructure-prerequisites) are in place (ONBOARD-GEN-02).
 
 The diagram below shows how the operational entity requesting onboarding interacts with the components of the onboarding system, whose roles are described in [Onboarding System](#onboarding-system).
 
@@ -200,7 +200,7 @@ The required inputs to onboard an operational entity depend on its type and on t
 
 #### Output
 
-A successful onboarding produces the artifacts below; their data model and format are normatively specified in the referenced sections and are not redefined here:
+A successful onboarding produces the artifacts below, whose data model and format are normatively specified in the referenced sections:
 
 - the <components:Register> entry and its publication, see [Register Data Schema](#register-data-schema) and [Common Register API](#common-register-api);
 - the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, see [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate);
@@ -221,7 +221,7 @@ Each entity type follows a different path and produces a different set of output
 | Relying Party Intermediary | yes | yes | where applicable | none |
 | Wallet Provider | no | no | no | Wallet Providers LoTE |
 
-The steps below describe the onboarding journey. Any WRP entity type is registered in the <components:Register> going through registration record creation, certificate issuance and, where it is also a notified entity, trusted-list publication. The <roles:Wallet Provider (WP)|Wallet Provider> follows a notification-only path, and it has no <components:Register> record and no <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and is only published.
+The steps below describe the onboarding journey: any WRP entity type goes through [Registration Record Creation](#registration-record-creation), [Certificate Issuance](#certificate-issuance) and, where it is also a notified entity, [Notification and Publication](#notification-and-publication); the <roles:Wallet Provider (WP)|Wallet Provider> goes through that last step only.
 
 #### Registration Record Creation
 
@@ -331,7 +331,7 @@ stateDiagram-v2
 - **Update.** A change to the registration data triggers the corresponding update of the dependent artifacts. The <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> and the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL monitor the <components:Register> and reissue or revoke the affected <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> / <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> when the change requires it (requirements `PROVIDER-WRPAC-02` and `PROVIDER-WRPRC-03` in [Register](#register)), and the corresponding trusted-list entry is updated where applicable.
 - **Suspension / De-onboarding.** Setting the registration status to `suspended` or `cancelled` (or deleting the record) triggers the revocation of any dependent <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> by the respective providers. The revocation mechanisms (CRL/OCSP for WRPACs and Status List Tokens for WRPRCs) are defined in [Revocation Mechanisms](#revocation-mechanisms).
 
-These actions SHALL act on the **organisational entity**, that is its registration and the certificates issued to it, and not on the technical product it operates [ONBOARD-LC-03]. The certification lifecycle of the technical product it operates, in particular the certification of a Wallet Solution, is a separate process that is out of scope of this document and is only referenced here. A change to that certification that does not affect the entity's eligibility SHALL be reflected as a notification update and SHALL NOT, by itself, be treated as de-onboarding. A change that makes the entity no longer eligible SHALL instead lead to its suspension or cancellation, whose effect on the trusted lists and the Register is defined by ONBOARD-LC-01 and ONBOARD-LC-02 [ONBOARD-LC-04].
+These actions SHALL act on the **organisational entity**, that is its registration and the certificates issued to it, and not on the technical product it operates [ONBOARD-LC-03]. The certification lifecycle of the technical product, in particular the certification of a Wallet Solution, is a separate process, out of scope of this document. A change to that certification that does not affect the entity's eligibility SHALL be reflected as a notification update and SHALL NOT, by itself, be treated as de-onboarding. A change that makes the entity no longer eligible SHALL instead lead to its suspension or cancellation, whose effect on the trusted lists and the Register is defined by ONBOARD-LC-01 and ONBOARD-LC-02 [ONBOARD-LC-04].
 
 The lifecycle of entities that are only notified is governed by the notification framework ([CIR 2024/2980]). The entity is published when notified, and upon suspension or cancellation it stops being trusted (`ARF GenNot_05`). For the <roles:Wallet Provider (WP)|Wallet Provider>, a cancellation additionally requires the revocation of all its valid <artifacts:Wallet Unit Attestation (WUA)|WUAs> (`ARF WPNot_06`). The same applies to the other notified entities published in their LoTEs (PID and PuB-EAA Providers, Providers of WRPAC and WRPRC, and Registrars); QEAA Providers follow the corresponding lifecycle on the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> under the eIDAS Trusted List framework.
 
