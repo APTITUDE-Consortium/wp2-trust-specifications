@@ -242,7 +242,7 @@ The request/issuance protocol is an implementation choice (for example ACME, EST
 - **WRPAC.** The <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> issues a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, whose content and format are defined in [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate). At issuance time it SHALL verify that the WRP has an active registration status and that the certificate information is consistent with the <components:Register> (requirement `PROVIDER-WRPAC-01` in [Register](#register), from [CIR 2025/848] Annex IV 3(c)); its attributes are derived from the <components:Register> information ([ETSI TS 119 475], clause 5.1.2). If the registration is not active or the data are inconsistent, the Provider SHALL refuse to issue the certificate.
 - **WRPRC** (where mandated by [CIR 2025/848] Article 8). The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> issues a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, whose content and format are defined in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate). At issuance time it SHALL verify the <components:Register> status, the consistency with the <components:Register> information, and the validity of the corresponding <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> when relevant (requirement `PROVIDER-WRPRC-02` in [Register](#register), from [CIR 2025/848] Annex V 3(c)). The same failure handling applies.
 
-Identity proofing is not repeated here; it is performed by the <roles:Registrar> at [Registration Record Creation](#registration-record-creation). After issuance, the entity provides its registration certificate to its Relying Party Instances or service supply points and, for an Attestation Provider, includes it in the credential issuer metadata used at issuance (`RPRC_10`, `RPRC_14`, `RPRC_22`).
+Identity proofing is not repeated here; it is performed by the <roles:Registrar> at [Registration Record Creation](#registration-record-creation). After issuance, the entity provides its <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> to its Relying Party Instances or service supply points and, for an Attestation Provider, includes it in the credential issuer metadata used at issuance (`RPRC_10`, `RPRC_14`, `RPRC_22`).
 
 #### Notification and Publication
 
@@ -256,9 +256,9 @@ This step publishes a notified entity, together with the trust anchor of the tec
 
 !!! note
 
-    The trust anchor published for an attestation provider is the key with which its credential issuer (the service supply points) signs the attestations; for a <roles:Wallet Provider (WP)|Wallet Provider> it is the key signing the <artifacts:Wallet Unit Attestation (WUA)|WUAs> of its Wallet Solution. The trusted-list entry therefore binds the organisational entity to the technical component that operates at runtime.
+    The trust anchor published for an Attestation Provider is the key with which its credential issuer (the service supply points) signs the attestations; for a <roles:Wallet Provider (WP)|Wallet Provider> it is the key signing the <artifacts:Wallet Unit Attestation (WUA)|WUAs> of its Wallet Solution. The trusted-list entry therefore binds the organisational entity to the technical component that operates at runtime.
 
-On failure, if publication does not complete, the entity may be registered and hold a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> but is not yet present in the trusted list, and is therefore not trusted by relying parties until the entry is published.
+On failure, if publication does not complete, the entity may be registered and hold a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> but is not yet present in the trusted list, and is therefore not trusted by Relying Parties until the entry is published.
 
 #### Detailed flow
 
