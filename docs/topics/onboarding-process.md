@@ -115,7 +115,7 @@ This subsection describes the logical components that implement the Onboarding P
 ```mermaid
 graph TB
 
-    WRP(["Operational Entity (requesting onboarding)"])
+    OpEn(["Operational Entity (requesting onboarding)"])
 
     subgraph SYS["APTITUDE Onboarding System - components"]
         direction LR
@@ -141,7 +141,7 @@ graph TB
         PubSvc -->|"publish / set entry status"| Lists
     end
 
-    WRP <-->|"submit data, receive WRPAC/WRPRC and check registration status"| UI
+    OpEn <-->|"submit data, receive the resulting artifacts and check status"| UI
 
     %% Style
     style SYS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
@@ -151,7 +151,7 @@ graph TB
     classDef ui fill:#d5e8d4,stroke:#2f4f4f
     class RegSvc,ACsvc,RCsvc,WRPReg green;
     class PubSvc,NotifDS,Lists blue;
-    class WRP cand;
+    class OpEn cand;
     class UI ui;
 ```
 
@@ -190,7 +190,7 @@ The required inputs to onboard an operational entity depend on its type and on t
 
 - **Registration data** of entities that are registered in the <components:Register>, i.e., all <roles:Wallet-Relying Party (WRP)|WRP> types. This data conforms to the `WalletRelyingParty` schema defined in [Register Data Schema](#register-data-schema), which transposes the [CIR 2025/848] Annex I and [CIR 2025/848-Amendment] Annex VI set.
 - **Notifiable data** of entities published in a trusted list, i.e., <roles:PID Provider>, <roles:PuB-EAA Provider>, <roles:QEAA Provider>, non-qualified <roles:EAA Provider>, and the <roles:Wallet Provider (WP)|Wallet Provider>. This data covers the identification, trust anchors, and service supply points needed for the relevant trusted-list entry, as defined in [List of Trusted Entities](#list-of-trusted-entities).
-- **Cryptographic material** for a WRP requesting a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, namely the public key(s) for which the certificate is requested, generated according to [ETSI TS 119 411-8].
+- **Cryptographic material**, namely the public key(s) for which a WRP requests a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, generated according to [ETSI TS 119 411-8], and the public keys of the signature or seal certificates the entity uses to sign or seal its artifacts.
 
 !!! note
 
@@ -323,21 +323,18 @@ For entities that are registered in the <components:Register>, the registration 
 stateDiagram-v2
     [*] --> Active: onboarding completed
     Active --> Active: update of registration data
-    Active --> Suspended: suspension
-    Suspended --> Active: reinstatement
     Active --> Cancelled: cancellation
-    Suspended --> Cancelled: cancellation
     Cancelled --> [*]
 ```
 
 - **Update.** A change to the registration data triggers the corresponding update of the dependent artifacts. The <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> and the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL monitor the <components:Register> and reissue or revoke the affected <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> / <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> when the change requires it (requirements `PROVIDER-WRPAC-02` and `PROVIDER-WRPRC-03` in [Register](#register)), and the corresponding trusted-list entry is updated where applicable.
-- **Suspension / De-onboarding.** Setting the registration status to `suspended` or `cancelled` (or deleting the record) triggers the revocation of any dependent <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> by the respective providers. The revocation mechanisms (CRL/OCSP for WRPACs and Status List Tokens for WRPRCs) are defined in [Revocation Mechanisms](#revocation-mechanisms).
+- **Cancellation / De-onboarding.** Setting the registration status to `cancelled` (or deleting the record) triggers the revocation of any dependent <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> by the respective providers. The revocation mechanisms (CRL/OCSP for WRPACs and Status List Tokens for WRPRCs) are defined in [Revocation Mechanisms](#revocation-mechanisms).
 
-These actions SHALL act on the **organisational entity**, that is its registration and the certificates issued to it, and not on the technical product it operates [ONBOARD-LC-03]. The certification lifecycle of the technical product, in particular the certification of a Wallet Solution, is a separate process, out of scope of this document. A change to that certification that does not affect the entity's eligibility SHALL be reflected as a notification update and SHALL NOT, by itself, be treated as de-onboarding. A change that makes the entity no longer eligible SHALL instead lead to its suspension or cancellation, whose effect on the trusted lists and the Register is defined by ONBOARD-LC-01 and ONBOARD-LC-02 [ONBOARD-LC-04].
+These actions SHALL act on the **organisational entity**, that is its registration and the certificates issued to it, and not on the technical product it operates [ONBOARD-LC-02]. The certification lifecycle of the technical product, in particular the certification of a Wallet Solution, is a separate process, out of scope of this document. A change to that certification that does not affect the entity's eligibility SHALL be reflected as a notification update and SHALL NOT, by itself, be treated as de-onboarding. A change that makes the entity no longer eligible SHALL instead lead to its cancellation, whose effect on the trusted lists is defined by ONBOARD-LC-01 [ONBOARD-LC-03].
 
-The lifecycle of entities that are only notified is governed by the notification framework ([CIR 2024/2980]). The entity is published when notified, and upon suspension or cancellation it stops being trusted (`ARF GenNot_05`). For the <roles:Wallet Provider (WP)|Wallet Provider>, a cancellation additionally requires the revocation of all its valid <artifacts:Wallet Unit Attestation (WUA)|WUAs> (`ARF WPNot_06`). The same applies to the other notified entities published in their LoTEs (PID and PuB-EAA Providers, Providers of WRPAC and WRPRC, and Registrars); QEAA Providers follow the corresponding lifecycle on the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> under the eIDAS Trusted List framework.
+The lifecycle of entities that are only notified is governed by the notification framework ([CIR 2024/2980]). The entity is published when notified, and upon cancellation it stops being trusted (`ARF GenNot_05`). For the <roles:Wallet Provider (WP)|Wallet Provider>, a cancellation additionally requires the revocation of all its valid <artifacts:Wallet Unit Attestation (WUA)|WUAs> (`ARF WPNot_06`). The same applies to the other notified entities published in their LoTEs (PID and PuB-EAA Providers, Providers of WRPAC and WRPRC, and Registrars); QEAA Providers follow the corresponding lifecycle on the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> under the eIDAS Trusted List framework.
 
-How "stops being trusted" is represented depends on the list type, and APTITUDE adopts the representation already supported by each format. The PuB-EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE> and the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> carry an explicit per-entry status, which SHALL be set to withdrawn or invalid; the PID Provider, <roles:Wallet Provider (WP)|Wallet Provider>, Provider of WRPAC, Provider of WRPRC, and <roles:Registrar> LoTEs carry no per-entry status (per [ETSI TS 119 602], `ServiceStatus` and the service history are not used for these types), so for them both a suspended and a cancelled entity SHALL be reflected by removing the entry [ONBOARD-LC-01]. Because the <components:Register> already maintains the registration status, including suspension and cancellation ([CIR 2025/848] Article 9), the distinction between a suspended and a cancelled entity SHALL be taken from the <components:Register> and not from the status-less lists [ONBOARD-LC-02]. The broader lifecycle of notified entities belongs to the Trust Management Process.
+How "stops being trusted" is represented depends on the list type, and APTITUDE adopts the representation already supported by each format. The PuB-EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE> and the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> carry an explicit per-entry status, which on cancellation SHALL be set to withdrawn or invalid; the PID Provider, <roles:Wallet Provider (WP)|Wallet Provider>, Provider of WRPAC, Provider of WRPRC, and <roles:Registrar> LoTEs carry no per-entry status (per [ETSI TS 119 602], `ServiceStatus` and the service history are not used for these types), so for them a cancelled entity SHALL be reflected by removing the entry [ONBOARD-LC-01]. The broader lifecycle of notified entities belongs to the Trust Management Process.
 
 Finally, the artifacts produced by onboarding are consumed in the trust-evaluation processes. The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is used in the [Authentication Process](#authentication-process), the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and the <components:Register> in the [Authorization Process](#authorization-process), the trusted-list trust anchors in the [Trust Anchor Validation Process](#trust-anchor-validation-process), and the revocation of the certificates in [Revocation Mechanisms](#revocation-mechanisms).
 
@@ -381,7 +378,6 @@ Finally, the artifacts produced by onboarding are consumed in the trust-evaluati
 
 | ID | Requirement | Scope | Related external requirement |
 | --- | --- | --- | --- |
-| ONBOARD-LC-01 | Trusted lists carrying a per-entry status SHALL reflect suspension or cancellation by setting the status to withdrawn or invalid; trusted lists carrying no per-entry status SHALL reflect both by removing the entry. | Onboarding | [ETSI TS 119 602], GenNot_05 |
-| ONBOARD-LC-02 | The suspended/cancelled distinction SHALL be read from the Register, which maintains the registration status including suspension and cancellation; for status-less lists it is not available on the list. | Onboarding | [CIR 2025/848] Art. 9 |
-| ONBOARD-LC-03 | Lifecycle actions (suspension, cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates. | Onboarding | [CIR 2025/848] Art. 9 |
-| ONBOARD-LC-04 | A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a notification update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its suspension or cancellation (effects of ONBOARD-LC-01 and ONBOARD-LC-02). | Onboarding | -- |
+| ONBOARD-LC-01 | Trusted lists carrying a per-entry status SHALL reflect cancellation by setting the status to withdrawn or invalid; trusted lists carrying no per-entry status SHALL reflect it by removing the entry. | Onboarding | [ETSI TS 119 602], GenNot_05 |
+| ONBOARD-LC-02 | Lifecycle actions (cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates. | Onboarding | [CIR 2025/848] Art. 9 |
+| ONBOARD-LC-03 | A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a notification update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its cancellation (effect of ONBOARD-LC-01). | Onboarding | -- |
