@@ -837,7 +837,7 @@
 <p>This subsection describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the EUDI Wallet normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document. The diagram below shows how the operational entity requesting onboarding interacts with these components.</p>
 <pre class="mermaid"><code>graph TB
 
-    WRP(["Operational Entity (requesting onboarding)"])
+    OpEn(["Operational Entity (requesting onboarding)"])
 
     subgraph SYS["APTITUDE Onboarding System - components"]
         direction LR
@@ -863,7 +863,7 @@
         PubSvc --&gt;|"publish / set entry status"| Lists
     end
 
-    WRP &lt;--&gt;|"submit data, receive WRPAC/WRPRC and check registration status"| UI
+    OpEn &lt;--&gt;|"submit data, receive the resulting artifacts and check status"| UI
 
     %% Style
     style SYS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
@@ -873,7 +873,7 @@
     classDef ui fill:#d5e8d4,stroke:#2f4f4f
     class RegSvc,ACsvc,RCsvc,WRPReg green;
     class PubSvc,NotifDS,Lists blue;
-    class WRP cand;
+    class OpEn cand;
     class UI ui;</code></pre>
 <p>The components, and the role each realises, are:</p>
 <ul>
@@ -979,12 +979,12 @@
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>. This data covers the identification, trust anchors, and service supply points needed for the relevant trusted-list entry, as defined in <a href="#list-of-trusted-entities">List of Trusted Entities</a>.</li>
-<li><strong>Cryptographic material</strong> for a WRP requesting a <a class="mkdocs-ezglossary-link"
+<li><strong>Cryptographic material</strong>, namely the public key(s) for which a WRP requests a <a class="mkdocs-ezglossary-link"
     id="ad6ec8a657f4bc6481db9ccbda73132b"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, namely the public key(s) for which the certificate is requested, generated according to [ETSI TS 119 411-8].</li>
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, generated according to [ETSI TS 119 411-8], and the public keys of the signature or seal certificates the entity uses to sign or seal its artifacts.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1422,10 +1422,7 @@
 <pre class="mermaid"><code>stateDiagram-v2
     [*] --&gt; Active: onboarding completed
     Active --&gt; Active: update of registration data
-    Active --&gt; Suspended: suspension
-    Suspended --&gt; Active: reinstatement
     Active --&gt; Cancelled: cancellation
-    Suspended --&gt; Cancelled: cancellation
     Cancelled --&gt; [*]</code></pre>
 <ul>
 <li><strong>Update.</strong> A change to the registration data triggers the corresponding update of the dependent artifacts. The <a class="mkdocs-ezglossary-link"
@@ -1454,7 +1451,7 @@
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> when the change requires it (requirements <code>PROVIDER-WRPAC-02</code> and <code>PROVIDER-WRPRC-03</code> in <a href="#register">Register</a>), and the corresponding trusted-list entry is updated where applicable.</li>
-<li><strong>Suspension / De-onboarding.</strong> Setting the registration status to <code>suspended</code> or <code>cancelled</code> (or deleting the record) triggers the revocation of any dependent <a class="mkdocs-ezglossary-link"
+<li><strong>Cancellation / De-onboarding.</strong> Setting the registration status to <code>cancelled</code> (or deleting the record) triggers the revocation of any dependent <a class="mkdocs-ezglossary-link"
     id="f827c3887ff606e330e718e5cefbaf96"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
@@ -1466,8 +1463,8 @@
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> by the respective providers. The revocation mechanisms (CRL/OCSP for WRPACs and Status List Tokens for WRPRCs) are defined in <a href="#revocation-mechanisms">Revocation Mechanisms</a>.</li>
 </ul>
-<p>These actions SHALL act on the <strong>organisational entity</strong>, that is its registration and the certificates issued to it, and not on the technical product it operates [ONBOARD-LC-03]. The certification lifecycle of the technical product, in particular the certification of a Wallet Solution, is a separate process, out of scope of this document. A change to that certification that does not affect the entity's eligibility SHALL be reflected as a notification update and SHALL NOT, by itself, be treated as de-onboarding. A change that makes the entity no longer eligible SHALL instead lead to its suspension or cancellation, whose effect on the trusted lists and the Register is defined by ONBOARD-LC-01 and ONBOARD-LC-02 [ONBOARD-LC-04].</p>
-<p>The lifecycle of entities that are only notified is governed by the notification framework ([CIR 2024/2980]). The entity is published when notified, and upon suspension or cancellation it stops being trusted (<code>ARF GenNot_05</code>). For the <a class="mkdocs-ezglossary-link"
+<p>These actions SHALL act on the <strong>organisational entity</strong>, that is its registration and the certificates issued to it, and not on the technical product it operates [ONBOARD-LC-02]. The certification lifecycle of the technical product, in particular the certification of a Wallet Solution, is a separate process, out of scope of this document. A change to that certification that does not affect the entity's eligibility SHALL be reflected as a notification update and SHALL NOT, by itself, be treated as de-onboarding. A change that makes the entity no longer eligible SHALL instead lead to its cancellation, whose effect on the trusted lists is defined by ONBOARD-LC-01 [ONBOARD-LC-03].</p>
+<p>The lifecycle of entities that are only notified is governed by the notification framework ([CIR 2024/2980]). The entity is published when notified, and upon cancellation it stops being trusted (<code>ARF GenNot_05</code>). For the <a class="mkdocs-ezglossary-link"
     id="136490b1de08ed843be01a1ea4d28ae6"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
@@ -1483,7 +1480,7 @@
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> and the <a href="artifacts:EU Member State Trusted List (EUMS TL)">EUMS TL</a> carry an explicit per-entry status, which SHALL be set to withdrawn or invalid; the PID Provider, <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> and the <a href="artifacts:EU Member State Trusted List (EUMS TL)">EUMS TL</a> carry an explicit per-entry status, which on cancellation SHALL be set to withdrawn or invalid; the PID Provider, <a class="mkdocs-ezglossary-link"
     id="9c7d958fd138f32566b2b6e14ed4d6d3"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
@@ -1493,17 +1490,7 @@
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
-    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> LoTEs carry no per-entry status (per [ETSI TS 119 602], <code>ServiceStatus</code> and the service history are not used for these types), so for them both a suspended and a cancelled entity SHALL be reflected by removing the entry [ONBOARD-LC-01]. Because the <a class="mkdocs-ezglossary-link"
-    id="d8ffb0203b41f127324dfd3004659d8c"
-    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
-    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
-    name="components:Register"
-    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> already maintains the registration status, including suspension and cancellation ([CIR 2025/848] Article 9), the distinction between a suspended and a cancelled entity SHALL be taken from the <a class="mkdocs-ezglossary-link"
-    id="8e07d261978b0ecceea7fd45e135296f"
-    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
-    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
-    name="components:Register"
-    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> and not from the status-less lists [ONBOARD-LC-02]. The broader lifecycle of notified entities belongs to the Trust Management Process.</p>
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> LoTEs carry no per-entry status (per [ETSI TS 119 602], <code>ServiceStatus</code> and the service history are not used for these types), so for them a cancelled entity SHALL be reflected by removing the entry [ONBOARD-LC-01]. The broader lifecycle of notified entities belongs to the Trust Management Process.</p>
 <p>Finally, the artifacts produced by onboarding are consumed in the trust-evaluation processes. The <a class="mkdocs-ezglossary-link"
     id="b21a3e6eaea3567f8657ee5cbdc131da"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
@@ -1515,7 +1502,7 @@
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> and the <a class="mkdocs-ezglossary-link"
-    id="a6bca06f316aa53d39c3ca6faac43355"
+    id="d8ffb0203b41f127324dfd3004659d8c"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -1650,25 +1637,19 @@
 <tbody>
 <tr>
 <td>ONBOARD-LC-01</td>
-<td>Trusted lists carrying a per-entry status SHALL reflect suspension or cancellation by setting the status to withdrawn or invalid; trusted lists carrying no per-entry status SHALL reflect both by removing the entry.</td>
+<td>Trusted lists carrying a per-entry status SHALL reflect cancellation by setting the status to withdrawn or invalid; trusted lists carrying no per-entry status SHALL reflect it by removing the entry.</td>
 <td>Onboarding</td>
 <td>[ETSI TS 119 602], GenNot_05</td>
 </tr>
 <tr>
 <td>ONBOARD-LC-02</td>
-<td>The suspended/cancelled distinction SHALL be read from the Register, which maintains the registration status including suspension and cancellation; for status-less lists it is not available on the list.</td>
+<td>Lifecycle actions (cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates.</td>
 <td>Onboarding</td>
 <td>[CIR 2025/848] Art. 9</td>
 </tr>
 <tr>
 <td>ONBOARD-LC-03</td>
-<td>Lifecycle actions (suspension, cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates.</td>
-<td>Onboarding</td>
-<td>[CIR 2025/848] Art. 9</td>
-</tr>
-<tr>
-<td>ONBOARD-LC-04</td>
-<td>A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a notification update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its suspension or cancellation (effects of ONBOARD-LC-01 and ONBOARD-LC-02).</td>
+<td>A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a notification update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its cancellation (effect of ONBOARD-LC-01).</td>
 <td>Onboarding</td>
 <td>--</td>
 </tr>
@@ -1694,7 +1675,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 11, 2026 12:22:20 UTC">June 11, 2026 12:22:20</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 15, 2026 11:03:21 UTC">June 15, 2026 11:03:21</span>
   </span>
 
     
