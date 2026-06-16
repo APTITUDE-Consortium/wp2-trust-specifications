@@ -923,6 +923,7 @@
 <p><strong>Reviewers</strong>:</p>
 <ul>
 <li>Dominik František Bučík, <em>ARICOMA Digital S.R.O</em></li>
+<li>George Fourtounis, <em>GRNET</em></li>
 <li>Guillaume Hébert, <em>Keynectis</em></li>
 <li>Angel Palomares Perez, <em>Bull</em></li>
 <li>Leonardo Pio Palumbo, <em>Istituto Poligrafico e Zecca dello Stato S.p.A.</em></li>
@@ -1248,7 +1249,7 @@
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
-    href="../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> used to verify signed objects such as <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> used to (a) verify signed objects such as <a class="mkdocs-ezglossary-link"
     id="e45b318a3f45f7d64d0593fa2da77b7a"
     title="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
     data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
@@ -1268,7 +1269,7 @@
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>, and <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>, and (b) <a class="mkdocs-ezglossary-link"
     id="4009964c554562e196a149a96f756d03"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
@@ -1640,7 +1641,7 @@ class MSTLP,TLs green;
 EC ---|"Notification Process &lt;br/&gt;(Trust Anchor or &lt;br/&gt;URL of the TL)"| MS</code></pre>
 </li>
 </ul>
-<p>The following figure add these two processes to the previous architecture.</p>
+<p>The following figure adds these two processes to the previous architecture.</p>
 <pre class="mermaid"><code>flowchart TD
 
     WP["Wallet Provider (WP)"]
@@ -2074,7 +2075,7 @@ EC ---|"Notification Process &lt;br/&gt;(Trust Anchor or &lt;br/&gt;URL of the T
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
-    href="../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].</p>
+    href="../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>. The values are extracted from Annex VI of the [CIR 2025/848-Amendment].</p>
 <!--format of the information exchanged via the Register API as JSON objects and JWS-signed statements. -->
 
 <div class="admonition warning">
@@ -3224,7 +3225,7 @@ EC ---|"Notification Process &lt;br/&gt;(Trust Anchor or &lt;br/&gt;URL of the T
 </table>
 <hr />
 <h6 id="delete-wrp-delete-required"><code>DELETE /wrp</code> — delete (REQUIRED)<a class="headerlink" href="#delete-wrp-delete-required" title="Permanent link">&para;</a></h6>
-<p>DELETE is for deleting of an existing <a class="mkdocs-ezglossary-link"
+<p>DELETE is for deleting an existing <a class="mkdocs-ezglossary-link"
     id="25c6e1e37003d80ac7fd250d88acec5c"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
@@ -3833,7 +3834,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">Wallet-Relying Party (WRP)</a>.
-Issued by one or more designated provider under Member State supervision, the <a class="mkdocs-ezglossary-link"
+Issued by one or more designated providers under Member State supervision, the <a class="mkdocs-ezglossary-link"
     id="f282bbb1da1ca902e66ed623f2f3c966"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
@@ -3859,7 +3860,7 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> by the relevant issuing authority, such that the <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> by the relevant issuing authority, such that the <a class="mkdocs-ezglossary-link"
     id="a70ff34f2203c13eaff446a30da48f68"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
@@ -5755,7 +5756,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Providers of Wallet Relying Party Access Certificate</a></li>
+    href="../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Providers of Wallet Relying Party Access Certificates</a></li>
 </ol>
 <h4 id="trusted-list">Trusted List<a class="headerlink" href="#trusted-list" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
@@ -7422,7 +7423,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
-    href="../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> as revoked. The locally stored <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> is revoked. The locally stored <a class="mkdocs-ezglossary-link"
     id="781c9f9c00e7a49709f4b94145622528"
     title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
@@ -7604,8 +7605,10 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
-    href="../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> for validating the following:
-   - <strong>Infrastructure Certificates</strong>: <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> for validating the following:</li>
+</ol>
+<ul>
+<li><strong>Infrastructure Certificates</strong>: <a class="mkdocs-ezglossary-link"
     id="b7c83d2b420abeb86f253baa76aead50"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
@@ -7615,8 +7618,8 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>.
-   - <strong><a href="artifacts:Wallet Unit Attestations (WUAs)">Wallet Unit Attestations (WUAs)</a></strong>: <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>.</li>
+<li><strong><a href="artifacts:Wallet Unit Attestations (WUAs)">Wallet Unit Attestations (WUAs)</a></strong>: <a class="mkdocs-ezglossary-link"
     id="cf92ffad9935cf98454b202ffadd7ecd"
     title="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
     data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
@@ -7626,14 +7629,14 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
     data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
     name="artifacts:Wallet Instance Attestation (WIA)"
-    href="../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">Wallet Instance Attestation (WIA)</a>.
-   - <strong>PID Signatures</strong>: <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">Wallet Instance Attestation (WIA)</a>.</li>
+<li><strong>PID Signatures</strong>: <a class="mkdocs-ezglossary-link"
     id="0f6fd6caf6b45ff722b41749381376bc"
     title="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
     data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
     name="credentials:Person Identification Data (PID)"
-    href="../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">Person Identification Data (PID)</a>.
-   - <strong><a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">Person Identification Data (PID)</a>.</li>
+<li><strong><a class="mkdocs-ezglossary-link"
     id="0139b6c887e4b70dab8c33cfc10c53ec"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
@@ -7644,6 +7647,8 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> informations.</li>
+</ul>
+<ol start="2">
 <li><em><a class="mkdocs-ezglossary-link"
     id="98099a7e7d2fd6a9b8b3182e8758953c"
     title="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
@@ -7659,20 +7664,22 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
-    href="../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> for validating the following:
-   - seal or signature on a <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> for validating the following:</li>
+</ol>
+<ul>
+<li>seal or signature on a <a class="mkdocs-ezglossary-link"
     id="05302d085699af7faae8ffb7eed76ca4"
     title="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
     data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
     name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
-    href="../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">Qualified Electronic Attestation of Attributes (QEAA)</a>; or
-   - seal or signature on a <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">Qualified Electronic Attestation of Attributes (QEAA)</a>; or</li>
+<li>seal or signature on a <a class="mkdocs-ezglossary-link"
     id="f5b23bd08eabf5090ce75a305eb3dae1"
     title="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
     data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
     name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
     href="../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">Public Electronic Attestation of Attributes (PuB-EAA)</a>.</li>
-</ol>
+</ul>
 <p>To verify the authenticity of the retrieved <a class="mkdocs-ezglossary-link"
     id="70015708dda688540f9e1d57584c5708"
     title="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
@@ -16330,7 +16337,7 @@ If the <a class="mkdocs-ezglossary-link"
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 8, 2026 09:22:26 UTC">June 8, 2026 09:22:26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 9, 2026 06:04:01 UTC">June 9, 2026 06:04:01</span>
   </span>
 
     
