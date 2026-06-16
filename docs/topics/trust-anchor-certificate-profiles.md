@@ -150,8 +150,8 @@ conveying identical information with regards to the information strictly require
 
 The following table lists the recommended Service Information elements for a service entry representing an entity trust anchor.
 
-| Parameter | Defined in | Presence | Criticality | Format | Description |
-| :-------: | :--------: | :------: | :---------: | :----- | :---------- |
+| Parameter | Defined in | Presence | Format | Description |
+| :-------: | :--------: | :------: | :----- | :---------- |
 | `serviceInformation` | [ETSI TS 119 612] §5.5 | REQUIRED | *SEQUENCE* |  Container describing the trusted entity service as published in LoTE / Trusted List infrastructure. |
 | `serviceInformation.serviceTypeIdentifier` | [ETSI TS 119 612] §5.5.1 | REQUIRED | *URI* | Identifier of the service type. The concrete URI value SHALL be defined by the governing profile or trust scheme for the entity trust anchor service. |
 | `serviceInformation.serviceName` | [ETSI TS 119 612] §5.5.2 | REQUIRED | *SEQUENCE* | Human-readable name of the service under which the trust anchor is published. |
