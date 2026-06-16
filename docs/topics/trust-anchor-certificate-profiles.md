@@ -156,8 +156,7 @@ The following table lists the recommended Service Information elements for a ser
 | `serviceInformation.serviceTypeIdentifier` | [ETSI TS 119 612] §5.5.1 | REQUIRED | *URI* | Identifier of the service type. The concrete URI value SHALL be defined by the governing profile or trust scheme for the entity trust anchor service. |
 | `serviceInformation.serviceName` | [ETSI TS 119 612] §5.5.2 | REQUIRED | *SEQUENCE* | Human-readable name of the service under which the trust anchor is published. |
 | `serviceInformation.serviceStatus` | [ETSI TS 119 612] §5.5.4 | REQUIRED | *URI* | Indicates the current status of the service as defined by the applicable trust scheme / Trusted List profile. |
-| `serviceInformation.serviceDigitalIdentity` | [ETSI TS 119 612] §5.5.3 | REQUIRED | *SEQUENCE* | It specifies one and only one service digital identifier uniquely and unambiguously identifying the
-service with the type it is associated to `serviceTypeIdentifier`. |
+| `serviceInformation.serviceDigitalIdentity` | [ETSI TS 119 612] §5.5.3 | REQUIRED | *SEQUENCE* | It specifies one and only one service digital identifier uniquely and unambiguously identifying the service with the type it is associated to `serviceTypeIdentifier`. |
 | `serviceInformation.serviceDigitalIdentity.x509Certificate` | [ETSI TS 119 602] §6.6.3.1 | REQUIRED | *STRING* | Base64 encoded X.509 certificate of the Trust Anchor. |
 | `serviceInformation.serviceDigitalIdentity.x509SubjectName` | [ETSI TS 119 602] §6.6.3.2 | REQUIRED | *STRING* | Distinguished Name encoded as a string. |
 
