@@ -1,8 +1,14 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: Wallet Relying Party Register API
   version: 1.0.0
   description: Specification of the Wallet Relying Party (WRP) Register API in Aptitude Consortium
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  contact:
+    name: APTITUDE Consortium
+    url: https://github.com/APTITUDE-Consortium/wp2-trust-specifications
 servers:
   - url: https://registry.example.eu
     description: Example register server
@@ -127,7 +133,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
               example:
-                code: not_found
                 message: WRP with the given rpidentifier was not found.
       security: []
   /wrp/{identifier}:
@@ -418,13 +423,24 @@ components:
                 identifier: FR-EUID-123456789
   responses:
     JwsWrpArrayResponse:
-      description: JWS compact string containing  with matching WRP entries excluding address field.
+      description: >-
+        application/jwt JWS compact serialization. The decoded (signed) payload is an
+        array of WalletRelyingParty objects matching the query, with postalAddress
+        excluded from each published entry and, where relevant, the associated
+        WRPAC/WRPRC history per the Member State profile. This common API uses the
+        strict Annex VI array form; the optional SignedWRPArrayEnvelope from the
+        registry specification is a national/profile extension, out of scope of this baseline.
+      headers:
+        X-Next-Cursor:
+          description: Cursor to pass as the cursor query parameter on the next GET /wrp request. Absent on the last page.
+          schema:
+            type: string
       content:
         application/jwt:
           schema:
             type: string
             description: JWS compact serialization string.
-          example: string
+          example: eyJhbGciOiJFUzI1NiIsImtpZCI6InJlZ2lzdHJhci0xIn0.eyJ3cnAiOlt7Li4ufV19.c2lnbmF0dXJl
     JwsBooleanResponse:
       description: JWS compact string containing a signed boolean payload.
       content:
@@ -582,6 +598,35 @@ components:
         - supervisoryAuthority
         - registryURI
         - isIntermediary
+      oneOf:
+        - required: [legalPerson]
+        - required: [naturalPerson]
+      allOf:
+        - if:
+            required: [isIntermediary]
+            properties:
+              isIntermediary:
+                const: false
+          then:
+            required: [intendedUse]
+        - if:
+            required: [entitlement]
+            properties:
+              entitlement:
+                contains:
+                  enum:
+                    - https://uri.etsi.org/19475/Entitlement/QEAA_Provider
+                    - https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider
+                    - https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider
+                    - https://uri.etsi.org/19475/Entitlement/PID_Provider
+          then:
+            required: [providesAttestations]
+        - if:
+            required: [usesIntermediary]
+          then:
+            properties:
+              isIntermediary:
+                const: false
       example:
         legalPerson:
           legalName:
@@ -647,162 +692,32 @@ components:
             registryURI: https://registry.example.nl/api
     WalletRelyingPartyIntermediary:
       type: object
-      description: Wallet Relying Party object when referenced as Intermediary
+      description: >-
+        Reference to a Wallet Relying Party acting as a designated intermediary. Only
+        the subset needed to identify and locate the intermediary is carried here
+        (see the usesIntermediary note in the registry specification).
       properties:
-        legalPerson:
-          $ref: '#/components/schemas/LegalPerson'
-        naturalPerson:
-          $ref: '#/components/schemas/NaturalPerson'
         identifier:
           type: array
           minItems: 1
           items:
             $ref: '#/components/schemas/Identifier'
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code, or EU for providers operating in the Union.
-          pattern: '^([A-Z]{2}|EU)$'
-        email:
-          type: array
-          items:
-            type: string
-            format: email
-        phone:
-          type: array
-          items:
-            type: string
-            example: '+33100000000'
-        infoURI:
-          type: array
-          items:
-            type: string
-            format: uri
-        providerType:
-          type: string
-          description: Provider subtype. For WRP records, typically WalletRelyingParty.
-          example: WalletRelyingParty
-        policy:
-          type: array
-          items:
-            $ref: '#/components/schemas/Policy'
-        x5c:
-          type: array
-          description: X.509 certificate chains for provider services.
-          items:
-            type: string
         tradeName:
           type: string
-        supportURI:
-          type: array
-          items:
-            type: string
-            format: uri
-        srvDescription:
-          type: array
-          description: Array of service descriptions, each being an array of localized strings.
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/MultiLangString'
-        intendedUse:
-          type: array
-          description: Required if the entity is not an intermediary.
-          items:
-            $ref: '#/components/schemas/IntendedUse'
-        isPSB:
-          type: boolean
-          description: Whether the WRP is a public sector body.
-        entitlement:
-          type: array
-          items:
-            type: string
-            format: uri
-        providesAttestations:
-          type: array
-          description: Required if the entity is a PID or attestation provider.
-          items:
-            $ref: '#/components/schemas/Credential'
-        supervisoryAuthority:
-          $ref: '#/components/schemas/LegalEntity'
         registryURI:
           type: string
           format: uri
-          description: URI of the API of the national register of WRPs.
-        usesIntermediary:
-          type: array
-          description: If present, indicates designated intermediary entries. Only the subset identifier, tradeName, and registryURI is needed for each entry.
-          items:
-            $ref: '#/components/schemas/WalletRelyingPartyIntermediary'
-        isIntermediary:
-          type: boolean
-          description: Whether the registered entity is a designated intermediary. Shall be false if usesIntermediary is present.
+          description: URI of the API of the national register where the intermediary is registered.
       required:
         - identifier
         - tradeName
         - registryURI
       example:
-        legalPerson:
-          legalName:
-            - ShopExample N.V.
         identifier:
           - type: http://data.europa.eu/eudi/id/EUID
-            identifier: NL-EUID-556677889
-        postalAddress:
-          - Damrak 50, 1012 LP Amsterdam, NL
-        country: NL
-        email:
-          - wallet-rp@shopexample.example
-        infoURI:
-          - https://shopexample.example
-        providerType: WalletRelyingParty
-        policy:
-          - type: http://data.europa.eu/eudi/policy/terms-and-conditions
-            policyURI: https://shopexample.example/terms
-          - type: http://data.europa.eu/eudi/policy/privacy-policy
-            policyURI: https://shopexample.example/privacy
-        tradeName: ShopExample
-        supportURI:
-          - https://shopexample.example/support
-        srvDescription:
-          - - lang: en
-              content: Online retail services.
-            - lang: nl
-              content: Online detailhandel.
-        intendedUse:
-          - intendedUseIdentifier: iu-age-verification
-            purpose:
-              - lang: en
-                content: Verify the customer is of legal age for restricted product purchases.
-            privacyPolicy:
-              - type: http://data.europa.eu/eudi/policy/privacy-statement
-                policyURI: https://shopexample.example/privacy/wallet
-            credential:
-              - format: mso_mdoc
-                meta:
-                  doctype_value: org.iso.18013.5.1.mDL
-                claim:
-                  - path:
-                      - org.iso.18013.5.1
-                      - age_over_18
-            createdAt: '2026-01-01'
-        isPSB: false
-        entitlement:
-          - https://uri.etsi.org/19475/Entitlement/Service_Provider
-        supervisoryAuthority:
-          legalPerson:
-            legalName:
-              - Autoriteit Persoonsgegevens
-          country: NL
-          infoURI:
-            - https://autoriteitpersoonsgegevens.nl
+            identifier: NL-EUID-112233445
+        tradeName: TrustBridge
         registryURI: https://registry.example.nl/api
-        isIntermediary: false
-        usesIntermediary:
-          - identifier:
-              - type: http://data.europa.eu/eudi/id/EUID
-                identifier: NL-EUID-112233445
-            tradeName: TrustBridge
-            registryURI: https://registry.example.nl/api
     Identifier:
       type: object
       properties:
