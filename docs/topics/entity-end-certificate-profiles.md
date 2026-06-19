@@ -73,7 +73,9 @@ The following table lists all the common extensions that are mandatory or condit
 | `qcStatements` (esi4-qcStatement-4) | [RFC 3739, clause 3.2.6] &<br>[ETSI EN 319 412-5, clause 4.2.2] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.4`.<br><br>**Applicable condition:** For qualified certificates. It indicates that the private key related to the certified public key resides in a QSCD according to eIDAS regulation. The extension is mandatory as stated in ETSI EN 319 411-2, GEN-6.6.1-03. |
 | `qcStatements` (esi4-qcStatement-6) | [RFC 3739, clause 3.2.6] &<br>[ETSI EN 319 412-5, clause 4.2.3] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.6`.<br><br>**Applicable condition:** Mandatory for qualified certificates issued to legal persons for the purpose of electronic seal ([ETSI EN 319 412-5, clause 5]). MAY be present for certificates issued to natural persons for the purpose of electronic signatures.<br><br>Declares that a certificate is issued for one and only one of the purposes: electronic signature, electronic seal, or website authentication. |
 
-Note: in the APTITUDE specific instantiations, the `certificatePolicies` will be set to 
+!!! note
+
+    In the APTITUDE profiles, Sign/Seal Certificates SHALL be long lived certificates. Thus the `noRevAvail` and `ext-etsi-valassured-ST-certs` SHALL NOT be used. 
 
 ##### PID Provider Sing/Seal Certificate Content
 
