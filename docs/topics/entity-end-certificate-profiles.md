@@ -1,10 +1,8 @@
-# Entity Sign/Seal Certificate Profiles
+This section describes the purpose, format and content of End Entity Sign/Seal Certificates in the European Digital Identity Wallet (EUDIW) ecosystem that are used for signing and sealing purposes.
 
-This section describes the purpose, format and content of End-Certificates for entities concerning European Digital Identity Wallet ecosystem that are used for signing and sealing purposes.
+#### References
 
-## References
-
-To guarantee the interoperability across all entities of the EUDIW ecosystem, Trust Anchor certificates should adhere to common requirements, with respect to their content and format. The technical specifications describing such content are distributed between multiple documents and for a purpose of proper referencing are listed below:
+To guarantee the interoperability across all entities of the EUDIW ecosystem, End Entity Sign/Seal Certificates should adhere to common requirements, with respect to their content and format. The technical specifications describing such content are distributed between multiple documents and for a purpose of proper referencing are listed below:
 
 - **RFC 3986**
 - **RFC 5280**
@@ -15,11 +13,11 @@ To guarantee the interoperability across all entities of the EUDIW ecosystem, Tr
 - **ETSI EN 319 412-2** (applicable if the certificate is issued to natural persons)
 - **ETSI EN 319 412-3** (applicable if the certificate is issued to legal persons)
 - **ETSI EN 319 412-5** (applicable if the certificate is qualified)
-- **ETSI TS 119 412-6**
+- **ETSI TS 119 412-6** (applicable to the )
 
-## Entity Sign/Seal Certificate Content
+#### End Entity Sign/Seal Certificate Content
 
-In the following sections we are providing tables with parameters and extensions that are mandatory for the specific entity end-certificate as described in ETSI specifications. For simplicity, optional attributes are out of scope of this document, unless their requirement is conditional or it could be useful to mention them.
+In the following sections we are providing tables with parameters and extensions that are mandatory for the specific End Entity Sign/Seal Certificate as described in ETSI specifications. For simplicity, optional attributes are omitted from this document, unless their requirement is conditional, or it could be useful to mention them.
 
 The column "Presence" in tables below contains the specification of the presence of the certificate parameter as follows:
 
@@ -40,7 +38,7 @@ The column "Criticality" of the certificate extensions has the semantics defined
 - C: The extension SHALL be considered critical.
 - NC: The extension SHALL be considered non-critical.
 
-### General Content
+##### General Content
 
 The following table lists all the common parameters that are mandatory or conditional for end-certificates of all entities of EUDIW ecosystem described in this document. Details of those parameters are described in IETF RFC 5280 and further scoped in ETSI EN 319 412-2 (in case of Natural Persons) and ETSI EN 319 412-3 (in case of Legal Persons).
 
@@ -68,16 +66,16 @@ The following table lists all the common extensions that are mandatory or condit
 | `authorityKeyIdentifier` | [ETSI EN 319 412-2, clause 4.3.1] | REQUIRED | NC | *SEQUENCE* | Extension with the OID `2.5.29.35`.<br><br>Key identifier for the issuing CA's public key.<br><br>Contains: `keyIdentifier` (*OCTET STRING*), `authorityCertIssuer` (*GeneralNames*), and `authorityCertSerialNumber` (*INTEGER*). |
 | `keyUsage` | [ETSI EN 319 412-2, clause 4.3.2] &<br>[ETSI EN 319 412-3, clause 4.3.1] | REQUIRED | C | *BIT STRING* | Extension with the OID `2.5.29.15`.<br><br>It SHALL be one of the following:<ol type="A"><li>non-repudiation</li><li>non-repudiation and digital signature</li><li>digital signature</li><li>digital signature and (key encipherment or key agreement)</li><li>key encipherment or key agreement</li><li>non-repudiation and digital signature and (key encipherment or key agreement)</li></ol>Type A, C, or E should be used to avoid mixed usage of keys.<br><br>Certificates issued to natural persons and used to validate commitment to signed content (e.g., documents/agreements) SHALL be limited to type A, B, or F (type A should be used).<br><br>Certificates issued to legal persons and used to validate digital signatures over content SHALL be limited to type A, B, or F (type A should be used).<br><br>Certificate issuers are invited to take into account the security implications, particularly **SC-1**, when this parameter is set up. |
 | `cRLDistributionPoints` | [ETSI EN 319 412-2, clause 4.3.11] | REQUIRED (C) | NC | *SEQUENCE* | Extension with the OID `2.5.29.31`.<br><br>Sequence of `distributionPoint` represented by a CHOICE of `FullName` (*GeneralNames*) or `nameRelativeToCRLIssuer`, `reasons` (*BIT STRING*), and `cRLIssuer` (*GeneralNames*).<br><br>**Applicable condition:** If the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1].<br><br>It contains at least one reference to a publicly available CRL. |
-| `ext-etsi-valassured-ST-certs` | [ETSI EN 319 412-1, clause 5.2] | REQUIRED (C) | NC | *EXTENSION* | Extension with the OID `0.4.0.194121.2.1`.<br><br>**Applicable condition:** For short-term certificates which cannot be revoked.<br><br>Indicates that the certificate issuer ensures the validity of the certificate is assured at time of use of the corresponding private key. Upon presence of such statement, the verifier can decide not to check the certificate revocation status (e.g., when validating a digital signature). |
-| `noRevAvail` | [RFC 9608] clause 2 | REQUIRED (C) | NC | *EXTENSION* | Extension with the OID `2.5.29.56`.<br><br>**Applicable condition:** If the certificate includes the validity assured extension, but neither includes a CRL distribution point nor access location of an OCSP responder. |
 | `authorityInfoAccess` | [ETSI EN 319 412-2, clause 4.4.1] | REQUIRED | NC | *SEQUENCE* | Extension with the OID `1.3.6.1.5.5.7.1.1`.<br><br>Sequence of `AccessDescription`, containing an `accessMethod` (OID) and an `accessLocation` (*GeneralName*).<br><br>It SHALL at least include the `id-ad-caIssuers` OID specifying at least one access location of a valid CA certificate of the issuing CA.<br><br>If OCSP is supported, it SHALL include the `id-ad-ocsp` OID specifying at least one access location of an OCSP responder providing status information for the present certificate.<br><br>If the certificate does not include any CRL distribution point and does not include the validity assured extension, a reference to at least one OCSP responder SHALL be present. |
 | `certificatePolicies` | [RFC 3647, clause 3.3.1] &<br>[RFC 5280, clause 4.2.1.4] | REQUIRED | NC | *SEQUENCE* | Sequence of `PolicyInformation` elements, each being a SEQUENCE of `policyIdentifier` (OID) and `policyQualifiers`.<br><br>The extension is mandatory as stated in [ETSI EN 319 412-2], and it SHALL contain the identifier of at least one certificate policy which reflects the practices and procedures undertaken by the CA. |
 | `subjectAltName` | [RFC 5280, clause 4.2.1.6] | REQUIRED | NC | *SEQUENCE* | Extension with the OID `2.5.29.17`.<br><br>Sequence of `GeneralName` elements, each representing a possible alternative name for the subject of the certificate.<br><br> Each `GeneralName` element contains contact information of the WRP and there SHALL be at least one element among the following:<ul><li>`uniformResourceIdentifier` indicating a website where the WRP can be contacted for helpdesk/support matters.</li><li>`otherName` with type-id `id-at-telephoneNumber` indicating a phone number for WRP registration/usage matters.</li><li>`rfc822Name` indicating an email address for WRP registration/usage matters.</li></ul>The extension is mandatory as stated in [ETSI TS 119 411-8] clause 6.6.1. |
 | `qcStatements` (esi4-qcStatement-1) | [RFC 3739, clause 3.2.6] &<br>[ETSI EN 319 412-5, clause 4.2.1] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.1`.<br><br>**Applicable condition:** For qualified certificates. It indicates that the certificate is qualified within the defined legal framework. For the eIDAS regulatory environment, the `QcCClegislation` SHALL be absent. |
 | `qcStatements` (esi4-qcStatement-4) | [RFC 3739, clause 3.2.6] &<br>[ETSI EN 319 412-5, clause 4.2.2] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.4`.<br><br>**Applicable condition:** For qualified certificates. It indicates that the private key related to the certified public key resides in a QSCD according to eIDAS regulation. The extension is mandatory as stated in ETSI EN 319 411-2, GEN-6.6.1-03. |
-| `qcStatements` (esi4-qcStatement-6) | [RFC 3739, clause 3.2.6] &<br>[ETSI EN 319 412-5, clause 4.2.3] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.6`.<br><br>**Applicable condition:** Mandatory for qualified certificates issued to legal persons for the purpose of electronic seal ([ETSI EN 319 412-5, clause 5]). MAY be present for certificates issued to natural persons for the purpose of electronic signatures.<br><br>Declares that a certificate is issued for one and only one of the purposes: electronic signature, electronic seal, or web site authentication. |
+| `qcStatements` (esi4-qcStatement-6) | [RFC 3739, clause 3.2.6] &<br>[ETSI EN 319 412-5, clause 4.2.3] | REQUIRED (C) | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.6`.<br><br>**Applicable condition:** Mandatory for qualified certificates issued to legal persons for the purpose of electronic seal ([ETSI EN 319 412-5, clause 5]). MAY be present for certificates issued to natural persons for the purpose of electronic signatures.<br><br>Declares that a certificate is issued for one and only one of the purposes: electronic signature, electronic seal, or website authentication. |
 
-### PID Provider Sing/Seal Certificate Content
+Note: in the APTITUDE specific instantiations, the `certificatePolicies` will be set to 
+
+##### PID Provider Sing/Seal Certificate Content
 
 The following table lists all new or modified parameters that are mandatory or conditional for PID Providers as further scoped in ETSI TS 119 412-6, clause 4.
 
@@ -94,7 +92,7 @@ The following table lists all new or modified extensions that are mandatory or c
 | `authorityInfoAccess` | [ETSI TS 119 412-6, clause 4.4.3] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Applicable condition:** Mandatory for non-self-signed certificates. |
 | `qcStatements` (id-etsi-qct-pid) | [ETSI TS 119 412-6, clause 4.5] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.1` as defined in [ETSI TS 119 412-6, Annex A] |
 
-#### PID Provider Sign/Seal Certificate Example
+###### PID Provider Sign/Seal Certificate Example
 
 The following is an example of a PID Provider's non-self-signed end-certificate for legal persons.
 
@@ -238,7 +236,7 @@ AccessCertificate cert = {
 }
 ```
 
-### Wallet Provider Sign/Seal Certificate Content
+##### Wallet Provider Sign/Seal Certificate Content
 
 The following table lists all new or modified parameters that are mandatory or conditional for Wallet Providers as further scoped in ETSI TS 119 412-6, clause 5.1.
 
@@ -255,7 +253,7 @@ The following table lists all new or modified extensions that are mandatory or c
 | `authorityInfoAccess` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Applicable condition:** Mandatory for non-self-signed certificates. |
 | `qcStatements` (id-etsi-qct-wal) | [ETSI TS 119 412-6, clause 5.2] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.2` as defined in [ETSI TS 119 412-6, Annex A] |
 
-#### Wallet Provider Sign/Seal Certificate Example
+###### Wallet Provider Sign/Seal Certificate Example
 
 The following is an example of a Wallet Provider's non-self-signed end-certificate for legal persons.
 
@@ -399,19 +397,19 @@ AccessCertificate cert = {
 }
 ```
 
-### EAA/QEAA Issuer Sign/Seal Certificate Content
+##### EAA/QEAA Provider Sign/Seal Certificate Content
 
 EAA and QEAA providers are from the perspective of Sign/Seal end-certificates almost the same and for simplicity we will cover them together.
 
-There are no new or modified parameters or extensions specific for EAA or QEAA Issuer as described in ETSI TS 119 412-6, clause 6 and 7.
+There are no new or modified parameters or extensions specific for EAA or QEAA Provider as described in ETSI TS 119 412-6, clause 6 and 7.
 
-For EAA Issuer there are other requirements that focus on signing of certificates connected to either OCSP Responder or CRL depending on used revocation policy. More information can be found in ETSI TS 119 412-6, clause 6.2.
+For EAA Provider there are other requirements that focus on signing of certificates connected to either OCSP Responder or CRL depending on used revocation policy. More information can be found in ETSI TS 119 412-6, clause 6.2.
 
-For QEAA Issuer there are regulatory requirements from Regulation (EU) No 910/2014 [i.5] that have to be met, but they are out of scope of this documentation. More information can be found in ETSI TS 119 412-6, clause 7.1.
+For QEAA Provider there are regulatory requirements from Regulation (EU) No 910/2014 that have to be met, but they are out of scope of this documentation. More information can be found in ETSI TS 119 412-6, clause 7.1.
 
-#### EAA/QEAA Issuer Sign/Seal Certificate Example
+###### EAA/QEAA Provider Sign/Seal Certificate Example
 
-The following is an example of an EAA or QEAA Issuer attribute not self-signed end-certificate for legal persons.
+The following is an example of a QEAA Provider attribute not self-signed end-certificate for legal persons.
 
 ```text
 AccessCertificate cert = {
@@ -535,23 +533,23 @@ AccessCertificate cert = {
 }
 ```
 
-### PSBEAA Issuer Sign/Seal Certificate Content
+##### PuB-EAA Provider Sign/Seal Certificate Content
 
-There are no new or modified parameters specific for PSBEAA Issuer (also known as PuB-EAA Issuer) as described in ETSI TS 119 412-6, clause 8.
+There are no new or modified parameters specific for PuB-EAA Provider as described in ETSI TS 119 412-6, clause 8.
 
-The following table lists all new or modified extensions that are mandatory or conditional for PSBEAA Issuer as further scoped in ETSI TS 119 412-6, clause 8.2 and 8.3.
+The following table lists all new or modified extensions that are mandatory or conditional for PuB-EAA Provider as further scoped in ETSI TS 119 412-6, clause 8.2 and 8.3.
 
 | Parameter | Defined in | Presence | Criticality | Format | Description |
 | :-------: | :--------: | :------: | :---------: | :----- | :---------- |
-| `authorityInfoAccess` | [ETSI TS 119 412-6, clause 8.1] | REQUIRED | NC | *SEQUENCE* | Description is the same as in the General Content above. It is mandatory for PBSEAA Issuer. |
+| `authorityInfoAccess` | [ETSI TS 119 412-6, clause 8.1] | REQUIRED | NC | *SEQUENCE* | Description is the same as in the General Content above. It is mandatory for PuB-EAA Provider. |
 | `qcStatements` (id-etsi-qcs-QcPSB) | [ETSI TS 119 412-6, clause 8.3] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.3` as defined in [ETSI TS 119 412-6, Annex A]. |
-| `qcStatements` (esi4-qcStatement-10) | [ETSI TS 119 412-6, clause 8.3] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.10`. Requirements: <ul><li>The `QCStatement` SHALL contain the identification for the law under which the PSBEAA is established responsible for the authentic source.</li><li>**Aplicable condition:** If there is a well-defined Uniform Resource Identifier (URI) according to IETF RFC 3986 [8] for the unique identification of the legal basis upon which the PSBEAA is established as authentic source, it should be used here.</li><li>The `QCStatement` SHALL contain an unambiguous identification for the authentic source.</li><li>The `QCStatement` SHALL contain either the ISO 3166 [7] alpha-2 country codes for applicable law, or in the case of European Union law 'EU'.</li></ul> |
+| `qcStatements` (esi4-qcStatement-10) | [ETSI TS 119 412-6, clause 8.3] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.1862.1.10`. Requirements: <ul><li>The `QCStatement` SHALL contain the identification for the law under which the PuB-EAA Provider is established responsible for the authentic source.</li><li>**Aplicable condition:** If there is a well-defined Uniform Resource Identifier (URI) according to IETF RFC 3986 [8] for the unique identification of the legal basis upon which the PuB-EAA Provider is established as authentic source, it should be used here.</li><li>The `QCStatement` SHALL contain an unambiguous identification for the authentic source.</li><li>The `QCStatement` SHALL contain either the ISO 3166 [7] alpha-2 country codes for applicable law, or in the case of European Union law 'EU'.</li></ul> |
 
-For PSBEAA Issuer there are other requirements that focus on signing of certificates connected to either OCSP Responder or CRL depending on used revocation policy. More information can be found in ETSI TS 119 412-6, clause 8.4.
+For PuB-EAA Provider there are other requirements that focus on signing of certificates connected to either OCSP Responder or CRL depending on used revocation policy. More information can be found in ETSI TS 119 412-6, clause 8.4.
 
-#### PSBEAA Issuer Sign/Seal Certificate Example
+###### Pub-EAA Provider Sign/Seal Certificate Example
 
-The following is an example of a PSBEAA Issuer's not self-signed end-certificate for legal persons.
+The following is an example of a PuB-EAA Provider's not self-signed end-certificate for legal persons.
 
 ```text
 AccessCertificate cert = {
@@ -579,9 +577,9 @@ AccessCertificate cert = {
 
     subject: DistinguishedName {     // subject attributes for legal person
       countryName: "CZ",
-      organizationName: "Example of PSBEAA Issuer",
+      organizationName: "Example of PuB-EAA Provider",
       organizationIdentifier: "LEIXYZ-5493001KJTIIGC8Y1R12",
-      commonName: "PSBEAA Issuer Example"
+      commonName: "PuB-EAA Provider Example"
     },
 
     subjectPublicKeyInfo: {
@@ -670,8 +668,8 @@ AccessCertificate cert = {
         oid: "2.5.29.17",            // subjectAltName
         critical: false,
         value: SubjectAltName [
-          GeneralName.uniformResourceIdentifier("https://psbeaa.example.test/support"),
-          GeneralName.rfc822Name("support@psbeaa.example.test"),
+          GeneralName.uniformResourceIdentifier("https://pubeaa.example.test/support"),
+          GeneralName.rfc822Name("support@pubeaa.example.test"),
           GeneralName.otherName(
             typeId: "2.5.4.20",       // id-at-telephoneNumber
             value: "+420-111-222-333"
@@ -698,3 +696,27 @@ AccessCertificate cert = {
   signatureValue: "BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))"
 }
 ```
+
+#### Sign/Seal Certificate Path Validation
+
+When instantiating the [Certificate Path Validation](#authentication-process.md) algorithm for Sign/Seal Certificate chains, the initialization parameters are defined as follows:
+
+- The <artifacts:Trust Anchor> is the *trusted certificate* obtained from the `ServiceDigitalIdentity` component in relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> (See the table below).
+- The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:
+    - $C_1$ is the certificate issued by the root Certificate Authority.
+    - $C_n$ is the Sign/Seal Certificate (the target certificate).
+    - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
+
+!!! note
+
+    Regarding Sign/Seal Certificates within APTITUDE, $n=1$. The Sign/Seal Certificate SHALL be referenced in the `x5c` claim of the Attestation, while the Trust Anchor referenced in the LoTE SHALL be a self-signed certificate of the entity issuing Sign/Seal Certificates as described in [Trust Anchor Certificates Profiles](#trust-anchor-certificate-profiles.md).
+
+The following table maps the Sign/Seal Certificate subject to the location of the respective Trust Anchor.
+
+| Sign/Seal Certificate subject | Attestation signed | Trust Anchor location |
+| :---------------------------: | :----------------: | :-------------------: |
+| PID Provider | signing PID | PID Providers LoTE |
+| Wallet Provider | WIA, KA | Wallet Providers LoTE  |
+| EAA Provider | signing EAA | MS decision |
+| QEAA Provider | signing QEAA | TL |
+| Pub-EAA Provider | signing  PuB-EAA | Pub-EAA Providers LoTE |
