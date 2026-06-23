@@ -720,10 +720,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#service-information-component-lote-trusted-list-representation" class="md-nav__link">
+  <a href="#certificate-content-requirements-derived-from-lote" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Service Information component (LoTE / Trusted List representation)
+        Certificate content requirements derived from LoTE
       
     </span>
   </a>
@@ -933,7 +933,6 @@
 <li><strong>OPTIONAL</strong>: The parameter is not required and can be omitted.</li>
 </ul>
 <p>The column "Criticality" of the certificate extensions uses the semantics defined in RFC 5280.</p>
-<hr />
 <h3 id="basic-certificate-fields">Basic certificate fields<a class="headerlink" href="#basic-certificate-fields" title="Permanent link">&para;</a></h3>
 <p>The following table lists common parameters that are mandatory for an entity trust anchor certificate.</p>
 <table>
@@ -1005,7 +1004,6 @@
 </tr>
 </tbody>
 </table>
-<hr />
 <h3 id="required-extensions">Required extensions<a class="headerlink" href="#required-extensions" title="Permanent link">&para;</a></h3>
 <p>The following table lists the extensions that are mandatory or conditional for an entity trust anchor certificate.</p>
 <table>
@@ -1061,7 +1059,6 @@
 <li>Absence of the <code>pathLenConstraint</code> implies that no explicit limit is imposed by the certificate itself.</li>
 </ul>
 <p>This profile allows the field to be OPTIONAL to support interoperability with different PKI deployment models. However, setting <code>pathLenConstraint = 0</code> is RECOMMENDED to reduce trust hierarchy complexity, improve predictability of certificate chains, and limit the risk associated with unintended subordinate certification authorities.</p>
-<hr />
 <h3 id="optional-deployment-driven-extensions">Optional (deployment-driven) extensions<a class="headerlink" href="#optional-deployment-driven-extensions" title="Permanent link">&para;</a></h3>
 <p>The following extensions are OPTIONAL because their necessity depends on the revocation/status model used in a given deployment.</p>
 <table>
@@ -1102,78 +1099,50 @@
 </tr>
 </tbody>
 </table>
-<hr />
-<h3 id="service-information-component-lote-trusted-list-representation">Service Information component (LoTE / Trusted List representation)<a class="headerlink" href="#service-information-component-lote-trusted-list-representation" title="Permanent link">&para;</a></h3>
-<p>The Service Information component defined in ETSI TS 119 602 and represented in Trusted Lists according to ETSI TS 119 612 is <strong>not part of the X.509 certificate syntax itself</strong>. Rather, it is publication metadata used in the LoTE / Trusted List infrastructure to describe the trusted service and to associate that service with one or more digital identifiers.</p>
-<p>When Service Digital identifiers are used as trust anchors in the context of validating electronic signatures for which signer's certificate is to be validated against TL information, only the public key and
-the associated subject name are needed as trust anchor information. When more than one certificate are representing the public key identifying the service, they are considered as trust anchor certificates
-conveying identical information with regards to the information strictly required as trust anchor information.</p>
-<p>The following table lists the recommended Service Information elements for a service entry representing an entity trust anchor.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Parameter</th>
-<th style="text-align: center;">Defined in</th>
-<th style="text-align: center;">Presence</th>
-<th style="text-align: left;">Format</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>serviceInformation</code></td>
-<td style="text-align: center;">[ETSI TS 119 612] §5.5</td>
-<td style="text-align: center;">REQUIRED</td>
-<td style="text-align: left;"><em>SEQUENCE</em></td>
-<td style="text-align: left;">Container describing the trusted entity service as published in LoTE / Trusted List infrastructure.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>serviceInformation.serviceTypeIdentifier</code></td>
-<td style="text-align: center;">[ETSI TS 119 612] §5.5.1</td>
-<td style="text-align: center;">REQUIRED</td>
-<td style="text-align: left;"><em>URI</em></td>
-<td style="text-align: left;">Identifier of the service type. The concrete URI value SHALL be defined by the governing profile or trust scheme for the entity trust anchor service.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>serviceInformation.serviceName</code></td>
-<td style="text-align: center;">[ETSI TS 119 612] §5.5.2</td>
-<td style="text-align: center;">REQUIRED</td>
-<td style="text-align: left;"><em>SEQUENCE</em></td>
-<td style="text-align: left;">Human-readable name of the service under which the trust anchor is published.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>serviceInformation.serviceStatus</code></td>
-<td style="text-align: center;">[ETSI TS 119 612] §5.5.4</td>
-<td style="text-align: center;">REQUIRED</td>
-<td style="text-align: left;"><em>URI</em></td>
-<td style="text-align: left;">Indicates the current status of the service as defined by the applicable trust scheme / Trusted List profile.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>serviceInformation.serviceDigitalIdentity</code></td>
-<td style="text-align: center;">[ETSI TS 119 612] §5.5.3</td>
-<td style="text-align: center;">REQUIRED</td>
-<td style="text-align: left;"><em>SEQUENCE</em></td>
-<td style="text-align: left;">It specifies one and only one service digital identifier uniquely and unambiguously identifying the service with the type it is associated to <code>serviceTypeIdentifier</code>.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>serviceInformation.serviceDigitalIdentity.x509Certificate</code></td>
-<td style="text-align: center;">[ETSI TS 119 602] §6.6.3.1</td>
-<td style="text-align: center;">REQUIRED</td>
-<td style="text-align: left;"><em>STRING</em></td>
-<td style="text-align: left;">Base64 encoded X.509 certificate of the Trust Anchor.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>serviceInformation.serviceDigitalIdentity.x509SubjectName</code></td>
-<td style="text-align: center;">[ETSI TS 119 602] §6.6.3.2</td>
-<td style="text-align: center;">REQUIRED</td>
-<td style="text-align: left;"><em>STRING</em></td>
-<td style="text-align: left;">Distinguished Name encoded as a string.</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>Important:</strong> The Service Information component is metadata external to the certificate. It does <strong>not</strong> appear as an X.509 v3 certificate extension in the trust anchor certificate itself. Instead, the LoTE / Trusted List service entry references the certificate via <code>serviceDigitalIdentity</code>.</p>
-</blockquote>
+<h3 id="certificate-content-requirements-derived-from-lote">Certificate content requirements derived from LoTE<a class="headerlink" href="#certificate-content-requirements-derived-from-lote" title="Permanent link">&para;</a></h3>
+<p>Below are more in details defined requirements on the Trust Anchor certificate fields based on ETSI TS 119 602 and ETSI TS 119 612.</p>
+<h4 id="subject-distinguished-name-requirements">Subject Distinguished Name requirements<a class="headerlink" href="#subject-distinguished-name-requirements" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The Trust Anchor certificate <strong>SHALL</strong> contain a non-empty subject distinguished name.</li>
+<li>The subject distinguished name <strong>SHALL</strong> identify the entity associated with the trust anchor public key in a clear and unambiguous manner.</li>
+<li>If the Trust Anchor represents a legal or organizational entity, the subject distinguished name <strong>SHALL</strong> contain an organizationName attribute identifying that entity.</li>
+</ul>
+<h4 id="validity-requirements">Validity requirements<a class="headerlink" href="#validity-requirements" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The Trust Anchor certificate <strong>SHALL</strong> contain a validity field specifying the notBefore and notAfter time interval during which the certificate is valid.</li>
+<li>Relying parties <strong>SHALL</strong> check the validity period of the Trust Anchor certificate and <strong>SHALL</strong> treat the certificate as invalid if the current time is before notBefore or after notAfter.</li>
+</ul>
+<h4 id="issuer-distinguished-name-requirements">Issuer Distinguished Name requirements<a class="headerlink" href="#issuer-distinguished-name-requirements" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The Trust Anchor certificate <strong>SHALL</strong> contain an issuer distinguished name.</li>
+<li>If the Trust Anchor certificate is self-signed, the issuer distinguished name <strong>SHALL</strong> be identical to the subject distinguished name.</li>
+<li>If the Trust Anchor certificate is non-self-signed, the issuer distinguished name <strong>SHALL</strong> identify the entity that signed and issued the certificate and <strong>MAY</strong> differ from the subject distinguished name.</li>
+</ul>
+<h4 id="subject-key-identification-requirements">Subject Key Identification requirements<a class="headerlink" href="#subject-key-identification-requirements" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The Trust Anchor certificate <strong>SHALL</strong> contain a non-critical subjectKeyIdentifier extension identifying the trust anchor public key.</li>
+<li>The value of the subjectKeyIdentifier extension <strong>SHOULD</strong> be derived from the trust anchor public key in a stable and interoperable manner.</li>
+<li>The subjectKeyIdentifier extension <strong>SHOULD</strong> support reliable certificate path construction and certificate matching in LoTE / Trusted List based deployments.</li>
+</ul>
+<h4 id="authority-key-identifier-requirements">Authority Key Identifier requirements<a class="headerlink" href="#authority-key-identifier-requirements" title="Permanent link">&para;</a></h4>
+<ul>
+<li>For a non-self-signed Trust Anchor certificate, a non-critical authorityKeyIdentifier extension <strong>SHALL</strong> be present.</li>
+<li>For a self-signed Trust Anchor certificate, a non-critical authorityKeyIdentifier extension is <strong>RECOMMENDED</strong>.</li>
+<li>Where present, the authorityKeyIdentifier extension <strong>SHOULD</strong> identify the key of the certificate issuer.</li>
+</ul>
+<h4 id="basic-constraints-requirements">Basic Constraints requirements<a class="headerlink" href="#basic-constraints-requirements" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The Trust Anchor certificate <strong>SHALL</strong> contain a critical basicConstraints extension with cA set to TRUE.</li>
+<li>The pathLenConstraint field in the basicConstraints extension <strong>MAY</strong> be present.</li>
+<li>If present, pathLenConstraint <strong>SHALL</strong> limit the number of non-self-issued intermediate CA certificates below the Trust Anchor certificate.</li>
+<li>Setting pathLenConstraint to 0 is <strong>RECOMMENDED</strong> unless a documented operational need exists to support additional subordinate CA tiers.</li>
+</ul>
+<h4 id="key-usage-requirements">Key Usage requirements<a class="headerlink" href="#key-usage-requirements" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The Trust Anchor certificate <strong>SHALL</strong> contain a critical keyUsage extension that includes the keyCertSign bit.</li>
+<li>The keyUsage extension <strong>MAY</strong> include the cRLSign bit where the Trust Anchor certificate is used by a CA that signs certificate revocation lists.</li>
+<li>The keyUsage extension <strong>SHOULD</strong> be limited to usages consistent with the certification authority role of the Trust Anchor certificate.</li>
+</ul>
 <hr />
 <h2 id="examples-pseudo-structure">Examples (pseudo-structure)<a class="headerlink" href="#examples-pseudo-structure" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -1317,7 +1286,7 @@ conveying identical information with regards to the information strictly require
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 16, 2026 10:18:37 UTC">June 16, 2026 10:18:37</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 23, 2026 08:04:57 UTC">June 23, 2026 08:04:57</span>
   </span>
 
     
