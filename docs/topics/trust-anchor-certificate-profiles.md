@@ -87,8 +87,6 @@ The column "Presence" in tables below contains the specification of the presence
 
 The column "Criticality" of the certificate extensions uses the semantics defined in RFC 5280.
 
----
-
 ### Basic certificate fields
 
 The following table lists common parameters that are mandatory for an entity trust anchor certificate.
@@ -103,8 +101,6 @@ The following table lists common parameters that are mandatory for an entity tru
 | `subject` | [RFC 5280] §4.1.2.6 | REQUIRED | *Name* | Identifies the entity associated with the public key. |
 | `subjectPublicKeyInfo` | [RFC 5280] §4.1.2.7 | REQUIRED | *SEQUENCE* | Carries the public key and identifies the algorithm with which the key is used. |
 | `extensions` | [RFC 5280] §4.1.2.9 | REQUIRED | *[3] EXPLICIT SEQUENCE*| A sequence of one or more certificate extensions. |
-
----
 
 ### Required extensions
 
@@ -126,8 +122,6 @@ The <code>pathLenConstraint</code> restricts the depth of certification paths be
 
 This profile allows the field to be OPTIONAL to support interoperability with different PKI deployment models. However, setting <code>pathLenConstraint = 0</code> is RECOMMENDED to reduce trust hierarchy complexity, improve predictability of certificate chains, and limit the risk associated with unintended subordinate certification authorities.
 
----
-
 ### Optional (deployment-driven) extensions
 
 The following extensions are OPTIONAL because their necessity depends on the revocation/status model used in a given deployment.
@@ -138,29 +132,51 @@ The following extensions are OPTIONAL because their necessity depends on the rev
 | `cRLDistributionPoints` | [RFC 5280] §4.2.1.13 | OPTIONAL | NC | *SEQUENCE* | MAY include CRL distribution point URIs when CRL-based revocation is used. |
 | `certificatePolicies` | [RFC 5280] §4.2.1.4 | OPTIONAL | NC | *SEQUENCE* | MAY be used to signal policy OIDs relevant to the issuing CA’s practices. |
 
----
+### Certificate content requirements derived from LoTE
 
-### Service Information component (LoTE / Trusted List representation)
+Below are more in details defined requirements on the Trust Anchor certificate fields based on ETSI TS 119 602 and ETSI TS 119 612.
 
-The Service Information component defined in ETSI TS 119 602 and represented in Trusted Lists according to ETSI TS 119 612 is **not part of the X.509 certificate syntax itself**. Rather, it is publication metadata used in the LoTE / Trusted List infrastructure to describe the trusted service and to associate that service with one or more digital identifiers.
+#### Subject Distinguished Name requirements
 
-When Service Digital identifiers are used as trust anchors in the context of validating electronic signatures for which signer's certificate is to be validated against TL information, only the public key and
-the associated subject name are needed as trust anchor information. When more than one certificate are representing the public key identifying the service, they are considered as trust anchor certificates
-conveying identical information with regards to the information strictly required as trust anchor information.
+- The Trust Anchor certificate **SHALL** contain a non-empty subject distinguished name.
+- The subject distinguished name **SHALL** identify the entity associated with the trust anchor public key in a clear and unambiguous manner.
+- If the Trust Anchor represents a legal or organizational entity, the subject distinguished name **SHALL** contain an organizationName attribute identifying that entity.
 
-The following table lists the recommended Service Information elements for a service entry representing an entity trust anchor.
+#### Validity requirements
 
-| Parameter | Defined in | Presence | Format | Description |
-| :-------: | :--------: | :------: | :----- | :---------- |
-| `serviceInformation` | [ETSI TS 119 612] §5.5 | REQUIRED | *SEQUENCE* |  Container describing the trusted entity service as published in LoTE / Trusted List infrastructure. |
-| `serviceInformation.serviceTypeIdentifier` | [ETSI TS 119 612] §5.5.1 | REQUIRED | *URI* | Identifier of the service type. The concrete URI value SHALL be defined by the governing profile or trust scheme for the entity trust anchor service. |
-| `serviceInformation.serviceName` | [ETSI TS 119 612] §5.5.2 | REQUIRED | *SEQUENCE* | Human-readable name of the service under which the trust anchor is published. |
-| `serviceInformation.serviceStatus` | [ETSI TS 119 612] §5.5.4 | REQUIRED | *URI* | Indicates the current status of the service as defined by the applicable trust scheme / Trusted List profile. |
-| `serviceInformation.serviceDigitalIdentity` | [ETSI TS 119 612] §5.5.3 | REQUIRED | *SEQUENCE* | It specifies one and only one service digital identifier uniquely and unambiguously identifying the service with the type it is associated to `serviceTypeIdentifier`. |
-| `serviceInformation.serviceDigitalIdentity.x509Certificate` | [ETSI TS 119 602] §6.6.3.1 | REQUIRED | *STRING* | Base64 encoded X.509 certificate of the Trust Anchor. |
-| `serviceInformation.serviceDigitalIdentity.x509SubjectName` | [ETSI TS 119 602] §6.6.3.2 | REQUIRED | *STRING* | Distinguished Name encoded as a string. |
+- The Trust Anchor certificate **SHALL** contain a validity field specifying the notBefore and notAfter time interval during which the certificate is valid.
+- Relying parties **SHALL** check the validity period of the Trust Anchor certificate and **SHALL** treat the certificate as invalid if the current time is before notBefore or after notAfter.
 
-> **Important:** The Service Information component is metadata external to the certificate. It does **not** appear as an X.509 v3 certificate extension in the trust anchor certificate itself. Instead, the LoTE / Trusted List service entry references the certificate via `serviceDigitalIdentity`.
+#### Issuer Distinguished Name requirements
+
+- The Trust Anchor certificate **SHALL** contain an issuer distinguished name.
+- If the Trust Anchor certificate is self-signed, the issuer distinguished name **SHALL** be identical to the subject distinguished name.
+- If the Trust Anchor certificate is non-self-signed, the issuer distinguished name **SHALL** identify the entity that signed and issued the certificate and **MAY** differ from the subject distinguished name.
+
+#### Subject Key Identification requirements
+
+- The Trust Anchor certificate **SHALL** contain a non-critical subjectKeyIdentifier extension identifying the trust anchor public key.
+- The value of the subjectKeyIdentifier extension **SHOULD** be derived from the trust anchor public key in a stable and interoperable manner.
+- The subjectKeyIdentifier extension **SHOULD** support reliable certificate path construction and certificate matching in LoTE / Trusted List based deployments.
+
+#### Authority Key Identifier requirements
+
+- For a non-self-signed Trust Anchor certificate, a non-critical authorityKeyIdentifier extension **SHALL** be present.
+- For a self-signed Trust Anchor certificate, a non-critical authorityKeyIdentifier extension is **RECOMMENDED**.
+- Where present, the authorityKeyIdentifier extension **SHOULD** identify the key of the certificate issuer.
+
+#### Basic Constraints requirements
+
+- The Trust Anchor certificate **SHALL** contain a critical basicConstraints extension with cA set to TRUE.
+- The pathLenConstraint field in the basicConstraints extension **MAY** be present.
+- If present, pathLenConstraint **SHALL** limit the number of non-self-issued intermediate CA certificates below the Trust Anchor certificate.
+- Setting pathLenConstraint to 0 is **RECOMMENDED** unless a documented operational need exists to support additional subordinate CA tiers.
+
+#### Key Usage requirements
+
+- The Trust Anchor certificate **SHALL** contain a critical keyUsage extension that includes the keyCertSign bit.
+- The keyUsage extension **MAY** include the cRLSign bit where the Trust Anchor certificate is used by a CA that signs certificate revocation lists.
+- The keyUsage extension **SHOULD** be limited to usages consistent with the certification authority role of the Trust Anchor certificate.
 
 ---
 
