@@ -93,8 +93,7 @@ sequenceDiagram
 > **NOTE 1:**  Attestation Providers can have a dedicated Authorization server that makes authorization-related endpoints available. That kind of implementation details are hidden in this schema, since the Attestation Provider bears the overall responsibility for responding to the Wallet Instance's requests.
 
 > **NOTE 2:**  A nonce endpoint might be necessary as well however that feature does not have an impact on the trust-related checks.
-
-
+ 
 ### Step-by-step Operations
 
 **Step 1: Request EAA Issuance** Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.
@@ -105,7 +104,7 @@ sequenceDiagram
 
 **Step 3b: Validate LoTE** The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.
 
-**Step 3c: Identify the corresponding trusted entity** The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS. 
+**Step 3c: Identify the corresponding trusted entity** The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS.
 
 **Step 3d: Validate the WRPAC** The Wallet Instance validates the authenticity and integrity of the WRPAC using the trust anchor of the trusted entity identitied in the LoTE.
 
@@ -125,13 +124,13 @@ sequenceDiagram
 
 **Step 6: Send WIA to PAR endpoint (OpenID4VCI)** The Wallet Instance sends the WIA signed by the Wallet Provider, attesting that the Wallet Instance is a valid one.
 
-**Step 7a: Fetch Wallet Providers LoTE** The Attestation Providers retrieves the LoTE listing all the Wallet Providers from a publicly-known URL. This list is necessary to validate different signed artifacts received from the Wallet Instance in the different requests. Attestation Providers can implement a caching mechanism of the LoTE so that they would not need to retrieve it multiple times in the course of the EAA issuance process. It is up to Attestation Providers to implement this mechanism or not and to decide for how long they would want to cache the list. This implies that in some cases, this step could be skipped. 
+**Step 7a: Fetch Wallet Providers LoTE** The Attestation Providers retrieves the LoTE listing all the Wallet Providers from a publicly-known URL. This list is necessary to validate different signed artifacts received from the Wallet Instance in the different requests. Attestation Providers can implement a caching mechanism of the LoTE so that they would not need to retrieve it multiple times in the course of the EAA issuance process. It is up to Attestation Providers to implement this mechanism or not and to decide for how long they would want to cache the list. This implies that in some cases, this step could be skipped.
 
 **Step 7b: Validate LoTE** The Attestation Provider validates the LoTE signature in order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.
 
 **Step 7c: Identify the corresponding trusted entity** The Attestation Provider identifies the LoTE trusted entity corresponding to the WIA presented in the request.
 
-**Step 7d: Validate the WIA signature** The Attestation Provider checks the WIA integrity and authenticity by validating the JWT signature using the trust anchor of the trusted entity identitied in the LoTE. 
+**Step 7d: Validate the WIA signature** The Attestation Provider checks the WIA integrity and authenticity by validating the JWT signature using the trust anchor of the trusted entity identitied in the LoTE.
 
 **Step 7e: Validate the WIA contents** The Attestation Provider checks that the Wallet Instance is valid by verifying the status list referenced in the WIA. Extra cheks are performed like WIA validity checks and associated Proof-of-Possession checks.
 
@@ -156,6 +155,5 @@ sequenceDiagram
 **Step 11f: Identify the corresponding trusted entity** The Wallet Instance identifies the TL trusted entity corresponding to the signature of the Attestation issued.
 
 **Step 11g: Validate the Attestation signature** The Wallet Instance checks the integrity and authenticity of the Attestation by validating the signature using the trust anchor of the trusted entity identitied in the TL. If multiple Attestations were received, they are all validated.
-
 
 > If any of the checks described in the previous steps fail, the process can be aborted either by the Wallet Instance, the user, or the Attestation Provider.
