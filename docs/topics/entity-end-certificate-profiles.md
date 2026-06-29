@@ -13,7 +13,7 @@ To guarantee the interoperability across all entities of the EUDIW ecosystem, En
 - **ETSI EN 319 412-2** (applicable if the certificate is issued to natural persons)
 - **ETSI EN 319 412-3** (applicable if the certificate is issued to legal persons)
 - **ETSI EN 319 412-5** (applicable if the certificate is qualified)
-- **ETSI TS 119 412-6** (applicable to the )
+- **ETSI TS 119 412-6** (profiles the Sign/Seal certificate for various entities in the EUDIW ecosystem)
 
 #### End Entity Sign/Seal Certificate Content
 
