@@ -111,7 +111,7 @@ AccessCertificate cert = {
     subject: DistinguishedName {     // subject attributes for legal person 
       countryName: "FR", 
       organizationName: "Relying Party Example S.A.", 
-      organizationIdentifier: "LEIXYZ-5493001KJTIIGC8Y1R12", 
+      organizationIdentifier: "LEIXY-5493001KJTIIGC8Y1R12",
       commonName: "RP Example" 
     }, 
 
@@ -237,7 +237,7 @@ WRPAC cert = {
       givenName: "Alice", 
       surname: "Martin", 
       commonName: "Alice Martin", 
-      serialNumber: "PNO-FR-ALICEMARTIN-839201"
+      serialNumber: "PNOFR-ALICEMARTIN-839201"
     }, 
 
     subjectPublicKeyInfo: {
