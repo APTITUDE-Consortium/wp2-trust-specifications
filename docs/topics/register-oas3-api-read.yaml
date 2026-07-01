@@ -424,39 +424,52 @@ components:
   responses:
     JwsWrpArrayResponse:
       description: >-
-        application/jwt JWS compact serialization. The decoded (signed) payload is an
-        array of WalletRelyingParty objects matching the query, with postalAddress
-        excluded from each published entry and, where relevant, the associated
-        WRPAC/WRPRC history per the Member State profile. This common API uses the
-        strict Annex VI array form; the optional SignedWRPArrayEnvelope from the
-        registry specification is a national/profile extension, out of scope of this baseline.
+        JWS-signed list of matching Wallet Relying Party entries, serialized as an
+        application/jwt JWS compact string. Once decoded and signature-verified, the
+        JWT payload conforms to the SignedWRPArray schema defined in the components
+        block: an array of WalletRelyingParty objects matching the query (postalAddress
+        excluded from each published entry), plus issuer/timestamp metadata and
+        cursor-based pagination. Where relevant, the associated WRPAC/WRPRC history MAY
+        be carried per the Member State profile.
       headers:
         X-Next-Cursor:
-          description: Cursor to pass as the cursor query parameter on the next GET /wrp request. Absent on the last page.
+          description: >-
+            Convenience mirror of the signed pagination.next_cursor value inside the
+            payload: cursor to pass as the cursor query parameter on the next GET /wrp
+            request. Absent on the last page.
           schema:
             type: string
       content:
         application/jwt:
           schema:
             type: string
-            description: JWS compact serialization string.
-          example: eyJhbGciOiJFUzI1NiIsImtpZCI6InJlZ2lzdHJhci0xIn0.eyJ3cnAiOlt7Li4ufV19.c2lnbmF0dXJl
+            description: >-
+              A JWS-signed JWT in compact serialization format. The JWT payload, once
+              decoded and verified, conforms to the SignedWRPArray schema defined in the
+              components block of this specification.
+          example: eyJhbGciOiJFUzI1NiIsImtpZCI6InJlZ2lzdHJhci0xIn0.eyJpc3MiOiJyZWdpc3RyYXItMSIsImlhdCI6MTc2NzIyNTYwMCwiZGF0YSI6W119.c2lnbmF0dXJl
     JwsBooleanResponse:
-      description: JWS compact string containing a signed boolean payload.
+      description: JWS compact string containing a signed intended-use check result.
       content:
         application/jwt:
           schema:
             type: string
-            description: JWS compact serialization string.
-          example: string
+            description: >-
+              A JWS-signed JWT in compact serialization format. The JWT payload, once
+              decoded and verified, conforms to the SignedIntendedUseCheckResult schema
+              defined in the components block of this specification.
+          example: eyJhbGciOiJFUzI1NiIsImtpZCI6InJlZ2lzdHJhci0xIn0.eyJpc3MiOiJyZWdpc3RyYXItMSIsImlhdCI6MTc2NzIyNTYwMCwiZGF0YSI6dHJ1ZX0.c2lnbmF0dXJl
     JwsWrpResponse:
       description: JWS compact string containing a signed payload with a single WRP entry.
       content:
         application/jwt:
           schema:
             type: string
-            description: JWS compact serialization string.
-          example: string
+            description: >-
+              A JWS-signed JWT in compact serialization format. The JWT payload, once
+              decoded and verified, conforms to the SignedWRP schema defined in the
+              components block of this specification.
+          example: eyJhbGciOiJFUzI1NiIsImtpZCI6InJlZ2lzdHJhci0xIn0.eyJpc3MiOiJyZWdpc3RyYXItMSIsImlhdCI6MTc2NzIyNTYwMCwiZGF0YSI6ey4uLn19.c2lnbmF0dXJl
     BadRequest:
       description: Bad request.
       content:
@@ -490,6 +503,107 @@ components:
           example:
             message: Requested Wallet Relying Party was not found.
   schemas:
+    SignedWRPArray:
+      type: object
+      description: >-
+        Decoded payload of the application/jwt response for GET /wrp. This models the
+        signed JWT payload (the response body itself is the application/jwt JWS compact
+        string). It mirrors the SignedWRPArrayEnvelope profile of the registry
+        specification and the SignedWRPArray schema of the EUDI harmonised registrar
+        API (TS5).
+      required:
+        - iss
+        - iat
+        - data
+      properties:
+        iss:
+          type: string
+          description: Issuer, the identifier of the Registry/Registrar issuing the statement.
+        iat:
+          type: integer
+          format: int64
+          description: Issued-at timestamp (Unix epoch seconds) at which the JWT was issued.
+        data:
+          type: array
+          description: >-
+            Array of WalletRelyingParty objects matching the query (published view,
+            postalAddress excluded). Where the Member State profile provides it, each
+            entry MAY be accompanied by its WRPAC/WRPRC certificate history.
+          items:
+            $ref: '#/components/schemas/WalletRelyingParty'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      example:
+        iss: https://registry.example.eu
+        iat: 1767225600
+        data: []
+        pagination:
+          next_cursor: eyJvZmZzZXQiOjIwfQ
+          has_next_page: true
+    SignedWRP:
+      type: object
+      description: >-
+        Decoded payload of the application/jwt response for GET /wrp/{identifier}. It
+        mirrors the SignedWRPEnvelope profile of the registry specification and the
+        SignedWRP schema of the EUDI harmonised registrar API (TS5).
+      required:
+        - iss
+        - iat
+        - data
+      properties:
+        iss:
+          type: string
+          description: Issuer, the identifier of the Registry/Registrar issuing the statement.
+        iat:
+          type: integer
+          format: int64
+          description: Issued-at timestamp (Unix epoch seconds) at which the JWT was issued.
+        data:
+          $ref: '#/components/schemas/WalletRelyingParty'
+    SignedIntendedUseCheckResult:
+      type: object
+      description: >-
+        Decoded payload of the application/jwt response for GET /wrp/check-intended-use.
+        It mirrors the SignedIntendedUseCheckEnvelope profile of the registry
+        specification (and corresponds to the SignedIntendedUseCheckResult schema of the
+        EUDI harmonised registrar API, TS5). Per Annex VI the check result is a signed
+        boolean; a Member State profile MAY instead carry the richer TS5 object form
+        (isRegistered plus optional details).
+      required:
+        - iss
+        - iat
+        - data
+      properties:
+        iss:
+          type: string
+          description: Issuer, the identifier of the Registry.
+        iat:
+          type: integer
+          format: int64
+          description: Issued-at timestamp (Unix epoch seconds) at which the JWT was issued.
+        data:
+          type: boolean
+          description: >-
+            Result of the intended-use check: true if the queried intended-use
+            identifier, credential/claim or privacy policy is registered for the Wallet
+            Relying Party's intended use, false otherwise.
+      example:
+        iss: https://registry.example.eu
+        iat: 1767225600
+        data: true
+    Pagination:
+      type: object
+      description: Cursor-based pagination metadata carried inside the signed SignedWRPArray payload.
+      properties:
+        next_cursor:
+          type: string
+          description: Cursor to use to fetch the next page of results. Absent or null on the last page.
+        has_next_page:
+          type: boolean
+          description: Whether there is a further page of results.
+      example:
+        next_cursor: eyJvZmZzZXQiOjIwfQ
+        has_next_page: true
     WalletRelyingParty:
       type: object
       description: Wallet Relying Party registration object. In published API statements, postalAddress is excluded.
