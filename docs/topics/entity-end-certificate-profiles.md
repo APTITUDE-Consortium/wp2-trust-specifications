@@ -661,6 +661,7 @@ AccessCertificate cert = {
               authSourceIdentification: "https://authsource.gov.cz/cz/registry/rob",
               legislationIdentification: "https://legislation.gov.cz/eli/cz/sb/2000/365"
             }
+          }
         ]
       },
 
