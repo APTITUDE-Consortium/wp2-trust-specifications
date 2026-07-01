@@ -656,13 +656,11 @@ AccessCertificate cert = {
         value: QCStatements [
           QCStatement {
             statementId: "0.4.0.194126.1.3",   // id-etsi-qcs-QcPSB
-          },
-          QCStatement {
-            statementId: "0.4.0.1862.1.10",    // esi4-qcStatement-10
-            countryOfLegislation: "CZ",
-            authSourceIdentification: "https://authsource.gov.cz/cz/registry/rob",
-            legislationIdentification: "https://legislation.gov.cz/eli/cz/sb/2000/365"
-          }
+            statementInfo: {
+              countryOfLegislation: "CZ",
+              authSourceIdentification: "https://authsource.gov.cz/cz/registry/rob",
+              legislationIdentification: "https://legislation.gov.cz/eli/cz/sb/2000/365"
+            }
         ]
       },
 
