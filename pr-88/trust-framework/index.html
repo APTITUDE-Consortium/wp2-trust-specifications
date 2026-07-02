@@ -9100,7 +9100,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     name="components:Wallet Unit"
     href="../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a>) SHALL determine the revocation status for every certificate in the path with one of the following methods:</p>
 <ul>
-<li>If the certificate contains the <code>noRevAvail</code> extension AND the <code>ETSIValAssuredCertMod</code> extension (see <a href="#wallet-relying-party-access-certificate-content">Wallet Relying Party Access Certificate Content</a>), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).</li>
+<li>If the certificate contains the <code>noRevAvail</code> extension AND the <code>ext-etsi-valassured-ST-certs</code> extension (see <a href="topics/access-certificate.md#wallet-relying-party-access-certificate-content">Wallet Relying Party Access Certificate Content</a>), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).</li>
 <li>If the <code>cRLDistributionPoints</code> extension is present, the <a class="mkdocs-ezglossary-link"
     id="28fd059cb779903774b8a5028362c516"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
