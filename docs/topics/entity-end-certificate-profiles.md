@@ -77,7 +77,7 @@ The following table lists all the common extensions that are mandatory or condit
 
     In the APTITUDE profiles, Sign/Seal Certificates SHALL be long lived certificates. Thus the `noRevAvail` and `ext-etsi-valassured-ST-certs` SHALL NOT be used. 
 
-##### PID Provider Sing/Seal Certificate Content
+##### PID Provider Sign/Seal Certificate Content
 
 The following table lists all new or modified parameters that are mandatory or conditional for PID Providers as further scoped in ETSI TS 119 412-6, clause 4.
 
