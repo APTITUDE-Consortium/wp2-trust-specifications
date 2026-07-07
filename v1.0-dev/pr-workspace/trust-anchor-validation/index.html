@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/trust-anchor-validation/">
       
       
-        <link rel="prev" href="../registry/">
+        <link rel="prev" href="../revocation-mechanisms/">
       
       
         <link rel="next" href="../trust-architecture/">
@@ -414,6 +414,8 @@
       
         
       
+        
+      
     
     
     
@@ -604,6 +606,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../revocation-mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -678,7 +708,7 @@
   <span class="md-ellipsis">
     
   
-    Presentation Trust Checks
+    Trust checks presentation
   
 
     
@@ -816,22 +846,22 @@
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</a>, which serve as the authoritative sources for <a class="mkdocs-ezglossary-link"
-    id="1e4c5c3a94aa4a18ae08cdb08910defc"
+    id="ff674a6c5467f12a35c7fb544308ec58"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a>. A <a class="mkdocs-ezglossary-link"
-    id="cb5d4e8ec94f56966300f422d7e960ad"
+    id="0d2211f20fa1cae0f9d4ef99344e5f84"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is a self-signed X.509 certificate containing the names and public key used by a <a class="mkdocs-ezglossary-link"
-    id="890895f96235054c5564683640360700"
+    id="beadb3e6449c2b0e6038e8f79f12f614"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or <a class="mkdocs-ezglossary-link"
-    id="7350cc8272da6d0b143a37ab6859ec6e"
+    id="5ef6bcf64c14da9b7055084c7baabb21"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -854,12 +884,12 @@
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</a>:</p>
 <ol>
 <li><em><a class="mkdocs-ezglossary-link"
-    id="a437fd33cbf695057e02dbe25976ca6a"
+    id="c5dd5f6766f9457f73ab3568b6ce486c"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities (LoTE)</a></em>, used to retrieve <a class="mkdocs-ezglossary-link"
-    id="ff674a6c5467f12a35c7fb544308ec58"
+    id="e7529216d8b4aa0a8074e373f30ae9ad"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -867,12 +897,12 @@
 </ol>
 <ul>
 <li><strong>Infrastructure Certificates</strong>: <a class="mkdocs-ezglossary-link"
-    id="261a7aa34d860065b12caf1ef17ada33"
+    id="4a0843c594fbfe42478494b22c4d07d5"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> or <a class="mkdocs-ezglossary-link"
-    id="0bc554df77639d84d247b4d7f4847c74"
+    id="68b9a4a71a2bf5b1a2f1c3614faeadc3"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -900,7 +930,7 @@
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
     href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a>-signed artifacts</strong>: <a class="mkdocs-ezglossary-link"
-    id="8e07d261978b0ecceea7fd45e135296f"
+    id="114c70354dfa22cac0a565d405d18c31"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -918,7 +948,7 @@
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</a>); used to retrieve <a class="mkdocs-ezglossary-link"
-    id="0d2211f20fa1cae0f9d4ef99344e5f84"
+    id="5658ab08de086cea8d6f4f073bafd5c7"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -946,7 +976,7 @@
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</a>, the Entity SHALL perform the following validations:</p>
 <ul>
 <li><a href="#list-of-trusted-entities-validation-process">LoTE Validation</a>: Validate the digital signature of the <a class="mkdocs-ezglossary-link"
-    id="c5dd5f6766f9457f73ab3568b6ce486c"
+    id="f11374151c5cf6910a0af17d6358a12a"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -991,28 +1021,28 @@
     href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>.</p>
 <h4 id="list-of-trusted-entities-validation">List of Trusted Entities Validation<a class="headerlink" href="#list-of-trusted-entities-validation" title="Permanent link">&para;</a></h4>
 <p>This section defines the validation of the EU-level <a class="mkdocs-ezglossary-link"
-    id="f11374151c5cf6910a0af17d6358a12a"
+    id="25537637e60e1c461e16efb1f4e6bce3"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities (LoTE)</a>. The <a class="mkdocs-ezglossary-link"
-    id="25537637e60e1c461e16efb1f4e6bce3"
+    id="3b6607b646b3915c3c52a81c284badb8"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is a digitally signed/sealed artifact (JWT format) containing metadata and public keys for entities operating at the EU level.</p>
 <p>Prior to validating the <a class="mkdocs-ezglossary-link"
-    id="3b6607b646b3915c3c52a81c284badb8"
+    id="976e63496add408cfc62c5fcb7129946"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>, the <a class="mkdocs-ezglossary-link"
-    id="3fa8e9104f7097cad8409bed3ca006e6"
+    id="837010b4fb95aa7053dbacad23e8ac45"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL download the <a class="mkdocs-ezglossary-link"
-    id="976e63496add408cfc62c5fcb7129946"
+    id="b5dab924e6bc4ab29911f12341cca294"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1043,32 +1073,32 @@
     name="artifacts:Official Journal of the European Union (OJEU)"
     href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a> publication.</li>
 <li><code>OJEU-LoTE-Loc</code>: URI of the last processed <a class="mkdocs-ezglossary-link"
-    id="b5dab924e6bc4ab29911f12341cca294"
+    id="721e8f1378ae257de2ac40ded425e281"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>. Defaults to the value in <code>OJEU-Loc</code>.</li>
 <li><code>OJEU-LoTE-Certs-Set</code>: The set of <a class="mkdocs-ezglossary-link"
-    id="e7529216d8b4aa0a8074e373f30ae9ad"
+    id="3151495b2ce32c5f3eb4318b7cb6f9ff"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificates from the <code>OJEU-Loc</code> publication.</li>
 <li><code>LoTE</code>: The <a class="mkdocs-ezglossary-link"
-    id="721e8f1378ae257de2ac40ded425e281"
+    id="8e6d8fb17f9a9523340154c44a61ba17"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> JWT currently being processed. Initialized as NULL.</li>
 <li><code>LoTE-Signer-Cert</code>: The certificate extracted from the x5c header parameter of the <a class="mkdocs-ezglossary-link"
-    id="8e6d8fb17f9a9523340154c44a61ba17"
+    id="411b903b4194141ad2aa2990efdb794e"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</li>
 <li><code>LoTESO-Cert</code>: Temporary variable for the Scheme Operator certificate being validated. Initialized as NULL.</li>
 <li><code>LoTESO-Certs-Set</code>: Trusted certificates extracted from the <code>PointersToOtherLoTE</code> claim (<code>SchemeTerritory</code> <code>EU</code>) of a <a class="mkdocs-ezglossary-link"
-    id="411b903b4194141ad2aa2990efdb794e"
+    id="ff1166148477bf8fe051d0163cfe2a05"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1090,7 +1120,7 @@ The validation SHALL perform the following steps:</p>
 </ul>
 </li>
 <li>(<a class="mkdocs-ezglossary-link"
-    id="ff1166148477bf8fe051d0163cfe2a05"
+    id="82e289b08c5a3f4bbd7759f16888ceb6"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1101,7 +1131,7 @@ The validation SHALL perform the following steps:</p>
 </ul>
 </li>
 <li>(<a class="mkdocs-ezglossary-link"
-    id="82e289b08c5a3f4bbd7759f16888ceb6"
+    id="20f8b139aa2d1ca5eac8143310b73512"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1132,17 +1162,17 @@ The validation SHALL perform the following steps:</p>
 </ul>
 </li>
 <li>(<a class="mkdocs-ezglossary-link"
-    id="5658ab08de086cea8d6f4f073bafd5c7"
+    id="5b475d261ce2690ea5b0c07b29b0f033"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> Validation) Verify the end of the chain. If <code>LoTESO-Cert</code> (from the last Pivot or current <a class="mkdocs-ezglossary-link"
-    id="20f8b139aa2d1ca5eac8143310b73512"
+    id="e41e76a0540a86af7703e03590bf52ea"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>) is not in <code>OJEU-LoTE-Certs-Set</code> (the <a class="mkdocs-ezglossary-link"
-    id="3151495b2ce32c5f3eb4318b7cb6f9ff"
+    id="c9cb65e65948ae738d4bb43df8793771"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1153,7 +1183,7 @@ The validation SHALL perform the following steps:</p>
 <li>(Update Anchor) [Caution: This step modifies the Root of Trust configuration]<ul>
 <li>If <code>OJEU-Loc</code> does not match the first URI in <code>SchemeInformationURI</code>, update <code>OJEU-LoTE-Loc</code>.</li>
 <li>Update <code>OJEU-LoTE-Certs-Set</code> according to the new <a class="mkdocs-ezglossary-link"
-    id="5b475d261ce2690ea5b0c07b29b0f033"
+    id="e4313bf26fb18b03b065ad18737c31eb"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1169,22 +1199,22 @@ The validation SHALL perform the following steps:</p>
 <p><strong>Remarks</strong>:</p>
 <ul>
 <li>Steps 4, 5 and 11 allow modifying the location of the <a class="mkdocs-ezglossary-link"
-    id="e41e76a0540a86af7703e03590bf52ea"
-    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> file without changing the <a class="mkdocs-ezglossary-link"
-    id="c9cb65e65948ae738d4bb43df8793771"
-    title="An authoritative entity represented by a public key and associated data. [ARF]"
-    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
-    name="artifacts:Trust Anchor"
-    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>, as long as the both the old and the new location have the same content (otherwise the validation fails with <code>LoTE_FILE_CONFLICT</code> status). This allows the <a class="mkdocs-ezglossary-link"
     id="58cfb93270fa3fa6333239929420af1a"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> file without changing the <a class="mkdocs-ezglossary-link"
+    id="416ea18c147467d872f775443475e9c2"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>, as long as the both the old and the new location have the same content (otherwise the validation fails with <code>LoTE_FILE_CONFLICT</code> status). This allows the <a class="mkdocs-ezglossary-link"
+    id="31d3d23ebd953e997e10bf590d24422c"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> to be retrieved from different locations (e.g., mirrors) without affecting the <a class="mkdocs-ezglossary-link"
-    id="e4313bf26fb18b03b065ad18737c31eb"
+    id="aee858deb8eca6aa3b2e428cd64b44c4"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1195,7 +1225,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
     name="artifacts:Official Journal of the European Union (OJEU)"
     href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a> publication has been updated with a new location for the <a class="mkdocs-ezglossary-link"
-    id="31d3d23ebd953e997e10bf590d24422c"
+    id="0da7953209ed2bd0b64b8082f45b0525"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1206,7 +1236,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
     name="artifacts:Official Journal of the European Union (OJEU)"
     href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>, effectively using the latter as a <a class="mkdocs-ezglossary-link"
-    id="416ea18c147467d872f775443475e9c2"
+    id="1068d5501d1191b309a3dbc37efeaa4d"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1218,28 +1248,28 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
     name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
     href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">Pub-EAA</a> <a class="mkdocs-ezglossary-link"
-    id="0da7953209ed2bd0b64b8082f45b0525"
+    id="3a189f3eee57d6f2e46573249777492d"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> in XML format (XAdES) containing the sought <a class="mkdocs-ezglossary-link"
-    id="aee858deb8eca6aa3b2e428cd64b44c4"
+    id="6a67708297257f3005bbf989d652cce5"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>, the <a class="mkdocs-ezglossary-link"
-    id="6d39dceb9e72ebc6bce44d5ffb336655"
+    id="58986bdb4daa0dec746bca5f7ca1ab6f"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or WRP SHALL perform the same steps as described in <a href="#list-of-trusted-lists-validation-process">List of Trusted Lists Validation Process</a> for the <a class="mkdocs-ezglossary-link"
-    id="3a189f3eee57d6f2e46573249777492d"
+    id="72b8d3c988320f69f7e717ab7fafacc7"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>, with the following difference: the variables and status codes used throughout have <code>LoTE</code> in place of <code>LOTL</code>.</p>
 <p>Below is a flowchart summarizing the above steps for the validation of the <a class="mkdocs-ezglossary-link"
-    id="72b8d3c988320f69f7e717ab7fafacc7"
+    id="ab06cc1d58c9d24f4ea210e08dbd5e9d"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1330,7 +1360,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</a>, the <a class="mkdocs-ezglossary-link"
-    id="d784303c3b3f6b35f221957f865dd6af"
+    id="2a88dc558039d0f7424c3ba34ab2e183"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
@@ -1342,7 +1372,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet</a>/<a class="mkdocs-ezglossary-link"
-    id="5ef6bcf64c14da9b7055084c7baabb21"
+    id="5903555f85836fcc1fbfe46ac3402534"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1363,7 +1393,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet</a>/<a class="mkdocs-ezglossary-link"
-    id="5903555f85836fcc1fbfe46ac3402534"
+    id="80a3a1a7ad553d907a5df998d5ab8ab0"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1394,12 +1424,12 @@ The validation SHALL perform the following steps:</p>
     MS_Repo--&gt;&gt;Client: Returns Trusted List (XML)
     Client-&gt;&gt;Client: Validate TL Signature using LOTL certificate</code></pre>
 <p>In the diagram above, a <a class="mkdocs-ezglossary-link"
-    id="beadb3e6449c2b0e6038e8f79f12f614"
+    id="4be77e4563c1f90be804ee47a59e0807"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> or <a class="mkdocs-ezglossary-link"
-    id="80a3a1a7ad553d907a5df998d5ab8ab0"
+    id="37c9c55840115b457e2da199c41a4cd1"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1510,12 +1540,12 @@ The validation SHALL perform the following steps:</p>
     href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">Pub-EAAs</a>.</li>
 </ol>
 <p>If any of the above verifications fail, the validation process SHALL be aborted and the <a class="mkdocs-ezglossary-link"
-    id="ab06cc1d58c9d24f4ea210e08dbd5e9d"
+    id="54463e406da7fd8fc0964377f1bb306c"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> SHALL be considered invalid. If all verifications succeed, the <a class="mkdocs-ezglossary-link"
-    id="837010b4fb95aa7053dbacad23e8ac45"
+    id="8f761e6ac20dc1d3be512cbbe24fe8f7"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
@@ -1535,7 +1565,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
     href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">Pub-EAA Providers</a>) and use them as trustworthy <a class="mkdocs-ezglossary-link"
-    id="1068d5501d1191b309a3dbc37efeaa4d"
+    id="129f8d329f4f29f39f9e587be219d41c"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1557,12 +1587,12 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</a> containing the sought <a class="mkdocs-ezglossary-link"
-    id="6a67708297257f3005bbf989d652cce5"
+    id="9c15dc0312ded1f34dc012f28c15ff76"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>, the <a class="mkdocs-ezglossary-link"
-    id="58986bdb4daa0dec746bca5f7ca1ab6f"
+    id="0a6446036450812d82c8282b1477b370"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
@@ -1592,7 +1622,7 @@ The validation SHALL perform the following steps:</p>
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</a>, as the <a class="mkdocs-ezglossary-link"
-    id="129f8d329f4f29f39f9e587be219d41c"
+    id="d4b7e853be11545cd28cd9a1795c09f8"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1609,7 +1639,7 @@ The validation SHALL perform the following steps:</p>
     href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>.</p>
 <h6 id="list-of-trusted-lists-validation-process">List of Trusted Lists Validation Process<a class="headerlink" href="#list-of-trusted-lists-validation-process" title="Permanent link">&para;</a></h6>
 <p><strong>Remarks</strong>: The logic mirrors the <a class="mkdocs-ezglossary-link"
-    id="54463e406da7fd8fc0964377f1bb306c"
+    id="9c6a66d211eee99e540d22315e95e115"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1623,7 +1653,7 @@ The validation SHALL perform the following steps:</p>
 <li>The XML Pivot logic (Step 6) includes a "Self-Consistency Check" not present in the JWT logic due to the fact that the <code>Signature</code> element is not integrity protected.</li>
 </ul>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="2a88dc558039d0f7424c3ba34ab2e183"
+    id="be5ea95854c8b1f673687c8cdbd1a716"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
@@ -1757,7 +1787,7 @@ The validation SHALL perform the following steps:</p>
 <li>(Intermediate Pivot Validation)<ul>
 <li>[PRO-4.1.4-10] If <span class="arithmatex">\(n = 0\)</span> (No Pivots):<ul>
 <li>If <code>LOTLSO-Cert</code> is not in <code>OJEU-LOTL-Certs-Set</code>, validation SHALL fail (Signer not authorized by <a class="mkdocs-ezglossary-link"
-    id="9c15dc0312ded1f34dc012f28c15ff76"
+    id="75e27404e5f6357c803b13df54e79b4d"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1776,12 +1806,12 @@ The validation SHALL perform the following steps:</p>
 </ul>
 </li>
 <li>[PRO-4.1.4-12] (<a class="mkdocs-ezglossary-link"
-    id="d4b7e853be11545cd28cd9a1795c09f8"
+    id="4b881a298ef590729e091ab551917409"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> Validation) If <code>LOTLSO-Cert</code> (from the last Pivot) is not in <code>OJEU-LOTL-Certs-Set</code> (the <a class="mkdocs-ezglossary-link"
-    id="75e27404e5f6357c803b13df54e79b4d"
+    id="cbe385aeea96d9d2d53ffb78dd1bf925"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1959,7 +1989,7 @@ The validation SHALL perform the following steps:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 7, 2026 11:36:11 UTC">July 7, 2026 11:36:11</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 7, 2026 12:20:15 UTC">July 7, 2026 12:20:15</span>
   </span>
 
     
