@@ -2,58 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/glossary-definitions/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/glossary/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/references/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/standards/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/trust-framework/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/access-certificate/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/authentication-process/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/embedded-disclosure-policy/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/entity-end-certificate-profiles/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/registry/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/trust-anchor-validation/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/trust-architecture/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/trust-checks-presentation/</loc>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/trusted-list-and-list-of-trusted-lists/</loc>
-         <lastmod>2026-07-06</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
 </urlset>
