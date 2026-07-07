@@ -45,13 +45,17 @@ This specification, *Implementation Profiles for the Trust Framework*, defines t
 
 This specification defines the trust framework profiles for the APTITUDE Large Scale Pilot. Its scope is limited to establishing the essential mechanisms for trust in interactions between <components:Wallet Unit|Wallet Units> and <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties>. The scope of this document is organized as follows:
 
-- [**Trust Architecture**](#4-trust-architecture): Description of the roles and logical interaction flows within the APTITUDE pilot ecosystem.
+- [**Trust Architecture**](#4-trust-architecture): Describes the roles and logical interaction flows within the APTITUDE pilot ecosystem.
 
-- [**Trust Artifacts**](#5-trust-artifacts): Definition of the required trust objects and their conceptual roles in the ecosystem, including <components:Register|Registers>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPAC)> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRC)>, and the management of <artifacts:Trusted List (TL)|Trusted Lists (TLs)>, <artifacts:List of Trusted Entities (LoTE)|Lists of Trusted Entities (LoTE)> and <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policies (EDPs)>.
+- [**Trust Artifacts**](#5-trust-artifacts): Defines the required trust objects and their conceptual roles in the ecosystem, including <components:Register|Registers>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPAC)> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRC)>, and the management of <artifacts:Trusted List (TL)|Trusted Lists (TLs)>, <artifacts:List of Trusted Entities (LoTE)|Lists of Trusted Entities (LoTE)> and <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policies (EDPs)>.
 
-- [**Trust Evaluation Processes**](#6-trust-evaluation-process): Outlining the necessary stages for <artifacts:Trust Anchor> validation, <processes:Authentication|authentication> and authorization processes.
+- [**Onboarding Process**](#6-onboarding-process): Defines the process through which entities become operational and recognisable in the common trust infrastructure. Within the APTITUDE LSP, it is realised as a mocked-up version of the <roles:Wallet-Relying Party (WRP)|Wallet-Relying Party> Registration and <processes:Notification> processes.
 
-- [**Trust Management and Lifecycle**](#7-trust-management-and-lifecycle): Defines the mechanisms for managing the status of <roles:Trusted Entity|Trusted Entities>, with a current focus on revocation procedures.
+- [**Trust Evaluation Processes**](#7-trust-evaluation-process): Outlines the necessary stages for <artifacts:Trust Anchor> validation, <processes:Authentication|authentication> and authorization processes.
+
+- [**Trust Checks**](#8-trust-checks): Describes the trust-related checks to be performed during Issuance and Presentation.
+
+- [**Trust Management and Lifecycle**](#9-trust-management-and-lifecycle): Defines the mechanisms for managing the status of <roles:Trusted Entity|Trusted Entities>, with a current focus on revocation procedures.
 
 ### Out of Scope
 
@@ -97,9 +101,23 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 {% include-markdown "./topics/embedded-disclosure-policy.md" %}
 
+### Trust Anchor Certificate
+
+{% include-markdown "./topics/trust-anchor-certificate-profiles.md" %}
+
+### Entity Sign/Seal Certificate
+
+{% include-markdown "./topics/entity-end-certificate-profiles.md" %}
+
 ---
 
-## 6. Trust Evaluation Process
+## 6. Onboarding Process
+
+{% include-markdown "./topics/onboarding-process.md" %}
+
+---
+
+## 7. Trust Evaluation Process
 
 {% include-markdown "./topics/trust-evaluation.md" %}
 
@@ -117,7 +135,19 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ---
 
-## 7. Trust Management and Lifecycle
+## 8. Trust Checks
+
+### Issuance
+
+{% include-markdown "./topics/trust-checks-issuance.md" %}
+
+### Presentation
+
+{% include-markdown "./topics/trust-checks-presentation.md" %}
+
+---
+
+## 9. Trust Management and Lifecycle
 
 ### Trust Management Process
 

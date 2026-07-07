@@ -1,4 +1,4 @@
-This section describes the artifacts that are employed in [Trust Management and Lifecycle](#7-trust-management-and-lifecycle) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
+This section describes the artifacts that are employed in [Trust Management and Lifecycle](#9-trust-management-and-lifecycle) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
 - To manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>, each <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> SHALL:
     - make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
