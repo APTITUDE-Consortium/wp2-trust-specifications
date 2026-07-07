@@ -98,29 +98,29 @@ sequenceDiagram
 
 **Step 1: Request EAA Issuance** Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.
 
-**Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)** The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider's WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header.
+**Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)** The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider's WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].
 
 **Step 3a: Fetch WRPAC LoTE** The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.
 
 **Step 3b: Validate LoTE** The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.
 
-**Step 3c: Identify the corresponding trusted entity** The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS.
+**Step 3c: Identify the corresponding trusted entity** The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS [AUTHZ-ISS-02].
 
 **Step 3d: Validate the WRPAC** The Wallet Instance validates the authenticity and integrity of the WRPAC using the trust anchor of the trusted entity identitied in the LoTE.
 
-**Step 3e: Validate the metadata signature using the WRPAC** The Wallet Instance validates the metadata JWS signature using the WRPAC.
+**Step 3e: Validate the metadata signature using the WRPAC** The Wallet Instance validates the metadata JWS signature using the WRPAC [AUTHZ-ISS-05].
 
-**Step 4a: Fetch WRPRC LoTE** The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL.
+**Step 4a: Fetch WRPRC LoTE** The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL [AUTHZ-ISS-07].
 
 **Step 4b: Validate LoTE** The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.
 
 **Step 4c: Identify the corresponding trusted entity** The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPRC presented in the Attestation Provider metadata.
 
-**Step 4d: Validate the WRPRC** The Wallet Instance validates the authenticity and integrity of the WRPRC using the trust anchor of the trusted entity identitied in the LoTE.
+**Step 4d: Validate the WRPRC** The Wallet Instance validates the authenticity and integrity of the WRPRC using the trust anchor of the trusted entity identitied in the LoTE [AUTHZ-GEN-08].
 
-**Step 4e: Check Provider entitlements** The Wallet Instance verifies that the entitlement of issuing attestations is present in the WRPRC.
+**Step 4e: Check Provider entitlements** The Wallet Instance verifies that the entitlement of issuing attestations is present in the WRPRC [AUTHZ-GEN-11, AUTHZ-GEN-13].
 
-**Step 5: Match WRPAC with WRPRC** The Wallet Instance verifies that both the certificates are related to the same entity.
+**Step 5: Match WRPAC with WRPRC** The Wallet Instance verifies that both the certificates are related to the same entity [AUTHZ-GEN-09, AUTHZ-GEN-12].
 
 **Step 6: Send WIA to PAR endpoint (OpenID4VCI)** The Wallet Instance sends the WIA signed by the Wallet Provider, attesting that the Wallet Instance is a valid one.
 
