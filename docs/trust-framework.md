@@ -18,6 +18,7 @@ Version 0.2 (Draft)
 - Andreea Prian, *iDAKTO*
 - Leone Riello, *Infocert S.p.A.*
 - Giada Sciarretta, *Fondazione Bruno Kessler*
+- Nikolaos Triantafyllou, *University of the Aegean*
 - Hoang Van Hoan, *Keynectis*
 - Maroš Zelenák, *ARICOMA Digital S.R.O*
 
@@ -29,7 +30,6 @@ Version 0.2 (Draft)
 - Angel Palomares Perez, *Bull*
 - Leonardo Pio Palumbo, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
 - Michal Šťava, *ARICOMA Digital S.R.O*
-- Nikolaos Triantafyllou, *University of the Aegean*
 
 **Feedback**:
 
