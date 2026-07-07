@@ -4,9 +4,9 @@ sequenceDiagram
     participant User
     participant Wallet as Wallet Instance
     participant EAAProvider as Attestation Provider
-    participant WRPACLoTE as WRPAC LoTE Provider
-    participant WRPCLoTE as WRRPC LoTE Provider
-    participant WProvider as Wallet Providers LoTE Provider
+    participant WRPACLoTE as Provider of WRPAC LoTE
+    participant WRPCLoTE as Provider of WRRPC LoTE
+    participant WProvider as Provider of Wallet Providers LoTE
     participant LoTL as LoTL Provider
     participant TL as TL Provider
 
