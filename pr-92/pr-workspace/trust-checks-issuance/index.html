@@ -713,18 +713,18 @@
 </blockquote>
 <h3 id="step-by-step-operations">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1: Request EAA Issuance</strong> Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.</p>
-<p><strong>Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)</strong> The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider's WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header.</p>
+<p><strong>Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)</strong> The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider's WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].</p>
 <p><strong>Step 3a: Fetch WRPAC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.</p>
 <p><strong>Step 3b: Validate LoTE</strong> The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
-<p><strong>Step 3c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS.</p>
+<p><strong>Step 3c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS [AUTHZ-ISS-02].</p>
 <p><strong>Step 3d: Validate the WRPAC</strong> The Wallet Instance validates the authenticity and integrity of the WRPAC using the trust anchor of the trusted entity identitied in the LoTE.</p>
-<p><strong>Step 3e: Validate the metadata signature using the WRPAC</strong> The Wallet Instance validates the metadata JWS signature using the WRPAC.</p>
-<p><strong>Step 4a: Fetch WRPRC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL.</p>
+<p><strong>Step 3e: Validate the metadata signature using the WRPAC</strong> The Wallet Instance validates the metadata JWS signature using the WRPAC [AUTHZ-ISS-05].</p>
+<p><strong>Step 4a: Fetch WRPRC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL [AUTHZ-ISS-07].</p>
 <p><strong>Step 4b: Validate LoTE</strong> The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
 <p><strong>Step 4c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPRC presented in the Attestation Provider metadata.</p>
-<p><strong>Step 4d: Validate the WRPRC</strong> The Wallet Instance validates the authenticity and integrity of the WRPRC using the trust anchor of the trusted entity identitied in the LoTE.</p>
-<p><strong>Step 4e: Check Provider entitlements</strong> The Wallet Instance verifies that the entitlement of issuing attestations is present in the WRPRC.</p>
-<p><strong>Step 5: Match WRPAC with WRPRC</strong> The Wallet Instance verifies that both the certificates are related to the same entity.</p>
+<p><strong>Step 4d: Validate the WRPRC</strong> The Wallet Instance validates the authenticity and integrity of the WRPRC using the trust anchor of the trusted entity identitied in the LoTE [AUTHZ-GEN-08].</p>
+<p><strong>Step 4e: Check Provider entitlements</strong> The Wallet Instance verifies that the entitlement of issuing attestations is present in the WRPRC [AUTHZ-GEN-11, AUTHZ-GEN-13].</p>
+<p><strong>Step 5: Match WRPAC with WRPRC</strong> The Wallet Instance verifies that both the certificates are related to the same entity [AUTHZ-GEN-09, AUTHZ-GEN-12].</p>
 <p><strong>Step 6: Send WIA to PAR endpoint (OpenID4VCI)</strong> The Wallet Instance sends the WIA signed by the Wallet Provider, attesting that the Wallet Instance is a valid one.</p>
 <p><strong>Step 7a: Fetch Wallet Providers LoTE</strong> The Attestation Providers retrieves the LoTE listing all the Wallet Providers from a publicly-known URL. This list is necessary to validate different signed artifacts received from the Wallet Instance in the different requests. Attestation Providers can implement a caching mechanism of the LoTE so that they would not need to retrieve it multiple times in the course of the EAA issuance process. It is up to Attestation Providers to implement this mechanism or not and to decide for how long they would want to cache the list. This implies that in some cases, this step could be skipped.</p>
 <p><strong>Step 7b: Validate LoTE</strong> The Attestation Provider validates the LoTE signature in order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
@@ -765,7 +765,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 7, 2026 12:28:49 UTC">July 7, 2026 12:28:49</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 7, 2026 13:07:39 UTC">July 7, 2026 13:07:39</span>
   </span>
 
     
