@@ -131,6 +131,7 @@ The following extensions are OPTIONAL because their necessity depends on the rev
 | `authorityInfoAccess (AIA)` | [RFC 5280] §4.2.2.1 | OPTIONAL | NC | *SEQUENCE* | MAY include <code>id-ad-caIssuers</code> and/or <code>id-ad-ocsp</code> access locations. |
 | `cRLDistributionPoints` | [RFC 5280] §4.2.1.13 | OPTIONAL | NC | *SEQUENCE* | MAY include CRL distribution point URIs when CRL-based revocation is used. |
 | `certificatePolicies` | [RFC 5280] §4.2.1.4 | OPTIONAL | NC | *SEQUENCE* | MAY be used to signal policy OIDs relevant to the issuing CA’s practices. |
+| `authorityInfoAccess` | [RFC 5280] §4.2.2.1 | REQUIRED (C) | NC | *SEQUENCE* | If the certificate contains the Basic Constraints extension with <code>cA = TRUE</code> and <code>pathLenConstraint > 0</code>, then this extension SHALL be present and SHALL contain at least one AccessDescription with: <ul><li><code>accessMethod = id-ad-caIssuers</code></li><li><code>accessLocation = URI</code> that SHALL use the http:// scheme and SHALL NOT use the https:// scheme</li></ul> |
 
 ### Certificate content requirements derived from LoTE
 
