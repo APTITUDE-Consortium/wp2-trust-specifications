@@ -1,4 +1,4 @@
-This section describes the artifacts that are employed in [Trust Management and Lifecycle](#7-trust-management-and-lifecycle) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
+This section describes the artifacts that are employed in [Trust Management and Lifecycle](#9-trust-management-and-lifecycle) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
 - To manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>, each <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> SHALL:
     - make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
@@ -9,16 +9,16 @@ This section describes the artifacts that are employed in [Trust Management and 
 
 #### Token Status List
 
-This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>. A Status List describes the status of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> by encoding their validity in a bit array. Each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>'s status. A Status List is provided within a cryptographically signed Status List Token in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].
+This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>. A Status List describes the status of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> by encoding their validity in a bit array. Each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>'s status. A Status List is provided within a cryptographically signed <artifacts:Status List Token> in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].
 
-In this specification, the roles of the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and Status Issuer (i.e., the entity that issues the Status List Token about the status information of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the Status List Token on a public endpoint) SHALL be the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> itself.
+In this specification, the roles of the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and Status Issuer (i.e., the entity that issues the <artifacts:Status List Token> about the status information of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the <artifacts:Status List Token> on a public endpoint) SHALL be the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> itself.
 
 The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
 
 - Define a number of bits, $k$, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> within this Status List. The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL configure this number. Each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> will therefore have $2^k$ possible states.
 - Create a byte array of size $\geq$ (expected number of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>) * $k$ / 8. Depending on $k$, each byte in the array corresponds to 8/$k$ statuses (8 if $k=1$, 4 if $k=2$, 2 if $k=4$, or 1 if $k=8$). Each time a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is issued, the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> assigns it to a position in the array.
 - Set the status values for all issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> within the byte array. The status of each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is identified using an index that maps to one or more specific bits within the byte array. The index starts counting at 0 and ends with (number of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) - 1. All bits of the byte array at a particular index are set to a status value.
-- Compress the byte array using DEFLATE [RFC 1951](https://datatracker.ietf.org/doc/html/rfc1951) with the ZLIB [RFC 1950](https://datatracker.ietf.org/doc/html/rfc1950) data format. Implementations are RECOMMENDED to use the highest compression level available.
+- Compress the byte array using DEFLATE [RFC 1951] with the ZLIB [RFC 1950] data format. Implementations are RECOMMENDED to use the highest compression level available.
 - Make an endpoint available to <components:Wallet Unit|Wallet Units> to request Status Lists Tokens.
 
 The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL use the following values for the possible statuses of the issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>:
@@ -40,7 +40,7 @@ Once the <components:Wallet Unit> receives a <artifacts:Wallet-Relying Party Reg
 
 ##### Status List Token
 
-The **Status List Token** (SLT) is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and contains the following parameters:
+The **<artifacts:Status List Token>** is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and contains the following parameters:
 
 ###### Status List Token Header
 
@@ -48,21 +48,21 @@ The **Status List Token** (SLT) is available at the Status List Endpoint. It is 
 | :-------: | :--------: | :------: | :----: | :---------- |
 | `alg` | [RFC 7515] | REQUIRED | *String* | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It SHALL NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
 | `typ` | [RFC 7515] | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
-| `x5c` | [RFC 7515] | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the SLT's signature. |
+| `x5c` | [RFC 7515] | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the <artifacts:Status List Token>'s signature. |
 
 ###### Status List Token Payload
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
-| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim SHALL specify the URI of the SLT. The value SHALL be equal to that of the `uri` claim contained in the `status*list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. |
-| `iat` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the SLT was issued. |
-| `exp` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the SLT expires. |
+| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim SHALL specify the URI of the <artifacts:Status List Token>. The value SHALL be equal to that of the `uri` claim contained in the `status*list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. |
+| `iat` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the <artifacts:Status List Token> was issued. |
+| `exp` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the <artifacts:Status List Token> expires. |
 | `status*list` | OAuth Status List Draft | REQUIRED | *JSON Object* | A JSON Object that contains the Status List configurations and payload. |
 | `status*list.bits` | OAuth Status List Draft | REQUIRED | *Integer* | Specifies the number of bits per <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> in the compressed byte array. The allowed values are 1, 2, 4, and 8. |
 | `status*list.lst` | OAuth Status List Draft | REQUIRED | *Base64url-encoded String* | Contains the status values for all the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>. The value SHALL be the base64url-encoded compressed byte array. |
-| `ttl` | OAuth Status List Draft | RECOMMENDED | *Integer* | Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the Status List Token can be cached by a consumer before a fresh copy SHOULD be retrieved. |
+| `ttl` | OAuth Status List Draft | RECOMMENDED | *Integer* | Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the <artifacts:Status List Token> can be cached by a consumer before a fresh copy SHOULD be retrieved. |
 
-The following is an example of the Status List Token payload and header prior to signing and base64url encoding:
+The following is an example of the <artifacts:Status List Token> payload and header prior to signing and base64url encoding:
 
 **Header:**
 
@@ -94,7 +94,7 @@ The following is an example of the Status List Token payload and header prior to
 
 ##### Status List Request
 
-The <components:Wallet Unit> SHALL request a Status List Token at the URI referenced within the `status.status_list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
+The <components:Wallet Unit> SHALL request a <artifacts:Status List Token> at the URI referenced within the `status.status_list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
 
 Below it is represented an example of such a request.
 
@@ -106,7 +106,7 @@ Below it is represented an example of such a request.
 
 ##### Status List Response
 
-The successful response SHALL contain a Status List Token and have HTTP status code 200. The content type of the successful response SHALL be `application/statuslist+jwt`.
+The successful response SHALL contain a <artifacts:Status List Token> and have HTTP status code 200. The content type of the successful response SHALL be `application/statuslist+jwt`.
 
 ```text
   HTTP/1.1 200 OK
@@ -120,110 +120,110 @@ The successful response SHALL contain a Status List Token and have HTTP status c
   Ql45Jfzd-Av4QzlKa3oVALpLwOEUOq-U*g
 ```
 
-If caching-related HTTP headers are present in the HTTP response, <components:Wallet Unit|Wallet Units> SHALL prioritize the `exp` and `ttl` claims within the Status List Token over the HTTP headers for determining caching behavior.
+If caching-related HTTP headers are present in the HTTP response, <components:Wallet Unit|Wallet Units> SHALL prioritize the `exp` and `ttl` claims within the <artifacts:Status List Token> over the HTTP headers for determining caching behavior.
 
 #### Certificate Revocation Lists
 
-**Certificate Revocation Lists** ([CRLs](https://datatracker.ietf.org/doc/html/rfc5280#section-5)) MAY be used in a wide range of applications and environments covering a broad spectrum of interoperability goals and an even broader spectrum of operational and assurance requirements.
+**<artifacts:Certificate Revocation List (CRL)|Certificate Revocation Lists (CRLs)>** [RFC 5280] MAY be used in a wide range of applications and environments covering a broad spectrum of interoperability goals and an even broader spectrum of operational and assurance requirements.
 
-**CRL issuers** issue CRLs. The CRL issuer is either the Certificate Authority (CA) or an entity that has been authorized by the CA to issue CRLs.
+**CRL issuers** issue <artifacts:Certificate Revocation List (CRL)|CRLs>. The CRL issuer is either the <roles:Certificate Authority (CA)> or an entity that has been authorized by the <roles:Certificate Authority (CA)|CA> to issue <artifacts:Certificate Revocation List (CRL)|CRLs>.
 
 !!! note
 
-    Within APTITUDE the CRL Issuer SHALL be the Trust Anchor.
+    Within APTITUDE the <artifacts:Certificate Revocation List (CRL)|CRL> Issuer SHALL be the <artifacts:Trust Anchor>.
 
-CAs publish CRLs to provide status information about the certificates they issued. Each CRL has a particular scope. The CRL scope is the set of certificates that could appear on a given CRL. For example, the scope could be "all certificates issued by CA X". A complete CRL lists all unexpired certificates, within its scope, that have been revoked for one of the revocation reasons covered by the CRL scope.
+CAs publish <artifacts:Certificate Revocation List (CRL)|CRLs> to provide status information about the certificates they issued. Each <artifacts:Certificate Revocation List (CRL)|CRL> has a particular scope. The <artifacts:Certificate Revocation List (CRL)|CRL> scope is the set of certificates that could appear on a given <artifacts:Certificate Revocation List (CRL)|CRL>. For example, the scope could be "all certificates issued by CA X". A complete <artifacts:Certificate Revocation List (CRL)|CRL> lists all unexpired certificates, within its scope, that have been revoked for one of the revocation reasons covered by the <artifacts:Certificate Revocation List (CRL)|CRL> scope.
 
-The CRL issuer MAY also generate delta CRLs. A delta CRL only lists those certificates, within its scope, whose revocation status has changed since the issuance of a referenced complete CRL. The referenced complete CRL is referred to as a base CRL. The scope of a delta CRL SHALL be the same as the base CRL that it references.
+The <artifacts:Certificate Revocation List (CRL)|CRL> issuer MAY also generate delta <artifacts:Certificate Revocation List (CRL)|CRLs>. A delta CRL only lists those certificates, within its scope, whose revocation status has changed since the issuance of a referenced complete <artifacts:Certificate Revocation List (CRL)|CRL>. The referenced complete CRL is referred to as a base <artifacts:Certificate Revocation List (CRL)|CRL>. The scope of a delta <artifacts:Certificate Revocation List (CRL)|CRL> SHALL be the same as the base <artifacts:Certificate Revocation List (CRL)|CRL> that it references.
 
-If supported by the CA, the CRL SHALL be available at the URI specified in the `cRLDistributionPoints.distributionPoint` *[0] CHOICE* structure within the [WRPAC](#wallet-relying-party-access-certificate).
+If supported by the <roles:Certificate Authority (CA)|CA>, the <artifacts:Certificate Revocation List (CRL)|CRL> SHALL be available at the URI specified in the `cRLDistributionPoints.distributionPoint` *[0] CHOICE* structure within the [WRPAC](#wallet-relying-party-access-certificate).
 
-An X.509 v2 CRL is represented as the ASN.1 DER encoding of the `CertificateList` SEQUENCE. The ASN.1 DER encoding is a strictly defined tag, length, and value encoding system for each element. The final bytes transmitted represent the DER encoding of the top-level SEQUENCE containing the fields in the following table:
+An X.509 v2 <artifacts:Certificate Revocation List (CRL)|CRL> is represented as the ASN.1 DER encoding of the `CertificateList` SEQUENCE. The ASN.1 DER encoding is a strictly defined tag, length, and value encoding system for each element. The final bytes transmitted represent the DER encoding of the top-level SEQUENCE containing the fields in the following table:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `tbsCertList` | [RFC 5280] clause 5.1.1.1 | REQUIRED | *SEQUENCE* | Contains the core CRL information including the name of the issuer, issue date, next update date, the optional list of revoked certificates, and optional CRL extensions. |
-| `signatureAlgorithm` | [RFC 5280] clause 5.1.1.2 | REQUIRED | *SEQUENCE* | Contains the algorithm identifier for the algorithm used by the CRL issuer to sign the `CertificateList`. Selection SHOULD align with relevant standards (e.g., ETSI TS 119 312). |
-| `signatureAlgorithm.algorithm` | [RFC 5280] clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. |
-| `signatureAlgorithm.parameters` | [RFC 5280] clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the signature algorithm used. |
-| `signatureValue` | [RFC 5280] clause 5.1.1.3 | REQUIRED | *BIT STRING* | Contains the digital signature computed upon the ASN.1 DER encoded `tbsCertList`. |
+| `tbsCertList` | [RFC 5280, clause 5.1.1.1] | REQUIRED | *SEQUENCE* | Contains the core <artifacts:Certificate Revocation List (CRL)\|CRL> information including the name of the issuer, issue date, next update date, the optional list of revoked certificates, and optional <artifacts:Certificate Revocation List (CRL)\|CRL> extensions. |
+| `signatureAlgorithm` | [RFC 5280, clause 5.1.1.2] | REQUIRED | *SEQUENCE* | Contains the algorithm identifier for the algorithm used by the <artifacts:Certificate Revocation List (CRL)\|CRL> issuer to sign the `CertificateList`. Selection SHOULD align with relevant standards (e.g., [ETSI TS 119 312]). |
+| `signatureAlgorithm.algorithm` | [RFC 5280, clause 4.1.1.2] | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. |
+| `signatureAlgorithm.parameters` | [RFC 5280, clause 4.1.1.2] | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the signature algorithm used. |
+| `signatureValue` | [RFC 5280, clause 5.1.1.3] | REQUIRED | *BIT STRING* | Contains the digital signature computed upon the ASN.1 DER encoded `tbsCertList`. |
 
 ##### Certificate List Content
 
-The `TBSCertList` (To Be Signed Certificate List) is an ASN.1 SEQUENCE containing several fields and extensions. The following table lists all such fields and extensions that are required in a CRL or conditionally required.
+The `TBSCertList` (To Be Signed Certificate List) is an ASN.1 SEQUENCE containing several fields and extensions. The following table lists all such fields and extensions that are required in a <artifacts:Certificate Revocation List (CRL)|CRL> or conditionally required.
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `version` | [RFC 5280] clause 5.1.2.1 | OPTIONAL | *INTEGER* | Describes the version of the encoded CRL. When extensions are used (as is standard practice), this field SHALL be present and SHALL specify version 2 (the integer value is `1`). |
-| `signature` | [RFC 5280] clause 5.1.2.2 | REQUIRED | *SEQUENCE* | The algorithm identifier for the algorithm used to sign the CRL. |
-| `signature.algorithm` | [RFC 5280] clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. SHALL match the `signatureAlgorithm` field in the parent `CertificateList` sequence. |
-| `signature.parameters` | [RFC 5280] clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the algorithm used. |
-| `issuer` | [RFC 5280] clause 5.1.2.3 | REQUIRED | *Name* | Identifies the entity that has signed and issued the CRL. It SHALL contain a non-empty X.500 distinguished name (DN) composed of `AttributeType` (OID) and `AttributeValue` sequences. |
-| `thisUpdate` | [RFC 5280] clause 5.1.2.4 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the issue date of this CRL. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
-| `nextUpdate` | [RFC 5280] clause 5.1.2.5 | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the date by which the next CRL will be issued. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
-| `revokedCertificates` | [RFC 5280] clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | A sequence of revoked certificates. When there are no revoked certificates, this field SHALL be absent. |
-| `revokedCertificates.userCertificate` | [RFC 5280] clause 5.1.2.6 | REQUIRED | *INTEGER* | The `CertificateSerialNumber` of the revoked certificate. |
-| `revokedCertificates.revocationDate` | [RFC 5280] clause 5.1.2.6 | REQUIRED | *UTCTime* or *GeneralizedTime* | The date on which the revocation occurred. |
-| `revokedCertificates.crlEntryExtensions` | [RFC 5280] clause 5.1.2.6 | OPTIONAL | *SEQUENCE OF* | Extensions specific to this revoked certificate entry. If present, the CRL `version` SHALL be `v2`. |
-| `crlExtensions` | [RFC 5280] clause 5.1.2.7 | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | A sequence of one or more CRL extensions. If present, the CRL `version` SHALL be `v2`. |
+| `version` | [RFC 5280, clause 5.1.2.1] | OPTIONAL | *INTEGER* | Describes the version of the encoded <artifacts:Certificate Revocation List (CRL)\|CRL>. When extensions are used (as is standard practice), this field SHALL be present and SHALL specify version 2 (the integer value is `1`). |
+| `signature` | [RFC 5280, clause 5.1.2.2] | REQUIRED | *SEQUENCE* | The algorithm identifier for the algorithm used to sign the <artifacts:Certificate Revocation List (CRL)\|CRL>. |
+| `signature.algorithm` | [RFC 5280, clause 4.1.1.2] | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. SHALL match the `signatureAlgorithm` field in the parent `CertificateList` sequence. |
+| `signature.parameters` | [RFC 5280, clause 4.1.1.2] | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the algorithm used. |
+| `issuer` | [RFC 5280, clause 5.1.2.3] | REQUIRED | *Name* | Identifies the entity that has signed and issued the <artifacts:Certificate Revocation List (CRL)\|CRL>. It SHALL contain a non-empty X.500 distinguished name (DN) composed of `AttributeType` (OID) and `AttributeValue` sequences. |
+| `thisUpdate` | [RFC 5280, clause 5.1.2.4] | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the issue date of this <artifacts:Certificate Revocation List (CRL)\|CRL>. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
+| `nextUpdate` | [RFC 5280, clause 5.1.2.5] | REQUIRED | *UTCTime* or *GeneralizedTime* | Indicates the date by which the next <artifacts:Certificate Revocation List (CRL)\|CRL> will be issued. Dates through 2049 SHALL use `UTCTime`; dates in 2050 or later SHALL use `GeneralizedTime`. |
+| `revokedCertificates` | [RFC 5280, clause 5.1.2.6] | OPTIONAL | *SEQUENCE OF* | A sequence of revoked certificates. When there are no revoked certificates, this field SHALL be absent. |
+| `revokedCertificates.userCertificate` | [RFC 5280, clause 5.1.2.6] | REQUIRED | *INTEGER* | The `CertificateSerialNumber` of the revoked certificate. |
+| `revokedCertificates.revocationDate` | [RFC 5280, clause 5.1.2.6] | REQUIRED | *UTCTime* or *GeneralizedTime* | The date on which the revocation occurred. |
+| `revokedCertificates.crlEntryExtensions` | [RFC 5280, clause 5.1.2.6] | OPTIONAL | *SEQUENCE OF* | Extensions specific to this revoked certificate entry. If present, the <artifacts:Certificate Revocation List (CRL)\|CRL> `version` SHALL be `v2`. |
+| `crlExtensions` | [RFC 5280, clause 5.1.2.7] | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | A sequence of one or more <artifacts:Certificate Revocation List (CRL)\|CRL> extensions. If present, the <artifacts:Certificate Revocation List (CRL)\|CRL> `version` SHALL be `v2`. |
 
 The `crlExtensions` field MAY contain various extensions. Notable standard extensions include:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `authorityKeyIdentifier` | [RFC 5280] clause 5.2.1 | REQUIRED | *SEQUENCE* | Provides a means of identifying the public key corresponding to the private key used to sign the CRL. Contains `keyIdentifier` (OCTET STRING), `authorityCertIssuer`, or `authorityCertSerialNumber`. |
-| `cRLNumber` | [RFC 5280] clause 5.2.3 | REQUIRED | *INTEGER* | A non-critical extension conveying a monotonically increasing sequence number for a given CRL scope and issuer. |
+| `authorityKeyIdentifier` | [RFC 5280, clause 5.2.1] | REQUIRED | *SEQUENCE* | Provides a means of identifying the public key corresponding to the private key used to sign the <artifacts:Certificate Revocation List (CRL)\|CRL>. Contains `keyIdentifier` (OCTET STRING), `authorityCertIssuer`, or `authorityCertSerialNumber`. |
+| `cRLNumber` | [RFC 5280, clause 5.2.3] | REQUIRED | *INTEGER* | A non-critical extension conveying a monotonically increasing sequence number for a given <artifacts:Certificate Revocation List (CRL)\|CRL> scope and issuer. |
 
 !!! note
 
-    Within the APTITUDE pilot, Delta CRLs are not used.
+    Within the APTITUDE pilot, Delta <artifacts:Certificate Revocation List (CRL)|CRLs> are not used.
 
 #### Online Certificate Status Protocol
 
-**Online Certificate Status Protocol** ([OCSP](https://datatracker.ietf.org/doc/html/rfc6960)) enable applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
+**<protocols:Online Certificate Status Protocol (OCSP)>** [RFC 6960] enables applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
 
-An OCSP client issues a status request to an OCSP responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response.
+An <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client issues a status request to an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response.
 
-If supported by the CA, the URI to which the OCSP Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](#wallet-relying-party-access-certificate).
+If supported by the <roles:Certificate Authority (CA)|CA>, the URI to which the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](#wallet-relying-party-access-certificate).
 
-This protocol specifies the data that SHALL be exchanged between the OCSP client (which checks the status of one or more certificates) and the OCSP server (which provides the corresponding status). In this specific ecosystem, the OCSP client can be a WU checking the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> of a WRP, and the OCSP server is the Provider of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
+This protocol specifies the data that SHALL be exchanged between the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client (which checks the status of one or more certificates) and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server (which provides the corresponding status). In this specific ecosystem, the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client can be a WU checking the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> of a WRP, and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server is the Provider of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
 
 ##### Online Certificate Status Protocol Request Format
 
-The OCSP request is the ASN.1 DER encoding of the `OCSPRequest` SEQUENCE, which contains the `tbsRequest` (To-Be-Signed Request) and an optional signature. The following table lists the parameters found within the `tbsRequest` structure.
+The <protocols:Online Certificate Status Protocol (OCSP)|OCSP> request is the ASN.1 DER encoding of the `OCSPRequest` SEQUENCE, which contains the `tbsRequest` (To-Be-Signed Request) and an optional signature. The following table lists the parameters found within the `tbsRequest` structure.
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `version` | [RFC 6960] clause 4.1.1 | OPTIONAL | *[0] EXPLICIT INTEGER* | Indicates the version of the protocol. If omitted, the default value is `v1` (0). |
-| `requestList` | [RFC 6960] clause 4.1.1 | REQUIRED | *SEQUENCE OF* | Contains one or more single certificate status requests. |
-| `requestList.reqCert` | [RFC 6960] clause 4.1.1 | REQUIRED | *SEQUENCE* | The `CertID` structure carrying the identifier of a target certificate. |
-| `requestList.singleRequestExtensions` | [RFC 6960] clause 4.1.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE* | Includes extensions applicable to this single certificate status request. |
-| `requestExtensions` | [RFC 6960] clause 4.1.1 | OPTIONAL | *[2] EXPLICIT SEQUENCE* | Includes extensions applicable to the overall requests found within the `requestList`. |
+| `version` | [RFC 6960, clause 4.1.1] | OPTIONAL | *[0] EXPLICIT INTEGER* | Indicates the version of the protocol. If omitted, the default value is `v1` (0). |
+| `requestList` | [RFC 6960, clause 4.1.1] | REQUIRED | *SEQUENCE OF* | Contains one or more single certificate status requests. |
+| `requestList.reqCert` | [RFC 6960, clause 4.1.1] | REQUIRED | *SEQUENCE* | The `CertID` structure carrying the identifier of a target certificate. |
+| `requestList.singleRequestExtensions` | [RFC 6960, clause 4.1.1] | OPTIONAL | *[0] EXPLICIT SEQUENCE* | Includes extensions applicable to this single certificate status request. |
+| `requestExtensions` | [RFC 6960, clause 4.1.1] | OPTIONAL | *[2] EXPLICIT SEQUENCE* | Includes extensions applicable to the overall requests found within the `requestList`. |
 
 The `reqCert` parameter utilizes the `CertID` structure, which is an ASN.1 *SEQUENCE* containing the following parameters:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `hashAlgorithm` | [RFC 6960] clause 4.1.1 | REQUIRED | *SEQUENCE* | Identifies the hash algorithm used to generate the issuer name and key hashes. |
-| `hashAlgorithm.algorithm` | [RFC 6960] clause 4.1.1 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the hash function (e.g.,SHA-256, depending on the profile). |
-| `hashAlgorithm.parameters` | [RFC 6960] clause 4.1.1 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the hash algorithm used. |
-| `issuerNameHash` | [RFC 6960] clause 4.1.1 | REQUIRED | *OCTET STRING* | The hash of the issuer's distinguished name (DN), calculated over the DER encoding of the issuer's name field. |
-| `issuerKeyHash` | [RFC 6960] clause 4.1.1 | REQUIRED | *OCTET STRING* | The hash of the issuer's public key, calculated over the value (excluding tag and length) of the subject public key field. |
-| `serialNumber` | [RFC 6960] clause 4.1.1 | REQUIRED | *INTEGER* | The serial number of the target certificate for which the status is being requested. |
+| `hashAlgorithm` | [RFC 6960, clause 4.1.1] | REQUIRED | *SEQUENCE* | Identifies the hash algorithm used to generate the issuer name and key hashes. |
+| `hashAlgorithm.algorithm` | [RFC 6960, clause 4.1.1] | REQUIRED | *OBJECT IDENTIFIER* | The OID of the hash function (e.g.,SHA-256, depending on the profile). |
+| `hashAlgorithm.parameters` | [RFC 6960, clause 4.1.1] | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the hash algorithm used. |
+| `issuerNameHash` | [RFC 6960, clause 4.1.1] | REQUIRED | *OCTET STRING* | The hash of the issuer's distinguished name (DN), calculated over the DER encoding of the issuer's name field. |
+| `issuerKeyHash` | [RFC 6960, clause 4.1.1] | REQUIRED | *OCTET STRING* | The hash of the issuer's public key, calculated over the value (excluding tag and length) of the subject public key field. |
+| `serialNumber` | [RFC 6960, clause 4.1.1] | REQUIRED | *INTEGER* | The serial number of the target certificate for which the status is being requested. |
 
 The `requestExtensions` and `singleRequestExtensions` structures MAY contain various extensions. A common extension is the `nonce`:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `nonce` | [RFC 6960] clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. Identifier OID is `id-pkix-ocsp-nonce`. |
+| `nonce` | [RFC 6960, clause 4.4.1] | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. Identifier OID is `id-pkix-ocsp-nonce`. |
 
 !!! note
 
-    Within APTITUDE, OCSP requests SHALL use the `nonce` extension.
+    Within APTITUDE, <protocols:Online Certificate Status Protocol (OCSP)|OCSP> requests SHALL use the `nonce` extension.
 
 When sent over HTTP using POST, the body of this request is the raw DER encoding of this `OCSPRequest`, with the MIME type `application/ocsp-request`.
 
-Below is a concrete example of an OCSP request:
+Below is a concrete example of an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> request:
 
 ```text
 OCSPRequest:
@@ -244,63 +244,63 @@ OCSPRequest:
 
 ##### Online Certificate Status Protocol Response Format
 
-An OCSP response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. When transported over HTTP, the body of the HTTP response is the raw DER encoding of this `OCSPResponse`, with the MIME type `application/ocsp-response`. The `OCSPResponse` *SEQUENCE* contains the following parameters:
+An <protocols:Online Certificate Status Protocol (OCSP)|OCSP> response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. When transported over HTTP, the body of the HTTP response is the raw DER encoding of this `OCSPResponse`, with the MIME type `application/ocsp-response`. The `OCSPResponse` *SEQUENCE* contains the following parameters:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `responseStatus` | [RFC 6960] clause 4.2.1 | REQUIRED | *ENUMERATED* | Indicates the processing status of the prior request. Supported values are: `successful` (0), `malformedRequest` (1), `internalError` (2), `tryLater` (3), `sigRequired` (5), and `unauthorized` (6). |
-| `responseBytes` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE* | Present only when the `responseStatus` is `successful` (0). Contains the response type and the encoded response data. |
-| `responseBytes.responseType` | [RFC 6960] clause 4.2.1 | REQUIRED | *OBJECT IDENTIFIER* | Identifier for the response type. For a basic OCSP responder, this value SHALL be `id-pkix-ocsp-basic`. |
-| `responseBytes.response` | [RFC 6960] clause 4.2.1 | REQUIRED | *OCTET STRING* | Contains the DER encoding of the response syntax identified by `responseType` (e.g., the `BasicOCSPResponse` structure). |
+| `responseStatus` | [RFC 6960, clause 4.2.1] | REQUIRED | *ENUMERATED* | Indicates the processing status of the prior request. Supported values are: `successful` (0), `malformedRequest` (1), `internalError` (2), `tryLater` (3), `sigRequired` (5), and `unauthorized` (6). |
+| `responseBytes` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[0] EXPLICIT SEQUENCE* | Present only when the `responseStatus` is `successful` (0). Contains the response type and the encoded response data. |
+| `responseBytes.responseType` | [RFC 6960, clause 4.2.1] | REQUIRED | *OBJECT IDENTIFIER* | Identifier for the response type. For a basic OCSP responder, this value SHALL be `id-pkix-ocsp-basic`. |
+| `responseBytes.response` | [RFC 6960, clause 4.2.1] | REQUIRED | *OCTET STRING* | Contains the DER encoding of the response syntax identified by `responseType` (e.g., the `BasicOCSPResponse` structure). |
 
 !!! note
 
-    Within APTITUDE, OCSP responders SHALL be capable of producing responses of the `id-pkix-ocsp-basic` response type. Correspondingly, OCSP clients SHALL be capable of receiving and processing responses of the `id-pkix-ocsp-basic` response type.
+    Within APTITUDE, <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responders SHALL be capable of producing responses of the `id-pkix-ocsp-basic` response type. Correspondingly, <protocols:Online Certificate Status Protocol (OCSP)|OCSP> clients SHALL be capable of receiving and processing responses of the `id-pkix-ocsp-basic` response type.
 
 `BasicOCSPResponse` is an ASN.1 SEQUENCE containing the following parameters:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `tbsResponseData` | [RFC 6960] clause 4.2.1 | REQUIRED | *SEQUENCE* | Contains the core response data to be signed by the responder. |
-| `tbsResponseData.version` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT INTEGER* | The version of the response syntax. If omitted, the default value is `v1` (0). |
-| `tbsResponseData.responderID` | [RFC 6960] clause 4.2.1 | REQUIRED | *CHOICE* | Identifies the OCSP responder. It SHALL contain either `byName` or `byKey`. |
-| `tbsResponseData.responderID.byName` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[1] EXPLICIT Name* | The `Name` from the responder’s certificate subject. |
-| `tbsResponseData.responderID.byKey` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[2] EXPLICIT OCTET STRING* | The SHA-1 hash of the responder’s `subjectPublicKey` (excluding the tag and length fields). |
-| `tbsResponseData.producedAt` | [RFC 6960] clause 4.2.1 | REQUIRED | *GeneralizedTime* | The time at which the OCSP response was generated. |
-| `tbsResponseData.responses` | [RFC 6960] clause 4.2.1 | REQUIRED | *SEQUENCE OF* | A sequence of `SingleResponse` structures, providing the status of each requested certificate. |
-| `tbsResponseData.responseExtensions` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[1] EXPLICIT SEQUENCE OF* | Contains extensions applicable to the overall OCSP response. |
-| `signatureAlgorithm` | [RFC 5280] clause 4.1.1.2 | REQUIRED | *SEQUENCE* | Identifies the cryptographic algorithm used to sign the response. |
-| `signatureAlgorithm.algorithm` | [RFC 5280] clause 4.1.1.2 | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. Selection SHOULD align with relevant standards (e.g., ETSI TS 119 312). |
-| `signatureAlgorithm.parameters` | [RFC 5280] clause 4.1.1.2 | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the OID defined in `algorithm`. |
-| `signature` | [RFC 6960] clause 4.2.1 | REQUIRED | *BIT STRING* | The digital signature computed over the hash of the DER-encoded `tbsResponseData`. |
-| `certs` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | Certificate chain to help the client verify the responder's signature. If no certificates are included, this field SHOULD be absent. |
+| `tbsResponseData` | [RFC 6960, clause 4.2.1] | REQUIRED | *SEQUENCE* | Contains the core response data to be signed by the responder. |
+| `tbsResponseData.version` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[0] EXPLICIT INTEGER* | The version of the response syntax. If omitted, the default value is `v1` (0). |
+| `tbsResponseData.responderID` | [RFC 6960, clause 4.2.1] | REQUIRED | *CHOICE* | Identifies the <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> responder. It SHALL contain either `byName` or `byKey`. |
+| `tbsResponseData.responderID.byName` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[1] EXPLICIT Name* | The `Name` from the responder’s certificate subject. |
+| `tbsResponseData.responderID.byKey` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[2] EXPLICIT OCTET STRING* | The SHA-1 hash of the responder’s `subjectPublicKey` (excluding the tag and length fields). |
+| `tbsResponseData.producedAt` | [RFC 6960, clause 4.2.1] | REQUIRED | *GeneralizedTime* | The time at which the <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response was generated. |
+| `tbsResponseData.responses` | [RFC 6960, clause 4.2.1] | REQUIRED | *SEQUENCE OF* | A sequence of `SingleResponse` structures, providing the status of each requested certificate. |
+| `tbsResponseData.responseExtensions` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[1] EXPLICIT SEQUENCE OF* | Contains extensions applicable to the overall <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response. |
+| `signatureAlgorithm` | [RFC 5280, clause 4.1.1.2] | REQUIRED | *SEQUENCE* | Identifies the cryptographic algorithm used to sign the response. |
+| `signatureAlgorithm.algorithm` | [RFC 5280, clause 4.1.1.2] | REQUIRED | *OBJECT IDENTIFIER* | The OID of the signature algorithm. Selection SHOULD align with relevant standards (e.g., [ETSI TS 119 312]). |
+| `signatureAlgorithm.parameters` | [RFC 5280, clause 4.1.1.2] | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the OID defined in `algorithm`. |
+| `signature` | [RFC 6960, clause 4.2.1] | REQUIRED | *BIT STRING* | The digital signature computed over the hash of the DER-encoded `tbsResponseData`. |
+| `certs` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[0] EXPLICIT SEQUENCE OF* | Certificate chain to help the client verify the responder's signature. If no certificates are included, this field SHOULD be absent. |
 
 The `responseExtensions` structure MAY contain various extensions. A notable parameter often required by specific profiles (such as to prevent replay attacks) is the `nonce`:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `nonce` | [RFC 6960] clause 4.4.1 | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. If included in the request, responders SHOULD include it in the response. Identifer OID is `id-pkix-ocsp-nonce`. |
+| `nonce` | [RFC 6960, clause 4.4.1] | REQUIRED | *OCTET STRING* | Cryptographically fresh value used to bind a request and a response to prevent replay attacks. If included in the request, responders SHOULD include it in the response. Identifer OID is `id-pkix-ocsp-nonce`. |
 
 !!! note
 
-    Within APTITUDE, OCSP Responses SHALL use the `nonce` extension.
+    Within APTITUDE, <protocols:Online Certificate Status Protocol (OCSP)|OCSP> Responses SHALL use the `nonce` extension.
 
-In the OCSP Response there SHALL be at least a `SingleResponse` for each `CertID` in the request. Each `SingleResponse` is an ASN.1 *SEQUENCE* that carries the following parameters:
+In the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> Response there SHALL be at least a `SingleResponse` for each `CertID` in the request. Each `SingleResponse` is an ASN.1 *SEQUENCE* that carries the following parameters:
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----- | :---------- |
-| `certID` | [RFC 6960] clause 4.2.1 | REQUIRED | *SEQUENCE* | Identifier of the certificate whose status is determined in `certStatus`. |
-| `certStatus` | [RFC 6960] clause 4.2.1 | REQUIRED | *CHOICE* | The value of the certificate's status. It SHALL be exactly one of: `good`, `revoked`, or `unknown`. |
-| `certStatus.good` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] IMPLICIT NULL* | Indicates the certificate is valid. |
-| `certStatus.revoked` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[1] IMPLICIT SEQUENCE* | Indicates the certificate has been revoked. Contains the `RevokedInfo` structure. |
-| `certStatus.revoked.revocationTime` | [RFC 6960] clause 4.2.1 | REQUIRED | *GeneralizedTime* | The time at which the certificate was revoked. |
-| `certStatus.revoked.revocationReason` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT ENUMERATED* | Contains the `CRLReason` indicating why the certificate was revoked. |
-| `certStatus.unknown` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[2] IMPLICIT NULL* | Indicates the responder does not know the status of the certificate. |
-| `thisUpdate` | [RFC 6960] clause 4.2.1 | REQUIRED | *GeneralizedTime* | Indicates the issue date and time of this OCSP Response. |
-| `nextUpdate` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[0] EXPLICIT GeneralizedTime* | Indicates the date and time by which the next update to the OCSP Responder database will be in place. |
-| `singleExtensions` | [RFC 6960] clause 4.2.1 | OPTIONAL | *[1] EXPLICIT SEQUENCE* | Includes extensions applicable to this single certificate status response. |
+| `certID` | [RFC 6960, clause 4.2.1] | REQUIRED | *SEQUENCE* | Identifier of the certificate whose status is determined in `certStatus`. |
+| `certStatus` | [RFC 6960, clause 4.2.1] | REQUIRED | *CHOICE* | The value of the certificate's status. It SHALL be exactly one of: `good`, `revoked`, or `unknown`. |
+| `certStatus.good` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[0] IMPLICIT NULL* | Indicates the certificate is valid. |
+| `certStatus.revoked` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[1] IMPLICIT SEQUENCE* | Indicates the certificate has been revoked. Contains the `RevokedInfo` structure. |
+| `certStatus.revoked.revocationTime` | [RFC 6960, clause 4.2.1] | REQUIRED | *GeneralizedTime* | The time at which the certificate was revoked. |
+| `certStatus.revoked.revocationReason` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[0] EXPLICIT ENUMERATED* | Contains the `CRLReason` indicating why the certificate was revoked. |
+| `certStatus.unknown` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[2] IMPLICIT NULL* | Indicates the responder does not know the status of the certificate. |
+| `thisUpdate` | [RFC 6960, clause 4.2.1] | REQUIRED | *GeneralizedTime* | Indicates the issue date and time of this <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> Response. |
+| `nextUpdate` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[0] EXPLICIT GeneralizedTime* | Indicates the date and time by which the next update to the <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> Responder database will be in place. |
+| `singleExtensions` | [RFC 6960, clause 4.2.1] | OPTIONAL | *[1] EXPLICIT SEQUENCE* | Includes extensions applicable to this single certificate status response. |
 
-Below is a concrete example of an OCSP response with a single `good` status.
+Below is a concrete example of an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> response with a single `good` status.
 
 ```text
 OCSPResponse:
