@@ -16,8 +16,8 @@ sequenceDiagram
  
     rect rgb(230, 230, 230)
     Note over Wallet: Verify metadata signature
-    Wallet->>WRPACLoTE: 3a. Fetch WRPAC LoTE
-    WRPACLoTE-->>Wallet: WRPAC LoTE
+    Wallet->>WRPACLoTE: 3a. Fetch Provider of WRPAC LoTE
+    WRPACLoTE-->>Wallet: Provider of WRPAC LoTE
     Note over Wallet: 3b. Validate LoTE
     Note over Wallet: 3c. Identify the corresponding trusted entity
     Note over Wallet: 3d. Validate the WRPAC
@@ -26,8 +26,8 @@ sequenceDiagram
 
     rect rgb(230, 230, 230)
     Note over Wallet: Verify WRPRC
-    Wallet->>WRPCLoTE: 4a. Fetch WRPRC LoTE
-    WRPCLoTE-->>Wallet: WRPRC LoTE
+    Wallet->>WRPCLoTE: 4a. Fetch Provider of WRPRC LoTE
+    WRPCLoTE-->>Wallet: Provider of  WRPRC LoTE
     Note over Wallet: 4b. Validate LoTE
     Note over Wallet: 4c. Identify the corresponding trusted entity
     Note over Wallet: 4d. Validate the WRPRC
@@ -100,7 +100,7 @@ sequenceDiagram
 
 **Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)** The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider of WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].
 
-**Step 3a: Fetch WRPAC LoTE** The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.
+**Step 3a: Fetch Provider of WRPAC LoTE** The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.
 
 **Step 3b: Validate LoTE** The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.
 
@@ -110,7 +110,7 @@ sequenceDiagram
 
 **Step 3e: Validate the metadata signature using the WRPAC** The Wallet Instance validates the metadata JWS signature using the WRPAC [AUTHZ-ISS-05].
 
-**Step 4a: Fetch WRPRC LoTE** The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL [AUTHZ-ISS-07].
+**Step 4a: Fetch Provider of WRPRC LoTE** The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL [AUTHZ-ISS-07].
 
 **Step 4b: Validate LoTE** The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.
 
