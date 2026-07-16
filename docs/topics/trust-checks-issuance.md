@@ -98,7 +98,7 @@ sequenceDiagram
 
 **Step 1: Request EAA Issuance** Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.
 
-**Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)** The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider's WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].
+**Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)** The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider of WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].
 
 **Step 3a: Fetch WRPAC LoTE** The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.
 
