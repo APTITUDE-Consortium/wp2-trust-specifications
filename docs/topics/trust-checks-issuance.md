@@ -7,7 +7,7 @@ sequenceDiagram
     participant WRPACLoTE as Provider of WRPAC LoTE
     participant WRPCLoTE as Provider of WRRPC LoTE
     participant WProvider as Wallet Providers LoTE
-    participant LoTL as LoTL Provider
+    participant LoTL as LoTE Provider
     participant TL as TL Provider
 
     User->>Wallet: 1. Request EAA issuance
@@ -78,9 +78,9 @@ sequenceDiagram
 
     rect rgb(230, 230, 230)
     Note over Wallet: Verify Attestation
-    Wallet->>LoTL: 11a. Fetch LoTL
-    LoTL-->>Wallet: LoTL
-    Note over Wallet: 11b. Validate LoTL
+    Wallet->>LoTL: 11a. Fetch EAA/PID/QEAA/Pub-EAA Provider LoTE
+    LoTL-->>Wallet: EAA/PID/QEAA/Pub-EAA Provider LoTE
+    Note over Wallet: 11b. Validate LoTE
     Note over Wallet: 11c. Identify the corresponding TL
     Wallet->>TL: 11d. Fetch TL
     TL-->>Wallet: TL
@@ -142,9 +142,9 @@ sequenceDiagram
 
 **Step 10b: Validate the KA contents** The Attestation Provider checks that the cryptographic keys are protected according to its policy if any, and verifies the related Proof-of-Possessions if any.
 
-**Step 11a: Fetch LoTL** The Wallet Instance retrieves the LoTL listing all the national Trusted Lists (TL).
+**Step 11a: Fetch EAA/PID/QEAA/Pub-EAA Provider LoTE** The Wallet Instance retrieves the LoTE listing all the Providers of the corresponding type.
 
-**Step 11b: Validate LoTL** The Wallet Instance validates the LoTL signature in order to make sure the LoTL is authentic. Extra checks are performed in order to make sure the LoTL is not outdated.
+**Step 11b: Validate EAA/PID/QEAA/Pub-EAA Provider LoTE** The Wallet Instance validates the LoTE signature in order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.
 
 **Step 11c: Identify the corresponding TL** The Wallet Instance identifies the corresponding national TL needed to validate the Attestation received in the Credential Response.
 
