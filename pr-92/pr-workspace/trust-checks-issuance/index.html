@@ -635,8 +635,8 @@
 
     rect rgb(230, 230, 230)
     Note over Wallet: Verify metadata signature
-    Wallet-&gt;&gt;WRPACLoTE: 3a. Fetch WRPAC LoTE
-    WRPACLoTE--&gt;&gt;Wallet: WRPAC LoTE
+    Wallet-&gt;&gt;WRPACLoTE: 3a. Fetch Provider of WRPAC LoTE
+    WRPACLoTE--&gt;&gt;Wallet: Provider of WRPAC LoTE
     Note over Wallet: 3b. Validate LoTE
     Note over Wallet: 3c. Identify the corresponding trusted entity
     Note over Wallet: 3d. Validate the WRPAC
@@ -645,8 +645,8 @@
 
     rect rgb(230, 230, 230)
     Note over Wallet: Verify WRPRC
-    Wallet-&gt;&gt;WRPCLoTE: 4a. Fetch WRPRC LoTE
-    WRPCLoTE--&gt;&gt;Wallet: WRPRC LoTE
+    Wallet-&gt;&gt;WRPCLoTE: 4a. Fetch Provider of WRPRC LoTE
+    WRPCLoTE--&gt;&gt;Wallet: Provider of  WRPRC LoTE
     Note over Wallet: 4b. Validate LoTE
     Note over Wallet: 4c. Identify the corresponding trusted entity
     Note over Wallet: 4d. Validate the WRPRC
@@ -714,12 +714,12 @@
 <h3 id="step-by-step-operations">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1: Request EAA Issuance</strong> Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.</p>
 <p><strong>Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)</strong> The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider of WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].</p>
-<p><strong>Step 3a: Fetch WRPAC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.</p>
+<p><strong>Step 3a: Fetch Provider of WRPAC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.</p>
 <p><strong>Step 3b: Validate LoTE</strong> The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
 <p><strong>Step 3c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS [AUTHZ-ISS-02].</p>
 <p><strong>Step 3d: Validate the WRPAC</strong> The Wallet Instance validates the authenticity and integrity of the WRPAC using the trust anchor of the trusted entity identitied in the LoTE.</p>
 <p><strong>Step 3e: Validate the metadata signature using the WRPAC</strong> The Wallet Instance validates the metadata JWS signature using the WRPAC [AUTHZ-ISS-05].</p>
-<p><strong>Step 4a: Fetch WRPRC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL [AUTHZ-ISS-07].</p>
+<p><strong>Step 4a: Fetch Provider of WRPRC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL [AUTHZ-ISS-07].</p>
 <p><strong>Step 4b: Validate LoTE</strong> The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
 <p><strong>Step 4c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPRC presented in the Attestation Provider metadata.</p>
 <p><strong>Step 4d: Validate the WRPRC</strong> The Wallet Instance validates the authenticity and integrity of the WRPRC using the trust anchor of the trusted entity identitied in the LoTE [AUTHZ-GEN-08].</p>
@@ -765,7 +765,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 16, 2026 12:25:16 UTC">July 16, 2026 12:25:16</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 16, 2026 12:36:40 UTC">July 16, 2026 12:36:40</span>
   </span>
 
     
