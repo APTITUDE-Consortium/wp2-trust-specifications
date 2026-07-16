@@ -144,7 +144,8 @@ sequenceDiagram
 
 **Step 11a: Fetch EAA/PID/QEAA/Pub-EAA Provider LoTE** The Wallet Instance retrieves the LoTE listing all the Providers of the corresponding type.
 
-**Step 11b: Validate EAA/PID/QEAA/Pub-EAA Provider LoTE** The Wallet Instance validates the LoTE signature in order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.
+**Step 11b: Validate EAA/PID/QEAA/Pub-EAA Provider LoTE** The Wallet Instance validates the LoTE signature in order to make sure the LoTE is authentic. A good practice is to follow the clause 5 of ETSI TS 319 102-1 for validating AdES
+digital signatures. Extra checks are performed in order to make sure the LoTE is not outdated.
 
 **Step 11c: Identify the corresponding TL** The Wallet Instance identifies the corresponding national TL needed to validate the Attestation received in the Credential Response.
 
