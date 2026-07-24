@@ -22,9 +22,9 @@ ETSI specifications for EU Digital Identity Wallets of main interest for the tru
 | **Item Reference** | **Version** | **Date**   | **Standard Name/Details** |
 | ------------------ | ----------- | ---------- | ------------------------- |
 | ETSI TS 119 411-8  | V1.1.1      | 2025-10    | Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 8: Access Certificate Policy for EUDI Wallet Relying Parties |
-| ETSI TS 119 412-6  | V1.1.1      | 2025-09    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 6: Certificate profile requirements for PID, Wallet, EAA, QEAA, and PSBEAA providers |
+| ETSI TS 119 412-6  | V1.2.1      | 2026-04    | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 6: Certificate profile requirements for PID, Wallet, EAA, QEAA, and PSBEAA providers |
 | ETSI TS 119 472-1  | V1.2.1      | 2026-02    | Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 1: General requirements |
-| ETSI TS 119 472-2  | V1.1.1      | 2025-12    | Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 2: Profiles for EAA/PID Presentations to Relying Party |
+| ETSI TS 119 472-2  | V1.2.1      | 2026-03    | Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 2: Profiles for EAA/PID Presentations to Relying Party |
 | ETSI TS 119 472-3  | V1.1.1      | 2026-03    | Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 3: Profiles for issuance of EAA or PID |
 | ETSI TS 119 475    | V1.2.1      | 2026-03    | Electronic Signatures and Trust Infrastructures (ESI); Relying party attributes supporting EUDI Wallet user's authorisation decisions |
 | ETSI TS 119 602    | V1.1.1      | 2025-11    | Electronic Signatures and Trust Infrastructures (ESI); Lists of trusted entities; Data model |
