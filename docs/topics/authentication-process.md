@@ -68,7 +68,7 @@ The entity that performs the certificate path validation initializes the followi
 
 !!! note
 
-    The profiles for Trust Anchor certificates referenced within a LoTE are deescribed in [Trust Anchor Certificate Profiles](#trust-anchor-certificate-profiles.md).
+    The profiles for Trust Anchor certificates referenced within a LoTE are deescribed in [Trust Anchor Certificate](#trust-anchor-certificate).
 
 **Step 1: Initialization**
 Initialize the state variables:
@@ -190,7 +190,7 @@ flowchart TD
 
 The entity performing certificate path validation (e.g., the <components:Wallet Unit>) SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
-- If the certificate contains the `noRevAvail` extension AND the `ext-etsi-valassured-ST-certs` extension (see [Wallet Relying Party Access Certificate Content](access-certificate.md#wallet-relying-party-access-certificate-content)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
+- If the certificate contains the `noRevAvail` extension AND the `ext-etsi-valassured-ST-certs` extension (see [Wallet Relying Party Access Certificate Content](#wallet-relying-party-access-certificate-content)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
 - If the `cRLDistributionPoints` extension is present, the <components:Wallet Unit> MAY retrieve and validate the <artifacts:Certificate Revocation List (CRL)|CRL>.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the <components:Wallet Unit> MAY perform an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> lookup.
 

@@ -5,7 +5,7 @@ Depending on the artifact or <credentials:Attestation> being verified, the valid
 1. *<artifacts:List of Trusted Entities (LoTE)>*, used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
 
    - **Infrastructure Certificates**: <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> or <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
-   - **<artifacts:Wallet Unit Attestations (WUAs)>**: <artifacts:Key Attestation (KA)> or <artifacts:Wallet Instance Attestation (WIA)>.
+   - **<artifacts:Wallet Unit Attestation (WUA)|Wallet Unit Attestations (WUAs)>**: <artifacts:Key Attestation (KA)> or <artifacts:Wallet Instance Attestation (WIA)>.
    - **PID Signatures**: <credentials:Person Identification Data (PID)>.
    - **<roles:Registrar>-signed artifacts**: <components:Register> informations.
 
@@ -233,7 +233,7 @@ The <components:Wallet Unit> or <roles:Relying Party (RP)|Relying Party> initial
 - `OJEU-LOTL-Certs-Set`: The set of certificates used to ensure the authenticity and integrity of the <artifacts:List Of Trusted Lists (LOTL)|LOTL>. Initialized from the `OJEU-Loc` publication.
 - `LOTL`: The XML file of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> currently being processed. Initialized as `null`.
 - `LOTL-Signer-Cert`: Extracted from `ds:X509Certificate` in the <artifacts:List Of Trusted Lists (LOTL)|LOTL> signature. Initialized as `null`.
-- `LOTLSO-Cert`: The certificate of the <roles:LOTL Scheme Operator (LOTLSO)> extracted from the `KeyInfo` element of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> signature. Initialized as `null`.
+- `LOTLSO-Cert`: The certificate of the <roles:List of Trusted Lists Scheme Operator (LOTLSO)> extracted from the `KeyInfo` element of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> signature. Initialized as `null`.
 - `LOTLSO-Cert-Sets`: The set of trusted certificates extracted from the `PointersToOtherTSL` element (with `SchemeTerritory` = `EU`) within a <artifacts:List Of Trusted Lists (LOTL)|LOTL> or Pivot file. Initialized as `null`.
 
 The operations described below produce the following output variables:

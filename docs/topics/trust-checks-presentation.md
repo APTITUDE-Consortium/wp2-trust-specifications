@@ -211,7 +211,7 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Proximity input location** | WRPAC chain in ReaderAuth / mdoc request message                                                                                                                                                                                    |
 | **Checks**                   | Retrieve trust anchor from the relevant LoTE; construct WRPAC certification path; validate certificate path; validate certificate status where applicable; verify the signature on the request artefact using the WRPAC public key. |
 | **Positive result**          | WRP/RPI is authenticated; authorization processing may start.                                                                                                                                                                       |
-| **Negative result**          | Authentication failed. Authorization processing MUST NOT start.                                                                                                                                                                     |
+| **Negative result**          | Authentication failed. Authorization processing SHALL NOT start.                                                                                                                                                                     |
 | **Test focus**               | Valid chain, invalid chain, unknown trust anchor, expired certificate, revoked certificate, invalid request signature, mismatched signing key.                                                                                      |
 
 ##### TC-PRES-002 — User choice to verify RP registration information
