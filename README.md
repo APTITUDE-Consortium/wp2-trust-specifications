@@ -10,6 +10,7 @@ The repository is structured according to the following organization:
 
 ```text
 .
+├── .github
 ├── docs
 │   ├── topics
 │   │   ├── access-certificate.md
@@ -36,9 +37,10 @@ The main files are as follows:
 
 | Name                            | Description           |
 | -------------------             | --------------------- |
+| `.github/`                      | Contains the Github workflows |
 | `docs/`                         | Contains the reference material |
 | `docs/topics/`                  | Contains the files associated with each topic, composing the different sections of the deliverable |
-| `docs/deliverable-2.1-trust.md` | Represents the *Trust Specifications* chapter of deliverable D2.1 |
+| `docs/trust-framework.md`       | Represents the *Trust Specifications* chapter of deliverable D2.1 |
 | `references/`                   | Contains the reference material |
 | `requirements/`                 | Contains the lists of consolidated requirements from different sources |
 

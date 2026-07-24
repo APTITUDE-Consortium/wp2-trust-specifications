@@ -25,7 +25,9 @@ Version 0.2 (Draft)
 **Reviewers**:
 
 - Dominik František Bučík, *ARICOMA Digital S.R.O*
+- Filippos Feizidis, *GRNET*
 - George Fourtounis, *GRNET*
+- Byron Georgantopoulos, *GRNET*
 - Guillaume Hébert, *Keynectis*
 - Angel Palomares Perez, *Bull*
 - Leonardo Pio Palumbo, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
@@ -63,7 +65,7 @@ The current version of these specifications does not provide details on:
 
 - **Low-level Implementation**: These will be covered in subsequent versions of the specifications.
 
-- **Registration, Notification, and Publication Processes**: The administrative and regulatory processes governing the Registration, <processes:Notification>, and Publication of <roles:Trusted Entity|Trust Entities> between Member States and the European Commission are excluded from this scope.
+- **Registration, Notification, and Publication Processes**: The administrative and regulatory processes governing the Registration, <processes:Notification>, and Publication of <roles:Trusted Entity|Trust Entities> between Member States and the European Commission are excluded from this scope. However, the corresponding processes to be implemented in the APTITUDE LSP are described in the [**Onboarding Process**](#6-onboarding-process) section.
 
 ---
 
