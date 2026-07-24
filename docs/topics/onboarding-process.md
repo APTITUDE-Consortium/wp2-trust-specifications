@@ -297,7 +297,7 @@ sequenceDiagram
             RCServ-->>UI: WRPRC
             UI-->>E: provide WRPRC
         end
-        opt notifiable WRP (PID / PuB-EAA / QEAA / non-qualified EAA)
+        opt notifiable WRP (PID / PuB-EAA / QEAA / non-qualified EAA Providers)
             UI->>PubServ: submit notifiable data
             PubServ<<->>TL: publish to applicable trusted list
             PubServ-->>UI: entry successfully created
