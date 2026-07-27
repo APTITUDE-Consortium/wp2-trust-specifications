@@ -629,7 +629,6 @@ This section documents a [TS05] aligned common <components:Register> API profile
 
     The OpenAPI Specification (OAS) of the API described in this section is available in [this page](../api/register-api.md).
 
-
 ##### API Methods on Registration and Updating of WRP Data
 
 The common API write methods (POST, PUT and DELETE) are defined for purposes of managing the <components:Register> information of MS <roles:Registrar|Registrars>.
