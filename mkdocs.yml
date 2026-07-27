@@ -53,7 +53,7 @@ theme:
 extra_css:
   - media/extra.css
   - includes/admonitions.css
-  - stylesheets/extra.css
+  - includes/tables.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js
