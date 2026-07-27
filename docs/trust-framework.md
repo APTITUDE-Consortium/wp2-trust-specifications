@@ -9,6 +9,7 @@ Version 0.2 (Draft)
 
 **Authors**:
 
+- Pasquale Cerqua, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
 - Gianmario Cortese, *Namirial S.p.A.*
 - Henry Faure-Geors, *Keynectis*
 - Francesco Antonio Marino, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
