@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="../../media/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -998,7 +1000,1338 @@
   <h1>Onboarding Process</h1>
 
 <!-- BEGIN INCLUDE ../topics/onboarding-process.md -->
+<p>This section describes the Onboarding Process within APTITUDE, where it is realised as the mocked-up version of the <a class="mkdocs-ezglossary-link"
+    id="395d2d5bcda3d08596457d16b097d3a5"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> Registration Process and <a class="mkdocs-ezglossary-link"
+    id="40545fe48e6829c0b39a28c6c17a9f62"
+    title="The act of transferring information to the European Commission. [ARF]"
+    data-tooltip="The act of transferring information to the European Commission. [ARF]"
+    name="processes:Notification"
+    href="../../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">Notification Process</a> (defined in <a href="#4-trust-architecture">Trust Architecture</a>) through which entities become operational and recognisable in the common trust infrastructure of the pilot.</p>
+<p>Onboarding collects all the information needed to make entities operational and recognisable, and it replaces the administrative and regulatory processes that, outside the pilot, manage the registration, notification and publication of <a class="mkdocs-ezglossary-link"
+    id="e5c657b37ddfd2cce1e7a7f75a19ad66"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entities</a> between Member States and the European Commission.</p>
+<p>Within the pilot, the boundary is as follows:</p>
+<ul>
+<li>The <strong>implemented</strong> elements are the creation of the registration records, the issuance of the certificates, and the signing and publication of the trusted lists, because these are what trust evaluation is tested against.</li>
+<li>The <strong>mocked</strong> elements are the notification act between a Member State and the European Commission, the publication in the <a class="mkdocs-ezglossary-link"
+    id="e2b616424c9ce95432822b7419a2c2bf"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>, and the identity proofing of entities.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The certification of technical products such as a <a class="mkdocs-ezglossary-link"
+    id="684130882f3ecb329603f83cd9b0dc3e"
+    title="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</a> is <strong>out of scope of the pilot</strong>: it is an external process, and only its outcome is referenced. The data schemas, certificate profiles, trusted-list formats, and low-level protocols are instead <strong>out of scope of this section only</strong>: they are normatively defined in the referenced sections of this specification and are only pointed to from here.</p>
+</div>
+<p>This boundary is mapped onto the components of the Onboarding System in the summary table at the end of <a href="#onboarding-system">Onboarding System</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Requirements specific to the APTITUDE pilot are identified inline with the prefix <code>[ONBOARD-...]</code> and consolidated in <a href="#onboarding-requirements">Onboarding Requirements</a>. Obligations defined in other sections of this specification, or in the normative baseline, are referenced where they apply, keeping their own identifiers.</p>
+</div>
+<p>The APTITUDE Onboarding System SHALL implement the Onboarding Process defined in this section [ONBOARD-GEN-01].</p>
+<h4 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h4>
+<p>The entities involved in onboarding fall into two categories, and this distinction underpins the whole process:</p>
+<ul>
+<li><strong>Trust infrastructure entities</strong> (in short, <em>infrastructure entities</em>) are the entities that operate the trust infrastructure through which onboarding is performed, namely registration (the <a class="mkdocs-ezglossary-link"
+    id="9f57dfd0e32e2c27a0e9b8ee54505350"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a>, operating the <a class="mkdocs-ezglossary-link"
+    id="a30e7315e34ae54911288cfc52a9368f"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>), certificate issuance (the <a class="mkdocs-ezglossary-link"
+    id="b0496d3f2729398af63f9c1ce75a3778"
+    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> and the <a class="mkdocs-ezglossary-link"
+    id="f0d9476587d8548e1bf6212aa8582029"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>), and publication of the trusted lists (the <a class="mkdocs-ezglossary-link"
+    id="cbcfd2aabbd2ee57cc4b8c55eb612db5"
+    title="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</a> / <a class="mkdocs-ezglossary-link"
+    id="74a041697d958b04632d7d7d235dcc65"
+    title="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    data-tooltip="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    name="roles:Trusted List Provider"
+    href="../../glossary-definitions/#05ea6b6136a0216bc137bb1cdcb63681">Trusted List Provider</a>). The <a class="mkdocs-ezglossary-link"
+    id="ed5c9bab605259d7698ac4428d3418bd"
+    title="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</a> / <a class="mkdocs-ezglossary-link"
+    id="1a4baa835681fd2899b22681d31cf1e9"
+    title="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    data-tooltip="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    name="roles:Trusted List Provider"
+    href="../../glossary-definitions/#05ea6b6136a0216bc137bb1cdcb63681">Trusted List Provider</a> has a special role, as its own <a class="mkdocs-ezglossary-link"
+    id="3e478bc26e62048b0510006ab6772396"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is the root against which the lists are validated.</li>
+<li><strong>Operational entities</strong> are the entities that are onboarded through that infrastructure in order to become operational and recognisable in the ecosystem, namely the <a class="mkdocs-ezglossary-link"
+    id="52912a0bccf9b0606418ffba92e85fa3"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> and the <a class="mkdocs-ezglossary-link"
+    id="905cde2e5d83144ca3659803df881722"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>.</li>
+</ul>
+<p>The onboarding process presupposes the existence of a functional trust infrastructure. Its one-time setup is a prerequisite that must be satisfied before any operational entity can be onboarded; it is described in <a href="#trust-infrastructure-prerequisites">Trust Infrastructure Prerequisites</a>. The recurring process through which operational entities become active is described in <a href="#operational-entity-onboarding">Operational Entity Onboarding</a>.</p>
+<pre class="mermaid"><code>graph LR
 
+    subgraph OB["Onboarding Process"]
+        direction LR
+
+        subgraph PRE["Trust Infrastructure Prerequisites (one-time)"]
+            direction TB
+            S1["Establish the trust infrastructure entities\nthat operate the Onboarding System"]
+        end
+
+        subgraph ONB["Operational Entity Onboarding (recurring)"]
+            direction TB
+            O1["Onboard the operational entities"]
+        end
+
+        PRE ==&gt;|"enables"| ONB
+    end
+
+    %% Style
+    style OB fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
+    style PRE fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+    style ONB fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    classDef green fill:#8fbc8f,stroke:#2f4f4f
+    classDef cand fill:#ffefd5,stroke:#ffdab9
+    class S1 green;
+    class O1 cand;</code></pre>
+<h4 id="trust-infrastructure-prerequisites">Trust Infrastructure Prerequisites<a class="headerlink" href="#trust-infrastructure-prerequisites" title="Permanent link">&para;</a></h4>
+<p>The <a href="#onboarding-system">Onboarding System</a> operates on top of a trust infrastructure whose entities must be established and have their trust anchors published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [ONBOARD-GEN-02].</p>
+<p>Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software [ONBOARD-PRE-01]. The trust anchors of the infrastructure entities are provided and shared among the participants as a one-time operational setup. What is implemented and testable is the result, i.e. the signed, published trusted lists against which trust is later evaluated (see <a href="#trust-anchor-validation-process">Trust Anchor Validation Process</a>). The operations below describe the trust infrastructure setup process.</p>
+<pre class="mermaid"><code>graph LR
+
+    OJEU(["Mocked OJEU root&lt;br/&gt;(LoTE/TL Provider self-signed root certificate)"])
+
+    subgraph LoTEs["Infrastructure LoTE"]
+        L1[("LoTE with Registrars TA")]
+        L2[("LoTE with Providers of WRPAC TA")]
+        L3[("LoTE with Providers of WRPRC TA")]
+    end
+
+    DP[/"LoTE / Trusted List distribution point"/]
+
+    OJEU --&gt;|"signs / seals"| L1
+    OJEU --&gt;|"signs / seals"| L2
+    OJEU --&gt;|"signs / seals"| L3
+    L1 --&gt;|"published at"| DP
+    L2 --&gt;|"published at"| DP
+    L3 --&gt;|"published at"| DP
+
+    %% Style
+    style LoTEs fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
+    classDef list fill:#e8f0fe,stroke:#abb2bf
+    classDef dp fill:#f5f5f5,stroke:#999
+    classDef root fill:#fde9d9,stroke:#d9a441
+    class L1,L2,L3 list;
+    class OJEU root;
+    class DP dp;</code></pre>
+<p>The setup comprises the following operations:</p>
+<ol>
+<li><strong>Key and Certificate Provisioning</strong>. Each trust infrastructure entity provides its signing key and certificate. Within APTITUDE, the trust infrastructure signing entities SHALL use self-signed root certificates, with no higher certification authority [ONBOARD-PRE-02]. Trust is conferred by the publication of the trust anchor in the relevant <a class="mkdocs-ezglossary-link"
+    id="6fc2a451d20cde50ad50e16ab616252a"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</li>
+<li><strong>List Trust Anchor</strong>. The self-signed root of the <a class="mkdocs-ezglossary-link"
+    id="8b7877d516d15817acd9af4a548a69c0"
+    title="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</a> / <a class="mkdocs-ezglossary-link"
+    id="1c4eb0cb7e6d55a0573aaa8d05991c91"
+    title="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    data-tooltip="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    name="roles:Trusted List Provider"
+    href="../../glossary-definitions/#05ea6b6136a0216bc137bb1cdcb63681">Trusted List Provider</a> is the trust anchor used to validate the lists. In the normative framework this anchor is the certificate published in the <a class="mkdocs-ezglossary-link"
+    id="de646ceead3a5a65401fdd013564a01b"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>; within APTITUDE, the <a class="mkdocs-ezglossary-link"
+    id="9853089dcf9ba69ce63024cb61b29c5a"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a> publication is mocked and the certificate is self-signed. The distribution point where this trust anchor is made available to the APTITUDE participants is an operational matter, out of scope of this document.</li>
+<li><strong>Notification of Trust Anchors</strong>. The <a class="mkdocs-ezglossary-link"
+    id="bc0267607dec5983ce03965011dbffd9"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> of each infrastructure entity is listed in its corresponding <a class="mkdocs-ezglossary-link"
+    id="853b1e12211f44eb1efb6c84cc5f64f4"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> (the <a class="mkdocs-ezglossary-link"
+    id="55d65621825553f83bc2d668340c15d1"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</a> LoTE, the <a class="mkdocs-ezglossary-link"
+    id="0cf93cec29946ec4f1c586b4b6cd6860"
+    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Providers of WRPAC</a> LoTE, or the <a class="mkdocs-ezglossary-link"
+    id="d466307e50aa4271f6183ec0350ce00c"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Providers of WRPRC</a> LoTE).</li>
+<li><strong>Signing and Publication</strong>. The <a class="mkdocs-ezglossary-link"
+    id="eda636d7d508d0671fe8e9058860d102"
+    title="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</a> / <a class="mkdocs-ezglossary-link"
+    id="787a1f08fe889c01aa12dbfa00cf2102"
+    title="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    data-tooltip="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    name="roles:Trusted List Provider"
+    href="../../glossary-definitions/#05ea6b6136a0216bc137bb1cdcb63681">Trusted List Provider</a> signs/seals the <a class="mkdocs-ezglossary-link"
+    id="7a85a7613ad63ad8906021b726124ea5"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> and publishes them at a distribution point referenced by the mocked <a class="mkdocs-ezglossary-link"
+    id="bad00cc82088cb7378e4e7f7a646ef8b"
+    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</a>/<a class="mkdocs-ezglossary-link"
+    id="c9293305d6434546a50924fb9fde126a"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>, so that they can be retrieved at validation time (see <a href="#trust-anchor-validation-process">Trust Anchor Validation Process</a>).</li>
+</ol>
+<p>The same <a class="mkdocs-ezglossary-link"
+    id="ed72272a07dcc012daa1164396abe0a0"
+    title="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</a> / <a class="mkdocs-ezglossary-link"
+    id="4566f8a4f1651e74e2b5bec75bf597d3"
+    title="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    data-tooltip="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    name="roles:Trusted List Provider"
+    href="../../glossary-definitions/#05ea6b6136a0216bc137bb1cdcb63681">Trusted List Provider</a> also signs the lists populated during operational entity onboarding (the <a class="mkdocs-ezglossary-link"
+    id="cad2f91f0ac60fae977bfcbf9111c303"
+    title="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</a>, <a class="mkdocs-ezglossary-link"
+    id="c46135ee0a6b33f066d50f31ecae7c80"
+    title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    name="roles:PuB-EAA Provider"
+    href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">PuB-EAA Providers</a>, and <a class="mkdocs-ezglossary-link"
+    id="ccb83fce5479ba0381573c0619f5ed82"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a> <a class="mkdocs-ezglossary-link"
+    id="408fb1fd67246e2eec21e5c725daaa14"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>, and the <a href="artifacts:EU Member State Trusted List (EUMS TL)">EUMS TL</a> referenced by the <a class="mkdocs-ezglossary-link"
+    id="acf651c18630616bc8c75b69e51df9d1"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</a>).</p>
+<h4 id="operational-entity-onboarding">Operational Entity Onboarding<a class="headerlink" href="#operational-entity-onboarding" title="Permanent link">&para;</a></h4>
+<p>This section describes the recurring process through which operational entities become active in the ecosystem, once the <a href="#trust-infrastructure-prerequisites">Trust Infrastructure Prerequisites</a> are in place (ONBOARD-GEN-02).</p>
+<h5 id="onboarding-system">Onboarding System<a class="headerlink" href="#onboarding-system" title="Permanent link">&para;</a></h5>
+<p>This subsection describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the <a class="mkdocs-ezglossary-link"
+    id="a674ad0b67df9a33915c197d4dde8a76"
+    title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    name="components:EUDI Wallet"
+    href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a> normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document. The diagram below shows how the operational entity requesting onboarding interacts with these components.</p>
+<pre class="mermaid"><code>graph TB
+
+    OpEn(["Operational Entity (requesting onboarding)"])
+
+    subgraph SYS["APTITUDE Onboarding System - components"]
+        direction LR
+        UI["Onboarding UI"]
+        RegSvc["Registration Service&lt;br/&gt;verification, record and status management (+ REST API)"]
+        WRPReg[("WRP Register&lt;br/&gt;CIR 2025/848 records")]
+        ACsvc["WRPAC Issuance Service&lt;br/&gt;issue / revoke WRPAC"]
+        RCsvc["WRPRC Issuance Service&lt;br/&gt;issue / revoke WRPRC"]
+        PubSvc["Publication Service&lt;br/&gt;(mocked EC / MS-TLP)&lt;br/&gt;consolidate and publish"]
+        NotifDS[("Notification dataset&lt;br/&gt;CIR 2024/2980 notifiable info")]
+        Lists[("Trusted Lists&lt;br/&gt;LoTE / LOTL / EUMS TL")]
+
+        UI --&gt;|"create / check / update registration"| RegSvc
+        UI --&gt;|"request WRPAC"| ACsvc
+        UI -.-&gt;|"request WRPRC (where applicable)"| RCsvc
+        UI --&gt;|"submit notifiable data"| PubSvc
+        RegSvc --&gt;|"CRUD operations"| WRPReg
+        ACsvc --&gt;|"status and data for verification"| RegSvc
+        RCsvc --&gt;|"status and data for verification"| RegSvc
+        RCsvc -.-&gt;|"check WRPAC validity (when relevant)"| ACsvc
+        RCsvc ~~~ PubSvc
+        PubSvc --&gt;|"manage notifiable data"| NotifDS
+        PubSvc --&gt;|"publish / set entry status"| Lists
+    end
+
+    OpEn &lt;--&gt;|"submit data, receive the resulting artifacts and check status"| UI
+
+    %% Style
+    style SYS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+    classDef green fill:#8fbc8f,stroke:#2f4f4f
+    classDef blue fill:#e8f0fe,stroke:#abb2bf
+    classDef cand fill:#ffefd5,stroke:#ffdab9
+    classDef ui fill:#d5e8d4,stroke:#2f4f4f
+    class RegSvc,ACsvc,RCsvc,WRPReg green;
+    class PubSvc,NotifDS,Lists blue;
+    class OpEn cand;
+    class UI ui;</code></pre>
+<p>The components, and the role each realises, are:</p>
+<ul>
+<li><strong>Onboarding UI</strong> (APTITUDE-specific orchestrator). It is the single point of contact of the entities requesting onboarding and coordinates the other services. It collects the data submitted by the entity, and it SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the trusted-list entry [ONBOARD-GEN-03].</li>
+<li><strong>Registration Service</strong>. It implements the <a class="mkdocs-ezglossary-link"
+    id="807a722f0357df525a383e8696d8245e"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> role, handling verification and the management of the registration record and its status. It exposes the common REST API (see <a href="#common-register-api">Common Register API</a>).</li>
+<li><strong>WRP Register</strong>. It is the <a class="mkdocs-ezglossary-link"
+    id="89065adfcc5a66a5c6839b54cf9a7ec3"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> defined by [CIR 2025/848], which stores the registration records.</li>
+<li><strong>WRPAC Issuance Service</strong> and <strong>WRPRC Issuance Service</strong>. They realise the <a class="mkdocs-ezglossary-link"
+    id="2b2453c1676578fe65bab68b00de2a72"
+    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> and the <a class="mkdocs-ezglossary-link"
+    id="9078cb7f9f4849812796a491a8eb80c0"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>.</li>
+<li><strong>Publication Service</strong>. It realises the <a class="mkdocs-ezglossary-link"
+    id="4cfadd6b2e88e627de5a1b19472a9f0e"
+    title="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</a> / <a class="mkdocs-ezglossary-link"
+    id="a31fbbc1b28b9cf3c584f714d83ab98f"
+    title="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    data-tooltip="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    name="roles:Trusted List Provider"
+    href="../../glossary-definitions/#05ea6b6136a0216bc137bb1cdcb63681">Trusted List Provider</a> that signs and publishes the trusted lists. Within APTITUDE it mocks the EC <a class="mkdocs-ezglossary-link"
+    id="13e413099f8db9657e107969b43fa5e1"
+    title="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</a> and the Member State <a class="mkdocs-ezglossary-link"
+    id="855927d17a65901036ae3e16300290ee"
+    title="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    data-tooltip="A body responsible for maintaining, managing, and publishing Trusted Lists. [ARF]"
+    name="roles:Trusted List Provider"
+    href="../../glossary-definitions/#05ea6b6136a0216bc137bb1cdcb63681">Trusted List Provider</a> (see <a href="#4-trust-architecture">Trust Architecture</a>), which can be played by the same subject.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Within the pilot, the Onboarding UI is an abstract orchestrator, and it could be implemented as a structured intake (for example a web form or a portal) that drives the services, and the specific user interface is an implementation matter.</p>
+</div>
+<p>The Onboarding System SHALL keep the <a class="mkdocs-ezglossary-link"
+    id="09b4396f01a8a3bedaf3aae120351c5a"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">WRP Register</a> and the <a class="mkdocs-ezglossary-link"
+    id="4f19573367afe3a211d3bd8d5d1b292e"
+    title="The act of transferring information to the European Commission. [ARF]"
+    data-tooltip="The act of transferring information to the European Commission. [ARF]"
+    name="processes:Notification"
+    href="../../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">Notification</a> dataset as two distinct data stores [ONBOARD-GEN-04], because the data needed for notification does not fully coincide with the data that populates the <a class="mkdocs-ezglossary-link"
+    id="e52bfc72322bae522e37c75d27f54786"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">WRP Register</a>:</p>
+<ul>
+<li>the <strong>WRP Register</strong> holds the WRP registration records ([CIR 2025/848]), namely identification, intended use, and related data, as defined in <a href="#register-data-schema">Register Data Schema</a>;</li>
+<li>the <strong>Notification dataset</strong> holds the notifiable information related to the notifiable entity ([CIR 2024/2980]), namely identification, trust anchors, and service supply points, whose fields are defined as LoTE entries in <a href="#list-of-trusted-entities">List of Trusted Entities</a>.</li>
+</ul>
+<p>The datasets above overlap only in part (identification), and the infrastructure entities that are notified but not registered as <a class="mkdocs-ezglossary-link"
+    id="269abfb4b66f77cc15ba564811ae65b0"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> (<a class="mkdocs-ezglossary-link"
+    id="2a3583647abcc82bc23f4efbb2e5ef43"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a>, <a class="mkdocs-ezglossary-link"
+    id="5646cb9e86508d1e1cb271c2c2dc2d23"
+    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Providers of WRPAC</a>/<a class="mkdocs-ezglossary-link"
+    id="7bb226be384423a9e10918b726d95584"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">WRPRC</a>, <a class="mkdocs-ezglossary-link"
+    id="68ef990e75a14ced9d8029f9b87aba9b"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</a>) are not present in the <a class="mkdocs-ezglossary-link"
+    id="ff0accaad040834ad9250e70ce8b7c80"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">WRP Register</a> at all.</p>
+<p>Against this decomposition, the pilot boundary set out in the introduction of the Onboarding Process section is summarised below.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>In the pilot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Onboarding UI, Registration Service (with the WRP Register and its API), WRPAC and WRPRC Issuance Services, Publication Service (with the trusted lists)</td>
+<td>implemented as pilot software</td>
+</tr>
+<tr>
+<td>Trust infrastructure setup (prerequisites)</td>
+<td>performed out of band; no pilot software</td>
+</tr>
+<tr>
+<td>The Member State to European Commission notification act, and the OJEU publication</td>
+<td>mocked, respectively by the Publication Service and by the pilot</td>
+</tr>
+<tr>
+<td>The certification of a Wallet Solution</td>
+<td>external; out of scope of the pilot and only referenced</td>
+</tr>
+<tr>
+<td>Data schemas, certificate profiles, trusted-list formats, low-level protocols</td>
+<td>defined in the referenced sections of this specification, not redefined here</td>
+</tr>
+</tbody>
+</table>
+<h5 id="input">Input<a class="headerlink" href="#input" title="Permanent link">&para;</a></h5>
+<p>The required inputs to onboard an operational entity depend on its type and on the onboarding path it follows (see <a href="#onboarding-paths-by-entity-type">Onboarding Paths by Entity Type</a>). The following inputs SHALL be required:</p>
+<ul>
+<li><strong>Registration data</strong> of entities that are registered in the <a class="mkdocs-ezglossary-link"
+    id="d6625f81e6583cced2321e36e4ab0162"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>, i.e., all <a class="mkdocs-ezglossary-link"
+    id="e9ccb1b38752653766709c8d8b2c4e16"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> types. This data conforms to the <code>WalletRelyingParty</code> schema defined in <a href="#register-data-schema">Register Data Schema</a>, which transposes the [CIR 2025/848, Annex I] and [CIR 2025/848-Amendment, Annex VI] set.</li>
+<li><strong>Notifiable data</strong> of entities published in a trusted list, i.e., <a href="roles:PID Provider">PID Provider</a>, <a class="mkdocs-ezglossary-link"
+    id="28d42c82a402a02898711199e73c289b"
+    title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    name="roles:PuB-EAA Provider"
+    href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">PuB-EAA Provider</a>, <a class="mkdocs-ezglossary-link"
+    id="93850ab40da48bb9b1040fca62faa954"
+    title="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
+    data-tooltip="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
+    name="roles:QEAA Provider"
+    href="../../glossary-definitions/#ba9c7de719dc10bf2f0637af443116a3">QEAA Provider</a>, non-qualified <a class="mkdocs-ezglossary-link"
+    id="b9fcef9c54fd469254797fc4b858d76d"
+    title="Provider of EEAs."
+    data-tooltip="Provider of EEAs."
+    name="roles:EAA Provider"
+    href="../../glossary-definitions/#25618de6dced5276e214359c546b87e1">EAA Provider</a>, and the <a class="mkdocs-ezglossary-link"
+    id="546d55ac62e428844dbeb0451ad2d6fd"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>. This data covers the identification, <a class="mkdocs-ezglossary-link"
+    id="45244f149d86684e194e4d84ff546e0a"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a>, and service supply points needed for the relevant trusted-list entry, as defined in <a href="#list-of-trusted-entities">List of Trusted Entities</a>.</li>
+<li><strong>Cryptographic material</strong>, namely the public key(s) for which a <a class="mkdocs-ezglossary-link"
+    id="9906e91a8320964cef3075d757ff92a0"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> requests a <a class="mkdocs-ezglossary-link"
+    id="eb96b41efde96b6500c4cbe78a7a22db"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, generated according to [ETSI TS 119 411-8], and the public keys of the signature or seal certificates the entity uses to sign or seal its artifacts.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <a class="mkdocs-ezglossary-link"
+    id="5466ff42c2d8590e4395e11906c987a4"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> that is also a notified entity (PID, PuB-EAA, QEAA, or non-qualified EAA Provider) provides both the registration data and the notifiable data: the former populates the <a class="mkdocs-ezglossary-link"
+    id="0280428080f15d9a52a838dc3a33bac2"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> and drives the <a class="mkdocs-ezglossary-link"
+    id="d44d5bae0a2c3a6f1843f7c2f1cf5472"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, the latter populates the corresponding trusted list. A <a class="mkdocs-ezglossary-link"
+    id="30d1db484b34eafb8952de726fe07249"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Party</a> or a <a class="mkdocs-ezglossary-link"
+    id="0950b4b97941f6ae9886c499ada53f07"
+    title="A Relying Party that offers services to other (intermediated) Relying Parties to, on their behalf, connect to Wallet Units and request the User attributes that these intermediated Relying Parties need. [ARF]"
+    data-tooltip="A Relying Party that offers services to other (intermediated) Relying Parties to, on their behalf, connect to Wallet Units and request the User attributes that these intermediated Relying Parties need. [ARF]"
+    name="roles:Relying Party Intermediary (RPI)"
+    href="../../glossary-definitions/#db24345e7f6ff09999d2ec1289087fc4">Relying Party Intermediary</a> provides only the registration data, as it requires no trusted-list entry.</p>
+</div>
+<h5 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h5>
+<p>A successful onboarding produces the artifacts below, whose data model and format are normatively specified in the referenced sections:</p>
+<ul>
+<li>the <a class="mkdocs-ezglossary-link"
+    id="6117d9ee88c979f3e842c829baec4730"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> entry and its publication, see <a href="#register-data-schema">Register Data Schema</a> and <a href="#common-register-api">Common Register API</a>;</li>
+<li>the <a class="mkdocs-ezglossary-link"
+    id="4321617cff6af942e140fce9e668a567"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, see <a href="#wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate</a>;</li>
+<li>the <a class="mkdocs-ezglossary-link"
+    id="68b9a4a71a2bf5b1a2f1c3614faeadc3"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, see <a href="#wallet-relying-party-registration-certificate">Wallet-Relying Party Registration Certificate</a>;</li>
+<li>the trusted-list entry (<a class="mkdocs-ezglossary-link"
+    id="54ba79e02adbd9cd2950e15720e1a058"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>, <a href="artifacts:EU Member State Trusted List (EUMS TL)">EUMS TL</a>, or the trusted list for non-qualified <a class="mkdocs-ezglossary-link"
+    id="e1f61d5233d6d682a787134b3de5e107"
+    title="Provider of EEAs."
+    data-tooltip="Provider of EEAs."
+    name="roles:EAA Provider"
+    href="../../glossary-definitions/#25618de6dced5276e214359c546b87e1">EAA Providers</a>), produced by the <a href="#notification-and-publication">Notification and Publication</a> step.</li>
+</ul>
+<h5 id="onboarding-paths-by-entity-type">Onboarding Paths by Entity Type<a class="headerlink" href="#onboarding-paths-by-entity-type" title="Permanent link">&para;</a></h5>
+<p>Each entity type follows a different path and produces a different set of outputs, summarised in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Entity type</th>
+<th>Register record</th>
+<th>WRPAC</th>
+<th>WRPRC</th>
+<th>Trusted-list entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PID Provider</td>
+<td>yes</td>
+<td>yes</td>
+<td>where applicable</td>
+<td>PID Providers LoTE</td>
+</tr>
+<tr>
+<td>QEAA Provider</td>
+<td>yes</td>
+<td>yes</td>
+<td>where applicable</td>
+<td>EUMS TL (referenced in the LOTL)</td>
+</tr>
+<tr>
+<td>PuB-EAA Provider</td>
+<td>yes</td>
+<td>yes</td>
+<td>where applicable</td>
+<td>PuB-EAA Providers LoTE</td>
+</tr>
+<tr>
+<td>Non-qualified EAA Provider</td>
+<td>yes</td>
+<td>yes</td>
+<td>where applicable</td>
+<td>Trusted List referenced by the Rulebook (APTITUDE-specific)</td>
+</tr>
+<tr>
+<td>Relying Party</td>
+<td>yes</td>
+<td>yes</td>
+<td>where applicable</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Relying Party Intermediary</td>
+<td>yes</td>
+<td>yes</td>
+<td>where applicable</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Wallet Provider</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>Wallet Providers LoTE</td>
+</tr>
+</tbody>
+</table>
+<p>The steps below describe the onboarding journey: any <a class="mkdocs-ezglossary-link"
+    id="06da3ff063ead6e8806b3fc2ba5b3288"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> entity type goes through <a href="#data-collection-and-registration-record-creation">Data Collection and Registration Record Creation</a>, <a href="#certificate-issuance">Certificate Issuance</a> and, where it is also a notified entity, <a href="#notification-and-publication">Notification and Publication</a>; the <a class="mkdocs-ezglossary-link"
+    id="87008d0abb527c36a1d5f118284c43a1"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> goes through that last step only.</p>
+<h5 id="data-collection-and-registration-record-creation">Data Collection and Registration Record Creation<a class="headerlink" href="#data-collection-and-registration-record-creation" title="Permanent link">&para;</a></h5>
+<p>This step produces the registration record for a <a class="mkdocs-ezglossary-link"
+    id="20148bee09965b1f4f954a25cf16566c"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>.</p>
+<p>The entity submits its registration data through the <strong>Onboarding UI</strong>, which forwards the request to the Registration Service (<a class="mkdocs-ezglossary-link"
+    id="0637a76b5c495922c1da5ebe62515bc4"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a>).</p>
+<p>Within APTITUDE, registration SHALL be restricted to APTITUDE participants, and the Onboarding System SHALL enforce this restriction [ONBOARD-REG-01]. This replaces the identity proofing of [ETSI TS 119 461] and the verification duties of [CIR 2025/848, Article 6] (<code>REGISTRAR-REG-04</code> to <code>REGISTRAR-REG-07</code>, not restated here). The mechanism by which participation is established, for example a pre-provisioned list of participants, or a membership check, is an implementation choice; a non-participant SHALL NOT be registered, and onboarding does not proceed.</p>
+<p>On successful verification, the <a class="mkdocs-ezglossary-link"
+    id="da1b5f6a3b2534818641f6f1aaa9431a"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> SHALL create the record through the common <a class="mkdocs-ezglossary-link"
+    id="ea76be9907eff741847b62ca338d96f7"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> write API (<code>POST /wrp</code>, see <a href="#common-register-api">Common Register API</a>), using a body conforming to the <code>WalletRelyingParty</code> schema of <a href="#register-data-schema">Register Data Schema</a>, and SHALL set the registration status to <code>active</code>. Write access to the API SHALL be authenticated and restricted to the <a class="mkdocs-ezglossary-link"
+    id="c5c70d4a63353d98c88fee033a4bad25"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> [ONBOARD-REG-02]; the concrete credential mechanism (for example a bearer token or mutual TLS) is an implementation choice. When published or queried, the record is electronically signed/sealed by or on behalf of the <a class="mkdocs-ezglossary-link"
+    id="59d77967ef20ec8e35c55a9970ec661c"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> (<code>REGISTER-PUB-05</code>).</p>
+<h5 id="certificate-issuance">Certificate Issuance<a class="headerlink" href="#certificate-issuance" title="Permanent link">&para;</a></h5>
+<p>This step issues the certificates for a <a class="mkdocs-ezglossary-link"
+    id="04d1478048c14206c6c3aa4509d07dc3"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>, once its registration record is <code>active</code>.</p>
+<p>The request/issuance protocol is an implementation choice (for example ACME, EST, or a manual exchange); the enrolment SHOULD include a proof of possession of the private key corresponding to the certified public key, a property inherited from the certificate-policy framework underlying [ETSI TS 119 411-8]. The verifications below apply regardless of the protocol.</p>
+<ul>
+<li><strong>WRPAC</strong>. The <a class="mkdocs-ezglossary-link"
+    id="3145f22a34effecb2bcbf59062faf6c4"
+    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> issues one or more <a class="mkdocs-ezglossary-link"
+    id="ac9a958da2bd4e1b8bf23aada9762512"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a>, whose content and format are defined in <a href="#wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate</a>. A <a class="mkdocs-ezglossary-link"
+    id="1081c5344809ed3f8371cb8bfd62c5b9"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Party</a> receives a separate <a class="mkdocs-ezglossary-link"
+    id="e70579fda7908c976aa0c1b8100e8604"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> for each of its <a class="mkdocs-ezglossary-link"
+    id="f28428dafe937c9139d8e60b9d15f647"
+    title="A software and/or hardware module with the capability to interact with a Wallet Unit and to perform Relying Party authentication, that is controlled by a Relying Party. [ARF]"
+    data-tooltip="A software and/or hardware module with the capability to interact with a Wallet Unit and to perform Relying Party authentication, that is controlled by a Relying Party. [ARF]"
+    name="components:Relying Party Instance"
+    href="../../glossary-definitions/#2f9e325081d53589e48e481fca803165">Relying Party Instances</a> (<code>Reg_10a</code>). At issuance time it SHALL verify that the <a class="mkdocs-ezglossary-link"
+    id="1fbb4c96cb71976c924743f67b2a25b1"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> has an active registration status and that the certificate information is consistent with the <a class="mkdocs-ezglossary-link"
+    id="49f630317fca7d900e9b858897e9b60c"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> (requirement <code>PROVIDER-WRPAC-01</code> in <a href="#register">Register</a>, from [CIR 2025/848, Annex IV 3(c)]); its attributes are derived from the <a class="mkdocs-ezglossary-link"
+    id="f5a24443e588a430789b9c94acad4cca"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> information ([ETSI TS 119 475, clause 5.1.2]). If the registration is not active or the data are inconsistent, the Provider SHALL refuse to issue the certificate.</li>
+<li><strong>WRPRC</strong> (where mandated by [CIR 2025/848, Article 8]). The <a class="mkdocs-ezglossary-link"
+    id="68ab194faf8e71194e450af3e5706fd1"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> issues a <a class="mkdocs-ezglossary-link"
+    id="1147e5cfea876b01e4b9dc98856b5354"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, whose content and format are defined in <a href="#wallet-relying-party-registration-certificate">Wallet-Relying Party Registration Certificate</a>. At issuance time it SHALL verify the <a class="mkdocs-ezglossary-link"
+    id="d17045a15c4acbe022b915d7a793154d"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> status, the consistency with the <a class="mkdocs-ezglossary-link"
+    id="97270eb0f19bf76326d919fa23f543f7"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> information, and the validity of the corresponding <a class="mkdocs-ezglossary-link"
+    id="d0934e2aa162b2f02935dbb705806e12"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> when relevant (requirement <code>PROVIDER-WRPRC-02</code> in <a href="#register">Register</a>, from [CIR 2025/848, Annex V 3(c)]). The same failure handling applies.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the normative baseline, the <a class="mkdocs-ezglossary-link"
+    id="127379b4cf59d49bd8b5c85e1ae4bc9b"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is created during the registration process by a <a class="mkdocs-ezglossary-link"
+    id="f71129dfdbf92db5ab97f96966f13bba"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> associated to the <a class="mkdocs-ezglossary-link"
+    id="bd0b5615d26c24a5bd2f18778f1e01c9"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> (<code>RPRC_09</code>, <code>RPRC_13</code>), and no certificate-based request step is described. The presentation of the <a class="mkdocs-ezglossary-link"
+    id="447db380aabf88ddbb938bc0dc2b42b3"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> when requesting the <a class="mkdocs-ezglossary-link"
+    id="668f6977efb64aa99c2481e37cff535b"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, shown in the <a href="#detailed-flow">Detailed flow</a>, is therefore an APTITUDE-specific design choice, which gives the <a class="mkdocs-ezglossary-link"
+    id="bd4a97dfa81535454cf3115f237a91d1"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> direct evidence for the <a class="mkdocs-ezglossary-link"
+    id="502cd8bd582ffe23feaba5eda689b59b"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> validity verification required by <code>PROVIDER-WRPRC-02</code>.</p>
+</div>
+<p>Identity proofing is not repeated here; it is performed by the <a class="mkdocs-ezglossary-link"
+    id="79fba57a56e6cafc3b21291a32d191b2"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> at <a href="#data-collection-and-registration-record-creation">Data Collection and Registration Record Creation</a>. After issuance, the entity deploys each <a class="mkdocs-ezglossary-link"
+    id="054bdc9d3d253c71b74badcf4ff09863"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> at the <a class="mkdocs-ezglossary-link"
+    id="e086e2378e323bc800ee27293fed0a26"
+    title="A software and/or hardware module with the capability to interact with a Wallet Unit and to perform Relying Party authentication, that is controlled by a Relying Party. [ARF]"
+    data-tooltip="A software and/or hardware module with the capability to interact with a Wallet Unit and to perform Relying Party authentication, that is controlled by a Relying Party. [ARF]"
+    name="components:Relying Party Instance"
+    href="../../glossary-definitions/#2f9e325081d53589e48e481fca803165">Relying Party Instance</a> for which it was issued (<code>Reg_10a</code>), provides its <a class="mkdocs-ezglossary-link"
+    id="f16962c02e6904eae4b1c5212a4d49e4"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> to its <a class="mkdocs-ezglossary-link"
+    id="8fa756b755089f10777eab56647503bb"
+    title="A software and/or hardware module with the capability to interact with a Wallet Unit and to perform Relying Party authentication, that is controlled by a Relying Party. [ARF]"
+    data-tooltip="A software and/or hardware module with the capability to interact with a Wallet Unit and to perform Relying Party authentication, that is controlled by a Relying Party. [ARF]"
+    name="components:Relying Party Instance"
+    href="../../glossary-definitions/#2f9e325081d53589e48e481fca803165">Relying Party Instances</a> or service supply points and, for an <a class="mkdocs-ezglossary-link"
+    id="eb3409e98489f6d3bf00ad36085d2116"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a>, includes it in the <a class="mkdocs-ezglossary-link"
+    id="7e1c180851a708859adb2672063ba106"
+    title="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
+    data-tooltip="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
+    name="artifacts:Credential Issuer Metadata"
+    href="../../glossary-definitions/#5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</a> used at issuance (<code>RPRC_10</code>, <code>RPRC_14</code>, <code>RPRC_22</code>).</p>
+<h5 id="notification-and-publication">Notification and Publication<a class="headerlink" href="#notification-and-publication" title="Permanent link">&para;</a></h5>
+<p>This step publishes a notified entity, together with the <a class="mkdocs-ezglossary-link"
+    id="c9cbda657ecc42f27fd32ff2c6ddf456"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> of the technical component it operates, in the appropriate trusted list. Notification is a separate, Member State level process ([CIR 2024/2980]) and is not a duty of the <a class="mkdocs-ezglossary-link"
+    id="4591362c801301acc8659c7f29c028d0"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a>. Within APTITUDE, the Member State to European Commission notification act SHALL be mocked by the Publication Service, triggered by the Onboarding UI, while the signing and publication of the trusted lists SHALL follow the normative framework [ONBOARD-PUB-01].</p>
+<ul>
+<li>a <a href="roles:PID Provider">PID Provider</a> or a <a class="mkdocs-ezglossary-link"
+    id="6a2f42a8de301b8b7888d3dc61343205"
+    title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
+    name="roles:PuB-EAA Provider"
+    href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">PuB-EAA Provider</a> is added, respectively, to the PID Providers <a class="mkdocs-ezglossary-link"
+    id="e629db8d2e797f5e73c12934628ae6fa"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> or the PuB-EAA Providers <a class="mkdocs-ezglossary-link"
+    id="decb6ac38ae7209f32b0858e09c2480b"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>;</li>
+<li>a <a class="mkdocs-ezglossary-link"
+    id="344d2a4eb2a267d5bb8c0a3495c72b9b"
+    title="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
+    data-tooltip="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
+    name="roles:QEAA Provider"
+    href="../../glossary-definitions/#ba9c7de719dc10bf2f0637af443116a3">QEAA Provider</a> is published on the <a href="artifacts:EU Member State Trusted List (EUMS TL)">EUMS TL</a>, whose URL is referenced in the <a class="mkdocs-ezglossary-link"
+    id="2c3683a860ea42651581f88a8f35b2f2"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists (LOTL)</a>, under the eIDAS Trusted List framework;</li>
+<li>a non-qualified <a class="mkdocs-ezglossary-link"
+    id="253ec3e6f48ba40e4cf476ec96e6bdf0"
+    title="Provider of EEAs."
+    data-tooltip="Provider of EEAs."
+    name="roles:EAA Provider"
+    href="../../glossary-definitions/#25618de6dced5276e214359c546b87e1">EAA Provider</a> is not placed on any EU-level trusted list, because the EU framework leaves its trust-anchor distribution to the applicable <a class="mkdocs-ezglossary-link"
+    id="447bfb364216ac1c8f038eba39268108"
+    title="A document describing the attestation type, namespace(s), and other features for a specific attestation type. [ARF]"
+    data-tooltip="A document describing the attestation type, namespace(s), and other features for a specific attestation type. [ARF]"
+    name="artifacts:Attestation Rulebook"
+    href="../../glossary-definitions/#0916abba47ca0e7c38aae98b2c82f593">Attestation Rulebook</a>. For the purposes of the pilot, a non-qualified EAA Provider SHALL be published in a dedicated trusted list in the [ETSI TS 119 612] format, referenced by the applicable <a class="mkdocs-ezglossary-link"
+    id="f648b351356acf628fdf88b2249466cd"
+    title="A document describing the attestation type, namespace(s), and other features for a specific attestation type. [ARF]"
+    data-tooltip="A document describing the attestation type, namespace(s), and other features for a specific attestation type. [ARF]"
+    name="artifacts:Attestation Rulebook"
+    href="../../glossary-definitions/#0916abba47ca0e7c38aae98b2c82f593">Attestation Rulebook</a> and kept outside the <a class="mkdocs-ezglossary-link"
+    id="d8ed1caf5578a3ba7d065f4e58630ea6"
+    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists (LOTL)</a>, with the Rulebook as its root of trust [ONBOARD-PUB-02]. This is an APTITUDE-specific simplification, and therefore the presence on this trusted list does not confer the regulatory vetting of the PID, QEAA, or PuB-EAA lists, as it is not the EUMS TL;</li>
+<li>the <a class="mkdocs-ezglossary-link"
+    id="136490b1de08ed843be01a1ea4d28ae6"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> follows a notification-only path, with no <a class="mkdocs-ezglossary-link"
+    id="475d191d62351e8899cd1691f82a2239"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> record and no <a class="mkdocs-ezglossary-link"
+    id="929ba750deebdbd9769018a758245596"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, and its <a class="mkdocs-ezglossary-link"
+    id="7c7882bc972c5bc3b800b574eb1702b3"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is published in the Wallet Providers <a class="mkdocs-ezglossary-link"
+    id="85a30b3f3787c9d4c8c022d3edc3d532"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>;</li>
+<li>a <a class="mkdocs-ezglossary-link"
+    id="83525ffd92a04eabd830afcfde6117cf"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Party</a> or a <a class="mkdocs-ezglossary-link"
+    id="2193396fba569fe449a11f63071ad48d"
+    title="A Relying Party that offers services to other (intermediated) Relying Parties to, on their behalf, connect to Wallet Units and request the User attributes that these intermediated Relying Parties need. [ARF]"
+    data-tooltip="A Relying Party that offers services to other (intermediated) Relying Parties to, on their behalf, connect to Wallet Units and request the User attributes that these intermediated Relying Parties need. [ARF]"
+    name="roles:Relying Party Intermediary (RPI)"
+    href="../../glossary-definitions/#db24345e7f6ff09999d2ec1289087fc4">Relying Party Intermediary</a> requires no trusted-list entry, as trust in it is anchored through the signed <a class="mkdocs-ezglossary-link"
+    id="67c6b9a10f0ec23c966bbae354bc995e"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> and its <a class="mkdocs-ezglossary-link"
+    id="fa545efc6c8c84eeffca3ea4babd48cb"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="mkdocs-ezglossary-link"
+    id="7e75347bd9c0dcdd9e51d30d655100f4"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> published for an <a class="mkdocs-ezglossary-link"
+    id="e3a82cdc4df3ab515c4782b4705d70a4"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> is the key with which its credential issuer (the service supply points) signs the <a class="mkdocs-ezglossary-link"
+    id="8acabe1509a2e1beaccbeb2deafabdea"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</a>; for a <a class="mkdocs-ezglossary-link"
+    id="9c7d958fd138f32566b2b6e14ed4d6d3"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> it is the key signing the <a class="mkdocs-ezglossary-link"
+    id="388751fbeec78ec897caa681e3ad0f71"
+    title="A data object that describes the components of the Wallet Unit or allows authentication and validation of those components. [ARF]"
+    data-tooltip="A data object that describes the components of the Wallet Unit or allows authentication and validation of those components. [ARF]"
+    name="artifacts:Wallet Unit Attestation (WUA)"
+    href="../../glossary-definitions/#8b65d3aeb965c7ae9a28cf62c8382320">WUAs</a> of its Wallet Solution. The trusted-list entry therefore binds the organisational entity to the technical component that operates at runtime.</p>
+</div>
+<p>On failure, if publication does not complete, the entity may be registered and hold a <a class="mkdocs-ezglossary-link"
+    id="f603abe567c9bb8b209110c578c3935e"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> but is not yet present in the trusted list, and is therefore not trusted by <a class="mkdocs-ezglossary-link"
+    id="f37658f6651fa5e0bf9dd0ef98f793d0"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Parties</a> until the entry is published.</p>
+<h5 id="detailed-flow">Detailed Flow<a class="headerlink" href="#detailed-flow" title="Permanent link">&para;</a></h5>
+<pre class="mermaid"><code>sequenceDiagram
+    participant E as Operational Entity
+    participant UI as Onboarding UI
+    participant RegServ as Registration Service
+    participant Register as WRP Register
+    participant ACServ as WRPAC Issuance Service
+    participant RCServ as WRPRC Issuance Service
+    participant PubServ as Publication Service
+    participant TL as LoTE / EUMS TL
+
+    E-&gt;&gt;UI: submit onboarding data
+    alt entity registers (any WRP type)
+        UI-&gt;&gt;RegServ: create registration (registration data + crypto material)
+        RegServ-&gt;&gt;RegServ: ensure entity is an APTITUDE participant (mocked proofing)
+        RegServ&lt;&lt;-&gt;&gt;Register: write data
+        RegServ--&gt;&gt;UI: response with status active
+        UI-&gt;&gt;ACServ: request WRPAC
+        ACServ-&gt;&gt;RegServ: request verification of active status and consistency
+        RegServ&lt;&lt;-&gt;&gt;Register: get data
+        RegServ--&gt;&gt;ACServ: response with active status
+        ACServ-&gt;&gt;ACServ: check data consistency
+        ACServ--&gt;&gt;UI: WRPAC
+        UI--&gt;&gt;E: provide WRPAC
+        opt WRPRC mandated
+            E-&gt;&gt;UI: request WRPRC (with WRPAC)
+            UI-&gt;&gt;RCServ: request WRPRC
+            RCServ-&gt;&gt;RCServ: check WRPAC validity (when relevant)
+            RCServ-&gt;&gt;RegServ: request verification of active status and consistency
+            RegServ&lt;&lt;-&gt;&gt;Register: get data
+            RegServ--&gt;&gt;RCServ: response with active status
+            RCServ-&gt;&gt;RCServ: check data consistency
+            RCServ--&gt;&gt;UI: WRPRC
+            UI--&gt;&gt;E: provide WRPRC
+        end
+        opt notifiable WRP (PID / PuB-EAA / QEAA / non-qualified EAA Providers)
+            UI-&gt;&gt;PubServ: submit notifiable data
+            PubServ&lt;&lt;-&gt;&gt;TL: publish to applicable trusted list
+            PubServ--&gt;&gt;UI: entry successfully created
+            UI--&gt;&gt;E: publication confirmed
+        end
+    else notification-only (Wallet Provider)
+        UI-&gt;&gt;PubServ: submit notifiable data
+        PubServ&lt;&lt;-&gt;&gt;TL: publish to Wallet Providers LoTE
+        PubServ--&gt;&gt;UI: entry successfully created
+        UI--&gt;&gt;E: publication confirmed
+    end</code></pre>
+<h4 id="connection-to-lifecycle-management">Connection to Lifecycle Management<a class="headerlink" href="#connection-to-lifecycle-management" title="Permanent link">&para;</a></h4>
+<p>Onboarding is the first phase of the lifecycle of an entity and of the artifacts produced for it. This subsection summarises how onboarding connects to the Trust Management Process and distinguishes the lifecycle of registered entities from that of notified entities.</p>
+<p>For entities that are registered in the <a class="mkdocs-ezglossary-link"
+    id="333a37f59256f94660766253b6db83b8"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>, the registration record follows the status model below.</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Active: onboarding completed
+    Active --&gt; Active: update of registration data
+    Active --&gt; Cancelled: cancellation
+    Cancelled --&gt; [*]</code></pre>
+<ul>
+<li><strong>Update.</strong> A change to the registration data triggers the corresponding update of the dependent artifacts. The <a class="mkdocs-ezglossary-link"
+    id="354167a55a8aadd6779848e3590f511d"
+    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> and the <a class="mkdocs-ezglossary-link"
+    id="7ade9f509c2dc8ff28b2bc197bffba40"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL monitor the <a class="mkdocs-ezglossary-link"
+    id="8da218c67aa4d5068ea5601771003dba"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> and reissue or revoke the affected <a class="mkdocs-ezglossary-link"
+    id="725616fbecb2c55218f16c17be028061"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> / <a class="mkdocs-ezglossary-link"
+    id="27557566da53780b1692d4fbde2263ec"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> when the change requires it (requirements <code>PROVIDER-WRPAC-02</code> and <code>PROVIDER-WRPRC-03</code> in <a href="#register">Register</a>), and the corresponding trusted list entry is updated where applicable.</li>
+<li><strong>Cancellation / De-onboarding.</strong> Setting the registration status to <code>cancelled</code> (or deleting the record) triggers the revocation of any dependent <a class="mkdocs-ezglossary-link"
+    id="4e2e8419ec449acc313ef11484e49865"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> and <a class="mkdocs-ezglossary-link"
+    id="d57b4ce877be26f179a97550de431cd0"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> by the respective providers. The revocation mechanisms (<a class="mkdocs-ezglossary-link"
+    id="e1869132d4d2644901b04201d37636f7"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>/<a class="mkdocs-ezglossary-link"
+    id="a80c68e7fb4926b8c283d20d0461b81d"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> for <a class="mkdocs-ezglossary-link"
+    id="97afeb33f3224ffe88ac1edeae5ecf68"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> and <a class="mkdocs-ezglossary-link"
+    id="82be3fc9de080ff5385f8163923a116b"
+    title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Tokens</a> for <a class="mkdocs-ezglossary-link"
+    id="8714d938dde5e5788e5a27df8399eecd"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>) are defined in <a href="#revocation-mechanisms">Revocation Mechanisms</a>.</li>
+</ul>
+<p>These actions SHALL act on the <strong>organisational entity</strong>, that is its registration and the certificates issued to it, and not on the technical product it operates [ONBOARD-LC-02]. The certification lifecycle of the technical product, in particular the certification of a <a class="mkdocs-ezglossary-link"
+    id="e20c94c8bcfbaa6208f75152bca8d047"
+    title="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</a>, is a separate process, out of scope of this document. A change to that certification that does not affect the entity's eligibility SHALL be reflected as a notification update and SHALL NOT, by itself, be treated as de-onboarding. A change that makes the entity no longer eligible SHALL instead lead to its cancellation, whose effect on the trusted lists is defined by ONBOARD-LC-01 [ONBOARD-LC-03].</p>
+<p>The lifecycle of entities that are only notified is governed by the notification framework ([CIR 2024/2980]). The entity is published when notified, and upon cancellation it stops being trusted (<code>ARF GenNot_05</code>). For the <a class="mkdocs-ezglossary-link"
+    id="5be3db5ecee5aa0a2bc24fd5459d57ed"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>, a cancellation additionally requires the revocation of all its valid <a class="mkdocs-ezglossary-link"
+    id="1227c2bc992d7cc2f34814e0418b0a21"
+    title="A data object that describes the components of the Wallet Unit or allows authentication and validation of those components. [ARF]"
+    data-tooltip="A data object that describes the components of the Wallet Unit or allows authentication and validation of those components. [ARF]"
+    name="artifacts:Wallet Unit Attestation (WUA)"
+    href="../../glossary-definitions/#8b65d3aeb965c7ae9a28cf62c8382320">WUAs</a> (<code>ARF WPNot_06</code>). The same applies to the other notified entities published in their <a class="mkdocs-ezglossary-link"
+    id="6c09dae9151745e3f6c74103d66d4ee2"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTEs</a> (PID and PuB-EAA Providers, Providers of WRPAC and WRPRC, and Registrars); QEAA Providers follow the corresponding lifecycle on the <a href="artifacts:EU Member State Trusted List (EUMS TL)">EUMS TL</a> under the eIDAS Trusted List framework.</p>
+<p>How "stops being trusted" is represented depends on the list type, and APTITUDE adopts the representation already supported by each format. The PuB-EAA Provider <a class="mkdocs-ezglossary-link"
+    id="d29c3aa2805098af54e41ac3737909bd"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> and the <a href="artifacts:EU Member State Trusted List (EUMS TL)">EUMS TL</a> carry an explicit per-entry status, which on cancellation SHALL be set to withdrawn or invalid; the <a class="mkdocs-ezglossary-link"
+    id="af2dcdbfc454ccfbff58e0bcca92f1ac"
+    title="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</a>, <a class="mkdocs-ezglossary-link"
+    id="6bc50d6154dc29d77654da0b40eba220"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>, <a class="mkdocs-ezglossary-link"
+    id="f4848c4696d77186f392498f2e93f4da"
+    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
+    id="c837f4ae37eef490ce556ac61553aac3"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>, and <a class="mkdocs-ezglossary-link"
+    id="7e7b1e7e154646615482a6f6d3205446"
+    title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> <a class="mkdocs-ezglossary-link"
+    id="8a5803539103b8d25c9c974dc69f3f4b"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTEs</a> carry no per-entry status (per [ETSI TS 119 602], <code>ServiceStatus</code> and the service history are not used for these types), so for them a cancelled entity SHALL be reflected by removing the entry [ONBOARD-LC-01]. The broader lifecycle of notified entities belongs to the Trust Management Process.</p>
+<p>Finally, the artifacts produced by onboarding are consumed in the trust-evaluation processes. The <a class="mkdocs-ezglossary-link"
+    id="261a7aa34d860065b12caf1ef17ada33"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is used in the <a href="#authentication-process">Authentication Process</a>, the <a class="mkdocs-ezglossary-link"
+    id="f453d628f10f71a262b1d30f80ed6fab"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> and the <a class="mkdocs-ezglossary-link"
+    id="07d441445d68495510c056410eb8ca68"
+    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> in the <a href="#authorization-process">Authorization Process</a>, the trusted-list trust anchors in the <a href="#trust-anchor-validation-process">Trust Anchor Validation Process</a>, and the revocation of the certificates in <a href="#revocation-mechanisms">Revocation Mechanisms</a>.</p>
+<h4 id="onboarding-requirements">Onboarding Requirements<a class="headerlink" href="#onboarding-requirements" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Those tables are provided for implementation and conformance-verification purposes. They consolidate the APTITUDE-specific requirements defined throughout this section. In case of interpretative ambiguity between those tables and the body of the section, the body of the section SHALL prevail. Obligations defined in other sections of this specification, or in the normative baseline, are referenced in the "Related external requirement" column and are not reproduced as APTITUDE requirements.</p>
+</div>
+<h5 id="general">General<a class="headerlink" href="#general" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Scope</th>
+<th>Related external requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ONBOARD-GEN-01</td>
+<td>The APTITUDE Onboarding System SHALL implement the Onboarding Process defined in this section.</td>
+<td>Both</td>
+<td>--</td>
+</tr>
+<tr>
+<td>ONBOARD-GEN-02</td>
+<td>Operational entity onboarding SHALL NOT start before the trust infrastructure prerequisites have been established.</td>
+<td>Both</td>
+<td>--</td>
+</tr>
+<tr>
+<td>ONBOARD-GEN-03</td>
+<td>The Onboarding UI SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the trusted-list entry.</td>
+<td>Onboarding</td>
+<td>--</td>
+</tr>
+<tr>
+<td>ONBOARD-GEN-04</td>
+<td>The Onboarding System SHALL keep the WRP Register and the Notification dataset as two distinct data stores.</td>
+<td>Both</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<h5 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Scope</th>
+<th>Related external requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ONBOARD-PRE-01</td>
+<td>Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software.</td>
+<td>Prerequisites</td>
+<td>--</td>
+</tr>
+<tr>
+<td>ONBOARD-PRE-02</td>
+<td>Within APTITUDE, the trust infrastructure signing entities SHALL use self-signed root certificates, with no higher certification authority.</td>
+<td>Prerequisites</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<h5 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Scope</th>
+<th>Related external requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ONBOARD-REG-01</td>
+<td>Within APTITUDE, registration SHALL be restricted to APTITUDE participants; a non-participant SHALL NOT be registered.</td>
+<td>Onboarding</td>
+<td>[ETSI TS 119 461], [CIR 2025/848] Art. 6, REGISTRAR-REG-04 to REGISTRAR-REG-07</td>
+</tr>
+<tr>
+<td>ONBOARD-REG-02</td>
+<td>Write access to the Register API SHALL be authenticated and restricted to the Registrar.</td>
+<td>Onboarding</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<h5 id="publication">Publication<a class="headerlink" href="#publication" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Scope</th>
+<th>Related external requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ONBOARD-PUB-01</td>
+<td>Within APTITUDE, the Member State to European Commission notification act SHALL be mocked by the Publication Service, while the signing and publication of the trusted lists SHALL follow the normative framework.</td>
+<td>Onboarding</td>
+<td>[CIR 2024/2980]</td>
+</tr>
+<tr>
+<td>ONBOARD-PUB-02</td>
+<td>Within APTITUDE, a non-qualified EAA Provider SHALL be published in a trusted list in the [ETSI TS 119 612] format, referenced by the applicable Attestation Rulebook and kept outside the LOTL, with the Rulebook as its root of trust.</td>
+<td>Onboarding</td>
+<td>OIA_15, ISSU_10, ARB_26</td>
+</tr>
+</tbody>
+</table>
+<h5 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+<th>Scope</th>
+<th>Related external requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ONBOARD-LC-01</td>
+<td>Trusted lists carrying a per-entry status SHALL reflect cancellation by setting the status to withdrawn or invalid; trusted lists carrying no per-entry status SHALL reflect it by removing the entry.</td>
+<td>Onboarding</td>
+<td>[ETSI TS 119 602], GenNot_05</td>
+</tr>
+<tr>
+<td>ONBOARD-LC-02</td>
+<td>Lifecycle actions (cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates.</td>
+<td>Onboarding</td>
+<td>[CIR 2025/848] Art. 9</td>
+</tr>
+<tr>
+<td>ONBOARD-LC-03</td>
+<td>A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a notification update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its cancellation (effect of ONBOARD-LC-01).</td>
+<td>Onboarding</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
 <!-- END INCLUDE -->
 
 
