@@ -63,15 +63,8 @@ plugins:
   - tags
   - exclude:
       glob:
-        - 'README.md'
-        - 'CONTRIBUTING.md'
-        - 'terminology.md'
-        - 'references/**'
-        - 'requirements/**'
         - 'topics/**'
-        - 'docs/topics/**'
-        - 'docs/glossary-definitions.md'
-        - 'docs/references.md'
+        - 'references.md'
   - include-markdown:
       comments: true
   - search
@@ -125,5 +118,12 @@ extra:
     provider: mike
 
 nav:
-  - Home: index.md
-  - Trust Framework: trust-framework.md
+  - Trust Framework:
+    - Overview: trust-framework.md
+    - Trust Architecture: sections/trust-architecture.md
+    - Trust Artifacts: sections/trust-artifacts.md
+    - Onboarding Process: sections/onboarding-process.md
+    - Trust Evaluation Process: sections/trust-evaluation-process.md
+    - Trust Checks: sections/trust-checks.md
+    - Trust Management and Lifecycle: sections/trust-management-lifecycle.md
+    - References: sections/references.md

@@ -1,0 +1,1 @@
+{% include-markdown "../topics/trust-architecture.md" %}
