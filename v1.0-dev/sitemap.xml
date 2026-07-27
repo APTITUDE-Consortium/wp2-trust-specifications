@@ -13,10 +13,6 @@
          <lastmod>2026-07-27</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/references/</loc>
-         <lastmod>2026-07-27</lastmod>
-    </url>
-    <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/standards/</loc>
          <lastmod>2026-07-27</lastmod>
     </url>
@@ -33,11 +29,19 @@
          <lastmod>2026-07-27</lastmod>
     </url>
     <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/authorization-process/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/embedded-disclosure-policy/</loc>
          <lastmod>2026-07-27</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/entity-end-certificate-profiles/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/registry-examples/</loc>
          <lastmod>2026-07-27</lastmod>
     </url>
     <url>
@@ -70,6 +74,34 @@
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/trusted-list-and-list-of-trusted-lists/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/sections/onboarding-process/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/sections/references/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/sections/trust-architecture/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/sections/trust-artifacts/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/sections/trust-checks/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/sections/trust-evaluation-process/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/sections/trust-management-lifecycle/</loc>
          <lastmod>2026-07-27</lastmod>
     </url>
 </urlset>
