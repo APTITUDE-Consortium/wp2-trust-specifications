@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="../../media/extra.css">
     
+      <link rel="stylesheet" href="../../includes/admonitions.css">
+    
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -655,6 +657,8 @@
       
         
       
+        
+      
     
     
     
@@ -828,6 +832,34 @@
     
   
     Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
   
 
     
@@ -1170,7 +1202,7 @@
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> (the registry service) in the context of eIDAS2 and the <a class="mkdocs-ezglossary-link"
-    id="09ba066c2f51b884641c2c8324214b36"
+    id="a674ad0b67df9a33915c197d4dde8a76"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -1226,7 +1258,7 @@
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a single coherent common REST API and return signed statements as required.</p>
 <p>Additionally, sectorial registers may exist internally, but the decision regarding issuance of <a class="mkdocs-ezglossary-link"
-    id="c27a0224f2642aaf5d7ffbdfefbfcb77"
+    id="8df5f8db43696ef80a5ebd87ba644dab"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1242,7 +1274,8 @@
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>.</p>
 </div>
-<h4 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h4>
+<details class="references">
+<summary>References</summary>
 <p>The list below enumerates all the applicable standards and specifications that have been used to populate the table below:</p>
 <ul>
 <li><strong>CIR 2025/848</strong> on <a class="mkdocs-ezglossary-link"
@@ -1294,6 +1327,7 @@
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> information to be registered.</li>
 </ul>
+</details>
 <h4 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h4>
 <h5 id="register-requirements">Register Requirements<a class="headerlink" href="#register-requirements" title="Permanent link">&para;</a></h5>
 <table>
@@ -1511,7 +1545,7 @@
 <tr>
 <td>PROVIDER-WRPAC-01</td>
 <td>Providers of <a class="mkdocs-ezglossary-link"
-    id="c8559c15df33914ba315b827c437bfee"
+    id="163c34673928f35a591067c36c2d09bb"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1521,7 +1555,7 @@
 <tr>
 <td>PROVIDER-WRPAC-02</td>
 <td>Providers of <a class="mkdocs-ezglossary-link"
-    id="8df5f8db43696ef80a5ebd87ba644dab"
+    id="c2ee83a85f04cf6948fc821ee9f3707b"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1683,7 +1717,7 @@
 <td><code>boolean</code></td>
 <td>REQUIRED</td>
 <td>Whether the WRP is a <a class="mkdocs-ezglossary-link"
-    id="958b63f5b41043b82f376eefba9351f9"
+    id="a4aea3c1af10c1b107ccb4bede0883d4"
     title="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     data-tooltip="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     name="roles:Public Sector Body"
@@ -2945,7 +2979,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>200</code></td>
 <td><code>application/jwt</code></td>
 <td>JWS compact string. Decoded payload SHALL contain an array of <code>WalletRelyingParty</code> objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by <a class="mkdocs-ezglossary-link"
-    id="163c34673928f35a591067c36c2d09bb"
+    id="873859f6ee98b222a108a13392ad5aa7"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3231,7 +3265,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>CertificateHistoryEntry[]</code></td>
 <td>OPTIONAL</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="c2ee83a85f04cf6948fc821ee9f3707b"
+    id="a981dba8213344d5a2484b0f9f047498"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3242,7 +3276,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>CertificateHistoryEntry[]</code></td>
 <td>OPTIONAL</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="97a582d96f19fcebea41258dd9cb78d9"
+    id="1fd6363538670e224af00229f278ff8b"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -3354,7 +3388,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:05:04 UTC">July 27, 2026 16:05:04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:07:59 UTC">July 27, 2026 16:07:59</span>
   </span>
 
     

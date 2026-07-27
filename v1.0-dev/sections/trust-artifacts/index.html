@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="../../media/extra.css">
     
+      <link rel="stylesheet" href="../../includes/admonitions.css">
+    
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -783,6 +785,8 @@
       
         
       
+        
+      
     
     
     
@@ -953,6 +957,34 @@
     
   
     Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pr-workspace/registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
   
 
     
@@ -1289,7 +1321,7 @@
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> (the registry service) in the context of eIDAS2 and the <a class="mkdocs-ezglossary-link"
-    id="a7c113540b432177c25709d135e8fb46"
+    id="8bf920d0ac805be4d1124eaf7037debb"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -1345,7 +1377,7 @@
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a single coherent common REST API and return signed statements as required.</p>
 <p>Additionally, sectorial registers may exist internally, but the decision regarding issuance of <a class="mkdocs-ezglossary-link"
-    id="279b15833634a832f3c60db238be6d36"
+    id="bdc69012ff6bb1bbc2e827640b481725"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1361,7 +1393,8 @@
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>.</p>
 </div>
-<h4 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h4>
+<details class="references">
+<summary>References</summary>
 <p>The list below enumerates all the applicable standards and specifications that have been used to populate the table below:</p>
 <ul>
 <li><strong>CIR 2025/848</strong> on <a class="mkdocs-ezglossary-link"
@@ -1413,6 +1446,7 @@
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> information to be registered.</li>
 </ul>
+</details>
 <h4 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h4>
 <h5 id="register-requirements">Register Requirements<a class="headerlink" href="#register-requirements" title="Permanent link">&para;</a></h5>
 <table>
@@ -1630,7 +1664,7 @@
 <tr>
 <td>PROVIDER-WRPAC-01</td>
 <td>Providers of <a class="mkdocs-ezglossary-link"
-    id="2ca3dcd2bceae29eae19a1583d413947"
+    id="0d108af7b6f6a0f2c006efe944090ae1"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1640,7 +1674,7 @@
 <tr>
 <td>PROVIDER-WRPAC-02</td>
 <td>Providers of <a class="mkdocs-ezglossary-link"
-    id="bdc69012ff6bb1bbc2e827640b481725"
+    id="b762982275f87417ab5dd3caf6d64af0"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1802,7 +1836,7 @@
 <td><code>boolean</code></td>
 <td>REQUIRED</td>
 <td>Whether the WRP is a <a class="mkdocs-ezglossary-link"
-    id="32674cd08c0e7576dde76fb850f265fd"
+    id="8af9c9a4124dab199248bcf5c68e19cd"
     title="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     data-tooltip="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     name="roles:Public Sector Body"
@@ -3064,7 +3098,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>200</code></td>
 <td><code>application/jwt</code></td>
 <td>JWS compact string. Decoded payload SHALL contain an array of <code>WalletRelyingParty</code> objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by <a class="mkdocs-ezglossary-link"
-    id="0d108af7b6f6a0f2c006efe944090ae1"
+    id="e5527cdf6afed36848be226c04b4b0f6"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3350,7 +3384,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>CertificateHistoryEntry[]</code></td>
 <td>OPTIONAL</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="b762982275f87417ab5dd3caf6d64af0"
+    id="d68d88af71da8974961125afc7c5f9cc"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3361,7 +3395,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>CertificateHistoryEntry[]</code></td>
 <td>OPTIONAL</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="047a6fd6efa9b4fb46190661ced9b0d4"
+    id="50e18ebc9142c9839bde4a620ab4aee4"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -3458,13 +3492,13 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <h3 id="wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate<a class="headerlink" href="#wallet-relying-party-access-certificate" title="Permanent link">&para;</a></h3>
 <!-- BEGIN INCLUDE ../topics/access-certificate.md -->
 <p>This section describes the purpose, format and content of <a class="mkdocs-ezglossary-link"
-    id="e5527cdf6afed36848be226c04b4b0f6"
+    id="6acedb43d0c83c6f1d9710d27afaf2fc"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates (WRPACs)</a>.</p>
 <p>According to the Article 2 of CIR (EU) 2025/848, a <a class="mkdocs-ezglossary-link"
-    id="d68d88af71da8974961125afc7c5f9cc"
+    id="879dd9f74e470e89b9f3a4b5a2f5b941"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3475,7 +3509,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">Wallet-Relying Party (WRP)</a>.
 Issued by one or more designated providers under Member State supervision, the <a class="mkdocs-ezglossary-link"
-    id="6acedb43d0c83c6f1d9710d27afaf2fc"
+    id="9c5cf03d619ed8e7cd8631c35b9d986e"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3485,7 +3519,7 @@ Issued by one or more designated providers under Member State supervision, the <
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> when they interact with the <a class="mkdocs-ezglossary-link"
-    id="8bf920d0ac805be4d1124eaf7037debb"
+    id="ca46f0f60bffc243ff4e3f46a290c170"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -3496,7 +3530,7 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> services, involves revocation of all valid <a class="mkdocs-ezglossary-link"
-    id="879dd9f74e470e89b9f3a4b5a2f5b941"
+    id="4cb06ee3562b35beebdaa30fb6ec753a"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3512,7 +3546,7 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a>. For more detail on the Trust Management processes, see <a href="../trust-management-lifecycle/">Trust Management and Lifecycle</a>.</p>
 <p>The Annex IV of [CIR 2025/848] also states that the <a class="mkdocs-ezglossary-link"
-    id="9c5cf03d619ed8e7cd8631c35b9d986e"
+    id="4b9b156d450c782794dd143ed6515b64"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3522,19 +3556,20 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
     data-tooltip="A standardized set of rules and requirements that a Trust Service Provider must adhere to when issuing digital certificates. These include, e.g., organizational liability, security management, data privacy, and rigorous identity verification of the certificate subscriber."
     name="artifacts:Normalised Certificate Policy (NCP)"
     href="../../glossary-definitions/#15b7c3e48c38a858af366b20b1a9d044">Normalised Certificate Policy (NCP)</a> requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the <a class="mkdocs-ezglossary-link"
-    id="4cb06ee3562b35beebdaa30fb6ec753a"
+    id="bb9b5baa032c4b92fc6fa7a4db2e8352"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> fall into.</p>
-<h4 id="references_1">References<a class="headerlink" href="#references_1" title="Permanent link">&para;</a></h4>
+<details class="references">
+<summary>References</summary>
 <p>To guarantee the interoperability across all the wallets provided within the Union, <a class="mkdocs-ezglossary-link"
-    id="4b9b156d450c782794dd143ed6515b64"
+    id="444468645dccbb00b37c4bceb0d8d464"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> should adhere to common requirements, with respect to their content and format. The technical standard specific to these certificates is [ETSI TS 119 411-8]. However, multiple other standards are referenced either directly or indirectly by [ETSI TS 119 411-8], containing requirements that are applicable to <a class="mkdocs-ezglossary-link"
-    id="bb9b5baa032c4b92fc6fa7a4db2e8352"
+    id="53845d019559d5c754fb9507662a4d68"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3553,9 +3588,10 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
 <li><strong>RFC 5280</strong></li>
 <li><strong>RFC 9608</strong></li>
 </ul>
+</details>
 <h4 id="dependency-considerations">Dependency Considerations<a class="headerlink" href="#dependency-considerations" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="444468645dccbb00b37c4bceb0d8d464"
+    id="037a6425818d58831156cbd020f16746"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3565,19 +3601,19 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> as specified in clause 5.1.2 of [ETSI TS 119 475]. This also implies that for some specific attributes in the <a class="mkdocs-ezglossary-link"
-    id="53845d019559d5c754fb9507662a4d68"
+    id="0efa57a7258f3edbdddeb98153862109"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> the same value SHALL be encountered in the corresponding <a class="mkdocs-ezglossary-link"
-    id="07c8e4f46fe88ccf250d66bb627a9719"
+    id="cdb92d5a1e6d3361dc9389e619fc4c96"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificate</a> if any.</p>
 <h4 id="wallet-relying-party-access-certificate-content">Wallet Relying Party Access Certificate Content<a class="headerlink" href="#wallet-relying-party-access-certificate-content" title="Permanent link">&para;</a></h4>
 <p>The following table lists all the parameters and extensions that are mandatory in a <a class="mkdocs-ezglossary-link"
-    id="037a6425818d58831156cbd020f16746"
+    id="23846e3495629b6ca061425da49c4db4"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3709,7 +3745,7 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
 </tbody>
 </table>
 <p>The <code>extensions</code> field of the <a class="mkdocs-ezglossary-link"
-    id="0efa57a7258f3edbdddeb98153862109"
+    id="e5ae2d3bf062410faec5dbeb914d56d1"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3917,7 +3953,7 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
 </table>
 <h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h4>
 <p>The following is an example of a <a class="mkdocs-ezglossary-link"
-    id="23846e3495629b6ca061425da49c4db4"
+    id="1e14226f9030b754fe3c2d5bfa859132"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -4048,7 +4084,7 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
 } 
 </code></pre></div>
 <p>Below there is an example of a <a class="mkdocs-ezglossary-link"
-    id="e5ae2d3bf062410faec5dbeb914d56d1"
+    id="3d45c5c3549ca197845eb394f01f97be"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -4186,7 +4222,7 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
 </code></pre></div>
 <h4 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h4>
 <p>A <a class="mkdocs-ezglossary-link"
-    id="1e14226f9030b754fe3c2d5bfa859132"
+    id="29bbe038051c8be89a34ec14fbbc18e0"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -4196,7 +4232,7 @@ The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a>. Because the corresponding private key is a signature/seal key, implementations SHALL prevent the <a class="mkdocs-ezglossary-link"
-    id="3d45c5c3549ca197845eb394f01f97be"
+    id="488e93677d66d8faf15ee5c4906882b9"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -4237,7 +4273,7 @@ Signed protocol objects should be clearly typed and scoped to the protocol to re
 </ul>
 <p><strong>SC-3 — Key protection, access control, and monitoring.</strong>
 Private keys corresponding to <a class="mkdocs-ezglossary-link"
-    id="29bbe038051c8be89a34ec14fbbc18e0"
+    id="9b0d94651baa2059d8e92ebac4ec2307"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -4247,32 +4283,33 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <h3 id="wallet-relying-party-registration-certificate">Wallet-Relying Party Registration Certificate<a class="headerlink" href="#wallet-relying-party-registration-certificate" title="Permanent link">&para;</a></h3>
 <!-- BEGIN INCLUDE ../topics/registration-certificate.md -->
 <p>This section defines <a class="mkdocs-ezglossary-link"
-    id="2928a5103454a38ca5e5ea9c1276186d"
+    id="c71835d2ae6a27bfb8dd145223d796a8"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificates</a> (<a class="mkdocs-ezglossary-link"
-    id="d3fbedcd82d14a83cfdc58d2c7eb8a7c"
+    id="7002ddffb0d358cf2209696b133df260"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>), as described in [ARF]. The <a class="mkdocs-ezglossary-link"
-    id="e00ffd6c8bd64dadb5bd53dbc411bf01"
+    id="d55c34360825348d8d97d5f220df8fec"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> provides detailed information about the <a class="mkdocs-ezglossary-link"
-    id="1c109578e28b9ec2ce36b9c2d9bda357"
+    id="4682a48c86dc3914bb9685a84f613caf"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
     href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a>'s entitlements, the <a class="mkdocs-ezglossary-link"
-    id="c71fcbbfac655b1a5b4b47a4000a2b33"
+    id="3a2c01d46dd8d60dc99515d2c9a1ceb4"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
     href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</a> they issue, and their intended use.</p>
-<h4 id="references_2">References<a class="headerlink" href="#references_2" title="Permanent link">&para;</a></h4>
+<details class="references">
+<summary>References</summary>
 <ul>
 <li><strong>CIR 2025/848</strong></li>
 <li><strong>ETSI EN 319 411-1</strong></li>
@@ -4283,22 +4320,23 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <li><strong>RFC 7519</strong></li>
 <li><strong>RFC 8392</strong></li>
 </ul>
+</details>
 <h4 id="format">Format<a class="headerlink" href="#format" title="Permanent link">&para;</a></h4>
 <ol>
 <li>The <a class="mkdocs-ezglossary-link"
-    id="3d10d9dd81c161c7323bd80f04058eb6"
+    id="22aac3443b6b66a29fad971a071d04d3"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> shall be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).</li>
 <li>The <a class="mkdocs-ezglossary-link"
-    id="eead6447dce205ce8cba229eda5ec9c5"
+    id="de8698719044c72b7075862e62a9fc72"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> shall comply with the syntactic and semantic requirements specified in Annex V paragraph 3 of CIR (EU) 2025/848 [i.2].</li>
 <li>The <a class="mkdocs-ezglossary-link"
-    id="7f349c335ee178e426376e2a9b0ffa65"
+    id="b260993096c10d24fa002d18c4ae1ddf"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -4320,7 +4358,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><a href="#header-attributes">Header Attributes</a></td>
 <td>Required header fields used to identify, sign, and validate <a class="mkdocs-ezglossary-link"
-    id="6aa0b334eb286eedcd71fbe285ffa168"
+    id="5e7aa65fdfc62f798f10ba3b59f6455d"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -4340,7 +4378,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><a href="#entitlements-attribute">Entitlements Attribute</a></td>
 <td><a class="mkdocs-ezglossary-link"
-    id="44ec6ebd689dda0859de9811017da746"
+    id="aa1fe4238c4656bf5aece6f8d3adaeda"
     title="It represents the WRP role and is uniquely identified by a suitable identifier in form of an OID or URI. [CIR 2025/848]"
     data-tooltip="It represents the WRP role and is uniquely identified by a suitable identifier in form of an OID or URI. [CIR 2025/848]"
     name="data-elements:Entitlement"
@@ -4365,13 +4403,13 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><a href="#attestation-provider-attributes">Attestation Provider Attributes</a></td>
 <td>Attributes describing attestations issued by an <a class="mkdocs-ezglossary-link"
-    id="db1df24342041a301dd9effb90ab22ed"
+    id="31dab5057696d5c27f8f55998a01f2df"
     title="Provider of EEAs."
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
     href="../../glossary-definitions/#25618de6dced5276e214359c546b87e1">EAA Provider</a>.</td>
 <td>Required for <a class="mkdocs-ezglossary-link"
-    id="20afaa9b5c02ce5b70e8925060e94973"
+    id="a16310cb610d637c4ab109f0f80fa002"
     title="Provider of EEAs."
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
@@ -4475,7 +4513,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>name</code></td>
 <td><em>string</em></td>
 <td>The subject of the <a class="mkdocs-ezglossary-link"
-    id="b8665fcf9213b7d09894d7e5d3310cb4"
+    id="baaf7dc4b13a5e7ed90430393943b34c"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -4620,7 +4658,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>public_body</code></td>
 <td><em>boolean</em></td>
 <td>Boolean indicating whether the WRP is a <a class="mkdocs-ezglossary-link"
-    id="8af9c9a4124dab199248bcf5c68e19cd"
+    id="f2cb0989a91ba241f7ec21c975ada02f"
     title="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     data-tooltip="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     name="roles:Public Sector Body"
@@ -4688,7 +4726,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>credentials</code></td>
 <td><em>array[object]</em></td>
 <td>A set of credential queries, used to request credentials from the Wallet. The <a class="mkdocs-ezglossary-link"
-    id="ca46f0f60bffc243ff4e3f46a290c170"
+    id="29370e64101390af216a138d37215a5e"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -4714,7 +4752,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>credentials[].claim</code></td>
 <td><em>array[object]</em></td>
 <td>Array of objects that specifies attributes in the requested attestation. If claim is absent, the <a class="mkdocs-ezglossary-link"
-    id="ce785ec29aa25b6466f47dcbcf54062b"
+    id="a4edd051dc1a1b7247682567ca033b1c"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -4769,7 +4807,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><em>array[object]</em></td>
 <td>A set of credentials issued by the WRP with EAA entitlements.</td>
 <td>Required for <a class="mkdocs-ezglossary-link"
-    id="8c6783283caf23b2c6fc47b3d15aaa43"
+    id="a798574996740675d4eb34b623339ba8"
     title="Provider of EEAs."
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
@@ -4781,7 +4819,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><em>string</em></td>
 <td>Format of the credential.</td>
 <td>Required for <a class="mkdocs-ezglossary-link"
-    id="164f54467fb2c3628a99b067099b4d88"
+    id="52044899f20d280fb569601e6ec74138"
     title="Provider of EEAs."
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
@@ -4793,7 +4831,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><em>object</em></td>
 <td>Metadata to identify the credential type.</td>
 <td>Required for <a class="mkdocs-ezglossary-link"
-    id="7a9290f1312d18f4ddc29dfe292375ae"
+    id="39b405ae465a1d342797ad4d74c2109c"
     title="Provider of EEAs."
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
@@ -4805,7 +4843,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><em>array[object]</em></td>
 <td>Objects that specifies attributes in the requested attestation.</td>
 <td>Required for <a class="mkdocs-ezglossary-link"
-    id="361353d3947efed16093f50e4222c423"
+    id="608f412f49a7765c08a4436145f5a569"
     title="Provider of EEAs."
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
@@ -4858,12 +4896,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>status</code></td>
 <td><em>object</em></td>
 <td>A URI to a <a class="mkdocs-ezglossary-link"
-    id="b6984fd72a8197ceaa172c630b94d0b8"
+    id="85124f9e56a44d0245eb9497242e59d5"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> presenting information about validity of the <a class="mkdocs-ezglossary-link"
-    id="50e18ebc9142c9839bde4a620ab4aee4"
+    id="efe624e0643750e0e555e2fed4d61787"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -4882,7 +4920,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>status.status_list.uri</code></td>
 <td><em>string</em></td>
 <td><a class="mkdocs-ezglossary-link"
-    id="bb2676a87deafef6e842a2a943b8694e"
+    id="c84a896fa20142c248338280093f6287"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -4915,7 +4953,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>intermediary.sub</code></td>
 <td><em>string</em></td>
 <td>Identifier of the intermediary as specified by the intermediary <a class="mkdocs-ezglossary-link"
-    id="488e93677d66d8faf15ee5c4906882b9"
+    id="863a2c985ebbe628f3d98ccbcd09fef2"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -4927,7 +4965,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>intermediary.sname</code></td>
 <td><em>string</em></td>
 <td>commonName of the intermediary as specified by the intermediary <a class="mkdocs-ezglossary-link"
-    id="9b0d94651baa2059d8e92ebac4ec2307"
+    id="a3a22454545614f69c905b524b39bd4d"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -5263,7 +5301,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <h5 id="algorithms">Algorithms<a class="headerlink" href="#algorithms" title="Permanent link">&para;</a></h5>
 <p>Algorithms used should be one of the algorithms for digital signatures recommended by in [ETSI TS 119 312].</p>
 <p>[OpenID4VC HAIP] also defines its own requirements for digital signatures. However, those requirements are not directly related to <a class="mkdocs-ezglossary-link"
-    id="cdb92d5a1e6d3361dc9389e619fc4c96"
+    id="4f5536ef968bd3333926054fde71ac79"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -5274,7 +5312,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <thead>
 <tr>
 <th><a class="mkdocs-ezglossary-link"
-    id="726df81f57373518fbdbb6e464e5134e"
+    id="c116c73a3705ea0a715f16e501bbaa9b"
     title="It represents the WRP role and is uniquely identified by a suitable identifier in form of an OID or URI. [CIR 2025/848]"
     data-tooltip="It represents the WRP role and is uniquely identified by a suitable identifier in form of an OID or URI. [CIR 2025/848]"
     name="data-elements:Entitlement"
@@ -5299,7 +5337,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>id-etsi-wrpa-entitlement 2</code></td>
 <td>Annex A.2.2</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="6ef0440654cf6fa2311f546fe422fb48"
+    id="85b15a9d7d9d6a2e05e63c577d47aa4b"
     title="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
     data-tooltip="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
     name="roles:QEAA Provider"
@@ -5311,7 +5349,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>id-etsi-wrpa-entitlement 3</code></td>
 <td>Annex A.2.3</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="04420a0978157f7ffc5fb557ac0fa5bb"
+    id="cc244422e514818fb9cad960097d3e5e"
     title="Provider of EEAs."
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
@@ -5323,7 +5361,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <td><code>id-etsi-wrpa-entitlement 4</code></td>
 <td>Annex A.2.4</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="11d3631e01648f7d098bd391f8c4024e"
+    id="8330c07766e1d54ad0e9556c3a3297ac"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -5434,7 +5472,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities (LoTE)</a> within the context of the <a class="mkdocs-ezglossary-link"
-    id="29370e64101390af216a138d37215a5e"
+    id="57fa271efe6b03a32f9843b84fdfb33a"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -5464,7 +5502,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
     name="artifacts:List Of Trusted Lists (LOTL)"
     href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists (LOTL)</a>". Under article 4(4), the Commission may also publish the same information in human-readable format.</p>
 <p>Specifically for the <a class="mkdocs-ezglossary-link"
-    id="57fa271efe6b03a32f9843b84fdfb33a"
+    id="a68fb2f454a4b505560c0c2947439620"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -5614,7 +5652,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <p>Further to the qualified services, a similar set of services can be listed for non-qualified trust services as well as the following additional services:</p>
 <ol>
 <li>Not qualified electronic attestation of attributes issued by or on behalf of a <a class="mkdocs-ezglossary-link"
-    id="f2cb0989a91ba241f7ec21c975ada02f"
+    id="f3b16d5d31b3e1de3695d2defa86ac88"
     title="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     data-tooltip="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     name="roles:Public Sector Body"
@@ -5920,13 +5958,13 @@ The TLManager is a tool for creating <a class="mkdocs-ezglossary-link"
 <p><a href="https://ec.europa.eu/digital-building-blocks/sites/spaces/TLSO/pages/75665517/Trusted+List+Manager+non-EU">https://ec.europa.eu/digital-building-blocks/sites/spaces/TLSO/pages/75665517/Trusted+List+Manager+non-EU</a></p>
 <p><strong>eIDAS Dashboard:</strong>
 The eIDAS Dashboard is a platform in the format of a dynamic website where all information and tools necessary to make use of the <a class="mkdocs-ezglossary-link"
-    id="a68fb2f454a4b505560c0c2947439620"
+    id="baeb27629d9006f2f35bee15ac8aebf5"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
     href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a>, Trust Services and eID schemes are openly available.</p>
 <p>The eIDAS Dashboard is available online here: <a href="https://eidas.ec.europa.eu/efda/home">https://eidas.ec.europa.eu/efda/home</a>. Specifically for the <a class="mkdocs-ezglossary-link"
-    id="baeb27629d9006f2f35bee15ac8aebf5"
+    id="ef7a368a34ca96851bc65632a1fbf0ec"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -6022,7 +6060,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="8330c07766e1d54ad0e9556c3a3297ac"
+    id="b7fba5bf75c3bc57499836e08ce88132"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6264,7 +6302,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="b7fba5bf75c3bc57499836e08ce88132"
+    id="8de52d71dc8af2bc0d23d15c4f46a9dd"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6294,7 +6332,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Within the APTITUDE project, the <a class="mkdocs-ezglossary-link"
-    id="8de52d71dc8af2bc0d23d15c4f46a9dd"
+    id="535912f6064c2128afa5ee43c775b312"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6363,17 +6401,17 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPACProvidersList" for Providers of <a class="mkdocs-ezglossary-link"
-    id="863a2c985ebbe628f3d98ccbcd09fef2"
+    id="e57408fbb592f96ca8f34df4f16b8713"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList" for Providers of <a class="mkdocs-ezglossary-link"
-    id="c71835d2ae6a27bfb8dd145223d796a8"
+    id="9f8c8eb5968578c6310829aeab69c474"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList" for <a class="mkdocs-ezglossary-link"
-    id="535912f6064c2128afa5ee43c775b312"
+    id="78ba9c02f818d364df7db44e1147ca35"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6436,7 +6474,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
-    id="78ba9c02f818d364df7db44e1147ca35"
+    id="24fe893c5167437a611ba410d5a99aa3"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6473,17 +6511,17 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a>;</li><li>"http://uri.etsi.org/19602/WRPACProvidersList/StatusDetn/EU" for Providers of <a class="mkdocs-ezglossary-link"
-    id="a3a22454545614f69c905b524b39bd4d"
+    id="cc9ea92521224d23b21af66d3f009065"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>;</li><li>"http://uri.etsi.org/19602/WRPRCProvidersList/StatusDetn/EU" for Providers of <a class="mkdocs-ezglossary-link"
-    id="7002ddffb0d358cf2209696b133df260"
+    id="5717fe65a0beffa5d0b6ee96a3ef72c5"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>;</li><li>"http://uri.etsi.org/19602/PubEAAProvidersList/StatusDetn/EU" for <a class="mkdocs-ezglossary-link"
-    id="24fe893c5167437a611ba410d5a99aa3"
+    id="ae55bb705f7320d792d4076db8380dde"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6515,17 +6553,17 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a>;</li><li>"http://uri.etsi.org/19602/EUWRPACProviders/schemerules/EU" for Providers of <a class="mkdocs-ezglossary-link"
-    id="e57408fbb592f96ca8f34df4f16b8713"
+    id="2dd0e0dd766f3eb04fd7f037afa75313"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>;</li><li>"http://uri.etsi.org/19602/WRPRCProvidersList/schemerules/EU" for Providers of <a class="mkdocs-ezglossary-link"
-    id="d55c34360825348d8d97d5f220df8fec"
+    id="ebde86212f5aa819d5d28d9dacad136f"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>;</li><li>"http://uri.etsi.org/19602/EUPubEAAProvidersList/schemerules/EU" for <a class="mkdocs-ezglossary-link"
-    id="ae55bb705f7320d792d4076db8380dde"
+    id="79e5ec3a891a814de26e0a6e07b7860f"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6591,7 +6629,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>, the <code>HistoricalInformationPeriod</code> component SHALL NOT be present.<br><br>For the <a class="mkdocs-ezglossary-link"
-    id="79e5ec3a891a814de26e0a6e07b7860f"
+    id="5d649a4748e6a436ee3becc94bc1007e"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6648,7 +6686,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> itself.<br><br>For the <a class="mkdocs-ezglossary-link"
-    id="5d649a4748e6a436ee3becc94bc1007e"
+    id="1dec0d8cce78ce3dcf8bef17c1c67fa5"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6732,7 +6770,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
-    id="1dec0d8cce78ce3dcf8bef17c1c67fa5"
+    id="2d512f65049c13a090e801a608c9d6f7"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6754,7 +6792,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> type, the value of the <code>TETradeName</code> component SHALL include an official registration identifier as registered in official records (where such a registered identifier exists) that unambiguously identifies the entity.<br><br>In the case of a legal entity, the <code>TETradeName</code> component SHALL have the same semantics as the <code>organizationIdentifier</code> attribute in [ETSI EN 319 412-1].<br><br>In the case of a natural person, the <code>TETradeName</code> component SHALL have the same semantics as the <code>serialNumber</code> attribute in [ETSI EN 319 412-1].<br><br>For Pub-EAA Providers, the <code>TETradeName</code> SHALL additionally include the reference to the Union or national law under which the <a class="mkdocs-ezglossary-link"
-    id="f3b16d5d31b3e1de3695d2defa86ac88"
+    id="2aa2d284dcd4ba2fbad4a6500ec75724"
     title="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     data-tooltip="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
     name="roles:Public Sector Body"
@@ -6801,7 +6839,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The <code>TEAddress</code> component's description for the <a class="mkdocs-ezglossary-link"
-    id="2d512f65049c13a090e801a608c9d6f7"
+    id="707d1ff1ac15eb75d69333e06ff37b85"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6811,7 +6849,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> differs from c) of the <code>TEAddress</code> component's description in [ETSI TS 119 602, Annex H.3, Table H.2], which states "<em>the URI "<a href="http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC">http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC</a>" where "CC" is replaced by the ISO 3166-1 [2] Alpha 2 code of the Member State which is responsible for that <a class="mkdocs-ezglossary-link"
-    id="707d1ff1ac15eb75d69333e06ff37b85"
+    id="ee96dbd2f9f48697adc7496c80adddd3"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6899,7 +6937,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> type, the <code>ServiceDigitalIdentity</code> component SHALL contain one or more X.509 (Trust Anchor) certificates used to verify the signature or seal created by the provider to validate and authenticate their respective artifacts. The certified identity data SHALL include the name and registration number as specified in the <code>TEName</code> and <code>TETradeName</code> components.<br><br><a class="mkdocs-ezglossary-link"
-    id="ee96dbd2f9f48697adc7496c80adddd3"
+    id="4ad6428657d1aef8a1f6141864f99731"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6921,7 +6959,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>String</em></td>
 <td style="text-align: left;">The <code>ServiceStatus</code> component SHALL be present for <a class="mkdocs-ezglossary-link"
-    id="4ad6428657d1aef8a1f6141864f99731"
+    id="66108bce37927c76150ddef678ed7236"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -6943,7 +6981,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>String</em></td>
 <td style="text-align: left;">The <code>StatusStartingTime</code> component SHALL be present for <a class="mkdocs-ezglossary-link"
-    id="66108bce37927c76150ddef678ed7236"
+    id="e093db32714d776b2567dc24b053bf64"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -7059,7 +7097,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>Object</em></td>
 <td style="text-align: left;">The <code>ServiceDigitalIdentity</code> of a <a class="mkdocs-ezglossary-link"
-    id="e093db32714d776b2567dc24b053bf64"
+    id="b74a6036856eef5b02d00b7b0baaffff"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
@@ -7106,7 +7144,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a>) for the <a class="mkdocs-ezglossary-link"
-    id="ef7a368a34ca96851bc65632a1fbf0ec"
+    id="7a1b3bd046e3a2cd1fb15f7e7935d76b"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -7178,7 +7216,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
     name="credentials:Person Identification Data (PID)"
     href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">PIDs</a> as the <a class="mkdocs-ezglossary-link"
-    id="7a1b3bd046e3a2cd1fb15f7e7935d76b"
+    id="db870c72698fcf3ebff9e49446cc8bb2"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -7227,7 +7265,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> contains a list of RPs that are allowed to access the Attestation. According to [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-07), authorized RPs are identified by their subject distinguished name as held in the <a class="mkdocs-ezglossary-link"
-    id="cc9ea92521224d23b21af66d3f009065"
+    id="10d33f1a72e474a88d37fba269b73d73"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -7237,7 +7275,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>[ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-07) also allows identifying authorized RPs by URI-encoded entitlements as specified in [ETSI TS 119 475], held in the <a class="mkdocs-ezglossary-link"
-    id="22aac3443b6b66a29fad971a071d04d3"
+    id="3e4ba177ac73adb3e086e28bce676eae"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -7246,7 +7284,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>[ARF] HLR EDP_02 refers to "EU-wide unique identifiers", as defined in Reg_32, for the authorized RP list. [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-07) identifies authorized RPs by their subject DN from the <a class="mkdocs-ezglossary-link"
-    id="2dd0e0dd766f3eb04fd7f037afa75313"
+    id="27eed6c97cfb07cc625e16fb253b360e"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -7258,7 +7296,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> contains a list of trusted roots or intermediate certificates. Only RPs whose <a class="mkdocs-ezglossary-link"
-    id="10d33f1a72e474a88d37fba269b73d73"
+    id="b075247be2f1f2f4b2cd09c5105bf0d6"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -7429,7 +7467,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <td><code>authorized_parties[].subject_dn</code></td>
 <td>string</td>
 <td>OPTIONAL. Subject DN of the RP from the <a class="mkdocs-ezglossary-link"
-    id="27eed6c97cfb07cc625e16fb253b360e"
+    id="4daaf215160d6a63ffa77ea03db1da92"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -7440,7 +7478,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <td><code>authorized_parties[].entitlement_uri</code></td>
 <td>string (URI)</td>
 <td>OPTIONAL. URI-encoded entitlement or sub-entitlement as specified in [ETSI TS 119 475, Annex A], held in the <a class="mkdocs-ezglossary-link"
-    id="de8698719044c72b7075862e62a9fc72"
+    id="b91bd6531bf94a68a76bd06626293283"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -7479,7 +7517,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
     name="artifacts:Credential Issuer Metadata"
     href="../../glossary-definitions/#5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</a> at issuance time. The <a class="mkdocs-ezglossary-link"
-    id="4682a48c86dc3914bb9685a84f613caf"
+    id="afbcf44c134c2eaf0b673a61d606957a"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -7502,7 +7540,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>According to ISS-MDATA-EBD-4.2.5.2-03, the <a class="mkdocs-ezglossary-link"
-    id="afbcf44c134c2eaf0b673a61d606957a"
+    id="3132c28ade533ed020cb31f55f35a78c"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -7544,7 +7582,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL NOT have an independent validity status or revocation mechanism separate from the Attestation.</p>
 <h5 id="update-mechanism">Update Mechanism<a class="headerlink" href="#update-mechanism" title="Permanent link">&para;</a></h5>
 <p>If an <a class="mkdocs-ezglossary-link"
-    id="3132c28ade533ed020cb31f55f35a78c"
+    id="dd7e73b6b9e5733c532a4a7183f31338"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -7554,17 +7592,17 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> for an <a class="mkdocs-ezglossary-link"
-    id="3a2c01d46dd8d60dc99515d2c9a1ceb4"
+    id="9ef518e860520ee6994aefa643b98b48"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
     href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>, the <a class="mkdocs-ezglossary-link"
-    id="dd7e73b6b9e5733c532a4a7183f31338"
+    id="0dd87f10a8a11a93da7e3c5589620389"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
     href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> SHALL revoke that <a class="mkdocs-ezglossary-link"
-    id="9ef518e860520ee6994aefa643b98b48"
+    id="a5cf957a6a93743208af8ce323334097"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -7574,7 +7612,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> detects the policy change indirectly through the normal Attestation status checking mechanism (Status List), which will report that the <a class="mkdocs-ezglossary-link"
-    id="a5cf957a6a93743208af8ce323334097"
+    id="352129fdd2fffa880fc3e5eae8e82c05"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -7584,12 +7622,12 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is then implicitly invalidated together with the <a class="mkdocs-ezglossary-link"
-    id="352129fdd2fffa880fc3e5eae8e82c05"
+    id="e57fa98fbf714b6502c9aaf41230e051"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
     href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>. The User needs to request a new issuance to obtain the <a class="mkdocs-ezglossary-link"
-    id="e57fa98fbf714b6502c9aaf41230e051"
+    id="bd6904cbaa053a6010bf92535883f493"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -7600,7 +7638,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> checks the <a class="mkdocs-ezglossary-link"
-    id="bd6904cbaa053a6010bf92535883f493"
+    id="a95052b924a7d6d344cfd3a3fa476546"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -7608,7 +7646,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Proactive refresh. The <a class="mkdocs-ezglossary-link"
-    id="0dd87f10a8a11a93da7e3c5589620389"
+    id="b0eca5593d3689ec8a098da7da8001d3"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -7623,14 +7661,14 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> MAY proactively fetch the policy content at the <code>policy_uri</code> to check for updates, without waiting for an <a class="mkdocs-ezglossary-link"
-    id="a95052b924a7d6d344cfd3a3fa476546"
+    id="a8dd3c09cbf7b43726e1f8dabc7ca202"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
     href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:</p>
 <ul>
 <li>It enables <a class="mkdocs-ezglossary-link"
-    id="b0eca5593d3689ec8a098da7da8001d3"
+    id="240119a121bff20ba11e08b692683f04"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -7643,7 +7681,8 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <li>Technical details of this mechanism are not defined within ETSI standard.</li>
 </ul>
 </div>
-<h4 id="normative-references">Normative References<a class="headerlink" href="#normative-references" title="Permanent link">&para;</a></h4>
+<details class="references">
+<summary>References</summary>
 <table>
 <thead>
 <tr>
@@ -7707,12 +7746,13 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 </tr>
 </tbody>
 </table>
+</details>
 <!-- END INCLUDE -->
 
 <h3 id="trust-anchor-certificate">Trust Anchor Certificate<a class="headerlink" href="#trust-anchor-certificate" title="Permanent link">&para;</a></h3>
 <!-- BEGIN INCLUDE ../topics/trust-anchor-certificate-profiles.md -->
 <p>This section defines an interoperable <strong>X.509 certificate profile</strong> for <strong>entity trust anchors</strong> used in the <a class="mkdocs-ezglossary-link"
-    id="db870c72698fcf3ebff9e49446cc8bb2"
+    id="f59ad6ed0dbfd16a6b690911073ef2c1"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -7746,7 +7786,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     href="../../glossary-definitions/#ce1d969509e6bbdda2ade86ee953baf1">HAIP</a>, clause 6.1:</p>
 <ul>
 <li><a class="mkdocs-ezglossary-link"
-    id="240119a121bff20ba11e08b692683f04"
+    id="378a26a71ca313242a1f96e3a8afaa86"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -7762,7 +7802,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificate of the <a class="mkdocs-ezglossary-link"
-    id="378a26a71ca313242a1f96e3a8afaa86"
+    id="9f8f03527ed455c0c5dac5804b79e62d"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -7774,7 +7814,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</a> <code>x5c</code> header.</li>
 </ul>
 <p>The implication of that is that the <a class="mkdocs-ezglossary-link"
-    id="9f8f03527ed455c0c5dac5804b79e62d"
+    id="83267c12b2d244c7db98ac8a93deddc0"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -7825,20 +7865,16 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>.</p>
-<hr />
-<h4 id="references_3">References<a class="headerlink" href="#references_3" title="Permanent link">&para;</a></h4>
-<h5 id="normative-references_1">Normative references<a class="headerlink" href="#normative-references_1" title="Permanent link">&para;</a></h5>
+<details class="references">
+<summary>References</summary>
 <ul>
-<li><strong>RFC 5280</strong>: Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile.</li>
-<li><strong>RFC 5914</strong>: Trust Anchor Format.</li>
-<li><strong>ETSI TS 119 602</strong>: Lists of trusted entities; Data model.</li>
-<li><strong>ETSI TS 119 612</strong>: Trusted Lists.</li>
+<li><strong>CIR 2024/2980</strong></li>
+<li><strong>ETSI TS 119 602</strong></li>
+<li><strong>ETSI TS 119 612</strong></li>
+<li><strong>RFC 5280</strong></li>
+<li><strong>RFC 5914</strong></li>
 </ul>
-<h5 id="informative-references">Informative references<a class="headerlink" href="#informative-references" title="Permanent link">&para;</a></h5>
-<ul>
-<li><strong>Commission Implementing Regulation (EU) 2024/2980</strong>: Notifications concerning the European Digital Identity Wallet ecosystem.</li>
-</ul>
-<hr />
+</details>
 <h4 id="trust-model-assumptions-for-entity-trust-anchors">Trust model assumptions for entity trust anchors<a class="headerlink" href="#trust-model-assumptions-for-entity-trust-anchors" title="Permanent link">&para;</a></h4>
 <h5 id="what-the-trust-anchor-certificate-is-used-for">What the trust anchor certificate is used for<a class="headerlink" href="#what-the-trust-anchor-certificate-is-used-for" title="Permanent link">&para;</a></h5>
 <p>The entity trust anchor certificate is <strong>not</strong> the certificate used to sign application payloads. Instead, it is used as the <strong>trust termination point</strong> for validating other certificates (typically end-entity certificates) that are used to sign/seal data.</p>
@@ -8209,12 +8245,10 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <h3 id="entity-signseal-certificate">Entity Sign/Seal Certificate<a class="headerlink" href="#entity-signseal-certificate" title="Permanent link">&para;</a></h3>
 <!-- BEGIN INCLUDE ../topics/entity-end-certificate-profiles.md -->
 <p>This section describes the purpose, format and content of End Entity Sign/Seal Certificates in the European Digital Identity Wallet (EUDIW) ecosystem that are used for signing and sealing purposes.</p>
-<h4 id="references_4">References<a class="headerlink" href="#references_4" title="Permanent link">&para;</a></h4>
+<details class="references">
+<summary>References</summary>
 <p>To guarantee the interoperability across all entities of the EUDIW ecosystem, End Entity Sign/Seal Certificates should adhere to common requirements, with respect to their content and format. The technical specifications describing such content are distributed between multiple documents and for a purpose of proper referencing are listed below:</p>
 <ul>
-<li><strong>RFC 3986</strong></li>
-<li><strong>RFC 5280</strong></li>
-<li><strong>ETSI TS 119 612</strong></li>
 <li><strong>ETSI EN 319 411-1</strong></li>
 <li><strong>ETSI EN 319 411-2</strong> (applicable if the certificate is qualified)</li>
 <li><strong>ETSI EN 319 412-1</strong></li>
@@ -8222,7 +8256,11 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 <li><strong>ETSI EN 319 412-3</strong> (applicable if the certificate is issued to legal persons)</li>
 <li><strong>ETSI EN 319 412-5</strong> (applicable if the certificate is qualified)</li>
 <li><strong>ETSI TS 119 412-6</strong> (profiles the Sign/Seal certificate for various entities in the EUDIW ecosystem)</li>
+<li><strong>ETSI TS 119 612</strong></li>
+<li><strong>RFC 3986</strong></li>
+<li><strong>RFC 5280</strong></li>
 </ul>
+</details>
 <h4 id="end-entity-signseal-certificate-content">End Entity Sign/Seal Certificate Content<a class="headerlink" href="#end-entity-signseal-certificate-content" title="Permanent link">&para;</a></h4>
 <p>In the following sections we are providing tables with parameters and extensions that are mandatory for the specific End Entity Sign/Seal Certificate as described in ETSI specifications. For simplicity, optional attributes are omitted from this document, unless their requirement is conditional, or it could be useful to mention them.</p>
 <p>The column "Presence" in tables below contains the specification of the presence of the certificate parameter as follows:</p>

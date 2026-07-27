@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="../../media/extra.css">
     
+      <link rel="stylesheet" href="../../includes/admonitions.css">
+    
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -655,6 +657,8 @@
       
         
       
+        
+      
     
     
     
@@ -828,6 +832,34 @@
     
   
     Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
   
 
     
@@ -1152,7 +1184,7 @@
 <p>This section describes the artifacts that are employed in <a href="../../sections/trust-management-lifecycle/">Trust Management and Lifecycle</a> to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:</p>
 <ul>
 <li>To manage <a class="mkdocs-ezglossary-link"
-    id="873859f6ee98b222a108a13392ad5aa7"
+    id="dfc3f1c165747336681b2eedd1a37eb3"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1164,7 +1196,7 @@
     href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> SHALL:<ul>
 <li>make available at least one revocation mechanism among <a href="#certificate-revocation-lists">Certificate Revocation Lists</a> and <a href="#online-certificate-status-protocol">Online Certificate Status Protocol</a>;</li>
 <li>issue <a class="mkdocs-ezglossary-link"
-    id="a981dba8213344d5a2484b0f9f047498"
+    id="fcbed7bf13c2aed6167acd363b39276b"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1172,7 +1204,7 @@
 </ul>
 </li>
 <li>To manage <a class="mkdocs-ezglossary-link"
-    id="bc4f223aaf7ab64ddd8cdc7210ae4ee0"
+    id="4ed80e803fd094648c8730579bb112a9"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1184,7 +1216,7 @@
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL:<ul>
 <li>make available an endpoint to request <a href="#status-list-token">Status List Tokens</a>;</li>
 <li>issue <a class="mkdocs-ezglossary-link"
-    id="8a5a71d8f8235c9c6aeff8c26534ecc0"
+    id="3824c4ce57f9f3a982563c789878380c"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1194,27 +1226,27 @@
 </ul>
 <h4 id="token-status-list">Token Status List<a class="headerlink" href="#token-status-list" title="Permanent link">&para;</a></h4>
 <p>This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple <a class="mkdocs-ezglossary-link"
-    id="01306c14dc54ac20d69d962b6507ecf8"
+    id="ddaccda9f05a9f4167a6ef4426c57343"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>. A Status List describes the status of the <a class="mkdocs-ezglossary-link"
-    id="7a10e9b802e60843696d662e3e1aa77a"
+    id="25687364ad70dd0d475460e1e9bf2be0"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a> by encoding their validity in a bit array. Each <a class="mkdocs-ezglossary-link"
-    id="3456a7f1cd7112b829c68efd9a9347e8"
+    id="1f32ece0cf420168300ac3a295c0705a"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the <a class="mkdocs-ezglossary-link"
-    id="1098d35f3c5a45d544aa3c2c69f24291"
+    id="f783cb3e96b6bb1f121c4d60dd81711b"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>'s status. A Status List is provided within a cryptographically signed <a class="mkdocs-ezglossary-link"
-    id="19933669208697d465bee3bd9caadda4"
+    id="bca4d38c89a8ef3050a781b415bfd2df"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1225,17 +1257,17 @@
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> and Status Issuer (i.e., the entity that issues the <a class="mkdocs-ezglossary-link"
-    id="a42a8910ee07fd9b87b46ad6fa3643b1"
+    id="10deb9270046cca6d31d20c1ad3f89c5"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> about the status information of the <a class="mkdocs-ezglossary-link"
-    id="ab88d0b90a12d20f23dd267c37f11404"
+    id="45e67355bad3544537361d199d069b9e"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the <a class="mkdocs-ezglossary-link"
-    id="bca4d38c89a8ef3050a781b415bfd2df"
+    id="48e66a5dc41b8761bf146a112c329349"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1253,7 +1285,7 @@
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL:</p>
 <ul>
 <li>Define a number of bits, <span class="arithmatex">\(k\)</span>, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each <a class="mkdocs-ezglossary-link"
-    id="5873ccc680bac81c37dec93df127e655"
+    id="ca1003f61eb52691d6c05d012aaacfe0"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1263,18 +1295,18 @@
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL configure this number. Each <a class="mkdocs-ezglossary-link"
-    id="3461e0a85d6bf1d034f04d1947b97907"
+    id="a59b78125f548cb0e5a2eda1cf70bea5"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> will therefore have <span class="arithmatex">\(2^k\)</span> possible states.</li>
 <li>Create a byte array of size <span class="arithmatex">\(\geq\)</span> (expected number of <a class="mkdocs-ezglossary-link"
-    id="280bf9e94e43a40014104dc6d191085b"
+    id="e271bfaefe7e80123c5ba65bb2ef0b91"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>) * <span class="arithmatex">\(k\)</span> / 8. Depending on <span class="arithmatex">\(k\)</span>, each byte in the array corresponds to 8/<span class="arithmatex">\(k\)</span> statuses (8 if <span class="arithmatex">\(k=1\)</span>, 4 if <span class="arithmatex">\(k=2\)</span>, 2 if <span class="arithmatex">\(k=4\)</span>, or 1 if <span class="arithmatex">\(k=8\)</span>). Each time a <a class="mkdocs-ezglossary-link"
-    id="1fd6363538670e224af00229f278ff8b"
+    id="a767c92f8b5a30e707a2d17ff25a7247"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1285,17 +1317,17 @@
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> assigns it to a position in the array.</li>
 <li>Set the status values for all issued <a class="mkdocs-ezglossary-link"
-    id="4ed80e803fd094648c8730579bb112a9"
+    id="1e44c9906a858b16c911c6732f5ed5db"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a> within the byte array. The status of each <a class="mkdocs-ezglossary-link"
-    id="3824c4ce57f9f3a982563c789878380c"
+    id="7f90a21e302ccfc954389c9731ae9eb0"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is identified using an index that maps to one or more specific bits within the byte array. The index starts counting at 0 and ends with (number of <a class="mkdocs-ezglossary-link"
-    id="ddaccda9f05a9f4167a6ef4426c57343"
+    id="6d9c751154b0dfda6482aac213a0cc64"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1314,37 +1346,37 @@
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL use the following values for the possible statuses of the issued <a class="mkdocs-ezglossary-link"
-    id="25687364ad70dd0d475460e1e9bf2be0"
+    id="6df1a44f9bf75ca0781d1c738cb0232c"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>:</p>
 <ul>
 <li><code>0x00</code> - <code>VALID</code> - The <a class="mkdocs-ezglossary-link"
-    id="1f32ece0cf420168300ac3a295c0705a"
+    id="657c6cf1a3bcbe686532ae63ce317355"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is valid.</li>
 <li><code>0x01</code> - <code>INVALID</code> - The <a class="mkdocs-ezglossary-link"
-    id="f783cb3e96b6bb1f121c4d60dd81711b"
+    id="7e9d9953a75b708fe4388f6337d03677"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is revoked.</li>
 </ul>
 <p>For example, if two states for a certain <a class="mkdocs-ezglossary-link"
-    id="45e67355bad3544537361d199d069b9e"
+    id="4694365c51a723f756b1b69a8c402362"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> are possible, then <span class="arithmatex">\(k=1\)</span>. If the <a class="mkdocs-ezglossary-link"
-    id="0eb8e00c703cb146a928ba3d2ea9dbe7"
+    id="be3b09067108af16f62df25e6cb3800b"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
     href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> creates an array to store the statuses of 6 <a class="mkdocs-ezglossary-link"
-    id="ca1003f61eb52691d6c05d012aaacfe0"
+    id="b3946c649ade280fbba64053606a1e88"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1362,12 +1394,12 @@
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> chooses the number of bits for conveying statuses of the <a class="mkdocs-ezglossary-link"
-    id="a59b78125f548cb0e5a2eda1cf70bea5"
+    id="f210981b2d3ce483009be4b27b828afe"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a> it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a <a class="mkdocs-ezglossary-link"
-    id="e271bfaefe7e80123c5ba65bb2ef0b91"
+    id="15f8febc054e461b9c32a5b0f55f1a35"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1379,14 +1411,14 @@
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> receives a <a class="mkdocs-ezglossary-link"
-    id="a767c92f8b5a30e707a2d17ff25a7247"
+    id="705fcc95e55034d6c3d89ea31d682b1a"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.</p>
 <h5 id="status-list-token">Status List Token<a class="headerlink" href="#status-list-token" title="Permanent link">&para;</a></h5>
 <p>The <strong><a class="mkdocs-ezglossary-link"
-    id="10deb9270046cca6d31d20c1ad3f89c5"
+    id="44cddde8ce039bc35bb4e377f8a7887c"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1428,7 +1460,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>Array of Strings</em></td>
 <td style="text-align: left;">Contains the Base64-encoded certificate chain required to verify the <a class="mkdocs-ezglossary-link"
-    id="48e66a5dc41b8761bf146a112c329349"
+    id="b12e2e32d39cda8de06513d81fec60df"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1454,12 +1486,12 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>String</em></td>
 <td style="text-align: left;">The subject claim SHALL specify the URI of the <a class="mkdocs-ezglossary-link"
-    id="44cddde8ce039bc35bb4e377f8a7887c"
+    id="c4bb872d87c74f3d296b48c7a1209633"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a>. The value SHALL be equal to that of the <code>uri</code> claim contained in the <code>status*list.uri</code> claim of the <a class="mkdocs-ezglossary-link"
-    id="1e44c9906a858b16c911c6732f5ed5db"
+    id="8ec36e3d6b0310eb3bd8404c1334a152"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1471,7 +1503,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>NumericDate</em></td>
 <td style="text-align: left;">A timestamp indicating when the <a class="mkdocs-ezglossary-link"
-    id="b12e2e32d39cda8de06513d81fec60df"
+    id="b0773fa2f17d75cc2e5884367d123625"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1483,7 +1515,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>NumericDate</em></td>
 <td style="text-align: left;">A timestamp indicating when the <a class="mkdocs-ezglossary-link"
-    id="c4bb872d87c74f3d296b48c7a1209633"
+    id="1e9b78d93f77be21f0055dfb365a1766"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1502,7 +1534,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>Integer</em></td>
 <td style="text-align: left;">Specifies the number of bits per <a class="mkdocs-ezglossary-link"
-    id="7f90a21e302ccfc954389c9731ae9eb0"
+    id="0bc554df77639d84d247b4d7f4847c74"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1514,7 +1546,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>Base64url-encoded String</em></td>
 <td style="text-align: left;">Contains the status values for all the <a class="mkdocs-ezglossary-link"
-    id="6d9c751154b0dfda6482aac213a0cc64"
+    id="b1cbcb5b8cc082e2757ae94f5a38e43d"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1526,7 +1558,7 @@
 <td style="text-align: center;">RECOMMENDED</td>
 <td style="text-align: center;"><em>Integer</em></td>
 <td style="text-align: left;">Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the <a class="mkdocs-ezglossary-link"
-    id="b0773fa2f17d75cc2e5884367d123625"
+    id="dbd287355fe0dfef0f441ddbfc2f016f"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1535,7 +1567,7 @@
 </tbody>
 </table>
 <p>The following is an example of the <a class="mkdocs-ezglossary-link"
-    id="1e9b78d93f77be21f0055dfb365a1766"
+    id="e6aa0052224b54808d542d323419d46c"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1569,12 +1601,12 @@
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL request a <a class="mkdocs-ezglossary-link"
-    id="dbd287355fe0dfef0f441ddbfc2f016f"
+    id="b222bcf0abc72b62e58e910c68a45b27"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> at the URI referenced within the <code>status.status_list.uri</code> claim of the <a class="mkdocs-ezglossary-link"
-    id="6df1a44f9bf75ca0781d1c738cb0232c"
+    id="1b9f5ee1733a9678f5dea17bc3e5f375"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1586,7 +1618,7 @@
 </code></pre></div>
 <h5 id="status-list-response">Status List Response<a class="headerlink" href="#status-list-response" title="Permanent link">&para;</a></h5>
 <p>The successful response SHALL contain a <a class="mkdocs-ezglossary-link"
-    id="e6aa0052224b54808d542d323419d46c"
+    id="030ce0b8aaa4835d944baa062425a6c8"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1607,7 +1639,7 @@
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a> SHALL prioritize the <code>exp</code> and <code>ttl</code> claims within the <a class="mkdocs-ezglossary-link"
-    id="b222bcf0abc72b62e58e910c68a45b27"
+    id="9951668c03d59da04e98c19ace9c8212"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -2032,7 +2064,7 @@
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> client can be a WU checking the <a class="mkdocs-ezglossary-link"
-    id="dfc3f1c165747336681b2eedd1a37eb3"
+    id="b7e927e328f7dae49bf0998c8986d6d2"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -2042,7 +2074,7 @@
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> server is the Provider of the <a class="mkdocs-ezglossary-link"
-    id="fcbed7bf13c2aed6167acd363b39276b"
+    id="ff2a7ebef0151ce63a480b1e7acf01d7"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -2579,7 +2611,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:05:04 UTC">July 27, 2026 16:05:04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:07:59 UTC">July 27, 2026 16:07:59</span>
   </span>
 
     
