@@ -1,0 +1,35 @@
+.md-typeset table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.75rem;
+}
+
+.md-typeset table td,
+.md-typeset table th {
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.md-typeset table th:first-child,
+.md-typeset table td:first-child {
+    min-width: 8rem;
+    max-width: 10rem;
+    width: 10%;
+}
+
+.md-typeset table th:nth-child(3),
+.md-typeset table td:nth-child(3) {
+    min-width: 6rem;
+    max-width: 8rem;
+    width: 8%;
+}
+
+.md-typeset table th:nth-child(4),
+.md-typeset table td:nth-child(4) {
+    min-width: 10rem;
+    max-width: 14rem;
+    width: 15%;
+}
