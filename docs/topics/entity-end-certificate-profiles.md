@@ -700,7 +700,7 @@ AccessCertificate cert = {
 
 #### Sign/Seal Certificate Path Validation
 
-When instantiating the [Certificate Path Validation](#authentication-process) algorithm for Sign/Seal Certificate chains, the initialization parameters are defined as follows:
+When instantiating the [Certificate Path Validation](../sections/trust-evaluation-process.md#authentication-process) algorithm for Sign/Seal Certificate chains, the initialization parameters are defined as follows:
 
 - The <artifacts:Trust Anchor> is the *trusted certificate* obtained from the `ServiceDigitalIdentity` component in relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> (See the table below).
 - The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:
@@ -710,7 +710,7 @@ When instantiating the [Certificate Path Validation](#authentication-process) al
 
 !!! note
 
-    Regarding Sign/Seal Certificates within APTITUDE, $n=1$. The Sign/Seal Certificate SHALL be referenced in the `x5c` claim of the Attestation, while the Trust Anchor referenced in the LoTE SHALL be a self-signed certificate of the entity issuing Sign/Seal Certificates as described in [Trust Anchor Certificate](#trust-anchor-certificate).
+    Regarding Sign/Seal Certificates within APTITUDE, $n=1$. The Sign/Seal Certificate SHALL be referenced in the `x5c` claim of the Attestation, while the Trust Anchor referenced in the LoTE SHALL be a self-signed certificate of the entity issuing Sign/Seal Certificates as described in [Trust Anchor Certificate](../sections/trust-artifacts.md#trust-anchor-certificate).
 
 The following table maps the Sign/Seal Certificate subject to the location of the respective Trust Anchor.
 
