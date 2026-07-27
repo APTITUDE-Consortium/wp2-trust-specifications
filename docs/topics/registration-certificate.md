@@ -1,17 +1,17 @@
 This section defines <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates> (<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>), as described in [ARF]. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> provides detailed information about the <roles:Attestation Provider (AP)|Attestation Provider>'s entitlements, the <credentials:Attestation|Attestations> they issue, and their intended use.
 
-#### References
+??? references
 
-- **CIR 2025/848**
-- **ETSI EN 319 411-1**
-- **ETSI TS 119 182-1**
-- **ETSI TS 119 475**
-- **ISO 3166-1**
-- **RFC 5646**
-- **RFC 7519**
-- **RFC 8392**
+    - **CIR 2025/848**
+    - **ETSI EN 319 411-1**
+    - **ETSI TS 119 182-1**
+    - **ETSI TS 119 475**
+    - **ISO 3166-1**
+    - **RFC 5646**
+    - **RFC 7519**
+    - **RFC 8392**
 
-#### Format
+### Format
 
 1. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> shall be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
 2. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> shall comply with the syntactic and semantic requirements specified in Annex V paragraph 3 of CIR (EU) 2025/848 [i.2].
@@ -21,7 +21,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-#### Attribute Overview
+### Attribute Overview
 
 | Attribute group                                                       | Description                                                                               | Required |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-----------|
@@ -36,9 +36,9 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | [Technical Attributes](#technical-attributes)                         | Technical metadata such as policies, timestamps, and status-list configuration.           | Some of them |
 | [Uses Intermediary Attributes](#uses-intermediary-attributes)         | Attributes required when the WRP operates through an intermediary entity.                 | Required if Intermediary is used |
 
-#### Header Attributes
+### Header Attributes
 
-##### JWT Header Attributes
+#### JWT Header Attributes
 
 > Listed header attributes are mandatory.
 
@@ -48,7 +48,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `alg` | *string* | Indicates the algorithm used to sign the JWT as defined in clause 5.1.2 of [ETSI TS 119 182-1] [18]. | [ETSI TS 119 475, Table 5] |
 | `x5c` | *array[string]* | Contains the whole certificate chain to verify the JWT or CWT as defined in clause 5.1.8 of [ETSI TS 119 182-1] [18] | [ETSI TS 119 475, Table 5] |
 
-##### CWT Header Attributes
+#### CWT Header Attributes
 
 > Listed header attributes are mandatory.
 
@@ -58,9 +58,9 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `alg` | *string* | Indicates the algorithm used to sign the CWT as specified in [RFC 9052], clause 3.1 | [ETSI TS 119 475, Table 6] |
 | `x5chain` | *array[string]* | Contains the whole certificate chain to verify the CWT as specified in [RFC 9360], clause 2 | [ETSI TS 119 475, Table 6] |
 
-#### Payload Attributes
+### Payload Attributes
 
-##### Core Identity Attributes
+#### Core Identity Attributes
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
@@ -74,7 +74,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `info_uri` | *string* | URL general-purpose web address | Required | [ETSI TS 119 475, Table 7] - `infoURI` |
 | `support_uri` | *string* | URL or email address to use in data deletion or portability requests related to the WRP | Required | [ETSI TS 119 475, Table 7] - `supportURI` |
 
-##### Service Description Attributes
+#### Service Description Attributes
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
@@ -82,20 +82,20 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `srv_description[].lang` | *string* | Language identifier, referring the BCP47 language tag format defined in RFC 5646 [9] | Required | [ETSI TS 119 475, Table 7] - `lang` |
 | `srv_description[].value` | *string* | Service description in specified language | Required | [ETSI TS 119 475, Table 7] - `content` |
 
-##### Entitlements Attribute
+#### Entitlements Attribute
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
 | `entitlements` | *array[string]* | A list of entitlements assigned to the WRP as defined in [ETSI TS 119 475, Annex A.2] | Required | [ETSI TS 119 475, Table 7] - `entitlement` |
 
-##### Privacy and Policy Attributes
+#### Privacy and Policy Attributes
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
 | `privacy_policy` | *string* | URL to the WRP's privacy policy explaining data processing and storage practices | Required | [ETSI TS 119 475, Table 7] - `policyURI` |
 | `public_body` | *boolean* | Boolean indicating whether the WRP is a <roles:Public Sector Body> | Optional | [ETSI TS 119 475, Table 10] - `isPSB` |
 
-##### Supervisory Authority Attributes
+#### Supervisory Authority Attributes
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
@@ -104,7 +104,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `supervisory_authority.email` | *string* | An e-mail address of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Required | [ETSI TS 119 475, Table 7] - `email` |
 | `supervisory_authority.phone` | *string* | A telephone number of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Required | [ETSI TS 119 475, Table 7] - `phone` |
 
-##### Service Provider Attributes
+#### Service Provider Attributes
 
 | Attribute | Type            | Description | Required | Reference |
 |-----------|-----------------|-------------|-----------|-----------|
@@ -117,7 +117,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `purpose[].value` | *string*        | Purpose description provided in the language specified above | Required for Service Provider | [ETSI TS 119 475, Table 9] - `value` |
 | `intended_use_id` | *string*        | Unique identifier of the intended use if provided by the registry. Used to fetch the intented use directly from the registry | Required for Service Provider only if provided by registry | [ETSI TS 119 475, Table 9] - `intendedUserIdentifier` |
 
-##### Attestation Provider Attributes
+#### Attestation Provider Attributes
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
@@ -126,7 +126,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `provides_attestations[].meta` | *object* | Metadata to identify the credential type. | Required for <roles:EAA Provider> | [ETSI TS 119 475, Table 8] - `meta` |
 | `provides_attestations[].claim` | *array[object]* | Objects that specifies attributes in the requested attestation. | Required for <roles:EAA Provider> only if provided by registry. | [ETSI TS 119 475, Table 8] - `claim` |
 
-##### Technical Attributes
+#### Technical Attributes
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
@@ -138,7 +138,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `status.status_list.idx` | *int* | Position in status bitstring | Required | [ETSI TS 119 475] GEN-6.2.6.1-04, GEN-6.2.6.1-05 |
 | `status.status_list.uri` | *string* | <artifacts:Status List Token> URI | Required | [ETSI TS 119 475] GEN-6.2.6.1-04 |
 
-##### Uses Intermediary Attributes
+#### Uses Intermediary Attributes
 
 | Attribute | Type | Description | Required | Reference |
 |-----------|------|-------------|-----------|-----------|
@@ -148,9 +148,9 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-#### Examples
+### Examples
 
-##### JWT Header
+#### JWT Header
 
 ```json
 {
@@ -162,7 +162,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-##### CWT Header
+#### CWT Header
 
 ```cbor
 {
@@ -178,7 +178,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-##### JWT Payload Example - Service Provider
+#### JWT Payload Example - Service Provider
 
 ```json
 {
@@ -222,7 +222,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-##### JWT Payload Example - Qualified EAA Provider
+#### JWT Payload Example - Qualified EAA Provider
 
 ```json
 {
@@ -305,7 +305,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-##### JWT Payload Example - Non-Qualified EAA Provider (University)
+#### JWT Payload Example - Non-Qualified EAA Provider (University)
 
 ```json
 {
@@ -389,7 +389,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-##### JWT Payload Example - Banking KYC (Multiple Credentials)
+#### JWT Payload Example - Banking KYC (Multiple Credentials)
 
 ```json
 {
@@ -437,7 +437,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-##### JWT Payload Example - With Intermediary
+#### JWT Payload Example - With Intermediary
 
 ```json
 {
@@ -467,7 +467,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-##### JWT Payload Example - Natural Person (Notary)
+#### JWT Payload Example - Natural Person (Notary)
 
 ```json
 {
@@ -502,15 +502,15 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ---
 
-#### Other Information
+### Other Information
 
-##### Algorithms
+#### Algorithms
 
 Algorithms used should be one of the algorithms for digital signatures recommended by in [ETSI TS 119 312].
 
 [OpenID4VC HAIP] also defines its own requirements for digital signatures. However, those requirements are not directly related to <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>.
 
-##### List of Possible Entitlements
+#### List of Possible Entitlements
 
 Per [ETSI TS 119 475, Annex A.2]:
 
@@ -527,7 +527,7 @@ Per [ETSI TS 119 475, Annex A.2]:
 | `rQSigCDs_Provider` | `https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider` | `id-etsi-wrpa-entitlement 9` | Annex A.2.9 | QTSP managing remote qualified electronic signature creation devices  |
 | `ESig_ESeal_Creation_Provider` | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | `id-etsi-wrpa-entitlement 10` | Annex A.2.10 | Non-qualified provider for remote signature/seal creation |
 
-##### Organizational Identifier Formats
+#### Organizational Identifier Formats
 
 Per [ETSI TS 119 475, clause 5.1.3 - Table 2 and 5.1.5 - Table 4]:
 
@@ -538,7 +538,7 @@ Per [ETSI TS 119 475, clause 5.1.3 - Table 2 and 5.1.5 - Table 4]:
 | `http://data.europa.eu/eudi/id/VATIN` | `VAT` | GEN-5.1.3-02, Table 2 | Directive 2006/112/EC |
 | `http://data.europa.eu/eudi/id/TIN` | `TIN` | GEN-5.1.5-02, Table 4 | |
 
-##### CBOR Web Token (CWT) Claims
+#### CBOR Web Token (CWT) Claims
 
 CWT token claims must be registered in a register created by IANA.
 

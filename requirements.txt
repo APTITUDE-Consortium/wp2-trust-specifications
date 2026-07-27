@@ -1,7 +1,8 @@
 mkdocs==1.6.1
 mkdocs-exclude==1.0.2
+#mkdocs-ezglossary-plugin==2.1.0
+mkdocs-ezglossary-plugin @ git+https://github.com/gdegani/mkdocs-ezglossary.git@a81924cf7aba8e3136f70fa1bd5755f05fa64008
 mkdocs-material==9.7.6
-mkdocs-ezglossary-plugin==2.1.0
 mkdocs-git-revision-date-localized-plugin==1.5.1
 mkdocs-git-revision-date-plugin==0.3.2
 mkdocs-include-markdown-plugin==7.2.2

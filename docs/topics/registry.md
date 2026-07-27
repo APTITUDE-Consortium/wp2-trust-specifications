@@ -14,22 +14,22 @@ The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is
     
     Additionally, sectorial registers may exist internally, but the decision regarding issuance of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is solely based on whether the <roles:Wallet-Relying Party (WRP)|WRP> has been registered with an active status in the national <components:Register>.
 
-#### References
+??? references
 
-The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
+    The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
 
-- **CIR 2025/848** on <roles:Wallet-Relying Party (WRP)|WRP> registration and <components:Register|Registers>.
-- **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>.
-- **ETSI TS 119 475** on <roles:Wallet-Relying Party (WRP)|WRP> attributes, entitlement URIs, <roles:Relying Party (RP)|RP> authorisation decision support.
-- **RFC 7515**
-- **RFC 7519**
-- **RFC 8392**
-- **TS05** on common formats and API for <roles:Wallet-Relying Party (WRP)|WRP> registration information.
-- **TS06** on common set of <roles:Wallet-Relying Party (WRP)|WRP> information to be registered.
+    - **CIR 2025/848** on <roles:Wallet-Relying Party (WRP)|WRP> registration and <components:Register|Registers>.
+    - **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>.
+    - **ETSI TS 119 475** on <roles:Wallet-Relying Party (WRP)|WRP> attributes, entitlement URIs, <roles:Relying Party (RP)|RP> authorisation decision support.
+    - **RFC 7515**
+    - **RFC 7519**
+    - **RFC 8392**
+    - **TS05** on common formats and API for <roles:Wallet-Relying Party (WRP)|WRP> registration information.
+    - **TS06** on common set of <roles:Wallet-Relying Party (WRP)|WRP> information to be registered.
 
-#### Requirements
+### Requirements
 
-##### Register Requirements
+#### Register Requirements
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
@@ -49,7 +49,7 @@ The list below enumerates all the applicable standards and specifications that h
 
     The set of <roles:Wallet-Relying Party (WRP)|WRP> information listed in Annex I of [CIR 2025/848] and mentioned in REGISTER-PUB-05 and REGISTER-API-03 will be described in the [Register Data Schema](#register-data-schema) section.
 
-##### Registrar Requirements
+#### Registrar Requirements
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
@@ -68,7 +68,7 @@ The list below enumerates all the applicable standards and specifications that h
 | REGISTRAR-GOV-06 | Providers of WRPAC and WRPRC SHALL revoke affected certificates without undue delay after notification (where applicable). | [CIR 2025/848, Article 9(6)] |
 | REGISTRAR-GOV-07 | <roles:Registrar\|Registrars> SHALL keep records (Annex I + issuance data + changes) for 10 years. | [CIR 2025/848, Article 10] |
 
-##### Provider of WRPAC and WRPRC and Register Interactions Requirements
+#### Provider of WRPAC and WRPRC and Register Interactions Requirements
 
 | ID | Requirement | Reference |
 | -- | ----------- | --------- |
@@ -80,9 +80,9 @@ The list below enumerates all the applicable standards and specifications that h
 | PROVIDER-WRPRC-03 | Providers of WRPRC SHALL monitor Register changes, reissue/revoke when changes require. | [CIR 2025/848, Annex V §3(d)] |
 | PROVIDER-WRPRC-04 | Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT). | [CIR 2025/848, Annex V §4]; [ETSI TS 119 475, Section 4.4] |
 
-#### Register Data Schema
+### Register Data Schema
 
-This section defines the data schema for each <roles:Wallet-Relying Party (WRP)\|WRP> registered in the national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>. The values are extracted from the Annex VI of the [CIR 2025/848-Amendment].
+This section defines the data schema for each <roles:Wallet-Relying Party (WRP)\|WRP> registered in the national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>. The values are extracted from Annex VI of the [CIR 2025/848-Amendment].
 
 <!--format of the information exchanged via the Register API as JSON objects and JWS-signed statements. -->
 
@@ -144,7 +144,7 @@ This section defines the data schema for each <roles:Wallet-Relying Party (WRP)\
 
     Future editions may define additional sub-entitlements at national or EU level.
 
-##### Identifier
+#### Identifier
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -166,14 +166,14 @@ Normative identifier type URIs defined in [ETSI TS 119 475]:
 
     Additional type identifiers may be defined at national or EU level.
 
-##### MultiLangString
+#### MultiLangString
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `lang`    | `string` | REQUIRED | Language tag (e.g., `en`, `fr`). |
 | `content` | `string` | REQUIRED | Language-specific content. |
 
-##### IntendedUse
+#### IntendedUse
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -184,7 +184,7 @@ Normative identifier type URIs defined in [ETSI TS 119 475]:
 | `createdAt` | `string` | REQUIRED | Validity start date of the intended use in accordance with ISO86011  YYYY-MM-DD format. |
 | `revokedAt` | `string` | OPTIONAL | End date for the validity of the intended use in accordance with ISO86011  YYYY-MM-DD format. |
 
-##### Policy
+#### Policy
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -203,7 +203,7 @@ Defined policy type URIs:
 
     Additional policy type URIs may be defined at national or EU level.
 
-##### Credential
+#### Credential
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -211,14 +211,14 @@ Defined policy type URIs:
 | `meta`    |  `object` | REQUIRED | Additional grouping/type metadata defined per credential format (e.g., `{"vct": "..."}` for `dc+sd-jwt`, `{"doctype_value": "..."}` for `mso_mdoc`). See OpenID4VP §6.1. |
 | `claim`   | `Claim[]` |  OPTIONAL | Requested claim paths and allowed values (if constrained). |
 
-##### Claim
+#### Claim
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `path` | `array` | REQUIRED | Non-empty path array of strings / `null` / non-negative integers (OpenID4VP-style path pointer segments). |
 | `values` | `array` | OPTIONAL | Optional allowed values; elements may be `string`, `integer`, or `boolean`. |
 
-##### LegalEntity (for `supervisoryAuthority`)
+#### LegalEntity (for `supervisoryAuthority`)
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -231,14 +231,14 @@ Defined policy type URIs:
 | `phone` | `string[]` | OPTIONAL | Phone number(s) of the authority. |
 | `infoURI` | `string[]` | OPTIONAL | Information URI(s) of the authority. |
 
-##### LegalPerson
+#### LegalPerson
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `legalName` | `string[]` | REQUIRED | Legal name(s) as in official records. |
 | `establishedBylaw` | `Law[]` | REQUIRED if PSBs responsible for <components:Authentic Source\|Authentic Sources> | Legal basis for establishment. It SHALL be present for PSBs responsible for <components:Authentic Source\|Authentic Sources>; present for other PSBs where applicable. |
 
-##### NaturalPerson
+#### NaturalPerson
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -247,14 +247,14 @@ Defined policy type URIs:
 | `dateOfBirth` | `string` | OPTIONAL | Date of birth (where present in official records). |
 | `placeOfBirth` | `string`| OPTIONAL | Place of birth (where present in official records). |
 
-##### Law
+#### Law
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
 | `lang` | `string` | REQUIRED | Two-letter language code (ISO 639-1 style). |
 | `legalBasis` | `string` | REQUIRED | Legal basis text establishing the legal person (or requiring/recommending access to a claim). |
 
-##### Non-normative example: WRP object for a Relying Party
+#### Non-normative example: WRP object for a Relying Party
 
 A bank registered as a service provider (requesting PID for KYC).
 
@@ -352,7 +352,7 @@ A bank registered as a service provider (requesting PID for KYC).
 }
 ````
 
-##### Non-normative example: WRP object for a Relying Party that is also an Attestation Provider
+#### Non-normative example: WRP object for a Relying Party that is also an Attestation Provider
 
 A bank registered as both a service provider (requesting <credentials:Person Identification Data (PID)|PID> for KYC) and a `QEAA_Provider` (issuing bank account attestations to wallet units). It has both `intendedUse` and `providesAttestations`.
 
@@ -459,7 +459,7 @@ A bank registered as both a service provider (requesting <credentials:Person Ide
 }
 ````
 
-##### Non-normative example: WRP object for a designated Intermediary
+#### Non-normative example: WRP object for a designated Intermediary
 
 An entity registered as a designated Intermediary that acts on behalf of <roles:Wallet-Relying Party (WRP)|WRPs> during Wallet interactions. It has `isIntermediary: true` and does not declare `intendedUse` (not required when registering solely as an intermediary).
 
@@ -527,7 +527,7 @@ An entity registered as a designated Intermediary that acts on behalf of <roles:
 }
 ````
 
-##### Non-normative example: WRP object for a WRP using a designated Intermediary
+#### Non-normative example: WRP object for a WRP using a designated Intermediary
 
 A small e-commerce business that relies on TrustBridge (see example above) to conduct Wallet interactions on its behalf. It has `usesIntermediary` pointing to the Intermediary's registry entry, and `isIntermediary: false`.
 
@@ -621,11 +621,15 @@ A small e-commerce business that relies on TrustBridge (see example above) to co
 }
 ````
 
-#### Common Register API
+### Common Register API
 
 This section documents a [TS05] aligned common <components:Register> API profile that satisfies [CIR 2025/848, Annex II] and [CIR 2025/848-Amendment] constraints.
 
-##### API Methods on Registration and Updating of WRP Data
+!!! note
+
+    The OpenAPI Specification (OAS) of the API described in this section is available in [this page](../api/register-api.md).
+
+#### API Methods on Registration and Updating of WRP Data
 
 The common API write methods (POST, PUT and DELETE) are defined for purposes of managing the <components:Register> information of MS <roles:Registrar|Registrars>.
 
@@ -633,7 +637,7 @@ The common API write methods (POST, PUT and DELETE) are defined for purposes of 
 
     These methods SHALL be accessible by authorised users only.
 
-###### `POST /wrp` — create (REQUIRED)
+##### `POST /wrp` — create (REQUIRED)
 
 POST is for creating a new <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and returns a `201` on success.
 
@@ -654,7 +658,7 @@ POST is for creating a new <roles:Wallet-Relying Party (WRP)|WRP> entry in the <
 
 ---
 
-###### `PUT /wrp` — update (REQUIRED)
+##### `PUT /wrp` — update (REQUIRED)
 
 PUT is for updating an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and can return `200` on success or `404` if not found.
 
@@ -676,9 +680,9 @@ PUT is for updating an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in 
 
 ---
 
-###### `DELETE /wrp` — delete (REQUIRED)
+##### `DELETE /wrp` — delete (REQUIRED)
 
-DELETE is for deleting of an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
+DELETE is for deleting an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` identifier, and returns a `204` on success.
 
 **Request (body)**
 
@@ -700,13 +704,13 @@ DELETE is for deleting of an existing <roles:Wallet-Relying Party (WRP)|WRP> ent
 | `403` | Forbidden (caller not authorised by Member State). |
 | `404` | Not found. |
 
-##### API Methods for Register Queries (Open API)
+#### API Methods for Register Queries (Open API)
 
 The common API read methods (GET) SHALL be open for public access (no prior authentication) and returns JWS-signed statements.
 
 The public API SHALL provide methods for searching and querying complete data sets of registered <roles:Wallet-Relying Party (WRP)|WRPs> matching with provided query parameters
 
-###### `GET /wrp` — search/list (REQUIRED)
+##### `GET /wrp` — search/list (REQUIRED)
 
 Get a list of <roles:Wallet-Relying Party (WRP)|WRPs> (with optional filtering and pagination, list of all registered WRPs returned when no query parameters are provided).
 
@@ -778,7 +782,7 @@ A successful response (`200`) SHALL be JWS-signed response body.
 
 ---
 
-###### `GET /wrp/check-intended-use` — intended use check (REQUIRED)
+##### `GET /wrp/check-intended-use` — intended use check (REQUIRED)
 
 A dedicated intended-use check endpoint for making narrowed-down intended use related queries from the <components:Register>.
 
@@ -805,7 +809,7 @@ This profile uses the following mapping (strictly aligned names for intended-use
 
 ---
 
-###### `GET /wrp/{identifier}` — get by identifier (OPTIONAL)
+##### `GET /wrp/{identifier}` — get by identifier (OPTIONAL)
 
 Get <roles:Wallet-Relying Party (WRP)|WRP> by identifier.
 
@@ -826,11 +830,11 @@ Get <roles:Wallet-Relying Party (WRP)|WRP> by identifier.
 | `200` | `application/jwt` | JWS compact string; decoded payload contains one `WalletRelyingParty` entry (or profile envelope). |
 | `404` | - | Not found. |
 
-##### Optional Profile Envelope (recommended for interoperability metadata)
+#### Optional Profile Envelope (recommended for interoperability metadata)
 
 To preserve issuer/timestamp metadata and pagination in a stable schema, a Member State MAY define an envelope profile as follows (while still satisfying the endpoint semantics above):
 
-###### SignedWRPArrayEnvelope (profile)
+##### SignedWRPArrayEnvelope (profile)
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -839,7 +843,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `data` | `WRPEntry[]` | REQUIRED | Matching WRP entries (published view, address excluded), each bundled with its certificate history. |
 | `pagination` | `Pagination` | OPTIONAL | Cursor-based pagination metadata. |
 
-###### WRPEntry (per-WRP bundle)
+##### WRPEntry (per-WRP bundle)
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -847,7 +851,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `wrpacHistory` | `CertificateHistoryEntry[]` | OPTIONAL | WRP access certificate history for this WRP (including CT-related references where available). |
 | `wrprcHistory` | `CertificateHistoryEntry[]` | OPTIONAL | WRP registration certificate history for this WRP (if provided by national profile). |
 
-###### SignedWRPEnvelope (profile, for non-common helper endpoints)
+##### SignedWRPEnvelope (profile, for non-common helper endpoints)
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
@@ -857,7 +861,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `wrpacHistory` | `CertificateHistoryEntry[]` | OPTIONAL | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> history. |
 | `wrprcHistory` | `CertificateHistoryEntry[]` | OPTIONAL | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> history (if supported). |
 
-###### SignedIntendedUseCheckEnvelope (profile)
+##### SignedIntendedUseCheckEnvelope (profile)
 
 !!! note
 
@@ -869,7 +873,7 @@ To preserve issuer/timestamp metadata and pagination in a stable schema, a Membe
 | `iat` | `integer` | REQUIRED | Issued-at timestamp. |
 | `data` | `boolean` | REQUIRED | Result of intended-use check. |
 
-###### CertificateHistoryEntry (profile helper for certificate histories)
+##### CertificateHistoryEntry (profile helper for certificate histories)
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |

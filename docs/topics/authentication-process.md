@@ -2,9 +2,9 @@ The **Authentication Process** enables the <components:Wallet Unit> to authentic
 
 To authenticate the <roles:Wallet-Relying Party (WRP)|WRP>, the <components:Wallet Unit> SHALL verify the authenticity and integrity of the presented <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> by performing the following steps:
 
-1. **Retrieve the <artifacts:Trust Anchor>:** Obtain the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>'s entry from the validated List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>) (see [Trust Anchor Validation Process](#trust-anchor-validation-process)). The certificate(s) found in the `ServiceDigitalIdentity` field of the <artifacts:List of Trusted Entities (LoTE)|LoTE>'s `TrustedEntitiesList` constitute the <artifacts:Trust Anchor>.
+1. **Retrieve the <artifacts:Trust Anchor>:** Obtain the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>'s entry from the validated List of <roles:Trusted Entity|Trusted Entities> (<artifacts:List of Trusted Entities (LoTE)|LoTE>) (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)). The certificate(s) found in the `ServiceDigitalIdentity` field of the <artifacts:List of Trusted Entities (LoTE)|LoTE>'s `TrustedEntitiesList` constitute the <artifacts:Trust Anchor>.
 2. **Construct the Certification Path:** Build a path starting from the certificate issued by the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> (C_1) and ending with the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> presented by the WRP (C_n). *(Note: The simplest path consists of just one certificate, where n=1).*
-3. **Execute Path Validation:** Run the algorithm defined in [Wallet Relying Party Access Certificate Path Validation](#wallet-relying-party-access-certificate-path-validation) using the retrieved <artifacts:Trust Anchor>.
+3. **Execute Path Validation:** Run the algorithm defined in [Certificate Path Validation](#certificate-path-validation) using the retrieved <artifacts:Trust Anchor>.
 4. **Verify the Signature:** Use the public key from the validated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> to verify the WRP's signature on the metadata presented during the specific interaction.
 
 The method by which the WRP presents its <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> chain depends on the specific interaction flow:
@@ -17,7 +17,7 @@ The method by which the WRP presents its <artifacts:Wallet-Relying Party Access 
 
     Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol <data-elements:Nonce|nonce>, the WRP SHALL NOT use the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> private key to sign arbitrary data that could be controlled by an external party.
 
-#### Wallet Relying Party Authentication Sequence Diagram
+### Wallet Relying Party Authentication Sequence Diagram
 
 Below is a sequence diagram illustrating the Authentication Process, including the retrieval and validation of the <artifacts:List of Trusted Entities (LoTE)|LoTE>, path construction, and certificate validation steps. The diagram also highlights the decision points for successful or failed authentication.
 
@@ -48,21 +48,27 @@ sequenceDiagram
     end
 ```
 
-#### Wallet Relying Party Access Certificate Path Validation
+### Wallet Relying Party Access Certificate Path Validation
 
-This section defines the validation of the certification path.
+This section defines the validation of the WRP Access Certificate path. The [Certificate Path Validation](#certificate-path-validation) section is general and is applied to WRPRC certification path validation and Sign/Seal Certificate path validation as well.
 
-- The <artifacts:Trust Anchor> is the certificate of the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> obtained from the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+- The <artifacts:Trust Anchor> is the *trusted certificate* obtained from the `ServiceDigitalIdentity` component in <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC's> <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 - The Certification Path is the sequence of $n$ certificates ($C_1 \dots C_n$) provided by the WRP, where:
-    - $C_1$ is the certificate issued by the <artifacts:Trust Anchor>.
+    - $C_1$ is the certificate issued by the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>.
     - $C_n$ is the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> (the target certificate).
     - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
 
-The <components:Wallet Unit> initializes the validation with:
+#### Certificate Path Validation
+
+The entity that performs the certificate path validation initializes the following variables:
 
 - `path`: The sequence $C_1 \dots C_n$.
-- `trust_anchor`: The certificate of the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>.
+- `trust_anchor`: *trusted certificate* obtained from the `ServiceDigitalIdentity` component after validation of the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 - `current_time`: The current date and time.
+
+!!! note
+
+    The profiles for Trust Anchor certificates referenced within a LoTE are described in [Trust Anchor Certificate](../sections/trust-artifacts.md#trust-anchor-certificate).
 
 **Step 1: Initialization**
 Initialize the state variables:
@@ -182,15 +188,15 @@ flowchart TD
 
 ##### Revocation Checking
 
-The <components:Wallet Unit> SHALL determine the revocation status for every certificate in the path with one of the following methods:
+The entity performing certificate path validation (e.g., the <components:Wallet Unit>) SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
-- If the certificate contains the `noRevAvail` extension AND the `ETSIValAssuredCertMod` extension (see [Wallet Relying Party Access Certificate Content](#wallet-relying-party-access-certificate-content)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
+- If the certificate contains the `noRevAvail` extension AND the `ext-etsi-valassured-ST-certs` extension (see [Wallet Relying Party Access Certificate Content](../sections/trust-artifacts.md#wallet-relying-party-access-certificate-content)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
 - If the `cRLDistributionPoints` extension is present, the <components:Wallet Unit> MAY retrieve and validate the <artifacts:Certificate Revocation List (CRL)|CRL>.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the <components:Wallet Unit> MAY perform an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> lookup.
 
-For details regarding the formats and parameters of <artifacts:Certificate Revocation List (CRL)|CRLs> and <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responses, see [Revocation Mechanism](#revocation-mechanisms).
+For details regarding the formats and parameters of <artifacts:Certificate Revocation List (CRL)|CRLs> and <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responses, see [Revocation Mechanism](../sections/trust-management-lifecycle.md#revocation-mechanisms).
 
-###### CRL Validation
+####### CRL Validation
 
 When using a <artifacts:Certificate Revocation List (CRL)|CRL>, the <components:Wallet Unit> SHALL:
 
@@ -263,7 +269,7 @@ flowchart TD
     class Revoked,Revoked2,Revoked3,Revoked4,Revoked5 revoked;
 ```
 
-###### OCSP Response Validation
+####### OCSP Response Validation
 
 When using <protocols:Online Certificate Status Protocol (OCSP)|OCSP>, the <components:Wallet Unit> SHALL:
 

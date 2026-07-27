@@ -95,7 +95,7 @@ sequenceDiagram
 
 > **NOTE 2:**  A nonce endpoint might be necessary as well however that feature does not have an impact on the trust-related checks.
 
-#### Step-by-step Operations
+### Step-by-step Operations
 
 **Step 1: Request EAA Issuance** Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.
 
