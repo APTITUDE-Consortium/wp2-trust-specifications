@@ -1,7 +1,7 @@
-### Issuance
+## Issuance
 
 {% include-markdown "../topics/trust-checks-issuance.md" %}
 
-### Presentation
+## Presentation
 
 {% include-markdown "../topics/trust-checks-presentation.md" %}

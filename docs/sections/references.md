@@ -1,4 +1,4 @@
-### ARF and Technical Specifications (TS)
+## ARF and Technical Specifications (TS)
 
 | **Item Reference** | **Version** | **Date**   | **Standard Name/Details** |
 | ------------------ | ----------- | ---------- | ------------------------- |
@@ -8,7 +8,7 @@
 | TS06               | v1.0.1      | 2026-01-30 | Common Set of Relying Party Information to be Registered |
 | TS11               | v1.0.1      | 2026-01-30 | Specification of interfaces and formats for the catalogue of attributes and the catalogue of attestations |
 
-### Commission Implementing Regulation (CIR)
+## Commission Implementing Regulation (CIR)
 
 | **Item Reference**               | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ---------- | ------------------------- |
@@ -18,13 +18,13 @@
 | CIR 2025/1569                    | 2025-07-29 | Qualified electronic attestations of attributes and electronic attestations of attributes provided by or on behalf of a public sector body responsible for an authentic source |
 | CIR 2025/848-Amendment           |            | Applicable standards and specifications (draft) |
 
-### EU Regulations
+## EU Regulations
 
 | **Item Reference**               | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ---------- | ------------------------- |
 | REG-EU-2024/1183                 | 2024-04-11 | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
 
-### ETSI Specifications
+## ETSI Specifications
 
 ETSI specifications for EU Digital Identity Wallets of main interest for the trust framework:
 
@@ -55,13 +55,13 @@ Other ETSI specifications that the previous specifications build upon:
 | ETSI TS 119 312    | V1.4        | 2023-08    | Electronic Signatures and Infrastructures (ESI); Cryptographic Suites |
 | ETSI TS 119 495    | V1.7.1      | 2024-07    | Electronic Signatures and Trust Infrastructures (ESI); Sector Specific Requirements; Certificate Profiles and TSP Policy Requirements for Open Banking |
 
-### ISO/IEC Standards
+## ISO/IEC Standards
 
 | **Item Reference** | **Version** | **Date**   | **Standard Name/Details** |
 | ------------------ | ----------- | ---------- | ------------------------- |
 | ISO/IEC 18013-5    |             |            | Personal identification --- ISO-compliant driving licence - Part 5: Mobile driving licence (mDL) application |
 
-### OIDF Standards
+## OIDF Standards
 
 | **Item Reference** | **Version** | **Date**   | **Standard Name/Details** |
 | ------------------ | ----------- | ---------- | ------------------------- |
@@ -69,7 +69,7 @@ Other ETSI specifications that the previous specifications build upon:
 | OpenID4VCI         | V1.0        | 2025-09    | OpenID for Verifiable Credential Issuance |
 | OpenID4VP          | V1.0        | 2025-07    | OpenID Connect for Verifiable Presentations |
 
-### IETF Standards
+## IETF Standards
 
 | **Item Reference**               | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ---------- | ------------------------- |
@@ -85,7 +85,7 @@ Other ETSI specifications that the previous specifications build upon:
 | RFC 9360                         | 2023-02    | CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificate |
 | RFC 9608                         | 2024-06    | No Revocation Available for X.509 Public Key Certificates |
 
-### IETF Drafts
+## IETF Drafts
 
 | **Item Reference**               | **Version** | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ----------- | ---------- | ------------------------- |

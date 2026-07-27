@@ -17,7 +17,7 @@ The method by which the WRP presents its <artifacts:Wallet-Relying Party Access 
 
     Implementers SHALL distinguish between transient authentication (e.g., access control) and content commitment (non-repudiation). To prevent an attacker from disguising a legal commitment (like a debt acknowledgment) as a protocol <data-elements:Nonce|nonce>, the WRP SHALL NOT use the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> private key to sign arbitrary data that could be controlled by an external party.
 
-#### Wallet Relying Party Authentication Sequence Diagram
+### Wallet Relying Party Authentication Sequence Diagram
 
 Below is a sequence diagram illustrating the Authentication Process, including the retrieval and validation of the <artifacts:List of Trusted Entities (LoTE)|LoTE>, path construction, and certificate validation steps. The diagram also highlights the decision points for successful or failed authentication.
 
@@ -48,7 +48,7 @@ sequenceDiagram
     end
 ```
 
-#### Wallet Relying Party Access Certificate Path Validation
+### Wallet Relying Party Access Certificate Path Validation
 
 This section defines the validation of the WRP Access Certificate path. The [Certificate Path Validation](#certificate-path-validation) section is general and is applied to WRPRC certification path validation and Sign/Seal Certificate path validation as well.
 
@@ -58,7 +58,7 @@ This section defines the validation of the WRP Access Certificate path. The [Cer
     - $C_n$ is the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> (the target certificate).
     - For any $i$ in $1 \dots n-1$, $C_i$ is the issuer of $C_{i+1}$.
 
-##### Certificate Path Validation
+#### Certificate Path Validation
 
 The entity that performs the certificate path validation initializes the following variables:
 
@@ -186,7 +186,7 @@ flowchart TD
     class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;
 ```
 
-###### Revocation Checking
+##### Revocation Checking
 
 The entity performing certificate path validation (e.g., the <components:Wallet Unit>) SHALL determine the revocation status for every certificate in the path with one of the following methods:
 

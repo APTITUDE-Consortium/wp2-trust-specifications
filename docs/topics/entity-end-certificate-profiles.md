@@ -15,7 +15,7 @@ This section describes the purpose, format and content of End Entity Sign/Seal C
     - **RFC 3986**
     - **RFC 5280**
 
-#### End Entity Sign/Seal Certificate Content
+### End Entity Sign/Seal Certificate Content
 
 In the following sections we are providing tables with parameters and extensions that are mandatory for the specific End Entity Sign/Seal Certificate as described in ETSI specifications. For simplicity, optional attributes are omitted from this document, unless their requirement is conditional, or it could be useful to mention them.
 
@@ -38,7 +38,7 @@ The column "Criticality" of the certificate extensions has the semantics defined
 - C: The extension SHALL be considered critical.
 - NC: The extension SHALL be considered non-critical.
 
-##### General Content
+#### General Content
 
 The following table lists all the common parameters that are mandatory or conditional for end-certificates of all entities of EUDIW ecosystem described in this document. Details of those parameters are described in IETF RFC 5280 and further scoped in ETSI EN 319 412-2 (in case of Natural Persons) and ETSI EN 319 412-3 (in case of Legal Persons).
 
@@ -77,7 +77,7 @@ The following table lists all the common extensions that are mandatory or condit
 
     In the APTITUDE profiles, Sign/Seal Certificates SHALL be long lived certificates. Thus the `noRevAvail` and `ext-etsi-valassured-ST-certs` SHALL NOT be used. 
 
-##### PID Provider Sign/Seal Certificate Content
+#### PID Provider Sign/Seal Certificate Content
 
 The following table lists all new or modified parameters that are mandatory or conditional for PID Providers as further scoped in ETSI TS 119 412-6, clause 4.
 
@@ -94,7 +94,7 @@ The following table lists all new or modified extensions that are mandatory or c
 | `authorityInfoAccess` | [ETSI TS 119 412-6, clause 4.4.3] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Applicable condition:** Mandatory for non-self-signed certificates. |
 | `qcStatements` (id-etsi-qct-pid) | [ETSI TS 119 412-6, clause 4.5] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.1` as defined in [ETSI TS 119 412-6, Annex A] |
 
-###### PID Provider Sign/Seal Certificate Example
+##### PID Provider Sign/Seal Certificate Example
 
 The following is an example of a PID Provider's non-self-signed end-certificate for legal persons.
 
@@ -238,7 +238,7 @@ AccessCertificate cert = {
 }
 ```
 
-##### Wallet Provider Sign/Seal Certificate Content
+#### Wallet Provider Sign/Seal Certificate Content
 
 The following table lists all new or modified parameters that are mandatory or conditional for Wallet Providers as further scoped in ETSI TS 119 412-6, clause 5.1.
 
@@ -255,7 +255,7 @@ The following table lists all new or modified extensions that are mandatory or c
 | `authorityInfoAccess` | [ETSI TS 119 412-6, clause 5.1] | REQUIRED (C) | NC | *SEQUENCE* | Description is the same as in the General Content above. **Applicable condition:** Mandatory for non-self-signed certificates. |
 | `qcStatements` (id-etsi-qct-wal) | [ETSI TS 119 412-6, clause 5.2] | REQUIRED | NC | *SEQUENCE* | `QCStatement` with the OID `0.4.0.194126.1.2` as defined in [ETSI TS 119 412-6, Annex A] |
 
-###### Wallet Provider Sign/Seal Certificate Example
+##### Wallet Provider Sign/Seal Certificate Example
 
 The following is an example of a Wallet Provider's non-self-signed end-certificate for legal persons.
 
@@ -399,7 +399,7 @@ AccessCertificate cert = {
 }
 ```
 
-##### EAA/QEAA Provider Sign/Seal Certificate Content
+#### EAA/QEAA Provider Sign/Seal Certificate Content
 
 EAA and QEAA providers are from the perspective of Sign/Seal end-certificates almost the same and for simplicity we will cover them together.
 
@@ -409,7 +409,7 @@ For EAA Provider there are other requirements that focus on signing of certifica
 
 For QEAA Provider there are regulatory requirements from Regulation (EU) No 910/2014 that have to be met, but they are out of scope of this documentation. More information can be found in ETSI TS 119 412-6, clause 7.1.
 
-###### EAA/QEAA Provider Sign/Seal Certificate Example
+##### EAA/QEAA Provider Sign/Seal Certificate Example
 
 The following is an example of a QEAA Provider attribute not self-signed end-certificate for legal persons.
 
@@ -535,7 +535,7 @@ AccessCertificate cert = {
 }
 ```
 
-##### PuB-EAA Provider Sign/Seal Certificate Content
+#### PuB-EAA Provider Sign/Seal Certificate Content
 
 There are no new or modified parameters specific for PuB-EAA Provider as described in ETSI TS 119 412-6, clause 8.
 
@@ -549,7 +549,7 @@ The following table lists all new or modified extensions that are mandatory or c
 
 For PuB-EAA Provider there are other requirements that focus on signing of certificates connected to either OCSP Responder or CRL depending on used revocation policy. More information can be found in ETSI TS 119 412-6, clause 8.4.
 
-###### Pub-EAA Provider Sign/Seal Certificate Example
+##### Pub-EAA Provider Sign/Seal Certificate Example
 
 The following is an example of a PuB-EAA Provider's not self-signed end-certificate for legal persons.
 
@@ -698,7 +698,7 @@ AccessCertificate cert = {
 }
 ```
 
-#### Sign/Seal Certificate Path Validation
+### Sign/Seal Certificate Path Validation
 
 When instantiating the [Certificate Path Validation](../sections/trust-evaluation-process.md#authentication-process) algorithm for Sign/Seal Certificate chains, the initialization parameters are defined as follows:
 

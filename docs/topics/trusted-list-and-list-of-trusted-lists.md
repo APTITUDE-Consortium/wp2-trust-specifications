@@ -1,6 +1,6 @@
 This section describes the format and contents of the <artifacts:Trusted List (TL)|Trusted Lists> and how they are used for the purpose of the <artifacts:List Of Trusted Lists (LOTL)> and <artifacts:List of Trusted Entities (LoTE)> within the context of the <components:EUDI Wallet>.
 
-#### Regulatory Background
+### Regulatory Background
 
 The <artifacts:Trusted List (TL)|Trusted List> is defined in article 22 of eIDAS regulation EU 910/2014 as the means to keep current and historical information about the accredited trust service providers in each Member State. One <artifacts:Trusted List (TL)|Trusted List> must be maintained and published by each Member State.
 
@@ -18,7 +18,7 @@ Specifically for the <components:EUDI Wallet>, the Commission defines the additi
    - <roles:Provider of Person Identification Data (PID Provider)|PID Providers>
    - and <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Providers of Wallet Relying Party Access Certificates>
 
-#### Trusted List
+### Trusted List
 
 The <artifacts:Trusted List (TL)|Trusted List> (<artifacts:Trusted List (TL)|TL>) is a mechanism to convey information about trust anchors in an wide interoperable ecosystem such as the eIDAS framework. It was originally designed to hold current and historical information about the accreditation of trust service providers, particularly <roles:Qualified Trust Service Provider (QTSP)|QTSPs>, albeit other non-qualified can also be included, including those recognized exclusively at a national level.
 
@@ -66,7 +66,7 @@ The structure and semantics of the <artifacts:Trusted List (TL)|TL> are defined 
 
 Within eIDAS, one <artifacts:Trusted List (TL)|TL> is maintained per Member State, responsible for keeping record of the trusted services providers under their respective jurisdiction. <artifacts:Trusted List (TL)|TLs> are numbered and renewed periodically, and published in a website for unrestricted download. To protect their integrity and assure authenticity <artifacts:Trusted List (TL)|TLs> are also signed with trusted certificates.
 
-#### List of Trusted Lists
+### List of Trusted Lists
 
 The <artifacts:Trusted List (TL)|Trusted List> standard [ETSI TS 119 612] allows a hierarchy of <artifacts:Trusted List (TL)|Trusted Lists> by means of referencing to other <artifacts:Trusted List (TL)|TLs> from a parent <artifacts:Trusted List (TL)|TL>.
 
@@ -74,13 +74,13 @@ Within eIDAS, a decentralized trust model is established, where the parent <arti
 
 Currently, the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is published in the following URI: <https://ec.europa.eu/tools/lotl/eu-lotl.xml>.
 
-##### LOTL Signing and Pivot XML
+#### LOTL Signing and Pivot XML
 
 The <artifacts:List Of Trusted Lists (LOTL)|LOTL> is electronically signed with a XAdES-B-B signature as defined by [ETSI EN 319 132-1]. For verification of the signature, the original signing certificates were initially published on the <artifacts:Official Journal of the European Union (OJEU)|Official Journal of the European Union>, here <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2019.276.01.0001.01.ENG>.
 
 Afterwards, a follow up method of providing traceable changes to the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is provided through the "Pivot LOTL". Whenever the <artifacts:List Of Trusted Lists (LOTL)|LOTL> signing certificates are changed (as they expire over time and are replaced by new certificates), and/or the <artifacts:List Of Trusted Lists (LOTL)|LOTL> publishing URL is changed, a "Pivot LOTL" is created. A "snapshot" of the current <artifacts:List Of Trusted Lists (LOTL)|LOTL> is created and published at a specific URL and a reference to that Pivot LOTL is added to the new (main) <artifacts:List Of Trusted Lists (LOTL)|LOTL>. The <artifacts:List Of Trusted Lists (LOTL)|LOTL> contains the history of Pivot LOTLs, which allows participants in the eIDAS ecosystem to rebuild the history of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> trust any given point in time. More information about the Pivot LOTL mechanism is available here: <https://ec.europa.eu/tools/lotl/pivot-lotl-explanation.html>.
 
-#### List of Trusted Entities
+### List of Trusted Entities
 
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a compilation of the information submitted by Member States about the following entities:
 
@@ -100,7 +100,7 @@ The <artifacts:List of Trusted Entities (LoTE)|LoTE> types can be one of the fol
 - Public sector bodies issuing electronic attestations of attributes
 - List of <roles:Registrar|Registrars> and <components:Register|Registers>.
 
-#### Tools
+### Tools
 
 This section presents a non-exhaustive list of tools to processing <artifacts:Trusted List (TL)|Trusted Lists>.
 
@@ -120,7 +120,7 @@ The eIDAS Dashboard is a platform in the format of a dynamic website where all i
 
 The eIDAS Dashboard is available online here: <https://eidas.ec.europa.eu/efda/home>. Specifically for the <components:EUDI Wallet> ecosystem, the eIDAS Dashboard already has the placeholders for the several types of entities to be listed in the <artifacts:List of Trusted Entities (LoTE)|LoTEs>, here: <https://eidas.ec.europa.eu/efda/wallet>.
 
-#### Data Models
+### Data Models
 
 This section specifies the profiles and formats that the various <artifacts:Trusted List (TL)|Trusted Lists> defined above SHALL utilize, depending on their specific use cases.
 
@@ -137,20 +137,20 @@ The following table dictates the governing standard, publication scope (i.e., at
 | <roles:PuB-EAA Provider> Lists | TS 119 602 Annex H | European Union | JSON or XML |
 | <roles:Registrar> and <components:Register> Provider Lists | TS 119 602 Annex I | European Union | JSON |
 
-##### Trusted List and List of Trusted Lists
+#### Trusted List and List of Trusted Lists
 
 The following URLs provide the normative XML schemas required for implementing the <artifacts:Trusted List (TL)|TLs> and the <artifacts:List Of Trusted Lists (LOTL)|LOTL>:
 
 - **<artifacts:Trusted List (TL)|TL> Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_xsd.xsd)
 - **<artifacts:List Of Trusted Lists (LOTL)|LOTL> Schema:** [https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd](https://forge.etsi.org/rep/esi/x19_612_trusted_lists/-/raw/v2.4.1/19612_sie_xsd.xsd)
 
-##### List of Trusted Entities
+#### List of Trusted Entities
 
 The following repository provides the normative JSON and XML schemas required for implementing the <artifacts:List of Trusted Entities (LoTE)>:
 
 - **<artifacts:List of Trusted Entities (LoTE)|LoTE> Schemas:** [https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities](https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities)
 
-###### Trusted List Terminology Comparison
+##### Trusted List Terminology Comparison
 
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> and the <artifacts:List Of Trusted Lists (LOTL)|LOTL> / <artifacts:Trusted List (TL)|TL> differ not only in their underlying schemas but also in their parameter nomenclature. The following table maps the equivalent terms between the two standards:
 
@@ -165,7 +165,7 @@ The <artifacts:List of Trusted Entities (LoTE)|LoTE> and the <artifacts:List Of 
 | Scheme Operator | Scheme Operator |
 | Service Digital Identity | Service Digital Identity |
 
-##### Specific Formats and Uses
+#### Specific Formats and Uses
 
 The following table details the governing standards, publication scopes, and mandated data formats regarding the specific provider lists utilized within the ecosystem:
 
@@ -184,7 +184,7 @@ The following table details the governing standards, publication scopes, and man
 
     Within the APTITUDE project, the <roles:PuB-EAA Provider> Lists are published in JSON format.
 
-###### LoTE Additional Requirements
+##### LoTE Additional Requirements
 
 Following Annexes D - I in [ETSI TS 119 602], below are detailed the additional requirements spelled out by type. As seen in [List of Trusted Entities](#list-of-trusted-entities), the <artifacts:List of Trusted Entities (LoTE)|LoTE> contains a sequence of two components: `ListAndSchemeInformation` and `TrustedEntitiesList`. Depending on the <artifacts:List of Trusted Entities (LoTE)|LoTE> type, the `ListAndSchemeInformation` component is further specified by the following parameters:
 

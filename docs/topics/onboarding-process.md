@@ -19,7 +19,7 @@ This boundary is mapped onto the components of the Onboarding System in the summ
 
 The APTITUDE Onboarding System SHALL implement the Onboarding Process defined in this section [ONBOARD-GEN-01].
 
-#### Overview
+## Overview
 
 The entities involved in onboarding fall into two categories, and this distinction underpins the whole process:
 
@@ -57,7 +57,7 @@ graph LR
     class O1 cand;
 ```
 
-#### Trust Infrastructure Prerequisites
+## Trust Infrastructure Prerequisites
 
 The [Onboarding System](#onboarding-system) operates on top of a trust infrastructure whose entities must be established and have their trust anchors published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [ONBOARD-GEN-02].
 
@@ -102,11 +102,11 @@ The setup comprises the following operations:
 
 The same <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> / <roles:Trusted List Provider> also signs the lists populated during operational entity onboarding (the <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:PuB-EAA Provider|PuB-EAA Providers>, and <roles:Wallet Provider (WP)|Wallet Providers> <artifacts:List of Trusted Entities (LoTE)|LoTE>, and the <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL> referenced by the <artifacts:List Of Trusted Lists (LOTL)|LOTL>).
 
-#### Operational Entity Onboarding
+## Operational Entity Onboarding
 
 This section describes the recurring process through which operational entities become active in the ecosystem, once the [Trust Infrastructure Prerequisites](#trust-infrastructure-prerequisites) are in place (ONBOARD-GEN-02).
 
-##### Onboarding System
+### Onboarding System
 
 This subsection describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the <components:EUDI Wallet> normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document. The diagram below shows how the operational entity requesting onboarding interacts with these components.
 
@@ -182,7 +182,7 @@ Against this decomposition, the pilot boundary set out in the introduction of th
 | The certification of a Wallet Solution | external; out of scope of the pilot and only referenced |
 | Data schemas, certificate profiles, trusted-list formats, low-level protocols | defined in the referenced sections of this specification, not redefined here |
 
-##### Input
+### Input
 
 The required inputs to onboard an operational entity depend on its type and on the onboarding path it follows (see [Onboarding Paths by Entity Type](#onboarding-paths-by-entity-type)). The following inputs SHALL be required:
 
@@ -194,7 +194,7 @@ The required inputs to onboard an operational entity depend on its type and on t
 
     A <roles:Wallet-Relying Party (WRP)|WRP> that is also a notified entity (PID, PuB-EAA, QEAA, or non-qualified EAA Provider) provides both the registration data and the notifiable data: the former populates the <components:Register> and drives the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, the latter populates the corresponding trusted list. A <roles:Relying Party (RP)|Relying Party> or a <roles:Relying Party Intermediary (RPI)|Relying Party Intermediary> provides only the registration data, as it requires no trusted-list entry.
 
-##### Output
+### Output
 
 A successful onboarding produces the artifacts below, whose data model and format are normatively specified in the referenced sections:
 
@@ -203,7 +203,7 @@ A successful onboarding produces the artifacts below, whose data model and forma
 - the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, see [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate);
 - the trusted-list entry (<artifacts:List of Trusted Entities (LoTE)|LoTE>, <artifacts:EU Member State Trusted List (EUMS TL)|EUMS TL>, or the trusted list for non-qualified <roles:EAA Provider|EAA Providers>), produced by the [Notification and Publication](#notification-and-publication) step.
 
-##### Onboarding Paths by Entity Type
+### Onboarding Paths by Entity Type
 
 Each entity type follows a different path and produces a different set of outputs, summarised in the table below.
 
@@ -219,7 +219,7 @@ Each entity type follows a different path and produces a different set of output
 
 The steps below describe the onboarding journey: any <roles:Wallet-Relying Party (WRP)|WRP> entity type goes through [Data Collection and Registration Record Creation](#data-collection-and-registration-record-creation), [Certificate Issuance](#certificate-issuance) and, where it is also a notified entity, [Notification and Publication](#notification-and-publication); the <roles:Wallet Provider (WP)|Wallet Provider> goes through that last step only.
 
-##### Data Collection and Registration Record Creation
+### Data Collection and Registration Record Creation
 
 This step produces the registration record for a <roles:Wallet-Relying Party (WRP)|WRP>.
 
@@ -229,7 +229,7 @@ Within APTITUDE, registration SHALL be restricted to APTITUDE participants, and 
 
 On successful verification, the <roles:Registrar> SHALL create the record through the common <components:Register> write API (`POST /wrp`, see [Common Register API](#common-register-api)), using a body conforming to the `WalletRelyingParty` schema of [Register Data Schema](#register-data-schema), and SHALL set the registration status to `active`. Write access to the API SHALL be authenticated and restricted to the <roles:Registrar> [ONBOARD-REG-02]; the concrete credential mechanism (for example a bearer token or mutual TLS) is an implementation choice. When published or queried, the record is electronically signed/sealed by or on behalf of the <roles:Registrar> (`REGISTER-PUB-05`).
 
-##### Certificate Issuance
+### Certificate Issuance
 
 This step issues the certificates for a <roles:Wallet-Relying Party (WRP)|WRP>, once its registration record is `active`.
 
@@ -244,7 +244,7 @@ The request/issuance protocol is an implementation choice (for example ACME, EST
 
 Identity proofing is not repeated here; it is performed by the <roles:Registrar> at [Data Collection and Registration Record Creation](#data-collection-and-registration-record-creation). After issuance, the entity deploys each <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> at the <components:Relying Party Instance> for which it was issued (`Reg_10a`), provides its <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> to its <components:Relying Party Instance|Relying Party Instances> or service supply points and, for an <roles:Attestation Provider (AP)|Attestation Provider>, includes it in the <artifacts:Credential Issuer Metadata> used at issuance (`RPRC_10`, `RPRC_14`, `RPRC_22`).
 
-##### Notification and Publication
+### Notification and Publication
 
 This step publishes a notified entity, together with the <artifacts:Trust Anchor> of the technical component it operates, in the appropriate trusted list. Notification is a separate, Member State level process ([CIR 2024/2980]) and is not a duty of the <roles:Registrar>. Within APTITUDE, the Member State to European Commission notification act SHALL be mocked by the Publication Service, triggered by the Onboarding UI, while the signing and publication of the trusted lists SHALL follow the normative framework [ONBOARD-PUB-01].
 
@@ -260,7 +260,7 @@ This step publishes a notified entity, together with the <artifacts:Trust Anchor
 
 On failure, if publication does not complete, the entity may be registered and hold a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> but is not yet present in the trusted list, and is therefore not trusted by <roles:Relying Party (RP)|Relying Parties> until the entry is published.
 
-##### Detailed Flow
+### Detailed Flow
 
 ```mermaid
 sequenceDiagram
@@ -311,7 +311,7 @@ sequenceDiagram
     end
 ```
 
-#### Connection to Lifecycle Management
+## Connection to Lifecycle Management
 
 Onboarding is the first phase of the lifecycle of an entity and of the artifacts produced for it. This subsection summarises how onboarding connects to the Trust Management Process and distinguishes the lifecycle of registered entities from that of notified entities.
 
@@ -336,13 +336,13 @@ How "stops being trusted" is represented depends on the list type, and APTITUDE 
 
 Finally, the artifacts produced by onboarding are consumed in the trust-evaluation processes. The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is used in the [Authentication Process](#authentication-process), the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and the <components:Register> in the [Authorization Process](#authorization-process), the trusted-list trust anchors in the [Trust Anchor Validation Process](#trust-anchor-validation-process), and the revocation of the certificates in [Revocation Mechanisms](#revocation-mechanisms).
 
-#### Onboarding Requirements
+## Onboarding Requirements
 
 !!! note
 
     Those tables are provided for implementation and conformance-verification purposes. They consolidate the APTITUDE-specific requirements defined throughout this section. In case of interpretative ambiguity between those tables and the body of the section, the body of the section SHALL prevail. Obligations defined in other sections of this specification, or in the normative baseline, are referenced in the "Related external requirement" column and are not reproduced as APTITUDE requirements.
 
-##### General
+### General
 
 | ID | Requirement | Scope | Related external requirement |
 | --- | --- | --- | --- |
@@ -351,28 +351,28 @@ Finally, the artifacts produced by onboarding are consumed in the trust-evaluati
 | ONBOARD-GEN-03 | The Onboarding UI SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the trusted-list entry. | Onboarding | -- |
 | ONBOARD-GEN-04 | The Onboarding System SHALL keep the WRP Register and the Notification dataset as two distinct data stores. | Both | -- |
 
-##### Prerequisites
+### Prerequisites
 
 | ID | Requirement | Scope | Related external requirement |
 | --- | --- | --- | --- |
 | ONBOARD-PRE-01 | Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software. | Prerequisites | -- |
 | ONBOARD-PRE-02 | Within APTITUDE, the trust infrastructure signing entities SHALL use self-signed root certificates, with no higher certification authority. | Prerequisites | -- |
 
-##### Registration
+### Registration
 
 | ID | Requirement | Scope | Related external requirement |
 | --- | --- | --- | --- |
 | ONBOARD-REG-01 | Within APTITUDE, registration SHALL be restricted to APTITUDE participants; a non-participant SHALL NOT be registered. | Onboarding | [ETSI TS 119 461], [CIR 2025/848] Art. 6, REGISTRAR-REG-04 to REGISTRAR-REG-07 |
 | ONBOARD-REG-02 | Write access to the Register API SHALL be authenticated and restricted to the Registrar. | Onboarding | -- |
 
-##### Publication
+### Publication
 
 | ID | Requirement | Scope | Related external requirement |
 | --- | --- | --- | --- |
 | ONBOARD-PUB-01 | Within APTITUDE, the Member State to European Commission notification act SHALL be mocked by the Publication Service, while the signing and publication of the trusted lists SHALL follow the normative framework. | Onboarding | [CIR 2024/2980] |
 | ONBOARD-PUB-02 | Within APTITUDE, a non-qualified EAA Provider SHALL be published in a trusted list in the [ETSI TS 119 612] format, referenced by the applicable Attestation Rulebook and kept outside the LOTL, with the Rulebook as its root of trust. | Onboarding | OIA_15, ISSU_10, ARB_26 |
 
-##### Lifecycle
+### Lifecycle
 
 | ID | Requirement | Scope | Related external requirement |
 | --- | --- | --- | --- |

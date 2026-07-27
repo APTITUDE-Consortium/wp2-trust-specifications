@@ -7,7 +7,7 @@ This section specifies the <artifacts:Embedded Disclosure Policy (EDP)|Embedded 
 
 The authorization evaluation logic that the WI applies when processing an <artifacts:Embedded Disclosure Policy (EDP)|EDP> during presentation is defined in the [Authorization Process](../sections/trust-evaluation-process.md#authorization-process) section of this specification.
 
-#### Definition and Applicability
+### Definition and Applicability
 
 An <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policy> is defined in Article 2(9) of [CIR 2024/2979] as:
 
@@ -22,7 +22,7 @@ The main use cases enabled by <artifacts:Embedded Disclosure Policy (EDP)|EDPs> 
 - Implementing sector-specific access control (e.g., only public sector RPs or only healthcare RPs).
 - Implementing Member-State-specific access control (e.g., only RPs registered within a specific Member State).
 
-#### Policy Types
+### Policy Types
 
 Annex III of [CIR 2024/2979] defines three common <artifacts:Embedded Disclosure Policy (EDP)|EDP> types:
 
@@ -42,11 +42,11 @@ For natural persons: `commonName`, `givenName`, `surname`, `serialNumber`, and `
 
 **Specific Root of Trust.** The <artifacts:Embedded Disclosure Policy (EDP)|EDP> contains a list of trusted roots or intermediate certificates. Only RPs whose <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> chain to one of these roots are allowed to access the Attestation. According to [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-08/09), each authorized root is identified by its issuer distinguished name in LDAP string form as defined in RFC 4514 and the issuer's certificate serial number.
 
-#### Data Model
+### Data Model
 
 The data model of the <artifacts:Embedded Disclosure Policy (EDP)|EDP> is defined in [ETSI TS 119 472-3, Section 4.2.5.2] through requirements ISS-MDATA-EBD-4.2.5.2-01 to ISS-MDATA-EBD-4.2.5.2-13.
 
-##### Data Model Requirements
+#### Data Model Requirements
 
 The data model defines the following elements:
 
@@ -65,7 +65,7 @@ The data model defines the following elements:
 
     [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-12) provides for attribute-level policies, where alternative policy rules (no policy, authorized RP only, or specific root of trust) can be defined for specific attributes within an EAA that are subject to <processes:Selective Disclosure>. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level <artifacts:Embedded Disclosure Policy (EDP)|EDP> will be addressed when the ETSI JSON schema for <artifacts:Embedded Disclosure Policy (EDP)|EDP> is finalized and the policy mechanisms are fully defined.
 
-##### Structure and Encoding
+#### Structure and Encoding
 
 The following JSON structure is derived from the [ETSI TS 119 472-3] data model requirements.
 
@@ -87,7 +87,7 @@ The following JSON structure is derived from the [ETSI TS 119 472-3] data model 
 | `trusted_roots[].issuer_dn` | string | REQUIRED. Issuer DN in LDAP string form compliant with RFC 4514. | ISS-MDATA-EBD-4.2.5.2-09 |
 | `trusted_roots[].serial_number` | string | REQUIRED. Certificate serial number of the issuer. | ISS-MDATA-EBD-4.2.5.2-09 |
 
-#### Distribution
+### Distribution
 
 The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through <artifacts:Credential Issuer Metadata> at issuance time. The <roles:Attestation Provider (AP)|AP> SHALL include the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if any) by value in the Issuer Metadata, within the `credential_configurations_supported` parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (EDP_09). The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL NOT be revealed to the <roles:Relying Party (RP)|RP> through the presentation protocol (per [ETSI TS 119 472-3, Section 4.2.5.1]).
 
@@ -97,13 +97,13 @@ The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through <art
 
 As described in section [Authorization Process](../sections/trust-evaluation-process.md#authorization-process), during attestation issuance, the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if available) is stored locally by the <components:Wallet Instance|WI> and it is associated with the specific Attestation for which it was retrieved.
 
-#### Lifecycle
+### Lifecycle
 
-##### Validity Binding
+#### Validity Binding
 
 The locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL remain valid as long as the Attestation it is associated with is valid and not revoked. The <artifacts:Embedded Disclosure Policy (EDP)|EDP> SHALL NOT have an independent validity status or revocation mechanism separate from the Attestation.
 
-##### Update Mechanism
+#### Update Mechanism
 
 If an <roles:Attestation Provider (AP)|AP> adds, changes, or deletes an <artifacts:Embedded Disclosure Policy (EDP)|EDP> for an <credentials:Attestation>, the <roles:Attestation Provider (AP)|AP> SHALL revoke that <credentials:Attestation> (EDP_11). The <components:Wallet Instance|WI> detects the policy change indirectly through the normal Attestation status checking mechanism (Status List), which will report that the <credentials:Attestation> is revoked. The locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> is then implicitly invalidated together with the <credentials:Attestation>. The User needs to request a new issuance to obtain the <credentials:Attestation> with the updated policy.
 

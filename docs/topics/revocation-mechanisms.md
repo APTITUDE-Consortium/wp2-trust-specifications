@@ -7,7 +7,7 @@ This section describes the artifacts that are employed in [Trust Management and 
     - make available an endpoint to request [Status List Tokens](#status-list-token);
     - issue <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate).
 
-#### Token Status List
+### Token Status List
 
 This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>. A Status List describes the status of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> by encoding their validity in a bit array. Each <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>'s status. A Status List is provided within a cryptographically signed <artifacts:Status List Token> in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].
 
@@ -38,11 +38,11 @@ For example, if two states for a certain <artifacts:Wallet-Relying Party Registr
 
 Once the <components:Wallet Unit> receives a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.
 
-##### Status List Token
+#### Status List Token
 
 The **<artifacts:Status List Token>** is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> and contains the following parameters:
 
-###### Status List Token Header
+##### Status List Token Header
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
@@ -50,7 +50,7 @@ The **<artifacts:Status List Token>** is available at the Status List Endpoint. 
 | `typ` | [RFC 7515] | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
 | `x5c` | [RFC 7515] | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the <artifacts:Status List Token>'s signature. |
 
-###### Status List Token Payload
+##### Status List Token Payload
 
 | Parameter | Defined in | Presence | Format | Description |
 | :-------: | :--------: | :------: | :----: | :---------- |
@@ -92,7 +92,7 @@ The following is an example of the <artifacts:Status List Token> payload and hea
 }
 ```
 
-##### Status List Request
+#### Status List Request
 
 The <components:Wallet Unit> SHALL request a <artifacts:Status List Token> at the URI referenced within the `status.status_list.uri` claim of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The request SHALL use HTTP GET with media type `application/statuslist+jwt`.
 
@@ -104,7 +104,7 @@ Below it is represented an example of such a request.
   Accept: application/statuslist+jwt
 ```
 
-##### Status List Response
+#### Status List Response
 
 The successful response SHALL contain a <artifacts:Status List Token> and have HTTP status code 200. The content type of the successful response SHALL be `application/statuslist+jwt`.
 
@@ -122,7 +122,7 @@ The successful response SHALL contain a <artifacts:Status List Token> and have H
 
 If caching-related HTTP headers are present in the HTTP response, <components:Wallet Unit|Wallet Units> SHALL prioritize the `exp` and `ttl` claims within the <artifacts:Status List Token> over the HTTP headers for determining caching behavior.
 
-#### Certificate Revocation Lists
+### Certificate Revocation Lists
 
 **<artifacts:Certificate Revocation List (CRL)|Certificate Revocation Lists (CRLs)>** [RFC 5280] MAY be used in a wide range of applications and environments covering a broad spectrum of interoperability goals and an even broader spectrum of operational and assurance requirements.
 
@@ -148,7 +148,7 @@ An X.509 v2 <artifacts:Certificate Revocation List (CRL)|CRL> is represented as 
 | `signatureAlgorithm.parameters` | [RFC 5280, clause 4.1.1.2] | OPTIONAL | *ANY* | Algorithm-specific parameters, dependent on the signature algorithm used. |
 | `signatureValue` | [RFC 5280, clause 5.1.1.3] | REQUIRED | *BIT STRING* | Contains the digital signature computed upon the ASN.1 DER encoded `tbsCertList`. |
 
-##### Certificate List Content
+#### Certificate List Content
 
 The `TBSCertList` (To Be Signed Certificate List) is an ASN.1 SEQUENCE containing several fields and extensions. The following table lists all such fields and extensions that are required in a <artifacts:Certificate Revocation List (CRL)|CRL> or conditionally required.
 
@@ -178,7 +178,7 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 
     Within the APTITUDE pilot, Delta <artifacts:Certificate Revocation List (CRL)|CRLs> are not used.
 
-#### Online Certificate Status Protocol
+### Online Certificate Status Protocol
 
 **<protocols:Online Certificate Status Protocol (OCSP)>** [RFC 6960] enables applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
 
@@ -188,7 +188,7 @@ If supported by the <roles:Certificate Authority (CA)|CA>, the URI to which the 
 
 This protocol specifies the data that SHALL be exchanged between the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client (which checks the status of one or more certificates) and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server (which provides the corresponding status). In this specific ecosystem, the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client can be a WU checking the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> of a WRP, and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server is the Provider of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
 
-##### Online Certificate Status Protocol Request Format
+#### Online Certificate Status Protocol Request Format
 
 The <protocols:Online Certificate Status Protocol (OCSP)|OCSP> request is the ASN.1 DER encoding of the `OCSPRequest` SEQUENCE, which contains the `tbsRequest` (To-Be-Signed Request) and an optional signature. The following table lists the parameters found within the `tbsRequest` structure.
 
@@ -242,7 +242,7 @@ OCSPRequest:
       nonce = OCTET STRING (nonce)
 ```
 
-##### Online Certificate Status Protocol Response Format
+#### Online Certificate Status Protocol Response Format
 
 An <protocols:Online Certificate Status Protocol (OCSP)|OCSP> response is the ASN.1 DER encoding of the `OCSPResponse` *SEQUENCE*. When transported over HTTP, the body of the HTTP response is the raw DER encoding of this `OCSPResponse`, with the MIME type `application/ocsp-response`. The `OCSPResponse` *SEQUENCE* contains the following parameters:
 
