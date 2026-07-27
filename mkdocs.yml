@@ -52,6 +52,7 @@ theme:
 
 extra_css:
   - media/extra.css
+  - includes/admonitions.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js
@@ -119,6 +120,7 @@ markdown_extensions:
   - pymdownx.blocks.admonition
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.details
 
 extra:
   version:

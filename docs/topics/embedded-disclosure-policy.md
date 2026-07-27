@@ -116,14 +116,14 @@ Even a minor policy change (e.g., adding a single RP to the authorized list) req
     - It enables <roles:Attestation Provider (AP)|AP> to unilaterally change an <artifacts:Embedded Disclosure Policy (EDP)|EDP>, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
     - Technical details of this mechanism are not defined within ETSI standard.
 
-#### Normative References
+??? references
 
-| Reference | Description |
-|-----------|-------------|
-| [CIR 2024/2979, Article 2(9)] | Definition of <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> |
-| [CIR 2024/2979, Article 10] | <roles:Wallet Provider (WP)> obligations for <artifacts:Embedded Disclosure Policy (EDP)\|EDP> processing |
-| [CIR 2024/2979, Annex III] | Common <artifacts:Embedded Disclosure Policy (EDP)\|EDP> types |
-| [ETSI TS 119 472-3, Section 4.2.5] | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13) |
-| [ETSI TS 119 475] Annex A.2 | Common entitlement URIs |
-| [ETSI EN 319 412-1, Section 5.1.4] | organizationIdentifier semantics |
-| RFC 4514 | LDAP string representation of Distinguished Names |
+    | Reference | Description |
+    |-----------|-------------|
+    | [CIR 2024/2979, Article 2(9)] | Definition of <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> |
+    | [CIR 2024/2979, Article 10] | <roles:Wallet Provider (WP)> obligations for <artifacts:Embedded Disclosure Policy (EDP)\|EDP> processing |
+    | [CIR 2024/2979, Annex III] | Common <artifacts:Embedded Disclosure Policy (EDP)\|EDP> types |
+    | [ETSI TS 119 472-3, Section 4.2.5] | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13) |
+    | [ETSI TS 119 475] Annex A.2 | Common entitlement URIs |
+    | [ETSI EN 319 412-1, Section 5.1.4] | organizationIdentifier semantics |
+    | RFC 4514 | LDAP string representation of Distinguished Names |
