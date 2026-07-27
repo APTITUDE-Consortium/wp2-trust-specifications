@@ -13,10 +13,6 @@
          <lastmod>2026-07-27</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/references/</loc>
-         <lastmod>2026-07-27</lastmod>
-    </url>
-    <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/standards/</loc>
          <lastmod>2026-07-27</lastmod>
     </url>
@@ -25,7 +21,39 @@
          <lastmod>2026-07-27</lastmod>
     </url>
     <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/api/register-api/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/pr-workspace/no-changes/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/sections/onboarding-process/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/sections/references/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/sections/trust-architecture/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/sections/trust-artifacts/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/sections/trust-checks/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/sections/trust-evaluation-process/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/main/sections/trust-management-lifecycle/</loc>
          <lastmod>2026-07-27</lastmod>
     </url>
 </urlset>
