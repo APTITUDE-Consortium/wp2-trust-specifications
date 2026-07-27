@@ -10,54 +10,59 @@ The repository is structured according to the following organization:
 
 ```text
 .
-├── .github
-├── docs
-│   ├── topics
-│   │   ├── access-certificate.md
-│   │   ├── entitlement-policy.md
-│   │   ├── registration-certificate.md
-│   │   ├── registry.md
-│   │   ├── revocation-mechanisms.md
-│   │   ├── trust-architecture.md
-│   │   ├── trust-evaluation-process-authentication.md
-│   │   ├── trust-evaluation-process-authorization.md
-│   │   ├── trust-management-process.md
-│   │   └── trusted-list-and-list-of-trusted-lists.md
-│   └── deliverable-2.1-trust.md
-├── references
-├── requirements
-│   ├── arf.md
-│   ├── etsi-ts-119-411-8.md
-│   ├── etsi-ts-119-475.md
-│   └── others.md
-└── README.md
+├── .github/
+│   ├── workflows/
+├── docs/
+│   ├── sections/
+│   ├── topics/
+│   └── references.md
+│   └── trust-framework.md
+├── references/
+├── requirements/
+├── .gitignore
+├── .markdownlint.yml
+├── CONTRIBUTING.md
+├── LICENSE
+├── mkdocs.yml
+├── README.md
+├── requirements.txt
+└── terminology.md
 ```
 
-The main files are as follows:
+The main files and folders are as follows:
 
-| Name                            | Description           |
-| -------------------             | --------------------- |
-| `.github/`                      | Contains the Github workflows |
-| `docs/`                         | Contains the reference material |
-| `docs/topics/`                  | Contains the files associated with each topic, composing the different sections of the deliverable |
-| `docs/trust-framework.md`       | Represents the *Trust Specifications* chapter of deliverable D2.1 |
-| `references/`                   | Contains the reference material |
-| `requirements/`                 | Contains the lists of consolidated requirements from different sources |
+| Name | Description |
+| --- | --- |
+| `.github/` | Contains GitHub actions and workflow configurations. |
+| `docs/` | Contains the source documentation files. |
+| `docs/sections/` | Contains individual section files that compose the main document. |
+| `docs/topics/` | Contains individual topic files that compose sections of the main document. |
+| `docs/references.md` | References section included in the main document. |
+| `docs/trust-framework.md` | Main entry document assembling the trust framework topics. |
+| `references/` | Contains reference materials, external specifications, and supporting documents. |
+| `requirements/` | Contains consolidated requirements grouped by source (ARF, ETSI, etc.). |
+| `.markdownlint.yml` | Configuration rules for Markdown linting. |
+| `CONTRIBUTING.md` | Guidelines for contributing to the repository. |
+| `LICENSE` | Terms and repository license details. |
+| `mkdocs.yml` | Configuration file for generating the static MkDocs documentation site. |
+| `README.md` | Main overview and repository guide. |
+| `requirements.txt` | Python dependencies required to build or work with the project. |
+| `terminology.md` | Glossary and definitions of terms used throughout the documentation. |
 
 ## Versioning and Preview
 
-This project uses the git *branches* and *tags* in the following way:
+This project manages documentation versions using Git branches and release tags:
 
 - The branch `main` contains the last stable version of the documentation;
 - The [release page](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/releases) of this project contains all the released versions of the specifications.
 
-## Releases
+### Published Specifications
 
-| Version | Built specifications |
-| ------- | -------------------- |
-| 0.1     | [HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.1/) |
-| 0.2     | [HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2/) |
-| latest  | [HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/latest/) |
+| Version  | Documentation Preview |
+| :------- | :-------------------- |
+| `v1.0`   | [View HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0/) |
+| `v0.2`   | [View HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2/) |
+| `v0.1`   | [View HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.1/) |
 
 ## Funding
 

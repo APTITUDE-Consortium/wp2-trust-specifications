@@ -1,11 +1,12 @@
 # Implementation Profiles for the Trust Framework
 
-Version 0.2 (Draft)
+Version 1.0
 
 | Version | Date       | Description   |
 | ------- | ---------- | ------------- |
 | 0.1     | 2026-04-19 | First release |
-| 0.2     | 2026-06-08 | New section on Trust Management Process, editorial changes |
+| 0.2     | 2026-06-08 | New section on Trust Management Process; editorial changes |
+| 1.0     | 2026-07-27 | Added Onboarding Process and Trust Checks sections; expanded Trust Artifacts with Trust Anchor and Entity Sign/Seal Certificates subsections; integrated Register API OAS; structural and editorial changes |
 
 **Authors**:
 
@@ -62,9 +63,9 @@ This specification defines the trust framework profiles for the APTITUDE Large S
 
 ### Out of Scope
 
-The current version of these specifications does not provide details on:
+These specifications does not provide details on:
 
-- **Low-level Implementation**: These will be covered in subsequent versions of the specifications.
+- **Low-level Implementation**: These will be addressed in task T2.3.
 
 - **Registration, Notification, and Publication Processes**: The administrative and regulatory processes governing the Registration, <processes:Notification>, and Publication of <roles:Trusted Entity|Trust Entities> between Member States and the European Commission are excluded from this scope. However, the corresponding processes to be implemented in APTITUDE for piloting purposes are described in [**Onboarding Process**](sections/onboarding-process.md).
 
