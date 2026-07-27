@@ -9,6 +9,7 @@ Version 0.2 (Draft)
 
 **Authors**:
 
+- Pasquale Cerqua, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
 - Gianmario Cortese, *Namirial S.p.A.*
 - Henry Faure-Geors, *Keynectis*
 - Francesco Antonio Marino, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
@@ -37,27 +38,27 @@ Version 0.2 (Draft)
 
 - Issue tracking system: <https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues>
 
-## 1. Introduction
+## Introduction
 
 This specification, *Implementation Profiles for the Trust Framework*, defines the conceptual and architectural requirements for ensuring trust in the APTITUDE piloted environments. At this stage, the specification focuses on articulating the necessary trust architecture, defining the essential trust artifacts, and outlining the high-level evaluation processes. By setting these principles, this document serves as a shared reference to guide subsequent development, ensuring that all implementation efforts remain aligned with the project's objectives for security, privacy, and interoperability.
 
 ---
 
-## 2. Scope
+## Scope
 
 This specification defines the trust framework profiles for the APTITUDE Large Scale Pilot. Its scope is limited to establishing the essential mechanisms for trust in interactions between <components:Wallet Unit|Wallet Units> and <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties>. The scope of this document is organized as follows:
 
-- [**Trust Architecture**](#4-trust-architecture): Describes the roles and logical interaction flows within the APTITUDE pilot ecosystem.
+- [**Trust Architecture**](sections/trust-architecture.md): Describes the roles and logical interaction flows within the APTITUDE pilot ecosystem.
 
-- [**Trust Artifacts**](#5-trust-artifacts): Defines the required trust objects and their conceptual roles in the ecosystem, including <components:Register|Registers>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPAC)> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRC)>, and the management of <artifacts:Trusted List (TL)|Trusted Lists (TLs)>, <artifacts:List of Trusted Entities (LoTE)|Lists of Trusted Entities (LoTE)> and <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policies (EDPs)>.
+- [**Trust Artifacts**](sections/trust-artifacts.md): Defines the required trust objects and their conceptual roles in the ecosystem, including <components:Register|Registers>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPAC)> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRC)>, and the management of <artifacts:Trusted List (TL)|Trusted Lists (TLs)>, <artifacts:List of Trusted Entities (LoTE)|Lists of Trusted Entities (LoTE)> and <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policies (EDPs)>.
 
-- [**Onboarding Process**](#6-onboarding-process): Defines the process through which entities become operational and recognisable in the common trust infrastructure. Within the APTITUDE LSP, it is realised as a mocked-up version of the <roles:Wallet-Relying Party (WRP)|Wallet-Relying Party> Registration and <processes:Notification> processes.
+- [**Onboarding Process**](sections/onboarding-process.md): Defines the process through which entities become operational and recognisable in the common trust infrastructure. Within the APTITUDE LSP, it is realised as a mocked-up version of the <roles:Wallet-Relying Party (WRP)|Wallet-Relying Party> Registration and <processes:Notification> processes.
 
-- [**Trust Evaluation Processes**](#7-trust-evaluation-process): Outlines the necessary stages for <artifacts:Trust Anchor> validation, <processes:Authentication|authentication> and authorization processes.
+- [**Trust Evaluation Processes**](sections/trust-evaluation-process.md): Outlines the necessary stages for <artifacts:Trust Anchor> validation, <processes:Authentication|authentication> and authorization processes.
 
-- [**Trust Checks**](#8-trust-checks): Describes the trust-related checks to be performed during Issuance and Presentation.
+- [**Trust Checks**](sections/trust-checks.md): Describes the trust-related checks to be performed during Issuance and Presentation.
 
-- [**Trust Management and Lifecycle**](#9-trust-management-and-lifecycle): Defines the mechanisms for managing the status of <roles:Trusted Entity|Trusted Entities>, with a current focus on revocation procedures.
+- [**Trust Management and Lifecycle**](sections/trust-management-lifecycle.md): Defines the mechanisms for managing the status of <roles:Trusted Entity|Trusted Entities>, with a current focus on revocation procedures.
 
 ### Out of Scope
 
@@ -65,102 +66,10 @@ The current version of these specifications does not provide details on:
 
 - **Low-level Implementation**: These will be covered in subsequent versions of the specifications.
 
-- **Registration, Notification, and Publication Processes**: The administrative and regulatory processes governing the Registration, <processes:Notification>, and Publication of <roles:Trusted Entity|Trust Entities> between Member States and the European Commission are excluded from this scope. However, the corresponding processes to be implemented in the APTITUDE LSP are described in the [**Onboarding Process**](#6-onboarding-process) section.
+- **Registration, Notification, and Publication Processes**: The administrative and regulatory processes governing the Registration, <processes:Notification>, and Publication of <roles:Trusted Entity|Trust Entities> between Member States and the European Commission are excluded from this scope. However, the corresponding processes to be implemented in APTITUDE for piloting purposes are described in [**Onboarding Process**](sections/onboarding-process.md).
 
 ---
 
-## 3. Normative Language
+## Normative Language
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
-
----
-
-## 4. Trust Architecture
-
-{% include-markdown "./topics/trust-architecture.md" %}
-
----
-
-## 5. Trust Artifacts
-
-### Register
-
-{% include-markdown "./topics/registry.md" %}
-
-### Wallet-Relying Party Access Certificate
-
-{% include-markdown "./topics/access-certificate.md" %}
-
-### Wallet-Relying Party Registration Certificate
-
-{% include-markdown "./topics/registration-certificate.md" %}
-
-### List of Trusted Entities and List of Trusted Lists
-
-{% include-markdown "./topics/trusted-list-and-list-of-trusted-lists.md" %}
-
-### Embedded Disclosure Policy
-
-{% include-markdown "./topics/embedded-disclosure-policy.md" %}
-
-### Trust Anchor Certificate
-
-{% include-markdown "./topics/trust-anchor-certificate-profiles.md" %}
-
-### Entity Sign/Seal Certificate
-
-{% include-markdown "./topics/entity-end-certificate-profiles.md" %}
-
----
-
-## 6. Onboarding Process
-
-{% include-markdown "./topics/onboarding-process.md" %}
-
----
-
-## 7. Trust Evaluation Process
-
-{% include-markdown "./topics/trust-evaluation.md" %}
-
-### Trust Anchor Validation Process
-
-{% include-markdown "./topics/trust-anchor-validation.md" %}
-
-### Authentication Process
-
-{% include-markdown "./topics/authentication-process.md" %}
-
-### Authorization Process
-
-{% include-markdown "./topics/authorization-process.md" %}
-
----
-
-## 8. Trust Checks
-
-### Issuance
-
-{% include-markdown "./topics/trust-checks-issuance.md" %}
-
-### Presentation
-
-{% include-markdown "./topics/trust-checks-presentation.md" %}
-
----
-
-## 9. Trust Management and Lifecycle
-
-### Trust Management Process
-
-{% include-markdown "./topics/trust-management-process.md" %}
-
-### Revocation Mechanisms
-
-{% include-markdown "./topics/revocation-mechanisms.md" %}
-
----
-
-## References
-
-{% include-markdown "./references.md" %}
