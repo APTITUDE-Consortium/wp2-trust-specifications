@@ -1,0 +1,1123 @@
+openapi: 3.1.0
+info:
+  title: Wallet Relying Party Register API
+  version: 1.0.0
+  description: Specification of the Wallet Relying Party (WRP) Register API in Aptitude Consortium
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  contact:
+    name: APTITUDE Consortium
+    url: https://github.com/APTITUDE-Consortium/wp2-trust-specifications
+servers:
+  - url: https://registry.example.eu
+    description: Example register server
+tags:
+  - name: Registration
+    description: Authenticated operations for registration.
+  - name: Public Register
+    description: Public query operations.
+paths:
+  /wrp:
+    get:
+      tags:
+        - Public Register
+      summary: Search or list registered WRPs
+      description: Returns a list of WRP depending on the query parameters (all WRPs are returned if no parameters are provided).
+      operationId: listWrps
+      parameters:
+        - $ref: '#/components/parameters/identifierQuery'
+        - $ref: '#/components/parameters/legalnameQuery'
+        - $ref: '#/components/parameters/tradenameQuery'
+        - $ref: '#/components/parameters/policyQuery'
+        - $ref: '#/components/parameters/entitlementQuery'
+        - $ref: '#/components/parameters/usesintermediaryQuery'
+        - $ref: '#/components/parameters/isintermediaryQuery'
+        - $ref: '#/components/parameters/intendeduseidentifierQuery'
+        - $ref: '#/components/parameters/claimpathQuery'
+        - $ref: '#/components/parameters/credentialmetaQuery'
+        - $ref: '#/components/parameters/credentialformatQuery'
+        - $ref: '#/components/parameters/cursorQuery'
+        - $ref: '#/components/parameters/limitQuery'
+        - $ref: '#/components/parameters/providesattestationQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/JwsWrpArrayResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      security: []
+    post:
+      tags:
+        - Registration
+      summary: Create a WRP entry
+      description: Creates a new Wallet Relying Party entry in the register.
+      operationId: createWrp
+      requestBody:
+        $ref: '#/components/requestBodies/WalletRelyingPartyBody'
+      responses:
+        '201':
+          description: Created.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      security:
+        - bearerAuth: []
+    put:
+      tags:
+        - Registration
+      summary: Update a WRP entry
+      description: Updates an existing Wallet Relying Party entry in the register.
+      operationId: updateWrp
+      requestBody:
+        $ref: '#/components/requestBodies/WalletRelyingPartyBody'
+      responses:
+        '200':
+          description: Successfully updated.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - Registration
+      summary: Delete a WRP entry
+      description: Deletes an existing Wallet Relying Party entry by identifier payload.
+      operationId: deleteWrp
+      requestBody:
+        $ref: '#/components/requestBodies/DeleteWrpBody'
+      responses:
+        '204':
+          description: Successfully deleted.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - bearerAuth: []
+  /wrp/check-intended-use:
+    get:
+      tags:
+        - Public Register
+      summary: Check whether an intended use is registered
+      description: A dedicated intended-use check endpoint for making narrowed-down intended use related queries
+      operationId: checkIntendedUse
+      parameters:
+        - $ref: '#/components/parameters/rpidentifierQuery'
+        - $ref: '#/components/parameters/intendeduseidentifierQuery'
+        - $ref: '#/components/parameters/claimpathQuery'
+        - $ref: '#/components/parameters/credentialformatQuery'
+        - $ref: '#/components/parameters/credentialmetaQuery'
+        - $ref: '#/components/parameters/policyurlQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/JwsBooleanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          description: WRP with the given rpidentifier not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: WRP with the given rpidentifier was not found.
+      security: []
+  /wrp/{identifier}:
+    get:
+      tags:
+        - Public Register
+      summary: Get a WRP by identifier
+      description: Fetch a single Wallet Relying Party entry using its identifier.
+      operationId: getWrpByIdentifier
+      parameters:
+        - $ref: '#/components/parameters/identifierPath'
+      responses:
+        '200':
+          $ref: '#/components/responses/JwsWrpResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    identifierQuery:
+      name: identifier
+      in: query
+      description: Filter by official or business registration identifier.
+      required: false
+      schema:
+        type: string
+    legalnameQuery:
+      name: legalname
+      in: query
+      description: Filter by official company name.
+      required: false
+      schema:
+        type: string
+    tradenameQuery:
+      name: tradename
+      in: query
+      description: Filter by trade name.
+      required: false
+      schema:
+        type: string
+    policyQuery:
+      name: policy
+      in: query
+      description: Filter by privacy policy URL or policy URI as profiled.
+      required: false
+      schema:
+        type: string
+        format: uri
+    entitlementQuery:
+      name: entitlement
+      in: query
+      description: Filter by entitlement type URI.
+      required: false
+      schema:
+        type: string
+        format: uri
+    usesintermediaryQuery:
+      name: usesintermediary
+      in: query
+      description: Filter by intermediary identifier.
+      required: false
+      schema:
+        type: string
+    isintermediaryQuery:
+      name: isintermediary
+      in: query
+      description: Filter by intermediary status.
+      required: false
+      schema:
+        type: boolean
+    intendeduseidentifierQuery:
+      name: intendeduseidentifier
+      in: query
+      description: Filter by registrar-provided intended-use identifier.
+      required: false
+      schema:
+        type: string
+    claimpathQuery:
+      name: claimpath
+      in: query
+      description: Filter by intended-use requested claim path using a profile-defined serialized representation.
+      required: false
+      schema:
+        type: string
+    credentialmetaQuery:
+      name: credentialmeta
+      in: query
+      description: Filter by credential metadata using a profile-defined serialization.
+      required: false
+      schema:
+        type: string
+    credentialformatQuery:
+      name: credentialformat
+      in: query
+      description: Filter by credential format.
+      required: false
+      schema:
+        type: string
+    cursorQuery:
+      name: cursor
+      in: query
+      description: Cursor for pagination.
+      required: false
+      schema:
+        type: string
+    limitQuery:
+      name: limit
+      in: query
+      description: Maximum number of items to return per page.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+    providesattestationQuery:
+      name: providesattestation
+      in: query
+      description: Filter by attestation types provided.
+      required: false
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Credential'
+          example:
+            format: dc+sd-jwt
+            meta:
+              vct_values:
+                - https://examplebank.eu/schema/bank-account
+    rpidentifierQuery:
+      name: rpidentifier
+      in: query
+      description: Identifier of the WRP whose intended-use registration is being checked.
+      required: true
+      schema:
+        type: string
+    policyurlQuery:
+      name: policyurl
+      in: query
+      description: Privacy policy URL to check for the identified WRP.
+      required: false
+      schema:
+        type: string
+        format: uri
+    identifierPath:
+      name: identifier
+      in: path
+      description: Identifier of the WRP to retrieve.
+      required: true
+      schema:
+        type: string
+  requestBodies:
+    WalletRelyingPartyBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WalletRelyingParty'
+          examples:
+            serviceProvider:
+              summary: WRP object for a Relying Party
+              value:
+                legalPerson:
+                  legalName:
+                    - ExampleBank S.A.
+                identifier:
+                  - type: http://data.europa.eu/eudi/id/EUID
+                    identifier: FR-EUID-123456789
+                  - type: http://data.europa.eu/eudi/id/VATIN
+                    identifier: FR12345678901
+                postalAddress:
+                  - 10 Rue Exemple, 75000 Paris, FR
+                country: FR
+                email:
+                  - wallet-rp-registration@examplebank.eu
+                phone:
+                  - '+33100000000'
+                infoURI:
+                  - https://examplebank.eu
+                providerType: WalletRelyingParty
+                policy:
+                  - type: http://data.europa.eu/eudi/policy/terms-and-conditions
+                    policyURI: https://examplebank.eu/terms
+                  - type: http://data.europa.eu/eudi/policy/privacy-policy
+                    policyURI: https://examplebank.eu/privacy
+                tradeName: ExampleBank Mobile
+                supportURI:
+                  - https://examplebank.eu/support
+                srvDescription:
+                  - - lang: en
+                      content: Retail banking services for individuals.
+                    - lang: fr
+                      content: Services bancaires pour particuliers.
+                intendedUse:
+                  - intendedUseIdentifier: iu-001
+                    purpose:
+                      - lang: en
+                        content: Open a bank account remotely.
+                    privacyPolicy:
+                      - type: http://data.europa.eu/eudi/policy/privacy-statement
+                        policyURI: https://examplebank.eu/privacy/wallet
+                    credential:
+                      - format: dc+sd-jwt
+                        meta:
+                          vct: https://example.eu/schema/pid
+                        claim:
+                          - path:
+                              - family_name
+                          - path:
+                              - given_name
+                          - path:
+                              - birth_date
+                    createdAt: '2026-01-01'
+                isPSB: false
+                entitlement:
+                  - https://uri.etsi.org/19475/Entitlement/Service_Provider
+                supervisoryAuthority:
+                  legalPerson:
+                    legalName:
+                      - Autorité de supervision Exemple
+                  country: FR
+                  email:
+                    - contact@supervisor.example.fr
+                  infoURI:
+                    - https://supervisor.example.fr
+                registryURI: https://registry.example.fr/api
+                isIntermediary: false
+            intermediary:
+              summary: WRP acting as a designated intermediary
+              value:
+                legalPerson:
+                  legalName:
+                    - TrustBridge Services B.V.
+                identifier:
+                  - type: http://data.europa.eu/eudi/id/EUID
+                    identifier: NL-EUID-112233445
+                  - type: http://data.europa.eu/eudi/id/VATIN
+                    identifier: NL112233445B01
+                postalAddress:
+                  - Keizersgracht 100, 1015 CN Amsterdam, NL
+                country: NL
+                email:
+                  - wallet-intermediary@trustbridge.example
+                phone:
+                  - '+31200000000'
+                infoURI:
+                  - https://trustbridge.example
+                providerType: WalletRelyingParty
+                policy:
+                  - type: http://data.europa.eu/eudi/policy/terms-and-conditions
+                    policyURI: https://trustbridge.example/terms
+                  - type: http://data.europa.eu/eudi/policy/privacy-policy
+                    policyURI: https://trustbridge.example/privacy
+                tradeName: TrustBridge
+                supportURI:
+                  - https://trustbridge.example/support
+                srvDescription:
+                  - - lang: en
+                      content: Intermediary services for wallet-relying parties operating in the Netherlands.
+                    - lang: nl
+                      content: Intermediaire diensten voor wallet-relying parties in Nederland.
+                isPSB: false
+                entitlement:
+                  - https://uri.etsi.org/19475/Entitlement/Service_Provider
+                supervisoryAuthority:
+                  legalPerson:
+                    legalName:
+                      - Autoriteit Persoonsgegevens
+                  country: NL
+                  email:
+                    - info@autoriteitpersoonsgegevens.nl
+                  infoURI:
+                    - https://autoriteitpersoonsgegevens.nl
+                registryURI: https://registry.example.nl/api
+                isIntermediary: true
+    DeleteWrpBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteWrpRequest'
+          example:
+            identifier:
+              - type: http://data.europa.eu/eudi/id/EUID
+                identifier: FR-EUID-123456789
+  responses:
+    JwsWrpArrayResponse:
+      description: >-
+        JWS-signed list of matching Wallet Relying Party entries, serialized as an
+        application/jwt JWS compact string. Once decoded and signature-verified, the
+        JWT payload conforms to the SignedWRPArray schema defined in the components
+        block: an array of WalletRelyingParty objects matching the query (postalAddress
+        excluded from each published entry), plus issuer/timestamp metadata and
+        cursor-based pagination. Where relevant, the associated WRPAC/WRPRC history MAY
+        be carried per the Member State profile.
+      headers:
+        X-Next-Cursor:
+          description: >-
+            Convenience mirror of the signed pagination.next_cursor value inside the
+            payload: cursor to pass as the cursor query parameter on the next GET /wrp
+            request. Absent on the last page.
+          schema:
+            type: string
+      content:
+        application/jwt:
+          schema:
+            type: string
+            description: >-
+              A JWS-signed JWT in compact serialization format. The JWT payload, once
+              decoded and verified, conforms to the SignedWRPArray schema defined in the
+              components block of this specification.
+          example: eyJhbGciOiJFUzI1NiIsImtpZCI6InJlZ2lzdHJhci0xIn0.eyJpc3MiOiJyZWdpc3RyYXItMSIsImlhdCI6MTc2NzIyNTYwMCwiZGF0YSI6W119.c2lnbmF0dXJl
+    JwsBooleanResponse:
+      description: JWS compact string containing a signed intended-use check result.
+      content:
+        application/jwt:
+          schema:
+            type: string
+            description: >-
+              A JWS-signed JWT in compact serialization format. The JWT payload, once
+              decoded and verified, conforms to the SignedIntendedUseCheckResult schema
+              defined in the components block of this specification.
+          example: eyJhbGciOiJFUzI1NiIsImtpZCI6InJlZ2lzdHJhci0xIn0.eyJpc3MiOiJyZWdpc3RyYXItMSIsImlhdCI6MTc2NzIyNTYwMCwiZGF0YSI6dHJ1ZX0.c2lnbmF0dXJl
+    JwsWrpResponse:
+      description: JWS compact string containing a signed payload with a single WRP entry.
+      content:
+        application/jwt:
+          schema:
+            type: string
+            description: >-
+              A JWS-signed JWT in compact serialization format. The JWT payload, once
+              decoded and verified, conforms to the SignedWRP schema defined in the
+              components block of this specification.
+          example: eyJhbGciOiJFUzI1NiIsImtpZCI6InJlZ2lzdHJhci0xIn0.eyJpc3MiOiJyZWdpc3RyYXItMSIsImlhdCI6MTc2NzIyNTYwMCwiZGF0YSI6ey4uLn19.c2lnbmF0dXJl
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Request payload or parameters invalid or incomplete.
+    Unauthorized:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Missing or invalid authentication.
+    Forbidden:
+      description: Forbidden.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Caller is not authorized by the Member State.
+    NotFound:
+      description: Not Found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Requested Wallet Relying Party was not found.
+  schemas:
+    SignedWRPArray:
+      type: object
+      description: >-
+        Decoded payload of the application/jwt response for GET /wrp. This models the
+        signed JWT payload (the response body itself is the application/jwt JWS compact
+        string). It mirrors the SignedWRPArrayEnvelope profile of the registry
+        specification and the SignedWRPArray schema of the EUDI harmonised registrar
+        API (TS5).
+      required:
+        - iss
+        - iat
+        - data
+      properties:
+        iss:
+          type: string
+          description: Issuer, the identifier of the Registry/Registrar issuing the statement.
+        iat:
+          type: integer
+          format: int64
+          description: Issued-at timestamp (Unix epoch seconds) at which the JWT was issued.
+        data:
+          type: array
+          description: >-
+            Array of WalletRelyingParty objects matching the query (published view,
+            postalAddress excluded). Where the Member State profile provides it, each
+            entry MAY be accompanied by its WRPAC/WRPRC certificate history.
+          items:
+            $ref: '#/components/schemas/WalletRelyingParty'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      examples:
+        - iss: https://registry.example.eu
+          iat: 1767225600
+          data: []
+          pagination:
+            next_cursor: eyJvZmZzZXQiOjIwfQ
+            has_next_page: true
+    SignedWRP:
+      type: object
+      description: >-
+        Decoded payload of the application/jwt response for GET /wrp/{identifier}. It
+        mirrors the SignedWRPEnvelope profile of the registry specification and the
+        SignedWRP schema of the EUDI harmonised registrar API (TS5).
+      required:
+        - iss
+        - iat
+        - data
+      properties:
+        iss:
+          type: string
+          description: Issuer, the identifier of the Registry/Registrar issuing the statement.
+        iat:
+          type: integer
+          format: int64
+          description: Issued-at timestamp (Unix epoch seconds) at which the JWT was issued.
+        data:
+          $ref: '#/components/schemas/WalletRelyingParty'
+    SignedIntendedUseCheckResult:
+      type: object
+      description: >-
+        Decoded payload of the application/jwt response for GET /wrp/check-intended-use.
+        It mirrors the SignedIntendedUseCheckEnvelope profile of the registry
+        specification (and corresponds to the SignedIntendedUseCheckResult schema of the
+        EUDI harmonised registrar API, TS5). Per Annex VI the check result is a signed
+        boolean; a Member State profile MAY instead carry the richer TS5 object form
+        (isRegistered plus optional details).
+      required:
+        - iss
+        - iat
+        - data
+      properties:
+        iss:
+          type: string
+          description: Issuer, the identifier of the Registry.
+        iat:
+          type: integer
+          format: int64
+          description: Issued-at timestamp (Unix epoch seconds) at which the JWT was issued.
+        data:
+          type: boolean
+          description: >-
+            Result of the intended-use check: true if the queried intended-use
+            identifier, credential/claim or privacy policy is registered for the Wallet
+            Relying Party's intended use, false otherwise.
+      examples:
+        - iss: https://registry.example.eu
+          iat: 1767225600
+          data: true
+    Pagination:
+      type: object
+      description: Cursor-based pagination metadata carried inside the signed SignedWRPArray payload.
+      properties:
+        next_cursor:
+          type: string
+          description: Cursor to use to fetch the next page of results. Absent or null on the last page.
+        has_next_page:
+          type: boolean
+          description: Whether there is a further page of results.
+      examples:
+        - next_cursor: eyJvZmZzZXQiOjIwfQ
+          has_next_page: true
+    WalletRelyingParty:
+      type: object
+      description: Wallet Relying Party registration object. In published API statements, postalAddress is excluded.
+      properties:
+        legalPerson:
+          $ref: '#/components/schemas/LegalPerson'
+        naturalPerson:
+          $ref: '#/components/schemas/NaturalPerson'
+        identifier:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Identifier'
+        postalAddress:
+          type: array
+          description: Postal addresses of the legal entity. Registration view only; excluded from published API statements.
+          items:
+            type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code, or EU for providers operating in the Union.
+          pattern: '^([A-Z]{2}|EU)$'
+        email:
+          type: array
+          items:
+            type: string
+            format: email
+        phone:
+          type: array
+          items:
+            type: string
+            examples:
+              - '+33100000000'
+        infoURI:
+          type: array
+          items:
+            type: string
+            format: uri
+        providerType:
+          type: string
+          description: Provider subtype. For WRP records, typically WalletRelyingParty.
+          examples: 
+            - WalletRelyingParty
+        policy:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        x5c:
+          type: array
+          description: X.509 certificate chains for provider services.
+          items:
+            type: string
+        tradeName:
+          type: string
+        supportURI:
+          type: array
+          items:
+            type: string
+            format: uri
+        srvDescription:
+          type: array
+          description: Array of service descriptions, each being an array of localized strings.
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/MultiLangString'
+        intendedUse:
+          type: array
+          description: Required if the entity is not an intermediary.
+          items:
+            $ref: '#/components/schemas/IntendedUse'
+        isPSB:
+          type: boolean
+          description: Whether the WRP is a public sector body.
+        entitlement:
+          type: array
+          items:
+            type: string
+            format: uri
+        providesAttestations:
+          type: array
+          description: Required if the entity is a PID or attestation provider.
+          items:
+            $ref: '#/components/schemas/Credential'
+        supervisoryAuthority:
+          $ref: '#/components/schemas/LegalEntity'
+        registryURI:
+          type: string
+          format: uri
+          description: URI of the API of the national register of WRPs.
+        usesIntermediary:
+          type: array
+          description: If present, indicates designated intermediary entries. Only the subset identifier, tradeName, and registryURI is needed for each entry.
+          items:
+            $ref: '#/components/schemas/WalletRelyingPartyIntermediary'
+        isIntermediary:
+          type: boolean
+          description: Whether the registered entity is a designated intermediary. Shall be false if usesIntermediary is present.
+      required:
+        - identifier
+        - country
+        - providerType
+        - policy
+        - supportURI
+        - srvDescription
+        - isPSB
+        - entitlement
+        - supervisoryAuthority
+        - registryURI
+        - isIntermediary
+      oneOf:
+        - required: [legalPerson]
+        - required: [naturalPerson]
+      allOf:
+        - if:
+            required: [isIntermediary]
+            properties:
+              isIntermediary:
+                const: false
+          then:
+            required: [intendedUse]
+        - if:
+            required: [entitlement]
+            properties:
+              entitlement:
+                contains:
+                  enum:
+                    - https://uri.etsi.org/19475/Entitlement/QEAA_Provider
+                    - https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider
+                    - https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider
+                    - https://uri.etsi.org/19475/Entitlement/PID_Provider
+          then:
+            required: [providesAttestations]
+        - if:
+            required: [usesIntermediary]
+          then:
+            properties:
+              isIntermediary:
+                const: false
+      examples:
+        - legalPerson:
+            legalName:
+              - ShopExample N.V.
+          identifier:
+            - type: http://data.europa.eu/eudi/id/EUID
+              identifier: NL-EUID-556677889
+          postalAddress:
+            - Damrak 50, 1012 LP Amsterdam, NL
+          country: NL
+          email:
+            - wallet-rp@shopexample.example
+          infoURI:
+            - https://shopexample.example
+          providerType: WalletRelyingParty
+          policy:
+            - type: http://data.europa.eu/eudi/policy/terms-and-conditions
+              policyURI: https://shopexample.example/terms
+            - type: http://data.europa.eu/eudi/policy/privacy-policy
+              policyURI: https://shopexample.example/privacy
+          tradeName: ShopExample
+          supportURI:
+            - https://shopexample.example/support
+          srvDescription:
+            - - lang: en
+                content: Online retail services.
+              - lang: nl
+                content: Online detailhandel.
+          intendedUse:
+            - intendedUseIdentifier: iu-age-verification
+              purpose:
+                - lang: en
+                  content: Verify the customer is of legal age for restricted product purchases.
+              privacyPolicy:
+                - type: http://data.europa.eu/eudi/policy/privacy-statement
+                  policyURI: https://shopexample.example/privacy/wallet
+              credential:
+                - format: mso_mdoc
+                  meta:
+                    doctype_value: org.iso.18013.5.1.mDL
+                  claim:
+                    - path:
+                        - org.iso.18013.5.1
+                        - age_over_18
+              createdAt: '2026-01-01'
+          isPSB: false
+          entitlement:
+            - https://uri.etsi.org/19475/Entitlement/Service_Provider
+          supervisoryAuthority:
+            legalPerson:
+              legalName:
+                - Autoriteit Persoonsgegevens
+            country: NL
+            infoURI:
+              - https://autoriteitpersoonsgegevens.nl
+          registryURI: https://registry.example.nl/api
+          isIntermediary: false
+          usesIntermediary:
+            - identifier:
+                - type: http://data.europa.eu/eudi/id/EUID
+                  identifier: NL-EUID-112233445
+              tradeName: TrustBridge
+              registryURI: https://registry.example.nl/api
+    WalletRelyingPartyIntermediary:
+      type: object
+      description: >-
+        Reference to a Wallet Relying Party acting as a designated intermediary. Only
+        the subset needed to identify and locate the intermediary is carried here
+        (see the usesIntermediary note in the registry specification).
+      properties:
+        identifier:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Identifier'
+        tradeName:
+          type: string
+        registryURI:
+          type: string
+          format: uri
+          description: URI of the API of the national register where the intermediary is registered.
+      required:
+        - identifier
+        - tradeName
+        - registryURI
+      examples:
+        - identifier:
+            - type: http://data.europa.eu/eudi/id/EUID
+              identifier: NL-EUID-112233445
+          tradeName: TrustBridge
+          registryURI: https://registry.example.nl/api
+    Identifier:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: Identifier value of the legal entity.
+        type:
+          type: string
+          format: uri
+          description: Identifier scheme or type URI.
+          enum:
+            - http://data.europa.eu/eudi/id/EORI-No
+            - http://data.europa.eu/eudi/id/LEI
+            - http://data.europa.eu/eudi/id/EUID
+            - http://data.europa.eu/eudi/id/VATIN
+            - http://data.europa.eu/eudi/id/TIN
+            - http://data.europa.eu/eudi/id/Excise
+      required:
+        - identifier
+        - type
+      examples:
+        - type: http://data.europa.eu/eudi/id/EUID
+          identifier: FR-EUID-123456789
+    MultiLangString:
+      type: object
+      properties:
+        lang:
+          type: string
+          description: Language tag.
+          examples:
+            - en
+        content:
+          type: string
+      required:
+        - lang
+        - content
+      examples:
+        - lang: en
+          content: Open a bank account remotely.
+    IntendedUse:
+      type: object
+      properties:
+        intendedUseIdentifier:
+          type: string
+          description: Registry-level unique identifier for the intended use.
+        purpose:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiLangString'
+        privacyPolicy:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        credential:
+          type: array
+          items:
+            $ref: '#/components/schemas/Credential'
+        createdAt:
+          type: string
+          format: date
+          description: Validity start date in YYYY-MM-DD format.
+        revokedAt:
+          type: string
+          format: date
+          description: End date for the validity of the intended use in YYYY-MM-DD format.
+      required:
+        - intendedUseIdentifier
+        - purpose
+        - privacyPolicy
+        - credential
+        - createdAt
+      examples:
+        - intendedUseIdentifier: iu-account-opening
+          purpose:
+            - lang: en
+              content: Open a bank account remotely.
+            - lang: fr
+              content: Ouvrir un compte bancaire à distance.
+          privacyPolicy:
+            - type: http://data.europa.eu/eudi/policy/privacy-statement
+              policyURI: https://examplebank.eu/privacy/wallet/account-opening
+          credential:
+            - format: dc+sd-jwt
+              meta:
+                vct_values:
+                  - https://example.eu/schema/pid
+              claim:
+                - path:
+                    - family_name
+                - path:
+                    - given_name
+                - path:
+                    - birth_date
+                - path:
+                    - nationalities
+          createdAt: '2026-01-01'
+    Policy:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: Policy type URI.
+          enum:
+            - http://data.europa.eu/eudi/policy/privacy-policy
+            - http://data.europa.eu/eudi/policy/terms-and-conditions
+            - http://data.europa.eu/eudi/policy/privacy-statement
+        policyURI:
+          type: string
+          format: uri
+          description: URL where the policy is published.
+      required:
+        - type
+        - policyURI
+      examples:
+        - type: http://data.europa.eu/eudi/policy/privacy-policy
+          policyURI: https://examplebank.eu/privacy
+    Credential:
+      type: object
+      properties:
+        format:
+          type: string
+          description: Credential format identifier.
+          examples:
+            - dc+sd-jwt
+        meta:
+          type: object
+          description: Additional grouping or type metadata defined per credential format.
+          additionalProperties: true
+        claim:
+          type: array
+          items:
+            $ref: '#/components/schemas/Claim'
+      required:
+        - format
+        - meta
+      examples:
+        - format: dc+sd-jwt
+          meta:
+            vct: https://example.eu/schema/pid
+          claim:
+            - path:
+                - family_name
+            - path:
+                - given_name
+            - path:
+                - birth_date
+    Claim:
+      type: object
+      properties:
+        path:
+          type: array
+          minItems: 1
+          description: Non-empty path array of strings, nulls, or non-negative integers.
+          items:
+            oneOf:
+              - type: string
+              - type: integer
+                minimum: 0
+              - type: 'null'
+        values:
+          type: array
+          description: Optional allowed values.
+          items:
+            oneOf:
+              - type: string
+              - type: integer
+              - type: boolean
+      required:
+        - path
+      examples:
+        - path:
+          - org.iso.18013.5.1
+          - age_over_18
+    LegalEntity:
+      type: object
+      properties:
+        legalPerson:
+          $ref: '#/components/schemas/LegalPerson'
+        naturalPerson:
+          $ref: '#/components/schemas/NaturalPerson'
+        identifier:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        postalAddress:
+          type: array
+          items:
+            type: string
+        country:
+          type: string
+          pattern: '^([A-Z]{2}|EU)$'
+        email:
+          type: array
+          items:
+            type: string
+            format: email
+        phone:
+          type: array
+          items:
+            type: string
+        infoURI:
+          type: array
+          items:
+            type: string
+            format: uri
+      required:
+        - country
+      examples:
+        - legalPerson:
+            legalName:
+              - Autorité de supervision Exemple
+          country: FR
+          email:
+            - contact@supervisor.example.fr
+          infoURI:
+            - https://supervisor.example.fr
+    LegalPerson:
+      type: object
+      properties:
+        legalName:
+          type: array
+          items:
+            type: string
+        establishedBylaw:
+          type: array
+          description: Required if the entity is a public sector body responsible for authentic sources.
+          items:
+            $ref: '#/components/schemas/Law'
+      required:
+        - legalName
+      examples:
+        - legalName:
+          - ExampleBank S.A.
+    NaturalPerson:
+      type: object
+      properties:
+        givenName:
+          type: string
+        familyName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        placeOfBirth:
+          type: string
+      required:
+        - givenName
+        - familyName
+      examples:
+        - givenName: Alice
+          familyName: Martin
+          dateOfBirth: '1985-03-04'
+          placeOfBirth: Paris
+    Law:
+      type: object
+      properties:
+        lang:
+          type: string
+          pattern: '^[a-z]{2}$'
+          description: Two-letter language code.
+        legalBasis:
+          type: string
+      required:
+        - lang
+        - legalBasis
+      examples:
+        - lang: en
+          legalBasis: Established under national banking supervision law.
+    DeleteWrpRequest:
+      type: object
+      properties:
+        identifier:
+          type: array
+          description: Identifier payload for the WRP to delete.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Identifier'
+      required:
+        - identifier
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
