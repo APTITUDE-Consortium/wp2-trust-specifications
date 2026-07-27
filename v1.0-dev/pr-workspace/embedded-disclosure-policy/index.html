@@ -85,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#definition-and-applicability" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -659,6 +664,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -803,6 +812,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -819,6 +846,78 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definition-and-applicability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition and Applicability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policy-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distribution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -840,6 +939,34 @@
     
   
     Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
   
 
     
@@ -1056,6 +1183,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../trust-checks-presentation/" class="md-nav__link">
         
   
@@ -1214,7 +1369,7 @@
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> during presentation is defined in the <a href="../../sections/trust-evaluation-process/#authorization-process">Authorization Process</a> section of this specification.</p>
-<h4 id="definition-and-applicability">Definition and Applicability<a class="headerlink" href="#definition-and-applicability" title="Permanent link">&para;</a></h4>
+<h3 id="definition-and-applicability">Definition and Applicability<a class="headerlink" href="#definition-and-applicability" title="Permanent link">&para;</a></h3>
 <p>An <a class="mkdocs-ezglossary-link"
     id="1d88885f75d58f40e74061ccb7077513"
     title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
@@ -1289,7 +1444,7 @@
 <li>Implementing sector-specific access control (e.g., only public sector RPs or only healthcare RPs).</li>
 <li>Implementing Member-State-specific access control (e.g., only RPs registered within a specific Member State).</li>
 </ul>
-<h4 id="policy-types">Policy Types<a class="headerlink" href="#policy-types" title="Permanent link">&para;</a></h4>
+<h3 id="policy-types">Policy Types<a class="headerlink" href="#policy-types" title="Permanent link">&para;</a></h3>
 <p>Annex III of [CIR 2024/2979] defines three common <a class="mkdocs-ezglossary-link"
     id="53d782500c7996d49123dc56394e6d78"
     title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
@@ -1349,14 +1504,14 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> chain to one of these roots are allowed to access the Attestation. According to [ETSI TS 119 472-3] (ISS-MDATA-EBD-4.2.5.2-08/09), each authorized root is identified by its issuer distinguished name in LDAP string form as defined in RFC 4514 and the issuer's certificate serial number.</p>
-<h4 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h4>
+<h3 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h3>
 <p>The data model of the <a class="mkdocs-ezglossary-link"
     id="e0a0cd8d5fea0c32c45866d15956b8d9"
     title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is defined in [ETSI TS 119 472-3, Section 4.2.5.2] through requirements ISS-MDATA-EBD-4.2.5.2-01 to ISS-MDATA-EBD-4.2.5.2-13.</p>
-<h5 id="data-model-requirements">Data Model Requirements<a class="headerlink" href="#data-model-requirements" title="Permanent link">&para;</a></h5>
+<h4 id="data-model-requirements">Data Model Requirements<a class="headerlink" href="#data-model-requirements" title="Permanent link">&para;</a></h4>
 <p>The data model defines the following elements:</p>
 <ul>
 <li>The <a class="mkdocs-ezglossary-link"
@@ -1454,7 +1609,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is finalized and the policy mechanisms are fully defined.</p>
 </div>
-<h5 id="structure-and-encoding">Structure and Encoding<a class="headerlink" href="#structure-and-encoding" title="Permanent link">&para;</a></h5>
+<h4 id="structure-and-encoding">Structure and Encoding<a class="headerlink" href="#structure-and-encoding" title="Permanent link">&para;</a></h4>
 <p>The following JSON structure is derived from the [ETSI TS 119 472-3] data model requirements.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1553,7 +1708,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
 </tr>
 </tbody>
 </table>
-<h4 id="distribution">Distribution<a class="headerlink" href="#distribution" title="Permanent link">&para;</a></h4>
+<h3 id="distribution">Distribution<a class="headerlink" href="#distribution" title="Permanent link">&para;</a></h3>
 <p>The <a class="mkdocs-ezglossary-link"
     id="921437bb1342ea4601e550ff967709c7"
     title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
@@ -1615,8 +1770,8 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> and it is associated with the specific Attestation for which it was retrieved.</p>
-<h4 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h4>
-<h5 id="validity-binding">Validity Binding<a class="headerlink" href="#validity-binding" title="Permanent link">&para;</a></h5>
+<h3 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h3>
+<h4 id="validity-binding">Validity Binding<a class="headerlink" href="#validity-binding" title="Permanent link">&para;</a></h4>
 <p>The locally stored <a class="mkdocs-ezglossary-link"
     id="fd3bca8f9a0a4d163d3a54b247f65c76"
     title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
@@ -1628,7 +1783,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL NOT have an independent validity status or revocation mechanism separate from the Attestation.</p>
-<h5 id="update-mechanism">Update Mechanism<a class="headerlink" href="#update-mechanism" title="Permanent link">&para;</a></h5>
+<h4 id="update-mechanism">Update Mechanism<a class="headerlink" href="#update-mechanism" title="Permanent link">&para;</a></h4>
 <p>If an <a class="mkdocs-ezglossary-link"
     id="cd6ec573183f3b5c23329dd3a0e90188"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
@@ -1815,7 +1970,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:40:10 UTC">July 27, 2026 16:40:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:51:01 UTC">July 27, 2026 16:51:01</span>
   </span>
 
     

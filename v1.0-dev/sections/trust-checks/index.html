@@ -608,6 +608,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Issuance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-step Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -618,6 +635,100 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Presentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entities-and-artefacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entities and Artefacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-presentation-trust-evaluation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Presentation Trust Evaluation Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-presentation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote Presentation Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximity-presentation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proximity Presentation Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-trust-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Trust Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trust-anchor-and-trusted-list-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trust Anchor and Trusted List Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-and-override-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision and Override Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aptitude-alignment-and-traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APTITUDE Alignment and Traceability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -701,6 +812,10 @@
   
     
     
+      
+        
+      
+        
       
         
       
@@ -922,6 +1037,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../pr-workspace/onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../pr-workspace/registration-certificate/" class="md-nav__link">
         
   
@@ -1118,6 +1261,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../pr-workspace/trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../pr-workspace/trust-checks-presentation/" class="md-nav__link">
         
   
@@ -1243,7 +1414,7 @@
 
   <h1>Trust Checks</h1>
 
-<h3 id="issuance">Issuance<a class="headerlink" href="#issuance" title="Permanent link">&para;</a></h3>
+<h2 id="issuance">Issuance<a class="headerlink" href="#issuance" title="Permanent link">&para;</a></h2>
 <!-- BEGIN INCLUDE ../topics/trust-checks-issuance.md -->
 <p>This section details the trust checks that MUST be performed during the Issuance process.</p>
 <pre class="mermaid"><code>sequenceDiagram
@@ -1338,7 +1509,7 @@
 <p><strong>NOTE 1:</strong>  Attestation Providers can have a dedicated Authorization server that makes authorization-related endpoints available. That kind of implementation details are hidden in this schema, since the Attestation Provider bears the overall responsibility for responding to the Wallet Instance's requests.</p>
 <p><strong>NOTE 2:</strong>  A nonce endpoint might be necessary as well however that feature does not have an impact on the trust-related checks.</p>
 </blockquote>
-<h4 id="step-by-step-operations">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations" title="Permanent link">&para;</a></h4>
+<h3 id="step-by-step-operations">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1: Request EAA Issuance</strong> Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.</p>
 <p><strong>Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)</strong> The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider of WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].</p>
 <p><strong>Step 3a: Fetch Provider of WRPAC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.</p>
@@ -1375,7 +1546,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
 </blockquote>
 <!-- END INCLUDE -->
 
-<h3 id="presentation">Presentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h3>
+<h2 id="presentation">Presentation<a class="headerlink" href="#presentation" title="Permanent link">&para;</a></h2>
 <!-- BEGIN INCLUDE ../topics/trust-checks-presentation.md -->
 <p>This section specifies the trust checks performed during Presentation flows, both:</p>
 <ul>
@@ -1401,8 +1572,8 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
 <li><strong>Whether the result is blocking, advisory, or user-overridable</strong>.</li>
 <li><strong>How the check can later be converted into RFC003 test cases</strong>.</li>
 </ol>
-<h4 id="entities-and-artefacts">Entities and Artefacts<a class="headerlink" href="#entities-and-artefacts" title="Permanent link">&para;</a></h4>
-<h5 id="main-entities">Main entities<a class="headerlink" href="#main-entities" title="Permanent link">&para;</a></h5>
+<h3 id="entities-and-artefacts">Entities and Artefacts<a class="headerlink" href="#entities-and-artefacts" title="Permanent link">&para;</a></h3>
+<h4 id="main-entities">Main entities<a class="headerlink" href="#main-entities" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1445,7 +1616,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
 </tr>
 </tbody>
 </table>
-<h5 id="main-artefacts">Main artefacts<a class="headerlink" href="#main-artefacts" title="Permanent link">&para;</a></h5>
+<h4 id="main-artefacts">Main artefacts<a class="headerlink" href="#main-artefacts" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1484,7 +1655,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
 </tr>
 </tbody>
 </table>
-<h4 id="common-presentation-trust-evaluation-model">Common Presentation Trust Evaluation Model<a class="headerlink" href="#common-presentation-trust-evaluation-model" title="Permanent link">&para;</a></h4>
+<h3 id="common-presentation-trust-evaluation-model">Common Presentation Trust Evaluation Model<a class="headerlink" href="#common-presentation-trust-evaluation-model" title="Permanent link">&para;</a></h3>
 <p>The <strong>authorization logic is common to <a class="mkdocs-ezglossary-link"
     id="db1a9da3a56115c7c6618167978c0b8b"
     title="Remote presentation protocol (same-device or cross-device)."
@@ -1496,7 +1667,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
     data-tooltip="Short-range presentation protocol (NFC/BLE/Wi-Fi Aware) per ISO/IEC 18013-5/-7."
     name="protocols:Proximity Flow"
     href="../../glossary-definitions/#b5782cf859bca2f9697cc035866dbe09">Proximity</a> flows</strong>. The differences are limited to the transport, the location and format of the <a class="mkdocs-ezglossary-link"
-    id="79b5797a986407e864e98bbfade49071"
+    id="79612e0e5bd196ce1cae6f4bf7aca492"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1551,19 +1722,19 @@ Deny2 --&gt; End
 StopAuth --&gt; End
 StopBind --&gt; End
 StopInt --&gt; End</code></pre>
-<h5 id="flowchart-to-detailed-trust-check-index">Flowchart to detailed trust-check index<a class="headerlink" href="#flowchart-to-detailed-trust-check-index" title="Permanent link">&para;</a></h5>
+<h4 id="flowchart-to-detailed-trust-check-index">Flowchart to detailed trust-check index<a class="headerlink" href="#flowchart-to-detailed-trust-check-index" title="Permanent link">&para;</a></h4>
 <p>Section <a href="#common-presentation-trust-evaluation-model">Common Presentation Trust Evaluation Model</a> uses coarse step labels (<strong>Check 1</strong>…<strong>Check 9</strong>) for control flow. Section <a href="#detailed-trust-checks">Detailed Trust Checks</a> decomposes the same logic into RFC003 test-case identifiers (<strong>TC-PRES-001</strong>…<strong>TC-PRES-017</strong>). The correspondence is mostly one-to-many: one flowchart label may map to several TC-PRES checks, and some TC-PRES checks have no separate box in the flowchart. Trust-list resolution (<strong>TL-PRES-001</strong>, Section <a href="#trust-anchor-and-trusted-list-checks">Trust Anchor and Trusted List Checks</a>) is a cross-cutting dependency of <a class="mkdocs-ezglossary-link"
-    id="3081a3ffb3711ebfd26ce39dc42d497d"
+    id="792c09edf78df5881a4c1d970d6d2dd9"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="5e9325c2ba272f2975866a2edaa007fb"
+    id="cc14fca365d902252adc9ffd88c5471f"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, and <a class="mkdocs-ezglossary-link"
-    id="6a5268c4d0e227e9307b8c0e2c17ccea"
+    id="685ca3f5aa269c27d08daa7fc6eb6408"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -1684,8 +1855,8 @@ StopInt --&gt; End</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="remote-presentation-flow">Remote Presentation Flow<a class="headerlink" href="#remote-presentation-flow" title="Permanent link">&para;</a></h4>
-<h5 id="remote-specific-inputs">Remote-specific inputs<a class="headerlink" href="#remote-specific-inputs" title="Permanent link">&para;</a></h5>
+<h3 id="remote-presentation-flow">Remote Presentation Flow<a class="headerlink" href="#remote-presentation-flow" title="Permanent link">&para;</a></h3>
+<h4 id="remote-specific-inputs">Remote-specific inputs<a class="headerlink" href="#remote-specific-inputs" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1720,7 +1891,7 @@ StopInt --&gt; End</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="remote-flow-trust-check-diagram">Remote flow trust-check diagram<a class="headerlink" href="#remote-flow-trust-check-diagram" title="Permanent link">&para;</a></h5>
+<h4 id="remote-flow-trust-check-diagram">Remote flow trust-check diagram<a class="headerlink" href="#remote-flow-trust-check-diagram" title="Permanent link">&para;</a></h4>
 <pre class="mermaid"><code>flowchart LR
 RP[Remote RP or RPI] --&gt; Req[Signed OpenID4VP Request Object]
 Req --&gt; WRPAC[Check: WRPAC chain in x5c]
@@ -1735,8 +1906,8 @@ WI --&gt; TA[Resolve trust anchors from LoTE / trusted-list infrastructure]
 WI --&gt; Reg[Query Register if WRPRC missing or invalid]
 WI --&gt; Eval[Perform binding, entitlement, scope and EDP checks]
 Eval --&gt; User[Display results to User]</code></pre>
-<h4 id="proximity-presentation-flow">Proximity Presentation Flow<a class="headerlink" href="#proximity-presentation-flow" title="Permanent link">&para;</a></h4>
-<h5 id="proximity-specific-inputs">Proximity-specific inputs<a class="headerlink" href="#proximity-specific-inputs" title="Permanent link">&para;</a></h5>
+<h3 id="proximity-presentation-flow">Proximity Presentation Flow<a class="headerlink" href="#proximity-presentation-flow" title="Permanent link">&para;</a></h3>
+<h4 id="proximity-specific-inputs">Proximity-specific inputs<a class="headerlink" href="#proximity-specific-inputs" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1772,7 +1943,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tbody>
 </table>
 <p><strong>Open point:</strong> the current trust specification notes that the mapping of RPRC_19a data in requestInfo is not fully defined in [ETSI TS 119 472-2]. RFC003 should either define an APTITUDE pilot convention for this mapping or mark the related tests as dependent on the final ETSI / APTITUDE profile decision.</p>
-<h5 id="proximity-flow-trust-check-diagram">Proximity flow trust-check diagram<a class="headerlink" href="#proximity-flow-trust-check-diagram" title="Permanent link">&para;</a></h5>
+<h4 id="proximity-flow-trust-check-diagram">Proximity flow trust-check diagram<a class="headerlink" href="#proximity-flow-trust-check-diagram" title="Permanent link">&para;</a></h4>
 <pre class="mermaid"><code>flowchart LR
 Reader[Proximity Reader / RP or RPI] --&gt; DeviceReq[ISO 18013-5 DeviceRequest]
 DeviceReq --&gt; ReaderAuth[Check: ReaderAuth signature and WRPAC chain]
@@ -1787,9 +1958,9 @@ WI --&gt; TA[Resolve trust anchors from LoTE / trusted-list infrastructure]
 WI --&gt; Reg[Query Register if WRPRC missing or invalid]
 WI --&gt; Eval[Perform binding, entitlement, scope and EDP checks]
 Eval --&gt; User[Display results to User]</code></pre>
-<h4 id="detailed-trust-checks">Detailed Trust Checks<a class="headerlink" href="#detailed-trust-checks" title="Permanent link">&para;</a></h4>
+<h3 id="detailed-trust-checks">Detailed Trust Checks<a class="headerlink" href="#detailed-trust-checks" title="Permanent link">&para;</a></h3>
 <p>For the mapping from Section <a href="#common-presentation-trust-evaluation-model">Common Presentation Trust Evaluation Model</a> flowchart labels to the identifiers below, see <a href="#flowchart-to-detailed-trust-check-index">Flowchart to detailed trust-check index</a>.</p>
-<h5 id="tc-pres-001-wrprpi-authentication-using-wrpac">TC-PRES-001 — WRP/RPI authentication using WRPAC<a class="headerlink" href="#tc-pres-001-wrprpi-authentication-using-wrpac" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-001-wrprpi-authentication-using-wrpac">TC-PRES-001 — WRP/RPI authentication using WRPAC<a class="headerlink" href="#tc-pres-001-wrprpi-authentication-using-wrpac" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1836,7 +2007,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-002-user-choice-to-verify-rp-registration-information">TC-PRES-002 — User choice to verify RP registration information<a class="headerlink" href="#tc-pres-002-user-choice-to-verify-rp-registration-information" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-002-user-choice-to-verify-rp-registration-information">TC-PRES-002 — User choice to verify RP registration information<a class="headerlink" href="#tc-pres-002-user-choice-to-verify-rp-registration-information" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1875,7 +2046,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-003-authorization-evidence-extraction">TC-PRES-003 — Authorization evidence extraction<a class="headerlink" href="#tc-pres-003-authorization-evidence-extraction" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-003-authorization-evidence-extraction">TC-PRES-003 — Authorization evidence extraction<a class="headerlink" href="#tc-pres-003-authorization-evidence-extraction" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1922,7 +2093,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-004-wrprc-format-and-algorithm-validation">TC-PRES-004 — WRPRC format and algorithm validation<a class="headerlink" href="#tc-pres-004-wrprc-format-and-algorithm-validation" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-004-wrprc-format-and-algorithm-validation">TC-PRES-004 — WRPRC format and algorithm validation<a class="headerlink" href="#tc-pres-004-wrprc-format-and-algorithm-validation" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1969,7 +2140,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-005-wrprc-signature-certificate-chain-trust-anchor-temporal-validity-and-status">TC-PRES-005 — WRPRC signature, certificate chain, trust anchor, temporal validity and status<a class="headerlink" href="#tc-pres-005-wrprc-signature-certificate-chain-trust-anchor-temporal-validity-and-status" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-005-wrprc-signature-certificate-chain-trust-anchor-temporal-validity-and-status">TC-PRES-005 — WRPRC signature, certificate chain, trust anchor, temporal validity and status<a class="headerlink" href="#tc-pres-005-wrprc-signature-certificate-chain-trust-anchor-temporal-validity-and-status" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2008,7 +2179,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-006-register-fallback-validation">TC-PRES-006 — Register fallback validation<a class="headerlink" href="#tc-pres-006-register-fallback-validation" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-006-register-fallback-validation">TC-PRES-006 — Register fallback validation<a class="headerlink" href="#tc-pres-006-register-fallback-validation" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2047,7 +2218,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-007-direct-rp-binding-verification">TC-PRES-007 — Direct RP binding verification<a class="headerlink" href="#tc-pres-007-direct-rp-binding-verification" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-007-direct-rp-binding-verification">TC-PRES-007 — Direct RP binding verification<a class="headerlink" href="#tc-pres-007-direct-rp-binding-verification" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2086,7 +2257,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-008-intermediary-detection">TC-PRES-008 — Intermediary detection<a class="headerlink" href="#tc-pres-008-intermediary-detection" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-008-intermediary-detection">TC-PRES-008 — Intermediary detection<a class="headerlink" href="#tc-pres-008-intermediary-detection" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2125,7 +2296,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-009-intermediary-association-verification">TC-PRES-009 — Intermediary association verification<a class="headerlink" href="#tc-pres-009-intermediary-association-verification" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-009-intermediary-association-verification">TC-PRES-009 — Intermediary association verification<a class="headerlink" href="#tc-pres-009-intermediary-association-verification" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2164,7 +2335,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-010-intermediated-rp-context-coherence">TC-PRES-010 — Intermediated RP context coherence<a class="headerlink" href="#tc-pres-010-intermediated-rp-context-coherence" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-010-intermediated-rp-context-coherence">TC-PRES-010 — Intermediated RP context coherence<a class="headerlink" href="#tc-pres-010-intermediated-rp-context-coherence" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2203,7 +2374,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-011-entitlement-verification">TC-PRES-011 — Entitlement verification<a class="headerlink" href="#tc-pres-011-entitlement-verification" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-011-entitlement-verification">TC-PRES-011 — Entitlement verification<a class="headerlink" href="#tc-pres-011-entitlement-verification" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2242,7 +2413,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-012-requested-attribute-extraction">TC-PRES-012 — Requested-attribute extraction<a class="headerlink" href="#tc-pres-012-requested-attribute-extraction" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-012-requested-attribute-extraction">TC-PRES-012 — Requested-attribute extraction<a class="headerlink" href="#tc-pres-012-requested-attribute-extraction" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2289,7 +2460,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-013-scope-comparison-over-asking-detection">TC-PRES-013 — Scope comparison / over-asking detection<a class="headerlink" href="#tc-pres-013-scope-comparison-over-asking-detection" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-013-scope-comparison-over-asking-detection">TC-PRES-013 — Scope comparison / over-asking detection<a class="headerlink" href="#tc-pres-013-scope-comparison-over-asking-detection" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2328,7 +2499,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-014-edp-presence-check">TC-PRES-014 — EDP presence check<a class="headerlink" href="#tc-pres-014-edp-presence-check" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-014-edp-presence-check">TC-PRES-014 — EDP presence check<a class="headerlink" href="#tc-pres-014-edp-presence-check" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2367,7 +2538,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-015-edp-evaluation-authorized-relying-parties-only">TC-PRES-015 — EDP evaluation: Authorized Relying Parties Only<a class="headerlink" href="#tc-pres-015-edp-evaluation-authorized-relying-parties-only" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-015-edp-evaluation-authorized-relying-parties-only">TC-PRES-015 — EDP evaluation: Authorized Relying Parties Only<a class="headerlink" href="#tc-pres-015-edp-evaluation-authorized-relying-parties-only" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2406,7 +2577,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-016-edp-evaluation-specific-root-of-trust">TC-PRES-016 — EDP evaluation: Specific Root of Trust<a class="headerlink" href="#tc-pres-016-edp-evaluation-specific-root-of-trust" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-016-edp-evaluation-specific-root-of-trust">TC-PRES-016 — EDP evaluation: Specific Root of Trust<a class="headerlink" href="#tc-pres-016-edp-evaluation-specific-root-of-trust" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2445,7 +2616,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h5 id="tc-pres-017-user-transparency-and-final-approval">TC-PRES-017 — User transparency and final approval<a class="headerlink" href="#tc-pres-017-user-transparency-and-final-approval" title="Permanent link">&para;</a></h5>
+<h4 id="tc-pres-017-user-transparency-and-final-approval">TC-PRES-017 — User transparency and final approval<a class="headerlink" href="#tc-pres-017-user-transparency-and-final-approval" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2484,19 +2655,19 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="trust-anchor-and-trusted-list-checks">Trust Anchor and Trusted List Checks<a class="headerlink" href="#trust-anchor-and-trusted-list-checks" title="Permanent link">&para;</a></h4>
+<h3 id="trust-anchor-and-trusted-list-checks">Trust Anchor and Trusted List Checks<a class="headerlink" href="#trust-anchor-and-trusted-list-checks" title="Permanent link">&para;</a></h3>
 <p>The following checks are used by several of the above procedures. They may be tested separately or as dependencies of <a class="mkdocs-ezglossary-link"
-    id="60113928d52578aa7c3b8484c9f485fb"
+    id="945cbc25ed6edaccd06b86614ccf6e80"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="8ea9817f23a4e519c35abb1ad98edce2"
+    id="ed0adeded07c839ad0270a1bdc57e91b"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, and <a class="mkdocs-ezglossary-link"
-    id="155a7953f17e466c799580ab903793e1"
+    id="99dbc23e9d00045351b274b1247919e4"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -2513,7 +2684,7 @@ L3 --&gt; V
 L4 --&gt; V
 V --&gt; TA[Extract trust anchor]
 TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
-<h5 id="tl-pres-001-trusted-list-authenticity-integrity-and-freshness">TL-PRES-001 — Trusted-list authenticity, integrity and freshness<a class="headerlink" href="#tl-pres-001-trusted-list-authenticity-integrity-and-freshness" title="Permanent link">&para;</a></h5>
+<h4 id="tl-pres-001-trusted-list-authenticity-integrity-and-freshness">TL-PRES-001 — Trusted-list authenticity, integrity and freshness<a class="headerlink" href="#tl-pres-001-trusted-list-authenticity-integrity-and-freshness" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2552,7 +2723,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="decision-and-override-matrix">Decision and Override Matrix<a class="headerlink" href="#decision-and-override-matrix" title="Permanent link">&para;</a></h4>
+<h3 id="decision-and-override-matrix">Decision and Override Matrix<a class="headerlink" href="#decision-and-override-matrix" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2614,7 +2785,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="aptitude-alignment-and-traceability">APTITUDE Alignment and Traceability<a class="headerlink" href="#aptitude-alignment-and-traceability" title="Permanent link">&para;</a></h4>
+<h3 id="aptitude-alignment-and-traceability">APTITUDE Alignment and Traceability<a class="headerlink" href="#aptitude-alignment-and-traceability" title="Permanent link">&para;</a></h3>
 <p>The TC-PRES identifiers are local test-check identifiers; the authoritative profile requirements remain the APTITUDE AUTHZ requirements and the authorization-process text.</p>
 <table>
 <thead>
@@ -2688,7 +2859,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 13:46:16 UTC">July 27, 2026 13:46:16</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:50:15 UTC">July 27, 2026 16:50:15</span>
   </span>
 
     

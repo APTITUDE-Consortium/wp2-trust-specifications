@@ -85,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#requirements" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -659,6 +664,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -852,6 +861,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../registration-certificate/" class="md-nav__link">
         
   
@@ -915,6 +952,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -931,6 +986,56 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-data-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Data Schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-register-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Register API
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1036,6 +1141,34 @@
     
   
     Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
   
 
     
@@ -1182,64 +1315,64 @@
   <h1>Registry</h1>
 
 <p>This section specifies requirements for the <a class="mkdocs-ezglossary-link"
-    id="f9e4c9bfee9702ac36aca628d164e665"
+    id="5bc7988e3aa9ae309ae0d3a18305d636"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
     href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> of <a class="mkdocs-ezglossary-link"
-    id="088ca2d06b17d4bd526a9d140097c9bb"
+    id="3e8fe2dc5ff35974ca9ea44ae5adf439"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and the national <a class="mkdocs-ezglossary-link"
-    id="9e30fe586b099cdb5c46f371d2f8d398"
+    id="a26ac8a5ab2f3c975fd009fc43d3c5c1"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
-    id="b6addcf3e30cdef2fc0a924ed07cb707"
+    id="52e84b62ef2b8e92e0e84b5797c81e45"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> (the registry service) in the context of eIDAS2 and the <a class="mkdocs-ezglossary-link"
-    id="a674ad0b67df9a33915c197d4dde8a76"
+    id="1cfbcd2564b34170460db197f57e064b"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
     href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a> ecosystem.</p>
 <p>Formally, a <a class="mkdocs-ezglossary-link"
-    id="c0e9ac520d87ebf05f6068148611219e"
+    id="6fac491bd8ea9731cad5650852d6a5a7"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
     href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> is the designated body that:</p>
 <ul>
 <li>Manages the <a class="mkdocs-ezglossary-link"
-    id="12e7a935b796994ddfdca32e157466d6"
+    id="f4d2dd0e0b605aa29c13e667f0708222"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registration lifecycle (onboarding, update, suspension, cancellation),</li>
 <li>Ensures the integrity and publication of registration information,</li>
 <li>Ensures interoperability by exposing <a class="mkdocs-ezglossary-link"
-    id="750e6c125c1543556727e9b50cc91b1e"
+    id="cd1e8a824f5cccccf114c352c54e4343"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registration data via a national website and a single common REST API.</li>
 </ul>
 <p>The national <a class="mkdocs-ezglossary-link"
-    id="74d3200eab02ec4f48146c4f70df4ea4"
+    id="5681dff7de97a58fdf979827652c982d"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
-    id="ba3fe51ddef2ef67474cd2f72a358f45"
+    id="1230c496ba236454fde4bc42020afd00"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about <a class="mkdocs-ezglossary-link"
-    id="a795822b3a464a479ad13d4eb83bb27d"
+    id="c05571892eb232303b4932f2dc254454"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1247,28 +1380,28 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The national <a class="mkdocs-ezglossary-link"
-    id="7f739be9f9bf19a15cfa0e181d3a06a4"
+    id="90d3cb1fab8e922e6e4d58daa901fc39"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
-    id="06a5492eebe83f12dddbc3b7dc6d64a7"
+    id="e612227edbd4cec0851524f239fd6e5d"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> is a single logical register. For scalability and resilience, a Member State MAY deploy multiple technical instances provided they expose a single coherent common REST API and return signed statements as required.</p>
 <p>Additionally, sectorial registers may exist internally, but the decision regarding issuance of <a class="mkdocs-ezglossary-link"
-    id="8df5f8db43696ef80a5ebd87ba644dab"
+    id="b6a3b9d8a6141a5e18b69deb0ffac631"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is solely based on whether the <a class="mkdocs-ezglossary-link"
-    id="bb66d046d97c7f6c013bf5524672fb23"
+    id="20da2d24d56d107e6b1365122e005a7b"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> has been registered with an active status in the national <a class="mkdocs-ezglossary-link"
-    id="002292d70059c6856a6efb10f29a2b90"
+    id="0de07f9f47d393abf90c0c45071215ab"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -1279,34 +1412,34 @@
 <p>The list below enumerates all the applicable standards and specifications that have been used to populate the table below:</p>
 <ul>
 <li><strong>CIR 2025/848</strong> on <a class="mkdocs-ezglossary-link"
-    id="17bef0a4fbb7c3ab66e9acb9ff96bb9a"
+    id="25c6e1e37003d80ac7fd250d88acec5c"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registration and <a class="mkdocs-ezglossary-link"
-    id="0aa5cf37e942afd7f14a1fd691725981"
+    id="f9b0af32c6541f4639f8764ffc7ac9ff"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Registers</a>.</li>
 <li><strong>CIR 2025/848-Amendment</strong>. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <a class="mkdocs-ezglossary-link"
-    id="8573123df1ba8991c952dd8d22aa8462"
+    id="94f41240f58bdbc686a36e96096ea174"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
-    id="7d74d814c957477fc35cde52a0be3505"
+    id="a2790927e5f19b38117aadcf8e8e9c69"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>.</li>
 <li><strong>ETSI TS 119 475</strong> on <a class="mkdocs-ezglossary-link"
-    id="3e8fe2dc5ff35974ca9ea44ae5adf439"
+    id="9d037b35fdbf82ac8136817d18508fdb"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> attributes, entitlement URIs, <a class="mkdocs-ezglossary-link"
-    id="55a01d6c6e8ff065935f7fca1e8388dd"
+    id="5463b50b28563376efb537514370f13f"
     title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
     data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
     name="roles:Relying Party (RP)"
@@ -1315,21 +1448,21 @@
 <li><strong>RFC 7519</strong></li>
 <li><strong>RFC 8392</strong></li>
 <li><strong>TS05</strong> on common formats and API for <a class="mkdocs-ezglossary-link"
-    id="52e84b62ef2b8e92e0e84b5797c81e45"
+    id="5db07cc7bdac2d2abe4965d73e34eb8d"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registration information.</li>
 <li><strong>TS06</strong> on common set of <a class="mkdocs-ezglossary-link"
-    id="f4d2dd0e0b605aa29c13e667f0708222"
+    id="d72b6e4a06219d365364dc2763c397fd"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> information to be registered.</li>
 </ul>
 </details>
-<h4 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h4>
-<h5 id="register-requirements">Register Requirements<a class="headerlink" href="#register-requirements" title="Permanent link">&para;</a></h5>
+<h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
+<h4 id="register-requirements">Register Requirements<a class="headerlink" href="#register-requirements" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1399,13 +1532,13 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The set of <a class="mkdocs-ezglossary-link"
-    id="cd1e8a824f5cccccf114c352c54e4343"
+    id="4beb4eea495070ff8a1c19dacaadbbfe"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> information listed in Annex I of [CIR 2025/848] and mentioned in REGISTER-PUB-05 and REGISTER-API-03 will be described in the <a href="#register-data-schema">Register Data Schema</a> section.</p>
 </div>
-<h5 id="registrar-requirements">Registrar Requirements<a class="headerlink" href="#registrar-requirements" title="Permanent link">&para;</a></h5>
+<h4 id="registrar-requirements">Registrar Requirements<a class="headerlink" href="#registrar-requirements" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1418,7 +1551,7 @@
 <tr>
 <td>REGISTRAR-REG-01</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="b6d2d42e04d9f3ec3a515bffd1045724"
+    id="d84d8693c712234d8c9f68fdbf725526"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -1438,7 +1571,7 @@
 <tr>
 <td>REGISTRAR-REG-04</td>
 <td>Where possible, <a class="mkdocs-ezglossary-link"
-    id="298f62e981923b2d92eaba725bf0ef2f"
+    id="c5e61902b9bbed06b15946544e8b59e8"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -1448,7 +1581,7 @@
 <tr>
 <td>REGISTRAR-REG-05</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="0139b6c887e4b70dab8c33cfc10c53ec"
+    id="0122b19b59d1d6fb54d7b9002c70795c"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -1473,7 +1606,7 @@
 <tr>
 <td>REGISTRAR-GOV-01</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="7186acbe27475dc33fcd1be15946875f"
+    id="4d70312f54290b609b8b9bd793862bf6"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -1488,7 +1621,7 @@
 <tr>
 <td>REGISTRAR-GOV-02</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="8171388ed90ff351a4d997c498c5e04c"
+    id="97d5a102e75aaf5dcffc8f8fdea1f912"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -1498,7 +1631,7 @@
 <tr>
 <td>REGISTRAR-GOV-03</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="81a9e93d576cdac2d430a45384411b96"
+    id="0f525c255d1869be06ca3c3be9f32957"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -1523,7 +1656,7 @@
 <tr>
 <td>REGISTRAR-GOV-07</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="d814705e397886e17920a372eda6a4ef"
+    id="258e2492cfb234d92616b7c41663135b"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -1532,7 +1665,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="provider-of-wrpac-and-wrprc-and-register-interactions-requirements">Provider of WRPAC and WRPRC and Register Interactions Requirements<a class="headerlink" href="#provider-of-wrpac-and-wrprc-and-register-interactions-requirements" title="Permanent link">&para;</a></h5>
+<h4 id="provider-of-wrpac-and-wrprc-and-register-interactions-requirements">Provider of WRPAC and WRPRC and Register Interactions Requirements<a class="headerlink" href="#provider-of-wrpac-and-wrprc-and-register-interactions-requirements" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1545,7 +1678,7 @@
 <tr>
 <td>PROVIDER-WRPAC-01</td>
 <td>Providers of <a class="mkdocs-ezglossary-link"
-    id="163c34673928f35a591067c36c2d09bb"
+    id="802b289c87aac76bc949c83fb92fc199"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1555,7 +1688,7 @@
 <tr>
 <td>PROVIDER-WRPAC-02</td>
 <td>Providers of <a class="mkdocs-ezglossary-link"
-    id="c2ee83a85f04cf6948fc821ee9f3707b"
+    id="ab6807169b2f43c8268b48acf896f72f"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1589,19 +1722,19 @@
 </tr>
 </tbody>
 </table>
-<h4 id="register-data-schema">Register Data Schema<a class="headerlink" href="#register-data-schema" title="Permanent link">&para;</a></h4>
+<h3 id="register-data-schema">Register Data Schema<a class="headerlink" href="#register-data-schema" title="Permanent link">&para;</a></h3>
 <p>This section defines the data schema for each <a class="mkdocs-ezglossary-link"
-    id="1230c496ba236454fde4bc42020afd00"
+    id="8198961acc2debfec3092d2ea0994c87"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> registered in the national <a class="mkdocs-ezglossary-link"
-    id="ea1630a963539321ca22894b238c7fed"
+    id="43e3792383d45665d5348a73dbe6e01a"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> of <a class="mkdocs-ezglossary-link"
-    id="c05571892eb232303b4932f2dc254454"
+    id="a70ff34f2203c13eaff446a30da48f68"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1847,7 +1980,7 @@
 </table>
 <p>Future editions may define additional sub-entitlements at national or EU level.</p>
 </div>
-<h5 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link">&para;</a></h5>
+<h4 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1918,7 +2051,7 @@
 <p class="admonition-title">Note</p>
 <p>Additional type identifiers may be defined at national or EU level.</p>
 </div>
-<h5 id="multilangstring">MultiLangString<a class="headerlink" href="#multilangstring" title="Permanent link">&para;</a></h5>
+<h4 id="multilangstring">MultiLangString<a class="headerlink" href="#multilangstring" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1943,7 +2076,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="intendeduse">IntendedUse<a class="headerlink" href="#intendeduse" title="Permanent link">&para;</a></h5>
+<h4 id="intendeduse">IntendedUse<a class="headerlink" href="#intendeduse" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -1992,7 +2125,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="policy">Policy<a class="headerlink" href="#policy" title="Permanent link">&para;</a></h5>
+<h4 id="policy">Policy<a class="headerlink" href="#policy" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2048,7 +2181,7 @@
 <p class="admonition-title">Note</p>
 <p>Additional policy type URIs may be defined at national or EU level.</p>
 </div>
-<h5 id="credential">Credential<a class="headerlink" href="#credential" title="Permanent link">&para;</a></h5>
+<h4 id="credential">Credential<a class="headerlink" href="#credential" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2079,7 +2212,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="claim">Claim<a class="headerlink" href="#claim" title="Permanent link">&para;</a></h5>
+<h4 id="claim">Claim<a class="headerlink" href="#claim" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2104,7 +2237,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="legalentity-for-supervisoryauthority">LegalEntity (for <code>supervisoryAuthority</code>)<a class="headerlink" href="#legalentity-for-supervisoryauthority" title="Permanent link">&para;</a></h5>
+<h4 id="legalentity-for-supervisoryauthority">LegalEntity (for <code>supervisoryAuthority</code>)<a class="headerlink" href="#legalentity-for-supervisoryauthority" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2165,7 +2298,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="legalperson">LegalPerson<a class="headerlink" href="#legalperson" title="Permanent link">&para;</a></h5>
+<h4 id="legalperson">LegalPerson<a class="headerlink" href="#legalperson" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2200,7 +2333,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="naturalperson">NaturalPerson<a class="headerlink" href="#naturalperson" title="Permanent link">&para;</a></h5>
+<h4 id="naturalperson">NaturalPerson<a class="headerlink" href="#naturalperson" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2237,7 +2370,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="law">Law<a class="headerlink" href="#law" title="Permanent link">&para;</a></h5>
+<h4 id="law">Law<a class="headerlink" href="#law" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -2262,7 +2395,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="non-normative-example-wrp-object-for-a-relying-party">Non-normative example: WRP object for a Relying Party<a class="headerlink" href="#non-normative-example-wrp-object-for-a-relying-party" title="Permanent link">&para;</a></h5>
+<h4 id="non-normative-example-wrp-object-for-a-relying-party">Non-normative example: WRP object for a Relying Party<a class="headerlink" href="#non-normative-example-wrp-object-for-a-relying-party" title="Permanent link">&para;</a></h4>
 <p>A bank registered as a service provider (requesting PID for KYC).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2356,7 +2489,7 @@
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<h5 id="non-normative-example-wrp-object-for-a-relying-party-that-is-also-an-attestation-provider">Non-normative example: WRP object for a Relying Party that is also an Attestation Provider<a class="headerlink" href="#non-normative-example-wrp-object-for-a-relying-party-that-is-also-an-attestation-provider" title="Permanent link">&para;</a></h5>
+<h4 id="non-normative-example-wrp-object-for-a-relying-party-that-is-also-an-attestation-provider">Non-normative example: WRP object for a Relying Party that is also an Attestation Provider<a class="headerlink" href="#non-normative-example-wrp-object-for-a-relying-party-that-is-also-an-attestation-provider" title="Permanent link">&para;</a></h4>
 <p>A bank registered as both a service provider (requesting <a class="mkdocs-ezglossary-link"
     id="24878c56c54613b40268dc8f8a6595b6"
     title="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
@@ -2464,9 +2597,9 @@
 <span class="w">  </span><span class="nt">&quot;isIntermediary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
-<h5 id="non-normative-example-wrp-object-for-a-designated-intermediary">Non-normative example: WRP object for a designated Intermediary<a class="headerlink" href="#non-normative-example-wrp-object-for-a-designated-intermediary" title="Permanent link">&para;</a></h5>
+<h4 id="non-normative-example-wrp-object-for-a-designated-intermediary">Non-normative example: WRP object for a designated Intermediary<a class="headerlink" href="#non-normative-example-wrp-object-for-a-designated-intermediary" title="Permanent link">&para;</a></h4>
 <p>An entity registered as a designated Intermediary that acts on behalf of <a class="mkdocs-ezglossary-link"
-    id="e612227edbd4cec0851524f239fd6e5d"
+    id="88dd79f4ae82c396d1346e3bf199bc1d"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -2533,7 +2666,7 @@
 <span class="w">  </span><span class="nt">&quot;isIntermediary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="p">}</span>
 </code></pre></div>
-<h5 id="non-normative-example-wrp-object-for-a-wrp-using-a-designated-intermediary">Non-normative example: WRP object for a WRP using a designated Intermediary<a class="headerlink" href="#non-normative-example-wrp-object-for-a-wrp-using-a-designated-intermediary" title="Permanent link">&para;</a></h5>
+<h4 id="non-normative-example-wrp-object-for-a-wrp-using-a-designated-intermediary">Non-normative example: WRP object for a WRP using a designated Intermediary<a class="headerlink" href="#non-normative-example-wrp-object-for-a-wrp-using-a-designated-intermediary" title="Permanent link">&para;</a></h4>
 <p>A small e-commerce business that relies on TrustBridge (see example above) to conduct Wallet interactions on its behalf. It has <code>usesIntermediary</code> pointing to the Intermediary's registry entry, and <code>isIntermediary: false</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;legalPerson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2623,9 +2756,9 @@
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<h4 id="common-register-api">Common Register API<a class="headerlink" href="#common-register-api" title="Permanent link">&para;</a></h4>
+<h3 id="common-register-api">Common Register API<a class="headerlink" href="#common-register-api" title="Permanent link">&para;</a></h3>
 <p>This section documents a [TS05] aligned common <a class="mkdocs-ezglossary-link"
-    id="435f59d07f70bb8369b12f8fed87c7dd"
+    id="c901891bb827e0b16f640481816f4cdb"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -2634,14 +2767,14 @@
 <p class="admonition-title">Note</p>
 <p>The OpenAPI Specification (OAS) of the API described in this section is available in <a href="../../api/register-api/">this page</a>.</p>
 </div>
-<h5 id="api-methods-on-registration-and-updating-of-wrp-data">API Methods on Registration and Updating of WRP Data<a class="headerlink" href="#api-methods-on-registration-and-updating-of-wrp-data" title="Permanent link">&para;</a></h5>
+<h4 id="api-methods-on-registration-and-updating-of-wrp-data">API Methods on Registration and Updating of WRP Data<a class="headerlink" href="#api-methods-on-registration-and-updating-of-wrp-data" title="Permanent link">&para;</a></h4>
 <p>The common API write methods (POST, PUT and DELETE) are defined for purposes of managing the <a class="mkdocs-ezglossary-link"
-    id="85cc2c4172261647a507451973874970"
+    id="6788e9b24f60832b853cd12467b135e6"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> information of MS <a class="mkdocs-ezglossary-link"
-    id="198e8c4cddb8139b259c3f62d99affd7"
+    id="3ec5044a0ac3cf4ac46697b74d6de886"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -2650,14 +2783,14 @@
 <p class="admonition-title">Note</p>
 <p>These methods SHALL be accessible by authorised users only.</p>
 </div>
-<h6 id="post-wrp-create-required"><code>POST /wrp</code> — create (REQUIRED)<a class="headerlink" href="#post-wrp-create-required" title="Permanent link">&para;</a></h6>
+<h5 id="post-wrp-create-required"><code>POST /wrp</code> — create (REQUIRED)<a class="headerlink" href="#post-wrp-create-required" title="Permanent link">&para;</a></h5>
 <p>POST is for creating a new <a class="mkdocs-ezglossary-link"
-    id="20da2d24d56d107e6b1365122e005a7b"
+    id="8bcca70461322749f415260658455708"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> entry in the <a class="mkdocs-ezglossary-link"
-    id="ccac68adb791351531c45cc852fac882"
+    id="6c767ffbe452c336f2814d7a4050e260"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -2707,14 +2840,14 @@
 </tbody>
 </table>
 <hr />
-<h6 id="put-wrp-update-required"><code>PUT /wrp</code> — update (REQUIRED)<a class="headerlink" href="#put-wrp-update-required" title="Permanent link">&para;</a></h6>
+<h5 id="put-wrp-update-required"><code>PUT /wrp</code> — update (REQUIRED)<a class="headerlink" href="#put-wrp-update-required" title="Permanent link">&para;</a></h5>
 <p>PUT is for updating an existing <a class="mkdocs-ezglossary-link"
-    id="25c6e1e37003d80ac7fd250d88acec5c"
+    id="55c641f5d5bc584663af1d13374e0b75"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> entry in the <a class="mkdocs-ezglossary-link"
-    id="9f37e162fc5c1fffe6b2cd95bdfc7ed7"
+    id="829d02b3a96727e123bdc586761d8327"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -2768,14 +2901,14 @@
 </tbody>
 </table>
 <hr />
-<h6 id="delete-wrp-delete-required"><code>DELETE /wrp</code> — delete (REQUIRED)<a class="headerlink" href="#delete-wrp-delete-required" title="Permanent link">&para;</a></h6>
+<h5 id="delete-wrp-delete-required"><code>DELETE /wrp</code> — delete (REQUIRED)<a class="headerlink" href="#delete-wrp-delete-required" title="Permanent link">&para;</a></h5>
 <p>DELETE is for deleting an existing <a class="mkdocs-ezglossary-link"
-    id="a2790927e5f19b38117aadcf8e8e9c69"
+    id="779ea2759051abf63b6b853e5399db46"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> entry in the <a class="mkdocs-ezglossary-link"
-    id="f938dbe037684e17002f4ea8c1d38d6a"
+    id="75692ac0deeff94f84710bd68a9d4670"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -2832,17 +2965,17 @@
 </tr>
 </tbody>
 </table>
-<h5 id="api-methods-for-register-queries-open-api">API Methods for Register Queries (Open API)<a class="headerlink" href="#api-methods-for-register-queries-open-api" title="Permanent link">&para;</a></h5>
+<h4 id="api-methods-for-register-queries-open-api">API Methods for Register Queries (Open API)<a class="headerlink" href="#api-methods-for-register-queries-open-api" title="Permanent link">&para;</a></h4>
 <p>The common API read methods (GET) SHALL be open for public access (no prior authentication) and returns JWS-signed statements.</p>
 <p>The public API SHALL provide methods for searching and querying complete data sets of registered <a class="mkdocs-ezglossary-link"
-    id="9d037b35fdbf82ac8136817d18508fdb"
+    id="907a18fc3bd7e0c3543a7c51a8b80df0"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> matching with provided query parameters</p>
-<h6 id="get-wrp-searchlist-required"><code>GET /wrp</code> — search/list (REQUIRED)<a class="headerlink" href="#get-wrp-searchlist-required" title="Permanent link">&para;</a></h6>
+<h5 id="get-wrp-searchlist-required"><code>GET /wrp</code> — search/list (REQUIRED)<a class="headerlink" href="#get-wrp-searchlist-required" title="Permanent link">&para;</a></h5>
 <p>Get a list of <a class="mkdocs-ezglossary-link"
-    id="5db07cc7bdac2d2abe4965d73e34eb8d"
+    id="333bb04083b26312814ba90ea2e49e8e"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -2983,7 +3116,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>200</code></td>
 <td><code>application/jwt</code></td>
 <td>JWS compact string. Decoded payload SHALL contain an array of <code>WalletRelyingParty</code> objects (matching the query), with address field excluded from published entries, and, where relevant, accompanied by <a class="mkdocs-ezglossary-link"
-    id="873859f6ee98b222a108a13392ad5aa7"
+    id="e3dd647d5cfa88c85d108a4eeb895be7"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3018,9 +3151,9 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 -->
 
 <hr />
-<h6 id="get-wrpcheck-intended-use-intended-use-check-required"><code>GET /wrp/check-intended-use</code> — intended use check (REQUIRED)<a class="headerlink" href="#get-wrpcheck-intended-use-intended-use-check-required" title="Permanent link">&para;</a></h6>
+<h5 id="get-wrpcheck-intended-use-intended-use-check-required"><code>GET /wrp/check-intended-use</code> — intended use check (REQUIRED)<a class="headerlink" href="#get-wrpcheck-intended-use-intended-use-check-required" title="Permanent link">&para;</a></h5>
 <p>A dedicated intended-use check endpoint for making narrowed-down intended use related queries from the <a class="mkdocs-ezglossary-link"
-    id="f701ee3b55f22b4c1f95506198107d53"
+    id="92cdcf568f7ff59f132c5e962de129f0"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -3103,9 +3236,9 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 </tbody>
 </table>
 <hr />
-<h6 id="get-wrpidentifier-get-by-identifier-optional"><code>GET /wrp/{identifier}</code> — get by identifier (OPTIONAL)<a class="headerlink" href="#get-wrpidentifier-get-by-identifier-optional" title="Permanent link">&para;</a></h6>
+<h5 id="get-wrpidentifier-get-by-identifier-optional"><code>GET /wrp/{identifier}</code> — get by identifier (OPTIONAL)<a class="headerlink" href="#get-wrpidentifier-get-by-identifier-optional" title="Permanent link">&para;</a></h5>
 <p>Get <a class="mkdocs-ezglossary-link"
-    id="d72b6e4a06219d365364dc2763c397fd"
+    id="14029c073b5ced1270248b622e2ee60e"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -3155,9 +3288,9 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="optional-profile-envelope-recommended-for-interoperability-metadata">Optional Profile Envelope (recommended for interoperability metadata)<a class="headerlink" href="#optional-profile-envelope-recommended-for-interoperability-metadata" title="Permanent link">&para;</a></h5>
+<h4 id="optional-profile-envelope-recommended-for-interoperability-metadata">Optional Profile Envelope (recommended for interoperability metadata)<a class="headerlink" href="#optional-profile-envelope-recommended-for-interoperability-metadata" title="Permanent link">&para;</a></h4>
 <p>To preserve issuer/timestamp metadata and pagination in a stable schema, a Member State MAY define an envelope profile as follows (while still satisfying the endpoint semantics above):</p>
-<h6 id="signedwrparrayenvelope-profile">SignedWRPArrayEnvelope (profile)<a class="headerlink" href="#signedwrparrayenvelope-profile" title="Permanent link">&para;</a></h6>
+<h5 id="signedwrparrayenvelope-profile">SignedWRPArrayEnvelope (profile)<a class="headerlink" href="#signedwrparrayenvelope-profile" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
@@ -3173,7 +3306,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>string</code></td>
 <td>REQUIRED</td>
 <td>Identifier of the Registry/<a class="mkdocs-ezglossary-link"
-    id="29498ac79f13966f6801ec24bc06fdda"
+    id="78fc09fa3d18dd4d4aeeafb42337aab4"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -3199,7 +3332,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 </tr>
 </tbody>
 </table>
-<h6 id="wrpentry-per-wrp-bundle">WRPEntry (per-WRP bundle)<a class="headerlink" href="#wrpentry-per-wrp-bundle" title="Permanent link">&para;</a></h6>
+<h5 id="wrpentry-per-wrp-bundle">WRPEntry (per-WRP bundle)<a class="headerlink" href="#wrpentry-per-wrp-bundle" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
@@ -3230,7 +3363,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 </tr>
 </tbody>
 </table>
-<h6 id="signedwrpenvelope-profile-for-non-common-helper-endpoints">SignedWRPEnvelope (profile, for non-common helper endpoints)<a class="headerlink" href="#signedwrpenvelope-profile-for-non-common-helper-endpoints" title="Permanent link">&para;</a></h6>
+<h5 id="signedwrpenvelope-profile-for-non-common-helper-endpoints">SignedWRPEnvelope (profile, for non-common helper endpoints)<a class="headerlink" href="#signedwrpenvelope-profile-for-non-common-helper-endpoints" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
@@ -3246,7 +3379,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>string</code></td>
 <td>REQUIRED</td>
 <td>Registry/<a class="mkdocs-ezglossary-link"
-    id="635442aceeb914e06b0f16666396f048"
+    id="9f57dfd0e32e2c27a0e9b8ee54505350"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
@@ -3269,7 +3402,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>CertificateHistoryEntry[]</code></td>
 <td>OPTIONAL</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="a981dba8213344d5a2484b0f9f047498"
+    id="ad6ec8a657f4bc6481db9ccbda73132b"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -3280,7 +3413,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 <td><code>CertificateHistoryEntry[]</code></td>
 <td>OPTIONAL</td>
 <td><a class="mkdocs-ezglossary-link"
-    id="1fd6363538670e224af00229f278ff8b"
+    id="a59b78125f548cb0e5a2eda1cf70bea5"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -3288,7 +3421,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 </tr>
 </tbody>
 </table>
-<h6 id="signedintendedusecheckenvelope-profile">SignedIntendedUseCheckEnvelope (profile)<a class="headerlink" href="#signedintendedusecheckenvelope-profile" title="Permanent link">&para;</a></h6>
+<h5 id="signedintendedusecheckenvelope-profile">SignedIntendedUseCheckEnvelope (profile)<a class="headerlink" href="#signedintendedusecheckenvelope-profile" title="Permanent link">&para;</a></h5>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Annex VI strictly allows a JWS-signed boolean response. This object envelope is a non-normative profile convenience.</p>
@@ -3323,7 +3456,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 </tr>
 </tbody>
 </table>
-<h6 id="certificatehistoryentry-profile-helper-for-certificate-histories">CertificateHistoryEntry (profile helper for certificate histories)<a class="headerlink" href="#certificatehistoryentry-profile-helper-for-certificate-histories" title="Permanent link">&para;</a></h6>
+<h5 id="certificatehistoryentry-profile-helper-for-certificate-histories">CertificateHistoryEntry (profile helper for certificate histories)<a class="headerlink" href="#certificatehistoryentry-profile-helper-for-certificate-histories" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
@@ -3392,7 +3525,7 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:40:10 UTC">July 27, 2026 16:40:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:51:01 UTC">July 27, 2026 16:51:01</span>
   </span>
 
     

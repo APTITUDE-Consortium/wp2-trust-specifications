@@ -85,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#token-status-list" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -659,6 +664,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -852,6 +861,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../registration-certificate/" class="md-nav__link">
         
   
@@ -943,6 +980,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -959,6 +1014,56 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#token-status-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token Status List
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-revocation-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Revocation Lists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#online-certificate-status-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Online Certificate Status Protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1036,6 +1141,34 @@
     
   
     Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
   
 
     
@@ -1184,19 +1317,19 @@
 <p>This section describes the artifacts that are employed in <a href="../../sections/trust-management-lifecycle/">Trust Management and Lifecycle</a> to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:</p>
 <ul>
 <li>To manage <a class="mkdocs-ezglossary-link"
-    id="dfc3f1c165747336681b2eedd1a37eb3"
+    id="15549953269edd31753f22c693267381"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates (WRPACs)</a>, each <a class="mkdocs-ezglossary-link"
-    id="9a3e2db3766d68c84efcf2345c21f13f"
+    id="f7be3f35dd7de0e42ad146c487c8bd9e"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
     href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> SHALL:<ul>
 <li>make available at least one revocation mechanism among <a href="#certificate-revocation-lists">Certificate Revocation Lists</a> and <a href="#online-certificate-status-protocol">Online Certificate Status Protocol</a>;</li>
 <li>issue <a class="mkdocs-ezglossary-link"
-    id="fcbed7bf13c2aed6167acd363b39276b"
+    id="62080f9fda2bc15b9ecf2d3e169a80ca"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1204,19 +1337,19 @@
 </ul>
 </li>
 <li>To manage <a class="mkdocs-ezglossary-link"
-    id="4ed80e803fd094648c8730579bb112a9"
+    id="e271bfaefe7e80123c5ba65bb2ef0b91"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificates (WRPRCs)</a>, each <a class="mkdocs-ezglossary-link"
-    id="b3b4ec0ed767c48719e09bff5d51cec5"
+    id="08837dcc0dade0852e37e57f9247a656"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL:<ul>
 <li>make available an endpoint to request <a href="#status-list-token">Status List Tokens</a>;</li>
 <li>issue <a class="mkdocs-ezglossary-link"
-    id="3824c4ce57f9f3a982563c789878380c"
+    id="a767c92f8b5a30e707a2d17ff25a7247"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1224,110 +1357,110 @@
 </ul>
 </li>
 </ul>
-<h4 id="token-status-list">Token Status List<a class="headerlink" href="#token-status-list" title="Permanent link">&para;</a></h4>
+<h3 id="token-status-list">Token Status List<a class="headerlink" href="#token-status-list" title="Permanent link">&para;</a></h3>
 <p>This section defines a Status List data structure, which is used to convey information regarding the individual statuses of multiple <a class="mkdocs-ezglossary-link"
-    id="ddaccda9f05a9f4167a6ef4426c57343"
+    id="1e44c9906a858b16c911c6732f5ed5db"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>. A Status List describes the status of the <a class="mkdocs-ezglossary-link"
-    id="25687364ad70dd0d475460e1e9bf2be0"
+    id="7f90a21e302ccfc954389c9731ae9eb0"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a> by encoding their validity in a bit array. Each <a class="mkdocs-ezglossary-link"
-    id="1f32ece0cf420168300ac3a295c0705a"
+    id="6d9c751154b0dfda6482aac213a0cc64"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is allocated an index during issuance; this index represents its position within the bit array. The value of the bit(s) at this index corresponds to the <a class="mkdocs-ezglossary-link"
-    id="f783cb3e96b6bb1f121c4d60dd81711b"
+    id="6df1a44f9bf75ca0781d1c738cb0232c"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>'s status. A Status List is provided within a cryptographically signed <a class="mkdocs-ezglossary-link"
-    id="bca4d38c89a8ef3050a781b415bfd2df"
+    id="10deb9270046cca6d31d20c1ad3f89c5"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> in JWT format. This subsection follows [draft-ietf-oauth-status-list-19].</p>
 <p>In this specification, the roles of the <a class="mkdocs-ezglossary-link"
-    id="82b6cb0371533be3e4ee4b4411a149b5"
+    id="f232a5caaffcc0ec692f691e28604d2d"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> and Status Issuer (i.e., the entity that issues the <a class="mkdocs-ezglossary-link"
-    id="10deb9270046cca6d31d20c1ad3f89c5"
-    title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
-    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
-    name="artifacts:Status List Token"
-    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> about the status information of the <a class="mkdocs-ezglossary-link"
-    id="45e67355bad3544537361d199d069b9e"
-    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
-    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
-    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the <a class="mkdocs-ezglossary-link"
     id="48e66a5dc41b8761bf146a112c329349"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> about the status information of the <a class="mkdocs-ezglossary-link"
+    id="657c6cf1a3bcbe686532ae63ce317355"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>) SHALL coincide. Moreover, the Status Provider (i.e., the entity that provides the <a class="mkdocs-ezglossary-link"
+    id="44cddde8ce039bc35bb4e377f8a7887c"
+    title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> on a public endpoint) SHALL be the <a class="mkdocs-ezglossary-link"
-    id="7cd9f8aeddad7f2fbac2cc280d8af856"
+    id="d1d922c55f670b590ee30e2dad590f28"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> itself.</p>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="2344c3787b2ece2c803fcca8be4d2215"
+    id="7fa1bd87377cce9e33e1c64562ca9568"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL:</p>
 <ul>
 <li>Define a number of bits, <span class="arithmatex">\(k\)</span>, (either 1, 2, 4, or 8) that represents the amount of bits used to describe the status of each <a class="mkdocs-ezglossary-link"
-    id="ca1003f61eb52691d6c05d012aaacfe0"
+    id="7e9d9953a75b708fe4388f6337d03677"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> within this Status List. The <a class="mkdocs-ezglossary-link"
-    id="ec968fd3de8d0ed0ed077d526ef33e98"
+    id="fac0ceeb50e884e5a8ca4d5c6357351c"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL configure this number. Each <a class="mkdocs-ezglossary-link"
-    id="a59b78125f548cb0e5a2eda1cf70bea5"
+    id="4694365c51a723f756b1b69a8c402362"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> will therefore have <span class="arithmatex">\(2^k\)</span> possible states.</li>
 <li>Create a byte array of size <span class="arithmatex">\(\geq\)</span> (expected number of <a class="mkdocs-ezglossary-link"
-    id="e271bfaefe7e80123c5ba65bb2ef0b91"
+    id="b3946c649ade280fbba64053606a1e88"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>) * <span class="arithmatex">\(k\)</span> / 8. Depending on <span class="arithmatex">\(k\)</span>, each byte in the array corresponds to 8/<span class="arithmatex">\(k\)</span> statuses (8 if <span class="arithmatex">\(k=1\)</span>, 4 if <span class="arithmatex">\(k=2\)</span>, 2 if <span class="arithmatex">\(k=4\)</span>, or 1 if <span class="arithmatex">\(k=8\)</span>). Each time a <a class="mkdocs-ezglossary-link"
-    id="a767c92f8b5a30e707a2d17ff25a7247"
+    id="f210981b2d3ce483009be4b27b828afe"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is issued, the <a class="mkdocs-ezglossary-link"
-    id="c4ff59088d0ad881dff51ace012a61aa"
+    id="7db88aedd8144d7264a978630342160f"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> assigns it to a position in the array.</li>
 <li>Set the status values for all issued <a class="mkdocs-ezglossary-link"
-    id="1e44c9906a858b16c911c6732f5ed5db"
+    id="15f8febc054e461b9c32a5b0f55f1a35"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a> within the byte array. The status of each <a class="mkdocs-ezglossary-link"
-    id="7f90a21e302ccfc954389c9731ae9eb0"
+    id="705fcc95e55034d6c3d89ea31d682b1a"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is identified using an index that maps to one or more specific bits within the byte array. The index starts counting at 0 and ends with (number of <a class="mkdocs-ezglossary-link"
-    id="6d9c751154b0dfda6482aac213a0cc64"
+    id="8ec36e3d6b0310eb3bd8404c1334a152"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1341,42 +1474,42 @@
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a> to request Status Lists Tokens.</li>
 </ul>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="6a29314debbbeff8917f0937a773c771"
+    id="67a8f1fe83c987550bba8c0efdefec7a"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL use the following values for the possible statuses of the issued <a class="mkdocs-ezglossary-link"
-    id="6df1a44f9bf75ca0781d1c738cb0232c"
+    id="0bc554df77639d84d247b4d7f4847c74"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a>:</p>
 <ul>
 <li><code>0x00</code> - <code>VALID</code> - The <a class="mkdocs-ezglossary-link"
-    id="657c6cf1a3bcbe686532ae63ce317355"
+    id="b1cbcb5b8cc082e2757ae94f5a38e43d"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is valid.</li>
 <li><code>0x01</code> - <code>INVALID</code> - The <a class="mkdocs-ezglossary-link"
-    id="7e9d9953a75b708fe4388f6337d03677"
+    id="1b9f5ee1733a9678f5dea17bc3e5f375"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> is revoked.</li>
 </ul>
 <p>For example, if two states for a certain <a class="mkdocs-ezglossary-link"
-    id="4694365c51a723f756b1b69a8c402362"
+    id="e24dfdc1ecaccb182655abf478b054c9"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> are possible, then <span class="arithmatex">\(k=1\)</span>. If the <a class="mkdocs-ezglossary-link"
-    id="be3b09067108af16f62df25e6cb3800b"
+    id="4c5c6b1c469c8990231b65a3d1163035"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
     href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> creates an array to store the statuses of 6 <a class="mkdocs-ezglossary-link"
-    id="b3946c649ade280fbba64053606a1e88"
+    id="9d3997698aff56f802103633601ca239"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1389,17 +1522,17 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When the <a class="mkdocs-ezglossary-link"
-    id="6f861ff6466e08f6c0df77b8f0efdd60"
+    id="4e1d4858df2f2a0b64dc6d6815f1c997"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> chooses the number of bits for conveying statuses of the <a class="mkdocs-ezglossary-link"
-    id="f210981b2d3ce483009be4b27b828afe"
+    id="004d302776553ddea7e8c5dd54ca91fa"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</a> it issues, it MAY add other states besides those described above. The addition of many different states for the lifecycle of a <a class="mkdocs-ezglossary-link"
-    id="15f8febc054e461b9c32a5b0f55f1a35"
+    id="36551cf758fbeba3481a6d0f33783008"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1411,24 +1544,24 @@
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> receives a <a class="mkdocs-ezglossary-link"
-    id="705fcc95e55034d6c3d89ea31d682b1a"
+    id="2318f6331ccb2b3e629497d3af0aa0a9"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, it can request the Status List to validate its status through the provided URI parameter and look up the corresponding index in the list.</p>
-<h5 id="status-list-token">Status List Token<a class="headerlink" href="#status-list-token" title="Permanent link">&para;</a></h5>
+<h4 id="status-list-token">Status List Token<a class="headerlink" href="#status-list-token" title="Permanent link">&para;</a></h4>
 <p>The <strong><a class="mkdocs-ezglossary-link"
-    id="44cddde8ce039bc35bb4e377f8a7887c"
+    id="b12e2e32d39cda8de06513d81fec60df"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a></strong> is available at the Status List Endpoint. It is formatted as a JSON Web Token (JWT) signed by the <a class="mkdocs-ezglossary-link"
-    id="461230b5f586b2def909c53f27c79408"
+    id="7e59e97d863e6bd11ca7e07942f6b0c5"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> and contains the following parameters:</p>
-<h6 id="status-list-token-header">Status List Token Header<a class="headerlink" href="#status-list-token-header" title="Permanent link">&para;</a></h6>
+<h5 id="status-list-token-header">Status List Token Header<a class="headerlink" href="#status-list-token-header" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
@@ -1460,7 +1593,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>Array of Strings</em></td>
 <td style="text-align: left;">Contains the Base64-encoded certificate chain required to verify the <a class="mkdocs-ezglossary-link"
-    id="b12e2e32d39cda8de06513d81fec60df"
+    id="c4bb872d87c74f3d296b48c7a1209633"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1468,7 +1601,7 @@
 </tr>
 </tbody>
 </table>
-<h6 id="status-list-token-payload">Status List Token Payload<a class="headerlink" href="#status-list-token-payload" title="Permanent link">&para;</a></h6>
+<h5 id="status-list-token-payload">Status List Token Payload<a class="headerlink" href="#status-list-token-payload" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
@@ -1486,12 +1619,12 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>String</em></td>
 <td style="text-align: left;">The subject claim SHALL specify the URI of the <a class="mkdocs-ezglossary-link"
-    id="c4bb872d87c74f3d296b48c7a1209633"
+    id="b0773fa2f17d75cc2e5884367d123625"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a>. The value SHALL be equal to that of the <code>uri</code> claim contained in the <code>status*list.uri</code> claim of the <a class="mkdocs-ezglossary-link"
-    id="8ec36e3d6b0310eb3bd8404c1334a152"
+    id="558d1f030476fd57134801c1fbc6e8b3"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1503,7 +1636,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>NumericDate</em></td>
 <td style="text-align: left;">A timestamp indicating when the <a class="mkdocs-ezglossary-link"
-    id="b0773fa2f17d75cc2e5884367d123625"
+    id="1e9b78d93f77be21f0055dfb365a1766"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1515,7 +1648,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>NumericDate</em></td>
 <td style="text-align: left;">A timestamp indicating when the <a class="mkdocs-ezglossary-link"
-    id="1e9b78d93f77be21f0055dfb365a1766"
+    id="dbd287355fe0dfef0f441ddbfc2f016f"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1534,7 +1667,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>Integer</em></td>
 <td style="text-align: left;">Specifies the number of bits per <a class="mkdocs-ezglossary-link"
-    id="0bc554df77639d84d247b4d7f4847c74"
+    id="270f0c11f141194a7753af4f63352d2d"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1546,7 +1679,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: center;"><em>Base64url-encoded String</em></td>
 <td style="text-align: left;">Contains the status values for all the <a class="mkdocs-ezglossary-link"
-    id="b1cbcb5b8cc082e2757ae94f5a38e43d"
+    id="5e76c284d8cb7d18c1ee7609253d6973"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1558,7 +1691,7 @@
 <td style="text-align: center;">RECOMMENDED</td>
 <td style="text-align: center;"><em>Integer</em></td>
 <td style="text-align: left;">Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the <a class="mkdocs-ezglossary-link"
-    id="dbd287355fe0dfef0f441ddbfc2f016f"
+    id="e6aa0052224b54808d542d323419d46c"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1567,7 +1700,7 @@
 </tbody>
 </table>
 <p>The following is an example of the <a class="mkdocs-ezglossary-link"
-    id="e6aa0052224b54808d542d323419d46c"
+    id="b222bcf0abc72b62e58e910c68a45b27"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1594,19 +1727,19 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h5 id="status-list-request">Status List Request<a class="headerlink" href="#status-list-request" title="Permanent link">&para;</a></h5>
+<h4 id="status-list-request">Status List Request<a class="headerlink" href="#status-list-request" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="c946e194362c58cafdeb299bd921cbf0"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL request a <a class="mkdocs-ezglossary-link"
-    id="b222bcf0abc72b62e58e910c68a45b27"
+    id="030ce0b8aaa4835d944baa062425a6c8"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> at the URI referenced within the <code>status.status_list.uri</code> claim of the <a class="mkdocs-ezglossary-link"
-    id="1b9f5ee1733a9678f5dea17bc3e5f375"
+    id="cd0ffc90eaaf173ab2a2861596c7c797"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1616,9 +1749,9 @@
   Host: example.com
   Accept: application/statuslist+jwt
 </code></pre></div>
-<h5 id="status-list-response">Status List Response<a class="headerlink" href="#status-list-response" title="Permanent link">&para;</a></h5>
+<h4 id="status-list-response">Status List Response<a class="headerlink" href="#status-list-response" title="Permanent link">&para;</a></h4>
 <p>The successful response SHALL contain a <a class="mkdocs-ezglossary-link"
-    id="030ce0b8aaa4835d944baa062425a6c8"
+    id="9951668c03d59da04e98c19ace9c8212"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
@@ -1639,20 +1772,20 @@
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a> SHALL prioritize the <code>exp</code> and <code>ttl</code> claims within the <a class="mkdocs-ezglossary-link"
-    id="9951668c03d59da04e98c19ace9c8212"
+    id="bd1eda852d171f9fcd9e5ab1747e3ddb"
     title="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> over the HTTP headers for determining caching behavior.</p>
-<h4 id="certificate-revocation-lists">Certificate Revocation Lists<a class="headerlink" href="#certificate-revocation-lists" title="Permanent link">&para;</a></h4>
+<h3 id="certificate-revocation-lists">Certificate Revocation Lists<a class="headerlink" href="#certificate-revocation-lists" title="Permanent link">&para;</a></h3>
 <p><strong><a class="mkdocs-ezglossary-link"
-    id="58c3f3b9e7f3fb853f449e80a41f42bc"
+    id="c0de226891dd10f5da0df2113b152abc"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">Certificate Revocation Lists (CRLs)</a></strong> [RFC 5280] MAY be used in a wide range of applications and environments covering a broad spectrum of interoperability goals and an even broader spectrum of operational and assurance requirements.</p>
 <p><strong>CRL issuers</strong> issue <a class="mkdocs-ezglossary-link"
-    id="c0de226891dd10f5da0df2113b152abc"
+    id="4bbd9e47cc1e0532a393c9e00dba7f73"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1667,7 +1800,7 @@
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
     href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> to issue <a class="mkdocs-ezglossary-link"
-    id="4bbd9e47cc1e0532a393c9e00dba7f73"
+    id="ed948252b80de33b055fb0c701b8e875"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1675,75 +1808,75 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Within APTITUDE the <a class="mkdocs-ezglossary-link"
-    id="ed948252b80de33b055fb0c701b8e875"
+    id="21de86a61121a56634e9df2ea31e401f"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> Issuer SHALL be the <a class="mkdocs-ezglossary-link"
-    id="6cc889e2f0c2ab9716429396d7e91589"
+    id="cb253f592726ff3d8b48c636bc519c39"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>.</p>
 </div>
 <p>CAs publish <a class="mkdocs-ezglossary-link"
-    id="21de86a61121a56634e9df2ea31e401f"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
-    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
-    name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</a> to provide status information about the certificates they issued. Each <a class="mkdocs-ezglossary-link"
     id="0393c0aa4326ef0da6a193fc0d3b5fad"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> has a particular scope. The <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</a> to provide status information about the certificates they issued. Each <a class="mkdocs-ezglossary-link"
     id="17552094ec152dcd97f54f20de6bc0d2"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> scope is the set of certificates that could appear on a given <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> has a particular scope. The <a class="mkdocs-ezglossary-link"
     id="4594e726bd0bff082818419e20fa13f8"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>. For example, the scope could be "all certificates issued by CA X". A complete <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> scope is the set of certificates that could appear on a given <a class="mkdocs-ezglossary-link"
     id="c9697930fa07b71204caabc2cc4adefe"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> lists all unexpired certificates, within its scope, that have been revoked for one of the revocation reasons covered by the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>. For example, the scope could be "all certificates issued by CA X". A complete <a class="mkdocs-ezglossary-link"
     id="bcf1050980f425003e6f94d7dfc0226e"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> lists all unexpired certificates, within its scope, that have been revoked for one of the revocation reasons covered by the <a class="mkdocs-ezglossary-link"
+    id="cf8ad944e4005e8fc6e0a1d17e55a561"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> scope.</p>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="cf8ad944e4005e8fc6e0a1d17e55a561"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
-    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
-    name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuer MAY also generate delta <a class="mkdocs-ezglossary-link"
     id="27edd1217938052293c7dc411e88f010"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</a>. A delta CRL only lists those certificates, within its scope, whose revocation status has changed since the issuance of a referenced complete <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuer MAY also generate delta <a class="mkdocs-ezglossary-link"
     id="2aa12ee26b529b09c65f56ce78dea839"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>. The referenced complete CRL is referred to as a base <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</a>. A delta CRL only lists those certificates, within its scope, whose revocation status has changed since the issuance of a referenced complete <a class="mkdocs-ezglossary-link"
     id="767a7f78b184624c6f63ba21bc397279"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>. The scope of a delta <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>. The referenced complete CRL is referred to as a base <a class="mkdocs-ezglossary-link"
     id="e07d7b4904e4e4c79439b2ded80c560d"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> SHALL be the same as the base <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>. The scope of a delta <a class="mkdocs-ezglossary-link"
     id="54eb17f5672f1316ebe37b6636d026e6"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> SHALL be the same as the base <a class="mkdocs-ezglossary-link"
+    id="e6b410bdf4c0b9a135a1add2d064c3c0"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1754,13 +1887,13 @@
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
     href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>, the <a class="mkdocs-ezglossary-link"
-    id="e6b410bdf4c0b9a135a1add2d064c3c0"
+    id="be19ad3e98024f853f4f7545c7b5e9cf"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> SHALL be available at the URI specified in the <code>cRLDistributionPoints.distributionPoint</code> <em>[0] CHOICE</em> structure within the <a href="../../sections/trust-artifacts/#wallet-relying-party-access-certificate">WRPAC</a>.</p>
 <p>An X.509 v2 <a class="mkdocs-ezglossary-link"
-    id="be19ad3e98024f853f4f7545c7b5e9cf"
+    id="8063951725e12bec87c2ba4114b3036b"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1782,12 +1915,12 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>SEQUENCE</em></td>
 <td style="text-align: left;">Contains the core <a class="mkdocs-ezglossary-link"
-    id="8063951725e12bec87c2ba4114b3036b"
+    id="622e0e8b2f586269c8726709ee97512b"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> information including the name of the issuer, issue date, next update date, the optional list of revoked certificates, and optional <a class="mkdocs-ezglossary-link"
-    id="622e0e8b2f586269c8726709ee97512b"
+    id="a47bc2ed54e96b639cd456ae3c4200d1"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1799,7 +1932,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>SEQUENCE</em></td>
 <td style="text-align: left;">Contains the algorithm identifier for the algorithm used by the <a class="mkdocs-ezglossary-link"
-    id="a47bc2ed54e96b639cd456ae3c4200d1"
+    id="b495ac5747334f07e266f470adbf2559"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1828,9 +1961,9 @@
 </tr>
 </tbody>
 </table>
-<h5 id="certificate-list-content">Certificate List Content<a class="headerlink" href="#certificate-list-content" title="Permanent link">&para;</a></h5>
+<h4 id="certificate-list-content">Certificate List Content<a class="headerlink" href="#certificate-list-content" title="Permanent link">&para;</a></h4>
 <p>The <code>TBSCertList</code> (To Be Signed Certificate List) is an ASN.1 SEQUENCE containing several fields and extensions. The following table lists all such fields and extensions that are required in a <a class="mkdocs-ezglossary-link"
-    id="b495ac5747334f07e266f470adbf2559"
+    id="714625affff816aa64760ed7474250ff"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1852,7 +1985,7 @@
 <td style="text-align: center;">OPTIONAL</td>
 <td style="text-align: left;"><em>INTEGER</em></td>
 <td style="text-align: left;">Describes the version of the encoded <a class="mkdocs-ezglossary-link"
-    id="714625affff816aa64760ed7474250ff"
+    id="dae3e4b8dca091c8c80eb532c0564ef3"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1864,7 +1997,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>SEQUENCE</em></td>
 <td style="text-align: left;">The algorithm identifier for the algorithm used to sign the <a class="mkdocs-ezglossary-link"
-    id="dae3e4b8dca091c8c80eb532c0564ef3"
+    id="218fac514efc02c217da76895b7f01b1"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1890,7 +2023,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>Name</em></td>
 <td style="text-align: left;">Identifies the entity that has signed and issued the <a class="mkdocs-ezglossary-link"
-    id="218fac514efc02c217da76895b7f01b1"
+    id="f66e27e60678dcc47081df1aa606ab2e"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1902,7 +2035,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>UTCTime</em> or <em>GeneralizedTime</em></td>
 <td style="text-align: left;">Indicates the issue date of this <a class="mkdocs-ezglossary-link"
-    id="f66e27e60678dcc47081df1aa606ab2e"
+    id="33d7e2d41cfcab6fe6dfc62a856a456b"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1914,7 +2047,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>UTCTime</em> or <em>GeneralizedTime</em></td>
 <td style="text-align: left;">Indicates the date by which the next <a class="mkdocs-ezglossary-link"
-    id="33d7e2d41cfcab6fe6dfc62a856a456b"
+    id="3a56119826e190935faeb82155e1294b"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1947,7 +2080,7 @@
 <td style="text-align: center;">OPTIONAL</td>
 <td style="text-align: left;"><em>SEQUENCE OF</em></td>
 <td style="text-align: left;">Extensions specific to this revoked certificate entry. If present, the <a class="mkdocs-ezglossary-link"
-    id="3a56119826e190935faeb82155e1294b"
+    id="80d71f35412b1694cc2f75fe5423ea1f"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1959,12 +2092,12 @@
 <td style="text-align: center;">OPTIONAL</td>
 <td style="text-align: left;"><em>[0] EXPLICIT SEQUENCE OF</em></td>
 <td style="text-align: left;">A sequence of one or more <a class="mkdocs-ezglossary-link"
-    id="80d71f35412b1694cc2f75fe5423ea1f"
+    id="fcf54cced47a85ac39bd70caca7b154a"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> extensions. If present, the <a class="mkdocs-ezglossary-link"
-    id="fcf54cced47a85ac39bd70caca7b154a"
+    id="89057b42b9b32653c5c98cf112901267"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -1990,7 +2123,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>SEQUENCE</em></td>
 <td style="text-align: left;">Provides a means of identifying the public key corresponding to the private key used to sign the <a class="mkdocs-ezglossary-link"
-    id="89057b42b9b32653c5c98cf112901267"
+    id="1d208902756f744a37562372e797a23b"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -2002,7 +2135,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>INTEGER</em></td>
 <td style="text-align: left;">A non-critical extension conveying a monotonically increasing sequence number for a given <a class="mkdocs-ezglossary-link"
-    id="1d208902756f744a37562372e797a23b"
+    id="23d1389f78f21c125a624caab36c1120"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
@@ -2013,26 +2146,26 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Within the APTITUDE pilot, Delta <a class="mkdocs-ezglossary-link"
-    id="23d1389f78f21c125a624caab36c1120"
+    id="df0dab5243a4d7a5bf50e0bd5241a6ee"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</a> are not used.</p>
 </div>
-<h4 id="online-certificate-status-protocol">Online Certificate Status Protocol<a class="headerlink" href="#online-certificate-status-protocol" title="Permanent link">&para;</a></h4>
+<h3 id="online-certificate-status-protocol">Online Certificate Status Protocol<a class="headerlink" href="#online-certificate-status-protocol" title="Permanent link">&para;</a></h3>
 <p><strong><a class="mkdocs-ezglossary-link"
-    id="cb483dca3296c087019796e11828a7b9"
+    id="8ed3bc57f17ec3b49a1174b567c5fb34"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</a></strong> [RFC 6960] enables applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.</p>
 <p>An <a class="mkdocs-ezglossary-link"
-    id="8ed3bc57f17ec3b49a1174b567c5fb34"
+    id="be2727ad60002b16b3be71e08312af29"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> client issues a status request to an <a class="mkdocs-ezglossary-link"
-    id="be2727ad60002b16b3be71e08312af29"
+    id="0946e821fee8ba0f1a876ffb67ef7a60"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2043,45 +2176,45 @@
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
     href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>, the URI to which the <a class="mkdocs-ezglossary-link"
-    id="0946e821fee8ba0f1a876ffb67ef7a60"
+    id="5fc0a979a502e3f111f1ed8023f452f2"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> Responder can be invoked SHALL be present in the <code>authorityInfoAccess.accessLocation</code> extension of the <a href="../../sections/trust-artifacts/#wallet-relying-party-access-certificate">WRPAC</a>.</p>
 <p>This protocol specifies the data that SHALL be exchanged between the <a class="mkdocs-ezglossary-link"
-    id="5fc0a979a502e3f111f1ed8023f452f2"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
-    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
-    name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> client (which checks the status of one or more certificates) and the <a class="mkdocs-ezglossary-link"
     id="0039f39b480cc7a3116330da5b85be45"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> server (which provides the corresponding status). In this specific ecosystem, the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> client (which checks the status of one or more certificates) and the <a class="mkdocs-ezglossary-link"
     id="15e7714b184c4bb196a399aae059dfa9"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> client can be a WU checking the <a class="mkdocs-ezglossary-link"
-    id="b7e927e328f7dae49bf0998c8986d6d2"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> of a WRP, and the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> server (which provides the corresponding status). In this specific ecosystem, the <a class="mkdocs-ezglossary-link"
     id="7c5b971462d9fef34e89286f29ef8ef5"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> client can be a WU checking the <a class="mkdocs-ezglossary-link"
+    id="eb29a92e66b86cb8d99a841c60689ea8"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> of a WRP, and the <a class="mkdocs-ezglossary-link"
+    id="327754ecf423f255afc123e869447304"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> server is the Provider of the <a class="mkdocs-ezglossary-link"
-    id="ff2a7ebef0151ce63a480b1e7acf01d7"
+    id="57c7893eb073d6a46b74b35426cd99d6"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>.</p>
-<h5 id="online-certificate-status-protocol-request-format">Online Certificate Status Protocol Request Format<a class="headerlink" href="#online-certificate-status-protocol-request-format" title="Permanent link">&para;</a></h5>
+<h4 id="online-certificate-status-protocol-request-format">Online Certificate Status Protocol Request Format<a class="headerlink" href="#online-certificate-status-protocol-request-format" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="327754ecf423f255afc123e869447304"
+    id="fbb9a8be7ac51d0e9c8d76f28671f880"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2214,7 +2347,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Within APTITUDE, <a class="mkdocs-ezglossary-link"
-    id="fbb9a8be7ac51d0e9c8d76f28671f880"
+    id="a01c0eab711b11430afcf21e2b226ff9"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2222,7 +2355,7 @@
 </div>
 <p>When sent over HTTP using POST, the body of this request is the raw DER encoding of this <code>OCSPRequest</code>, with the MIME type <code>application/ocsp-request</code>.</p>
 <p>Below is a concrete example of an <a class="mkdocs-ezglossary-link"
-    id="a01c0eab711b11430afcf21e2b226ff9"
+    id="8d93b8542327f52aa16a221ee1fb5526"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2242,9 +2375,9 @@
     requestExtensions:
       nonce = OCTET STRING (nonce)
 </code></pre></div>
-<h5 id="online-certificate-status-protocol-response-format">Online Certificate Status Protocol Response Format<a class="headerlink" href="#online-certificate-status-protocol-response-format" title="Permanent link">&para;</a></h5>
+<h4 id="online-certificate-status-protocol-response-format">Online Certificate Status Protocol Response Format<a class="headerlink" href="#online-certificate-status-protocol-response-format" title="Permanent link">&para;</a></h4>
 <p>An <a class="mkdocs-ezglossary-link"
-    id="8d93b8542327f52aa16a221ee1fb5526"
+    id="02eb51add5194a1399606d0538549c65"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2293,12 +2426,12 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Within APTITUDE, <a class="mkdocs-ezglossary-link"
-    id="02eb51add5194a1399606d0538549c65"
+    id="eb120ec8b35ab5d4ecfcff557598e530"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responders SHALL be capable of producing responses of the <code>id-pkix-ocsp-basic</code> response type. Correspondingly, <a class="mkdocs-ezglossary-link"
-    id="eb120ec8b35ab5d4ecfcff557598e530"
+    id="49238704d0c19a5e5695ad4c622f5fb6"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2336,7 +2469,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>CHOICE</em></td>
 <td style="text-align: left;">Identifies the <a class="mkdocs-ezglossary-link"
-    id="49238704d0c19a5e5695ad4c622f5fb6"
+    id="ec1ef3cedd1711f9699edbf5191fedcf"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2362,7 +2495,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>GeneralizedTime</em></td>
 <td style="text-align: left;">The time at which the <a class="mkdocs-ezglossary-link"
-    id="ec1ef3cedd1711f9699edbf5191fedcf"
+    id="4567d3617401d676202fbe3d867d9bc2"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2381,7 +2514,7 @@
 <td style="text-align: center;">OPTIONAL</td>
 <td style="text-align: left;"><em>[1] EXPLICIT SEQUENCE OF</em></td>
 <td style="text-align: left;">Contains extensions applicable to the overall <a class="mkdocs-ezglossary-link"
-    id="4567d3617401d676202fbe3d867d9bc2"
+    id="a9ed04492cde551325c07f605ee5aa4d"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2448,14 +2581,14 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Within APTITUDE, <a class="mkdocs-ezglossary-link"
-    id="a9ed04492cde551325c07f605ee5aa4d"
+    id="e2f4540f85379aeb3dae2c5d1d4f48d3"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> Responses SHALL use the <code>nonce</code> extension.</p>
 </div>
 <p>In the <a class="mkdocs-ezglossary-link"
-    id="e2f4540f85379aeb3dae2c5d1d4f48d3"
+    id="87e4745b9129448078c08224bba038bf"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2526,7 +2659,7 @@
 <td style="text-align: center;">REQUIRED</td>
 <td style="text-align: left;"><em>GeneralizedTime</em></td>
 <td style="text-align: left;">Indicates the issue date and time of this <a class="mkdocs-ezglossary-link"
-    id="87e4745b9129448078c08224bba038bf"
+    id="25cb0756ebe361e096b6cc88d063e49f"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2538,7 +2671,7 @@
 <td style="text-align: center;">OPTIONAL</td>
 <td style="text-align: left;"><em>[0] EXPLICIT GeneralizedTime</em></td>
 <td style="text-align: left;">Indicates the date and time by which the next update to the <a class="mkdocs-ezglossary-link"
-    id="25cb0756ebe361e096b6cc88d063e49f"
+    id="88b8aa54589f3a3c0c5db0d871e1b663"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2554,7 +2687,7 @@
 </tbody>
 </table>
 <p>Below is a concrete example of an <a class="mkdocs-ezglossary-link"
-    id="88b8aa54589f3a3c0c5db0d871e1b663"
+    id="b91574324adf8715fcf65c125f2b62be"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
@@ -2611,7 +2744,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:40:10 UTC">July 27, 2026 16:40:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:51:01 UTC">July 27, 2026 16:51:01</span>
   </span>
 
     

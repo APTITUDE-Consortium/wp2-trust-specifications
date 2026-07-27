@@ -85,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#wallet-relying-party-authentication-sequence-diagram" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -659,6 +664,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -747,6 +756,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -763,6 +790,45 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#wallet-relying-party-authentication-sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wallet Relying Party Authentication Sequence Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wallet-relying-party-access-certificate-path-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wallet Relying Party Access Certificate Path Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -840,6 +906,34 @@
     
   
     Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
   
 
     
@@ -1036,6 +1130,34 @@
     
   
     Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
   
 
     
@@ -1329,7 +1451,7 @@
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> private key to sign arbitrary data that could be controlled by an external party.</p>
 </div>
-<h4 id="wallet-relying-party-authentication-sequence-diagram">Wallet Relying Party Authentication Sequence Diagram<a class="headerlink" href="#wallet-relying-party-authentication-sequence-diagram" title="Permanent link">&para;</a></h4>
+<h3 id="wallet-relying-party-authentication-sequence-diagram">Wallet Relying Party Authentication Sequence Diagram<a class="headerlink" href="#wallet-relying-party-authentication-sequence-diagram" title="Permanent link">&para;</a></h3>
 <p>Below is a sequence diagram illustrating the Authentication Process, including the retrieval and validation of the <a class="mkdocs-ezglossary-link"
     id="6b994c4f06d35428bb1155dac317e79f"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
@@ -1360,7 +1482,7 @@
     else Validation Failed
         Wallet--&gt;&gt;WRP: Abort / Error Response
     end</code></pre>
-<h4 id="wallet-relying-party-access-certificate-path-validation">Wallet Relying Party Access Certificate Path Validation<a class="headerlink" href="#wallet-relying-party-access-certificate-path-validation" title="Permanent link">&para;</a></h4>
+<h3 id="wallet-relying-party-access-certificate-path-validation">Wallet Relying Party Access Certificate Path Validation<a class="headerlink" href="#wallet-relying-party-access-certificate-path-validation" title="Permanent link">&para;</a></h3>
 <p>This section defines the validation of the WRP Access Certificate path. The <a href="#certificate-path-validation">Certificate Path Validation</a> section is general and is applied to WRPRC certification path validation and Sign/Seal Certificate path validation as well.</p>
 <ul>
 <li>The <a class="mkdocs-ezglossary-link"
@@ -1396,7 +1518,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="certificate-path-validation">Certificate Path Validation<a class="headerlink" href="#certificate-path-validation" title="Permanent link">&para;</a></h5>
+<h4 id="certificate-path-validation">Certificate Path Validation<a class="headerlink" href="#certificate-path-validation" title="Permanent link">&para;</a></h4>
 <p>The entity that performs the certificate path validation initializes the following variables:</p>
 <ul>
 <li><code>path</code>: The sequence <span class="arithmatex">\(C_1 \dots C_n\)</span>.</li>
@@ -1558,7 +1680,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     class LoopCondition,Check2_1,Check2_3,CheckIntermediate,Check3_2,FinalDecision decision;
     class Start,DefineInputs,Success terminator;
     class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;</code></pre>
-<h6 id="revocation-checking">Revocation Checking<a class="headerlink" href="#revocation-checking" title="Permanent link">&para;</a></h6>
+<h5 id="revocation-checking">Revocation Checking<a class="headerlink" href="#revocation-checking" title="Permanent link">&para;</a></h5>
 <p>The entity performing certificate path validation (e.g., the <a class="mkdocs-ezglossary-link"
     id="0138218c061417af2bcc787a4bb4f262"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
@@ -1889,7 +2011,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:40:10 UTC">July 27, 2026 16:40:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:51:01 UTC">July 27, 2026 16:51:01</span>
   </span>
 
     

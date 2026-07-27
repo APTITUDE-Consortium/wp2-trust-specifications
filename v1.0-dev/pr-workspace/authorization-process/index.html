@@ -85,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#preconditions" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -659,6 +664,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -775,6 +784,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -791,6 +818,111 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preconditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preconditions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorization-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authorization Framework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorization-evidences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authorization Evidences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registrar-online-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registrar Online Service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluation-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluation Procedures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#override-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Override Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Flows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorization-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authorization Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -840,6 +972,34 @@
     
   
     Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
   
 
     
@@ -1036,6 +1196,34 @@
     
   
     Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
   
 
     
@@ -1291,7 +1479,7 @@
     name="roles:Registrar"
     href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> online service API definition.</p>
 </div>
-<h4 id="preconditions">Preconditions<a class="headerlink" href="#preconditions" title="Permanent link">&para;</a></h4>
+<h3 id="preconditions">Preconditions<a class="headerlink" href="#preconditions" title="Permanent link">&para;</a></h3>
 <p>The authorization process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section <a href="../../sections/trust-evaluation-process/#authentication-process">Authentication Process</a>) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the authorization process SHALL NOT start [AUTHZ-GEN-02].
 This section does define how the <a class="mkdocs-ezglossary-link"
     id="29e5c628510969348c54614e121544e2"
@@ -1309,9 +1497,9 @@ This section does define how the <a class="mkdocs-ezglossary-link"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>-derived authorization context.</p>
-<h4 id="authorization-framework">Authorization Framework<a class="headerlink" href="#authorization-framework" title="Permanent link">&para;</a></h4>
+<h3 id="authorization-framework">Authorization Framework<a class="headerlink" href="#authorization-framework" title="Permanent link">&para;</a></h3>
 <p>This subsection defines the conceptual model that defines all authorization decisions. It introduces the key concepts (authorization subject, data source hierarchy, decision outcomes, and override principles) that the subsequent subsections build upon.</p>
-<h5 id="authentication-prerequisite-and-authorization-subject">Authentication Prerequisite and Authorization Subject<a class="headerlink" href="#authentication-prerequisite-and-authorization-subject" title="Permanent link">&para;</a></h5>
+<h4 id="authentication-prerequisite-and-authorization-subject">Authentication Prerequisite and Authorization Subject<a class="headerlink" href="#authentication-prerequisite-and-authorization-subject" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="d4d674f266aac67c6e4fd344696a172b"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -1338,7 +1526,7 @@ This section does define how the <a class="mkdocs-ezglossary-link"
     href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RP</a>.</li>
 <li>In intermediated presentation: the final (intermediated) RP. The authenticated WRP in this case is the intermediary.</li>
 </ul>
-<h5 id="source-model-neutrality">Source-Model Neutrality<a class="headerlink" href="#source-model-neutrality" title="Permanent link">&para;</a></h5>
+<h4 id="source-model-neutrality">Source-Model Neutrality<a class="headerlink" href="#source-model-neutrality" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="47e51cf2bf09abe8a7f8ead812ff668a"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -1365,7 +1553,7 @@ This section does define how the <a class="mkdocs-ezglossary-link"
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> SHALL normalize both into the same internal authorization model before applying rules [AUTHZ-GEN-07].</p>
-<h5 id="input-model">Input Model<a class="headerlink" href="#input-model" title="Permanent link">&para;</a></h5>
+<h4 id="input-model">Input Model<a class="headerlink" href="#input-model" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="8c0f3acf0837951f0d9f32bad272597d"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -1452,7 +1640,7 @@ This section does define how the <a class="mkdocs-ezglossary-link"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
     href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> URL SHALL NOT be treated as sufficient proof of registered information by itself; it MAY be used only as a discovery hint unless confirmed by an authoritative source [AUTHZ-IN-09].</p>
-<h5 id="decision-model">Decision Model<a class="headerlink" href="#decision-model" title="Permanent link">&para;</a></h5>
+<h4 id="decision-model">Decision Model<a class="headerlink" href="#decision-model" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="f260f05c5e4350c599a1c186a11da7d0"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -1542,7 +1730,7 @@ This section does define how the <a class="mkdocs-ezglossary-link"
 </tbody>
 </table>
 <p>The authorization process SHALL support transparent decision-making and SHALL NOT be a purely hidden backend check [AUTHZ-UI-05].</p>
-<h5 id="override-principles">Override Principles<a class="headerlink" href="#override-principles" title="Permanent link">&para;</a></h5>
+<h4 id="override-principles">Override Principles<a class="headerlink" href="#override-principles" title="Permanent link">&para;</a></h4>
 <p>A <code>NOT_AUTHORIZED</code> decision can be either non-overridable (the <a class="mkdocs-ezglossary-link"
     id="d5aa6952ade5246c68e6bc46337ae4f1"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -1617,9 +1805,9 @@ This section does define how the <a class="mkdocs-ezglossary-link"
     href="../../glossary-definitions/#7db9d61b526a435034b8a82bac8c1422">User</a> enabled registration verification (RPRC_16). Override mechanisms define what happens when the procedure produces a negative result.</p>
 </div>
 <p>The detailed override rules are provided in the <a href="#override-rules">Override Rules</a> section.</p>
-<h4 id="authorization-evidences">Authorization Evidences<a class="headerlink" href="#authorization-evidences" title="Permanent link">&para;</a></h4>
+<h3 id="authorization-evidences">Authorization Evidences<a class="headerlink" href="#authorization-evidences" title="Permanent link">&para;</a></h3>
 <p>This section describes the data objects that carry authorization information such as where they originate, how they are distributed, and what parameters are relevant for authorization decisions. The evaluation procedures that operate on these data objects are defined in the section <a href="#evaluation-procedures">Evaluation Procedures</a>.</p>
-<h5 id="registration-overview">Registration Overview<a class="headerlink" href="#registration-overview" title="Permanent link">&para;</a></h5>
+<h4 id="registration-overview">Registration Overview<a class="headerlink" href="#registration-overview" title="Permanent link">&para;</a></h4>
 <p>WRPs are registered with a <a class="mkdocs-ezglossary-link"
     id="b6e06270699e905f0ca82028d19e9fbb"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
@@ -1676,7 +1864,7 @@ This section does define how the <a class="mkdocs-ezglossary-link"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> of the intermediated RP contains the <code>intermediary</code> structure identifying the authorized intermediary per [ETSI TS 119 475, Table 10].</p>
-<h5 id="data-object-lifecycle">Data Object Lifecycle<a class="headerlink" href="#data-object-lifecycle" title="Permanent link">&para;</a></h5>
+<h4 id="data-object-lifecycle">Data Object Lifecycle<a class="headerlink" href="#data-object-lifecycle" title="Permanent link">&para;</a></h4>
 <p>The following diagram shows the authorization evidences and how they flow between the entities in the ecosystem.</p>
 <pre class="mermaid"><code>flowchart LR
     subgraph Entities
@@ -1786,7 +1974,7 @@ class META,PRES transport</code></pre>
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> during issuance, and evaluated at presentation time.</p>
-<h5 id="wrprc-parameters-for-authorization">WRPRC Parameters for Authorization<a class="headerlink" href="#wrprc-parameters-for-authorization" title="Permanent link">&para;</a></h5>
+<h4 id="wrprc-parameters-for-authorization">WRPRC Parameters for Authorization<a class="headerlink" href="#wrprc-parameters-for-authorization" title="Permanent link">&para;</a></h4>
 <p>The following table lists the <a class="mkdocs-ezglossary-link"
     id="a74dba192f5058e2708eddd5898b4833"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
@@ -1958,7 +2146,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
 </tr>
 </tbody>
 </table>
-<h5 id="distribution-methods">Distribution Methods<a class="headerlink" href="#distribution-methods" title="Permanent link">&para;</a></h5>
+<h4 id="distribution-methods">Distribution Methods<a class="headerlink" href="#distribution-methods" title="Permanent link">&para;</a></h4>
 <p><strong>Presentation flows.</strong> <a class="mkdocs-ezglossary-link"
     id="a627fc625e16d6b463fdc5f116354343"
     title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
@@ -2059,7 +2247,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
     data-tooltip="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
     name="artifacts:Credential Issuer Metadata"
     href="../../glossary-definitions/#5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</a> within <code>credential_configurations_supported</code> field.</p>
-<h4 id="registrar-online-service">Registrar Online Service<a class="headerlink" href="#registrar-online-service" title="Permanent link">&para;</a></h4>
+<h3 id="registrar-online-service">Registrar Online Service<a class="headerlink" href="#registrar-online-service" title="Permanent link">&para;</a></h3>
 <p>Each <a class="mkdocs-ezglossary-link"
     id="9620f6a9a900437a62b7abfc54564d32"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
@@ -2101,7 +2289,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
     name="roles:User"
     href="../../glossary-definitions/#7db9d61b526a435034b8a82bac8c1422">User</a> that an external query will be made (privacy consideration per RPRC_18).</p>
 </div>
-<h5 id="embedded-disclosure-policy">Embedded Disclosure Policy<a class="headerlink" href="#embedded-disclosure-policy" title="Permanent link">&para;</a></h5>
+<h4 id="embedded-disclosure-policy">Embedded Disclosure Policy<a class="headerlink" href="#embedded-disclosure-policy" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="208b1f948e5796c3868611747fe8be35"
     title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
@@ -2195,9 +2383,9 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
 </ul>
 </li>
 </ul>
-<h4 id="evaluation-procedures">Evaluation Procedures<a class="headerlink" href="#evaluation-procedures" title="Permanent link">&para;</a></h4>
+<h3 id="evaluation-procedures">Evaluation Procedures<a class="headerlink" href="#evaluation-procedures" title="Permanent link">&para;</a></h3>
 <p>This section defines the individual verification procedures that are composed into end-to-end flows in the <a href="#operational-flows">Operational Flows</a> section. Each procedure is self-contained: it specifies its inputs, its processing logic, and its output (a verification result code). The override behaviour for each procedure's negative outcome is detailed in the <a href="#override-rules">Override Rules</a> section.</p>
-<h5 id="wrprc-validation-procedure">WRPRC Validation Procedure<a class="headerlink" href="#wrprc-validation-procedure" title="Permanent link">&para;</a></h5>
+<h4 id="wrprc-validation-procedure">WRPRC Validation Procedure<a class="headerlink" href="#wrprc-validation-procedure" title="Permanent link">&para;</a></h4>
 <p>When a <a class="mkdocs-ezglossary-link"
     id="24ef32d7ed9c096a122b856685f4178c"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
@@ -2259,7 +2447,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> subject and fields are coherent with the scenario [AUTHZ-GEN-09].</li>
 </ol>
 <p>If any step fails, the procedure outputs <code>CERTIFICATE_INVALID</code>. This is not a final authorization decision; it triggers the <a href="#register-validation-procedure">Register Validation Procedure</a> as fallback.</p>
-<h5 id="register-validation-procedure">Register Validation Procedure<a class="headerlink" href="#register-validation-procedure" title="Permanent link">&para;</a></h5>
+<h4 id="register-validation-procedure">Register Validation Procedure<a class="headerlink" href="#register-validation-procedure" title="Permanent link">&para;</a></h4>
 <p>When the <a class="mkdocs-ezglossary-link"
     id="6b0a50f45d67b3fde3b707f28ef662ed"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
@@ -2357,7 +2545,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
 </ol>
 <p>If the URL is not present, connection fails, or validation fails, the procedure outputs <code>FAILED</code> [AUTHZ-REG-04].</p>
 <p><strong>Three-tier fallback (issuance only)</strong> (ISSU_24a and ISSU_34a): self-declared data from <code>registrar_dataset</code> (advisory only, SHALL NOT be presented as verified) [AUTHZ-IN-10].</p>
-<h5 id="binding-verification-procedure">Binding Verification Procedure<a class="headerlink" href="#binding-verification-procedure" title="Permanent link">&para;</a></h5>
+<h4 id="binding-verification-procedure">Binding Verification Procedure<a class="headerlink" href="#binding-verification-procedure" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="983b6fa63a848964a921579d80192231"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -2379,7 +2567,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>) is the same as the entity described in the authorization data.</p>
-<h6 id="common-principle">Common Principle<a class="headerlink" href="#common-principle" title="Permanent link">&para;</a></h6>
+<h5 id="common-principle">Common Principle<a class="headerlink" href="#common-principle" title="Permanent link">&para;</a></h5>
 <p>The WI SHALL compare the <a class="mkdocs-ezglossary-link"
     id="2413d7d11e5fa13c4615490fdc209e34"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
@@ -2407,7 +2595,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> response (if queried).</li>
 </ul>
 <p>All available sources SHALL be mutually consistent.</p>
-<h6 id="issuance-binding">Issuance Binding<a class="headerlink" href="#issuance-binding" title="Permanent link">&para;</a></h6>
+<h5 id="issuance-binding">Issuance Binding<a class="headerlink" href="#issuance-binding" title="Permanent link">&para;</a></h5>
 <p>During issuance, the <a class="mkdocs-ezglossary-link"
     id="321ce6a650da608f78711ff85e06dce5"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -2455,7 +2643,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
 <li>The <code>identifier</code> field from the <code>registrar_dataset</code> element in <code>issuer_info</code> (if present).</li>
 </ul>
 <p>If any pair of these identifiers is inconsistent, the procedure outputs <code>BINDING_FAILED</code>. Intermediary detection does not apply to issuance.</p>
-<h6 id="presentation-binding-intermediary-detection">Presentation Binding -- Intermediary Detection<a class="headerlink" href="#presentation-binding-intermediary-detection" title="Permanent link">&para;</a></h6>
+<h5 id="presentation-binding-intermediary-detection">Presentation Binding -- Intermediary Detection<a class="headerlink" href="#presentation-binding-intermediary-detection" title="Permanent link">&para;</a></h5>
 <p>In presentation, before verifying binding, the <a class="mkdocs-ezglossary-link"
     id="047baa1b1f8150b08f3aeec1d70b5a1a"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -2477,7 +2665,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
     href="../../glossary-definitions/#9934ce133a453144ae7c55daa308f3af">Presentation Request</a> fields according to RPRC_19a (item b). Following RPI_06, in an intermediated scenario these fields pertain to the intermediated RP.</li>
 </ul>
 <p>If the two identifiers match, the <strong>direct RP scenario</strong> applies. If they differ, the <strong>intermediary scenario</strong> applies.</p>
-<h6 id="direct-rp-binding">Direct RP Binding<a class="headerlink" href="#direct-rp-binding" title="Permanent link">&para;</a></h6>
+<h5 id="direct-rp-binding">Direct RP Binding<a class="headerlink" href="#direct-rp-binding" title="Permanent link">&para;</a></h5>
 <p>In the direct <a class="mkdocs-ezglossary-link"
     id="6569d4af2a7b1396415045bd5cc2d23b"
     title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
@@ -2528,7 +2716,7 @@ The <strong>Authorization Use</strong> column indicates how each parameter is co
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> and fall back to the <a href="#register-validation-procedure">Register Validation Procedure</a>.</p>
-<h6 id="intermediary-binding">Intermediary Binding<a class="headerlink" href="#intermediary-binding" title="Permanent link">&para;</a></h6>
+<h5 id="intermediary-binding">Intermediary Binding<a class="headerlink" href="#intermediary-binding" title="Permanent link">&para;</a></h5>
 <p>In the intermediary scenario, the <a class="mkdocs-ezglossary-link"
     id="f606c5b01a233c70631ea61931af5f56"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -2744,7 +2932,7 @@ The names are obtained from:</p>
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> response for authorization purposes.</p>
 </div>
-<h5 id="entitlement-verification-procedure">Entitlement Verification Procedure<a class="headerlink" href="#entitlement-verification-procedure" title="Permanent link">&para;</a></h5>
+<h4 id="entitlement-verification-procedure">Entitlement Verification Procedure<a class="headerlink" href="#entitlement-verification-procedure" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="6c11a8018b04474686c111d3d67c50fd"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -2780,7 +2968,7 @@ The names are obtained from:</p>
 </table>
 <p>For <strong>presentation</strong>, the expected entitlement is <code>https://uri.etsi.org/19475/Entitlement/Service_Provider</code>.</p>
 <p>If the <code>entitlements</code> array does not contain the expected value, the procedure SHALL output <code>WRONG_ENTITLEMENT</code>.</p>
-<h5 id="attestation-type-verification-procedure-issuance-only">Attestation Type Verification Procedure (Issuance Only)<a class="headerlink" href="#attestation-type-verification-procedure-issuance-only" title="Permanent link">&para;</a></h5>
+<h4 id="attestation-type-verification-procedure-issuance-only">Attestation Type Verification Procedure (Issuance Only)<a class="headerlink" href="#attestation-type-verification-procedure-issuance-only" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="1262936298a0ef9e5555757ba6c7af95"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -2832,7 +3020,7 @@ The names are obtained from:</p>
     href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</a> VC, <code>doctype</code> for mDL).</li>
 </ul>
 <p>If not found, the procedure SHALL output <code>ATTESTATION_TYPE_NOT_REGISTERED</code>.</p>
-<h5 id="scope-comparison-procedure-presentation-only-user-optional">Scope Comparison Procedure (Presentation Only, user-optional)<a class="headerlink" href="#scope-comparison-procedure-presentation-only-user-optional" title="Permanent link">&para;</a></h5>
+<h4 id="scope-comparison-procedure-presentation-only-user-optional">Scope Comparison Procedure (Presentation Only, user-optional)<a class="headerlink" href="#scope-comparison-procedure-presentation-only-user-optional" title="Permanent link">&para;</a></h4>
 <p>The <a class="mkdocs-ezglossary-link"
     id="622866e1c272b547eecdff810c8eaf24"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -2854,7 +3042,7 @@ The names are obtained from:</p>
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> SHALL output <code>OVERASKING_DETECTED</code> and identify the unregistered attributes [AUTHZ-PRES-02].</p>
-<h5 id="edp-evaluation-procedure">EDP Evaluation Procedure<a class="headerlink" href="#edp-evaluation-procedure" title="Permanent link">&para;</a></h5>
+<h4 id="edp-evaluation-procedure">EDP Evaluation Procedure<a class="headerlink" href="#edp-evaluation-procedure" title="Permanent link">&para;</a></h4>
 <p>For each <a class="mkdocs-ezglossary-link"
     id="d65427bd8137b9f876d26e12eb40ff88"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
@@ -3037,7 +3225,7 @@ If the <a class="mkdocs-ezglossary-link"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
     href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> does not exist (RPA_11).</p>
-<h4 id="override-rules">Override Rules<a class="headerlink" href="#override-rules" title="Permanent link">&para;</a></h4>
+<h3 id="override-rules">Override Rules<a class="headerlink" href="#override-rules" title="Permanent link">&para;</a></h3>
 <p>This section details the override behaviour for each procedure when it provides a negative outcome. Each row identifies a procedure, the phase in which it applies, the result code produced on failure, and whether the <a class="mkdocs-ezglossary-link"
     id="ebe4ec9a1a83e0091bd1ca960ad13d5d"
     title="A natural or legal person, or a natural person representing another natural person or a legal person, that uses trust services or electronic identification means provided in accordance with the [European Digital Identity Regulation]. [ARF]"
@@ -3162,10 +3350,10 @@ If the <a class="mkdocs-ezglossary-link"
 </tr>
 </tbody>
 </table>
-<h4 id="operational-flows">Operational Flows<a class="headerlink" href="#operational-flows" title="Permanent link">&para;</a></h4>
+<h3 id="operational-flows">Operational Flows<a class="headerlink" href="#operational-flows" title="Permanent link">&para;</a></h3>
 <p>This section combines the evaluation procedures defined above into end-to-end flows for issuance and presentation.</p>
-<h5 id="authorization-during-issuance">Authorization During Issuance<a class="headerlink" href="#authorization-during-issuance" title="Permanent link">&para;</a></h5>
-<h6 id="interaction-flow">Interaction Flow<a class="headerlink" href="#interaction-flow" title="Permanent link">&para;</a></h6>
+<h4 id="authorization-during-issuance">Authorization During Issuance<a class="headerlink" href="#authorization-during-issuance" title="Permanent link">&para;</a></h4>
+<h5 id="interaction-flow">Interaction Flow<a class="headerlink" href="#interaction-flow" title="Permanent link">&para;</a></h5>
 <pre class="mermaid"><code>sequenceDiagram
     %%autonumber
     participant User
@@ -3204,7 +3392,7 @@ If the <a class="mkdocs-ezglossary-link"
     else Verification failed
         WI-&gt;&gt;User: 12b. Display warning, block issuance
     end</code></pre>
-<h6 id="step-by-step-operations">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations" title="Permanent link">&para;</a></h6>
+<h5 id="step-by-step-operations">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations" title="Permanent link">&para;</a></h5>
 <p><strong>Steps 1-3: Obtain <a class="mkdocs-ezglossary-link"
     id="2dbc12ec76c67f350a29a5730efe8871"
     title="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
@@ -3327,8 +3515,8 @@ If the <a class="mkdocs-ezglossary-link"
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> locally if present (EDP_09) [AUTHZ-EDP-02] and proceed. On cancellation, terminate.</p>
-<h5 id="authorization-during-presentation">Authorization During Presentation<a class="headerlink" href="#authorization-during-presentation" title="Permanent link">&para;</a></h5>
-<h6 id="common-authorization-semantics">Common Authorization Semantics<a class="headerlink" href="#common-authorization-semantics" title="Permanent link">&para;</a></h6>
+<h4 id="authorization-during-presentation">Authorization During Presentation<a class="headerlink" href="#authorization-during-presentation" title="Permanent link">&para;</a></h4>
+<h5 id="common-authorization-semantics">Common Authorization Semantics<a class="headerlink" href="#common-authorization-semantics" title="Permanent link">&para;</a></h5>
 <p>The authorization logic is the same for remote and proximity flows [AUTHZ-PRES-03]. Main Differences are limited to:</p>
 <ul>
 <li>Transport mechanism.</li>
@@ -3351,7 +3539,7 @@ If the <a class="mkdocs-ezglossary-link"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> data structure.</li>
 </ul>
-<h6 id="interaction-flow_1">Interaction Flow<a class="headerlink" href="#interaction-flow_1" title="Permanent link">&para;</a></h6>
+<h5 id="interaction-flow_1">Interaction Flow<a class="headerlink" href="#interaction-flow_1" title="Permanent link">&para;</a></h5>
 <pre class="mermaid"><code>sequenceDiagram
     %%autonumber
     participant RP as Relying Party
@@ -3382,7 +3570,7 @@ If the <a class="mkdocs-ezglossary-link"
     Note over WI: 8. EDP Evaluation Procedure (always)
     WI-&gt;&gt;User: 9. Display results + advisories + request approval
     User--&gt;&gt;WI: 10. User decision</code></pre>
-<h6 id="step-by-step-operations_1">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations_1" title="Permanent link">&para;</a></h6>
+<h5 id="step-by-step-operations_1">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations_1" title="Permanent link">&para;</a></h5>
 <p><strong>Step 1: Receive request and check User opt-in.</strong> The <a class="mkdocs-ezglossary-link"
     id="512cc72ae72cec03c8a2b9114a7822d5"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -3488,7 +3676,7 @@ If the <a class="mkdocs-ezglossary-link"
     data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
     name="components:Wallet Instance"
     href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">WI</a> SHALL NOT allow continuation [AUTHZ-UI-12].</p>
-<h6 id="remote-flow-specifics">Remote Flow Specifics<a class="headerlink" href="#remote-flow-specifics" title="Permanent link">&para;</a></h6>
+<h5 id="remote-flow-specifics">Remote Flow Specifics<a class="headerlink" href="#remote-flow-specifics" title="Permanent link">&para;</a></h5>
 <p>The RP Instance SHALL include RPRC_19a extension fields and, if available, the <a class="mkdocs-ezglossary-link"
     id="749111e09a4c24211dc677baed19f198"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
@@ -3500,7 +3688,7 @@ If the <a class="mkdocs-ezglossary-link"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> SHALL be JWT (<code>typ = "rc-wrp+jwt"</code>). Requested attributes SHALL be extracted from DCQL <code>credential_queries[].claims[]</code> paths.</p>
-<h6 id="proximity-flow-specifics">Proximity Flow Specifics<a class="headerlink" href="#proximity-flow-specifics" title="Permanent link">&para;</a></h6>
+<h5 id="proximity-flow-specifics">Proximity Flow Specifics<a class="headerlink" href="#proximity-flow-specifics" title="Permanent link">&para;</a></h5>
 <p>The <a class="mkdocs-ezglossary-link"
     id="c9aad55e86a2bb590b7422acc4c2e0f8"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
@@ -3512,7 +3700,7 @@ If the <a class="mkdocs-ezglossary-link"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> SHALL be CWT (<code>typ = "rc-wrp+cwt"</code>), signing algorithm from COSE header. Requested attributes SHALL be extracted from <code>docRequest.itemRequest.nameSpaces</code>.</p>
-<h6 id="intermediary-handling">Intermediary Handling<a class="headerlink" href="#intermediary-handling" title="Permanent link">&para;</a></h6>
+<h5 id="intermediary-handling">Intermediary Handling<a class="headerlink" href="#intermediary-handling" title="Permanent link">&para;</a></h5>
 <p>Intermediary handling applies to both flows [AUTHZ-INT-04]. The <a class="mkdocs-ezglossary-link"
     id="d62ad1d42bacd3c408c49109545c0375"
     title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
@@ -3531,7 +3719,7 @@ If the <a class="mkdocs-ezglossary-link"
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> [AUTHZ-INT-07].</p>
-<h6 id="combined-mechanisms-flowchart">Combined Mechanisms Flowchart<a class="headerlink" href="#combined-mechanisms-flowchart" title="Permanent link">&para;</a></h6>
+<h5 id="combined-mechanisms-flowchart">Combined Mechanisms Flowchart<a class="headerlink" href="#combined-mechanisms-flowchart" title="Permanent link">&para;</a></h5>
 <pre class="mermaid"><code>flowchart TD
     Start([Presentation request received]) --&gt; UserOptIn{User opted-in&lt;br/&gt;to verify?}
 
@@ -3595,7 +3783,7 @@ If the <a class="mkdocs-ezglossary-link"
     style WarnScope fill:#ffffcc
     style Present fill:#ccffcc
     style RegPassed fill:#ccffcc</code></pre>
-<h4 id="authorization-requirements">Authorization Requirements<a class="headerlink" href="#authorization-requirements" title="Permanent link">&para;</a></h4>
+<h3 id="authorization-requirements">Authorization Requirements<a class="headerlink" href="#authorization-requirements" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This table is provided for implementation and conformance-verification purposes. It consolidates the normative requirements defined throughout the specification body. In case of interpretative ambiguity between this table and the normative sections of the specification, the normative sections SHALL prevail.</p>
@@ -4338,7 +4526,7 @@ If the <a class="mkdocs-ezglossary-link"
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:40:10 UTC">July 27, 2026 16:40:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:51:01 UTC">July 27, 2026 16:51:01</span>
   </span>
 
     

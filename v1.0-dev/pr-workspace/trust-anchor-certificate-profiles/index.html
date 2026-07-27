@@ -85,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#definitions" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -659,6 +664,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -852,6 +861,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../registration-certificate/" class="md-nav__link">
         
   
@@ -971,6 +1008,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -987,6 +1042,67 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trust-model-assumptions-for-entity-trust-anchors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trust model assumptions for entity trust anchors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trust-anchor-certificate-profile-x509" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trust Anchor Certificate Profile (X.509)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-pseudo-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples (pseudo-structure)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1036,6 +1152,34 @@
     
   
     Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
   
 
     
@@ -1182,18 +1326,18 @@
   <h1>Trust anchor certificate profiles</h1>
 
 <p>This section defines an interoperable <strong>X.509 certificate profile</strong> for <strong>entity trust anchors</strong> used in the <a class="mkdocs-ezglossary-link"
-    id="1cfbcd2564b34170460db197f57e064b"
+    id="9a4ff91504200b6c9e9e56b4033a2d4d"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
     href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDIW</a> ecosystem.</p>
 <p>A <strong><a class="mkdocs-ezglossary-link"
-    id="6ec36a9e45a99df5e80c0038fc8357f4"
+    id="3e478bc26e62048b0510006ab6772396"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a></strong> is a trusted public key (and associated data) used as an input to certification path validation. In this profile, the <a class="mkdocs-ezglossary-link"
-    id="15145928a823315e5fba82b7a58cc246"
+    id="bc0267607dec5983ce03965011dbffd9"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1203,7 +1347,7 @@
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TLs</a> or <a class="mkdocs-ezglossary-link"
-    id="889f769f0e77e792158d65425b2fce54"
+    id="84e96068baa84ffb9046f1d4c9e167bd"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1216,7 +1360,7 @@
     href="../../glossary-definitions/#ce1d969509e6bbdda2ade86ee953baf1">HAIP</a>, clause 6.1:</p>
 <ul>
 <li><a class="mkdocs-ezglossary-link"
-    id="8afde773bec2fb998a05981143c03734"
+    id="b4a3f504f81da02db687cb93050c5176"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -1227,12 +1371,12 @@
     name="formats:Selective Disclosure JWT (SD-JWT)"
     href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</a> <code>x5c</code> header (the <code>x5c</code> header SHALL NOT be empty).</li>
 <li><a class="mkdocs-ezglossary-link"
-    id="22ab72ea0d34765ea2aa02217193fbee"
+    id="45244f149d86684e194e4d84ff546e0a"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificate of the <a class="mkdocs-ezglossary-link"
-    id="4c5c6b1c469c8990231b65a3d1163035"
+    id="b72075939bd81f83cf88fe62ee3a43c2"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -1244,12 +1388,12 @@
     href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</a> <code>x5c</code> header.</li>
 </ul>
 <p>The implication of that is that the <a class="mkdocs-ezglossary-link"
-    id="b4a3f504f81da02db687cb93050c5176"
+    id="a6c22976c61a8d1155cc90cbcf072b08"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
     href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a>'s sign/seal certificate SHALL NOT be a <a class="mkdocs-ezglossary-link"
-    id="38aa6acdfc6ab6869d66170b626b0050"
+    id="c9cbda657ecc42f27fd32ff2c6ddf456"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1259,12 +1403,12 @@
 <p>End-entity "provider sign/seal certificates" issued to PID Providers, Wallet Providers, EAA/QEAA Providers, and PSBEAA Providers. Those are profiled by [ETSI TS 119 412-6] and referenced [ETSI EN 319 412] parts.</p>
 </div>
 <hr />
-<h4 id="definitions">Definitions<a class="headerlink" href="#definitions" title="Permanent link">&para;</a></h4>
-<h5 id="trust-anchor">Trust Anchor<a class="headerlink" href="#trust-anchor" title="Permanent link">&para;</a></h5>
+<h3 id="definitions">Definitions<a class="headerlink" href="#definitions" title="Permanent link">&para;</a></h3>
+<h4 id="trust-anchor">Trust Anchor<a class="headerlink" href="#trust-anchor" title="Permanent link">&para;</a></h4>
 <p>A <strong>trust anchor</strong> is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the trust anchor is authoritative.</p>
-<h5 id="entity-trust-anchor-certificate-eudiw-context">Entity Trust Anchor Certificate (EUDIW context)<a class="headerlink" href="#entity-trust-anchor-certificate-eudiw-context" title="Permanent link">&para;</a></h5>
+<h4 id="entity-trust-anchor-certificate-eudiw-context">Entity Trust Anchor Certificate (EUDIW context)<a class="headerlink" href="#entity-trust-anchor-certificate-eudiw-context" title="Permanent link">&para;</a></h4>
 <p>An <strong>Entity Trust Anchor Certificate</strong> is an <strong>X.509 certificate</strong> that is explicitly trusted by policy because it is published as a <a class="mkdocs-ezglossary-link"
-    id="773d6a2ca4f3ff70d79716ae30c3e492"
+    id="7c7882bc972c5bc3b800b574eb1702b3"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1272,25 +1416,25 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>A <a class="mkdocs-ezglossary-link"
-    id="cb253f592726ff3d8b48c636bc519c39"
+    id="7e75347bd9c0dcdd9e51d30d655100f4"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificate may be <strong>self-signed</strong> or <strong>non-self-signed</strong>. In both cases it is treated as a <a class="mkdocs-ezglossary-link"
-    id="3e478bc26e62048b0510006ab6772396"
+    id="bb0d13e00f1847f538d31b2576df6102"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> if the relying party's trust policy (here: LoTE/Trusted List-based trust source) designates it as such.</p>
 </div>
-<h5 id="termination-of-certificate-path-validation">Termination of certificate path validation<a class="headerlink" href="#termination-of-certificate-path-validation" title="Permanent link">&para;</a></h5>
+<h4 id="termination-of-certificate-path-validation">Termination of certificate path validation<a class="headerlink" href="#termination-of-certificate-path-validation" title="Permanent link">&para;</a></h4>
 <p>Relying parties validate a presented certificate by building a certification path that <strong>terminates at a <a class="mkdocs-ezglossary-link"
-    id="bc0267607dec5983ce03965011dbffd9"
+    id="04318707cab5000be3db3e622139bb40"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a></strong>. In this ecosystem, path construction and validation <strong>SHALL terminate</strong> at the first certificate that matches a LoTE-listed <a class="mkdocs-ezglossary-link"
-    id="45244f149d86684e194e4d84ff546e0a"
+    id="102d9e41deb0200756c407693b065ce7"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1305,14 +1449,14 @@
 <li><strong>RFC 5914</strong></li>
 </ul>
 </details>
-<h4 id="trust-model-assumptions-for-entity-trust-anchors">Trust model assumptions for entity trust anchors<a class="headerlink" href="#trust-model-assumptions-for-entity-trust-anchors" title="Permanent link">&para;</a></h4>
-<h5 id="what-the-trust-anchor-certificate-is-used-for">What the trust anchor certificate is used for<a class="headerlink" href="#what-the-trust-anchor-certificate-is-used-for" title="Permanent link">&para;</a></h5>
+<h3 id="trust-model-assumptions-for-entity-trust-anchors">Trust model assumptions for entity trust anchors<a class="headerlink" href="#trust-model-assumptions-for-entity-trust-anchors" title="Permanent link">&para;</a></h3>
+<h4 id="what-the-trust-anchor-certificate-is-used-for">What the trust anchor certificate is used for<a class="headerlink" href="#what-the-trust-anchor-certificate-is-used-for" title="Permanent link">&para;</a></h4>
 <p>The entity trust anchor certificate is <strong>not</strong> the certificate used to sign application payloads. Instead, it is used as the <strong>trust termination point</strong> for validating other certificates (typically end-entity certificates) that are used to sign/seal data.</p>
-<h5 id="ca-capability-requirement-issuer-style-trust-anchor">CA capability requirement (issuer-style trust anchor)<a class="headerlink" href="#ca-capability-requirement-issuer-style-trust-anchor" title="Permanent link">&para;</a></h5>
+<h4 id="ca-capability-requirement-issuer-style-trust-anchor">CA capability requirement (issuer-style trust anchor)<a class="headerlink" href="#ca-capability-requirement-issuer-style-trust-anchor" title="Permanent link">&para;</a></h4>
 <p>If the entity trust anchor certificate is used to <strong>issue/sign other certificates</strong> (i.e., it appears as an issuer in the validated path), then it SHALL be a <strong>CA certificate</strong> for X.509 path validation purposes (i.e., it SHALL signal CA capability using X.509 v3 extensions).</p>
-<h5 id="validity-checking-policy">Validity checking policy<a class="headerlink" href="#validity-checking-policy" title="Permanent link">&para;</a></h5>
+<h4 id="validity-checking-policy">Validity checking policy<a class="headerlink" href="#validity-checking-policy" title="Permanent link">&para;</a></h4>
 <p>Relying parties SHALL check the validity period of the trust anchor certificate and treat it as invalid if expired or not yet valid.</p>
-<h5 id="self-signed-and-non-self-signed-trust-anchors">Self-signed and non-self-signed trust anchors<a class="headerlink" href="#self-signed-and-non-self-signed-trust-anchors" title="Permanent link">&para;</a></h5>
+<h4 id="self-signed-and-non-self-signed-trust-anchors">Self-signed and non-self-signed trust anchors<a class="headerlink" href="#self-signed-and-non-self-signed-trust-anchors" title="Permanent link">&para;</a></h4>
 <p>A LoTE/Trusted List-published trust anchor certificate MAY be:</p>
 <ul>
 <li><strong>Self-signed</strong> (traditional root CA style); or</li>
@@ -1320,8 +1464,8 @@
 </ul>
 <p>Relying parties SHALL NOT require an additional issuer chain above a LoTE-designated trust anchor, even if it is not self-signed, because the trust anchor is a trust-store input designated by policy.</p>
 <hr />
-<h4 id="trust-anchor-certificate-profile-x509">Trust Anchor Certificate Profile (X.509)<a class="headerlink" href="#trust-anchor-certificate-profile-x509" title="Permanent link">&para;</a></h4>
-<h5 id="presence-semantics">Presence semantics<a class="headerlink" href="#presence-semantics" title="Permanent link">&para;</a></h5>
+<h3 id="trust-anchor-certificate-profile-x509">Trust Anchor Certificate Profile (X.509)<a class="headerlink" href="#trust-anchor-certificate-profile-x509" title="Permanent link">&para;</a></h3>
+<h4 id="presence-semantics">Presence semantics<a class="headerlink" href="#presence-semantics" title="Permanent link">&para;</a></h4>
 <p>The column "Presence" in tables below contains the specification of the presence of the certificate parameter as follows:</p>
 <ul>
 <li><strong>REQUIRED</strong>: The parameter SHALL be present.</li>
@@ -1329,7 +1473,7 @@
 <li><strong>OPTIONAL</strong>: The parameter is not required and can be omitted.</li>
 </ul>
 <p>The column "Criticality" of the certificate extensions uses the semantics defined in RFC 5280.</p>
-<h5 id="basic-certificate-fields">Basic certificate fields<a class="headerlink" href="#basic-certificate-fields" title="Permanent link">&para;</a></h5>
+<h4 id="basic-certificate-fields">Basic certificate fields<a class="headerlink" href="#basic-certificate-fields" title="Permanent link">&para;</a></h4>
 <p>The following table lists common parameters that are mandatory for an entity trust anchor certificate.</p>
 <table>
 <thead>
@@ -1400,7 +1544,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="required-extensions">Required extensions<a class="headerlink" href="#required-extensions" title="Permanent link">&para;</a></h5>
+<h4 id="required-extensions">Required extensions<a class="headerlink" href="#required-extensions" title="Permanent link">&para;</a></h4>
 <p>The following table lists the extensions that are mandatory or conditional for an entity trust anchor certificate.</p>
 <table>
 <thead>
@@ -1448,14 +1592,14 @@
 </tr>
 </tbody>
 </table>
-<h6 id="note-path-length-constraint-policy">Note: Path length constraint policy<a class="headerlink" href="#note-path-length-constraint-policy" title="Permanent link">&para;</a></h6>
+<h5 id="note-path-length-constraint-policy">Note: Path length constraint policy<a class="headerlink" href="#note-path-length-constraint-policy" title="Permanent link">&para;</a></h5>
 <p>The <code>pathLenConstraint</code> restricts the depth of certification paths below the trust anchor.</p>
 <ul>
 <li>A value of <code>0</code> means that the trust anchor MAY issue end-entity certificates but SHALL NOT allow additional non-self-issued intermediate CA certificates in the path.</li>
 <li>Absence of the <code>pathLenConstraint</code> implies that no explicit limit is imposed by the certificate itself.</li>
 </ul>
 <p>This profile allows the field to be OPTIONAL to support interoperability with different PKI deployment models. However, setting <code>pathLenConstraint = 0</code> is RECOMMENDED to reduce trust hierarchy complexity, improve predictability of certificate chains, and limit the risk associated with unintended subordinate certification authorities.</p>
-<h5 id="optional-deployment-driven-extensions">Optional (deployment-driven) extensions<a class="headerlink" href="#optional-deployment-driven-extensions" title="Permanent link">&para;</a></h5>
+<h4 id="optional-deployment-driven-extensions">Optional (deployment-driven) extensions<a class="headerlink" href="#optional-deployment-driven-extensions" title="Permanent link">&para;</a></h4>
 <p>The following extensions are OPTIONAL because their necessity depends on the revocation/status model used in a given deployment.</p>
 <table>
 <thead>
@@ -1503,56 +1647,56 @@
 </tr>
 </tbody>
 </table>
-<h5 id="certificate-content-requirements-derived-from-lote">Certificate content requirements derived from LoTE<a class="headerlink" href="#certificate-content-requirements-derived-from-lote" title="Permanent link">&para;</a></h5>
+<h4 id="certificate-content-requirements-derived-from-lote">Certificate content requirements derived from LoTE<a class="headerlink" href="#certificate-content-requirements-derived-from-lote" title="Permanent link">&para;</a></h4>
 <p>Below are more in details defined requirements on the Trust Anchor certificate fields based on ETSI TS 119 602 and ETSI TS 119 612.</p>
-<h6 id="subject-distinguished-name-requirements">Subject Distinguished Name requirements<a class="headerlink" href="#subject-distinguished-name-requirements" title="Permanent link">&para;</a></h6>
+<h5 id="subject-distinguished-name-requirements">Subject Distinguished Name requirements<a class="headerlink" href="#subject-distinguished-name-requirements" title="Permanent link">&para;</a></h5>
 <ul>
 <li>The Trust Anchor certificate <strong>SHALL</strong> contain a non-empty subject distinguished name.</li>
 <li>The subject distinguished name <strong>SHALL</strong> identify the entity associated with the trust anchor public key in a clear and unambiguous manner.</li>
 <li>If the Trust Anchor represents a legal or organizational entity, the subject distinguished name <strong>SHALL</strong> contain an organizationName attribute identifying that entity.</li>
 </ul>
-<h6 id="validity-requirements">Validity requirements<a class="headerlink" href="#validity-requirements" title="Permanent link">&para;</a></h6>
+<h5 id="validity-requirements">Validity requirements<a class="headerlink" href="#validity-requirements" title="Permanent link">&para;</a></h5>
 <ul>
 <li>The Trust Anchor certificate <strong>SHALL</strong> contain a validity field specifying the notBefore and notAfter time interval during which the certificate is valid.</li>
 <li>Relying parties <strong>SHALL</strong> check the validity period of the Trust Anchor certificate and <strong>SHALL</strong> treat the certificate as invalid if the current time is before notBefore or after notAfter.</li>
 </ul>
-<h6 id="issuer-distinguished-name-requirements">Issuer Distinguished Name requirements<a class="headerlink" href="#issuer-distinguished-name-requirements" title="Permanent link">&para;</a></h6>
+<h5 id="issuer-distinguished-name-requirements">Issuer Distinguished Name requirements<a class="headerlink" href="#issuer-distinguished-name-requirements" title="Permanent link">&para;</a></h5>
 <ul>
 <li>The Trust Anchor certificate <strong>SHALL</strong> contain an issuer distinguished name.</li>
 <li>If the Trust Anchor certificate is self-signed, the issuer distinguished name <strong>SHALL</strong> be identical to the subject distinguished name.</li>
 <li>If the Trust Anchor certificate is non-self-signed, the issuer distinguished name <strong>SHALL</strong> identify the entity that signed and issued the certificate and <strong>MAY</strong> differ from the subject distinguished name.</li>
 </ul>
-<h6 id="subject-key-identification-requirements">Subject Key Identification requirements<a class="headerlink" href="#subject-key-identification-requirements" title="Permanent link">&para;</a></h6>
+<h5 id="subject-key-identification-requirements">Subject Key Identification requirements<a class="headerlink" href="#subject-key-identification-requirements" title="Permanent link">&para;</a></h5>
 <ul>
 <li>The Trust Anchor certificate <strong>SHALL</strong> contain a non-critical subjectKeyIdentifier extension identifying the trust anchor public key.</li>
 <li>The value of the subjectKeyIdentifier extension <strong>SHOULD</strong> be derived from the trust anchor public key in a stable and interoperable manner.</li>
 <li>The subjectKeyIdentifier extension <strong>SHOULD</strong> support reliable certificate path construction and certificate matching in LoTE / Trusted List based deployments.</li>
 </ul>
-<h6 id="authority-key-identifier-requirements">Authority Key Identifier requirements<a class="headerlink" href="#authority-key-identifier-requirements" title="Permanent link">&para;</a></h6>
+<h5 id="authority-key-identifier-requirements">Authority Key Identifier requirements<a class="headerlink" href="#authority-key-identifier-requirements" title="Permanent link">&para;</a></h5>
 <ul>
 <li>For a non-self-signed Trust Anchor certificate, a non-critical authorityKeyIdentifier extension <strong>SHALL</strong> be present.</li>
 <li>For a self-signed Trust Anchor certificate, a non-critical authorityKeyIdentifier extension is <strong>RECOMMENDED</strong>.</li>
 <li>Where present, the authorityKeyIdentifier extension <strong>SHOULD</strong> identify the key of the certificate issuer.</li>
 </ul>
-<h6 id="basic-constraints-requirements">Basic Constraints requirements<a class="headerlink" href="#basic-constraints-requirements" title="Permanent link">&para;</a></h6>
+<h5 id="basic-constraints-requirements">Basic Constraints requirements<a class="headerlink" href="#basic-constraints-requirements" title="Permanent link">&para;</a></h5>
 <ul>
 <li>The Trust Anchor certificate <strong>SHALL</strong> contain a critical basicConstraints extension with cA set to TRUE.</li>
 <li>The pathLenConstraint field in the basicConstraints extension <strong>MAY</strong> be present.</li>
 <li>If present, pathLenConstraint <strong>SHALL</strong> limit the number of non-self-issued intermediate CA certificates below the Trust Anchor certificate.</li>
 <li>Setting pathLenConstraint to 0 is <strong>RECOMMENDED</strong> unless a documented operational need exists to support additional subordinate CA tiers.</li>
 </ul>
-<h6 id="key-usage-requirements">Key Usage requirements<a class="headerlink" href="#key-usage-requirements" title="Permanent link">&para;</a></h6>
+<h5 id="key-usage-requirements">Key Usage requirements<a class="headerlink" href="#key-usage-requirements" title="Permanent link">&para;</a></h5>
 <ul>
 <li>The Trust Anchor certificate <strong>SHALL</strong> contain a critical keyUsage extension that includes the keyCertSign bit.</li>
 <li>The keyUsage extension <strong>MAY</strong> include the cRLSign bit where the Trust Anchor certificate is used by a CA that signs certificate revocation lists.</li>
 <li>The keyUsage extension <strong>SHOULD</strong> be limited to usages consistent with the certification authority role of the Trust Anchor certificate.</li>
 </ul>
 <hr />
-<h4 id="examples-pseudo-structure">Examples (pseudo-structure)<a class="headerlink" href="#examples-pseudo-structure" title="Permanent link">&para;</a></h4>
+<h3 id="examples-pseudo-structure">Examples (pseudo-structure)<a class="headerlink" href="#examples-pseudo-structure" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>The following examples are illustrative. They focus on the profile-relevant fields and extensions.</p>
 </blockquote>
-<h5 id="example-a-self-signed-entity-trust-anchor-root-style">Example A — Self-signed entity trust anchor (root-style)<a class="headerlink" href="#example-a-self-signed-entity-trust-anchor-root-style" title="Permanent link">&para;</a></h5>
+<h4 id="example-a-self-signed-entity-trust-anchor-root-style">Example A — Self-signed entity trust anchor (root-style)<a class="headerlink" href="#example-a-self-signed-entity-trust-anchor-root-style" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>AccessCertificate trustAnchor = {
   tbsCertificate: {
     version: 2,  // v3
@@ -1606,7 +1750,7 @@
   }
 }
 </code></pre></div>
-<h5 id="example-b-non-self-signed-entity-trust-anchor-pinned-intermediate-ca">Example B — Non-self-signed entity trust anchor (pinned intermediate CA)<a class="headerlink" href="#example-b-non-self-signed-entity-trust-anchor-pinned-intermediate-ca" title="Permanent link">&para;</a></h5>
+<h4 id="example-b-non-self-signed-entity-trust-anchor-pinned-intermediate-ca">Example B — Non-self-signed entity trust anchor (pinned intermediate CA)<a class="headerlink" href="#example-b-non-self-signed-entity-trust-anchor-pinned-intermediate-ca" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>AccessCertificate trustAnchor = {
   tbsCertificate: {
     version: 2,  // v3
@@ -1690,7 +1834,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:40:10 UTC">July 27, 2026 16:40:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:51:01 UTC">July 27, 2026 16:51:01</span>
   </span>
 
     

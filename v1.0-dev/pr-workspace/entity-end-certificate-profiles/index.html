@@ -18,7 +18,7 @@
         <link rel="prev" href="../embedded-disclosure-policy/">
       
       
-        <link rel="next" href="../registration-certificate/">
+        <link rel="next" href="../onboarding-process/">
       
       
         
@@ -84,6 +84,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#end-entity-signseal-certificate-content" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -659,6 +664,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -831,6 +840,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -848,6 +875,73 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#end-entity-signseal-certificate-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End Entity Sign/Seal Certificate Content
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signseal-certificate-path-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign/Seal Certificate Path Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1056,6 +1150,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../trust-checks-presentation/" class="md-nav__link">
         
   
@@ -1198,7 +1320,7 @@
 <li><strong>RFC 5280</strong></li>
 </ul>
 </details>
-<h4 id="end-entity-signseal-certificate-content">End Entity Sign/Seal Certificate Content<a class="headerlink" href="#end-entity-signseal-certificate-content" title="Permanent link">&para;</a></h4>
+<h3 id="end-entity-signseal-certificate-content">End Entity Sign/Seal Certificate Content<a class="headerlink" href="#end-entity-signseal-certificate-content" title="Permanent link">&para;</a></h3>
 <p>In the following sections we are providing tables with parameters and extensions that are mandatory for the specific End Entity Sign/Seal Certificate as described in ETSI specifications. For simplicity, optional attributes are omitted from this document, unless their requirement is conditional, or it could be useful to mention them.</p>
 <p>The column "Presence" in tables below contains the specification of the presence of the certificate parameter as follows:</p>
 <ul>
@@ -1246,7 +1368,7 @@
 <li>C: The extension SHALL be considered critical.</li>
 <li>NC: The extension SHALL be considered non-critical.</li>
 </ul>
-<h5 id="general-content">General Content<a class="headerlink" href="#general-content" title="Permanent link">&para;</a></h5>
+<h4 id="general-content">General Content<a class="headerlink" href="#general-content" title="Permanent link">&para;</a></h4>
 <p>The following table lists all the common parameters that are mandatory or conditional for end-certificates of all entities of EUDIW ecosystem described in this document. Details of those parameters are described in IETF RFC 5280 and further scoped in ETSI EN 319 412-2 (in case of Natural Persons) and ETSI EN 319 412-3 (in case of Legal Persons).</p>
 <table>
 <thead>
@@ -1450,7 +1572,7 @@
 <p class="admonition-title">Note</p>
 <p>In the APTITUDE profiles, Sign/Seal Certificates SHALL be long lived certificates. Thus the <code>noRevAvail</code> and <code>ext-etsi-valassured-ST-certs</code> SHALL NOT be used. </p>
 </div>
-<h5 id="pid-provider-signseal-certificate-content">PID Provider Sign/Seal Certificate Content<a class="headerlink" href="#pid-provider-signseal-certificate-content" title="Permanent link">&para;</a></h5>
+<h4 id="pid-provider-signseal-certificate-content">PID Provider Sign/Seal Certificate Content<a class="headerlink" href="#pid-provider-signseal-certificate-content" title="Permanent link">&para;</a></h4>
 <p>The following table lists all new or modified parameters that are mandatory or conditional for PID Providers as further scoped in ETSI TS 119 412-6, clause 4.</p>
 <table>
 <thead>
@@ -1519,7 +1641,7 @@
 </tr>
 </tbody>
 </table>
-<h6 id="pid-provider-signseal-certificate-example">PID Provider Sign/Seal Certificate Example<a class="headerlink" href="#pid-provider-signseal-certificate-example" title="Permanent link">&para;</a></h6>
+<h5 id="pid-provider-signseal-certificate-example">PID Provider Sign/Seal Certificate Example<a class="headerlink" href="#pid-provider-signseal-certificate-example" title="Permanent link">&para;</a></h5>
 <p>The following is an example of a PID Provider's non-self-signed end-certificate for legal persons.</p>
 <div class="highlight"><pre><span></span><code>AccessCertificate cert = {
 
@@ -1659,7 +1781,7 @@
   signatureValue: &quot;BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))&quot;
 }
 </code></pre></div>
-<h5 id="wallet-provider-signseal-certificate-content">Wallet Provider Sign/Seal Certificate Content<a class="headerlink" href="#wallet-provider-signseal-certificate-content" title="Permanent link">&para;</a></h5>
+<h4 id="wallet-provider-signseal-certificate-content">Wallet Provider Sign/Seal Certificate Content<a class="headerlink" href="#wallet-provider-signseal-certificate-content" title="Permanent link">&para;</a></h4>
 <p>The following table lists all new or modified parameters that are mandatory or conditional for Wallet Providers as further scoped in ETSI TS 119 412-6, clause 5.1.</p>
 <table>
 <thead>
@@ -1728,7 +1850,7 @@
 </tr>
 </tbody>
 </table>
-<h6 id="wallet-provider-signseal-certificate-example">Wallet Provider Sign/Seal Certificate Example<a class="headerlink" href="#wallet-provider-signseal-certificate-example" title="Permanent link">&para;</a></h6>
+<h5 id="wallet-provider-signseal-certificate-example">Wallet Provider Sign/Seal Certificate Example<a class="headerlink" href="#wallet-provider-signseal-certificate-example" title="Permanent link">&para;</a></h5>
 <p>The following is an example of a Wallet Provider's non-self-signed end-certificate for legal persons.</p>
 <div class="highlight"><pre><span></span><code>AccessCertificate cert = {
 
@@ -1868,12 +1990,12 @@
   signatureValue: &quot;BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))&quot;
 }
 </code></pre></div>
-<h5 id="eaaqeaa-provider-signseal-certificate-content">EAA/QEAA Provider Sign/Seal Certificate Content<a class="headerlink" href="#eaaqeaa-provider-signseal-certificate-content" title="Permanent link">&para;</a></h5>
+<h4 id="eaaqeaa-provider-signseal-certificate-content">EAA/QEAA Provider Sign/Seal Certificate Content<a class="headerlink" href="#eaaqeaa-provider-signseal-certificate-content" title="Permanent link">&para;</a></h4>
 <p>EAA and QEAA providers are from the perspective of Sign/Seal end-certificates almost the same and for simplicity we will cover them together.</p>
 <p>There are no new or modified parameters or extensions specific for EAA or QEAA Provider as described in ETSI TS 119 412-6, clause 6 and 7.</p>
 <p>For EAA Provider there are other requirements that focus on signing of certificates connected to either OCSP Responder or CRL depending on used revocation policy. More information can be found in ETSI TS 119 412-6, clause 6.2.</p>
 <p>For QEAA Provider there are regulatory requirements from Regulation (EU) No 910/2014 that have to be met, but they are out of scope of this documentation. More information can be found in ETSI TS 119 412-6, clause 7.1.</p>
-<h6 id="eaaqeaa-provider-signseal-certificate-example">EAA/QEAA Provider Sign/Seal Certificate Example<a class="headerlink" href="#eaaqeaa-provider-signseal-certificate-example" title="Permanent link">&para;</a></h6>
+<h5 id="eaaqeaa-provider-signseal-certificate-example">EAA/QEAA Provider Sign/Seal Certificate Example<a class="headerlink" href="#eaaqeaa-provider-signseal-certificate-example" title="Permanent link">&para;</a></h5>
 <p>The following is an example of a QEAA Provider attribute not self-signed end-certificate for legal persons.</p>
 <div class="highlight"><pre><span></span><code>AccessCertificate cert = {
 
@@ -1995,7 +2117,7 @@
   signatureValue: &quot;BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))&quot;
 }
 </code></pre></div>
-<h5 id="pub-eaa-provider-signseal-certificate-content">PuB-EAA Provider Sign/Seal Certificate Content<a class="headerlink" href="#pub-eaa-provider-signseal-certificate-content" title="Permanent link">&para;</a></h5>
+<h4 id="pub-eaa-provider-signseal-certificate-content">PuB-EAA Provider Sign/Seal Certificate Content<a class="headerlink" href="#pub-eaa-provider-signseal-certificate-content" title="Permanent link">&para;</a></h4>
 <p>There are no new or modified parameters specific for PuB-EAA Provider as described in ETSI TS 119 412-6, clause 8.</p>
 <p>The following table lists all new or modified extensions that are mandatory or conditional for PuB-EAA Provider as further scoped in ETSI TS 119 412-6, clause 8.2 and 8.3.</p>
 <table>
@@ -2037,7 +2159,7 @@
 </tbody>
 </table>
 <p>For PuB-EAA Provider there are other requirements that focus on signing of certificates connected to either OCSP Responder or CRL depending on used revocation policy. More information can be found in ETSI TS 119 412-6, clause 8.4.</p>
-<h6 id="pub-eaa-provider-signseal-certificate-example">Pub-EAA Provider Sign/Seal Certificate Example<a class="headerlink" href="#pub-eaa-provider-signseal-certificate-example" title="Permanent link">&para;</a></h6>
+<h5 id="pub-eaa-provider-signseal-certificate-example">Pub-EAA Provider Sign/Seal Certificate Example<a class="headerlink" href="#pub-eaa-provider-signseal-certificate-example" title="Permanent link">&para;</a></h5>
 <p>The following is an example of a PuB-EAA Provider's not self-signed end-certificate for legal persons.</p>
 <div class="highlight"><pre><span></span><code>AccessCertificate cert = {
 
@@ -2182,7 +2304,7 @@
   signatureValue: &quot;BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))&quot;
 }
 </code></pre></div>
-<h4 id="signseal-certificate-path-validation">Sign/Seal Certificate Path Validation<a class="headerlink" href="#signseal-certificate-path-validation" title="Permanent link">&para;</a></h4>
+<h3 id="signseal-certificate-path-validation">Sign/Seal Certificate Path Validation<a class="headerlink" href="#signseal-certificate-path-validation" title="Permanent link">&para;</a></h3>
 <p>When instantiating the <a href="../../sections/trust-evaluation-process/#authentication-process">Certificate Path Validation</a> algorithm for Sign/Seal Certificate chains, the initialization parameters are defined as follows:</p>
 <ul>
 <li>The <a class="mkdocs-ezglossary-link"
@@ -2264,7 +2386,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:40:10 UTC">July 27, 2026 16:40:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:51:01 UTC">July 27, 2026 16:51:01</span>
   </span>
 
     

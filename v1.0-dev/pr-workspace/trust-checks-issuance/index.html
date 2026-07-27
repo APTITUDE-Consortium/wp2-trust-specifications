@@ -12,13 +12,13 @@
         <meta name="author" content="APTITUDE Consortium">
       
       
-        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/sections/references/">
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0-dev/pr-workspace/trust-checks-issuance/">
       
       
-        <link rel="prev" href="../trust-management-lifecycle/">
+        <link rel="prev" href="../trust-architecture/">
       
       
-        <link rel="next" href="../../pr-workspace/access-certificate/">
+        <link rel="next" href="../trust-checks-presentation/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>References - APTITUDE | Implementation Profiles for the Trust Framework</title>
+        <title>Trust checks issuance - APTITUDE | Implementation Profiles for the Trust Framework</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#arf-and-technical-specifications-ts" class="md-skip">
+        <a href="#step-by-step-operations" class="md-skip">
           Skip to content
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              References
+              Trust checks issuance
             
           </span>
         </div>
@@ -230,12 +230,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../trust-framework/" class="md-tabs__link">
           
   
@@ -254,11 +252,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../pr-workspace/access-certificate/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access-certificate/" class="md-tabs__link">
           
   
   
@@ -328,10 +328,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -355,20 +353,17 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
   
   
@@ -386,7 +381,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -432,7 +427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trust-architecture/" class="md-nav__link">
+      <a href="../../sections/trust-architecture/" class="md-nav__link">
         
   
   
@@ -460,7 +455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trust-artifacts/" class="md-nav__link">
+      <a href="../../sections/trust-artifacts/" class="md-nav__link">
         
   
   
@@ -488,7 +483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../onboarding-process/" class="md-nav__link">
+      <a href="../../sections/onboarding-process/" class="md-nav__link">
         
   
   
@@ -516,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trust-evaluation-process/" class="md-nav__link">
+      <a href="../../sections/trust-evaluation-process/" class="md-nav__link">
         
   
   
@@ -544,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trust-checks/" class="md-nav__link">
+      <a href="../../sections/trust-checks/" class="md-nav__link">
         
   
   
@@ -572,7 +567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trust-management-lifecycle/" class="md-nav__link">
+      <a href="../../sections/trust-management-lifecycle/" class="md-nav__link">
         
   
   
@@ -580,6 +575,496 @@
     
   
     Trust Management and Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedded-disclosure-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entity-end-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registry-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry — Additional JSON Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revocation-mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
   
 
     
@@ -614,7 +1099,7 @@
   <span class="md-ellipsis">
     
   
-    References
+    Trust checks issuance
   
 
     
@@ -632,7 +1117,7 @@
   <span class="md-ellipsis">
     
   
-    References
+    Trust checks issuance
   
 
     
@@ -656,87 +1141,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#arf-and-technical-specifications-ts" class="md-nav__link">
+  <a href="#step-by-step-operations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ARF and Technical Specifications (TS)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commission-implementing-regulation-cir" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Commission Implementing Regulation (CIR)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#eu-regulations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        EU Regulations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#etsi-specifications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ETSI Specifications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#isoiec-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ISO/IEC Standards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oidf-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OIDF Standards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ietf-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        IETF Standards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ietf-drafts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        IETF Drafts
+        Step-by-step Operations
       
     </span>
   </a>
@@ -752,99 +1160,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    PR Workspace (Changed Files Only)
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    PR Workspace (Changed Files Only)
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
               
                 
   
@@ -852,399 +1167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pr-workspace/access-certificate/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Access certificate
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/authentication-process/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Authentication process
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/authorization-process/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Authorization process
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/embedded-disclosure-policy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Embedded disclosure policy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/entity-end-certificate-profiles/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Entity end certificate profiles
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/onboarding-process/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Onboarding process
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/registration-certificate/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Registration certificate
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/registry-examples/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Registry — Additional JSON Examples
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/registry/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Registry
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/revocation-mechanisms/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Revocation mechanisms
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/trust-anchor-certificate-profiles/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Trust anchor certificate profiles
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/trust-anchor-validation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Trust anchor validation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/trust-architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Trust architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/trust-checks-issuance/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Trust checks issuance
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pr-workspace/trust-checks-presentation/" class="md-nav__link">
+      <a href="../trust-checks-presentation/" class="md-nav__link">
         
   
   
@@ -1272,7 +1195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pr-workspace/trust-management-process/" class="md-nav__link">
+      <a href="../trust-management-process/" class="md-nav__link">
         
   
   
@@ -1300,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pr-workspace/trusted-list-and-list-of-trusted-lists/" class="md-nav__link">
+      <a href="../trusted-list-and-list-of-trusted-lists/" class="md-nav__link">
         
   
   
@@ -1351,7 +1274,7 @@
 
 
   
-    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/sections/references.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/trust-checks-issuance.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1360,389 +1283,143 @@
     
       
     
-    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/sections/references.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/trust-checks-issuance.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-  <h1>References</h1>
+  <h1>Trust checks issuance</h1>
 
-<h2 id="arf-and-technical-specifications-ts">ARF and Technical Specifications (TS)<a class="headerlink" href="#arf-and-technical-specifications-ts" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Version</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ARF</td>
-<td>v2.9.0</td>
-<td>2026-05-21</td>
-<td>Architecture and Reference Framework</td>
-</tr>
-<tr>
-<td>TS02</td>
-<td>v1.0.1</td>
-<td>2026-01-30</td>
-<td>Specification of systems enabling the notification and subsequent publication of Provider information</td>
-</tr>
-<tr>
-<td>TS05</td>
-<td>v1.3</td>
-<td>2026-02-13</td>
-<td>Specification of common formats and API for Relying Party Registration information</td>
-</tr>
-<tr>
-<td>TS06</td>
-<td>v1.0.1</td>
-<td>2026-01-30</td>
-<td>Common Set of Relying Party Information to be Registered</td>
-</tr>
-<tr>
-<td>TS11</td>
-<td>v1.0.1</td>
-<td>2026-01-30</td>
-<td>Specification of interfaces and formats for the catalogue of attributes and the catalogue of attestations</td>
-</tr>
-</tbody>
-</table>
-<h2 id="commission-implementing-regulation-cir">Commission Implementing Regulation (CIR)<a class="headerlink" href="#commission-implementing-regulation-cir" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CIR 2024/2979</td>
-<td>2024-11-28</td>
-<td>Integrity and core functionalities of European Digital Identity Wallets</td>
-</tr>
-<tr>
-<td>CIR 2024/2980</td>
-<td>2024-11-28</td>
-<td>Notifications to the Commission concerning the European Digital Identity Wallet ecosystem</td>
-</tr>
-<tr>
-<td>CIR 2025/848</td>
-<td>2025-05-06</td>
-<td>Registration of wallet-relying parties</td>
-</tr>
-<tr>
-<td>CIR 2025/1569</td>
-<td>2025-07-29</td>
-<td>Qualified electronic attestations of attributes and electronic attestations of attributes provided by or on behalf of a public sector body responsible for an authentic source</td>
-</tr>
-<tr>
-<td>CIR 2025/848-Amendment</td>
-<td></td>
-<td>Applicable standards and specifications (draft)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="eu-regulations">EU Regulations<a class="headerlink" href="#eu-regulations" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>REG-EU-2024/1183</td>
-<td>2024-04-11</td>
-<td>Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etsi-specifications">ETSI Specifications<a class="headerlink" href="#etsi-specifications" title="Permanent link">&para;</a></h2>
-<p>ETSI specifications for EU Digital Identity Wallets of main interest for the trust framework:</p>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Version</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ETSI TS 119 411-8</td>
-<td>V1.1.1</td>
-<td>2025-10</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 8: Access Certificate Policy for EUDI Wallet Relying Parties</td>
-</tr>
-<tr>
-<td>ETSI TS 119 412-6</td>
-<td>V1.2.1</td>
-<td>2026-04</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 6: Certificate profile requirements for PID, Wallet, EAA, QEAA, and PSBEAA providers</td>
-</tr>
-<tr>
-<td>ETSI TS 119 472-1</td>
-<td>V1.2.1</td>
-<td>2026-02</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 1: General requirements</td>
-</tr>
-<tr>
-<td>ETSI TS 119 472-2</td>
-<td>V1.2.1</td>
-<td>2026-03</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 2: Profiles for EAA/PID Presentations to Relying Party</td>
-</tr>
-<tr>
-<td>ETSI TS 119 472-3</td>
-<td>V1.1.1</td>
-<td>2026-03</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 3: Profiles for issuance of EAA or PID</td>
-</tr>
-<tr>
-<td>ETSI TS 119 475</td>
-<td>V1.2.1</td>
-<td>2026-03</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Relying party attributes supporting EUDI Wallet user's authorisation decisions</td>
-</tr>
-<tr>
-<td>ETSI TS 119 602</td>
-<td>V1.1.1</td>
-<td>2025-11</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Lists of trusted entities; Data model</td>
-</tr>
-<tr>
-<td>ETSI TS 119 612</td>
-<td>V2.4.1</td>
-<td>2025-08</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Trusted Lists</td>
-</tr>
-<tr>
-<td>ETSI TS 119 615</td>
-<td>V1.3.1</td>
-<td>2026-01</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Trusted lists; Procedures for using and interpreting European Union Member States national trusted lists</td>
-</tr>
-</tbody>
-</table>
-<p>Other ETSI specifications that the previous specifications build upon:</p>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Version</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ETSI EN 319 132-1</td>
-<td>V1.3.1</td>
-<td>2024-07</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); XAdES digital signatures; Part 1: Building blocks and XAdES baseline signatures</td>
-</tr>
-<tr>
-<td>ETSI EN 319 411-1</td>
-<td>V1.5.1</td>
-<td>2025-04</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 1: General requirements</td>
-</tr>
-<tr>
-<td>ETSI EN 319 411-2</td>
-<td>V2.6.1</td>
-<td>2025-06</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 2: Requirements for trust service providers issuing EU qualified certificates</td>
-</tr>
-<tr>
-<td>ETSI EN 319 412-1</td>
-<td>V1.7.0</td>
-<td>2026-02</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 1: Overview and common data structures</td>
-</tr>
-<tr>
-<td>ETSI EN 319 412-2</td>
-<td>V2.4.1</td>
-<td>2025-06</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 2: Certificate profile for certificates issued to natural persons</td>
-</tr>
-<tr>
-<td>ETSI EN 319 412-3</td>
-<td>V1.3.1</td>
-<td>2023-09</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 3: Certificate profile for certificates issued to legal persons</td>
-</tr>
-<tr>
-<td>ETSI EN 319 412-5</td>
-<td>V2.5</td>
-<td>2025-06</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 5: QCStatements</td>
-</tr>
-<tr>
-<td>ETSI TS 119 182-1</td>
-<td>V1.2.1</td>
-<td>2024-07</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); JAdES digital signatures; Part 1: Building blocks and JAdES baseline signatures</td>
-</tr>
-<tr>
-<td>ETSI TS 119 312</td>
-<td>V1.4</td>
-<td>2023-08</td>
-<td>Electronic Signatures and Infrastructures (ESI); Cryptographic Suites</td>
-</tr>
-<tr>
-<td>ETSI TS 119 495</td>
-<td>V1.7.1</td>
-<td>2024-07</td>
-<td>Electronic Signatures and Trust Infrastructures (ESI); Sector Specific Requirements; Certificate Profiles and TSP Policy Requirements for Open Banking</td>
-</tr>
-</tbody>
-</table>
-<h2 id="isoiec-standards">ISO/IEC Standards<a class="headerlink" href="#isoiec-standards" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Version</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ISO/IEC 18013-5</td>
-<td></td>
-<td></td>
-<td>Personal identification --- ISO-compliant driving licence - Part 5: Mobile driving licence (mDL) application</td>
-</tr>
-</tbody>
-</table>
-<h2 id="oidf-standards">OIDF Standards<a class="headerlink" href="#oidf-standards" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Version</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OpenID4VC HAIP</td>
-<td>V1.0</td>
-<td>2025-12</td>
-<td>OpenID4VC High Assurance Interoperability Profile</td>
-</tr>
-<tr>
-<td>OpenID4VCI</td>
-<td>V1.0</td>
-<td>2025-09</td>
-<td>OpenID for Verifiable Credential Issuance</td>
-</tr>
-<tr>
-<td>OpenID4VP</td>
-<td>V1.0</td>
-<td>2025-07</td>
-<td>OpenID Connect for Verifiable Presentations</td>
-</tr>
-</tbody>
-</table>
-<h2 id="ietf-standards">IETF Standards<a class="headerlink" href="#ietf-standards" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RFC 1950</td>
-<td>1996-05</td>
-<td>ZLIB Compressed Data Format Specification version 3.3</td>
-</tr>
-<tr>
-<td>RFC 1951</td>
-<td>1996-05</td>
-<td>DEFLATE Compressed Data Format Specification version 1.3</td>
-</tr>
-<tr>
-<td>RFC 3647</td>
-<td>2003-11</td>
-<td>Internet X.509 Public Key Infrastructure Certificate Policy and Certification Practices Framework</td>
-</tr>
-<tr>
-<td>RFC 3739</td>
-<td>2004-03</td>
-<td>Internet X.509 Public Key Infrastructure - Qualified Certificates Profile</td>
-</tr>
-<tr>
-<td>RFC 5280</td>
-<td>2008-05</td>
-<td>Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</td>
-</tr>
-<tr>
-<td>RFC 6960</td>
-<td>2013-05</td>
-<td>X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP</td>
-</tr>
-<tr>
-<td>RFC 7515</td>
-<td>2015-05</td>
-<td>JSON Web Signature (JWS)</td>
-</tr>
-<tr>
-<td>RFC 7519</td>
-<td>2015-05</td>
-<td>JSON Web Token (JWT)</td>
-</tr>
-<tr>
-<td>RFC 9052</td>
-<td>2022-08</td>
-<td>CBOR Object Signing and Encryption (COSE): Structures and Process</td>
-</tr>
-<tr>
-<td>RFC 9360</td>
-<td>2023-02</td>
-<td>CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificate</td>
-</tr>
-<tr>
-<td>RFC 9608</td>
-<td>2024-06</td>
-<td>No Revocation Available for X.509 Public Key Certificates</td>
-</tr>
-</tbody>
-</table>
-<h2 id="ietf-drafts">IETF Drafts<a class="headerlink" href="#ietf-drafts" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th><strong>Item Reference</strong></th>
-<th><strong>Version</strong></th>
-<th><strong>Date</strong></th>
-<th><strong>Standard Name/Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>draft-ietf-oauth-status-list</td>
-<td>20</td>
-<td>2026-06-04</td>
-<td>Token Status List (TSL)</td>
-</tr>
-</tbody>
-</table>
+<p>This section details the trust checks that MUST be performed during the Issuance process.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant Wallet as Wallet Instance
+    participant EAAProvider as Attestation Provider
+    participant WRPACLoTE as Provider of WRPAC LoTE
+    participant WRPCLoTE as Provider of WRRPC LoTE
+    participant WProvider as Wallet Providers LoTE
+    participant LoTL as LoTE Provider
+    participant TL as TL Provider
+
+    User-&gt;&gt;Wallet: 1. Request EAA issuance
+    Wallet-&gt;&gt;EAAProvider: 2. Fetch Credential Issuer Metadata (OpenID4VCI)
+    EAAProvider--&gt;&gt;Wallet: Signed Credential Issuer Metadata
+
+    rect rgb(230, 230, 230)
+    Note over Wallet: Verify metadata signature
+    Wallet-&gt;&gt;WRPACLoTE: 3a. Fetch Provider of WRPAC LoTE
+    WRPACLoTE--&gt;&gt;Wallet: Provider of WRPAC LoTE
+    Note over Wallet: 3b. Validate LoTE
+    Note over Wallet: 3c. Identify the corresponding trusted entity
+    Note over Wallet: 3d. Validate the WRPAC
+    Note over Wallet: 3e. Validate the metadata signature using the WRPAC
+    end
+
+    rect rgb(230, 230, 230)
+    Note over Wallet: Verify WRPRC
+    Wallet-&gt;&gt;WRPCLoTE: 4a. Fetch Provider of WRPRC LoTE
+    WRPCLoTE--&gt;&gt;Wallet: Provider of  WRPRC LoTE
+    Note over Wallet: 4b. Validate LoTE
+    Note over Wallet: 4c. Identify the corresponding trusted entity
+    Note over Wallet: 4d. Validate the WRPRC
+    Note over Wallet: 4e. Check Provider entitlements
+    end
+
+    Note over Wallet: 5. Match WRPAC with WRPRC
+    opt applicable to Authorization Code Flow only
+        Wallet-&gt;&gt;EAAProvider: 6. Send WIA to PAR endpoint (OpenID4VCI)
+
+        rect rgb(230, 230, 230)
+        Note over EAAProvider: Verify WIA
+        EAAProvider-&gt;&gt;WProvider: 7a. Fetch Wallet Providers LoTE
+        WProvider--&gt;&gt;EAAProvider: Wallet Providers LoTE
+        Note over EAAProvider: 7b. Validate LoTE
+        Note over EAAProvider: 7c. Identify the corresponding trusted entity
+        Note over EAAProvider: 7d. Validate the WIA signature
+        Note over EAAProvider: 7e. Validate the WIA contents
+        EAAProvider--&gt;&gt;Wallet: Authorization response (code)
+        end
+    end
+
+    Wallet-&gt;&gt;EAAProvider: 8. Send WIA to Token endpoint (OpenID4VCI)
+
+    rect rgb(230, 230, 230)
+    Note over EAAProvider: Verify WIA
+    EAAProvider-&gt;&gt;WProvider: 7a. Fetch Wallet Providers LoTE
+    WProvider--&gt;&gt;EAAProvider: Wallet Providers LoTE
+    Note over EAAProvider: 7b. Validate LoTE
+    Note over EAAProvider: 7c. Identify the corresponding trusted entity
+    Note over EAAProvider: 7d. Validate the WIA signature
+    Note over EAAProvider: 7e. Validate the WIA contents
+    end
+    EAAProvider--&gt;&gt;Wallet: Token response (access token)
+
+    Wallet-&gt;&gt;EAAProvider: 9. Send KA to Credential endpoint (OpenID4VCI)
+
+    rect rgb(230, 230, 230)
+    Note over EAAProvider: Verify KA
+    EAAProvider-&gt;&gt;WProvider: 7a. Fetch Wallet Providers LoTE
+    WProvider--&gt;&gt;EAAProvider: Wallet Providers LoTE
+    Note over EAAProvider: 7b. Validate LoTE
+    Note over EAAProvider: 7c. Identify the corresponding trusted entity
+    Note over EAAProvider: 10a. Validate the KA signature
+    Note over EAAProvider: 10b. Validate the KA contents
+    end
+    EAAProvider--&gt;&gt;Wallet: Credential response
+
+    rect rgb(230, 230, 230)
+    Note over Wallet: Verify Attestation
+    Wallet-&gt;&gt;LoTL: 11a. Fetch EAA/PID/QEAA/Pub-EAA Provider LoTE
+    LoTL--&gt;&gt;Wallet: EAA/PID/QEAA/Pub-EAA Provider LoTE
+    Note over Wallet: 11b. Validate LoTE
+    Note over Wallet: 11c. Identify the corresponding TL
+    Wallet-&gt;&gt;TL: 11d. Fetch TL
+    TL--&gt;&gt;Wallet: TL
+    Note over Wallet: 11e. Validate TL
+    Note over Wallet: 11f. Identify the corresponding trusted entity
+    Note over Wallet: 11g. Validate the Attestation signature
+    end</code></pre>
+<blockquote>
+<p><strong>NOTE 1:</strong>  Attestation Providers can have a dedicated Authorization server that makes authorization-related endpoints available. That kind of implementation details are hidden in this schema, since the Attestation Provider bears the overall responsibility for responding to the Wallet Instance's requests.</p>
+<p><strong>NOTE 2:</strong>  A nonce endpoint might be necessary as well however that feature does not have an impact on the trust-related checks.</p>
+</blockquote>
+<h3 id="step-by-step-operations">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1: Request EAA Issuance</strong> Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.</p>
+<p><strong>Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)</strong> The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider of WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].</p>
+<p><strong>Step 3a: Fetch Provider of WRPAC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.</p>
+<p><strong>Step 3b: Validate LoTE</strong> The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
+<p><strong>Step 3c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS [AUTHZ-ISS-02].</p>
+<p><strong>Step 3d: Validate the WRPAC</strong> The Wallet Instance validates the authenticity and integrity of the WRPAC using the trust anchor of the trusted entity identitied in the LoTE.</p>
+<p><strong>Step 3e: Validate the metadata signature using the WRPAC</strong> The Wallet Instance validates the metadata JWS signature using the WRPAC [AUTHZ-ISS-05].</p>
+<p><strong>Step 4a: Fetch Provider of WRPRC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL [AUTHZ-ISS-07].</p>
+<p><strong>Step 4b: Validate LoTE</strong> The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
+<p><strong>Step 4c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPRC presented in the Attestation Provider metadata.</p>
+<p><strong>Step 4d: Validate the WRPRC</strong> The Wallet Instance validates the authenticity and integrity of the WRPRC using the trust anchor of the trusted entity identitied in the LoTE [AUTHZ-GEN-08].</p>
+<p><strong>Step 4e: Check Provider entitlements</strong> The Wallet Instance verifies that the entitlement of issuing attestations is present in the WRPRC [AUTHZ-GEN-11, AUTHZ-GEN-13].</p>
+<p><strong>Step 5: Match WRPAC with WRPRC</strong> The Wallet Instance verifies that both the certificates are related to the same entity [AUTHZ-GEN-09, AUTHZ-GEN-12].</p>
+<p><strong>Step 6: Send WIA to PAR endpoint (OpenID4VCI)</strong> The Wallet Instance sends the WIA signed by the Wallet Provider, attesting that the Wallet Instance is a valid one.</p>
+<p><strong>Step 7a: Fetch Wallet Providers LoTE</strong> The Attestation Providers retrieves the LoTE listing all the Wallet Providers from a publicly-known URL. This list is necessary to validate different signed artifacts received from the Wallet Instance in the different requests. Attestation Providers can implement a caching mechanism of the LoTE so that they would not need to retrieve it multiple times in the course of the EAA issuance process. It is up to Attestation Providers to implement this mechanism or not and to decide for how long they would want to cache the list. This implies that in some cases, this step could be skipped.</p>
+<p><strong>Step 7b: Validate LoTE</strong> The Attestation Provider validates the LoTE signature in order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
+<p><strong>Step 7c: Identify the corresponding trusted entity</strong> The Attestation Provider identifies the LoTE trusted entity corresponding to the WIA presented in the request.</p>
+<p><strong>Step 7d: Validate the WIA signature</strong> The Attestation Provider checks the WIA integrity and authenticity by validating the JWT signature using the trust anchor of the trusted entity identitied in the LoTE.</p>
+<p><strong>Step 7e: Validate the WIA contents</strong> The Attestation Provider checks that the Wallet Instance is valid by verifying the status list referenced in the WIA. Extra cheks are performed like WIA validity checks and associated Proof-of-Possession checks.</p>
+<p><strong>Step 8: Send WIA to Token endpoint (OpenID4VCI)</strong> The Wallet Instance sends the WIA signed by the Wallet Provider, attesting that the Wallet Instance is a valid one.</p>
+<p><strong>Step 9: Send KA to Credential endpoint (OpenID4VCI)</strong> The Wallet Instance sends the KA signed by the Wallet Provider, attesting information about the security of cryptographic keys stored in the Wallet Unit.</p>
+<p><strong>Step 10a: Validate the KA signature</strong> The Attestation Provider checks the KA integrity and authenticity by validating the signature using the trust anchor of the trusted entity identitied in the LoTE.</p>
+<p><strong>Step 10b: Validate the KA contents</strong> The Attestation Provider checks that the cryptographic keys are protected according to its policy if any, and verifies the related Proof-of-Possessions if any.</p>
+<p><strong>Step 11a: Fetch EAA/PID/QEAA/Pub-EAA Provider LoTE</strong> The Wallet Instance retrieves the LoTE listing all the Providers of the corresponding type.</p>
+<p><strong>Step 11b: Validate EAA/PID/QEAA/Pub-EAA Provider LoTE</strong> The Wallet Instance validates the LoTE signature in order to make sure the LoTE is authentic. A good practice is to follow the clause 5 of ETSI TS 319 102-1 for validating AdES
+digital signatures. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
+<p><strong>Step 11c: Identify the corresponding TL</strong> The Wallet Instance identifies the corresponding national TL needed to validate the Attestation received in the Credential Response.</p>
+<p><strong>Step 11d: Fetch TL</strong> The Wallet Instance retrieves the national TL listing all the trust services registered in that Member State.</p>
+<p><strong>Step 11e: Validate TL</strong> The Wallet Instance validates the TL signature in order to make sure the TL is authentic. Extra checks are performed in order to make sure the TL is not outdated.</p>
+<p><strong>Step 11f: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the TL trusted entity corresponding to the signature of the Attestation issued.</p>
+<p><strong>Step 11g: Validate the Attestation signature</strong> The Wallet Instance checks the integrity and authenticity of the Attestation by validating the signature using the trust anchor of the trusted entity identitied in the TL. If multiple Attestations were received, they are all validated.</p>
+<blockquote>
+<p>If any of the checks described in the previous steps fail, the process can be aborted either by the Wallet Instance, the user, or the Attestation Provider.</p>
+</blockquote>
 
 
 
@@ -1763,7 +1440,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:50:15 UTC">July 27, 2026 16:50:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 27, 2026 16:51:01 UTC">July 27, 2026 16:51:01</span>
   </span>
 
     
