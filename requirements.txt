@@ -8,4 +8,3 @@ mkdocs-git-revision-date-plugin==0.3.2
 mkdocs-include-markdown-plugin==7.2.2
 mike==2.1.4
 openpyxl==3.1.5
-mkdocs-swagger-ui-tag==0.8.0
