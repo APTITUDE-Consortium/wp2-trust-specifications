@@ -1,15 +1,15 @@
 This section defines <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates> (<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>), as described in [ARF]. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> provides detailed information about the <roles:Attestation Provider (AP)|Attestation Provider>'s entitlements, the <credentials:Attestation|Attestations> they issue, and their intended use.
 
-#### References
+??? references
 
-- **CIR 2025/848**
-- **ETSI EN 319 411-1**
-- **ETSI TS 119 182-1**
-- **ETSI TS 119 475**
-- **ISO 3166-1**
-- **RFC 5646**
-- **RFC 7519**
-- **RFC 8392**
+    - **CIR 2025/848**
+    - **ETSI EN 319 411-1**
+    - **ETSI TS 119 182-1**
+    - **ETSI TS 119 475**
+    - **ISO 3166-1**
+    - **RFC 5646**
+    - **RFC 7519**
+    - **RFC 8392**
 
 #### Format
 

@@ -14,18 +14,18 @@ The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is
     
     Additionally, sectorial registers may exist internally, but the decision regarding issuance of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is solely based on whether the <roles:Wallet-Relying Party (WRP)|WRP> has been registered with an active status in the national <components:Register>.
 
-#### References
+??? references
 
-The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
+    The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
 
-- **CIR 2025/848** on <roles:Wallet-Relying Party (WRP)|WRP> registration and <components:Register|Registers>.
-- **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>.
-- **ETSI TS 119 475** on <roles:Wallet-Relying Party (WRP)|WRP> attributes, entitlement URIs, <roles:Relying Party (RP)|RP> authorisation decision support.
-- **RFC 7515**
-- **RFC 7519**
-- **RFC 8392**
-- **TS05** on common formats and API for <roles:Wallet-Relying Party (WRP)|WRP> registration information.
-- **TS06** on common set of <roles:Wallet-Relying Party (WRP)|WRP> information to be registered.
+    - **CIR 2025/848** on <roles:Wallet-Relying Party (WRP)|WRP> registration and <components:Register|Registers>.
+    - **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>.
+    - **ETSI TS 119 475** on <roles:Wallet-Relying Party (WRP)|WRP> attributes, entitlement URIs, <roles:Relying Party (RP)|RP> authorisation decision support.
+    - **RFC 7515**
+    - **RFC 7519**
+    - **RFC 8392**
+    - **TS05** on common formats and API for <roles:Wallet-Relying Party (WRP)|WRP> registration information.
+    - **TS06** on common set of <roles:Wallet-Relying Party (WRP)|WRP> information to be registered.
 
 #### Requirements
 
