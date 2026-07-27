@@ -5,7 +5,7 @@ This section specifies the <artifacts:Embedded Disclosure Policy (EDP)|Embedded 
 - The distribution mechanism.
 - The lifecycle rules.
 
-The authorization evaluation logic that the WI applies when processing an <artifacts:Embedded Disclosure Policy (EDP)|EDP> during presentation is defined in the [Authorization Process](#authorization-process) section of this specification.
+The authorization evaluation logic that the WI applies when processing an <artifacts:Embedded Disclosure Policy (EDP)|EDP> during presentation is defined in the [Authorization Process](../sections/trust-evaluation-process.md#authorization-process) section of this specification.
 
 #### Definition and Applicability
 
@@ -95,7 +95,7 @@ The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through <art
 
     According to ISS-MDATA-EBD-4.2.5.2-03, the <roles:Attestation Provider (AP)|AP> may provide only the `policy_uri` if the policy data set has already been pre-loaded into the <components:Wallet Instance|WI>. As the mechanism for pre-loading policies into a <components:Wallet Instance|WI> is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
 
-As described in section [Authorization Process](#authorization-process), during attestation issuance, the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if available) is stored locally by the <components:Wallet Instance|WI> and it is associated with the specific Attestation for which it was retrieved.
+As described in section [Authorization Process](../sections/trust-evaluation-process.md#authorization-process), during attestation issuance, the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if available) is stored locally by the <components:Wallet Instance|WI> and it is associated with the specific Attestation for which it was retrieved.
 
 #### Lifecycle
 
@@ -116,14 +116,14 @@ Even a minor policy change (e.g., adding a single RP to the authorized list) req
     - It enables <roles:Attestation Provider (AP)|AP> to unilaterally change an <artifacts:Embedded Disclosure Policy (EDP)|EDP>, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
     - Technical details of this mechanism are not defined within ETSI standard.
 
-#### Normative References
+??? references
 
-| Reference | Description |
-|-----------|-------------|
-| [CIR 2024/2979, Article 2(9)] | Definition of <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> |
-| [CIR 2024/2979, Article 10] | <roles:Wallet Provider (WP)> obligations for <artifacts:Embedded Disclosure Policy (EDP)\|EDP> processing |
-| [CIR 2024/2979, Annex III] | Common <artifacts:Embedded Disclosure Policy (EDP)\|EDP> types |
-| [ETSI TS 119 472-3, Section 4.2.5] | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13) |
-| [ETSI TS 119 475] Annex A.2 | Common entitlement URIs |
-| [ETSI EN 319 412-1, Section 5.1.4] | organizationIdentifier semantics |
-| RFC 4514 | LDAP string representation of Distinguished Names |
+    | Reference | Description |
+    |-----------|-------------|
+    | [CIR 2024/2979, Article 2(9)] | Definition of <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> |
+    | [CIR 2024/2979, Article 10] | <roles:Wallet Provider (WP)> obligations for <artifacts:Embedded Disclosure Policy (EDP)\|EDP> processing |
+    | [CIR 2024/2979, Annex III] | Common <artifacts:Embedded Disclosure Policy (EDP)\|EDP> types |
+    | [ETSI TS 119 472-3, Section 4.2.5] | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13) |
+    | [ETSI TS 119 475] Annex A.2 | Common entitlement URIs |
+    | [ETSI EN 319 412-1, Section 5.1.4] | organizationIdentifier semantics |
+    | RFC 4514 | LDAP string representation of Distinguished Names |

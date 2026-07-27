@@ -33,22 +33,13 @@ An **Entity Trust Anchor Certificate** is an **X.509 certificate** that is expli
 
 Relying parties validate a presented certificate by building a certification path that **terminates at a <artifacts:Trust Anchor>**. In this ecosystem, path construction and validation **SHALL terminate** at the first certificate that matches a LoTE-listed <artifacts:Trust Anchor>.
 
----
+??? references
 
-#### References
-
-##### Normative references
-
-- **RFC 5280**: Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile.
-- **RFC 5914**: Trust Anchor Format.
-- **ETSI TS 119 602**: Lists of trusted entities; Data model.
-- **ETSI TS 119 612**: Trusted Lists.
-
-##### Informative references
-
-- **Commission Implementing Regulation (EU) 2024/2980**: Notifications concerning the European Digital Identity Wallet ecosystem.
-
----
+    - **CIR 2024/2980**
+    - **ETSI TS 119 602**
+    - **ETSI TS 119 612**
+    - **RFC 5280**
+    - **RFC 5914**
 
 #### Trust model assumptions for entity trust anchors
 

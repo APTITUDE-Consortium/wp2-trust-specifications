@@ -1,4 +1,3 @@
-
 ### Commission Implementing Regulation (CIR)
 
 | **Item Reference**               | **Date**   | **Standard Name/Details** |

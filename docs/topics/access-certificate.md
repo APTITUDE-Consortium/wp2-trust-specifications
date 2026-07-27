@@ -1,27 +1,27 @@
 This section describes the purpose, format and content of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>.
 
 According to the Article 2 of CIR (EU) 2025/848, a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, is a certificate for electronic seals or signatures authenticating and validating the <roles:Wallet-Relying Party (WRP)>.
-Issued by one or more designated providers under Member State supervision, the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> serves to authenticate and verify the trustworthiness of the <roles:Wallet-Relying Party (WRP)|WRP> when they interact with the <components:EUDI Wallet>. For more details on the authentication process, see [Authentication Process](#authentication-process).
-The suspension or cancellation of the <roles:Wallet-Relying Party (WRP)|WRP> services, involves revocation of all valid <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> by the relevant issuing authority, such that the <roles:Wallet-Relying Party (WRP)|WRP> is no longer able to interact with <components:Wallet Unit|Wallet Units>. For more detail on the Trust Management processes, see [Trust Management and Lifecycle](#9-trust-management-and-lifecycle).
+Issued by one or more designated providers under Member State supervision, the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> serves to authenticate and verify the trustworthiness of the <roles:Wallet-Relying Party (WRP)|WRP> when they interact with the <components:EUDI Wallet>. For more details on the authentication process, see [Authentication Process](../sections/trust-evaluation-process.md#authentication-process).
+The suspension or cancellation of the <roles:Wallet-Relying Party (WRP)|WRP> services, involves revocation of all valid <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> by the relevant issuing authority, such that the <roles:Wallet-Relying Party (WRP)|WRP> is no longer able to interact with <components:Wallet Unit|Wallet Units>. For more detail on the Trust Management processes, see [Trust Management and Lifecycle](../sections/trust-management-lifecycle.md).
 
 The Annex IV of [CIR 2025/848] also states that the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> are meant for performing electronic signatures or seals and that they shall comply with at least the <artifacts:Normalised Certificate Policy (NCP)> requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> fall into.
 
-#### References
+??? references
 
-To guarantee the interoperability across all the wallets provided within the Union, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> should adhere to common requirements, with respect to their content and format. The technical standard specific to these certificates is [ETSI TS 119 411-8]. However, multiple other standards are referenced either directly or indirectly by [ETSI TS 119 411-8], containing requirements that are applicable to <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> as well. The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
+    To guarantee the interoperability across all the wallets provided within the Union, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> should adhere to common requirements, with respect to their content and format. The technical standard specific to these certificates is [ETSI TS 119 411-8]. However, multiple other standards are referenced either directly or indirectly by [ETSI TS 119 411-8], containing requirements that are applicable to <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> as well. The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
 
-- **CIR 2025/848**
-- **ETSI EN 319 411-1**
-- **ETSI EN 319 411-2** (applicable if the certificate is qualified)
-- **ETSI EN 319 412-1**
-- **ETSI EN 319 412-2** (applicable if the certificate is issued to natural persons)
-- **ETSI EN 319 412-3** (applicable if the certificate is issued to legal persons)
-- **ETSI EN 319 412-5** (applicable if the certificate is qualified)
-- **ETSI TS 119 411-8**
-- **RFC 3647**
-- **RFC 3739**
-- **RFC 5280**
-- **RFC 9608**
+    - **CIR 2025/848**
+    - **ETSI EN 319 411-1**
+    - **ETSI EN 319 411-2** (applicable if the certificate is qualified)
+    - **ETSI EN 319 412-1**
+    - **ETSI EN 319 412-2** (applicable if the certificate is issued to natural persons)
+    - **ETSI EN 319 412-3** (applicable if the certificate is issued to legal persons)
+    - **ETSI EN 319 412-5** (applicable if the certificate is qualified)
+    - **ETSI TS 119 411-8**
+    - **RFC 3647**
+    - **RFC 3739**
+    - **RFC 5280**
+    - **RFC 9608**
 
 #### Dependency Considerations
 
