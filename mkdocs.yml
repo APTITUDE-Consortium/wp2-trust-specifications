@@ -94,7 +94,6 @@ plugins:
         - glossary-definitions.md
         - overrides/partials/footer/
 
-
 markdown_extensions:
   - footnotes
   - sane_lists

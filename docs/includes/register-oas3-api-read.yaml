@@ -533,13 +533,13 @@ components:
             $ref: '#/components/schemas/WalletRelyingParty'
         pagination:
           $ref: '#/components/schemas/Pagination'
-      example:
-        iss: https://registry.example.eu
-        iat: 1767225600
-        data: []
-        pagination:
-          next_cursor: eyJvZmZzZXQiOjIwfQ
-          has_next_page: true
+      examples:
+        - iss: https://registry.example.eu
+          iat: 1767225600
+          data: []
+          pagination:
+            next_cursor: eyJvZmZzZXQiOjIwfQ
+            has_next_page: true
     SignedWRP:
       type: object
       description: >-
@@ -587,10 +587,10 @@ components:
             Result of the intended-use check: true if the queried intended-use
             identifier, credential/claim or privacy policy is registered for the Wallet
             Relying Party's intended use, false otherwise.
-      example:
-        iss: https://registry.example.eu
-        iat: 1767225600
-        data: true
+      examples:
+        - iss: https://registry.example.eu
+          iat: 1767225600
+          data: true
     Pagination:
       type: object
       description: Cursor-based pagination metadata carried inside the signed SignedWRPArray payload.
@@ -601,9 +601,9 @@ components:
         has_next_page:
           type: boolean
           description: Whether there is a further page of results.
-      example:
-        next_cursor: eyJvZmZzZXQiOjIwfQ
-        has_next_page: true
+      examples:
+        - next_cursor: eyJvZmZzZXQiOjIwfQ
+          has_next_page: true
     WalletRelyingParty:
       type: object
       description: Wallet Relying Party registration object. In published API statements, postalAddress is excluded.
@@ -635,7 +635,8 @@ components:
           type: array
           items:
             type: string
-            example: '+33100000000'
+            examples:
+              - '+33100000000'
         infoURI:
           type: array
           items:
@@ -644,7 +645,8 @@ components:
         providerType:
           type: string
           description: Provider subtype. For WRP records, typically WalletRelyingParty.
-          example: WalletRelyingParty
+          examples: 
+            - WalletRelyingParty
         policy:
           type: array
           items:
@@ -741,69 +743,69 @@ components:
             properties:
               isIntermediary:
                 const: false
-      example:
-        legalPerson:
-          legalName:
-            - ShopExample N.V.
-        identifier:
-          - type: http://data.europa.eu/eudi/id/EUID
-            identifier: NL-EUID-556677889
-        postalAddress:
-          - Damrak 50, 1012 LP Amsterdam, NL
-        country: NL
-        email:
-          - wallet-rp@shopexample.example
-        infoURI:
-          - https://shopexample.example
-        providerType: WalletRelyingParty
-        policy:
-          - type: http://data.europa.eu/eudi/policy/terms-and-conditions
-            policyURI: https://shopexample.example/terms
-          - type: http://data.europa.eu/eudi/policy/privacy-policy
-            policyURI: https://shopexample.example/privacy
-        tradeName: ShopExample
-        supportURI:
-          - https://shopexample.example/support
-        srvDescription:
-          - - lang: en
-              content: Online retail services.
-            - lang: nl
-              content: Online detailhandel.
-        intendedUse:
-          - intendedUseIdentifier: iu-age-verification
-            purpose:
-              - lang: en
-                content: Verify the customer is of legal age for restricted product purchases.
-            privacyPolicy:
-              - type: http://data.europa.eu/eudi/policy/privacy-statement
-                policyURI: https://shopexample.example/privacy/wallet
-            credential:
-              - format: mso_mdoc
-                meta:
-                  doctype_value: org.iso.18013.5.1.mDL
-                claim:
-                  - path:
-                      - org.iso.18013.5.1
-                      - age_over_18
-            createdAt: '2026-01-01'
-        isPSB: false
-        entitlement:
-          - https://uri.etsi.org/19475/Entitlement/Service_Provider
-        supervisoryAuthority:
-          legalPerson:
+      examples:
+        - legalPerson:
             legalName:
-              - Autoriteit Persoonsgegevens
+              - ShopExample N.V.
+          identifier:
+            - type: http://data.europa.eu/eudi/id/EUID
+              identifier: NL-EUID-556677889
+          postalAddress:
+            - Damrak 50, 1012 LP Amsterdam, NL
           country: NL
+          email:
+            - wallet-rp@shopexample.example
           infoURI:
-            - https://autoriteitpersoonsgegevens.nl
-        registryURI: https://registry.example.nl/api
-        isIntermediary: false
-        usesIntermediary:
-          - identifier:
-              - type: http://data.europa.eu/eudi/id/EUID
-                identifier: NL-EUID-112233445
-            tradeName: TrustBridge
-            registryURI: https://registry.example.nl/api
+            - https://shopexample.example
+          providerType: WalletRelyingParty
+          policy:
+            - type: http://data.europa.eu/eudi/policy/terms-and-conditions
+              policyURI: https://shopexample.example/terms
+            - type: http://data.europa.eu/eudi/policy/privacy-policy
+              policyURI: https://shopexample.example/privacy
+          tradeName: ShopExample
+          supportURI:
+            - https://shopexample.example/support
+          srvDescription:
+            - - lang: en
+                content: Online retail services.
+              - lang: nl
+                content: Online detailhandel.
+          intendedUse:
+            - intendedUseIdentifier: iu-age-verification
+              purpose:
+                - lang: en
+                  content: Verify the customer is of legal age for restricted product purchases.
+              privacyPolicy:
+                - type: http://data.europa.eu/eudi/policy/privacy-statement
+                  policyURI: https://shopexample.example/privacy/wallet
+              credential:
+                - format: mso_mdoc
+                  meta:
+                    doctype_value: org.iso.18013.5.1.mDL
+                  claim:
+                    - path:
+                        - org.iso.18013.5.1
+                        - age_over_18
+              createdAt: '2026-01-01'
+          isPSB: false
+          entitlement:
+            - https://uri.etsi.org/19475/Entitlement/Service_Provider
+          supervisoryAuthority:
+            legalPerson:
+              legalName:
+                - Autoriteit Persoonsgegevens
+            country: NL
+            infoURI:
+              - https://autoriteitpersoonsgegevens.nl
+          registryURI: https://registry.example.nl/api
+          isIntermediary: false
+          usesIntermediary:
+            - identifier:
+                - type: http://data.europa.eu/eudi/id/EUID
+                  identifier: NL-EUID-112233445
+              tradeName: TrustBridge
+              registryURI: https://registry.example.nl/api
     WalletRelyingPartyIntermediary:
       type: object
       description: >-
@@ -826,12 +828,12 @@ components:
         - identifier
         - tradeName
         - registryURI
-      example:
-        identifier:
-          - type: http://data.europa.eu/eudi/id/EUID
-            identifier: NL-EUID-112233445
-        tradeName: TrustBridge
-        registryURI: https://registry.example.nl/api
+      examples:
+        - identifier:
+            - type: http://data.europa.eu/eudi/id/EUID
+              identifier: NL-EUID-112233445
+          tradeName: TrustBridge
+          registryURI: https://registry.example.nl/api
     Identifier:
       type: object
       properties:
@@ -852,24 +854,25 @@ components:
       required:
         - identifier
         - type
-      example:
-        type: http://data.europa.eu/eudi/id/EUID
-        identifier: FR-EUID-123456789
+      examples:
+        - type: http://data.europa.eu/eudi/id/EUID
+          identifier: FR-EUID-123456789
     MultiLangString:
       type: object
       properties:
         lang:
           type: string
           description: Language tag.
-          example: en
+          examples:
+            - en
         content:
           type: string
       required:
         - lang
         - content
-      example:
-        lang: en
-        content: Open a bank account remotely.
+      examples:
+        - lang: en
+          content: Open a bank account remotely.
     IntendedUse:
       type: object
       properties:
@@ -902,31 +905,31 @@ components:
         - privacyPolicy
         - credential
         - createdAt
-      example:
-        intendedUseIdentifier: iu-account-opening
-        purpose:
-          - lang: en
-            content: Open a bank account remotely.
-          - lang: fr
-            content: Ouvrir un compte bancaire à distance.
-        privacyPolicy:
-          - type: http://data.europa.eu/eudi/policy/privacy-statement
-            policyURI: https://examplebank.eu/privacy/wallet/account-opening
-        credential:
-          - format: dc+sd-jwt
-            meta:
-              vct_values:
-                - https://example.eu/schema/pid
-            claim:
-              - path:
-                  - family_name
-              - path:
-                  - given_name
-              - path:
-                  - birth_date
-              - path:
-                  - nationalities
-        createdAt: '2026-01-01'
+      examples:
+        - intendedUseIdentifier: iu-account-opening
+          purpose:
+            - lang: en
+              content: Open a bank account remotely.
+            - lang: fr
+              content: Ouvrir un compte bancaire à distance.
+          privacyPolicy:
+            - type: http://data.europa.eu/eudi/policy/privacy-statement
+              policyURI: https://examplebank.eu/privacy/wallet/account-opening
+          credential:
+            - format: dc+sd-jwt
+              meta:
+                vct_values:
+                  - https://example.eu/schema/pid
+              claim:
+                - path:
+                    - family_name
+                - path:
+                    - given_name
+                - path:
+                    - birth_date
+                - path:
+                    - nationalities
+          createdAt: '2026-01-01'
     Policy:
       type: object
       properties:
@@ -945,16 +948,17 @@ components:
       required:
         - type
         - policyURI
-      example:
-        type: http://data.europa.eu/eudi/policy/privacy-policy
-        policyURI: https://examplebank.eu/privacy
+      examples:
+        - type: http://data.europa.eu/eudi/policy/privacy-policy
+          policyURI: https://examplebank.eu/privacy
     Credential:
       type: object
       properties:
         format:
           type: string
           description: Credential format identifier.
-          example: dc+sd-jwt
+          examples:
+            - dc+sd-jwt
         meta:
           type: object
           description: Additional grouping or type metadata defined per credential format.
@@ -966,17 +970,17 @@ components:
       required:
         - format
         - meta
-      example:
-        format: dc+sd-jwt
-        meta:
-          vct: https://example.eu/schema/pid
-        claim:
-          - path:
-              - family_name
-          - path:
-              - given_name
-          - path:
-              - birth_date
+      examples:
+        - format: dc+sd-jwt
+          meta:
+            vct: https://example.eu/schema/pid
+          claim:
+            - path:
+                - family_name
+            - path:
+                - given_name
+            - path:
+                - birth_date
     Claim:
       type: object
       properties:
@@ -1000,8 +1004,8 @@ components:
               - type: boolean
       required:
         - path
-      example:
-        path:
+      examples:
+        - path:
           - org.iso.18013.5.1
           - age_over_18
     LegalEntity:
@@ -1038,15 +1042,15 @@ components:
             format: uri
       required:
         - country
-      example:
-        legalPerson:
-          legalName:
-            - Autorité de supervision Exemple
-        country: FR
-        email:
-          - contact@supervisor.example.fr
-        infoURI:
-          - https://supervisor.example.fr
+      examples:
+        - legalPerson:
+            legalName:
+              - Autorité de supervision Exemple
+          country: FR
+          email:
+            - contact@supervisor.example.fr
+          infoURI:
+            - https://supervisor.example.fr
     LegalPerson:
       type: object
       properties:
@@ -1061,8 +1065,8 @@ components:
             $ref: '#/components/schemas/Law'
       required:
         - legalName
-      example:
-        legalName:
+      examples:
+        - legalName:
           - ExampleBank S.A.
     NaturalPerson:
       type: object
@@ -1079,11 +1083,11 @@ components:
       required:
         - givenName
         - familyName
-      example:
-        givenName: Alice
-        familyName: Martin
-        dateOfBirth: '1985-03-04'
-        placeOfBirth: Paris
+      examples:
+        - givenName: Alice
+          familyName: Martin
+          dateOfBirth: '1985-03-04'
+          placeOfBirth: Paris
     Law:
       type: object
       properties:
@@ -1096,9 +1100,9 @@ components:
       required:
         - lang
         - legalBasis
-      example:
-        lang: en
-        legalBasis: Established under national banking supervision law.
+      examples:
+        - lang: en
+          legalBasis: Established under national banking supervision law.
     DeleteWrpRequest:
       type: object
       properties:
