@@ -1,3 +1,13 @@
+### ARF and Technical Specifications (TS)
+
+| **Item Reference** | **Version** | **Date**   | **Standard Name/Details** |
+| ------------------ | ----------- | ---------- | ------------------------- |
+| ARF                | v2.9.0      | 2026-05-21 | Architecture and Reference Framework |
+| TS02               | v1.0.1      | 2026-01-30 | Specification of systems enabling the notification and subsequent publication of Provider information |
+| TS05               | v1.3        | 2026-02-13 | Specification of common formats and API for Relying Party Registration information |
+| TS06               | v1.0.1      | 2026-01-30 | Common Set of Relying Party Information to be Registered |
+| TS11               | v1.0.1      | 2026-01-30 | Specification of interfaces and formats for the catalogue of attributes and the catalogue of attestations |
+
 ### Commission Implementing Regulation (CIR)
 
 | **Item Reference**               | **Date**   | **Standard Name/Details** |
