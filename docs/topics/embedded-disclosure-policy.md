@@ -5,7 +5,7 @@ This section specifies the <artifacts:Embedded Disclosure Policy (EDP)|Embedded 
 - The distribution mechanism.
 - The lifecycle rules.
 
-The authorization evaluation logic that the WI applies when processing an <artifacts:Embedded Disclosure Policy (EDP)|EDP> during presentation is defined in the [Authorization Process](#authorization-process) section of this specification.
+The authorization evaluation logic that the WI applies when processing an <artifacts:Embedded Disclosure Policy (EDP)|EDP> during presentation is defined in the [Authorization Process](../sections/trust-evaluation-process.md#authorization-process) section of this specification.
 
 #### Definition and Applicability
 
@@ -95,7 +95,7 @@ The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is distributed through <art
 
     According to ISS-MDATA-EBD-4.2.5.2-03, the <roles:Attestation Provider (AP)|AP> may provide only the `policy_uri` if the policy data set has already been pre-loaded into the <components:Wallet Instance|WI>. As the mechanism for pre-loading policies into a <components:Wallet Instance|WI> is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.
 
-As described in section [Authorization Process](#authorization-process), during attestation issuance, the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if available) is stored locally by the <components:Wallet Instance|WI> and it is associated with the specific Attestation for which it was retrieved.
+As described in section [Authorization Process](../sections/trust-evaluation-process.md#authorization-process), during attestation issuance, the <artifacts:Embedded Disclosure Policy (EDP)|EDP> (if available) is stored locally by the <components:Wallet Instance|WI> and it is associated with the specific Attestation for which it was retrieved.
 
 #### Lifecycle
 

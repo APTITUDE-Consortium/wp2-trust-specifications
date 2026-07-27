@@ -7,11 +7,11 @@ Authorization covers:
 
 !!! note
 
-    Authentication process is out of scope. This section does not define access certificate validation rules, <artifacts:List of Trusted Entities (LoTE)|LoTE> validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> (covered in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate)), nor <roles:Registrar> online service API definition.
+    Authentication process is out of scope. This section does not define access certificate validation rules, <artifacts:List of Trusted Entities (LoTE)|LoTE> validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> (covered in section [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate)), nor <roles:Registrar> online service API definition.
 
 #### Preconditions
 
-The authorization process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](#authentication-process)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the authorization process SHALL NOT start [AUTHZ-GEN-02].
+The authorization process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](../sections/trust-evaluation-process.md#authentication-process)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the authorization process SHALL NOT start [AUTHZ-GEN-02].
 This section does define how the <components:Wallet Instance|WI> SHALL use the already-authenticated WRP context as an input to authorization, including binding checks between the authenticated WRP, the authorization subject, and the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or <components:Register>-derived authorization context.
 
 #### Authorization Framework
@@ -153,7 +153,7 @@ Registration data is collected at the <roles:Registrar> and the <roles:Provider 
 
 ##### WRPRC Parameters for Authorization
 
-The following table lists the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> payload parameters used in authorization processing, with field names as defined in [ETSI TS 119 475, Section 5.2.4]. Details about the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
+The following table lists the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> payload parameters used in authorization processing, with field names as defined in [ETSI TS 119 475, Section 5.2.4]. Details about the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate).
 The **Authorization Use** column indicates how each parameter is consumed: **Decision rule** means the <components:Wallet Instance|WI> enforces an automated check, **User transparency** means the information is displayed to support the <roles:User>'s decision, and **Wallet operation** means the <components:Wallet Instance|WI> uses it internally (e.g. for fallback query).
 
 | Field | Applicability | Authorization Use | Reference |
@@ -206,7 +206,7 @@ The <components:Wallet Instance|WI> SHALL use this service when the <artifacts:W
 
 ##### Embedded Disclosure Policy
 
-The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is a set of rules defined by the <roles:Attestation Provider (AP)|AP> that restricts which <roles:Relying Party (RP)|RPs> can access specific <credentials:Attestation|Attestations>. The <artifacts:Embedded Disclosure Policy (EDP)|EDP> definition, data model, structure, encoding, and lifecycle are specified in the dedicated [Embedded Disclosure Policy](#embedded-disclosure-policy) section of this specification.
+The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is a set of rules defined by the <roles:Attestation Provider (AP)|AP> that restricts which <roles:Relying Party (RP)|RPs> can access specific <credentials:Attestation|Attestations>. The <artifacts:Embedded Disclosure Policy (EDP)|EDP> definition, data model, structure, encoding, and lifecycle are specified in the dedicated [Embedded Disclosure Policy](../sections/trust-artifacts.md#embedded-disclosure-policy) section of this specification.
 
 For authorization purposes, the following aspects are relevant:
 

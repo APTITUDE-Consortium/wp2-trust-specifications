@@ -1,11 +1,11 @@
-This section describes the artifacts that are employed in [Trust Management and Lifecycle](#9-trust-management-and-lifecycle) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
+This section describes the artifacts that are employed in [Trust Management and Lifecycle](../sections/trust-management-lifecycle.md) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
 - To manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>, each <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> SHALL:
     - make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
-    - issue <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> with at least an extension corresponding to the provided revocation mechanism as illustrated in [Wallet-Relying Party Access Certificate](#wallet-relying-party-access-certificate).
+    - issue <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> with at least an extension corresponding to the provided revocation mechanism as illustrated in [Wallet-Relying Party Access Certificate](../sections/trust-artifacts.md#wallet-relying-party-access-certificate).
 - To manage <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRCs)>, each <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
     - make available an endpoint to request [Status List Tokens](#status-list-token);
-    - issue <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](#wallet-relying-party-registration-certificate).
+    - issue <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate).
 
 #### Token Status List
 
@@ -136,7 +136,7 @@ CAs publish <artifacts:Certificate Revocation List (CRL)|CRLs> to provide status
 
 The <artifacts:Certificate Revocation List (CRL)|CRL> issuer MAY also generate delta <artifacts:Certificate Revocation List (CRL)|CRLs>. A delta CRL only lists those certificates, within its scope, whose revocation status has changed since the issuance of a referenced complete <artifacts:Certificate Revocation List (CRL)|CRL>. The referenced complete CRL is referred to as a base <artifacts:Certificate Revocation List (CRL)|CRL>. The scope of a delta <artifacts:Certificate Revocation List (CRL)|CRL> SHALL be the same as the base <artifacts:Certificate Revocation List (CRL)|CRL> that it references.
 
-If supported by the <roles:Certificate Authority (CA)|CA>, the <artifacts:Certificate Revocation List (CRL)|CRL> SHALL be available at the URI specified in the `cRLDistributionPoints.distributionPoint` *[0] CHOICE* structure within the [WRPAC](#wallet-relying-party-access-certificate).
+If supported by the <roles:Certificate Authority (CA)|CA>, the <artifacts:Certificate Revocation List (CRL)|CRL> SHALL be available at the URI specified in the `cRLDistributionPoints.distributionPoint` *[0] CHOICE* structure within the [WRPAC](../sections/trust-artifacts.md#wallet-relying-party-access-certificate).
 
 An X.509 v2 <artifacts:Certificate Revocation List (CRL)|CRL> is represented as the ASN.1 DER encoding of the `CertificateList` SEQUENCE. The ASN.1 DER encoding is a strictly defined tag, length, and value encoding system for each element. The final bytes transmitted represent the DER encoding of the top-level SEQUENCE containing the fields in the following table:
 
@@ -184,7 +184,7 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 
 An <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client issues a status request to an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response.
 
-If supported by the <roles:Certificate Authority (CA)|CA>, the URI to which the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](#wallet-relying-party-access-certificate).
+If supported by the <roles:Certificate Authority (CA)|CA>, the URI to which the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](../sections/trust-artifacts.md#wallet-relying-party-access-certificate).
 
 This protocol specifies the data that SHALL be exchanged between the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client (which checks the status of one or more certificates) and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server (which provides the corresponding status). In this specific ecosystem, the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client can be a WU checking the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> of a WRP, and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server is the Provider of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
 
