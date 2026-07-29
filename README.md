@@ -19,6 +19,7 @@ The repository is structured according to the following organization:
 │   └── trust-framework.md
 ├── references/
 ├── requirements/
+├── scripts/
 ├── .gitignore
 ├── .markdownlint.yml
 ├── CONTRIBUTING.md
@@ -41,6 +42,7 @@ The main files and folders are as follows:
 | `docs/trust-framework.md` | Main entry document assembling the trust framework topics. |
 | `references/` | Contains reference materials, external specifications, and supporting documents. |
 | `requirements/` | Contains consolidated requirements grouped by source (ARF, ETSI, etc.). |
+| `scripts/` | Helper scripts, including `fetch-remote-assets.sh` for pulling assets from external specifications. |
 | `.markdownlint.yml` | Configuration rules for Markdown linting. |
 | `CONTRIBUTING.md` | Guidelines for contributing to the repository. |
 | `LICENSE` | Terms and repository license details. |
