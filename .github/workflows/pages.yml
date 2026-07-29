@@ -74,12 +74,13 @@ jobs:
           clean: false
           sparse-checkout: |
             docs/glossary-definitions.md
+            docs/img/eu-cofunded.png
             docs/media/
             docs/overrides/
 
       - name: Merge Assets into Local Workspace
         run: |
-          mkdir -p docs/media docs/overrides
+          mkdir -p docs/img docs/media docs/overrides
           cp -r temp_remote_assets/docs/* ./docs/
           rm -rf temp_remote_assets
 
