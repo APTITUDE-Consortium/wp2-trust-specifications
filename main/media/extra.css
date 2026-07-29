@@ -93,3 +93,13 @@
   line-height: 1.35;
   white-space: normal;
 }
+
+/* Standards register — scoped to the wrapped table only */
+.standards-table { overflow-x: auto; }
+
+.standards-table td:nth-child(2),   /* Title */
+.standards-table td:nth-child(7) {  /* Relevance */
+  white-space: normal;      /* annulla un eventuale nowrap che tiene la cella su una riga */
+  max-width: 24rem;
+  overflow-wrap: anywhere;
+}
