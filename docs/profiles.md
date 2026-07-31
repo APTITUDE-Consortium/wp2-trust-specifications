@@ -82,15 +82,15 @@ The following table lists the trust artifacts defined in the profiles. For each,
 
 | Artifact | Producer | Reference |
 |---|---|---|
-| WRPAC | Provider of WRPAC (WP2 managed CA) | [link](../docs/topics/access-certificate.md) |
-| WRPRC | Provider of WRPRC (WP2 managed CA) | [link](../docs/topics/registration-certificate.md) |
-| Sign/Seal Certificate | Provider of Sign/Seal Certificates (WP2 managed CA) | [link](../docs/topics/entity-end-certificate-profiles.md) |
-| CRLs, OCSP | Provider of WRPAC and Sign/Seal Certificates (WP2 managed CA component) | [link](../docs/topics/revocation-mechanisms.md) |
-| TSL | Provider of WRPRC (WP2 managed CA component) | [link](../docs/topics/revocation-mechanisms.md) |
-| Trust Anchor Certificate | Self-signed WP2 managed CA | [link](../docs/topics/trust-anchor-certificate-profiles.md) |
-| Register API | Registrar (WP2 managed service) | [link](../docs/api/register-api.md) |
-| EDP | Attestation Providers (Self-managed issuance) | [insert link](/docs/topics/embedded-disclosure-policy.md) |
-| List of Trusted Entities | LoTE Provider (WP2 managed service) | [link](../docs/topics/trusted-list-and-list-of-trusted-lists.md) |
+| WRPAC | Provider of WRPAC (WP2 managed CA) | [WRPAC Profiles](../docs/topics/access-certificate.md) |
+| WRPRC | Provider of WRPRC (WP2 managed CA) | [WRPRC Profiles](../docs/topics/registration-certificate.md) |
+| Sign/Seal Certificates | Provider of Sign/Seal Certificates (WP2 managed CA) | [Sign/Seal Certificates Profile](../docs/topics/entity-end-certificate-profiles.md) |
+| CRLs, OCSP | Provider of WRPAC and Sign/Seal Certificates (WP2 managed CA component) | [Revocation Mechanisms](../docs/topics/revocation-mechanisms.md) |
+| TSL | Provider of WRPRC (WP2 managed CA component) | [Revocation Mechanisms](../docs/topics/revocation-mechanisms.md) |
+| Trust Anchor Certificate | Self-signed WP2 managed CA | [Trust Anchor Certificate Profiles](../docs/topics/trust-anchor-certificate-profiles.md) |
+| Register API | Registrar (WP2 managed service) | [Register API Profiles](../docs/api/register-api.md) |
+| EDP | Attestation Providers (Self-managed issuance) | [EDP Profiles](/docs/topics/embedded-disclosure-policy.md) |
+| List of Trusted Entities | LoTE Provider (WP2 managed service) | [LoTE Profiles](../docs/topics/trusted-list-and-list-of-trusted-lists.md) |
 
 ## 1.3. Trust Processes Taxonomy
 
