@@ -1,0 +1,23 @@
+.md-typeset table {
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+    font-size: 0.75rem;
+}
+
+/* Scroll wrapper behavior if table overflows narrow screens */
+.md-typeset .md-typeset__scrollwrap,
+.md-typeset table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.md-typeset table td,
+.md-typeset table th {
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    padding: 0.6rem 0.8rem;
+}
