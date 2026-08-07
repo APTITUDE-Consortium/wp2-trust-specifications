@@ -948,12 +948,12 @@
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL accept only the <a class="mkdocs-ezglossary-link"
-    id="6cc889e2f0c2ab9716429396d7e91589"
+    id="e5aa4abfa74668d7eed1e4aed33dbf87"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a> published in the validated <a class="mkdocs-ezglossary-link"
-    id="c46dd910c7b1e9fa4727b1b306108040"
+    id="21a5752c556fb9ecbba0fc22cd729611"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -962,12 +962,12 @@
 <p>The Authentication outcome SHALL be based only on information derived from:</p>
 <ul>
 <li>the appropriate <a class="mkdocs-ezglossary-link"
-    id="6ec36a9e45a99df5e80c0038fc8357f4"
+    id="f7f01e70003e2ff04b8e289919597261"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> obtained from a valid instance of the Provider of WRPAC <a class="mkdocs-ezglossary-link"
-    id="e665d0e0b765c599509912c616125a4a"
+    id="a4ccfa1eb3b4ccee8797bbba20a16255"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1010,24 +1010,24 @@
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> as follows:</p>
 <ol>
 <li><strong>Retrieve the <a class="mkdocs-ezglossary-link"
-    id="15145928a823315e5fba82b7a58cc246"
+    id="84614018ad2624a170306580adf79286"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>:</strong> Obtain the Provider of WRPAC entry from the validated <a class="mkdocs-ezglossary-link"
-    id="2876a5f65143eac23a398334df0cdfb3"
+    id="c46dd910c7b1e9fa4727b1b306108040"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>. To select the correct entry, match the <code>issuer.organizationIdentifier</code> of the first certificate in the presented chain with the <code>TrustedEntitiesList[].TrustedEntity.TETradeName</code> value. The certificates in <code>TrustedEntityServices[].ServiceInformation.ServiceDigitalIdentity</code> constitute the <a class="mkdocs-ezglossary-link"
-    id="22ab72ea0d34765ea2aa02217193fbee"
+    id="cad819551ebfeba8f3da49536df808bc"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a>.</li>
 <li><strong>Construct the certification path:</strong> Build a path starting with the certificate issued by the Provider of WRPAC (<code>C_1</code>) and ending with the WRPAC presented by the WRP (<code>C_n</code>). The simplest path consists of a single certificate, where <code>n = 1</code>. If the received chain is in end-entity-first order, it SHALL be normalized to the path order consumed by the shared validation algorithm.</li>
 <li><strong>Execute path validation:</strong> Validate the certification path with the retrieved <a class="mkdocs-ezglossary-link"
-    id="38aa6acdfc6ab6869d66170b626b0050"
+    id="9235c844778e07576f2c9842cce6c3bd"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1078,7 +1078,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 5, 2026 17:39:28 UTC">August 5, 2026 17:39:28</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 7, 2026 15:18:22 UTC">August 7, 2026 15:18:22</span>
   </span>
 
     
