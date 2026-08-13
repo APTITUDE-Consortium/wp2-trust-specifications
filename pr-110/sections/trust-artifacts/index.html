@@ -948,17 +948,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#signseal-certificate-path-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sign/Seal Certificate Path Validation
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1141,6 +1130,8 @@
       
         
       
+        
+      
     
     
     
@@ -1255,6 +1246,34 @@
     
   
     Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pr-workspace/entity-end-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity end certificate profiles
   
 
     
@@ -9351,68 +9370,6 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
   signatureValue: &quot;BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))&quot;
 }
 </code></pre></div>
-<h3 id="signseal-certificate-path-validation">Sign/Seal Certificate Path Validation<a class="headerlink" href="#signseal-certificate-path-validation" title="Permanent link">&para;</a></h3>
-<p>When instantiating the <a href="../trust-evaluation-process/#authentication-process">Certificate Path Validation</a> algorithm for Sign/Seal Certificate chains, the initialization parameters are defined as follows:</p>
-<ul>
-<li>The <a class="mkdocs-ezglossary-link"
-    id="1fbf8f82981dd642015ba27714670237"
-    title="An authoritative entity represented by a public key and associated data. [ARF]"
-    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
-    name="artifacts:Trust Anchor"
-    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is the <em>trusted certificate</em> obtained from the <code>ServiceDigitalIdentity</code> component in relevant <a class="mkdocs-ezglossary-link"
-    id="20f8b139aa2d1ca5eac8143310b73512"
-    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> (See the table below).</li>
-<li>The Certification Path is the sequence of <span class="arithmatex">\(n\)</span> certificates (<span class="arithmatex">\(C_1 \dots C_n\)</span>) provided by the WRP, where:<ul>
-<li><span class="arithmatex">\(C_1\)</span> is the certificate issued by the root Certificate Authority.</li>
-<li><span class="arithmatex">\(C_n\)</span> is the Sign/Seal Certificate (the target certificate).</li>
-<li>For any <span class="arithmatex">\(i\)</span> in <span class="arithmatex">\(1 \dots n-1\)</span>, <span class="arithmatex">\(C_i\)</span> is the issuer of <span class="arithmatex">\(C_{i+1}\)</span>.</li>
-</ul>
-</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Regarding Sign/Seal Certificates within APTITUDE, <span class="arithmatex">\(n=1\)</span>. The Sign/Seal Certificate SHALL be referenced in the <code>x5c</code> claim of the Attestation, while the Trust Anchor referenced in the LoTE SHALL be a self-signed certificate of the entity issuing Sign/Seal Certificates as described in <a href="./#trust-anchor-certificate">Trust Anchor Certificate</a>.</p>
-</div>
-<p>The following table maps the Sign/Seal Certificate subject to the location of the respective Trust Anchor.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Sign/Seal Certificate subject</th>
-<th style="text-align: center;">Attestation signed</th>
-<th style="text-align: center;">Trust Anchor location</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">PID Provider</td>
-<td style="text-align: center;">signing PID</td>
-<td style="text-align: center;">PID Providers LoTE</td>
-</tr>
-<tr>
-<td style="text-align: center;">Wallet Provider</td>
-<td style="text-align: center;">WIA, KA</td>
-<td style="text-align: center;">Wallet Providers LoTE</td>
-</tr>
-<tr>
-<td style="text-align: center;">EAA Provider</td>
-<td style="text-align: center;">signing EAA</td>
-<td style="text-align: center;">MS decision</td>
-</tr>
-<tr>
-<td style="text-align: center;">QEAA Provider</td>
-<td style="text-align: center;">signing QEAA</td>
-<td style="text-align: center;">TL</td>
-</tr>
-<tr>
-<td style="text-align: center;">Pub-EAA Provider</td>
-<td style="text-align: center;">signing  PuB-EAA</td>
-<td style="text-align: center;">Pub-EAA Providers LoTE</td>
-</tr>
-</tbody>
-</table>
 <!-- END INCLUDE -->
 
 
