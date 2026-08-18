@@ -1,0 +1,142 @@
+```text
+AccessCertificate cert = {
+  tbsCertificate: {
+    version: 2,                                           // Integer value 2 for v3
+    serialNumber: "0x8D73F82C13...",
+
+    signature: AlgorithmIdentifier {
+      oid: "1.2.840.113549.1.1.11",                       // sha256WithRSAEncryption
+      params: NULL
+    },
+
+    issuer: DistinguishedName {
+      countryName: "CZ",
+      organizationName: "Example Trust Services CA",
+      commonName: "Example CA",
+      organizationIdentifier: "VATCZ-123456789"
+    },
+
+    validity: {
+      notBefore: "2026-01-27T00:00:00Z",
+      notAfter:  "2027-01-27T00:00:00Z"
+    },
+
+    subject: DistinguishedName {
+      countryName: "CZ",
+      organizationName: "Example of Wallet Provider",
+      commonName: "Wallet Provider Example",
+      organizationIdentifier: "LEIXYZ-5494001KJTIIGC8Y1R12"
+    },
+
+    subjectPublicKeyInfo: {
+      algorithm: AlgorithmIdentifier {
+        oid: "1.2.840.113549.1.1.1",                      // rsaEncryption
+        params: NULL
+      },
+
+      subjectPublicKey: "BASE64(SPKI_PUBLIC_KEY_BYTES)"
+    },
+
+    extensions: [
+      Extension {
+        oid: "2.5.29.35",                                 // authorityKeyIdentifier
+        critical: false,
+        value: AuthorityKeyIdentifier {
+          keyIdentifier: "SHA-1(ISSUER_PUBLIC_KEY_VALUE)"
+        }
+      },
+
+      Extension {
+        oid: "2.5.29.14",                                 // subjectKeyIdentifier
+        critical: false,
+        value: SubjectKeyIdentifier [
+          keyIdentifier: "SHA-1(SUBJECT_PUBLIC_KEY_VALUE)"
+        ]
+      },
+
+      Extension {
+        oid: "2.5.29.15",                                 // keyUsage
+        critical: true,
+        value: KeyUsage {
+          nonRepudiation: true                            // Type A
+          // All other bits set to false
+        }
+      },
+
+      Extension {
+        oid: "2.5.29.32",                                 // certificatePolicies
+        critical: false,
+        value: CertificatePolicies [
+          PolicyInformation {
+            policyIdentifier: "0.4.0.2042.1.2",           // ncpplus
+            policyQualifiers: [
+              CPSuri("https://rpca.example.test/cps")
+            ]
+          }
+        ]
+      },
+
+      Extension {
+        oid: "2.5.29.17",                                 // subjectAltName
+        critical: false,
+        value: SubjectAltName [
+          GeneralName.uniformResourceIdentifier("https://wp.example.test/support"),
+          GeneralName.rfc822Name("support@wp.example.test"),
+          GeneralName.otherName(
+            type-id: "2.5.4.20",                           // id-at-telephoneNumber
+            value: "+420-111-222-444"
+          )
+        ]
+      },
+
+      Extension {
+        oid: "2.5.29.31",                                 // cRLDistributionPoints
+        critical: false,
+        value: CRLDistributionPoints [
+          DistributionPoint {
+            distributionPoint: URI("https://crl.example.test/issuing-ca.crl")
+          }
+        ]
+      },
+
+      Extension {
+        oid: "1.3.6.1.5.5.7.1.1",                         // authorityInfoAccess
+        critical: false,
+        value: AuthorityInfoAccess [
+          AccessDescription {
+            accessMethod: "1.3.6.1.5.5.7.48.2",           // id-ad-caIssuers
+            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer")
+          },
+
+          AccessDescription {
+            accessMethod: "1.3.6.1.5.5.7.48.1",           // id-ad-ocsp
+            accessLocation: URI("https://ocsp.example.test")
+          }
+        ]
+      },
+
+      Extension {
+        oid: "1.3.6.1.5.5.7.1.3",                         // qcStatements
+        critical: false,
+        value: QCStatements [
+          QCStatement {
+            statementId: "0.4.0.1862.1.6",                // id-etsi-qcs-QcType
+            statementInfo: QcType {
+              [
+                "0.4.0.194126.1.2"                        // id-etsi-qct-wal
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  signatureAlgorithm: AlgorithmIdentifier {
+    oid: "1.2.840.113549.1.1.11",                         // SHALL match/align with tbsCertificate.signature
+    params: NULL
+  },
+
+  signatureValue: "BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))"
+}
+```
