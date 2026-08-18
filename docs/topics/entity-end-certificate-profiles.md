@@ -28,7 +28,7 @@ The specific requirements for PID Provider Sign/Seal Certificates are specified 
 The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.
 
 | Extension                 | Presence      | Notes |
-| ------------------------- | ------------- | ----- |
+| ------------------------- | :-----------: | ----- |
 | `authorityKeyIdentifier`  | REQUIRED      | The `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
 | `subjectKeyIdentifier`    | REQUIRED      | The `keyIdentifier` field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
 | `keyUsage`                | REQUIRED      | It SHALL contain one (and only one) of the key-usage settings *Type A*, *Type B*, *Type C*, or *Type F*. |
@@ -130,4 +130,3 @@ The following table defines the complete set of extensions applicable to the cer
 ??? example "Example: Pub-EAA Provider Sign/Seal Certificate"
 
     {% include-markdown "../examples/pubeaa-provider-sign-seal.md" %}
-

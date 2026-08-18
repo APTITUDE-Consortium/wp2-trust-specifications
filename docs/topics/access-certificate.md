@@ -24,12 +24,10 @@ The suspension or cancellation of the <roles:Wallet-Relying Party (WRP)|WRP> ser
 
     The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> attributes SHALL be derived from the information held in the <components:Register> as specified in clause 5.1.2 of [ETSI TS 119 475]. This also implies that for some specific attributes in the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> the same value SHALL be encountered in the corresponding <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificate> if any.
 
-#### Format
-
 The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.
 
 | Extension                 | Presence      | Notes |
-| ------------------------- | ------------- | ----- |
+| ------------------------- | :-----------: | ----- |
 | `authorityKeyIdentifier`  | REQUIRED      | The The `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]. |
 | `subjectKeyIdentifier`    | OPTIONAL      | If present, the `keyIdentifier` field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
 | `keyUsage`                | REQUIRED      | It SHALL contain one (and only one) of the key-usage settings *Type A*, *Type B*, or *Type F*. *Type A* SHOULD be used as per [ETSI EN 319 412-3, LEG-4.3.1-4]. |
@@ -37,7 +35,7 @@ The following table defines the complete set of extensions applicable to the cer
 | `subjectAltName`          | REQUIRED      | It SHALL include a `GeneralName` structure with one of the following parameters defined to provide valid contact information of the WRP: `uniformResourceIdentifier` (website for helpdesk/support matters), `otherName` with `type-id` set to `2.5.4.20` (`id-at-telephoneNumber`, phone number for WRP registration/usage matters), `rfc822Name` (email address for WRP registration/usage matters). |
 | `cRLDistributionPoints`   | CONDITIONAL   | **REQUIRED IF:** the certificate does not include any access location of an <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <artifacts:Certificate Revocation List (CRL)\|Certificate Revocation List>. |
 | `authorityInfoAccess`     | REQUIRED      | It SHALL include an `AccessDescription` structure with `accessMethod` set to `1.3.6.1.5.5.7.48.2` (`id-ad-caIssuers`) and `accessLocation` specifying at least one access location of a valid CA certificate of the issuing <roles:Certificate Authority (CA)\|CA>. If <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> is supported by the issuing CA, the extension SHALL include an `AccessDescription` structure with `accessMethod` set to `1.3.6.1.5.5.7.48.1` (`id-ad-ocsp`) and `accessLocation` specifying at least one <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> responder authoritative to provide certificate status information for the certificate. |
-| `qcStatements`            | OPTIONAL      | It MAY contain `QCStatement` structures among those defined in [ETSI EN 319 412-5, Clause 4.2]. In any case, it SHALL NOT contain:<ul><li>A `QCStatement` structure with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`), referred to as `esi4-qcStatement-1`.</li><li>A `QCStatement` structure with `statementId` set to `0.4.0.1862.1.4` (`id-etsi-qcs-QcSSCD`), referred to as `esi4-qcStatement-4`.</li><li>A `QCStatement` structure with `statementId` set to `0.4.0.1862.1.7` (`id-etsi-qcs-QcCClegislation`), referred to as `esi4-qcStatement-7`.</li></ul>
+| `qcStatements`            | OPTIONAL      | It MAY contain `QCStatement` structures among those defined in [ETSI EN 319 412-5, Clause 4.2]. In any case, it SHALL NOT contain:<ul><li>A `QCStatement` structure with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`), referred to as `esi4-qcStatement-1`.</li><li>A `QCStatement` structure with `statementId` set to `0.4.0.1862.1.4` (`id-etsi-qcs-QcSSCD`), referred to as `esi4-qcStatement-4`.</li><li>A `QCStatement` structure with `statementId` set to `0.4.0.1862.1.7` (`id-etsi-qcs-QcCClegislation`), referred to as `esi4-qcStatement-7`.</li></ul> |
 
 !!! choice "APTITUDE Implementation Choices"
 

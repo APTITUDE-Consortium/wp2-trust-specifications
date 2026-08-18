@@ -11,7 +11,7 @@ The following table defines the certificate fields applicable to the certificate
 For each field, the table specifies the corresponding reference in [RFC 5280], its presence requirement, and any additional profile-specific constraints.
 
 | Field                       | Presence      | Description | Reference in [RFC 5280] |
-| --------------------------- | ------------- |------------ | ----------------------- |
+| --------------------------- | :-----------: |------------ | ----------------------- |
 | `version`                   | REQUIRED      | Describes the version of the encoded certificate. For this profile, it SHALL be version 3 (value `2`). | Section 4.1.2.1 |
 | `serialNumber`              | REQUIRED      | Represents the serial number of the certificate. | Section 4.1.2.2 |
 | `signature`                 | REQUIRED      | Contains the algorithm identifier for the algorithm used by the <roles:Certificate Authority (CA)\|CA> to sign the certificate. The signature algorithm SHOULD be selected according to [ETSI TS 119 312], but MAY be superseded by national recommendations. | Section 4.1.2.3, Section 4.1.1.2 |
@@ -34,7 +34,7 @@ The criticality values used in this specification have the following meaning:
 - **NC**: the extension SHALL be marked non-critical.
 
 | Extension                         | OID                   | Criticality   | Description   | Reference |
-| --------------------------------- | --------------------- | ------------- | ------------- | --------- |
+| --------------------------------- | :-------------------: | :-----------: | ------------- | --------- |
 | `authorityKeyIdentifier`          | `2.5.29.35`           | NC            | Identifies the public key corresponding to the private key used by the issuing <roles:Certificate Authority (CA)\|CA> to sign the certificate. | [RFC 5280, Section 4.2.1.1], [ETSI EN 319 412-2, Clause 4.3.1] |
 | `subjectKeyIdentifier`            | `2.5.29.14`           | NC            | Identifies certificates that contain a particular public key. | [RFC 5280, Section 4.2.1.2] |
 | `keyUsage`                        | `2.5.29.15`           | C             | Defines the purpose of the key contained in the certificate. | [RFC 5280, Section 4.2.1.3], [ETSI EN 319 412-2, Clause 4.3.2], [ETSI EN 319 412-3, Clause 4.3.1] |
