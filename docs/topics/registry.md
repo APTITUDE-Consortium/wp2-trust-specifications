@@ -313,8 +313,6 @@ POST is for creating a new <roles:Wallet-Relying Party (WRP)|WRP> entry in the <
 | `401` | Unauthorized (missing or invalid authentication). |
 | `403` | Forbidden (caller not authorised by Member State). |
 
-
-
 ##### `PUT /wrp` — update (REQUIRED)
 
 PUT is for updating an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in the <components:Register>. Method expects a request body with the `WalletRelyingParty` schema, and can return `200` on success or `404` if not found.
@@ -334,8 +332,6 @@ PUT is for updating an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in 
 | `401` | Unauthorized (missing or invalid authentication). |
 | `403` | Forbidden (caller not authorised by Member State). |
 | `404` | Not found. |
-
-
 
 ##### `DELETE /wrp` — delete (REQUIRED)
 
@@ -437,8 +433,6 @@ A successful response (`200`) SHALL be JWS-signed response body.
         The JOSE header parameter `x5c` above is part of the JWS signature envelope. It is distinct from any `x5c` attribute defined in the registry payload/data schema (e.g., Annex VI data schema fields).
 -->
 
-
-
 ##### `GET /wrp/check-intended-use` — intended use check (REQUIRED)
 
 A dedicated intended-use check endpoint for making narrowed-down intended use related queries from the <components:Register>.
@@ -463,8 +457,6 @@ This profile uses the following mapping (strictly aligned names for intended-use
 | `200`  | `application/jwt` | JWS compact string; decoded payload is boolean `true` or `false`. |
 | `400` | - | Bad request (invalid or incomplete request parameter). |
 | `404` | - | WRP with the given `rpidentifier` not found. |
-
-
 
 ##### `GET /wrp/{identifier}` — get by identifier (OPTIONAL)
 
