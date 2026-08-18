@@ -1,6 +1,6 @@
 # 1\. APTITUDE Trust Framework Implementation Profiles
 
-This document specifies the core architectural profiles for trust framework implementation within the APTITUDE Large-Scale Pilot (LSP). It defines the necessary trust architecture, the essential trust artifacts exchanged among pilot entities, and the high-level evaluation processes and precise trust checks to be executed during issuance and presentation flows. These profiles are derived from the EUDI Wallet Architecture Reference Framework (ARF), its Technical Specifications, the relevant ETSI standards, and the other standards defined in [insert link], adapted to the pilot context.
+This document specifies the core architectural profiles for trust framework implementation within the APTITUDE Large-Scale Pilot (LSP). It defines the necessary trust architecture, the essential trust artifacts exchanged among pilot entities, and the high-level evaluation processes and precise trust checks to be executed during issuance and presentation flows. These profiles are derived from the EUDI Wallet Architecture Reference Framework (ARF), its Technical Specifications, the relevant ETSI standards, and the other standards defined in the [Reference section](../docs/sections/references.md), adapted to the pilot context.
 
 **Document roadmap:**
 
@@ -44,7 +44,7 @@ This section highlights the main high-level deviations of the APTITUDE ecosystem
 
 | # | Theme | EUDIW responsibility | APTITUDE constraints |
 |---|---|---|---|
-| 1 | **Institutional Role** | Distributed governance (EU Commission, MSs) | Missing corresponding role in APTITUDE |
+| 1 | **Publication of LoTE** | EU Commission responsibility | Missing corresponding role in APTITUDE |
 | 2 | **Registration Process** | MS responsibility | Missing corresponding role in APTITUDE |
 | 3 | **Notification Process** | MS & EU Commission responsibility | Missing corresponding role in APTITUDE |
 | 4 | **List of Trusted Entities, Trusted List and List of Trusted Lists** | MS & EU Commission responsibility for publication/management | Missing corresponding entity for publication/management |
@@ -52,6 +52,8 @@ This section highlights the main high-level deviations of the APTITUDE ecosystem
 | 6 | **Catalogue of Attestation** | EU Commission responsibility for publication/management | Missing corresponding role in APTITUDE |
 | 7 | **Entity Lifecycle Management** | Supervisory Body responsibility | Missing corresponding role in APTITUDE |
 | 8 | **Certification Schemes** | Supervisory Body responsibility | Missing corresponding role in APTITUDE |
+| 9 | **WRPAC--WRPRC--Sign/Seal Certificate issuance** | MS responsibility | Missing corresponding role in APTITUDE |
+| 10 | **publication of OJEU** | EU Commission responsibility | Missing corresponding role in APTITUDE |
 
 ### 1.1.5. Assumptions and Boundaries
 
