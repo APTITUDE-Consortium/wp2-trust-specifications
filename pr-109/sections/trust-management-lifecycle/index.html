@@ -4641,23 +4641,23 @@
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</a> payload and header prior to signing and base64url encoding:</p>
 <p><strong>Header:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;alg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ES256&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;typ&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;statuslist+jwt&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;x5c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;MIIDqjCCApKgAwIBAgIESLNEvDA...&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;MIICwzCCAasCCQCKVy9eKjvi+jA...&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;MIIDTDCCAjSgAwIBAgIJAPlnQYH...&quot;</span>
+<span class="w">  </span><span class="nt">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ES256"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"typ"</span><span class="p">:</span><span class="w"> </span><span class="s2">"statuslist+jwt"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"x5c"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"MIIDqjCCApKgAwIBAgIESLNEvDA..."</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"MIICwzCCAasCCQCKVy9eKjvi+jA..."</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"MIIDTDCCAjSgAwIBAgIJAPlnQYH..."</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Payload:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2291720170</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1686920170</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example-issuer.com/statuslists/1&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;status*list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;bits&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;lst&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eNrbuRgAAhcBXQ&quot;</span>
+<span class="w">  </span><span class="nt">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2291720170</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1686920170</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example-issuer.com/statuslists/1"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"status*list"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"bits"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"lst"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eNrbuRgAAhcBXQ"</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -5634,7 +5634,7 @@
       BasicOCSPResponse: 
         tbsResponseData:
           version = v1
-          responderID&quot;
+          responderID"
             byName: 
              CN = Example OCSP Responder
              O  = Example CA
