@@ -18,7 +18,7 @@
         <link rel="prev" href="../attestation-signature-validation-process/">
       
       
-        <link rel="next" href="../entity-end-certificate-profiles/">
+        <link rel="next" href="../authorization-process/">
       
       
         
@@ -643,6 +643,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -724,6 +730,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../attestation-signature-validation-process/" class="md-nav__link">
         
   
@@ -776,6 +810,34 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -872,6 +934,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../trust-checks-presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks presentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../trust-evaluation/" class="md-nav__link">
         
   
@@ -942,38 +1032,38 @@
   <h1>Authentication process</h1>
 
 <p>The <strong>Authentication Process</strong> enables the <a class="mkdocs-ezglossary-link"
-    id="b4d5d5a92ff14cf9b1e21b9c82e0758c"
+    id="4efcf641d8d90571f618fae7164e6d65"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> to authenticate a <a class="mkdocs-ezglossary-link"
-    id="46eca51bacd46452ffba672d1b625203"
+    id="40a31fc1925f469e3f0a0653a3ae6d13"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">Wallet-Relying Party (WRP)</a> during an interaction. It establishes trust by validating the <a class="mkdocs-ezglossary-link"
-    id="f1bc650be35da8c91e096ee688f41ea3"
+    id="b790b413f79a9de0da86d8abd4d53ceb"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>'s X.509 certificate chain, from a trusted <a class="mkdocs-ezglossary-link"
-    id="1ffe904802092834f6da22b40f15d2c7"
+    id="35fe9f8ef7bb23c07b0c6587fb8bfa65"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
     href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> to the presented <a class="mkdocs-ezglossary-link"
-    id="162ce8dd26224b357dc01f6a1c64b898"
+    id="4da36d64f6830a9c83cf20f42e088fbf"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, and by verifying that the WRP possesses the corresponding private key. The <a class="mkdocs-ezglossary-link"
-    id="1a4b7e4fb900f0dbb104e313a020d44d"
+    id="b7ac4ad228f18e9190834ea82b8158ae"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is profiled in <a href="../../sections/trust-artifacts/#wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate</a>.</p>
 <p>For WRPAC validation, the <a class="mkdocs-ezglossary-link"
-    id="b07c48f6a486013f8f1eb37143741a6f"
+    id="76d98cda7c24eab61d77602e2ada7416"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
@@ -1007,20 +1097,20 @@
 </ul>
 <p><strong>Outcome</strong></p>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="2f056d23c19bea3c12cfc31d875d8818"
+    id="df53b54a1b5133ba3ba09302ddb6843c"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL output either <code>AUTHENTICATED</code> or <code>NON_AUTHENTICATED</code>.</p>
 <ul>
 <li>If the result is <code>AUTHENTICATED</code>, the <a class="mkdocs-ezglossary-link"
-    id="4efcf641d8d90571f618fae7164e6d65"
+    id="65f3366bd90b3850b4744a95729ff11e"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> proceeds with the interaction.</li>
 <li>If the result is <code>NON_AUTHENTICATED</code>, the <a class="mkdocs-ezglossary-link"
-    id="76d98cda7c24eab61d77602e2ada7416"
+    id="c946e194362c58cafdeb299bd921cbf0"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
@@ -1028,12 +1118,12 @@
 </ul>
 <p><strong>Process</strong></p>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="df53b54a1b5133ba3ba09302ddb6843c"
+    id="b60f87f23db026ee5b141adcf9d1fc1d"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL verify the authenticity and integrity of the presented <a class="mkdocs-ezglossary-link"
-    id="d1b6232826c78f6cfdfe35023dab5486"
+    id="580526b1a147c97c2bb566d8fc4db15e"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1064,7 +1154,7 @@
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> using the <a href="../../sections/trust-evaluation-process/#certificate-path-validation">X.509 Certificate Chain Validation</a> algorithm.</li>
 <li><strong>Verify the signature:</strong> Use the public key of the validated WRPAC to verify the WRP signature over the artifact signed in the specific interaction. The certificate chain and signed artifact depend on the flow:<ul>
 <li><strong>Remote Flow:</strong> The chain is carried in the <code>x5c</code> header of the WRP-signed <a class="mkdocs-ezglossary-link"
-    id="ba98f205fcfb60cce0bc9b66376bf4fc"
+    id="33e28897ef1a0059b720a896d71d8cc0"
     title="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
     data-tooltip="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
     name="artifacts:Request Object"
@@ -1077,12 +1167,12 @@
 <div class="admonition warning">
 <p class="admonition-title">Mitigating Blind Signing Attacks</p>
 <p>The WRP SHALL distinguish transient authentication, such as access control, from content commitment, such as non-repudiation. To prevent an attacker from disguising a legal commitment as a protocol <a class="mkdocs-ezglossary-link"
-    id="4435adf103285f2b16b14051c18db908"
+    id="0bb25452a096625019111826cecbc1b4"
     title="A single-use, unpredictable value issued by a server to prevent replay attacks; Wallets must include it verbatim in proofs or responses."
     data-tooltip="A single-use, unpredictable value issued by a server to prevent replay attacks; Wallets must include it verbatim in proofs or responses."
     name="data-elements:Nonce"
     href="../../glossary-definitions/#30a68316857dc67701ca83b68abd8019">nonce</a>, the WRP SHALL NOT use the <a class="mkdocs-ezglossary-link"
-    id="242bb2373ffb8d81b201e629a70e8300"
+    id="ed531dd07c89d17b641f917ab0b0a7cd"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1108,7 +1198,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 13, 2026 17:30:30 UTC">August 13, 2026 17:30:30</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 18, 2026 06:38:42 UTC">August 18, 2026 06:38:42</span>
   </span>
 
     
