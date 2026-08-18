@@ -4,8 +4,6 @@ According to [CIR 2025/848, Article 2], a <artifacts:Wallet-Relying Party Access
 
 The suspension or cancellation of the <roles:Wallet-Relying Party (WRP)|WRP> services involves revocation of all valid <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> by the relevant issuing authority, such that the <roles:Wallet-Relying Party (WRP)|WRP> is no longer able to interact with <components:Wallet Unit|Wallet Units>. For more detail on the Trust Management processes, see [Trust Management and Lifecycle](../sections/trust-management-lifecycle.md).
 
-[CIR 2025/848, Annex IV] also states that the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> are meant for performing electronic signatures or seals and that they SHALL comply with at least the <artifacts:Normalised Certificate Policy (NCP)> requirements specified in the ETSI standards. Taking into account these minimal requirements, different scenarios are possible and specified in the following clauses: certificates issued to natural or legal persons, supporting advanced signatures/seals or even qualified signature/seals. Conditional requirements are defined according to the specific case the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> fall into.
-
 ??? references
 
     The technical standard specific to <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> is [ETSI TS 119 411-8]. However, multiple other standards are referenced either directly or indirectly by [ETSI TS 119 411-8], containing requirements that are applicable to <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> as well. The list below enumerates all the applicable standards and specifications that have been used to populate the table below:
@@ -43,9 +41,9 @@ The following table defines the complete set of extensions applicable to the cer
 
 !!! choice "APTITUDE Implementation Choices"
 
-    - WRPACs are only issued to legal persons.
-    - WRPACs are long-lived. Therefore, the extensions `ext-etsi-valassured-ST-certs` and `noRevAvail` SHALL NOT be specified.
-    - WRPACs are not Qualified Certificates. Therefore, the `qcStatements` extension SHALL NOT contain `QCStatement` structures with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`) or `0.4.0.1862.1.4` (`id-etsi-qcs-QcSSCD`).
+    - WRPACs SHALL be issued only to legal persons.
+    - WRPACs SHALL be long-lived. Therefore, the extensions `ext-etsi-valassured-ST-certs` and `noRevAvail` SHALL NOT be specified.
+    - WRPACs SHALL NOT be Qualified Certificates. Therefore, the `qcStatements` extension SHALL NOT contain `QCStatement` structures with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`) or `0.4.0.1862.1.4` (`id-etsi-qcs-QcSSCD`).
 
 ??? example "Example: WRPAC for legal persons"
 

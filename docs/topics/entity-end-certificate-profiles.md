@@ -1,4 +1,4 @@
-This section extends the [X.509 Certificate Profile](../sections/trust-artifacts.md#x509-certificate-profile) and specifies a Certificate Profile for Entity Sign/Seal Certificates, which are used for signing and sealing various Attestations. This profile is originally defined in [ETSI TS 119 412-6].
+This section extends the [X.509 Certificate Profile](../sections/trust-artifacts.md#x509-certificate-profile) and specifies Certificate Profiles for Entity Sign/Seal Certificates, which are used for signing and sealing various Attestations.
 
 ??? references
 
@@ -17,9 +17,9 @@ This section extends the [X.509 Certificate Profile](../sections/trust-artifacts
 
 !!! choice "APTITUDE Implementation Choices"
 
-    - Entity Sign/Seal Certificates are issued by a CA and are not self-signed.
-
-    - Entity Sign/Seal Certificates are long-lived. Therefore, the extensions `ext-etsi-valassured-ST-certs` and `noRevAvail` SHALL NOT be specified.
+    - Entity Sign/Seal Certificates SHALL be issued by a CA and SHALL NOT be self-signed.
+    - Entity Sign/Seal Certificates SHALL be issued only to legal persons.
+    - Entity Sign/Seal Certificates SHALL be long-lived. Therefore, the extensions `ext-etsi-valassured-ST-certs` and `noRevAvail` SHALL NOT be specified.
 
 #### PID Provider Sign/Seal Certificate
 
@@ -90,9 +90,9 @@ The following table defines the complete set of extensions applicable to the cer
 
 !!! choice "APTITUDE Implementation Choices"
 
-    - QEAA Provider Sign/Seal Certificates are Qualified Certificates. Therefore, the `qcStatements` extension SHALL contain at least a `QCStatement` structure with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`).
+    - QEAA Provider Sign/Seal Certificates SHALL be Qualified Certificates. Therefore, the `qcStatements` extension SHALL contain at least a `QCStatement` structure with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`).
     
-    - EAA Provider Sign/Seal Certificates are not Qualified Certificates. Therefore, the `qcStatements` extension SHALL NOT contain `QCStatement` structures with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`) or `0.4.0.1862.1.4` (`id-etsi-qcs-QcSSCD`).
+    - EAA Provider Sign/Seal Certificates SHALL NOT be Qualified Certificates. Therefore, the `qcStatements` extension SHALL NOT contain `QCStatement` structures with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`) or `0.4.0.1862.1.4` (`id-etsi-qcs-QcSSCD`).
 
 ??? example "Example: QEAA Provider Sign/Seal Certificate"
 

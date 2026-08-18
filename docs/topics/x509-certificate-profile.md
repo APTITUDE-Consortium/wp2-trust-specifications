@@ -1,4 +1,4 @@
-This section defines a general **X.509 Certificate Profile**, establishing the syntax, semantics and encoding requirements for X.509 certificates based on [RFC 5280] and [ETSI EN 319 412]. Each specific X.509 certificate defined in this specification SHALL conform to the requirements of this section unless explicitly stated otherwise.
+This section defines a general **X.509 Certificate Profile**, establishing the syntax, semantics and encoding requirements for X.509 certificates based on [RFC 5280] and [ETSI EN 319 412]. Each X.509 certificate defined in this specification SHALL conform to the requirements of this section unless explicitly stated otherwise.
 
 The final certificate is obtained by combining the certificate body (`version` through `subjectPublicKeyInfo`) with the certificate extensions required by the selected certificate profile.
 The resulting ASN.1 structure SHALL be encoded using the Distinguished Encoding Rules (DER) as specified in [RFC 5280].
