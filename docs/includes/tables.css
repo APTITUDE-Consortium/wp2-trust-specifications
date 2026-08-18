@@ -1,9 +1,16 @@
 .md-typeset table {
     display: table;
     width: 100%;
+    min-width: auto;
     max-width: 100%;
     table-layout: auto;
     font-size: 0.75rem;
+}
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: .3em .6em;
+  vertical-align: middle;
 }
 
 /* Scroll wrapper behavior if table overflows narrow screens */
