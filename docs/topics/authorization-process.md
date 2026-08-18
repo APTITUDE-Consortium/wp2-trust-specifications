@@ -1,4 +1,4 @@
-This section specifies the authorization process that a <components:Wallet Instance|Wallet Instance (WI)> SHALL execute to determine whether an interaction with a Wallet-Relying Party (WRP) is allowed within the <components:EUDI Wallet> ecosystem. A <components:Wallet Instance> SHALL implement all the authorization-processing rules defined in this section [AUTHZ-GEN-03].
+This section specifies the Authorization Process that a <components:Wallet Instance|Wallet Instance (WI)> SHALL execute to determine whether an interaction with a Wallet-Relying Party (WRP) is allowed within the <components:EUDI Wallet> ecosystem. A <components:Wallet Instance> SHALL implement all the rules of the Authorization Process defined in this section [AUTHZ-GEN-03].
 
 Authorization covers:
 
@@ -11,7 +11,7 @@ Authorization covers:
 
 ### Preconditions
 
-The authorization process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](../sections/trust-evaluation-process.md#authentication-process)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the authorization process SHALL NOT start [AUTHZ-GEN-02].
+The Authorization Process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](../sections/trust-evaluation-process.md#authentication-process)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the Authorization Process SHALL NOT start [AUTHZ-GEN-02].
 This section does define how the <components:Wallet Instance|WI> SHALL use the already-authenticated WRP context as an input to authorization, including binding checks between the authenticated WRP, the authorization subject, and the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or <components:Register>-derived authorization context.
 
 ### Authorization Framework
@@ -69,7 +69,7 @@ Each evaluation procedure (defined later in this section) gives a granular verif
 | `EDP_SATISFIED` | Presentation | <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> conditions met |
 | `EDP_NOT_SATISFIED` | Presentation | <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> conditions not met |
 
-The authorization process SHALL support transparent decision-making and SHALL NOT be a purely hidden backend check [AUTHZ-UI-05].
+The Authorization Process SHALL support transparent decision-making and SHALL NOT be a purely hidden backend check [AUTHZ-UI-05].
 
 #### Override Principles
 
@@ -153,7 +153,7 @@ Registration data is collected at the <roles:Registrar> and the <roles:Provider 
 
 #### WRPRC Parameters for Authorization
 
-The following table lists the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> payload parameters used in authorization processing, with field names as defined in [ETSI TS 119 475, Section 5.2.4]. Details about the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate).
+The following table lists the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> payload parameters used by the Authorization Process, with field names as defined in [ETSI TS 119 475, Section 5.2.4]. Details about the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> data structure and lifecycle are provided in section [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate).
 The **Authorization Use** column indicates how each parameter is consumed: **Decision rule** means the <components:Wallet Instance|WI> enforces an automated check, **User transparency** means the information is displayed to support the <roles:User>'s decision, and **Wallet operation** means the <components:Wallet Instance|WI> uses it internally (e.g. for fallback query).
 
 | Field | Applicability | Authorization Use | Reference |
@@ -456,7 +456,7 @@ sequenceDiagram
 
 ##### Step-by-step Operations
 
-**Steps 1-3: Obtain <artifacts:Credential Issuer Metadata>.** The <components:Wallet Instance|WI> SHALL fetch metadata from the <roles:Attestation Provider (AP)|AP> using [OpenID4VCI] (ISSU_01) [AUTHZ-ISS-04]. These steps are not required if the <components:Wallet Instance|WI> already has the <artifacts:Credential Issuer Metadata> stored locally, for example if it is already fetched during authentication process.
+**Steps 1-3: Obtain <artifacts:Credential Issuer Metadata>.** The <components:Wallet Instance|WI> SHALL fetch metadata from the <roles:Attestation Provider (AP)|AP> using [OpenID4VCI] (ISSU_01) [AUTHZ-ISS-04]. These steps are not required if the <components:Wallet Instance|WI> already has the <artifacts:Credential Issuer Metadata> stored locally, for example if it is already fetched during the Authentication Process.
 
 **Step 4: Verify metadata signature.** The <components:Wallet Instance|WI> SHALL verify the metadata signature and <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> certificate chain [AUTHZ-ISS-05]. If verification fails, the <components:Wallet Instance|WI> provides `NOT_AUTHORIZED` code (non-overridable) [AUTHZ-ISS-06].
 
@@ -640,9 +640,9 @@ flowchart TD
 
 | ID | Requirement | Phase | Related HLRs |
 |----|-------------|-------|-------------|
-| AUTHZ-GEN-01 | The authorization process SHALL start only after the WRP has been successfully authenticated. | Both | -- |
-| AUTHZ-GEN-02 | If the WRP has not been authenticated, the authorization process SHALL NOT start. | Both | -- |
-| AUTHZ-GEN-03 | A conformant wallet SHALL implement all authorization-processing rules defined in this specification. | Both | -- |
+| AUTHZ-GEN-01 | The Authorization Process SHALL start only after the WRP has been successfully authenticated. | Both | -- |
+| AUTHZ-GEN-02 | If the WRP has not been authenticated, the Authorization Process SHALL NOT start. | Both | -- |
+| AUTHZ-GEN-03 | A conformant wallet SHALL implement all rules of the Authorization Process defined in this specification. | Both | -- |
 | AUTHZ-GEN-04 | The WI SHALL distinguish between the authenticated WRP and the authorization subject. | Both | -- |
 | AUTHZ-GEN-05 | The WI SHALL support authorization-context resolution from <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> and <components:Register>. | Both | RPRC_16, RPRC_18 |
 | AUTHZ-GEN-06 | The authorization logic SHALL NOT change based on the data source. | Both | -- |
