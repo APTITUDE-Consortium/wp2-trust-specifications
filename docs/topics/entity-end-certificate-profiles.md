@@ -117,11 +117,11 @@ The following table defines the complete set of extensions applicable to the cer
 
 !!! warning
 
-    While the specific requirements for PuB-EAA Provider Sign/Seal Certificates specified in [ETSI TS 119 412-6, Clause 8] do not require these certificates to be qualified, [REG EU 2024/1183, Art. 45f(1)(b)] requires PuB-EAA Attestations to be signed with a qualified certificate.
+    While the specific requirements for PuB-EAA Provider Sign/Seal Certificates specified in [ETSI TS 119 412-6, Clause 8] do not require these certificates to be qualified, [EU REG 2024/1183, Art. 45f(1)(b)] requires PuB-EAA Attestations to be signed with a qualified certificate.
 
 !!! choice "APTITUDE Implementation Choice"
 
-    To comply with [REG EU 2024/1183, Art. 45f(1)(b)], although not explicitly required by [ARF] or [ETSI TS 119 412-6], PuB-EAA Provider Sign/Seal Certificates are Qualified Certificates. Therefore, the `qcStatements` extension SHALL contain at least a `QCStatement` structure with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`).
+    To comply with [EU REG 2024/1183, Art. 45f(1)(b)], although not explicitly required by [ARF] or [ETSI TS 119 412-6], PuB-EAA Provider Sign/Seal Certificates are Qualified Certificates. Therefore, the `qcStatements` extension SHALL contain at least a `QCStatement` structure with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`).
 
 !!! warning
 
