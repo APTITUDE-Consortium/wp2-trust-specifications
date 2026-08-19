@@ -29,8 +29,8 @@ The following table defines the complete set of extensions applicable to the cer
 
 | Extension                 | Presence      | Notes |
 | ------------------------- | :-----------: | ----- |
-| `authorityKeyIdentifier`  | REQUIRED      | The `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
-| `subjectKeyIdentifier`    | REQUIRED      | The `keyIdentifier` field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
+| `authorityKeyIdentifier`  | REQUIRED      | The value of the `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
+| `subjectKeyIdentifier`    | REQUIRED      | Its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
 | `keyUsage`                | REQUIRED      | It SHALL contain one (and only one) of the key-usage settings *Type A*, *Type B*, *Type C*, or *Type F*. |
 | `certificatePolicies`     | REQUIRED      | It SHALL include a `PolicyInformation` structure with `policyIdentifier` set to the OID of a certificate policy including at least the requirements for *NCP+*, defined in [ETSI EN 319 411-1], to comply with [ARF] requirement `AS-AP-10-098`. |
 | `subjectAltName`          | REQUIRED      |  |
@@ -54,8 +54,8 @@ The following table defines the complete set of extensions applicable to the cer
 
 | Extension                 | Presence      | Notes |
 | ------------------------- | ------------- | ----- |
-| `authorityKeyIdentifier`  | REQUIRED      | The `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
-| `subjectKeyIdentifier`    | REQUIRED      | The `keyIdentifier` field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
+| `authorityKeyIdentifier`  | REQUIRED      | The value of the `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
+| `subjectKeyIdentifier`    | REQUIRED      | Its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
 | `keyUsage`                | REQUIRED      | It SHALL contain one (and only one) of the key-usage settings *Type A*, *Type B*, *Type C*, or *Type F*. |
 | `certificatePolicies`     | REQUIRED      | It SHALL include a `PolicyInformation` structure with `policyIdentifier` set to the OID of a certificate policy including at least (as per [ARF] requirement `EW-DM-38-001`):<ul><li>The requirements for *NCP*, defined in [ETSI EN 319 411-1], for KAs describing a keystore.</li><li>The requirements for *NCP+*, defined in [ETSI EN 319 411-1], for KAs describing a WSCA/WSCD.</li></ul> |
 | `subjectAltName`          | REQUIRED      |  |
@@ -79,8 +79,8 @@ The following table defines the complete set of extensions applicable to the cer
 
 | Extension                 | Presence                          | Notes |
 | ------------------------- | --------------------------------- | ----- |
-| `authorityKeyIdentifier`  | REQUIRED                          | The `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
-| `subjectKeyIdentifier`    | OPTIONAL                          | If present, the `keyIdentifier` field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
+| `authorityKeyIdentifier`  | REQUIRED                          | The value of the `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
+| `subjectKeyIdentifier`    | OPTIONAL                          | If present, its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
 | `keyUsage`                | REQUIRED                          | It SHALL contain one (and only one) of the key-usage settings *Type A*, *Type B*, *Type C*, or *Type F*. |
 | `certificatePolicies`     | REQUIRED (only for QEAA)          | As described in [ETSI EN 319 411-2, Clause 6.6.1]. |
 | `subjectAltName`          | REQUIRED                          |  |
@@ -106,8 +106,8 @@ The following table defines the complete set of extensions applicable to the cer
 
 | Extension                 | Presence      | Notes |
 | ------------------------- | ----------------------------- | ----- |
-| `authorityKeyIdentifier`  | REQUIRED      | The `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
-| `subjectKeyIdentifier`    | OPTIONAL      | If present, the `keyIdentifier` field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
+| `authorityKeyIdentifier`  | REQUIRED      | The value of the `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1] |
+| `subjectKeyIdentifier`    | OPTIONAL      | If present, its value be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
 | `keyUsage`                | REQUIRED      |  |
 | `certificatePolicies`     | REQUIRED      | As described in [ETSI EN 319 411-2, Clause 6.6.1]. |
 | `subjectAltName`          | REQUIRED      |  |

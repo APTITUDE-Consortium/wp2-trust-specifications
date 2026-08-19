@@ -28,8 +28,8 @@ The following table defines the complete set of extensions applicable to the cer
 
 | Extension                 | Presence      | Notes |
 | ------------------------- | :-----------: | ----- |
-| `authorityKeyIdentifier`  | REQUIRED      | The The `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]. |
-| `subjectKeyIdentifier`    | OPTIONAL      | If present, the `keyIdentifier` field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
+| `authorityKeyIdentifier`  | REQUIRED      | The value of the `keyIdentifier` field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]. |
+| `subjectKeyIdentifier`    | OPTIONAL      | If present, its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. |
 | `keyUsage`                | REQUIRED      | It SHALL contain one (and only one) of the key-usage settings *Type A*, *Type B*, or *Type F*. *Type A* SHOULD be used as per [ETSI EN 319 412-3, LEG-4.3.1-4]. |
 | `certificatePolicies`     | REQUIRED      | It SHALL include a `PolicyInformation` structure with `policyIdentifier` set to one of the following values (defined in [ETSI TS 119 411-8]): `0.4.0.194118.1.1` (NCP-n-eudiwrp); `0.4.0.194118.1.2` (NCP-l-eudiwrp); `0.4.0.194118.1.3` (QCP-n-eudiwrp); `0.4.0.194118.1.4` (QCP-l-eudiwrp). Moreover, `policyQualifiers` SHALL contain a `cpsURI` that references an URL where the CPS of the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC> is located. |
 | `subjectAltName`          | REQUIRED      | It SHALL include a `GeneralName` structure with one of the following parameters defined to provide valid contact information of the WRP: `uniformResourceIdentifier` (website for helpdesk/support matters), `otherName` with `type-id` set to `2.5.4.20` (`id-at-telephoneNumber`, phone number for WRP registration/usage matters), `rfc822Name` (email address for WRP registration/usage matters). |
@@ -43,7 +43,7 @@ The following table defines the complete set of extensions applicable to the cer
     - WRPACs SHALL be long-lived. Therefore, the extensions `ext-etsi-valassured-ST-certs` and `noRevAvail` SHALL NOT be specified.
     - WRPACs SHALL NOT be Qualified Certificates. Therefore, the `qcStatements` extension SHALL NOT contain `QCStatement` structures with `statementId` set to `0.4.0.1862.1.1` (`id-etsi-qcs-QcCompliance`) or `0.4.0.1862.1.4` (`id-etsi-qcs-QcSSCD`).
 
-??? example "Example: WRPAC for legal persons"
+??? example "Example: WRPAC"
 
     {% include-markdown "../examples/access-certificate.md" %}
 
