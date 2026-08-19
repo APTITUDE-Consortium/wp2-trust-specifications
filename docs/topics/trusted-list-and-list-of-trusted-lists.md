@@ -4,9 +4,6 @@ This section describes the format and contents of the <artifacts:List of Trusted
 
     Within the APTITUDE profiles, only the <artifacts:List of Trusted Entities (LoTE)|LoTE> is used, as the <artifacts:Trusted List (TL)|Trusted Lists> and <artifacts:List Of Trusted Lists (LOTL)|LOTL> are not required.
 
-
-### List of Trusted Entities
-
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a compilation of the information submitted by Member States about the following entities:
 
 1. <roles:Provider of Person Identification Data (PID Provider)|PID Providers>;
@@ -42,18 +39,18 @@ All <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be signed with Compac
 
 ??? note "EUDI Wallet trusted list ecosystem"
 
-    The following table dictates the governing standard, publication scope (i.e., at the Member State or European Union level), and the mandated data format for each list type.
+    The following table dictates the governing standard, publication scope (i.e., at the Member State or European Union level), and the mandated data format for each list type. This table is informative only and SHALL NOT be used within the APTITUDE Profiles.
 
     | List Type | Governing Standard | Publication Scope | Format |
     | :--- | :--- | :--- | :--- |
-    | Traditional eIDAS <artifacts:Trusted List (TL)\|Trusted Lists> | TS 119 612 | Member State | XML |
-    | List of <artifacts:Trusted List (TL)\|Trusted Lists> (<artifacts:List Of Trusted Lists (LOTL)\|LOTL>) | TS 119 612 | European Union | XML |
-    | PID Provider Lists | TS 119 602 Annex D | European Union | JSON |
-    | <roles:Wallet Provider (WP)> Lists | TS 119 602 Annex E | European Union | JSON |
-    | <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC> | TS 119 602 Annex F | European Union | JSON |
-    | <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | TS 119 602 Annex G | European Union | JSON |
-    | <roles:PuB-EAA Provider> Lists | TS 119 602 Annex H | European Union | JSON or XML |
-    | <roles:Registrar> and <components:Register> Provider Lists | TS 119 602 Annex I | European Union | JSON |
+    | Traditional eIDAS <artifacts:Trusted List (TL)\|Trusted Lists> | [ETSI TS 119 612] | Member State | XML |
+    | List of <artifacts:Trusted List (TL)\|Trusted Lists> (<artifacts:List Of Trusted Lists (LOTL)\|LOTL>) | [ETSI TS 119 612] | European Union | XML |
+    | PID Provider Lists | [ETSI TS 119 602 Annex D] | European Union | JSON |
+    | <roles:Wallet Provider (WP)> Lists | ETSI TS 119 602 Annex E | European Union | JSON |
+    | <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC> | [ETSI TS 119 602 Annex F] | European Union | JSON |
+    | <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | [ETSI TS 119 602 Annex G] | European Union | JSON |
+    | <roles:PuB-EAA Provider> Lists | [ETSI TS 119 602 Annex H] | European Union | JSON or XML |
+    | <roles:Registrar> and <components:Register> Provider Lists | [ETSI TS 119 602 Annex I] | European Union | JSON |
 
 ### Data Models
 
@@ -90,7 +87,6 @@ The following table details the governing standards, publication scopes, and man
     - <roles:Electronic Attestation of Attributes (EAA) Provider|EAA Providers> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].
 
 ##### Compact JAdES Baseline B Signature Profile
-
 
 !!! choice
 
@@ -313,9 +309,9 @@ The `LoTE` claim uses the field names from `LoTE_Payload_Json_schema.yaml`, incl
 
 ##### XAdES Baseline B Signature Profile
 
-!!! choice
+!!! note
 
-    This section therefore uses ETSI EN 319 132-1 as the normative reference for the requested Baseline B profile.
+    This section therefore uses [ETSI EN 319 132-1] as the normative reference for the requested Baseline B profile.
 
 For an XML-formatted <artifacts:List of Trusted Entities (LoTE)|LoTE>, the XAdES Baseline B signature SHALL be an enveloped XML signature. The following requirements apply in addition to the XML LoTE schema and the requirements in [ETSI TS 119 602, clauses 6.8.0 and 6.8.1]:
 
