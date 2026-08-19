@@ -134,7 +134,6 @@ The validation SHALL perform the following steps:
     - If `OJA-Loc` does not match the first URI in `SchemeInformationURI`, update `OJA-LoTE-Loc`.
     - Update `OJA-LoTE-Certs-Set` according to the new <artifacts:Trust Anchor> from a new OJA publication for the requested LoTE type.
 
-
 !!! warning
 
     The LoTE validation process is mutuated from the [ETSI TS 119 615] standard, and adapted to the APTITUDE profiles context.

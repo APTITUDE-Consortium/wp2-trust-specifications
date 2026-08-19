@@ -62,16 +62,16 @@ The following repository provides the base normative JSON and XML schemas requir
 
 The following table details the governing standards, publication scopes, and mandated data formats regarding the specific provider lists that SHALL be utilized within the APTITUDE ecosystem:
 
-| List Type | Governing Standard | Publication Scope | Format | Signature Format |
-| :--- | :--- | :--- | :--- | :--- |
-| PID Provider Lists | TS 119 602 Annex D | European Union | JSON | Compact JAdES Baseline B |
-| <roles:Wallet Provider (WP)> Lists | TS 119 602 Annex E | European Union | JSON | Compact JAdES Baseline B |
-| <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC> Lists | TS 119 602 Annex F | European Union | JSON | Compact JAdES Baseline B |
-| <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> Lists | TS 119 602 Annex G | European Union | JSON | Compact JAdES Baseline B |
-| <roles:PuB-EAA Provider> Lists | TS 119 602 Annex H | European Union | JSON | Compact JAdES Baseline B |
-| <roles:Registrar> and <components:Register> Provider Lists | TS 119 602 Annex I | European Union | JSON | Compact JAdES Baseline B |
-| <roles:Qualified Electronic Attestation of Attributes (QEAA) Provider|QEAA Providers> Lists | This Specification | European Union | JSON or XML | Compact JAdES Baseline B or XAdES Baseline B |
-| <roles:Electronic Attestation of Attributes (EAA) Provider|EAA Providers> Lists | This Specification | European Union | JSON | Compact JAdES Baseline B |
+| List Type | Governing Standard | Format | Signature Format |
+| :--- | :--- | :--- | :--- |
+| PID Provider Lists | TS 119 602 Annex D | JSON | Compact JAdES Baseline B |
+| <roles:Wallet Provider (WP)> Lists | TS 119 602 Annex E | JSON | Compact JAdES Baseline B |
+| <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC> Lists | TS 119 602 Annex F | JSON | Compact JAdES Baseline B |
+| <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> Lists | TS 119 602 Annex G | JSON | Compact JAdES Baseline B |
+| <roles:PuB-EAA Provider> Lists | TS 119 602 Annex H | JSON | Compact JAdES Baseline B |
+| <roles:Registrar> and <components:Register> Provider Lists | TS 119 602 Annex I | JSON | Compact JAdES Baseline B |
+| <roles:Qualified Electronic Attestation of Attributes (QEAA) Provider\|QEAA Providers> Lists | This Specification | JSON or XML | Compact JAdES Baseline B or XAdES Baseline B |
+| <roles:Electronic Attestation of Attributes (EAA) Provider\|EAA Providers> Lists | This Specification | JSON | Compact JAdES Baseline B |
 
 !!! choice
 
