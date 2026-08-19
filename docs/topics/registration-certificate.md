@@ -13,13 +13,11 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 ### Format
 
-1. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> shall be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
-2. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> shall comply with the syntactic and semantic requirements specified in Annex V paragraph 3 of CIR (EU) 2025/848 [i.2].
-3. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> shall be signed with the digital signature of provider of the wallet-relying party registration certificates.
-4. The JWT shall be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1] [18].
-5. The CWT shall be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].
-
----
+1. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
+2. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL comply with the syntactic and semantic requirements specified in Annex V paragraph 3 of CIR (EU) 2025/848 [i.2].
+3. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be signed with the digital signature of provider of the wallet-relying party registration certificates.
+4. The JWT SHALL be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1] [18].
+5. The CWT SHALL be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].
 
 ### Attribute Overview
 
@@ -146,8 +144,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `intermediary.sub` | *string* | Identifier of the intermediary as specified by the intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> | Required if Intermediary is used | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
 | `intermediary.sname` | *string* | commonName of the intermediary as specified by the intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> | Required if Intermediary is used | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
 
----
-
 ### Examples
 
 #### JWT Header
@@ -159,8 +155,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
   "x5c": ["<base64-encoded-certificate-chain>"]
 }
 ```
-
----
 
 #### CWT Header
 
@@ -175,8 +169,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
   ]
 }
 ```
-
----
 
 #### JWT Payload Example - Service Provider
 
@@ -219,8 +211,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
   "status": { "status_list": { "idx": 156, "uri": "https://status.wrp-register.de/statuslist/1" } }
 }
 ```
-
----
 
 #### JWT Payload Example - Qualified EAA Provider
 
@@ -302,8 +292,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
   }
 }
 ```
-
----
 
 #### JWT Payload Example - Non-Qualified EAA Provider (University)
 
@@ -387,8 +375,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 }
 ```
 
----
-
 #### JWT Payload Example - Banking KYC (Multiple Credentials)
 
 ```json
@@ -435,8 +421,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 }
 ```
 
----
-
 #### JWT Payload Example - With Intermediary
 
 ```json
@@ -464,8 +448,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
   "status": { "status_list": { "idx": 567, "uri": "https://status.wrp-register.de/statuslist/2" } }
 }
 ```
-
----
 
 #### JWT Payload Example - Natural Person (Notary)
 
@@ -499,8 +481,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
   "status": { "status_list": { "idx": 345, "uri": "https://status.wrp-register.gov.it/statuslist/1" } }
 }
 ```
-
----
 
 ### Other Information
 
