@@ -63,7 +63,7 @@ A JWT <artifacts:Status List Token> SHALL be formatted as described in Section 5
 The following is an example of the <artifacts:Status List Token> payload and header prior to signing and base64url encoding:
 
 ??? example "Status List Token Header and Payload"
-    
+
     **Header:**
 
     ```json
@@ -163,6 +163,7 @@ This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth
     Within the APTITUDE Profiles, the SLT Provider SHALL be the <roles:Wallet Provider (WP)|Wallet Provider>.
 
 As specified in [TS03],
+
 - A WIA SHALL include its Status List reference in `client_status.status.status_list`; and,
 - A KA SHALL include its Status List reference in `key_storage_status.status.status_list`.
 
@@ -185,8 +186,8 @@ The <roles:Wallet Provider (WP)|Wallet Provider> SHALL pack entries starting wit
 
 According to `R_KA_1` of [CIR 2026/1731], a Wallet Provider SHALL choose one of the following index-assignment options for the `key_storage_status.status` claim in a KA.
 
-  - **Option 1: `type-shared index`**. All KAs attesting keys stored in the same type of WSCD or keystore SHALL contain the same index value in `key_storage_status.status`.
-  - **Option 2: `per-key-attestation index`**. A KA attesting keys stored in an individual WSCD or keystore SHALL contain a pairwise-unique index value in `key_storage_status.status`.
+- **Option 1: `type-shared index`**. All KAs attesting keys stored in the same type of WSCD or keystore SHALL contain the same index value in `key_storage_status.status`.
+- **Option 2: `per-key-attestation index`**. A KA attesting keys stored in an individual WSCD or keystore SHALL contain a pairwise-unique index value in `key_storage_status.status`.
 
 !!! choice
 
@@ -226,7 +227,7 @@ This profile distinguishes between:
 For PIDs, the current [TS03] requirements, as reflected in [CIR 2026/1731](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601731), require the PID Provider to monitor both the WIA and KA status at least once every 24 hours when the technical validity period of the PID exceeds 24 hours.
 
 !!! choice
-    
+
     For other Attestation types, within the APTITUDE profiles,
     
     - both WIA and KA operational checks SHALL be performed for device-bound credentials when operational monitoring is enabled;
