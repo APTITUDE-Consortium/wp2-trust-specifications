@@ -4632,9 +4632,11 @@
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>.</p>
 </div>
-<p>As specified in [TS03],
-- A WIA SHALL include its Status List reference in <code>client_status.status.status_list</code>; and,
-- A KA SHALL include its Status List reference in <code>key_storage_status.status.status_list</code>.</p>
+<p>As specified in [TS03],</p>
+<ul>
+<li>A WIA SHALL include its Status List reference in <code>client_status.status.status_list</code>; and,</li>
+<li>A KA SHALL include its Status List reference in <code>key_storage_status.status.status_list</code>.</li>
+</ul>
 <p><strong>Status List</strong></p>
 <p>A Status List contains a compressed byte array whose entries represent the statuses of many Wallet Instance Attestations (WIAs) or Key Attestations (KAs).</p>
 <p>Each Status List reference SHALL contain <code>idx</code> and <code>uri</code>. Both WIAs and KAs are JWTs; therefore, <code>idx</code> is a JSON integer and <code>uri</code> is a JSON string in each reference. In both cases, <code>uri</code> SHALL be a URI conforming to [RFC 3986].</p>
