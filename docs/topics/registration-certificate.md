@@ -72,7 +72,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `info_uri`        | `string`  | REQUIRED  | URL general-purpose web address. | [ETSI TS 119 475, Table 7] - `infoURI` |
 | `support_uri`     | `string`  | REQUIRED  | URL or email address to use in data deletion or portability requests related to the WRP. | [ETSI TS 119 475, Table 7] - `supportURI` |
 
-!!! info "Organizational Identifiers"
+!!! note "Organizational Identifiers"
 
     According to [ETSI TS 119 475, Clauses 5.1.3], the three initial characters of the `sub` field SHALL contain one of the following Semantic Identifiers.
 
@@ -171,6 +171,10 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | `intermediary`        | `object`      | CONDITIONAL   | Used when the WRP operates via an Intermediary.<br />**REQUIRED IF:** Intermediary is used. | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
 | `intermediary.sub`    | `string`      | CONDITIONAL   | Identifier of the Intermediary as specified by the Intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>.<br />**REQUIRED IF:** Intermediary is used. | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
 | `intermediary.sname`  | `string`      | CONDITIONAL   | Common name of the Intermediary as specified by the Intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>.<br />**REQUIRED IF:** Intermediary is used. | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
+
+!!! note "Intermediary Identifier Format"
+
+    Regarding the format of the `intermediary.sub` field, refer to the "Organizational Identifiers" note in [Core Identity Attributes](#core-identity-attributes).
 
 !!! note "CWT Claims"
 
