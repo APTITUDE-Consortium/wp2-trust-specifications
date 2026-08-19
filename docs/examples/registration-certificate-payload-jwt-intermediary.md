@@ -13,10 +13,8 @@
     }
   ],
   "intermediary": {
-    "sub": {
-      "id": "LEIXG-529900INTERMEDIARY01",
-      "name": "Verification Services AG"
-    }
+    "sub": "LEIXG-529900INTERMEDIARY01",
+    "sname": "Verification Services AG"
   },
   "policy_id": ["0.4.0.19475.3.1"],
   "iat": 1704067200,
