@@ -20,11 +20,12 @@
 | CIR 2025/848-Amendment           |            | Applicable standards and specifications (draft) |
 | CIR 2026/1731                    | 2026-07-15 | Commission Implementing Regulation (EU) 2026/1731 of 15 July 2026 amending Implementing Regulations (EU) 2024/2977, (EU) 2024/2979, (EU) 2024/2980 and (EU) 2024/2982 as regards applicable standards and specifications |
 
-## EU Regulations
+## EU Directives and Regulations
 
 | **Item Reference**               | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ---------- | ------------------------- |
-| REG-EU-2024/1183                 | 2024-04-11 | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
+| EU DIR 2006/112/EC               | 2006-11-28 | Council Directive 2006/112/EC of 28 November 2006 on the common system of value added tax |
+| REG EU 2024/1183                 | 2024-04-11 | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
 
 ## ETSI Specifications
 

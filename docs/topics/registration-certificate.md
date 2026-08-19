@@ -10,139 +10,171 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
     - **RFC 5646**
     - **RFC 7519**
     - **RFC 8392**
+  
+!!! choice "APTITUDE Implementation Choice"
+
+    WRPRCs SHALL be issued only to legal persons.
 
 ### Format
 
-1. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
-2. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL comply with the syntactic and semantic requirements specified in Annex V paragraph 3 of CIR (EU) 2025/848 [i.2].
-3. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be signed with the digital signature of provider of the wallet-relying party registration certificates.
-4. The JWT SHALL be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1] [18].
-5. The CWT SHALL be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].
+- The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
+- The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL comply with the syntactic and semantic requirements specified in [CIR 2025/848, Annex V, Paragraph 3].
+- The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be signed with the digital signature of <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>.
+- The JWT SHALL be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1].
+- The CWT SHALL be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].
+
+---
 
 ### Attribute Overview
 
-| Attribute group                                                       | Description                                                                               | Required |
-|-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-----------|
-| [Header Attributes](#header-attributes)                               | Required header fields used to identify, sign, and validate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>.                        | Required |
-| [Core Identity Attributes](#core-identity-attributes)                 | Identity attributes of the WRP subject (natural person or legal entity).                  | Required |
-| [Service Description Attributes](#service-description-attributes)     | Multilingual service descriptions defining the WRP’s provided services.                   | Required |
-| [Entitlements Attribute](#entitlements-attribute)                     | <data-elements:Entitlement\|Entitlements> defining what the WRP is authorised to do.                                   | Required |
-| [Privacy and Policy Attributes](#privacy-and-policy-attributes)       | Privacy policy information.                                                               | Some of them |
-| [Supervisory Authority Attributes](#supervisory-authority-attributes) | Supervisory authority contact details for reporting suspicious data-processing behaviour. | Required |
-| [Service Provider Attributes](#service-provider-attributes)           | Credential queries, purposes, and intended-use identifiers for service providers.         | Required for Service Provider |
-| [Attestation Provider Attributes](#attestation-provider-attributes)   | Attributes describing attestations issued by an <roles:EAA Provider>.                             | Required for <roles:EAA Provider> |
-| [Technical Attributes](#technical-attributes)                         | Technical metadata such as policies, timestamps, and status-list configuration.           | Some of them |
-| [Uses Intermediary Attributes](#uses-intermediary-attributes)         | Attributes required when the WRP operates through an intermediary entity.                 | Required if Intermediary is used |
+| Attribute Group                                                       | Presence              | Description   |
+| --------------------------------------------------------------------- | :-------------------: | ------------- |
+| [Header Attributes](#header-attributes)                               | REQUIRED              | Required header fields used to identify, sign, and validate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. |
+| [Core Identity Attributes](#core-identity-attributes)                 | REQUIRED              | Identity attributes of the subject WRP. |
+| [Service Description Attributes](#service-description-attributes)     | REQUIRED              | Multilingual service descriptions defining services provided by the WRP's. |
+| [Entitlements Attribute](#entitlements-attribute)                     | REQUIRED              | <data-elements:Entitlement\|Entitlements> defining what the WRP is authorised to do. |
+| [Privacy and Policy Attributes](#privacy-and-policy-attributes)       | Partially REQUIRED    | Privacy policy information. |
+| [Supervisory Authority Attributes](#supervisory-authority-attributes) | REQUIRED              | Supervisory authority contact details for reporting suspicious data-processing behaviour. |
+| [Service Provider Attributes](#service-provider-attributes)           | CONDITIONAL           | Credential queries, purposes, and intended-use identifiers for service providers.<br />**REQUIRED FOR:** Service Providers. |
+| [Attestation Provider Attributes](#attestation-provider-attributes)   | CONDITIONAL           | Attributes describing attestations issued by an <roles:EAA Provider>.<br />**REQUIRED FOR:** <roles:EAA Provider\|EAA Providers>. |
+| [Technical Attributes](#technical-attributes)                         | Partially REQUIRED    | Technical metadata such as policies, timestamps, and status-list configuration. |
+| [Uses Intermediary Attributes](#uses-intermediary-attributes)         | CONDITIONAL           | Attributes required when the WRP operates through an <roles:Relying Party Intermediary (RPI)\|Intermediary>.<br />**REQUIRED IF:** Intermediary is used. |
 
 ### Header Attributes
 
 #### JWT Header Attributes
 
-> Listed header attributes are mandatory.
-
-| Attribute | Type | Description | Reference |
-|-----------|------|-------------|-----------|
-| `typ` | *string* | Specifies the type of the Web Token. The value is set to `rc-wrp+jwt` for JWT | [ETSI TS 119 475, Table 5] |
-| `alg` | *string* | Indicates the algorithm used to sign the JWT as defined in clause 5.1.2 of [ETSI TS 119 182-1] [18]. | [ETSI TS 119 475, Table 5] |
-| `x5c` | *array[string]* | Contains the whole certificate chain to verify the JWT or CWT as defined in clause 5.1.8 of [ETSI TS 119 182-1] [18] | [ETSI TS 119 475, Table 5] |
+| Attribute | Type              | Presence  | Description   | Reference |
+| --------- | :---------------: | :-------: | ------------- | --------- |
+| `typ`     | `string`          | REQUIRED  | Specifies the object type. The value is set to `rc-wrp+jwt` for JWT. | [ETSI TS 119 475, Table 5] |
+| `alg`     | `string`          | REQUIRED  | Indicates the algorithm used to sign the JWT as defined in [ETSI TS 119 182-1, Clause 5.1.2]. It SHOULD be one of the algorithms recommended in [ETSI TS 119 312]. | [ETSI TS 119 475, Table 5] |
+| `x5c`     | `array[string]`   | REQUIRED  | Contains the whole certificate chain to verify the JWT as defined in [ETSI TS 119 182-1, Clause 5.1.8]. | [ETSI TS 119 475, Table 5] |
 
 #### CWT Header Attributes
 
-> Listed header attributes are mandatory.
-
-| Attribute | Type | Description | Reference |
-|-----------|------|-------------|-----------|
-| `typ` | *string* | Specifies the type of the Web Token. The value is set to `rc-wrp+cwt` for CWT | [ETSI TS 119 475, Table 6] |
-| `alg` | *string* | Indicates the algorithm used to sign the CWT as specified in [RFC 9052], clause 3.1 | [ETSI TS 119 475, Table 6] |
-| `x5chain` | *array[string]* | Contains the whole certificate chain to verify the CWT as specified in [RFC 9360], clause 2 | [ETSI TS 119 475, Table 6] |
+| Attribute | Type              | Presence  | Description   | Reference |
+| --------- | :---------------: | :-------: | ------------- | --------- |
+| `typ`     | `string`          | REQUIRED  | Specifies the object type. The value is set to `rc-wrp+cwt` for CWT. | [ETSI TS 119 475, Table 6] |
+| `alg`     | `string`          | REQUIRED  | Indicates the algorithm used to sign the CWT as specified in [RFC 9052, Section 3.1]. | [ETSI TS 119 475, Table 6] |
+| `x5chain` | `array[string]`   | REQUIRED  | Contains the whole certificate chain to verify the CWT as specified in [RFC 9360, Section 2]. | [ETSI TS 119 475, Table 6] |
 
 ### Payload Attributes
 
 #### Core Identity Attributes
 
-| Attribute | Type | Description | Required | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `name` | *string* | The subject of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> trade name | Required | [ETSI TS 119 475, Table 7] - `tradeName` |
-| `sub_gn` | *string* | Given Name of Natural Person | Required for Natural Person | [ETSI TS 119 475, Table 7] - `givenName` |
-| `sub_fn` | *string* | Family Name of Natural Person | Required for Natural Person | [ETSI TS 119 475, Table 7] - `familyName` |
-| `sub_ln` | *string* | Official legal name | Required for Legal Entity | [ETSI TS 119 475, Table 7] - `legalName` |
-| `sub` | *string* | Organizational identifier per clause 5.1.3 | Required for Legal Entity | [ETSI TS 119 475, Table 7] - `identifier` |
-| `country` | *string* | ISO 3166-1 alpha-2 code | Required | [ETSI TS 119 475, Table 7] - `country` |
-| `registry_uri` | *string* | URL pointing to the national registry API endpoint of the registered WRP | Required | [ETSI TS 119 475, Table 7] - `registryURI` |
-| `info_uri` | *string* | URL general-purpose web address | Required | [ETSI TS 119 475, Table 7] - `infoURI` |
-| `support_uri` | *string* | URL or email address to use in data deletion or portability requests related to the WRP | Required | [ETSI TS 119 475, Table 7] - `supportURI` |
+| Attribute         | Type      | Presence  | Description   | Reference |
+| ----------------- | :-------: | :-------: | ------------- | --------- |
+| `name`            | `string`  | REQUIRED  | The subject of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> trade name. | [ETSI TS 119 475, Table 7] - `tradeName` |
+| `sub_ln`          | `string`  | REQUIRED  | Official legal name. | [ETSI TS 119 475, Table 7] - `legalName` |
+| `sub`             | `string`  | REQUIRED  | Organizational identifier, whose semantics is defined in [ETSI EN 319 412-1, Clause 5.1.4]. | [ETSI TS 119 475, Table 7] - `identifier` |
+| `country`         | `string`  | REQUIRED  | ISO 3166-1 alpha-2 code. | [ETSI TS 119 475, Table 7] - `country` |
+| `registry_uri`    | `string`  | REQUIRED  | URL pointing to the national registry API endpoint of the registered WRP. | [ETSI TS 119 475, Table 7] - `registryURI` |
+| `info_uri`        | `string`  | REQUIRED  | URL general-purpose web address. | [ETSI TS 119 475, Table 7] - `infoURI` |
+| `support_uri`     | `string`  | REQUIRED  | URL or email address to use in data deletion or portability requests related to the WRP. | [ETSI TS 119 475, Table 7] - `supportURI` |
+
+!!! info "Organizational Identifiers"
+
+    According to [ETSI TS 119 475, Clauses 5.1.3], the three initial characters of the `sub` field SHALL contain one of the following Semantic Identifiers.
+
+    | Type URI                                  | Semantic Identifier   | ETSI Reference        | EU Regulation             |
+    | ----------------------------------------- | :-------------------: | :-------------------: | ------------------------- |
+    | `http://data.europa.eu/eudi/id/EUID`      | `NTR`                 | GEN-5.1.3-02, Table 2 | [CIR 2020/2244]           |
+    | `http://data.europa.eu/eudi/id/LEI`       | `LEI`                 | GEN-5.1.3-02, Table 2 | [CIR 2022/1860]           |
+    | `http://data.europa.eu/eudi/id/TIN`       | `VAT`                 | GEN-5.1.5-02, Table 4 | [EU DIR 2006/112/EC]      |
+    | `http://data.europa.eu/eudi/id/VATIN`     | `VAT`                 | GEN-5.1.3-02, Table 2 | [EU DIR 2006/112/EC]      |
 
 #### Service Description Attributes
 
-| Attribute | Type | Description | Required | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `srv_description` | *array[object]* | Multilingual service descriptions | Required | [ETSI TS 119 475, Table 7] - `srvDescription` |
-| `srv_description[].lang` | *string* | Language identifier, referring the BCP47 language tag format defined in RFC 5646 [9] | Required | [ETSI TS 119 475, Table 7] - `lang` |
-| `srv_description[].value` | *string* | Service description in specified language | Required | [ETSI TS 119 475, Table 7] - `content` |
+| Attribute                 | Type              | Presence  | Description   | Reference |
+| ------------------------- | :---------------: | :-------: | ------------- | --------- |
+| `srv_description`         | `array[object]`   | REQUIRED  | Multilingual service descriptions. | [ETSI TS 119 475, Table 7] - `srvDescription` |
+| `srv_description[].lang`  | `string`          | REQUIRED  | Language identifier, referring the BCP47 language tag format defined in [RFC 5646]. | [ETSI TS 119 475, Table 7] - `lang` |
+| `srv_description[].value` | `string`          | REQUIRED  | Service description in specified language. | [ETSI TS 119 475, Table 7] - `content` |
 
 #### Entitlements Attribute
 
-| Attribute | Type | Description | Required | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `entitlements` | *array[string]* | A list of entitlements assigned to the WRP as defined in [ETSI TS 119 475, Annex A.2] | Required | [ETSI TS 119 475, Table 7] - `entitlement` |
+| Attribute         | Type              | Presence  | Description   | Reference |
+| ----------------- | :---------------: | :-------: | ------------- | --------- |
+| `entitlements`    | `array[string]`   | REQUIRED  | A list of entitlement URIs assigned to the WRP. | [ETSI TS 119 475, Table 7] - `entitlement` |
+
+!!! note "Defined Entitlements"
+
+    [ETSI TS 119 475, Annex A.2] defines the following possible entitlements:
+
+    | Entitlement                       | OID                   | URI                                                                   | Description   | ETSI Reference    |
+    | --------------------------------- | :-------------------: | :-------------------------------------------------------------------: | ------------- | ----------------- |
+    | `Service_Provider`                | `0.4.0.19475.1.1`     | `https://uri.etsi.org/19475/Entitlement/Service_Provider`             | General Service Provider | Annex A.2.1 |
+    | `QEAA_Provider`                   | `0.4.0.19475.1.2`     | `https://uri.etsi.org/19475/Entitlement/QEAA_Provider`                | <roles:QEAA Provider> | Annex A.2.2 |
+    | `Non_Q_EAA_Provider`              | `0.4.0.19475.1.3`     | `https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider`           | <roles:EAA Provider> | Annex A.2.3 |
+    | `PUB_EAA_Provider`                | `0.4.0.19475.1.4`     | `https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider`             | <roles:PuB-EAA Provider> | Annex A.2.4 |
+    | `PID_Provider`                    | `0.4.0.19475.1.5`     | `https://uri.etsi.org/19475/Entitlement/PID_Provider`                 | <roles:Provider of Person Identification Data (PID Provider)\|PID Provider> | Annex A.2.5 |
+    | `QCert_for_ESeal_Provider`        | `0.4.0.19475.1.6`     | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESeal_Provider`     | QTSP issuing qualified certificates for electronic seals | Annex A.2.6 |
+    | `QCert_for_ESig_Provider`         | `0.4.0.19475.1.7`     | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider`      | QTSP issuing qualified certificates for electronic signatures | Annex A.2.7 |
+    | `rQSealCDs_Provider`              | `0.4.0.19475.1.8`     | `https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider`           | QTSP managing remote qualified electronic seal creation devices | Annex A.2.8 |
+    | `rQSigCDs_Provider`               | `0.4.0.19475.1.9`     | `https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider`            | QTSP managing remote qualified electronic signature creation devices  | Annex A.2.9 |
+    | `ESig_ESeal_Creation_Provider`    | `0.4.0.19475.1.10`    | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | Non-qualified provider for remote signature/seal creation | Annex A.2.10 |
 
 #### Privacy and Policy Attributes
 
-| Attribute | Type | Description | Required | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `privacy_policy` | *string* | URL to the WRP's privacy policy explaining data processing and storage practices | Required | [ETSI TS 119 475, Table 7] - `policyURI` |
-| `public_body` | *boolean* | Boolean indicating whether the WRP is a <roles:Public Sector Body> | Optional | [ETSI TS 119 475, Table 10] - `isPSB` |
+| Attribute         | Type          | Presence  | Description   | Reference |
+| ----------------- | :-----------: | :-------: | ------------- | --------- |
+| `privacy_policy`  | `string`      | REQUIRED  | URL to the WRP's privacy policy explaining data processing and storage practices. | [ETSI TS 119 475, Table 7] - `policyURI` |
+| `public_body`     | `boolean`     | OPTIONAL  | Boolean indicating whether the WRP is a <roles:Public Sector Body>. | [ETSI TS 119 475, Table 10] - `isPSB` |
 
 #### Supervisory Authority Attributes
 
-| Attribute | Type | Description | Required | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `supervisory_authority` | *object* | DPA Info | Required | [ETSI TS 119 475, Table 7] - `supervisoryAuthority` |
-| `spervisory_authority.uri` | *string* | The URL of web form provided by the Data Protection Authority supervising the Relying Party, which Users can use to report suspicious attribute presentation requests | Required | [ETSI TS 119 475, Table 7] - `infoURI` |
-| `supervisory_authority.email` | *string* | An e-mail address of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Required | [ETSI TS 119 475, Table 7] - `email` |
-| `supervisory_authority.phone` | *string* | A telephone number of that DPA, on which the DPA is prepared to receive reports about suspicious attribute presentation requests from Users | Required | [ETSI TS 119 475, Table 7] - `phone` |
+| Attribute                     | Type          | Presence  | Description   | Reference |
+| ----------------------------- | :-----------: | :-------: | ------------- | --------- |
+| `supervisory_authority`       | `object`      | REQUIRED  | Information on the Data Protection Authority. | [ETSI TS 119 475, Table 7] - `supervisoryAuthority` |
+| `spervisory_authority.uri`    | `string`      | REQUIRED  | The URL of web form provided by the Data Protection Authority supervising the Relying Party, which users can use to report suspicious attribute presentation requests. | [ETSI TS 119 475, Table 7] - `infoURI` |
+| `supervisory_authority.email` | `string`      | REQUIRED  | An e-mail address on which the Data Protection Authority is prepared to receive reports about suspicious attribute presentation requests from users. | [ETSI TS 119 475, Table 7] - `email` |
+| `supervisory_authority.phone` | `string`      | REQUIRED  | A telephone number on which the Data Protection Authority is prepared to receive reports about suspicious attribute presentation requests from users. | [ETSI TS 119 475, Table 7] - `phone` |
 
 #### Service Provider Attributes
 
-| Attribute | Type            | Description | Required | Reference |
-|-----------|-----------------|-------------|-----------|-----------|
-| `credentials` | *array[object]* | A set of credential queries, used to request credentials from the Wallet. The <components:EUDI Wallet> will use this information to perform an over-asking validation | Required for Service Provider | [ETSI TS 119 475, Table 9] - `credential` |
-| `credentials[].format` | *string*         | Format of the attestation | Required for Service Provider | [ETSI TS 119 475, Table 9] - `format` |
-| `credentials[].meta` | *object*        | Object defining additional properties. | Required for Service Provider | [ETSI TS 119 475, Table 9] - `meta` |
-| `credentials[].claim` | *array[object]*  | Array of objects that specifies attributes in the requested attestation. If claim is absent, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> does not declare any specific attributes intended to be requested by the WRP | Required for Service Provide | [ETSI TS 119 475, Table 9] - `claim` |
-| `purpose` | *array[object]* | A list describing the data processing associated with the intended use | Required for Service Provider | [ETSI TS 119 475, Table 9] - `purpose` |
-| `purpose[].lang` | *string*        | Language identifier, referring the BCP 47 language tag format defined in [RFC 5646] | Required for Service Provider | [ETSI TS 119 475, Table 9] - `lang` |
-| `purpose[].value` | *string*        | Purpose description provided in the language specified above | Required for Service Provider | [ETSI TS 119 475, Table 9] - `value` |
-| `intended_use_id` | *string*        | Unique identifier of the intended use if provided by the registry. Used to fetch the intented use directly from the registry | Required for Service Provider only if provided by registry | [ETSI TS 119 475, Table 9] - `intendedUserIdentifier` |
+| Attribute                 | Type              | Presence      | Description   | Reference |
+| ------------------------- | :---------------: | :-----------: | ------------- | --------- |
+| `credentials`             | `array[object]`   | CONDITIONAL   | A set of credential queries, used to request Attestations from the Wallet. The <components:EUDI Wallet> will use this information to perform an over-asking validation.<br />**REQUIRED FOR:** Service Providers. | [ETSI TS 119 475, Table 9] - `credential` |
+| `credentials[].format`    | `string`          | CONDITIONAL   | Format of the Attestation.<br />**REQUIRED FOR:** Service Providers. | [ETSI TS 119 475, Table 9] - `format` |
+| `credentials[].meta`      | `object`          | CONDITIONAL   | Object defining additional properties.<br />**REQUIRED FOR:** Service Providers. | [ETSI TS 119 475, Table 9] - `meta` |
+| `credentials[].claim`     | `array[object]`   | CONDITIONAL   | Array of objects that specifies attributes in the requested Attestation. If claim is absent, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> does not declare any specific attributes intended to be requested by the WRP.<br />**REQUIRED FOR:** Service Providers. | [ETSI TS 119 475, Table 9] - `claim` |
+| `purpose`                 | `array[object]`   | CONDITIONAL   | A list describing the data processing associated with the intended use.<br />**REQUIRED FOR:** Service Providers. | [ETSI TS 119 475, Table 9] - `purpose` |
+| `purpose[].lang`          | `string`          | CONDITIONAL   | Language identifier, referring the BCP 47 language tag format defined in [RFC 5646].<br />**REQUIRED FOR:** Service Providers. | [ETSI TS 119 475, Table 9] - `lang` |
+| `purpose[].value`         | `string`          | CONDITIONAL   | Purpose description provided in the language specified above.<br />**REQUIRED FOR:** Service Providers. | [ETSI TS 119 475, Table 9] - `value` |
+| `intended_use_id`         | `string`          | CONDITIONAL   | Unique identifier of the intended use if provided by the <components:Register>. Used to fetch the intented use directly from the <components:Register>.<br />**REQUIRED FOR:** Service Providers only if provided by the <components:Register>. | [ETSI TS 119 475, Table 9] - `intendedUserIdentifier` |
 
 #### Attestation Provider Attributes
 
-| Attribute | Type | Description | Required | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `provides_attestations` | *array[object]* | A set of credentials issued by the WRP with EAA entitlements. | Required for <roles:EAA Provider> | [ETSI TS 119 475, Table 8] - `providesAttestations` |
-| `provides_attestations[].format` | *string* | Format of the credential. | Required for <roles:EAA Provider> | [ETSI TS 119 475, Table 8] - `format` |
-| `provides_attestations[].meta` | *object* | Metadata to identify the credential type. | Required for <roles:EAA Provider> | [ETSI TS 119 475, Table 8] - `meta` |
-| `provides_attestations[].claim` | *array[object]* | Objects that specifies attributes in the requested attestation. | Required for <roles:EAA Provider> only if provided by registry. | [ETSI TS 119 475, Table 8] - `claim` |
+| Attribute                         | Type              | Presence      | Description   | Reference |
+| --------------------------------- | :---------------: | :-----------: | ------------- | --------- |
+| `provides_attestations`           | `array[object]`   | CONDITIONAL   | A set of Attestations issued by the WRP with EAA entitlements.<br />**REQUIRED FOR:** <roles:EAA Provider\|EAA Providers>. | [ETSI TS 119 475, Table 8] - `providesAttestations` |
+| `provides_attestations[].format`  | `string`          | CONDITIONAL   | Format of the Attestation.<br />**REQUIRED FOR:** <roles:EAA Provider\|EAA Providers>. | [ETSI TS 119 475, Table 8] - `format` |
+| `provides_attestations[].meta`    | `object`          | CONDITIONAL   | Metadata to identify the Attestation type.<br />**REQUIRED FOR:** <roles:EAA Provider\|EAA Providers>. | [ETSI TS 119 475, Table 8] - `meta` |
+| `provides_attestations[].claim`   | `array[object]`   | CONDITIONAL   | Objects that specifies attributes in the requested Attestation.<br />**REQUIRED FOR:** <roles:EAA Provider\|EAA Providers> only if provided by the <components:Register>. | [ETSI TS 119 475, Table 8] - `claim` |
 
 #### Technical Attributes
 
-| Attribute | Type | Description | Required | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `policy_id` | *array[string]* | List of policy identifiers as defined in clause 6.1.3 | Required | [ETSI TS 119 475, Table 7] - `technical` |
-| `certificate_policy` | *string* | URL to the certificate policy and certificate practice statement | Required | [ETSI TS 119 475, Table 7] - `technical` |
-| `iat` | *unix_timestamp* | Unix timestamp indicating when the WRP was issued | Required | [ETSI TS 119 475, Table 7] - `technical` |
-| `exp` | *unix_timestamp* | Expiration time of the JWT/CWT as a Unix timestamp | Optional | [ETSI TS 119 475, Table 10] - `technical` |
-| `status` | *object* | A URI to a <artifacts:Status List Token> presenting information about validity of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>  | Required | [ETSI TS 119 475, Table 7] - `technical` |
-| `status.status_list.idx` | *int* | Position in status bitstring | Required | [ETSI TS 119 475] GEN-6.2.6.1-04, GEN-6.2.6.1-05 |
-| `status.status_list.uri` | *string* | <artifacts:Status List Token> URI | Required | [ETSI TS 119 475] GEN-6.2.6.1-04 |
+| Attribute                 | Type              | Presence      | Description   | Reference |
+| ------------------------- | :---------------: | :-----------: | ------------- | --------- |
+| `policy_id`               | `array[string]`   | REQUIRED      | List of policy identifiers as defined in Clause 6.1.3. | [ETSI TS 119 475, Table 7] - `technical` |
+| `certificate_policy`      | `string`          | REQUIRED      | URL to the certificate policy and certificate practice statement. | [ETSI TS 119 475, Table 7] - `technical` |
+| `iat`                     | `unix_timestamp`  | REQUIRED      | Unix timestamp indicating when the WRPRC was issued. | [ETSI TS 119 475, Table 7] - `technical` |
+| `exp`                     | `unix_timestamp`  | OPTIONAL      | Expiration time of the WRPRC as a Unix timestamp. | [ETSI TS 119 475, Table 10] - `technical` |
+| `status`                  | `object`          | REQUIRED      | A URI to a <artifacts:Status List Token> presenting information about validity of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. | [ETSI TS 119 475, Table 7] - `technical` |
+| `status.status_list.idx`  | `int`             | REQUIRED      | Position in status bitstring. | [ETSI TS 119 475, GEN-6.2.6.1-04, GEN-6.2.6.1-05] |
+| `status.status_list.uri`  | `string`          | REQUIRED      | <artifacts:Status List Token> URI. | [ETSI TS 119 475, GEN-6.2.6.1-04] |
 
 #### Uses Intermediary Attributes
 
-| Attribute | Type | Description | Required | Reference |
-|-----------|------|-------------|-----------|-----------|
-| `intermediary` | *object* | Used when the WRP operates via an intermediary | Required if Intermediary is used | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
-| `intermediary.sub` | *string* | Identifier of the intermediary as specified by the intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> | Required if Intermediary is used | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
-| `intermediary.sname` | *string* | commonName of the intermediary as specified by the intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> | Required if Intermediary is used | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
+| Attribute             | Type          | Presence      | Description   | Reference |
+| --------------------- | :-----------: | :-----------: | ------------- | --------- |
+| `intermediary`        | `object`      | CONDITIONAL   | Used when the WRP operates via an Intermediary.<br />**REQUIRED IF:** Intermediary is used. | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
+| `intermediary.sub`    | `string`      | CONDITIONAL   | Identifier of the Intermediary as specified by the Intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>.<br />**REQUIRED IF:** Intermediary is used. | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
+| `intermediary.sname`  | `string`      | CONDITIONAL   | Common name of the Intermediary as specified by the Intermediary <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>.<br />**REQUIRED IF:** Intermediary is used. | [ETSI TS 119 475, Table 10] - `usesIntermediary` |
+
+!!! note "CWT Claims"
+
+    CWT claims SHALL be registered in the following register by IANA: <https://www.iana.org/assignments/cwt/cwt.xhtml>.
 
 ??? example "Example: JWT Header"
 
@@ -171,45 +203,3 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 ??? example "Example: JWT Payload - With Intermediary"
 
     {% include-markdown "../examples/registration-certificate-payload-jwt-intermediary.md" %}
-
-### Other Information
-
-#### Algorithms
-
-Algorithms used should be one of the algorithms for digital signatures recommended by in [ETSI TS 119 312].
-
-[OpenID4VC HAIP] also defines its own requirements for digital signatures. However, those requirements are not directly related to <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>.
-
-#### List of Possible Entitlements
-
-Per [ETSI TS 119 475, Annex A.2]:
-
-| <data-elements:Entitlement> | URI | OID | ETSI Reference | Description |
-|-------------|-----|-----|----------------|-------------|
-| `Service_Provider` | `https://uri.etsi.org/19475/Entitlement/Service_Provider` | `id-etsi-wrpa-entitlement 1` | Annex A.2.1 | General service provider |
-| `QEAA_Provider` | `https://uri.etsi.org/19475/Entitlement/QEAA_Provider` | `id-etsi-wrpa-entitlement 2` | Annex A.2.2 | <roles:QEAA Provider\|Qualified EAA provider> |
-| `Non_Q_EAA_Provider` | `https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider` | `id-etsi-wrpa-entitlement 3` | Annex A.2.3 | <roles:EAA Provider\|Non-qualified EAA provider> |
-| `PUB_EAA_Provider` | `https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider` | `id-etsi-wrpa-entitlement 4` | Annex A.2.4 | <roles:PuB-EAA Provider\|Public sector EAA provider> |
-| `PID_Provider` | `https://uri.etsi.org/19475/Entitlement/PID_Provider` | `id-etsi-wrpa-entitlement 5` | Annex A.2.5 | Provider of person identification data |
-| `QCert_for_ESeal_Provider` | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESeal_Provider` | `id-etsi-wrpa-entitlement 6` | Annex A.2.6 | QTSP issuing qualified certificates for electronic seals |
-| `QCert_for_ESig_Provider` | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider` | `id-etsi-wrpa-entitlement 7` | Annex A.2.7 | QTSP issuing qualified certificates for electronic signatures |
-| `rQSealCDs_Provider` | `https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider` | `id-etsi-wrpa-entitlement 8` | Annex A.2.8 | QTSP managing remote qualified electronic seal creation devices |
-| `rQSigCDs_Provider` | `https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider` | `id-etsi-wrpa-entitlement 9` | Annex A.2.9 | QTSP managing remote qualified electronic signature creation devices  |
-| `ESig_ESeal_Creation_Provider` | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | `id-etsi-wrpa-entitlement 10` | Annex A.2.10 | Non-qualified provider for remote signature/seal creation |
-
-#### Organizational Identifier Formats
-
-Per [ETSI TS 119 475, clause 5.1.3 - Table 2 and 5.1.5 - Table 4]:
-
-| Type URI (B.2.5) | Semantic Prefix | ETSI Reference | EU Regulation |
-|------------------|-----------------|----------------|---------------|
-| `http://data.europa.eu/eudi/id/EUID` | `NTR` | GEN-5.1.3-02, Table 2 | CIR 2020/2244 |
-| `http://data.europa.eu/eudi/id/LEI` | `LEI` | GEN-5.1.3-02, Table 2 | CIR 2022/1860 |
-| `http://data.europa.eu/eudi/id/VATIN` | `VAT` | GEN-5.1.3-02, Table 2 | Directive 2006/112/EC |
-| `http://data.europa.eu/eudi/id/TIN` | `TIN` | GEN-5.1.5-02, Table 4 | |
-
-#### CBOR Web Token (CWT) Claims
-
-CWT token claims must be registered in a register created by IANA.
-
-The register is available at <https://www.iana.org/assignments/cwt/cwt.xhtml>
