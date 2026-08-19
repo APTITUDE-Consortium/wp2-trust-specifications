@@ -4,6 +4,7 @@
 | ------------------ | ----------- | ---------- | ------------------------- |
 | ARF                | v2.9.0      | 2026-05-21 | Architecture and Reference Framework |
 | TS02               | v1.0.1      | 2026-01-30 | Specification of systems enabling the notification and subsequent publication of Provider information |
+| TS03               | v1.5.2      | 2026-05-26 | Specification of Wallet Unit Attestations (WUA) used in issuance of PID and Attestations |
 | TS05               | v1.3        | 2026-02-13 | Specification of common formats and API for Relying Party Registration information |
 | TS06               | v1.0.1      | 2026-01-30 | Common Set of Relying Party Information to be Registered |
 | TS11               | v1.0.1      | 2026-01-30 | Specification of interfaces and formats for the catalogue of attributes and the catalogue of attestations |
@@ -12,11 +13,12 @@
 
 | **Item Reference**               | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ---------- | ------------------------- |
-| CIR 2024/2979                    | 2024-11-28 | Integrity and core functionalities of European Digital Identity Wallets |
-| CIR 2024/2980                    | 2024-11-28 | Notifications to the Commission concerning the European Digital Identity Wallet ecosystem |
-| CIR 2025/848                     | 2025-05-06 | Registration of wallet-relying parties |
-| CIR 2025/1569                    | 2025-07-29 | Qualified electronic attestations of attributes and electronic attestations of attributes provided by or on behalf of a public sector body responsible for an authentic source |
+| CIR 2024/2979                    | 2024-11-28 | Commission Implementing Regulation (EU) 2024/2979 of 28 November 2024 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards the integrity and core functionalities of European Digital Identity Wallets |
+| CIR 2024/2980                    | 2024-11-28 | Commission Implementing Regulation (EU) 2024/2980 of 28 November 2024 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards notifications to the Commission concerning the European Digital Identity Wallet ecosystem |
+| CIR 2025/848                     | 2025-05-06 | Commission Implementing Regulation (EU) 2025/848 of 6 May 2025 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards the registration of wallet-relying parties |
+| CIR 2025/1569                    | 2025-07-29 | Commission Implementing Regulation (EU) 2025/1569 of 29 July 2025 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards qualified electronic attestations of attributes and electronic attestations of attributes provided by or on behalf of a public sector body responsible for an authentic source |
 | CIR 2025/848-Amendment           |            | Applicable standards and specifications (draft) |
+| CIR 2026/1731                    | 2026-07-15 | Commission Implementing Regulation (EU) 2026/1731 of 15 July 2026 amending Implementing Regulations (EU) 2024/2977, (EU) 2024/2979, (EU) 2024/2980 and (EU) 2024/2982 as regards applicable standards and specifications |
 
 ## EU Regulations
 
