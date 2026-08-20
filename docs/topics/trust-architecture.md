@@ -49,7 +49,7 @@ To trust the interactions between these entities, the following trust evaluation
     - The <components:Wallet Unit> needs a <artifacts:Wallet Instance Attestation (WIA)>, an object that attests its integrity and is signed by the <roles:Wallet Provider (WP)|WP>.
     - The <roles:Wallet-Relying Party (WRP)|WRP> needs a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)> attesting its identity.
 - *Authorization Process*: a way to check the authorization of an entity (i.e., *(i)* the <roles:Wallet-Relying Party (WRP)|WRP> entitlements, *(ii)* whether an <roles:Attestation Provider (AP)|AP> is eligible to issue an <credentials:Attestation>, and *(iii)* whether a <roles:Relying Party (RP)|RP> has the right to access the data it is requesting). To achieve this:
-    - The intended use of a <roles:Wallet-Relying Party (WRP)|WRP> is written in a signed <components:Register>, and optionally in a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)>.
+    - The intended use of a <roles:Wallet-Relying Party (WRP)|WRP> is written in a signed <components:Register> and in a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)>.
     - The <roles:Attestation Provider (AP)|AP> may write their own <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policies (EDPs)>.
 - *<artifacts:Trust Anchor> Validation Process*: a way to check the integrity and authenticity of <artifacts:Trusted List (TL)|Trusted Lists (TL)> which serve as the <components:Authentic Source> for <artifacts:Trust Anchor|Trust Anchors> used to (a) verify signed objects such as <credentials:Person Identification Data (PID)|PIDs>, <credentials:Attestation|Attestations>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, and (b) <components:Register>. To achieve this:
     - The public key of the corresponding private key used to sign is published on the <artifacts:Trusted List (TL)|TL> or on the <artifacts:List of Trusted Entities (LoTE)|LoTE> managed by the European Commission.
@@ -62,8 +62,8 @@ While these trust evaluation processes and their artifacts (i.e., the <component
         - <roles:Wallet-Relying Party (WRP)|WRP> identification information.
         - <roles:Wallet-Relying Party (WRP)|WRP> type (<roles:Relying Party (RP)|RP>, <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:QEAA Provider>, <roles:PuB-EAA Provider>, <roles:EAA Provider>).
         - Entity-specific capabilities
-    3. *WRPAC Issuance*: the <roles:Wallet-Relying Party (WRP)|WRP> obtains a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> provided by a <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>.
-    4. [optionally] *WRPRC Issuance*: If the Member State mandates <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> issuance according to [CIR 2025/848, Article 8], the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> must issue a signed <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> containing registered capabilities. If it is not mandated, the <components:Wallet Instance> may retrieve information from <components:Register>.
+    3. *WRPAC Issuance*: The <roles:Wallet-Relying Party (WRP)|WRP> obtains a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> provided by a <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>.
+    4. *WRPRC Issuance*: The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> issues a signed <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> containing registered capabilities.
 
     ```mermaid
     flowchart TD
