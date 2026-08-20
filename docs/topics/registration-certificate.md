@@ -23,8 +23,6 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 - The JWT SHALL be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1].
 - The CWT SHALL be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].
 
----
-
 ### Attribute Overview
 
 | Attribute Group                                                       | Presence              | Description   |
