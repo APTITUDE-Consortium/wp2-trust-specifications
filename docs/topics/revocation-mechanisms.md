@@ -12,7 +12,7 @@ This section describes the artifacts that are employed in [Trust Management and 
 
 ### Token Status List
 
-This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/) for artifacts whose status is managed using a Status List. A TSL conveys the current status of many artifacts in a compact, signed <artifacts:Status List Token>. The requirements in this profile apply unless refined by one of the artifact-specific profiles below.
+This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list](https://www.ietf.org/archive/id/draft-ietf-oauth-status-list-21.html) for artifacts whose status is managed using a Status List. A TSL conveys the current status of many artifacts in a compact, signed <artifacts:Status List Token>. The requirements in this profile apply unless refined by one of the artifact-specific profiles below.
 
 The Status Issuer is the entity that issues the <artifacts:Status List Token> about the status information of the artifact. The Status Provider is the entity that makes the <artifacts:Status List Token> available at an accessible endpoint. The artifact-specific profile SHALL define these roles and whether they are fulfilled by the same entity.
 
