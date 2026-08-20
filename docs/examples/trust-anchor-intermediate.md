@@ -86,7 +86,7 @@ AccessCertificate trustAnchor = {
   },
 
   signatureAlgorithm: AlgorithmIdentifier {
-    oid: "1.2.840.113549.1.1.11",                         // Must match/align with tbsCertificate.signature
+    oid: "1.2.840.113549.1.1.11",                         // SHALL match/align with tbsCertificate.signature
     params: NULL
   },
 

@@ -47,19 +47,19 @@ The following table defines the complete set of extensions applicable to the cer
 
     {% include-markdown "../examples/access-certificate.md" %}
 
-#### Security Considerations
+!!! warning "Security Considerations"
 
-A <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is a certificate for electronic seals or signatures that is used to authenticate and validate a WRP when interacting with <components:Wallet Unit|Wallet Units>. Because the corresponding private key is a signature/seal key, implementations SHALL prevent the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> key from becoming a general-purpose signing oracle.
+    A <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is a certificate for electronic seals or signatures that is used to authenticate and validate a WRP when interacting with <components:Wallet Unit|Wallet Units>. Because the corresponding private key is a signature/seal key, implementations SHALL prevent the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> key from becoming a general-purpose signing oracle.
 
-**SC-1 — No blind signing of attacker-controlled inputs.**
-The WRP (and any remote signing component used on its behalf, e.g., HSM/QSCD/remote seal) should only sign well-defined, locally constructed protocol artefacts and should not sign arbitrary bytes received from outside (e.g., *random* <data-elements:Nonce|nonces>, hashes, or opaque challenges supplied by an attacker).
-For instance, when the interaction with the <components:Wallet Unit> takes plase as described in the protocol [OpenID4VP], the WRP signs a self-constructed <artifacts:Request Object>. Before signing, the WRP SHOULD validate that the <artifacts:Request Object> is fully context-bound (e.g., correct `aud`, `client_id`/`iss`, `exp`, `nonce`, and correct endpoint binding such as `response_uri`/`redirect_uri`, and the intended presentation definition). Any signing API should enforce a strict schema/allowlist and reject unexpected fields. This is particularly important when the key usage is set to non-repudiation, since this protects against the signing entity falsely denying some action and allows a reliable third party to determine the authenticity of signed data in case of later conflict.
+    **SC-1 — No blind signing of attacker-controlled inputs.**
+    The WRP (and any remote signing component used on its behalf, e.g., HSM/QSCD/remote seal) should only sign well-defined, locally constructed protocol artefacts and should not sign arbitrary bytes received from outside (e.g., *random* <data-elements:Nonce|nonces>, hashes, or opaque challenges supplied by an attacker).
+    For instance, when the interaction with the <components:Wallet Unit> takes plase as described in the protocol [OpenID4VP], the WRP signs a self-constructed <artifacts:Request Object>. Before signing, the WRP SHOULD validate that the <artifacts:Request Object> is fully context-bound (e.g., correct `aud`, `client_id`/`iss`, `exp`, `nonce`, and correct endpoint binding such as `response_uri`/`redirect_uri`, and the intended presentation definition). Any signing API should enforce a strict schema/allowlist and reject unexpected fields. This is particularly important when the key usage is set to non-repudiation, since this protects against the signing entity falsely denying some action and allows a reliable third party to determine the authenticity of signed data in case of later conflict.
 
-**SC-2 — Bind signatures to the intended protocol context.**
-Signed protocol objects should be clearly typed and scoped to the protocol to reduce *cross-context* misuse. In particular:
+    **SC-2 — Bind signatures to the intended protocol context.**
+    Signed protocol objects should be clearly typed and scoped to the protocol to reduce *cross-context* misuse. In particular:
 
-- Use an explicit JOSE `typ` value appropriate for secured authorization requests / OpenID4VP <artifacts:Request Object|Request Objects>.
-- Constrain accepted JOSE algorithms and key types, and reject insecure or unexpected values (e.g., `alg=none`).
+    - Use an explicit JOSE `typ` value appropriate for secured authorization requests / OpenID4VP <artifacts:Request Object|Request Objects>.
+    - Constrain accepted JOSE algorithms and key types, and reject insecure or unexpected values (e.g., `alg=none`).
 
-**SC-3 — Key protection, access control, and monitoring.**
-Private keys corresponding to <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> SHOULD be protected and operated under strong controls (access control for key use, audit logging, incident response, and operational monitoring). For remote signing, apply rate limiting and anomaly detection to reduce abuse.
+    **SC-3 — Key protection, access control, and monitoring.**
+    Private keys corresponding to <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> SHOULD be protected and operated under strong controls (access control for key use, audit logging, incident response, and operational monitoring). For remote signing, apply rate limiting and anomaly detection to reduce abuse.
