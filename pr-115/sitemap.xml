@@ -25,27 +25,31 @@
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/X.509-certificate-validation/</loc>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/examples/registration-certificate-header-cwt/</loc>
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/access-certificate/</loc>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/examples/registration-certificate-header-jwt/</loc>
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/attestation-signature-validation-process/</loc>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/examples/registration-certificate-payload-jwt-eaa/</loc>
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/authentication-process/</loc>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/examples/registration-certificate-payload-jwt-intermediary/</loc>
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/authorization-process/</loc>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/examples/registration-certificate-payload-jwt-kyc/</loc>
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/entity-end-certificate-profiles/</loc>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/examples/registration-certificate-payload-jwt-qeaa/</loc>
+         <lastmod>2026-08-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/examples/registration-certificate-payload-jwt-sp/</loc>
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
@@ -57,31 +61,7 @@
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/registry/</loc>
-         <lastmod>2026-08-20</lastmod>
-    </url>
-    <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/trust-anchor-certificate-profiles/</loc>
-         <lastmod>2026-08-20</lastmod>
-    </url>
-    <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/trust-architecture/</loc>
-         <lastmod>2026-08-20</lastmod>
-    </url>
-    <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/trust-checks-presentation/</loc>
-         <lastmod>2026-08-20</lastmod>
-    </url>
-    <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/trust-evaluation/</loc>
-         <lastmod>2026-08-20</lastmod>
-    </url>
-    <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/x509-certificate-profile/</loc>
-         <lastmod>2026-08-20</lastmod>
-    </url>
-    <url>
-         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-115/pr-workspace/x509-certificates/</loc>
          <lastmod>2026-08-20</lastmod>
     </url>
     <url>
