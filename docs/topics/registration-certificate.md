@@ -101,18 +101,18 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
     [ETSI TS 119 475, Annex A.2] defines the following possible entitlements:
 
-    | Entitlement                       | OID                   | URI                                                                   | Description   | ETSI Reference    |
-    | --------------------------------- | :-------------------: | :-------------------------------------------------------------------: | ------------- | ----------------- |
-    | `Service_Provider`                | `0.4.0.19475.1.1`     | `https://uri.etsi.org/19475/Entitlement/Service_Provider`             | General Service Provider | Annex A.2.1 |
-    | `QEAA_Provider`                   | `0.4.0.19475.1.2`     | `https://uri.etsi.org/19475/Entitlement/QEAA_Provider`                | <roles:QEAA Provider> | Annex A.2.2 |
-    | `Non_Q_EAA_Provider`              | `0.4.0.19475.1.3`     | `https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider`           | <roles:EAA Provider> | Annex A.2.3 |
-    | `PUB_EAA_Provider`                | `0.4.0.19475.1.4`     | `https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider`             | <roles:PuB-EAA Provider> | Annex A.2.4 |
-    | `PID_Provider`                    | `0.4.0.19475.1.5`     | `https://uri.etsi.org/19475/Entitlement/PID_Provider`                 | <roles:Provider of Person Identification Data (PID Provider)\|PID Provider> | Annex A.2.5 |
-    | `QCert_for_ESeal_Provider`        | `0.4.0.19475.1.6`     | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESeal_Provider`     | QTSP issuing qualified certificates for electronic seals | Annex A.2.6 |
-    | `QCert_for_ESig_Provider`         | `0.4.0.19475.1.7`     | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider`      | QTSP issuing qualified certificates for electronic signatures | Annex A.2.7 |
-    | `rQSealCDs_Provider`              | `0.4.0.19475.1.8`     | `https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider`           | QTSP managing remote qualified electronic seal creation devices | Annex A.2.8 |
-    | `rQSigCDs_Provider`               | `0.4.0.19475.1.9`     | `https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider`            | QTSP managing remote qualified electronic signature creation devices  | Annex A.2.9 |
-    | `ESig_ESeal_Creation_Provider`    | `0.4.0.19475.1.10`    | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | Non-qualified provider for remote signature/seal creation | Annex A.2.10 |
+    | Entitlement                       | URI                                                                   | Description   | ETSI Reference    |
+    | --------------------------------- | :-------------------------------------------------------------------: | ------------- | ----------------- |
+    | `Service_Provider`                | `https://uri.etsi.org/19475/Entitlement/Service_Provider`             | General Service Provider | Annex A.2.1 |
+    | `QEAA_Provider`                   | `https://uri.etsi.org/19475/Entitlement/QEAA_Provider`                | <roles:QEAA Provider> | Annex A.2.2 |
+    | `Non_Q_EAA_Provider`              | `https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider`           | <roles:EAA Provider> | Annex A.2.3 |
+    | `PUB_EAA_Provider`                | `https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider`             | <roles:PuB-EAA Provider> | Annex A.2.4 |
+    | `PID_Provider`                    | `https://uri.etsi.org/19475/Entitlement/PID_Provider`                 | <roles:Provider of Person Identification Data (PID Provider)\|PID Provider> | Annex A.2.5 |
+    | `QCert_for_ESeal_Provider`        | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESeal_Provider`     | QTSP issuing qualified certificates for electronic seals | Annex A.2.6 |
+    | `QCert_for_ESig_Provider`         | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider`      | QTSP issuing qualified certificates for electronic signatures | Annex A.2.7 |
+    | `rQSealCDs_Provider`              | `https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider`           | QTSP managing remote qualified electronic seal creation devices | Annex A.2.8 |
+    | `rQSigCDs_Provider`               | `https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider`            | QTSP managing remote qualified electronic signature creation devices  | Annex A.2.9 |
+    | `ESig_ESeal_Creation_Provider`    | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | Non-qualified provider for remote signature/seal creation | Annex A.2.10 |
 
 #### Privacy and Policy Attributes
 
