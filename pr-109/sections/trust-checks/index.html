@@ -258,7 +258,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../pr-workspace/no-changes/" class="md-tabs__link">
+        <a href="../../pr-workspace/trust-anchor-validation/" class="md-tabs__link">
           
   
   
@@ -815,6 +815,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -865,14 +869,70 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pr-workspace/no-changes/" class="md-nav__link">
+      <a href="../../pr-workspace/trust-anchor-validation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    No changes
+    Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pr-workspace/trust-management-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust management process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pr-workspace/trusted-list-and-list-of-trusted-lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trusted list and list of trusted lists
   
 
     
@@ -1187,7 +1247,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
     data-tooltip="Short-range presentation protocol (NFC/BLE/Wi-Fi Aware) per ISO/IEC 18013-5/-7."
     name="protocols:Proximity Flow"
     href="../../glossary-definitions/#b5782cf859bca2f9697cc035866dbe09">Proximity</a> flows</strong>. The differences are limited to the transport, the location and format of the <a class="mkdocs-ezglossary-link"
-    id="5d4c3e956677430b42c0a5bc9678b11c"
+    id="c362f6a06ee8c4aeb7ad5e391aef5747"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1244,17 +1304,17 @@ StopBind --&gt; End
 StopInt --&gt; End</code></pre>
 <h4 id="flowchart-to-detailed-trust-check-index">Flowchart to detailed trust-check index<a class="headerlink" href="#flowchart-to-detailed-trust-check-index" title="Permanent link">&para;</a></h4>
 <p>Section <a href="#common-presentation-trust-evaluation-model">Common Presentation Trust Evaluation Model</a> uses coarse step labels (<strong>Check 1</strong>…<strong>Check 9</strong>) for control flow. Section <a href="#detailed-trust-checks">Detailed Trust Checks</a> decomposes the same logic into RFC003 test-case identifiers (<strong>TC-PRES-001</strong>…<strong>TC-PRES-017</strong>). The correspondence is mostly one-to-many: one flowchart label may map to several TC-PRES checks, and some TC-PRES checks have no separate box in the flowchart. Trust-list resolution (<strong>TL-PRES-001</strong>, Section <a href="#trust-anchor-and-trusted-list-checks">Trust Anchor and Trusted List Checks</a>) is a cross-cutting dependency of <a class="mkdocs-ezglossary-link"
-    id="c2ee83a85f04cf6948fc821ee9f3707b"
+    id="4321617cff6af942e140fce9e668a567"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="12ca0e09ebda00a0bb077ef853b135f2"
+    id="ee490e538074c8d5dc5234091a1f56ab"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, and <a class="mkdocs-ezglossary-link"
-    id="a823ded3379dba009348d245921a8102"
+    id="48b714a0062c04d34983bb32f07f2958"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -2177,17 +2237,17 @@ Eval --&gt; User[Display results to User]</code></pre>
 </table>
 <h3 id="trust-anchor-and-trusted-list-checks">Trust Anchor and Trusted List Checks<a class="headerlink" href="#trust-anchor-and-trusted-list-checks" title="Permanent link">&para;</a></h3>
 <p>The following checks are used by several of the above procedures. They may be tested separately or as dependencies of <a class="mkdocs-ezglossary-link"
-    id="873859f6ee98b222a108a13392ad5aa7"
+    id="ac9a958da2bd4e1b8bf23aada9762512"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="8a5e16ed941e8976d7deb16bac9652fa"
+    id="8f2c259b01a247b445face0cfdbcd436"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, and <a class="mkdocs-ezglossary-link"
-    id="beea900eb5275fd73b47e0bda3d913e9"
+    id="b98c3ae7c6775096a257f769c04d7013"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
