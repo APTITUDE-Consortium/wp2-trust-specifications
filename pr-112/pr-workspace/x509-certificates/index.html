@@ -660,6 +660,8 @@
       
         
       
+        
+      
     
     
     
@@ -889,6 +891,34 @@
     
   
     Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
   
 
     
@@ -1235,17 +1265,54 @@
 
 <h3 id="x509-certificate-profile">X.509 Certificate Profile<a class="headerlink" href="#x509-certificate-profile" title="Permanent link">&para;</a></h3>
 <!-- BEGIN INCLUDE ../topics/x509-certificate-profile.md -->
-<p>This section defines a general <strong>X.509 Certificate Profile</strong>, establishing the syntax, semantics and encoding requirements for X.509 certificates based on [RFC 5280] and [ETSI EN 319 412]. Each X.509 certificate defined in this specification SHALL conform to the requirements of this section unless explicitly stated otherwise.</p>
-<p>The final certificate is obtained by combining the certificate body (<code>version</code> through <code>subjectPublicKeyInfo</code>) with the certificate extensions required by the selected certificate profile.
-The resulting ASN.1 structure SHALL be encoded using the Distinguished Encoding Rules (DER) as specified in [RFC 5280].</p>
-<h4 id="common-certificate-fields">Common Certificate Fields<a class="headerlink" href="#common-certificate-fields" title="Permanent link">&para;</a></h4>
-<p>The <code>TBSCertificate</code> structure and its fields SHALL conform to [RFC 5280, Section 4.1].</p>
-<p>The following table defines the certificate fields applicable to the certificate profiles defined in this specification.
-For each field, the table specifies the corresponding reference in [RFC 5280], its presence requirement, and any additional profile-specific constraints.</p>
+<p>This section defines a general <strong>X.509 Certificate Profile</strong>, establishing the syntax, semantics and encoding requirements for X.509 certificates based on [RFC 5280] and [ETSI EN 319 412].</p>
+<p>Each X.509 certificate defined in this specification SHALL conform to the requirements of this section unless explicitly stated otherwise.</p>
+<p>As specified in [RFC 5280], X.509 Certificates SHALL be a <code>SEQUENCE</code> of the following fields:</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Presence</th>
+<th>Description</th>
+<th>Reference in [RFC 5280]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tbsCertificate</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Contains the names of the subject and issuer, a public key associated with the subject, a validity period, and other associated information.</td>
+<td>Section 4.1.1.1</td>
+</tr>
+<tr>
+<td><code>signatureAlgorithm</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Contains the identifier for the cryptographic algorithm used by the CA to sign the certificate.</td>
+<td>Section 4.1.1.2</td>
+</tr>
+<tr>
+<td><code>signatureValue</code></td>
+<td style="text-align: center;"><code>BIT STRING</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Contains a digital signature computed upon the ASN.1 DER encoded <code>tbsCertificate</code>.</td>
+<td>Section 4.1.1.3</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The rest of the section details the content of the <code>tbsCertificate</code> field only. For additional information on the <code>signatureAlgorithm</code> and <code>signatureValue</code> fields, refer to [RFC5280].</p>
+</div>
+<p>The <code>tbsCertificate</code> field SHALL contain a <code>TBSCertificate</code> structure, whose fields SHALL conform to [RFC 5280, Section 4.1.2].</p>
+<p>The following table defines the certificate fields applicable to the Certificate Profile specified in this document. For each field, the table defines its presence requirement, type, description, and corresponding reference in [RFC 5280]. Individual Certificate Profiles MAY provide additional contextual notes for these fields, but SHALL NOT alter the presence requirements specified herein.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center;">Type</th>
 <th style="text-align: center;">Presence</th>
 <th>Description</th>
 <th>Reference in [RFC 5280]</th>
@@ -1254,18 +1321,21 @@ For each field, the table specifies the corresponding reference in [RFC 5280], i
 <tbody>
 <tr>
 <td><code>version</code></td>
+<td style="text-align: center;"><code>INTEGER</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>Describes the version of the encoded certificate. For this profile, it SHALL be version 3 (value <code>2</code>).</td>
 <td>Section 4.1.2.1</td>
 </tr>
 <tr>
 <td><code>serialNumber</code></td>
+<td style="text-align: center;"><code>INTEGER</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>Represents the serial number of the certificate.</td>
 <td>Section 4.1.2.2</td>
 </tr>
 <tr>
 <td><code>signature</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>Contains the algorithm identifier for the algorithm used by the <a class="mkdocs-ezglossary-link"
     id="f152e9147ad69e3f61312f0e89fbff6f"
@@ -1277,12 +1347,14 @@ For each field, the table specifies the corresponding reference in [RFC 5280], i
 </tr>
 <tr>
 <td><code>issuer</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>Identifies entity that has signed and issued the certificate. It SHALL comply with the applicable requirements of [ETSI EN 319 412-2, Clause 4.2.3.2], as specified by the corresponding certificate profile.</td>
 <td>Section 4.1.2.4</td>
 </tr>
 <tr>
 <td><code>validity</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>Represents the time interval during which the <a class="mkdocs-ezglossary-link"
     id="cec8c8502f725a8d5d17568b2d099717"
@@ -1294,39 +1366,42 @@ For each field, the table specifies the corresponding reference in [RFC 5280], i
 </tr>
 <tr>
 <td><code>subject</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>Identifies the entity associated with the public key stored in the subject public key field. It SHALL comply with the applicable requirements of [ETSI EN 319 412-3, Clause 4.2.1], as specified by the corresponding certificate profile.</td>
 <td>Section 4.1.2.6</td>
 </tr>
 <tr>
 <td><code>subjectPublicKeyInfo</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>Carries the public key and identifies the algorithm with which the key is used. The subject public key SHOULD be selected according to [ETSI TS 119 312] but MAY be superseded by national recommendations.</td>
 <td>Section 4.1.2.7</td>
 </tr>
 <tr>
 <td><code>issuerUniqueID</code></td>
+<td style="text-align: center;"><code>BIT STRING</code></td>
 <td style="text-align: center;">OPTIONAL</td>
 <td>Represents the issuer unique identifiers, to handle the possibility of reuse of issuer names over time. It SHOULD NOT be present.</td>
 <td>Section 4.1.2.8</td>
 </tr>
 <tr>
 <td><code>subjectUniqueID</code></td>
+<td style="text-align: center;"><code>BIT STRING</code></td>
 <td style="text-align: center;">OPTIONAL</td>
 <td>Represents the subject unique identifiers, to handle the possibility of reuse of subject names over time. It SHOULD NOT be present.</td>
 <td>Section 4.1.2.8</td>
 </tr>
 <tr>
 <td><code>extensions</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">REQUIRED</td>
-<td>Contains a sequence of one or more certificate extensions conforming to the structure defined in [RFC 5280, Section 4.2]. The applicable extensions and their profile-specific constraints are defined in <a href="#supported-certificate-extensions">Supported Certificate Extensions</a> and in the corresponding certificate profile.</td>
+<td>Contains a sequence of one or more certificate extensions conforming to the structure defined in [RFC 5280, Section 4.2]. The applicable extensions and their profile-specific constraints are defined below and in the corresponding certificate profile.</td>
 <td>Section 4.1.2.9</td>
 </tr>
 </tbody>
 </table>
-<h4 id="supported-certificate-extensions">Supported Certificate Extensions<a class="headerlink" href="#supported-certificate-extensions" title="Permanent link">&para;</a></h4>
-<p>The following table lists the certificate extensions supported by the X.509 certificate profiles defined in this specification, together with their object identifiers, default criticality, and normative references.
-Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL, or SHALL NOT be present, and MAY further constrain its contents.</p>
+<p>The following table specifies the X.509 certificate extensions supported by this specification, including their Object Identifiers (OIDs), type, criticality, description, and normative references. Individual certificate profiles SHALL define the presence requirement (REQUIRED, OPTIONAL, or PROHIBITED) for each extension and MAY further constrain its syntax and contents.</p>
 <p>The criticality values used in this specification have the following meaning:</p>
 <ul>
 <li><strong>C</strong>: the extension SHALL be marked critical;</li>
@@ -1337,6 +1412,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <th>Extension</th>
 <th style="text-align: center;">OID</th>
+<th style="text-align: center;">Type</th>
 <th style="text-align: center;">Criticality</th>
 <th>Description</th>
 <th>Reference</th>
@@ -1346,6 +1422,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>authorityKeyIdentifier</code></td>
 <td style="text-align: center;"><code>2.5.29.35</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">NC</td>
 <td>Identifies the public key corresponding to the private key used by the issuing <a class="mkdocs-ezglossary-link"
     id="0e67c0ddd361f95fa99a7e8005685811"
@@ -1358,6 +1435,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>subjectKeyIdentifier</code></td>
 <td style="text-align: center;"><code>2.5.29.14</code></td>
+<td style="text-align: center;"><code>OCTET STRING</code></td>
 <td style="text-align: center;">NC</td>
 <td>Identifies certificates that contain a particular public key.</td>
 <td>[RFC 5280, Section 4.2.1.2]</td>
@@ -1365,6 +1443,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>keyUsage</code></td>
 <td style="text-align: center;"><code>2.5.29.15</code></td>
+<td style="text-align: center;"><code>BIT STRING</code></td>
 <td style="text-align: center;">C</td>
 <td>Defines the purpose of the key contained in the certificate.</td>
 <td>[RFC 5280, Section 4.2.1.3], [ETSI EN 319 412-2, Clause 4.3.2], [ETSI EN 319 412-3, Clause 4.3.1]</td>
@@ -1372,6 +1451,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>certificatePolicies</code></td>
 <td style="text-align: center;"><code>2.5.29.32</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">NC</td>
 <td>Contains a sequence of one or more policy information terms.</td>
 <td>[RFC 5280, Section 4.2.1.4], [ETSI EN 319 412-2, Clause 4.3.3]</td>
@@ -1379,6 +1459,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>subjectAltName</code></td>
 <td style="text-align: center;"><code>2.5.29.17</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">NC</td>
 <td>Represents a set of possible alternative names for the subject of the certificate.</td>
 <td>[RFC 5280, Section 4.2.1.6], [ETSI EN 319 412-2, Clause 4.3.5], [ETSI TS 119 411-8, Clause 6.6.1, GEN-6.6.1-07]</td>
@@ -1386,6 +1467,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>basicConstraints</code></td>
 <td style="text-align: center;"><code>2.5.29.19</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">C</td>
 <td>Identifies whether the subject of the certificate is a CA and the maximum depth of valid certification paths that include this certificate.</td>
 <td>[RFC 5280, Section 4.2.1.9]</td>
@@ -1393,6 +1475,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td style="text-align: center;"><code>2.5.29.31</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">NC</td>
 <td>Contains references to publicly available <a class="mkdocs-ezglossary-link"
     id="58c3f3b9e7f3fb853f449e80a41f42bc"
@@ -1405,6 +1488,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>authorityInfoAccess</code></td>
 <td style="text-align: center;"><code>1.3.6.1.5.5.7.1.1</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">NC</td>
 <td>Indicates how to access information and services for the issuer of the certificate.</td>
 <td>[RFC 5280, Section 4.2.2.1], [ETSI EN 319 412-2, Clause 4.4.1]</td>
@@ -1412,6 +1496,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>ext-etsi-valassured-ST-certs</code></td>
 <td style="text-align: center;"><code>0.4.0.194121.2.1</code></td>
+<td style="text-align: center;"><code>NULL</code></td>
 <td style="text-align: center;">NC</td>
 <td>Indicates that the certificate issuer ensures the validity of the certificate is assured at time of use of the corresponding private key. Upon presence of such statement, the WRP can decide not to check the certificate revocation status.</td>
 <td>[ETSI EN 319 412-1, Clause 5.2.2]</td>
@@ -1419,6 +1504,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>noRevAvail</code></td>
 <td style="text-align: center;"><code>2.5.29.56</code></td>
+<td style="text-align: center;"><code>NULL</code></td>
 <td style="text-align: center;">NC</td>
 <td>Allows a CA to indicate that no revocation information will be made available for this certificate.</td>
 <td>[RFC 9608, Section 2]</td>
@@ -1426,6 +1512,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>qcStatements</code></td>
 <td style="text-align: center;"><code>1.3.6.1.5.5.7.1.3</code></td>
+<td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">NC</td>
 <td>Contains a sequence of one or more objects to define explicit properties of the certificate.</td>
 <td>[RFC 3739, Section 3.2.6], [ETSI EN 319 412-5, Clause 4.2]</td>
@@ -1437,13 +1524,13 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <h3 id="wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate<a class="headerlink" href="#wallet-relying-party-access-certificate" title="Permanent link">&para;</a></h3>
 <!-- BEGIN INCLUDE ../topics/access-certificate.md -->
 <p>This section extends the general <a href="../../sections/trust-artifacts/#x509-certificate-profile">X.509 Certificate Profile</a> and specifies a Certificate Profile for <a class="mkdocs-ezglossary-link"
-    id="c9f02c14c02ef43a913827936904e65b"
+    id="d14d8a89f6ab4b5b1f7882251c5ed5bd"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates (WRPACs)</a>.</p>
 <p>According to [CIR 2025/848, Article 2], a <a class="mkdocs-ezglossary-link"
-    id="7bf722c8cbe0cf0e5f182c12416b7959"
+    id="dfc8cda82dc2800686aa946fed96b58d"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1459,7 +1546,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> services involves revocation of all valid <a class="mkdocs-ezglossary-link"
-    id="d14d8a89f6ab4b5b1f7882251c5ed5bd"
+    id="0d169ffdbc0d0ebd8788b89041e3f4e6"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1477,12 +1564,12 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <details class="references">
 <summary>References</summary>
 <p>The technical standard specific to <a class="mkdocs-ezglossary-link"
-    id="dfc8cda82dc2800686aa946fed96b58d"
+    id="3b03eee4f55bcafad4af66f39b9cc21b"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> is [ETSI TS 119 411-8]. However, multiple other standards are referenced either directly or indirectly by [ETSI TS 119 411-8], containing requirements that are applicable to <a class="mkdocs-ezglossary-link"
-    id="0d169ffdbc0d0ebd8788b89041e3f4e6"
+    id="1b270c59fd21062bd6c1af9f3d640005"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1504,22 +1591,22 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <div class="admonition note">
 <p class="admonition-title">Dependency Considerations</p>
 <p>The <a class="mkdocs-ezglossary-link"
-    id="3b03eee4f55bcafad4af66f39b9cc21b"
+    id="b6a3b9d8a6141a5e18b69deb0ffac631"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> attributes SHALL be derived from the information held in the <a class="mkdocs-ezglossary-link"
-    id="0280428080f15d9a52a838dc3a33bac2"
+    id="f5a24443e588a430789b9c94acad4cca"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> as specified in clause 5.1.2 of [ETSI TS 119 475]. This also implies that for some specific attributes in the <a class="mkdocs-ezglossary-link"
-    id="1b270c59fd21062bd6c1af9f3d640005"
+    id="802b289c87aac76bc949c83fb92fc199"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> the same value SHALL be encountered in the corresponding <a class="mkdocs-ezglossary-link"
-    id="1f32ece0cf420168300ac3a295c0705a"
+    id="6df1a44f9bf75ca0781d1c738cb0232c"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1538,12 +1625,12 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 <tr>
 <td><code>authorityKeyIdentifier</code></td>
 <td style="text-align: center;">REQUIRED</td>
-<td>The The <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1].</td>
+<td>The value of the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1].</td>
 </tr>
 <tr>
 <td><code>subjectKeyIdentifier</code></td>
 <td style="text-align: center;">OPTIONAL</td>
-<td>If present, the <code>keyIdentifier</code> field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
+<td>If present, its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
 </tr>
 <tr>
 <td><code>keyUsage</code></td>
@@ -1616,7 +1703,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 </ul>
 </div>
 <details class="example">
-<summary>Example: WRPAC for legal persons</summary>
+<summary>Example: WRPAC</summary>
 <p><!-- BEGIN INCLUDE ../examples/access-certificate.md -->
 <div class="highlight"><pre><span></span><code>AccessCertificate cert = {
   tbsCertificate: {
@@ -1738,9 +1825,10 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
 </code></pre></div></p>
 <!-- END INCLUDE -->
 </details>
-<h4 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Security Considerations</p>
 <p>A <a class="mkdocs-ezglossary-link"
-    id="b6a3b9d8a6141a5e18b69deb0ffac631"
+    id="ab6807169b2f43c8268b48acf896f72f"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1750,7 +1838,7 @@ Specific certificate profiles define whether an extension is REQUIRED, OPTIONAL,
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a>. Because the corresponding private key is a signature/seal key, implementations SHALL prevent the <a class="mkdocs-ezglossary-link"
-    id="802b289c87aac76bc949c83fb92fc199"
+    id="e3dd647d5cfa88c85d108a4eeb895be7"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
@@ -1791,11 +1879,12 @@ Signed protocol objects should be clearly typed and scoped to the protocol to re
 </ul>
 <p><strong>SC-3 — Key protection, access control, and monitoring.</strong>
 Private keys corresponding to <a class="mkdocs-ezglossary-link"
-    id="ab6807169b2f43c8268b48acf896f72f"
+    id="ad6ec8a657f4bc6481db9ccbda73132b"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> SHOULD be protected and operated under strong controls (access control for key use, audit logging, incident response, and operational monitoring). For remote signing, apply rate limiting and anomaly detection to reduce abuse.</p>
+</div>
 <!-- END INCLUDE -->
 
 <h3 id="entity-signseal-certificate">Entity Sign/Seal Certificate<a class="headerlink" href="#entity-signseal-certificate" title="Permanent link">&para;</a></h3>
@@ -1840,12 +1929,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>authorityKeyIdentifier</code></td>
 <td style="text-align: center;">REQUIRED</td>
-<td>The <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]</td>
+<td>The value of the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]</td>
 </tr>
 <tr>
 <td><code>subjectKeyIdentifier</code></td>
 <td style="text-align: center;">REQUIRED</td>
-<td>The <code>keyIdentifier</code> field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
+<td>Its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
 </tr>
 <tr>
 <td><code>keyUsage</code></td>
@@ -2044,12 +2133,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>authorityKeyIdentifier</code></td>
 <td>REQUIRED</td>
-<td>The <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]</td>
+<td>The value of the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]</td>
 </tr>
 <tr>
 <td><code>subjectKeyIdentifier</code></td>
 <td>REQUIRED</td>
-<td>The <code>keyIdentifier</code> field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
+<td>Its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
 </tr>
 <tr>
 <td><code>keyUsage</code></td>
@@ -2248,12 +2337,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>authorityKeyIdentifier</code></td>
 <td>REQUIRED</td>
-<td>The <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]</td>
+<td>The value of the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]</td>
 </tr>
 <tr>
 <td><code>subjectKeyIdentifier</code></td>
 <td>OPTIONAL</td>
-<td>If present, the <code>keyIdentifier</code> field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
+<td>If present, its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
 </tr>
 <tr>
 <td><code>keyUsage</code></td>
@@ -2459,12 +2548,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>authorityKeyIdentifier</code></td>
 <td>REQUIRED</td>
-<td>The <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]</td>
+<td>The value of the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1]</td>
 </tr>
 <tr>
 <td><code>subjectKeyIdentifier</code></td>
 <td>OPTIONAL</td>
-<td>If present, the <code>keyIdentifier</code> field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
+<td>If present, its value be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
 </tr>
 <tr>
 <td><code>keyUsage</code></td>
@@ -2500,11 +2589,11 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 </table>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>While the specific requirements for PuB-EAA Provider Sign/Seal Certificates specified in [ETSI TS 119 412-6, Clause 8] do not require these certificates to be qualified, [REG EU 2024/1183, Art. 45f(1)(b)] requires PuB-EAA Attestations to be signed with a qualified certificate.</p>
+<p>While the specific requirements for PuB-EAA Provider Sign/Seal Certificates specified in [ETSI TS 119 412-6, Clause 8] do not require these certificates to be qualified, [EU REG 2024/1183, Art. 45f(1)(b)] requires PuB-EAA Attestations to be signed with a qualified certificate.</p>
 </div>
 <div class="admonition choice">
 <p class="admonition-title">APTITUDE Implementation Choice</p>
-<p>To comply with [REG EU 2024/1183, Art. 45f(1)(b)], although not explicitly required by [ARF] or [ETSI TS 119 412-6], PuB-EAA Provider Sign/Seal Certificates are Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL contain at least a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>).</p>
+<p>To comply with [EU REG 2024/1183, Art. 45f(1)(b)], although not explicitly required by [ARF] or [ETSI TS 119 412-6], PuB-EAA Provider Sign/Seal Certificates are Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL contain at least a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>).</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2655,7 +2744,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
   },
 
   signatureAlgorithm: AlgorithmIdentifier {
-    oid: "1.2.840.113549.1.1.11",                         // Must match/align with tbsCertificate.signature
+    oid: "1.2.840.113549.1.1.11",                         // SHALL match/align with tbsCertificate.signature
     params: NULL
   },
 
@@ -2701,7 +2790,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <p>According to [OpenID4VC HAIP, Clause 6.1]:</p>
 <ul>
 <li><a class="mkdocs-ezglossary-link"
-    id="4c5c6b1c469c8990231b65a3d1163035"
+    id="b4a3f504f81da02db687cb93050c5176"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -2717,7 +2806,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificate of the <a class="mkdocs-ezglossary-link"
-    id="b4a3f504f81da02db687cb93050c5176"
+    id="b72075939bd81f83cf88fe62ee3a43c2"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -2729,7 +2818,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
     href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</a> <code>x5c</code> header.</li>
 </ul>
 <p>Therefore, <a class="mkdocs-ezglossary-link"
-    id="b72075939bd81f83cf88fe62ee3a43c2"
+    id="a6c22976c61a8d1155cc90cbcf072b08"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -2835,12 +2924,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>authorityKeyIdentifier</code></td>
 <td>CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate is not self-signed. For self-signed certificates, it is RECOMMENDED. If the extension is present, the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1].</td>
+<td><strong>REQUIRED IF:</strong> the certificate is not self-signed. For self-signed certificates, it is RECOMMENDED. If the extension is present, the value of the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1].</td>
 </tr>
 <tr>
 <td><code>subjectKeyIdentifier</code></td>
 <td>REQUIRED</td>
-<td>Provides a key identifier for the Trust Anchor public key. The <code>keyIdentifier</code> field SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. This extension SHOULD support reliable Certificate Path construction and certificate matching in LoTE- or TL-based deployments.</td>
+<td>Provides a key identifier for the Trust Anchor public key. Its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. This extension SHOULD support reliable Certificate Path construction and certificate matching in LoTE- or TL-based deployments.</td>
 </tr>
 <tr>
 <td><code>keyUsage</code></td>
@@ -2963,7 +3052,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
   },
 
   signatureAlgorithm: AlgorithmIdentifier {
-    oid: "1.2.840.113549.1.1.11",                         // Must match/align with tbsCertificate.signature
+    oid: "1.2.840.113549.1.1.11",                         // SHALL match/align with tbsCertificate.signature
     params: NULL
   },
 
@@ -3062,7 +3151,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
   },
 
   signatureAlgorithm: AlgorithmIdentifier {
-    oid: "1.2.840.113549.1.1.11",                         // Must match/align with tbsCertificate.signature
+    oid: "1.2.840.113549.1.1.11",                         // SHALL match/align with tbsCertificate.signature
     params: NULL
   },
 
@@ -3092,7 +3181,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 18, 2026 14:53:21 UTC">August 18, 2026 14:53:21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 20, 2026 06:59:43 UTC">August 20, 2026 06:59:43</span>
   </span>
 
     
