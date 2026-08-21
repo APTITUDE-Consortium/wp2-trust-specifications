@@ -305,9 +305,11 @@ On failure of intermediary association verification, the procedure outputs SHALL
 **Step 4: Apply authorization context.** Once the intermediary association is confirmed, all subsequent authorization checks (entitlement verification, scope comparison, <artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation) SHALL use the intermediated <roles:Relying Party (RP)|RP> data, not the intermediary data [AUTHZ-INT-02].
 
 **Step 5: Display the final RP identity.** The <components:Wallet Instance|WI> SHALL display to the <roles:User> the intermediated RP identity and intended-use description. The intermediary identity SHALL NOT be displayed.
-The names are obtained from:
+The intermediated RP name can be obtained from:
 
-- Intermediated RP: `name` (or `sub_ln`) from the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or the <components:Register> response, or the <roles:Relying Party (RP)|RP> name from the <artifacts:Presentation Request> fields per RPRC_19a (item a).
+- the `name` (or `sub_ln`) from the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or
+- the <components:Register> response or
+- the <roles:Relying Party (RP)|RP> name from the <artifacts:Presentation Request> fields per RPRC_19a (item a).
 
 If the intermediated RP name is not available, the <components:Wallet Instance|WI> SHALL display its identifier instead of the name.
 
@@ -490,7 +492,7 @@ sequenceDiagram
             Note over WI: 5b. Extract registryURI from registrar_dataset
             WI->>Reg: 6b. Query registration data
             Reg-->>WI: 7b. Registration data
-            Note over WI: 8b. Register Validation Procedure
+            Note over WI: 4b. Register Response Validation Procedure
         end
     end
     Note over WI: 5. Binding Verification Procedure
