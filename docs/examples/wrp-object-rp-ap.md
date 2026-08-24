@@ -3,7 +3,44 @@
   "legalPerson": {
     "legalName": ["ExampleBank S.A."]
   },
-  [...as previous example...] 
+  "identifier": [
+    {
+      "type": "http://data.europa.eu/eudi/id/EUID",
+      "identifier": "FR-EUID-123456789"
+    },
+    {
+      "type": "http://data.europa.eu/eudi/id/VATIN",
+      "identifier": "FR12345678901"
+    }
+  ],
+  "postalAddress": [
+    "10 Rue Exemple, 75000 Paris, FR"
+  ],
+  "country": "FR",
+  "email": [
+    "wallet-rp-registration@examplebank.eu"
+  ],
+  "phone": [
+    "+33100000000"
+  ],
+  "infoURI": [
+    "https://examplebank.eu"
+  ],
+  "providerType": "WalletRelyingParty",
+  "policy": [
+    {
+      "type": "http://data.europa.eu/eudi/policy/terms-and-conditions",
+      "policyURI": "https://examplebank.eu/terms"
+    },
+    {
+      "type": "http://data.europa.eu/eudi/policy/privacy-policy",
+      "policyURI": "https://examplebank.eu/privacy"
+    }
+  ],
+  "tradeName": "ExampleBank Mobile",
+  "supportURI": [
+    "https://examplebank.eu/support"
+  ],
   "srvDescription": [
     [
       { "lang": "en", "content": "Retail banking services for individuals." },
