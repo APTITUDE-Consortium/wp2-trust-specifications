@@ -97,7 +97,7 @@ The following table defines the complete set of extensions applicable to the cer
 
 !!! warning "Use Case-Specific Requirements"
 
-    Single Use Cases could have specific requirements related to the Trust Anchor Certificates. Therefore, when strictly needed, the profile above MAY be extended by implementing additional extensions.
+    Specific Use Cases could have custom Trust Anchor Certificate requirements. Where strictly necessary, implementations MAY define and support additional extensions beyond the profile defined above.
 
 ??? example "Example: Self-signed entity trust anchor (root-style)"
 
