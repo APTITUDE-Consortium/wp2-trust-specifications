@@ -71,7 +71,7 @@ The following table defines the profile-specific requirements for the certificat
 | `issuer`  | If the certificate is self-signed, the issuer's distinguished name SHALL be identical to the subject's distinguished name. Otherwise, the issuer's distinguished name SHALL identify the entity that signed and issued the certificate and MAY differ from the subject's distinguished name. |
 | `subject` | The distinguished name SHALL contain an `organizationName` attribute identifying that entity. |
 
-The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.
+The following table defines the complete set of extensions applicable to the certificate profile.
 
 | Extension                 | Presence      | Notes |
 | ------------------------- | ------------- | ----- |
@@ -94,6 +94,10 @@ The following table defines the complete set of extensions applicable to the cer
     - Absence of the `pathLenConstraint` implies that no explicit limit is imposed by the certificate itself.
 
     This profile allows the field to be OPTIONAL to support interoperability with different PKI deployment models. However, setting `pathLenConstraint` to `0` is RECOMMENDED to reduce trust hierarchy complexity, improve predictability of certificate chains, and limit the risk associated with unintended subordinate certification authorities.
+
+!!! warning "Use Case-Specific Requirements"
+
+    Single Use Cases could have specific requirements related to the Trust Anchor Certificates. Therefore, when strictly needed, the profile above MAY be extended by implementing additional extensions.
 
 ??? example "Example: Self-signed entity trust anchor (root-style)"
 
