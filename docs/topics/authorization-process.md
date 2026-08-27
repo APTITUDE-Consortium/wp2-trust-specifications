@@ -313,6 +313,10 @@ The intermediated RP name can be obtained from:
 
 If the intermediated RP name is not available, the <components:Wallet Instance|WI> SHALL display its identifier instead of the name.
 
+!!! choice "WRPRC and WRPAC binding"
+
+    As discussed in [#114](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues/114), the APTITUDE Profiles do not implement the binding between WRPAC and WRPRC at the service level, as the necessary fields within the certificates are not described in the relevant technical specifications.
+
 !!! note
 
     The <roles:Registrar> online service API, including the specific parameters for querying intermediary relationships, is defined in TS5. This specification does not define the <components:Register> API; it only defines how the <components:Wallet Instance|WI> uses the <components:Register> response for authorization purposes.
