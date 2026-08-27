@@ -64,7 +64,7 @@ Relying parties SHALL NOT require an additional issuer chain above a LoTE-design
 
 #### Format
 
-The following table defines the profile-specific requirements for the certificate fields. Fields not listed in the table remain subject to the requirements defined in the common profile defined for [X.509 Certificates](../sections/trust-artifacts.md#x509-certificates).
+The following table defines the profile-specific requirements for the certificate fields. Fields not listed in the table remain subject to the requirements defined in the [X.509 Certificate Profile](../sections/trust-artifacts.md#x509-certificates).
 
 | Field     | Additional Requirements   |
 | --------- | ------------------------- |

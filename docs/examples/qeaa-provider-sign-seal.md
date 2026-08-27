@@ -75,7 +75,7 @@ AccessCertificate cert = {
           GeneralName.uniformResourceIdentifier("https://eaa.example.test/support"),
           GeneralName.rfc822Name("support@eaa.example.test"),
           GeneralName.otherName(
-            type-id: "2.5.4.20",                           // id-at-telephoneNumber
+            type-id: "2.5.4.20",                          // id-at-telephoneNumber
             value: "+420-111-222-555"
           )
         ]

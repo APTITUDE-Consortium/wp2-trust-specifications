@@ -83,7 +83,7 @@ AccessCertificate cert = {
           GeneralName.uniformResourceIdentifier("https://wp.example.test/support"),
           GeneralName.rfc822Name("support@wp.example.test"),
           GeneralName.otherName(
-            type-id: "2.5.4.20",                           // id-at-telephoneNumber
+            type-id: "2.5.4.20",                          // id-at-telephoneNumber
             value: "+420-111-222-444"
           )
         ]

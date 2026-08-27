@@ -2,7 +2,7 @@ This section defines a general **X.509 Certificate Profile**, establishing the s
 
 Each X.509 certificate defined in this specification SHALL conform to the requirements of this section unless explicitly stated otherwise.
 
-As specified in [RFC 5280], X.509 Certificates SHALL be a `SEQUENCE` of the following fields:
+As specified in [RFC 5280], X.509 certificates SHALL be a `SEQUENCE` of the following fields:
 
 | Field                       | Type            | Presence      | Description | Reference in [RFC 5280] |
 | --------------------------- | :-------------: | :-----------: |------------ | ----------------------- |
@@ -10,13 +10,13 @@ As specified in [RFC 5280], X.509 Certificates SHALL be a `SEQUENCE` of the foll
 | `signatureAlgorithm`        | `SEQUENCE`      | REQUIRED      | Contains the identifier for the cryptographic algorithm used by the CA to sign the certificate. | Section 4.1.1.2 |
 | `signatureValue`            | `BIT STRING`    | REQUIRED      | Contains a digital signature computed upon the ASN.1 DER encoded `tbsCertificate`. | Section 4.1.1.3 |
 
-!!! info
+!!! note
 
-    The rest of the section details the content of the `tbsCertificate` field only. For additional information on the `signatureAlgorithm` and `signatureValue` fields, refer to [RFC5280].
+    The rest of the section details the content of the `tbsCertificate` field only. For additional information on the `signatureAlgorithm` and `signatureValue` fields, refer to [RFC 5280].
 
 The `tbsCertificate` field SHALL contain a `TBSCertificate` structure, whose fields SHALL conform to [RFC 5280, Section 4.1.2].
 
-The following table defines the certificate fields applicable to the Certificate Profile specified in this document. For each field, the table defines its presence requirement, type, description, and corresponding reference in [RFC 5280]. Individual Certificate Profiles MAY provide additional contextual notes for these fields, but SHALL NOT alter the presence requirements specified herein.
+The following table defines the certificate fields applicable to the certificate profile specified in this document. For each field, the table defines its presence requirement, type, description, and corresponding reference in [RFC 5280]. Individual certificate profiles MAY provide additional contextual notes for these fields, but SHALL NOT alter the presence requirements specified herein.
 
 | Field                       | Type            | Presence      | Description | Reference in [RFC 5280] |
 | --------------------------- | :-------------: | :-----------: |------------ | ----------------------- |
