@@ -1186,7 +1186,7 @@
 <!-- BEGIN INCLUDE ../topics/x509-certificate-profile.md -->
 <p>This section defines a general <strong>X.509 Certificate Profile</strong>, establishing the syntax, semantics and encoding requirements for X.509 certificates based on [RFC 5280] and [ETSI EN 319 412].</p>
 <p>Each X.509 certificate defined in this specification SHALL conform to the requirements of this section unless explicitly stated otherwise.</p>
-<p>As specified in [RFC 5280], X.509 Certificates SHALL be a <code>SEQUENCE</code> of the following fields:</p>
+<p>As specified in [RFC 5280], X.509 certificates SHALL be a <code>SEQUENCE</code> of the following fields:</p>
 <table>
 <thead>
 <tr>
@@ -1221,12 +1221,12 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>The rest of the section details the content of the <code>tbsCertificate</code> field only. For additional information on the <code>signatureAlgorithm</code> and <code>signatureValue</code> fields, refer to [RFC5280].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The rest of the section details the content of the <code>tbsCertificate</code> field only. For additional information on the <code>signatureAlgorithm</code> and <code>signatureValue</code> fields, refer to [RFC 5280].</p>
 </div>
 <p>The <code>tbsCertificate</code> field SHALL contain a <code>TBSCertificate</code> structure, whose fields SHALL conform to [RFC 5280, Section 4.1.2].</p>
-<p>The following table defines the certificate fields applicable to the Certificate Profile specified in this document. For each field, the table defines its presence requirement, type, description, and corresponding reference in [RFC 5280]. Individual Certificate Profiles MAY provide additional contextual notes for these fields, but SHALL NOT alter the presence requirements specified herein.</p>
+<p>The following table defines the certificate fields applicable to the certificate profile specified in this document. For each field, the table defines its presence requirement, type, description, and corresponding reference in [RFC 5280]. Individual certificate profiles MAY provide additional contextual notes for these fields, but SHALL NOT alter the presence requirements specified herein.</p>
 <table>
 <thead>
 <tr>
@@ -1527,7 +1527,7 @@
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
-    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> as specified in clause 5.1.2 of [ETSI TS 119 475]. This also implies that for some specific attributes in the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> as specified in [ETSI TS 119 475, Clause 5.1.2]. This also implies that for some specific attributes in the <a class="mkdocs-ezglossary-link"
     id="50c5e6af027233c48ac358c074a59792"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
@@ -1567,7 +1567,7 @@
 <tr>
 <td><code>certificatePolicies</code></td>
 <td style="text-align: center;">REQUIRED</td>
-<td>It SHALL include a <code>PolicyInformation</code> structure with <code>policyIdentifier</code> set to one of the following values (defined in [ETSI TS 119 411-8]): <code>0.4.0.194118.1.1</code> (NCP-n-eudiwrp); <code>0.4.0.194118.1.2</code> (NCP-l-eudiwrp); <code>0.4.0.194118.1.3</code> (QCP-n-eudiwrp); <code>0.4.0.194118.1.4</code> (QCP-l-eudiwrp). Moreover, <code>policyQualifiers</code> SHALL contain a <code>cpsURI</code> that references an URL where the CPS of the <a class="mkdocs-ezglossary-link"
+<td>It SHALL include a <code>PolicyInformation</code> structure with <code>policyIdentifier</code> set to one of the following values (defined in [ETSI TS 119 411-8]): <code>0.4.0.194118.1.1</code> (<code>NCP-n-eudiwrp</code>); <code>0.4.0.194118.1.2</code> (<code>NCP-l-eudiwrp</code>); <code>0.4.0.194118.1.3</code> (<code>QCP-n-eudiwrp</code>); <code>0.4.0.194118.1.4</code> (<code>QCP-l-eudiwrp</code>). Moreover, <code>policyQualifiers</code> SHALL contain a <code>cpsURI</code> that references an URL where the CPS of the <a class="mkdocs-ezglossary-link"
     id="e9644aea42771b6daf7a727f00d55aea"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
@@ -1881,7 +1881,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td style="text-align: center;">CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1].</td>
+<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
+    id="5c7d5226d3dc638733059d9a6cb8d1f7"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">Certificate Revocation List</a>.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
@@ -1986,7 +1991,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
           GeneralName.uniformResourceIdentifier("https://pid.example.test/support"),
           GeneralName.rfc822Name("support@pid.example.test"),
           GeneralName.otherName(
-            type-id: "2.5.4.20",                           // id-at-telephoneNumber
+            type-id: "2.5.4.20",                          // id-at-telephoneNumber
             value: "+420-111-222-333"
           )
         ]
@@ -2085,7 +2090,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td>CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1].</td>
+<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
+    id="29176848661ce47bedd70daa454114dc"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">Certificate Revocation List</a>.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
@@ -2190,7 +2200,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
           GeneralName.uniformResourceIdentifier("https://wp.example.test/support"),
           GeneralName.rfc822Name("support@wp.example.test"),
           GeneralName.otherName(
-            type-id: "2.5.4.20",                           // id-at-telephoneNumber
+            type-id: "2.5.4.20",                          // id-at-telephoneNumber
             value: "+420-111-222-444"
           )
         ]
@@ -2289,7 +2299,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td>CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1].</td>
+<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
+    id="0e3d975acc19bed4af11793097f8d760"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">Certificate Revocation List</a>.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
@@ -2393,7 +2408,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
           GeneralName.uniformResourceIdentifier("https://eaa.example.test/support"),
           GeneralName.rfc822Name("support@eaa.example.test"),
           GeneralName.otherName(
-            type-id: "2.5.4.20",                           // id-at-telephoneNumber
+            type-id: "2.5.4.20",                          // id-at-telephoneNumber
             value: "+420-111-222-555"
           )
         ]
@@ -2461,7 +2476,6 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <!-- END INCLUDE -->
 </details>
 <h4 id="pub-eaa-provider-signseal-certificate">PuB-EAA Provider Sign/Seal Certificate<a class="headerlink" href="#pub-eaa-provider-signseal-certificate" title="Permanent link">&para;</a></h4>
-<p>The specific requirements for EAA Provider and QEAA Provider Sign/Seal Certificates are specified in [ETSI TS 119 412-6, Clause 8], respectively.</p>
 <p>The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.</p>
 <table>
 <thead>
@@ -2500,7 +2514,12 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td>CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1].</td>
+<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an OCSP responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
+    id="88f6dd2433303aa50bd36d2e5c5c6115"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">Certificate Revocation List</a>.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
@@ -2613,7 +2632,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
           GeneralName.uniformResourceIdentifier("https://pub-eaa.example.test/support"),
           GeneralName.rfc822Name("support@pub-eaa.example.test"),
           GeneralName.otherName(
-            type-id: "2.5.4.20",                           // id-at-telephoneNumber
+            type-id: "2.5.4.20",                          // id-at-telephoneNumber
             value: "+420-111-222-777"
           )
         ]
@@ -2819,7 +2838,7 @@ Private keys corresponding to <a class="mkdocs-ezglossary-link"
 </ul>
 <p>Relying parties SHALL NOT require an additional issuer chain above a LoTE-designated trust anchor, even if it is not self-signed, because the trust anchor is a trust-store input designated by policy.</p>
 <h4 id="format">Format<a class="headerlink" href="#format" title="Permanent link">&para;</a></h4>
-<p>The following table defines the profile-specific requirements for the certificate fields. Fields not listed in the table remain subject to the requirements defined in the common profile defined for <a href="./#x509-certificates">X.509 Certificates</a>.</p>
+<p>The following table defines the profile-specific requirements for the certificate fields. Fields not listed in the table remain subject to the requirements defined in the <a href="./#x509-certificates">X.509 Certificate Profile</a>.</p>
 <table>
 <thead>
 <tr>
@@ -6667,22 +6686,22 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> URL is not indicated in the Authority Information Access extension)</li>
 <li><a class="mkdocs-ezglossary-link"
-    id="5c7d5226d3dc638733059d9a6cb8d1f7"
+    id="cf52973e257de11cb7dce50c920d132e"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> for qualified certificates (e.g. if the <a class="mkdocs-ezglossary-link"
-    id="29176848661ce47bedd70daa454114dc"
+    id="fb28e27fcffdb315c0b1b2c321afbdee"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuing is delegated or the <a class="mkdocs-ezglossary-link"
-    id="0e3d975acc19bed4af11793097f8d760"
+    id="94cb72eae972b323463ad01c7c836d93"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> publishing URL is not included in the <a class="mkdocs-ezglossary-link"
-    id="88f6dd2433303aa50bd36d2e5c5c6115"
+    id="6ffa22756e3086b02990bf995cc488df"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
