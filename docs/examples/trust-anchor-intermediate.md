@@ -62,6 +62,14 @@ AccessCertificate trustAnchor = {
       },
 
       Extension {
+        oid: "2.5.29.18",                                 // issuerAltName
+        critical: false,
+        value: IssuerAltName [
+          GeneralName.rfc822Name("info@root-ca.example.test")
+        ]
+      },
+
+      Extension {
         oid: "2.5.29.19",                                 // basicConstraints
         critical: true,
         value: BasicConstraints {
