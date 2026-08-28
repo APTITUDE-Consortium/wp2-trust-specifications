@@ -1,4 +1,4 @@
-This section describes the **Trust Evaluation Process**, which establishes trust between two interacting entities by ensuring that their identities are verified against a recognized Root of Trust and that they are eligible to perform a particular operation (e.g., issuing or requesting an <credentials:Attestation> of a certain type). This process comprises four distinct sub-processes:
+This section describes the **Trust Evaluation Process**, which establishes trust between two interacting entities by ensuring that their identities are verified against a recognized <artifacts:Trust Anchor> and that they are eligible to perform a particular operation (e.g., issuing or requesting an <credentials:Attestation> of a certain type). This process comprises four distinct sub-processes:
 
 1. [**Trust Anchor Validation Process**](../sections/trust-evaluation-process.md#trust-anchor-validation-process);
 2. [**Authentication Process**](../sections/trust-evaluation-process.md#authentication-process);
