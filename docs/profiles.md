@@ -1,6 +1,6 @@
 # 1\. APTITUDE Trust Framework Implementation Profiles
 
-This document specifies the core architectural profiles for trust framework implementation within the APTITUDE Large-Scale Pilot (LSP). It defines the necessary trust architecture, the essential trust artifacts exchanged among pilot entities, and the high-level evaluation processes and precise trust checks to be executed during issuance and presentation flows. These profiles are derived from the EUDI Wallet Architecture Reference Framework (ARF), its Technical Specifications, the relevant ETSI standards, and the other standards defined in the [Reference section](../docs/sections/references.md), adapted to the pilot context.
+This document specifies the core architectural profiles for trust framework implementation within the APTITUDE Large-Scale Pilot (LSP). It defines the necessary trust architecture, the essential trust artifacts exchanged among pilot entities, and the high-level evaluation processes and precise trust checks to be executed during issuance and presentation flows. These profiles are compliant, unless otherwise specified, to the EUDI Wallet Architecture Reference Framework (ARF), its Technical Specifications, the relevant ETSI standards, and the other standards defined in the [Reference section](../docs/sections/references.md), adapted to the pilot context.
 
 **Document roadmap:**
 
@@ -8,7 +8,7 @@ This document specifies the core architectural profiles for trust framework impl
 - [Trust Artifact Taxonomy](#12-trust-artifact-taxonomy) establishes the trust artifact vocabulary.
 - [Trust Processes Taxonomy](#13-trust-processes-taxonomy) defines the trust evaluation processes.
 - [Pilot Trust Infrastructure](#14-pilot-trust-infrastructure) describes the pilot trust infrastructure, i.e., what WP2 builds to support the pilots.
-- [Trust Use Cases](#15-trust-use-cases) describes how trust is operationalized across pilots and adapted per business use case.
+- [Trust Test Cases](#15-trust-test-cases) describes the horizontal runtime and operational checks executed across the pilots.
 
 ## 1.1. Introduction
 
@@ -70,7 +70,7 @@ Since the APTITUDE ecosystem does not feature Member States or EU Commission-typ
 | WP2 acts as the sole LoTE provider; the certificate anchoring the various LoTEs will be published via GitHub | 4 |
 | APTITUDE will not feature an Authentic Source mock-up and the related API | 5 |
 | APTITUDE will not feature a Catalogue of Attestation, relying instead on the Attestation Rulebooks published on GitHub by the various WPs | 6 |
-| APTITUDE will not feature an active management of entity lifecycles, and will instead check dedicated test cases for revocation as described in [Trust Use Cases](#15-trust-use-cases) | 7 |
+| APTITUDE will not feature an active management of entity lifecycles, and will instead check dedicated test cases for revocation as described in [Trust Test Cases](#15-trust-test-cases) | 7 |
 
 ## 1.2. Trust Artifact Taxonomy
 
@@ -93,6 +93,8 @@ The following table lists the trust artifacts defined in the profiles. For each,
 | Register API | Registrar (WP2 managed service) | [Register API Profiles](../docs/api/register-api.md) |
 | EDP | Attestation Providers (Self-managed issuance) | [EDP Profiles](/docs/topics/embedded-disclosure-policy.md) |
 | List of Trusted Entities | LoTE Provider (WP2 managed service) | [LoTE Profiles](../docs/topics/trusted-list-and-list-of-trusted-lists.md) |
+| WIA/KA | Wallet Provider | [TS03]; [CIR 2026/1731] |
+| WIA/KA Status List Token | Wallet Provider | [TS03]; [CIR 2026/1731] |
 
 ## 1.3. Trust Processes Taxonomy
 
@@ -143,7 +145,7 @@ flowchart TD
         PubSrv["<b>Publication Service</b><br/><i>Publishes Entities LoTEs</i>"]:::blue
 
         subgraph RDS ["Registries and Data Stores"]
-            END[(APTITUDE<br/>Notification Dataset)]:::green
+            END[(APTITUDE<br/>Registration Dataset)]:::green
             ER[(APTITUDE<br/>Register)]:::blue
         end
 
@@ -168,7 +170,7 @@ flowchart TD
     %% Participant positioned to the right (arrow points into EO)
     E --"Onboarding Request"--> EO 
 
-    %% Notification & Data Store Connections
+    %% Registration & Data Store Connections
     END -.-> PubSrv
     END -.-> CertM
     ER -.-> CertM
@@ -251,24 +253,49 @@ WP2 Trust Services:
 
   Trust Services and Components implementation architecture will be further defined in T2.3.1 but SHALL adhere to the implementation profiles.
 
-## 1.5. Trust Use Cases
+## 1.5. Trust Test Cases
 
-Trust processes and infrastructure are operationalized in pilot scenarios to add to the pilot's specific business value. These are split into horizontal use cases (all pilots) and vertical adaptations (specific per use case).
+The trust test cases are horizontal test cases that apply to all pilots. They SHALL instantiate the processes from [Trust Processes Taxonomy](#13-trust-processes-taxonomy), use the artifacts from [Trust Artifact Taxonomy](#12-trust-artifact-taxonomy), and exercise the infrastructure specified in [Pilot Trust Infrastructure](#14-pilot-trust-infrastructure), subject to the [Assumptions and Boundaries](#115-assumptions-and-boundaries). They are divided into:
 
-Both horizontal and vertical trust use cases SHALL instantiate the processes from [Trust Processes Taxonomy](#13-trust-processes-taxonomy) using the artifacts from [Trust Artifact Taxonomy](#12-trust-artifact-taxonomy) via the infrastructure specified in [Pilot Trust Infrastructure](#14-pilot-trust-infrastructure). Vertical adaptations, if needed, SHALL extend the horizontal layer with business-value-specific trust add-ons per piloted use case. Both horizontal and vertical use cases SHALL be constrained by the assumptions in [Assumptions and Boundaries](#115-assumptions-and-boundaries).
+- **runtime test cases**, which verify trust decisions during issuance and presentation interactions; and
+- **operational test cases**, which verify the conformance of the trust infrastructure when entities and trust artifacts are onboarded, updated, revoked, or removed.
 
-### 1.5.1. Horizontal Trust Use Cases
+### 1.5.1. Runtime Test Cases
 
-| Horizontal use case | Processes involved | Input Artifacts involved | Checks | Output |
+| Runtime test case | Processes involved | Input Artifacts involved | Checks | Output |
 |---|---|---|---|---|
-| Trust Anchor Validation | Issuance, Presentation | LoTE, WP2 LoTE signing certificate (published on GitHub) | Validates LoTE using *LoTE Validation* | Success: Validated Trust Anchor; Failure: Stops the interaction |
-| Entity identity validation | Issuance, Presentation | Validated WRPAC Provider TA certificate, WRPAC, Entity-signed metadata | Validates: (i) the Entity signed metadata (depending on the flow type) using the WRPAC; (ii) the X509 chain starting with the WRPAC, using the *X509 Validation* on input the WRPAC Provider TA | Success: The Entity is Authenticated; Failure: Stops the interaction as the Entity is not trusted |
-| Attestation Authenticity and Integrity | Issuance, Presentation | Attestation Sign/Seal certificate, Validated Attestation Provider TA | Validates: (i) the signed Attestation signature using the Sign/Seal Certificate; (ii) the X509 chain starting with the Sign/Seal Certificate, using the *X509 Validation* on input the Sign/Seal Provider TA | Success: the Attestation is authentic; Failure: the Attestation is untrustworthy |
-| Entity authorization profile verification | Issuance, Presentation | WRPRC or Register query response, Validated WRPRC Provider TA or Registrar certificate, WRPAC | Validates: (i) the X509 chain starting with the WRPRC (or Register Sign/Seal certificate) signature using the *X509 Validation* on input the WRPRC (or Register) TA; (ii) The Entity authorization profile using the *Authorization Validation* on input the validated WRPRC or Register query | Success: the entity is authorized for issuance or presentation; Failure: the entity is not authorized for issuance or presentation (the user can override the decision in specific cases) |
+| Trust Anchor Validation | Issuance, Presentation | Current LoTE, WP2 LoTE signing certificate (published on GitHub) | Validates the authenticity, integrity, currency, and applicable entity entry of the LoTE using *LoTE Validation* | Success: Validated Trust Anchor; Failure: Stops the interaction |
+| Entity identity validation | Issuance, Presentation | Validated WRPAC Provider TA certificate, WRPAC, CRL or OCSP response, Entity-signed metadata | Validates: (i) the Entity-signed metadata (depending on the flow type) using the WRPAC; (ii) the X509 chain starting with the WRPAC, including its revocation status, using *X509 Validation* with the WRPAC Provider TA as input | Success: The Entity is authenticated; Failure: Stops the interaction as the Entity is not trusted |
+| Attestation Authenticity and Integrity | Issuance, Presentation | Sign/Seal certificate, certificate-status information, Validated Attestation Provider TA or Wallet Provider TA | Validates: (i) the signed Attestation or WIA/KA signature using the Sign/Seal Certificate; (ii) the X509 chain starting with the Sign/Seal Certificate, including its revocation status, using *X509 Validation* with the Attestation Provider TA or Wallet Provider TA as input | Success: the Attestation or WIA/KA is authentic; Failure: the Attestation or WIA/KA is untrustworthy. |
+| Entity authorization profile verification | Issuance, Presentation | WRPRC and Status List Token, or Register query response; Validated WRPRC Provider TA or Registrar certificate; WRPAC | Validates: (i) the WRPRC signature, X509 chain, temporal validity, and Status List Token status, or the Register response signature and signing-certificate chain, using *X509 Validation* with the applicable TA as input; (ii) the Entity authorization profile using *Authorization Validation* with the validated WRPRC or Register query as input | Success: the entity is authorized for issuance or presentation; Failure: the entity is not authorized for issuance or presentation (the user can override the decision in specific cases) |
 
-### 1.5.2. Vertical Trust Use Case Adaptations
+Detailed versions of these test cases are available in [RFC003](https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/horizontal-RFCs/RFC003/).
 
-TODO: add specific use cases (certificate lyfecycle & entity revocation)
+### 1.5.2. Operational Test Cases
 
-| Vertical Use Case | Related Work Package | Processes involved | Input Artifacts involved | Checks | Output |
+The operational test cases are derived from the [Trust Management Process](../docs/topics/trust-management-process.md), [Onboarding Process](../docs/topics/onboarding-process.md), and [Revocation Mechanisms](../docs/topics/revocation-mechanisms.md). They verify both the successful path and the failure path of each management operation.
+
+The runtime and operational tables are complementary. Runtime test cases verify a trust decision against the artifacts available during an interaction. Operational test cases verify that a single management process produces the expected infrastructure state or current artifact and, where applicable, that the linked runtime test case observes the resulting trust state. An operational test case SHALL pass when the WP2 checks and any applicable affected-entity or consuming-participant checks pass. Where the affected-entity responsibility is "None", WP2 performs the complete operational test.
+
+WP2, acting as ecosystem manager and operator of the Registrar, Certificate Services, and Publication Service, SHALL execute and record the infrastructure-side checks. The affected entity SHALL provide only the event inputs, notifications, and deployment actions assigned to it in the table. Pilot participants that consume an updated artifact SHALL refresh or automatically integrate that artifact and SHALL execute the linked runtime check. A test case that orchestrates other management processes SHALL invoke their respective operational test cases instead of repeating their checks.
+
+| Operational test case | Process involved | Artifacts involved | WP2 responsibility and checks | Affected entity and pilot participant responsibility | Output and relationship to runtime test cases |
 |---|---|---|---|---|---|
+| LoTE publication service readiness | Infrastructure LoTE publication | WP2 LoTE signing certificate; infrastructure Trust Anchors; applicable LoTE profiles | Verify that every required LoTE endpoint is available; publish the WP2 LoTE signing certificate; verify that each published LoTE has a valid signature, conforms to its format, and contains the required infrastructure Trust Anchors | None | Success: all required LoTE endpoints and valid LoTEs are available. Failure: operational onboarding SHALL NOT start |
+| Register service readiness | Register service provisioning | Register API profile; Register data schema; Registrar signing certificate | Verify that the Register API endpoints are available; verify that writes are authenticated and restricted to the Registrar; verify that records and signed query responses conform to the applicable schemas | None | Success: the Register can be securely written and queried. Failure: WRP registration SHALL NOT start |
+| Certificate issuance service readiness | Certificate Service provisioning | WRPAC, WRPRC, and Sign/Seal certificate profiles; CA Trust Anchors; | Verify that the interfaces required to request each supported certificate type are available; issue test certificates; verify that each issued certificate conforms to its applicable profile | None | Success: the Certificate Services are available and issue profile-conformant certificates. Failure: certificate-dependent onboarding SHALL NOT start |
+| Certificate status service readiness | Certificate status service provisioning | CRL, OCSP, and Status List profiles; test certificates and WRPRCs | Verify that each configured status endpoint is available and returns a valid, correctly signed status artifact in the required format | None | Success: the configured certificate and WRPRC status mechanisms are operational. Failure: the corresponding Certificate Service SHALL NOT be considered ready |
+
+| Operational test case | Process involved | Input involved | WP2 responsibility and checks | Affected entity and pilot participant responsibility | Output and relationship to runtime test cases |
+|---|---|---|---|---|---|
+| WRP registration | Registration | Registration data; APTITUDE participation evidence | Verify that the entity is an APTITUDE participant; create an active Register record that conforms to the schema; reject a non-participant or invalid request | The WRP SHALL submit its self-declared registration data through the Onboarding System | Success: an active Register record is available. Failure: no record is created and onboarding stops |
+| WRP certificate issuance | Certificate issuance | Active Register record; certificate request and WRP public key; applicable certificate profile | Verify the active registration status and data consistency; issue the requested certificate(s); refuse issuance when the registration is inactive, the data is inconsistent, or the corresponding WRPAC is invalid where relevant | The WRP SHALL submit the cryptographic material and deploy each issued certificate at the intended instance or service supply point | Success: a valid certificate is issued and the applicable runtime test succeeds. Failure: issuance is refused |
+| Entity Publication | LoTE Publication | Registered entity information; entity service information; Sign/Seal Trust Anchor | Verify that the entity data is complete and create or update the applicable entity-type LoTE entry; for a Wallet Provider the required service information is the Wallet Solution | The entity SHALL submit the required data and Trust Anchor | Success: the entity data is accepted for publication. Failure: no LoTE entry is created or updated |
+| WRP information update | Register update | Updated identity, policy, or authorization data | Update the Register record and verify that the resulting record conforms to the Register schema | The WRP SHALL submit the updated information through the Onboarding System. | Success: the current Register record contains the updated information. Failure: the previous record remains current and dependent updates SHALL NOT proceed |
+| Certificate key update | Certificate re-issuance | Updated identity, policy, authorization, or criptographic material; applicable certificate profile | Issue a replacement certificate for the new data and invoke the applicable *certificate revocation* test case for the old certificate | The affected entity SHALL notify the Certificate Service, provide the new public key, and deploy the replacement certificate | Success: the replacement certificate is correctly issued an conforms to the applicable profile. Failure: no valid replacement is available |
+| LoTE information update | LoTE update | Updated entity identity, service endpoint, Trust Anchor, or eligibility information | Update the applicable LoTE entry; when the entity becomes ineligible, invoke the applicable removal test case instead | The affected entity SHALL notify WP2 of the changed information | Success: the new entity information is included in the updated LoTE content prepared and published. Failure: the previous information remains in the prepared current content |
+| LoTE version publication | LoTE distribution | Updated LoTE content; pivot LoTE URI; WP2 LoTE signing certificate | Publish a signed new current LoTE and make the replaced version at the applicable pivot URI for retro-compatibility; Update the `ShemeInformationURI` accordingly | Every participant that consumes the affected LoTE SHALL refresh its cached copy via the TRust Anchor Validation Process and SHALL NOT use old pivot versions for a current decision | Success: the endpoint serves the new current LoTE and *Trust Anchor Validation* uses its updated entry. Failure: the new version is unavailable or invalid, or a participant continues to use the superseded version |
+| WRPAC or Sign/Seal certificate revocation | Certificate revocation | Certificate serial number; current CRL or OCSP status database | Update the configured CRL or OCSP status source and verify that it reports the certificate as revoked | The affected entity SHALL stop using the certificate. Runtime participants SHALL retrieve current status information and reject it | Success: the certificate fails *Entity identity validation* or *Attestation Authenticity and Integrity*, as applicable. Failure: the certificate remains accepted |
+| WRPRC revocation | WRPRC revocation | WRPRC status reference and index; current Status List | The Provider or WRPRC SHALL set the assigned status value to `0x01`, publish the updated signed Status List Token, and verify that its endpoint remains available | The affected entity SHALL stop presenting the WRPRC. Wallet Units SHALL retrieve the current Status List Token and apply the status in *Entity authorization profile verification* | Success: the WRPRC is treated as revoked. Failure: the WRPRC remains valid or is accepted by a Wallet Unit |
+| WRP removal | Entity removal | Removal request or decision; current entity record and related trust artifacts | Orchestrate the applicable Register cancellation or deletion, entity-related certificate revocation, and LoTE update test cases, and verify that each completes successfully | For voluntary removal, the WRP SHALL submit the removal request to WP2; in every case it SHALL cease new framework operations. Participants SHALL reject new interactions with the removed entity | Success: the entity is `REMOVED` and all applicable runtime tests reject new interactions. Failure: any invoked operational test fails or a new interaction remains trusted |
+| Wallet Solution removal | Entity removal | Removal request or decision; current LoTE entry; Sign/Seal Certificate for the Wallet Solution | Orchestrate the applicable LoTE update and Sign/Seal certificate revocation test cases, including Wallet Unit Attestation revocation | For voluntary removal, the entity SHALL notify WP2 and cease new framework operations. Participants SHALL reject new interactions whose trust depends on the removed Wallet Solution | Success: the Wallet Solution can no longer be resolved as trusted from the current LoTE. Failure: any invoked operational test fails or a new interaction remains trusted through a Wallet Solution's Instance |
