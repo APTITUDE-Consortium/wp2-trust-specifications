@@ -4632,6 +4632,10 @@
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Signature Algorithms</p>
+<p>The Siganture Algorithms allowed for signing a Status List Token SHALL be these referenced in <a href="https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts3-wallet-unit-attestation.md#26-signature-algorithms">TS03</a>, i.e., ES256 (ECDSA with SHA-256 and P-256), ES384 (ECDSA with SHA-384 and P-384), and ES512 (ECDSA with SHA-512 and P-512).</p>
+</div>
 <p>As specified in [TS03],</p>
 <ul>
 <li>A WIA SHALL include its Status List reference in <code>client_status.status.status_list</code>; and,</li>
@@ -4670,7 +4674,7 @@
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
-    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> SHALL <strong>Option 1: <code>type-shared index</code></strong>.</p>
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> SHALL <strong>Option 1: <code>type-shared index</code></strong>. As a result, the <code>idx</code> within the Status List reference SHOULD NOT not be unique per Key Attestation token as multiple Key Attestation statuses may be referenced in the same index depending on the devices used.</p>
 </div>
 <p><strong>Status List Token</strong></p>
 <div class="admonition choice">
@@ -4711,8 +4715,8 @@
 <p class="admonition-title">Choice</p>
 <p>For other Attestation types, within the APTITUDE profiles,</p>
 <ul>
-<li>both WIA and KA operational checks SHALL be performed for device-bound credentials when operational monitoring is enabled;</li>
-<li>while only the WIA operational check SHALL be performed for non-device-bound attestations when operational monitoring is enabled.</li>
+<li>both WIA and KA operational checks SHALL be performed for device-bound credentials when operational monitoring is enabled; while,</li>
+<li>only the WIA operational check SHALL be performed for non-device-bound attestations when operational monitoring is enabled.</li>
 </ul>
 </div>
 <p>An Attestation Provider that supports WIA/KA operational status checks SHALL advertise the status-management policy applicable to each Credential Configuration in its Credential Issuer Metadata. This profile defines the following additional members of a Credential Configuration object:</p>
@@ -4848,7 +4852,7 @@
 </details>
 <details class="example">
 <summary>Credential Issuer Metadata of an Attestation Provider not monitoring KA</summary>
-<p>An Attestation Provider that does not perform operational monitoring would advertise:</p>
+<p>An Attestation Provider that does not perform operational monitoring of the KA would advertise:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"credential_configurations_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"example_device_bound_credential"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -4874,7 +4878,7 @@
 </code></pre></div>
 </details>
 <p><strong>Privacy Considerations</strong></p>
-<p>To prevent Wallet Providers from tracking or profiling users based on their use of Wallet Unit Attestations, Wallet Providers SHALL integrate the status information for many WIAs or KAs into the same list and SHALL publish the SLT at the same <code>uri</code> for all those attestations. This specification requires Wallet Providers to configure Status Lists with at least 100,000 status entries. If more attestations are issued, the Wallet Provider MAY create additional SLTs or increase the number of entries in the array, depending on practical considerations such as the total size of each SLT and the management of multiple endpoints.</p>
+<p>To prevent Wallet Providers from tracking or profiling users based on their use of Wallet Unit Attestations, Wallet Providers SHALL integrate the status information for many WIAs (type-shared KAs are exempt from this requirement) into the same list and SHALL publish the SLT at the same <code>uri</code> for all those attestations. This specification requires Wallet Providers to configure Status Lists with at least 10000 status entries. If more attestations are issued, the Wallet Provider MAY create additional SLTs or increase the number of entries in the array, depending on practical considerations such as the total size of each SLT and the management of multiple endpoints.</p>
 <h3 id="certificate-revocation-lists">Certificate Revocation Lists<a class="headerlink" href="#certificate-revocation-lists" title="Permanent link">&para;</a></h3>
 <p><strong><a class="mkdocs-ezglossary-link"
     id="324994b283533a105e4ce0b60759251d"
