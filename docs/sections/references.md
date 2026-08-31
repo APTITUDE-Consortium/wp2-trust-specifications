@@ -91,4 +91,4 @@ Other ETSI specifications that the previous specifications build upon:
 
 | **Item Reference**               | **Version** | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ----------- | ---------- | ------------------------- |
-| draft-ietf-oauth-status-list     | 20          | 2026-06-04 | Token Status List (TSL)   |
+| draft-ietf-oauth-status-list     | 21          | 2026-06-21 | Token Status List (TSL)   |

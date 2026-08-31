@@ -162,6 +162,10 @@ This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth
 
     Within the APTITUDE Profiles, the SLT Provider SHALL be the <roles:Wallet Provider (WP)|Wallet Provider>.
 
+!!! note "Signature Algorithms"
+
+    The Siganture Algorithms allowed for signing a Status List Token SHALL be these referenced in [TS03](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts3-wallet-unit-attestation.md#26-signature-algorithms), i.e., ES256 (ECDSA with SHA-256 and P-256), ES384 (ECDSA with SHA-384 and P-384), and ES512 (ECDSA with SHA-512 and P-512).
+
 As specified in [TS03],
 
 - A WIA SHALL include its Status List reference in `client_status.status.status_list`; and,
@@ -191,7 +195,7 @@ According to `R_KA_1` of [CIR 2026/1731], a Wallet Provider SHALL choose one of 
 
 !!! choice
 
-    Within the APTITUDE Profiles, the <roles:Wallet Provider (WP)|Wallet Provider> SHALL **Option 1: `type-shared index`**.
+    Within the APTITUDE Profiles, the <roles:Wallet Provider (WP)|Wallet Provider> SHALL **Option 1: `type-shared index`**. As a result, the `idx` within the Status List reference SHOULD NOT not be unique per Key Attestation token as multiple Key Attestation statuses may be referenced in the same index depending on the devices used.
 
 **Status List Token**
 
@@ -230,8 +234,8 @@ For PIDs, the current [TS03] requirements, as reflected in [CIR 2026/1731](https
 
     For other Attestation types, within the APTITUDE profiles,
     
-    - both WIA and KA operational checks SHALL be performed for device-bound credentials when operational monitoring is enabled;
-    - while only the WIA operational check SHALL be performed for non-device-bound attestations when operational monitoring is enabled.
+    - both WIA and KA operational checks SHALL be performed for device-bound credentials when operational monitoring is enabled; while,
+    - only the WIA operational check SHALL be performed for non-device-bound attestations when operational monitoring is enabled.
 
 An Attestation Provider that supports WIA/KA operational status checks SHALL advertise the status-management policy applicable to each Credential Configuration in its Credential Issuer Metadata. This profile defines the following additional members of a Credential Configuration object:
 
@@ -291,7 +295,7 @@ Each value is an object with the following members:
 
 ??? example "Credential Issuer Metadata of an Attestation Provider not monitoring KA"
 
-    An Attestation Provider that does not perform operational monitoring would advertise:
+    An Attestation Provider that does not perform operational monitoring of the KA would advertise:
 
     ```json
     {
@@ -320,7 +324,7 @@ Each value is an object with the following members:
 
 **Privacy Considerations**
 
-To prevent Wallet Providers from tracking or profiling users based on their use of Wallet Unit Attestations, Wallet Providers SHALL integrate the status information for many WIAs or KAs into the same list and SHALL publish the SLT at the same `uri` for all those attestations. This specification requires Wallet Providers to configure Status Lists with at least 100,000 status entries. If more attestations are issued, the Wallet Provider MAY create additional SLTs or increase the number of entries in the array, depending on practical considerations such as the total size of each SLT and the management of multiple endpoints.
+To prevent Wallet Providers from tracking or profiling users based on their use of Wallet Unit Attestations, Wallet Providers SHALL integrate the status information for many WIAs (type-shared KAs are exempt from this requirement) into the same list and SHALL publish the SLT at the same `uri` for all those attestations. This specification requires Wallet Providers to configure Status Lists with at least 10000 status entries. If more attestations are issued, the Wallet Provider MAY create additional SLTs or increase the number of entries in the array, depending on practical considerations such as the total size of each SLT and the management of multiple endpoints.
 
 ### Certificate Revocation Lists
 
