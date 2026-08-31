@@ -17,15 +17,15 @@ AccessCertificate cert = {
     },
 
     validity: {
-      notBefore: "2026-01-27T00:00:00Z",
-      notAfter:  "2027-01-27T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "CZ",
       organizationName: "Example of PID Provider",
       commonName: "PID Provider Example",
-      organizationIdentifier: "LEIXYZ-5493001KJTIIGC8Y1R12"      
+      organizationIdentifier: "LEIXG-5493021KJTIIGC8Y1R12"      
     },
 
     subjectPublicKeyInfo: {
@@ -49,9 +49,7 @@ AccessCertificate cert = {
       Extension {
         oid: "2.5.29.14",                                 // subjectKeyIdentifier
         critical: false,
-        value: SubjectKeyIdentifier [
-          keyIdentifier: "SHA-1(SUBJECT_PUBLIC_KEY_VALUE)"
-        ]
+        value: SubjectKeyIdentifier("SHA-1(SUBJECT_PUBLIC_KEY_VALUE)")
       },
 
       Extension {
@@ -84,7 +82,7 @@ AccessCertificate cert = {
           GeneralName.rfc822Name("support@pid.example.test"),
           GeneralName.otherName(
             type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420-111-222-333"
+            value: "+420111222333"
           )
         ]
       },
@@ -123,11 +121,9 @@ AccessCertificate cert = {
         value: QCStatements [
           QCStatement {
             statementId: "0.4.0.1862.1.6",                // id-etsi-qcs-QcType
-            statementInfo: QcType {
-              [
-                "0.4.0.194126.1.1"                        // id-etsi-qct-pid
-              ]
-            }
+            statementInfo: QcType [
+              "0.4.0.194126.1.1"                          // id-etsi-qct-pid
+            ]
           }
         ]
       }

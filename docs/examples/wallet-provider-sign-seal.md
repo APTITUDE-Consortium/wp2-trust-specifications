@@ -17,15 +17,15 @@ AccessCertificate cert = {
     },
 
     validity: {
-      notBefore: "2026-01-27T00:00:00Z",
-      notAfter:  "2027-01-27T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "CZ",
       organizationName: "Example of Wallet Provider",
       commonName: "Wallet Provider Example",
-      organizationIdentifier: "LEIXYZ-5494001KJTIIGC8Y1R12"
+      organizationIdentifier: "LEIXG-5823001KJTIIGC8Y1R12"
     },
 
     subjectPublicKeyInfo: {
@@ -49,9 +49,7 @@ AccessCertificate cert = {
       Extension {
         oid: "2.5.29.14",                                 // subjectKeyIdentifier
         critical: false,
-        value: SubjectKeyIdentifier [
-          keyIdentifier: "SHA-1(SUBJECT_PUBLIC_KEY_VALUE)"
-        ]
+        value: SubjectKeyIdentifier("SHA-1(SUBJECT_PUBLIC_KEY_VALUE)")
       },
 
       Extension {
@@ -84,7 +82,7 @@ AccessCertificate cert = {
           GeneralName.rfc822Name("support@wp.example.test"),
           GeneralName.otherName(
             type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420-111-222-444"
+            value: "+420111222444"
           )
         ]
       },
@@ -123,11 +121,9 @@ AccessCertificate cert = {
         value: QCStatements [
           QCStatement {
             statementId: "0.4.0.1862.1.6",                // id-etsi-qcs-QcType
-            statementInfo: QcType {
-              [
-                "0.4.0.194126.1.2"                        // id-etsi-qct-wal
-              ]
-            }
+            statementInfo: QcType [
+              "0.4.0.194126.1.2"                          // id-etsi-qct-wal
+            ]
           }
         ]
       }

@@ -13,19 +13,19 @@ AccessCertificate cert = {
       countryName: "IT",
       organizationName: "Example Trust Services CA",
       commonName: "Example CA",
-      organizationIdentifier: "VATCZ-123456789"
+      organizationIdentifier: "VATIT-123456789"
     },
 
     validity: {
-      notBefore: "2026-01-27T00:00:00Z",
-      notAfter:  "2027-01-27T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "IT",
       organizationName: "Relying Party Example S.p.A.",
       commonName: "Relying Party Example",
-      organizationIdentifier: "LEIXYZ-5493001KJTIIGC8Y1R12"
+      organizationIdentifier: "LEIXG-5493001KJTIIGC8Y1R12"
     },
 
     subjectPublicKeyInfo: {
@@ -76,7 +76,7 @@ AccessCertificate cert = {
           GeneralName.rfc822Name("support@rp.example.test"),
           GeneralName.otherName(
             type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420-111-222-333"
+            value: "+420111222333"
           )
         ]
       },

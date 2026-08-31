@@ -17,15 +17,15 @@ AccessCertificate cert = {
     },
 
     validity: {
-      notBefore: "2026-01-27T00:00:00Z",
-      notAfter:  "2027-01-27T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "CZ",
       organizationName: "Example of QEAA Provider",
       commonName: "QEAA Provider Example",
-      organizationIdentifier: "LEIXYZ-5494001KJTIIGC8Y1R12"
+      organizationIdentifier: "LEIXG-5494001KJTIIGC8Y1R56"
     },
 
     subjectPublicKeyInfo: {
@@ -76,7 +76,7 @@ AccessCertificate cert = {
           GeneralName.rfc822Name("support@eaa.example.test"),
           GeneralName.otherName(
             type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420-111-222-555"
+            value: "+420111222555"
           )
         ]
       },
@@ -123,11 +123,9 @@ AccessCertificate cert = {
 
           QCStatement {
             statementId: "0.4.0.1862.1.6",                // id-etsi-qcs-QcType
-            statementInfo: QcType {
-              [
-                "0.4.0.1862.1.6.1"                        // id-etsi-qct-esign
-              ]
-            }
+            statementInfo: QcType [
+              "0.4.0.1862.1.6.1"                          // id-etsi-qct-esign
+            ]
           }
         ]
       }

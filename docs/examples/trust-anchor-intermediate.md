@@ -17,15 +17,15 @@ AccessCertificate trustAnchor = {
     },
 
     validity: {
-      notBefore: "2026-01-01T00:00:00Z",
-      notAfter:  "2031-01-01T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "CZ",
       organizationName: "Example Entity Trust Anchor CA",
-      commonName: "Example Entity Trust Anchor (Pinned Intermediate)"
-      organizationIdentifier: "VATCZ-123456789"
+      commonName: "Example Entity Trust Anchor (Pinned Intermediate)",
+      organizationIdentifier: "VATCZ-123481789"
     },
 
     subjectPublicKeyInfo: {
@@ -49,9 +49,7 @@ AccessCertificate trustAnchor = {
       Extension {
         oid: "2.5.29.14",                                 // subjectKeyIdentifier
         critical: false,
-        value: SubjectKeyIdentifier [
-          keyIdentifier: "SHA-1(SUBJECT_PUBLIC_KEY_VALUE)"
-        ]
+        value: SubjectKeyIdentifier("SHA-1(SUBJECT_PUBLIC_KEY_VALUE)")
       },
 
       Extension {
