@@ -86,7 +86,9 @@ AccessCertificate cert = {
         critical: false,
         value: CRLDistributionPoints [
           DistributionPoint {
-            distributionPoint: URI("https://crl.example.test/issuing-ca.crl")
+            distributionPoint: DistributionPointName.fullName([
+              GeneralName.uniformResourceIdentifier("http://crl.example.test/issuing-ca.crl")
+            ])
           }
         ]
       },
@@ -97,12 +99,12 @@ AccessCertificate cert = {
         value: AuthorityInfoAccess [
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.2",           // id-ad-caIssuers
-            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ca.example.test/caIssuers/issuing-ca.cer")
           },
 
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.1",           // id-ad-ocsp
-            accessLocation: URI("https://ocsp.example.test")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ocsp.example.test")
           }
         ]
       },

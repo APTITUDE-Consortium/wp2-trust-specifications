@@ -78,8 +78,8 @@ AccessCertificate trustAnchor = {
         value: AuthorityInfoAccess [
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.2",           // id-ad-caIssuers
-            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer")
-          },
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ca.example.test/caIssuers/issuing-ca.cer")
+          }
         ]
       }
     ]
