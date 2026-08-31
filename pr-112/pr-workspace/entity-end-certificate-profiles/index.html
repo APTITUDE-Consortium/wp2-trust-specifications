@@ -1020,15 +1020,15 @@
     },
 
     validity: {
-      notBefore: "2026-01-27T00:00:00Z",
-      notAfter:  "2027-01-27T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "CZ",
       organizationName: "Example of PID Provider",
       commonName: "PID Provider Example",
-      organizationIdentifier: "LEIXYZ-5493001KJTIIGC8Y1R12"      
+      organizationIdentifier: "LEIXG-5493021KJTIIGC8Y1R12"      
     },
 
     subjectPublicKeyInfo: {
@@ -1052,9 +1052,7 @@
       Extension {
         oid: "2.5.29.14",                                 // subjectKeyIdentifier
         critical: false,
-        value: SubjectKeyIdentifier [
-          keyIdentifier: "SHA-1(SUBJECT_PUBLIC_KEY_VALUE)"
-        ]
+        value: SubjectKeyIdentifier("SHA-1(SUBJECT_PUBLIC_KEY_VALUE)")
       },
 
       Extension {
@@ -1087,7 +1085,7 @@
           GeneralName.rfc822Name("support@pid.example.test"),
           GeneralName.otherName(
             type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420-111-222-333"
+            value: "+420111222333"
           )
         ]
       },
@@ -1097,7 +1095,9 @@
         critical: false,
         value: CRLDistributionPoints [
           DistributionPoint {
-            distributionPoint: URI("https://crl.example.test/issuing-ca.crl")
+            distributionPoint: DistributionPointName.fullName([
+              GeneralName.uniformResourceIdentifier("http://crl.example.test/issuing-ca.crl")
+            ])
           }
         ]
       },
@@ -1108,12 +1108,12 @@
         value: AuthorityInfoAccess [
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.2",           // id-ad-caIssuers
-            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ca.example.test/caIssuers/issuing-ca.cer")
           },
 
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.1",           // id-ad-ocsp
-            accessLocation: URI("https://ocsp.example.test")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ocsp.example.test")
           }
         ]
       },
@@ -1124,11 +1124,9 @@
         value: QCStatements [
           QCStatement {
             statementId: "0.4.0.1862.1.6",                // id-etsi-qcs-QcType
-            statementInfo: QcType {
-              [
-                "0.4.0.194126.1.1"                        // id-etsi-qct-pid
-              ]
-            }
+            statementInfo: QcType [
+              "0.4.0.194126.1.1"                          // id-etsi-qct-pid
+            ]
           }
         ]
       }
@@ -1229,15 +1227,15 @@
     },
 
     validity: {
-      notBefore: "2026-01-27T00:00:00Z",
-      notAfter:  "2027-01-27T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "CZ",
       organizationName: "Example of Wallet Provider",
       commonName: "Wallet Provider Example",
-      organizationIdentifier: "LEIXYZ-5494001KJTIIGC8Y1R12"
+      organizationIdentifier: "LEIXG-5823001KJTIIGC8Y1R12"
     },
 
     subjectPublicKeyInfo: {
@@ -1261,9 +1259,7 @@
       Extension {
         oid: "2.5.29.14",                                 // subjectKeyIdentifier
         critical: false,
-        value: SubjectKeyIdentifier [
-          keyIdentifier: "SHA-1(SUBJECT_PUBLIC_KEY_VALUE)"
-        ]
+        value: SubjectKeyIdentifier("SHA-1(SUBJECT_PUBLIC_KEY_VALUE)")
       },
 
       Extension {
@@ -1296,7 +1292,7 @@
           GeneralName.rfc822Name("support@wp.example.test"),
           GeneralName.otherName(
             type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420-111-222-444"
+            value: "+420111222444"
           )
         ]
       },
@@ -1306,7 +1302,9 @@
         critical: false,
         value: CRLDistributionPoints [
           DistributionPoint {
-            distributionPoint: URI("https://crl.example.test/issuing-ca.crl")
+            distributionPoint: DistributionPointName.fullName([
+              GeneralName.uniformResourceIdentifier("http://crl.example.test/issuing-ca.crl")
+            ])
           }
         ]
       },
@@ -1317,12 +1315,12 @@
         value: AuthorityInfoAccess [
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.2",           // id-ad-caIssuers
-            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ca.example.test/caIssuers/issuing-ca.cer")
           },
 
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.1",           // id-ad-ocsp
-            accessLocation: URI("https://ocsp.example.test")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ocsp.example.test")
           }
         ]
       },
@@ -1333,11 +1331,9 @@
         value: QCStatements [
           QCStatement {
             statementId: "0.4.0.1862.1.6",                // id-etsi-qcs-QcType
-            statementInfo: QcType {
-              [
-                "0.4.0.194126.1.2"                        // id-etsi-qct-wal
-              ]
-            }
+            statementInfo: QcType [
+              "0.4.0.194126.1.2"                          // id-etsi-qct-wal
+            ]
           }
         ]
       }
@@ -1445,15 +1441,15 @@
     },
 
     validity: {
-      notBefore: "2026-01-27T00:00:00Z",
-      notAfter:  "2027-01-27T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "CZ",
       organizationName: "Example of QEAA Provider",
       commonName: "QEAA Provider Example",
-      organizationIdentifier: "LEIXYZ-5494001KJTIIGC8Y1R12"
+      organizationIdentifier: "LEIXG-5494001KJTIIGC8Y1R56"
     },
 
     subjectPublicKeyInfo: {
@@ -1504,7 +1500,7 @@
           GeneralName.rfc822Name("support@eaa.example.test"),
           GeneralName.otherName(
             type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420-111-222-555"
+            value: "+420111222555"
           )
         ]
       },
@@ -1514,7 +1510,9 @@
         critical: false,
         value: CRLDistributionPoints [
           DistributionPoint {
-            distributionPoint: URI("https://crl.example.test/issuing-ca.crl")
+            distributionPoint: DistributionPointName.fullName([
+              GeneralName.uniformResourceIdentifier("http://crl.example.test/issuing-ca.crl")
+            ])
           }
         ]
       },
@@ -1525,12 +1523,12 @@
         value: AuthorityInfoAccess [
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.2",           // id-ad-caIssuers
-            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ca.example.test/caIssuers/issuing-ca.cer")
           },
 
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.1",           // id-ad-ocsp
-            accessLocation: URI("https://ocsp.example.test")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ocsp.example.test")
           }
         ]
       },
@@ -1549,11 +1547,9 @@
 
           QCStatement {
             statementId: "0.4.0.1862.1.6",                // id-etsi-qcs-QcType
-            statementInfo: QcType {
-              [
-                "0.4.0.1862.1.6.1"                        // id-etsi-qct-esign
-              ]
-            }
+            statementInfo: QcType [
+              "0.4.0.1862.1.6.1"                          // id-etsi-qct-esign
+            ]
           }
         ]
       }
@@ -1661,15 +1657,15 @@
     },
 
     validity: {
-      notBefore: "2026-01-27T00:00:00Z",
-      notAfter:  "2027-01-27T00:00:00Z"
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
     },
 
     subject: DistinguishedName {
       countryName: "IT",
       organizationName: "Example of PuB-EAA Provider",
       commonName: "PuB-EAA Provider Example",
-      organizationIdentifier: "LEIXYZ-5493001KJTIIGC8Y1R12"
+      organizationIdentifier: "LEIXG-5494201KJTIIGC8Y1R12"
     },
 
     subjectPublicKeyInfo: {
@@ -1693,9 +1689,7 @@
       Extension {
         oid: "2.5.29.14",                                 // subjectKeyIdentifier
         critical: false,
-        value: SubjectKeyIdentifier [
-          keyIdentifier: "SHA-1(SUBJECT_PUBLIC_KEY_VALUE)"
-        ]
+        value: SubjectKeyIdentifier("SHA-1(SUBJECT_PUBLIC_KEY_VALUE)")
       },
 
       Extension {
@@ -1728,7 +1722,7 @@
           GeneralName.rfc822Name("support@pub-eaa.example.test"),
           GeneralName.otherName(
             type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420-111-222-777"
+            value: "+420111222777"
           )
         ]
       },
@@ -1738,7 +1732,9 @@
         critical: false,
         value: CRLDistributionPoints [
           DistributionPoint {
-            distributionPoint: URI("https://crl.example.test/issuing-ca.crl")
+            distributionPoint: DistributionPointName.fullName([
+              GeneralName.uniformResourceIdentifier("http://crl.example.test/issuing-ca.crl")
+            ])
           }
         ]
       },
@@ -1749,12 +1745,12 @@
         value: AuthorityInfoAccess [
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.2",           // id-ad-caIssuers
-            accessLocation: URI("https://ca.example.test/caIssuers/issuing-ca.cer")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ca.example.test/caIssuers/issuing-ca.cer")
           },
 
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.1",           // id-ad-ocsp
-            accessLocation: URI("https://ocsp.example.test")
+            accessLocation: GeneralName.uniformResourceIdentifier("http://ocsp.example.test")
           }
         ]
       },
@@ -1814,7 +1810,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 27, 2026 14:09:05 UTC">August 27, 2026 14:09:05</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 31, 2026 09:28:05 UTC">August 31, 2026 09:28:05</span>
   </span>
 
     
