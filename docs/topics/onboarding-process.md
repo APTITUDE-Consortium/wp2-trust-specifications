@@ -26,7 +26,7 @@ The entities involved in onboarding fall into two categories, and this distincti
 - **Trust infrastructure entities** (in short, *infrastructure entities*) are the entities that operate the trust infrastructure through which onboarding is performed, namely registration (the <roles:Registrar>, operating the <components:Register>), certificate issuance (the <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> and the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>), and publication of the trusted lists (the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> / <roles:Trusted List Provider>). The <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> / <roles:Trusted List Provider> has a special role, as its own <artifacts:Trust Anchor> is the root against which the lists are validated.
 - **Operational entities** are the entities that are onboarded through that infrastructure in order to become operational and recognisable in the ecosystem, namely the <roles:Wallet-Relying Party (WRP)|WRP> and the <roles:Wallet Provider (WP)|Wallet Provider>.
 
-The onboarding process presupposes the existence of a functional trust infrastructure. Its one-time setup is a prerequisite that must be satisfied before any operational entity can be onboarded; it is described in [Trust Infrastructure Prerequisites](#trust-infrastructure-prerequisites). The recurring process through which operational entities become active is described in [Operational Entity Onboarding](#operational-entity-onboarding).
+The onboarding process presupposes the existence of a functional trust infrastructure. Its one-time setup is a prerequisite that SHALL be satisfied before any operational entity can be onboarded; it is described in [Trust Infrastructure Prerequisites](#trust-infrastructure-prerequisites). The recurring process through which operational entities become active is described in [Operational Entity Onboarding](#operational-entity-onboarding).
 
 ```mermaid
 graph LR
@@ -59,7 +59,7 @@ graph LR
 
 ## Trust Infrastructure Prerequisites
 
-The [Onboarding System](#onboarding-system) operates on top of a trust infrastructure whose entities must be established and have their trust anchors published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [ONBOARD-GEN-02].
+The [Onboarding System](#onboarding-system) operates on top of a trust infrastructure whose entities SHALL be established and have their trust anchors published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [ONBOARD-GEN-02].
 
 Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software [ONBOARD-PRE-01]. The trust anchors of the infrastructure entities are provided and shared among the participants as a one-time operational setup. What is implemented and testable is the result, i.e. the signed, published trusted lists against which trust is later evaluated (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)). The operations below describe the trust infrastructure setup process.
 
@@ -207,15 +207,15 @@ A successful onboarding produces the artifacts below, whose data model and forma
 
 Each entity type follows a different path and produces a different set of outputs, summarised in the table below.
 
-| Entity type | Register record | WRPAC | WRPRC | Trusted-list entry |
-| --- | --- | --- | --- | --- |
-| PID Provider | yes | yes | where applicable | PID Providers LoTE |
-| QEAA Provider | yes | yes | where applicable | EUMS TL (referenced in the LOTL) |
-| PuB-EAA Provider | yes | yes | where applicable | PuB-EAA Providers LoTE |
-| Non-qualified EAA Provider | yes | yes | where applicable | Trusted List referenced by the Rulebook (APTITUDE-specific) |
-| Relying Party | yes | yes | where applicable | none |
-| Relying Party Intermediary | yes | yes | where applicable | none |
-| Wallet Provider | no | no | no | Wallet Providers LoTE |
+| Entity Type                   | Register Record   | WRPAC | WRPRC | Trusted List Entry                                            |
+| ----------------------------- | :---------------: | :---: | :---: | :-----------------------------------------------------------: |
+| PID Provider                  | YES               | YES   | YES   | PID Providers LoTE                                            |
+| QEAA Provider                 | YES               | YES   | YES   | EUMS TL (referenced in the LOTL)                              |
+| PuB-EAA Provider              | YES               | YES   | YES   | PuB-EAA Providers LoTE                                        |
+| Non-qualified EAA Provider    | YES               | YES   | YES   | Trusted List referenced by the Rulebook (APTITUDE-specific)   |
+| Relying Party                 | YES               | YES   | YES   | None                                                          |
+| Relying Party Intermediary    | YES               | YES   | YES   | None                                                          |
+| Wallet Provider               | NO                | NO    | NO    | Wallet Providers LoTE                                         |
 
 The steps below describe the onboarding journey: any <roles:Wallet-Relying Party (WRP)|WRP> entity type goes through [Data Collection and Registration Record Creation](#data-collection-and-registration-record-creation), [Certificate Issuance](#certificate-issuance) and, where it is also a notified entity, [Notification and Publication](#notification-and-publication); the <roles:Wallet Provider (WP)|Wallet Provider> goes through that last step only.
 
@@ -236,7 +236,7 @@ This step issues the certificates for a <roles:Wallet-Relying Party (WRP)|WRP>, 
 The request/issuance protocol is an implementation choice (for example ACME, EST, or a manual exchange); the enrolment SHOULD include a proof of possession of the private key corresponding to the certified public key, a property inherited from the certificate-policy framework underlying [ETSI TS 119 411-8]. The verifications below apply regardless of the protocol.
 
 - **WRPAC**. The <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> issues one or more <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, whose content and format are defined in [Wallet-Relying Party Access Certificate](../sections/trust-artifacts.md#wallet-relying-party-access-certificate). A <roles:Relying Party (RP)|Relying Party> receives a separate <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> for each of its <components:Relying Party Instance|Relying Party Instances> (`Reg_10a`). At issuance time it SHALL verify that the <roles:Wallet-Relying Party (WRP)|WRP> has an active registration status and that the certificate information is consistent with the <components:Register> (requirement `PROVIDER-WRPAC-01` in [Register](../sections/trust-artifacts.md#register), from [CIR 2025/848, Annex IV 3(c)]); its attributes are derived from the <components:Register> information ([ETSI TS 119 475, clause 5.1.2]). If the registration is not active or the data are inconsistent, the Provider SHALL refuse to issue the certificate.
-- **WRPRC** (where mandated by [CIR 2025/848, Article 8]). The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> issues a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, whose content and format are defined in [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate). At issuance time it SHALL verify the <components:Register> status, the consistency with the <components:Register> information, and the validity of the corresponding <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> when relevant (requirement `PROVIDER-WRPRC-02` in [Register](../sections/trust-artifacts.md#register), from [CIR 2025/848, Annex V 3(c)]). The same failure handling applies.
+- **WRPRC**. The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> issues a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, whose content and format are defined in [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate). At issuance time it SHALL verify the <components:Register> status, the consistency with the <components:Register> information, and the validity of the corresponding <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> when relevant (requirement `PROVIDER-WRPRC-02` in [Register](../sections/trust-artifacts.md#register), from [CIR 2025/848, Annex V 3(c)]). The same failure handling applies.
 
 !!! note
 
@@ -286,17 +286,15 @@ sequenceDiagram
         ACServ->>ACServ: check data consistency
         ACServ-->>UI: WRPAC
         UI-->>E: provide WRPAC
-        opt WRPRC mandated
-            E->>UI: request WRPRC (with WRPAC)
-            UI->>RCServ: request WRPRC
-            RCServ->>RCServ: check WRPAC validity (when relevant)
-            RCServ->>RegServ: request verification of active status and consistency
-            RegServ<<->>Register: get data
-            RegServ-->>RCServ: response with active status
-            RCServ->>RCServ: check data consistency
-            RCServ-->>UI: WRPRC
-            UI-->>E: provide WRPRC
-        end
+        E->>UI: request WRPRC (with WRPAC)
+        UI->>RCServ: request WRPRC
+        RCServ->>RCServ: check WRPAC validity (when relevant)
+        RCServ->>RegServ: request verification of active status and consistency
+        RegServ<<->>Register: get data
+        RegServ-->>RCServ: response with active status
+        RCServ->>RCServ: check data consistency
+        RCServ-->>UI: WRPRC
+        UI-->>E: provide WRPRC
         opt notifiable WRP (PID / PuB-EAA / QEAA / non-qualified EAA Providers)
             UI->>PubServ: submit notifiable data
             PubServ<<->>TL: publish to applicable trusted list
