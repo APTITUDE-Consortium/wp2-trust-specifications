@@ -1196,7 +1196,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
 Start([Presentation request received])
 Start --&gt; A1[Check 1: Authenticate WRP/RPI using WRPAC]
 A1 --&gt; A1D{WRPAC authentication OK?}
-A1D --&gt;|No| StopAuth[Stop: authorization process must not start]
+    A1D --&gt;|No| StopAuth[Stop: Authorization Process must not start]
 A1D --&gt;|Yes| U1{User opted in to RP verification?}
 U1 --&gt;|No| SkipReg[Skip registration verification block]
 U1 --&gt;|Yes| E1[Check 2: Extract authorization evidence]
@@ -1515,7 +1515,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 <tr>
 <td><strong>Positive result</strong></td>
-<td>WRP/RPI is authenticated; authorization processing may start.</td>
+<td>WRP/RPI is authenticated; the Authorization Process may start.</td>
 </tr>
 <tr>
 <td><strong>Negative result</strong></td>
@@ -2256,7 +2256,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
 <tr>
 <td>WRPAC authentication</td>
 <td>Authentication failed</td>
-<td>Blocking and non-overridable. Authorization must not start; WRPAC authentication is a precondition to the authorization process.</td>
+<td>Blocking and non-overridable. The Authorization Process must not start; WRPAC authentication is a precondition to the Authorization Process.</td>
 </tr>
 <tr>
 <td>WRPRC validation</td>
@@ -2319,7 +2319,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
 <tr>
 <td>TC-PRES-001</td>
 <td>AUTHZ-GEN-01 / AUTHZ-GEN-02 authentication prerequisite</td>
-<td>Keep WRPAC validation as a precondition; if authentication fails, authorization does not start.</td>
+<td>Keep WRPAC validation as a precondition; if authentication fails, the Authorization Process does not start.</td>
 </tr>
 <tr>
 <td>TC-PRES-002</td>
