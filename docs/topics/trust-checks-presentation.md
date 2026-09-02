@@ -48,7 +48,7 @@ flowchart TD
 Start([Presentation request received])
 Start --> A1[Check 1: Authenticate WRP/RPI using WRPAC]
 A1 --> A1D{WRPAC authentication OK?}
-A1D -->|No| StopAuth[Stop: authorization process must not start]
+    A1D -->|No| StopAuth[Stop: Authorization Process must not start]
 A1D -->|Yes| U1{User opted in to RP verification?}
 U1 -->|No| SkipReg[Skip registration verification block]
 U1 -->|Yes| E1[Check 2: Extract authorization evidence]
@@ -210,7 +210,7 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Remote input location**    | WRPAC chain in x5c of signed OpenID4VP Request Object                                                                                                                                                                               |
 | **Proximity input location** | WRPAC chain in ReaderAuth / mdoc request message                                                                                                                                                                                    |
 | **Checks**                   | Retrieve trust anchor from the relevant LoTE; construct WRPAC certification path; validate certificate path; validate certificate status where applicable; verify the signature on the request artefact using the WRPAC public key. |
-| **Positive result**          | WRP/RPI is authenticated; authorization processing may start.                                                                                                                                                                       |
+| **Positive result**          | WRP/RPI is authenticated; the Authorization Process may start.                                                                                                                                                                      |
 | **Negative result**          | Authentication failed. Authorization processing SHALL NOT start.                                                                                                                                                                     |
 | **Test focus**               | Valid chain, invalid chain, unknown trust anchor, expired certificate, revoked certificate, invalid request signature, mismatched signing key.                                                                                      |
 
@@ -447,7 +447,7 @@ TA --> Use[Use trust anchor in certificate/path validation]
 
 | **Check**                          | **Negative result**         | **Effect in Presentation**                                                                                                       |
 | ---------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| WRPAC authentication               | Authentication failed       | Blocking and non-overridable. Authorization must not start; WRPAC authentication is a precondition to the authorization process. |
+| WRPAC authentication               | Authentication failed       | Blocking and non-overridable. The Authorization Process must not start; WRPAC authentication is a precondition to the Authorization Process. |
 | WRPRC validation                   | CERTIFICATE_INVALID         | Not final. Triggers Register fallback.                                                                                           |
 | Register validation                | FAILED                      | Advisory to User; may proceed with warning.                                                                                      |
 | Direct RP binding                  | BINDING_FAILED              | Blocking; non-overridable.                                                                                                       |
@@ -464,7 +464,7 @@ The TC-PRES identifiers are local test-check identifiers; the authoritative prof
 
 | **RFC003 check(s)**        | **APTITUDE concept / requirement**                                   | **Notes for test matrix**                                                                                                                       |
 | -------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| TC-PRES-001                | AUTHZ-GEN-01 / AUTHZ-GEN-02 authentication prerequisite              | Keep WRPAC validation as a precondition; if authentication fails, authorization does not start.                                                 |
+| TC-PRES-001                | AUTHZ-GEN-01 / AUTHZ-GEN-02 authentication prerequisite              | Keep WRPAC validation as a precondition; if authentication fails, the Authorization Process does not start.                                  |
 | TC-PRES-002                | AUTHZ-PRES-04 user setting for RP verification                       | Registration verification is default-enabled but user-optional; EDP evaluation remains always executed.                                         |
 | TC-PRES-003 to TC-PRES-006 | AUTHZ-GEN-05 to AUTHZ-GEN-10; WRPRC validation and Register fallback | WRPRC validation failure returns CERTIFICATE_INVALID and triggers Register validation; Register FAILED is advisory in presentation.             |
 | TC-PRES-007 to TC-PRES-010 | AUTHZ-GEN-04, AUTHZ-GEN-11/12, AUTHZ-INT-03/04/06/07                 | Direct RP binding and intermediary/final-RP coherence are non-overridable. Test final RP context separately from intermediary identity.         |

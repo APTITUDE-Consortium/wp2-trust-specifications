@@ -55,7 +55,7 @@ This specification defines the trust framework profiles for the APTITUDE Large S
 
 - [**Onboarding Process**](sections/onboarding-process.md): Defines the process through which entities become operational and recognisable in the common trust infrastructure. Within the APTITUDE LSP, it is realised as a mocked-up version of the <roles:Wallet-Relying Party (WRP)|Wallet-Relying Party> Registration and <processes:Notification> processes.
 
-- [**Trust Evaluation Processes**](sections/trust-evaluation-process.md): Outlines the necessary stages for <artifacts:Trust Anchor> validation, <processes:Authentication|authentication> and authorization processes.
+- [**Trust Evaluation Processes**](sections/trust-evaluation-process.md): Outlines the necessary stages for the Authentication Process, the Authorization Process, and the Sign/Seal Validation Process, together with <artifacts:Trust Anchor> validation.
 
 - [**Trust Checks**](sections/trust-checks.md): Describes the trust-related checks to be performed during Issuance and Presentation.
 
