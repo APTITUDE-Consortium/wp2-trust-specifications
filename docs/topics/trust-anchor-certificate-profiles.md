@@ -71,7 +71,7 @@ The following table defines the profile-specific requirements for the certificat
 | `issuer`  | If the certificate is self-signed, the issuer's distinguished name SHALL be identical to the subject's distinguished name. Otherwise, the issuer's distinguished name SHALL identify the entity that signed and issued the certificate and MAY differ from the subject's distinguished name. |
 | `subject` | The distinguished name SHALL contain an `organizationName` attribute identifying that entity. |
 
-The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.
+The following table defines the complete set of extensions applicable to the certificate profile.
 
 | Extension                 | Presence      | Notes |
 | ------------------------- | ------------- | ----- |
@@ -79,6 +79,8 @@ The following table defines the complete set of extensions applicable to the cer
 | `subjectKeyIdentifier`    | REQUIRED      | Provides a key identifier for the Trust Anchor public key. Its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. This extension SHOULD support reliable Certificate Path construction and certificate matching in LoTE- or TL-based deployments. |
 | `keyUsage`                | REQUIRED      | It SHALL assert the `keyCertSign` bit. It MAY assert the `cRLSign` bit if the Trust Anchor certificate is used by the CA to sign CRLs. It SHOULD be limited to usages consistent with the CA role of the Trust Anchor certificate. |
 | `certificatePolicies`     | OPTIONAL      | It MAY include a `PolicyInformation` structure relevant to the issuing CA's practices. |
+| `subjectAltName`          | OPTIONAL      | It MAY include a `GeneralName` structure with additional information on the subject. |
+| `issuerAltName`           | OPTIONAL      | It MAY include a `GeneralName` structure with additional information on the issuer. |
 | `basicConstraints`        | REQUIRED      | The `cA` field SHALL be set to `TRUE`, signalling CA capability for X.509 path validation. The `pathLenConstraint` field MAY be present; in that case, it SHALL limit the number of non-self-issued intermediate CA certificates below the Trust Anchor. It is RECOMMENDED to set `pathLenConstraint` to `0` to prevent subordinate CA layers, unless a documented operational need exists to support additional intermediate CA tiers. |
 | `cRLDistributionPoints`   | OPTIONAL      | It MAY include CRL distribution point URIs, when CRL-based revocation is used. |
 | `authorityInfoAccess`     | OPTIONAL      | If applicable, it MAY include an `AccessDescription` structure with `accessMethod` set to `1.3.6.1.5.5.7.48.2` (`id-ad-caIssuers`) and an `accessLocation` specifying at least one access location of a valid CA certificate of the issuing <roles:Certificate Authority (CA)\|CA>.<br />It MAY also include an `AccessDescription` structure with `accessMethod` set to `1.3.6.1.5.5.7.48.1` (`id-ad-ocsp`) and `accessLocation` specifying at least one OCSP responder authoritative to provide certificate status information for the certificate, when OCSP-based revocation is used. |
@@ -92,6 +94,10 @@ The following table defines the complete set of extensions applicable to the cer
     - Absence of the `pathLenConstraint` implies that no explicit limit is imposed by the certificate itself.
 
     This profile allows the field to be OPTIONAL to support interoperability with different PKI deployment models. However, setting `pathLenConstraint` to `0` is RECOMMENDED to reduce trust hierarchy complexity, improve predictability of certificate chains, and limit the risk associated with unintended subordinate certification authorities.
+
+!!! warning "Use Case-Specific Requirements"
+
+    Specific Use Cases could have custom Trust Anchor Certificate requirements. Where strictly necessary, implementations MAY define and support additional extensions beyond the profile defined above.
 
 ??? example "Example: Self-signed entity trust anchor (root-style)"
 
