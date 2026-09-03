@@ -1265,7 +1265,7 @@
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>.</li>
 </ul>
-<p>The onboarding process presupposes the existence of a functional trust infrastructure. Its one-time setup is a prerequisite that must be satisfied before any operational entity can be onboarded; it is described in <a href="#trust-infrastructure-prerequisites">Trust Infrastructure Prerequisites</a>. The recurring process through which operational entities become active is described in <a href="#operational-entity-onboarding">Operational Entity Onboarding</a>.</p>
+<p>The onboarding process presupposes the existence of a functional trust infrastructure. Its one-time setup is a prerequisite that SHALL be satisfied before any operational entity can be onboarded; it is described in <a href="#trust-infrastructure-prerequisites">Trust Infrastructure Prerequisites</a>. The recurring process through which operational entities become active is described in <a href="#operational-entity-onboarding">Operational Entity Onboarding</a>.</p>
 <pre class="mermaid"><code>graph LR
 
     subgraph OB["Onboarding Process"]
@@ -1293,7 +1293,7 @@
     class S1 green;
     class O1 cand;</code></pre>
 <h2 id="trust-infrastructure-prerequisites">Trust Infrastructure Prerequisites<a class="headerlink" href="#trust-infrastructure-prerequisites" title="Permanent link">&para;</a></h2>
-<p>The <a href="#onboarding-system">Onboarding System</a> operates on top of a trust infrastructure whose entities must be established and have their trust anchors published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [ONBOARD-GEN-02].</p>
+<p>The <a href="#onboarding-system">Onboarding System</a> operates on top of a trust infrastructure whose entities SHALL be established and have their trust anchors published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [ONBOARD-GEN-02].</p>
 <p>Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software [ONBOARD-PRE-01]. The trust anchors of the infrastructure entities are provided and shared among the participants as a one-time operational setup. What is implemented and testable is the result, i.e. the signed, published trusted lists against which trust is later evaluated (see <a href="../trust-evaluation-process/#trust-anchor-validation-process">Trust Anchor Validation Process</a>). The operations below describe the trust infrastructure setup process.</p>
 <pre class="mermaid"><code>graph LR
 
@@ -1747,62 +1747,62 @@
 <table>
 <thead>
 <tr>
-<th>Entity type</th>
-<th>Register record</th>
-<th>WRPAC</th>
-<th>WRPRC</th>
-<th>Trusted-list entry</th>
+<th>Entity Type</th>
+<th style="text-align: center;">Register Record</th>
+<th style="text-align: center;">WRPAC</th>
+<th style="text-align: center;">WRPRC</th>
+<th style="text-align: center;">Trusted List Entry</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>PID Provider</td>
-<td>yes</td>
-<td>yes</td>
-<td>where applicable</td>
-<td>PID Providers LoTE</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">PID Providers LoTE</td>
 </tr>
 <tr>
 <td>QEAA Provider</td>
-<td>yes</td>
-<td>yes</td>
-<td>where applicable</td>
-<td>EUMS TL (referenced in the LOTL)</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">EUMS TL (referenced in the LOTL)</td>
 </tr>
 <tr>
 <td>PuB-EAA Provider</td>
-<td>yes</td>
-<td>yes</td>
-<td>where applicable</td>
-<td>PuB-EAA Providers LoTE</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">PuB-EAA Providers LoTE</td>
 </tr>
 <tr>
 <td>Non-qualified EAA Provider</td>
-<td>yes</td>
-<td>yes</td>
-<td>where applicable</td>
-<td>Trusted List referenced by the Rulebook (APTITUDE-specific)</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">Trusted List referenced by the Rulebook (APTITUDE-specific)</td>
 </tr>
 <tr>
 <td>Relying Party</td>
-<td>yes</td>
-<td>yes</td>
-<td>where applicable</td>
-<td>none</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">None</td>
 </tr>
 <tr>
 <td>Relying Party Intermediary</td>
-<td>yes</td>
-<td>yes</td>
-<td>where applicable</td>
-<td>none</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">YES</td>
+<td style="text-align: center;">None</td>
 </tr>
 <tr>
 <td>Wallet Provider</td>
-<td>no</td>
-<td>no</td>
-<td>no</td>
-<td>Wallet Providers LoTE</td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">NO</td>
+<td style="text-align: center;">Wallet Providers LoTE</td>
 </tr>
 </tbody>
 </table>
@@ -1902,7 +1902,7 @@
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> information ([ETSI TS 119 475, clause 5.1.2]). If the registration is not active or the data are inconsistent, the Provider SHALL refuse to issue the certificate.</li>
-<li><strong>WRPRC</strong> (where mandated by [CIR 2025/848, Article 8]). The <a class="mkdocs-ezglossary-link"
+<li><strong>WRPRC</strong>. The <a class="mkdocs-ezglossary-link"
     id="32f5cde8a39f3fb2a35bd7601a9a7ae3"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
@@ -2182,17 +2182,15 @@
         ACServ-&gt;&gt;ACServ: check data consistency
         ACServ--&gt;&gt;UI: WRPAC
         UI--&gt;&gt;E: provide WRPAC
-        opt WRPRC mandated
-            E-&gt;&gt;UI: request WRPRC (with WRPAC)
-            UI-&gt;&gt;RCServ: request WRPRC
-            RCServ-&gt;&gt;RCServ: check WRPAC validity (when relevant)
-            RCServ-&gt;&gt;RegServ: request verification of active status and consistency
-            RegServ&lt;&lt;-&gt;&gt;Register: get data
-            RegServ--&gt;&gt;RCServ: response with active status
-            RCServ-&gt;&gt;RCServ: check data consistency
-            RCServ--&gt;&gt;UI: WRPRC
-            UI--&gt;&gt;E: provide WRPRC
-        end
+        E-&gt;&gt;UI: request WRPRC (with WRPAC)
+        UI-&gt;&gt;RCServ: request WRPRC
+        RCServ-&gt;&gt;RCServ: check WRPAC validity (when relevant)
+        RCServ-&gt;&gt;RegServ: request verification of active status and consistency
+        RegServ&lt;&lt;-&gt;&gt;Register: get data
+        RegServ--&gt;&gt;RCServ: response with active status
+        RCServ-&gt;&gt;RCServ: check data consistency
+        RCServ--&gt;&gt;UI: WRPRC
+        UI--&gt;&gt;E: provide WRPRC
         opt notifiable WRP (PID / PuB-EAA / QEAA / non-qualified EAA Providers)
             UI-&gt;&gt;PubServ: submit notifiable data
             PubServ&lt;&lt;-&gt;&gt;TL: publish to applicable trusted list
@@ -2345,7 +2343,7 @@
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is used in the <a href="../trust-evaluation-process/#authentication-process">Authentication Process</a>, the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is used in the <a href="../trust-evaluation-process/#authentication-process">Authentication Process</a>, Sign/Seal Certificates are used in the <a href="../trust-evaluation-process/#sign-seal-validation-process">Sign/Seal Validation Process</a>, the <a class="mkdocs-ezglossary-link"
     id="0658a86f3b8af05b5498f7d9e1fc5e16"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
@@ -2355,7 +2353,7 @@
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
-    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> in the <a href="../trust-evaluation-process/#authorization-process">Authorization Process</a>, the trusted-list trust anchors in the <a href="../trust-evaluation-process/#trust-anchor-validation-process">Trust Anchor Validation Process</a>, and the revocation of the certificates in <a href="../trust-management-lifecycle/#revocation-mechanisms">Revocation Mechanisms</a>.</p>
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> are used in the <a href="../trust-evaluation-process/#authorization-process">Authorization Process</a>, the trusted-list trust anchors are used in the <a href="../trust-evaluation-process/#trust-anchor-validation-process">Trust Anchor Validation Process</a>, and certificate revocation is covered by <a href="../trust-management-lifecycle/#revocation-mechanisms">Revocation Mechanisms</a>.</p>
 <h2 id="onboarding-requirements">Onboarding Requirements<a class="headerlink" href="#onboarding-requirements" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

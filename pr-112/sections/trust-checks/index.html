@@ -1337,7 +1337,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
     data-tooltip="Short-range presentation protocol (NFC/BLE/Wi-Fi Aware) per ISO/IEC 18013-5/-7."
     name="protocols:Proximity Flow"
     href="../../glossary-definitions/#b5782cf859bca2f9697cc035866dbe09">Proximity</a> flows</strong>. The differences are limited to the transport, the location and format of the <a class="mkdocs-ezglossary-link"
-    id="3fa6a311cac8107e660278a3aeff3ffd"
+    id="12ca0e09ebda00a0bb077ef853b135f2"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1346,7 +1346,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
 Start([Presentation request received])
 Start --&gt; A1[Check 1: Authenticate WRP/RPI using WRPAC]
 A1 --&gt; A1D{WRPAC authentication OK?}
-A1D --&gt;|No| StopAuth[Stop: authorization process must not start]
+    A1D --&gt;|No| StopAuth[Stop: Authorization Process must not start]
 A1D --&gt;|Yes| U1{User opted in to RP verification?}
 U1 --&gt;|No| SkipReg[Skip registration verification block]
 U1 --&gt;|Yes| E1[Check 2: Extract authorization evidence]
@@ -1399,12 +1399,12 @@ StopInt --&gt; End</code></pre>
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="f9c09256cbc5374041e3db10a55f2527"
+    id="8a5e16ed941e8976d7deb16bac9652fa"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, and <a class="mkdocs-ezglossary-link"
-    id="92cdcf568f7ff59f132c5e962de129f0"
+    id="89065adfcc5a66a5c6839b54cf9a7ec3"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -1665,7 +1665,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 <tr>
 <td><strong>Positive result</strong></td>
-<td>WRP/RPI is authenticated; authorization processing may start.</td>
+<td>WRP/RPI is authenticated; the Authorization Process may start.</td>
 </tr>
 <tr>
 <td><strong>Negative result</strong></td>
@@ -2332,12 +2332,12 @@ Eval --&gt; User[Display results to User]</code></pre>
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="725848ac8dcdf92690f1d85456bdcc9a"
+    id="3fa6a311cac8107e660278a3aeff3ffd"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, and <a class="mkdocs-ezglossary-link"
-    id="389fcb7119f1c18f14e51767a4b03a89"
+    id="09b4396f01a8a3bedaf3aae120351c5a"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -2406,7 +2406,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
 <tr>
 <td>WRPAC authentication</td>
 <td>Authentication failed</td>
-<td>Blocking and non-overridable. Authorization must not start; WRPAC authentication is a precondition to the authorization process.</td>
+<td>Blocking and non-overridable. The Authorization Process must not start; WRPAC authentication is a precondition to the Authorization Process.</td>
 </tr>
 <tr>
 <td>WRPRC validation</td>
@@ -2469,7 +2469,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
 <tr>
 <td>TC-PRES-001</td>
 <td>AUTHZ-GEN-01 / AUTHZ-GEN-02 authentication prerequisite</td>
-<td>Keep WRPAC validation as a precondition; if authentication fails, authorization does not start.</td>
+<td>Keep WRPAC validation as a precondition; if authentication fails, the Authorization Process does not start.</td>
 </tr>
 <tr>
 <td>TC-PRES-002</td>
