@@ -73,4 +73,6 @@ These specifications does not provide details on:
 
 ## Normative Language
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC 2119] [RFC 8174] when, and only when, they appear in all capitals, as shown here.
+
+Additionally, the key words "CONDITIONAL" and "PROHIBITED" are used within data tables to describe field requirements. "CONDITIONAL" indicates that a field's presence is dependent on specific rules described in the text, while "PROHIBITED" is equivalent to "SHALL NOT".
