@@ -1,0 +1,139 @@
+```json
+{
+  "legalPerson": {
+    "legalName": ["ExampleBank S.A."]
+  },
+  "identifier": [
+    {
+      "type": "http://data.europa.eu/eudi/id/EUID",
+      "identifier": "FR-EUID-123456789"
+    },
+    {
+      "type": "http://data.europa.eu/eudi/id/VATIN",
+      "identifier": "FR12345678901"
+    }
+  ],
+  "postalAddress": [
+    "10 Rue Exemple, 75000 Paris, FR"
+  ],
+  "country": "FR",
+  "email": [
+    "wallet-rp-registration@examplebank.eu"
+  ],
+  "phone": [
+    "+33100000000"
+  ],
+  "infoURI": [
+    "https://examplebank.eu"
+  ],
+  "providerType": "WalletRelyingParty",
+  "policy": [
+    {
+      "type": "http://data.europa.eu/eudi/policy/terms-and-conditions",
+      "policyURI": "https://examplebank.eu/terms"
+    },
+    {
+      "type": "http://data.europa.eu/eudi/policy/privacy-policy",
+      "policyURI": "https://examplebank.eu/privacy"
+    }
+  ],
+  "tradeName": "ExampleBank Mobile",
+  "supportURI": [
+    "https://examplebank.eu/support"
+  ],
+  "srvDescription": [
+    [
+      { "lang": "en", "content": "Retail banking services for individuals." },
+      { "lang": "fr", "content": "Services bancaires pour particuliers." }
+    ],
+    [
+      { "lang": "en", "content": "Issuance of qualified bank account attestations." },
+      { "lang": "fr", "content": "Délivrance d'attestations de compte bancaire qualifiées." }
+    ]
+  ],
+  "isPSB": false,
+  "entitlement": [
+    "https://uri.etsi.org/19475/Entitlement/Service_Provider",
+    "https://uri.etsi.org/19475/Entitlement/QEAA_Provider"
+  ],
+  "providesAttestations": [
+    {
+      "format": "dc+sd-jwt",
+      "meta": {
+        "vct_values": ["https://examplebank.eu/schema/bank-account"]
+      },
+      "claim": [
+        { "path": ["iban"] },
+        { "path": ["account_holder_name"] },
+        { "path": ["account_type"] },
+        { "path": ["currency"] }
+      ]
+    }
+  ],
+  "intendedUse": [
+    {
+      "intendedUseIdentifier": "iu-account-opening",
+      "purpose": [
+        { "lang": "en", "content": "Open a bank account remotely." },
+        { "lang": "fr", "content": "Ouvrir un compte bancaire à distance." }
+      ],
+      "privacyPolicy": [
+        {
+          "type": "http://data.europa.eu/eudi/policy/privacy-statement",
+          "policyURI": "https://examplebank.eu/privacy/wallet/account-opening"
+        }
+      ],
+      "credential": [
+        {
+          "format": "dc+sd-jwt",
+          "meta": { "vct_values": ["https://example.eu/schema/pid"] },
+          "claim": [
+            { "path": ["family_name"] },
+            { "path": ["given_name"] },
+            { "path": ["birth_date"] },
+            { "path": ["nationalities"] }
+          ]
+        }
+      ],
+      "createdAt": "2026-01-01"
+    },
+    {
+      "intendedUseIdentifier": "iu-bank-account-attestation-issuance",
+      "purpose": [
+        {
+          "lang": "en",
+          "content": "Verify wallet holder identity to issue a bank account attestation."
+        }
+      ],
+      "privacyPolicy": [
+        {
+          "type": "http://data.europa.eu/eudi/policy/privacy-statement",
+          "policyURI": "https://examplebank.eu/privacy/wallet/attestation-issuance"
+        }
+      ],
+      "credential": [
+        {
+          "format": "dc+sd-jwt",
+          "meta": { "vct_values": ["https://example.eu/schema/pid"] },
+          "claim": [
+            { "path": ["family_name"] },
+            { "path": ["given_name"] },
+            { "path": ["birth_date"] }
+          ]
+        }
+      ],
+      "createdAt": "2026-01-01"
+    }
+  ],
+  "supervisoryAuthority": {
+    "legalPerson": {
+      "legalName": ["Autorité de supervision Exemple"]
+    },
+    "country": "FR",
+    "email": ["contact@supervisor.example.fr"],
+    "infoURI": ["https://supervisor.example.fr"]
+  },
+  "registryURI": "https://registry.example.fr/api",
+  "isIntermediary": false
+}
+```

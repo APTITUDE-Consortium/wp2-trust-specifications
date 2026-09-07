@@ -65,6 +65,7 @@ plugins:
   - tags
   - exclude:
       glob:
+        - 'examples/**'
         - 'topics/**'
         - 'references.md'
   - include-markdown:

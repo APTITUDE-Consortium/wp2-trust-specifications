@@ -1,0 +1,11 @@
+```cbor
+{
+  1: -7,    / alg: ES256 /,
+  16: "rc-wrp+cwt", / typ /
+  33: [     / x5chain /
+    h'...', / binary end cert /
+    h'...', / binary intermediate cert /
+    h'...'  / binary root cert /
+  ]
+}
+```
