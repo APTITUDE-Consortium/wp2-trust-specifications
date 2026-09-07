@@ -1187,7 +1187,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
     data-tooltip="Short-range presentation protocol (NFC/BLE/Wi-Fi Aware) per ISO/IEC 18013-5/-7."
     name="protocols:Proximity Flow"
     href="../../glossary-definitions/#b5782cf859bca2f9697cc035866dbe09">Proximity</a> flows</strong>. The differences are limited to the transport, the location and format of the <a class="mkdocs-ezglossary-link"
-    id="705fcc95e55034d6c3d89ea31d682b1a"
+    id="f210981b2d3ce483009be4b27b828afe"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1196,7 +1196,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
 Start([Presentation request received])
 Start --&gt; A1[Check 1: Authenticate WRP/RPI using WRPAC]
 A1 --&gt; A1D{WRPAC authentication OK?}
-A1D --&gt;|No| StopAuth[Stop: authorization process must not start]
+    A1D --&gt;|No| StopAuth[Stop: Authorization Process must not start]
 A1D --&gt;|Yes| U1{User opted in to RP verification?}
 U1 --&gt;|No| SkipReg[Skip registration verification block]
 U1 --&gt;|Yes| E1[Check 2: Extract authorization evidence]
@@ -1244,17 +1244,17 @@ StopBind --&gt; End
 StopInt --&gt; End</code></pre>
 <h4 id="flowchart-to-detailed-trust-check-index">Flowchart to detailed trust-check index<a class="headerlink" href="#flowchart-to-detailed-trust-check-index" title="Permanent link">&para;</a></h4>
 <p>Section <a href="#common-presentation-trust-evaluation-model">Common Presentation Trust Evaluation Model</a> uses coarse step labels (<strong>Check 1</strong>…<strong>Check 9</strong>) for control flow. Section <a href="#detailed-trust-checks">Detailed Trust Checks</a> decomposes the same logic into RFC003 test-case identifiers (<strong>TC-PRES-001</strong>…<strong>TC-PRES-017</strong>). The correspondence is mostly one-to-many: one flowchart label may map to several TC-PRES checks, and some TC-PRES checks have no separate box in the flowchart. Trust-list resolution (<strong>TL-PRES-001</strong>, Section <a href="#trust-anchor-and-trusted-list-checks">Trust Anchor and Trusted List Checks</a>) is a cross-cutting dependency of <a class="mkdocs-ezglossary-link"
-    id="e3dd647d5cfa88c85d108a4eeb895be7"
+    id="dfc8cda82dc2800686aa946fed96b58d"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="8ec36e3d6b0310eb3bd8404c1334a152"
+    id="15f8febc054e461b9c32a5b0f55f1a35"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, and <a class="mkdocs-ezglossary-link"
-    id="fff9d12ebd72c67c3d4c4bf0af6effaf"
+    id="d8ffb0203b41f127324dfd3004659d8c"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -1515,7 +1515,7 @@ Eval --&gt; User[Display results to User]</code></pre>
 </tr>
 <tr>
 <td><strong>Positive result</strong></td>
-<td>WRP/RPI is authenticated; authorization processing may start.</td>
+<td>WRP/RPI is authenticated; the Authorization Process may start.</td>
 </tr>
 <tr>
 <td><strong>Negative result</strong></td>
@@ -2177,17 +2177,17 @@ Eval --&gt; User[Display results to User]</code></pre>
 </table>
 <h3 id="trust-anchor-and-trusted-list-checks">Trust Anchor and Trusted List Checks<a class="headerlink" href="#trust-anchor-and-trusted-list-checks" title="Permanent link">&para;</a></h3>
 <p>The following checks are used by several of the above procedures. They may be tested separately or as dependencies of <a class="mkdocs-ezglossary-link"
-    id="ad6ec8a657f4bc6481db9ccbda73132b"
+    id="0d169ffdbc0d0ebd8788b89041e3f4e6"
     title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="0bc554df77639d84d247b4d7f4847c74"
+    id="705fcc95e55034d6c3d89ea31d682b1a"
     title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>, and <a class="mkdocs-ezglossary-link"
-    id="55e04fd2866a093e8d7ed2c977672827"
+    id="8e07d261978b0ecceea7fd45e135296f"
     title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -2256,7 +2256,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
 <tr>
 <td>WRPAC authentication</td>
 <td>Authentication failed</td>
-<td>Blocking and non-overridable. Authorization must not start; WRPAC authentication is a precondition to the authorization process.</td>
+<td>Blocking and non-overridable. The Authorization Process must not start; WRPAC authentication is a precondition to the Authorization Process.</td>
 </tr>
 <tr>
 <td>WRPRC validation</td>
@@ -2319,7 +2319,7 @@ TA --&gt; Use[Use trust anchor in certificate/path validation]</code></pre>
 <tr>
 <td>TC-PRES-001</td>
 <td>AUTHZ-GEN-01 / AUTHZ-GEN-02 authentication prerequisite</td>
-<td>Keep WRPAC validation as a precondition; if authentication fails, authorization does not start.</td>
+<td>Keep WRPAC validation as a precondition; if authentication fails, the Authorization Process does not start.</td>
 </tr>
 <tr>
 <td>TC-PRES-002</td>
