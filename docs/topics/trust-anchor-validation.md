@@ -1,81 +1,119 @@
-The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of <artifacts:Trusted List (TL)|Trusted Lists>, which serve as the authoritative sources for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is a self-signed X.509 certificate containing the names and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)> to validate an artifact or <credentials:Attestation>.
+The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of <artifacts:List of Trusted Entities (LoTE)|LoTEs>, which are the authoritative sources for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is an X.509 certificate containing the name and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)> to validate an artifact or <credentials:Attestation>.
 
-Depending on the artifact or <credentials:Attestation> being verified, the validating Entity SHALL fetch, download, and validate the appropriate <artifacts:Trusted List (TL)|Trusted List>:
+!!! choice
 
-1. *<artifacts:List of Trusted Entities (LoTE)>*, used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
+    Within the APTITUDE profiles, all trust anchors for APTITUDE entities SHALL be obtained from the applicable dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. This applies to <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Wallet Provider (WP)|Wallet Providers>, Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)>, <roles:PuB-EAA Provider|PuB-EAA Providers>, <roles:Qualified Electronic Attestation of Attributes (QEAA) Provider|QEAA Providers>, <roles:Electronic Attestation of Attributes (EAA) Provider|EAA Providers>, and <roles:Registrar|Registrars> and their <components:Register|Registers>.
 
-   - **Infrastructure Certificates**: <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> or <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
-   - **<artifacts:Wallet Unit Attestation (WUA)|Wallet Unit Attestations (WUAs)>**: <artifacts:Key Attestation (KA)> or <artifacts:Wallet Instance Attestation (WIA)>.
-   - **PID Signatures**: <credentials:Person Identification Data (PID)>.
-   - **<roles:Registrar>-signed artifacts**: <components:Register> informations.
+Depending on the artifact or <credentials:Attestation> being verified, the validating Entity SHALL fetch, download, and validate the dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE> for the required entity type. The LoTE is used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating:
 
-2. *<artifacts:Trusted List (TL)|Trusted Lists>* (<artifacts:Trusted List (TL)|TL>); used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating the following:
+1. **Infrastructure certificates**: <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>.
+2. **<artifacts:Wallet Unit Attestation (WUA)|Wallet Unit Attestations (WUAs)>**: <artifacts:Key Attestation (KA)> and <artifacts:Wallet Instance Attestation (WIA)>.
+3. **PID signatures**: <credentials:Person Identification Data (PID)>.
+4. **Attestation signatures and seals**: <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAAs>, <credentials:Electronic Attestation of Attributes (EAA)|EAAs>, and <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAAs>.
+5. **Artifacts and Attestations status and revocation information**: <artifacts:Status List Token> for Attestation, WIA and KA, and WRPRC status information; WRPAC, Sign/Seal certificate status information via CRL or OCSP.
+6. **Registrar-signed artifacts**: <components:Register> information.
 
-   - seal or signature on a <credentials:Qualified Electronic Attestation of Attributes (QEAA)>; or
-   - seal or signature on a <credentials:Public Electronic Attestation of Attributes (PuB-EAA)>.
+!!! choice
 
-To verify the authenticity of the retrieved <artifacts:Trusted List (TL)|Trusted Lists>, the Entity SHALL perform the following validations:
+    Within the APTITUDE profiles, the trust anchors for <roles:Qualified Electronic Attestation of Attributes (QEAA) Provider|QEAA Providers> and <roles:Electronic Attestation of Attributes (EAA) Provider|EAA Providers> SHALL be retrieved from and validated against their dedicated QEAA Provider and EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE>, respectively. The same LoTE validation process SHALL be used for these trust anchors as for all other APTITUDE entities.
 
-- [LoTE Validation](#list-of-trusted-entities-validation-process): Validate the digital signature of the <artifacts:List of Trusted Entities (LoTE)|LoTE> by verifying it against the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> certificate. This certificate is authenticated via the <artifacts:Official Journal of the European Union (OJEU)>.
-- [TL Validation](#trusted-list-validation): Validate the digital signature of the <artifacts:Trusted List (TL)|TL> by verifying it against the corresponding Member State public keys published in the <artifacts:List Of Trusted Lists (LOTL)>. The <artifacts:List Of Trusted Lists (LOTL)|LOTL> itself is authenticated by validating its digital signature against the <artifacts:Official Journal of the European Union (OJEU)>.
+To verify the authenticity of a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE>, the validating Entity SHALL:
 
-To support continuous key rotation, both artifacts implement a pivoting mechanism. This ensures that an Entity possessing the last known valid version can reliably discover the location of the next version and validate it using the unbroken chain of trust rooted in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>.
+- obtain the location and authorized signing certificate set for the requested LoTE type from the Official Journal of APTITUDE (OJA);
+- verify the LoTE signature or seal using the format-specific procedure and bind the signer to the certificate set published in the OJA;
+- validate the LoTE structure, requested LoTE type, freshness, and any authenticated pivot history.
 
 ### List of Trusted Entities Validation
 
-This section defines the validation of the EU-level <artifacts:List of Trusted Entities (LoTE)>. The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a digitally signed/sealed artifact (JWT format) containing metadata and public keys for entities operating at the EU level.
+This section defines the validation of a <artifacts:List of Trusted Entities (LoTE)|LoTE>. A LoTE is a digitally signed or sealed JSON or XML artifact containing metadata and public keys for entities operating in the APTITUDE ecosystem.
 
-Prior to validating the <artifacts:List of Trusted Entities (LoTE)|LoTE>, the <components:Wallet Unit> SHALL download the <artifacts:List of Trusted Entities (LoTE)|LoTE> from the protected location (URI) published in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>.
+Before validating a <artifacts:List of Trusted Entities (LoTE)|LoTE>, the <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> SHALL select the required LoTE type and obtain its type-specific location and authorized signing certificate set from the OJA. The LoTE SHALL be downloaded from the location published for that type.
 
 #### List of Trusted Entities Retrieval and Validation Sequence Diagram
 
 ```mermaid
 sequenceDiagram
   participant Client as Wallet/WRP
-  participant EU_API as EU LoTE Distribution Point
+  participant OJA as Official Journal of APTITUDE
+  participant Distribution as LoTE Distribution Point
 
-  Client->>EU_API: Request LoTE (URL from OJEU or Bookmark)
-  EU_API-->>Client: Return LoTE (JWT)
-  Client->>Client: 1. Pivot Discovery (Find path to Trust Anchor)
-  Client->>Client: 2. Validate Trust Chain (OJEU -> Pivot n ... -> LoTE)
-  Client->>Client: 3. Parse Payload for Target Entity
+  Client->>OJA: Request discovery for required LoTE type
+  OJA-->>Client: Return type-specific location and signer certificates
+  Client->>Distribution: Request LoTE at OJA-published location
+  Distribution-->>Client: Return JSON/JWT or XML/XAdES LoTE
+  Client->>Client: Verify format-specific signature and OJA binding
+  Client->>Client: Validate schema and requested LoTE type
+  Client->>Client: Discover and validate authenticated pivots
+  Client->>Client: Extract trust anchors for target entity
 ```
 
 #### List of Trusted Entities Validation Process
 
-The validator initializes the following variables as described in [ETSI TS 119 615].
+The validator initializes the following variables:
 
 **Input Variables**:
 
-- `OJEU-Loc`: URI of the latest (known) <artifacts:Official Journal of the European Union (OJEU)|OJEU> publication.
-- `OJEU-LoTE-Loc`: URI of the last processed <artifacts:List of Trusted Entities (LoTE)|LoTE>. Defaults to the value in `OJEU-Loc`.
-- `OJEU-LoTE-Certs-Set`: The set of <artifacts:Trust Anchor> certificates from the `OJEU-Loc` publication.
-- `LoTE`: The <artifacts:List of Trusted Entities (LoTE)|LoTE> JWT currently being processed. Initialized as NULL.
-- `LoTE-Signer-Cert`: The certificate extracted from the x5c header parameter of the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
-- `LoTESO-Cert`: Temporary variable for the Scheme Operator certificate being validated. Initialized as NULL.
-- `LoTESO-Certs-Set`: Trusted certificates extracted from the `PointersToOtherLoTE` claim (`SchemeTerritory` `EU`) of a <artifacts:List of Trusted Entities (LoTE)|LoTE> or Pivot. Initialized as NULL.
+- `Requested-LoTE-Type`: The LoTE type required for the artifact or <credentials:Attestation> being validated.
+- `OJA-Loc`: URI of the latest known OJA publication for the requested LoTE type.
+- `OJA-LoTE-Loc`: URI of the last processed LoTE instance for the requested type. It is initialized to the location published in the OJA.
+- `OJA-LoTE-Certs-Set`: The set of certificates authorized by the OJA to verify the requested LoTE type.
+- `LoTE`: The JSON/JWT or XML/XAdES LoTE currently being processed. Initialized as `NULL`.
+- `LoTE-Format`: The format of `LoTE`, either `JSON` or `XML`.
+- `LoTE-Signer-Cert`: The certificate used to verify the signature or seal on `LoTE`. Initialized as `NULL`.
+- `LoTESO-Cert`: The signer certificate of the current LoTE or pivot. Initialized as `NULL`.
+- `LoTESO-Certs-Set`: Certificates authorized by an authenticated `PointersToOtherLoTE` entry for the next pivot. Initialized as `NULL`.
 
 **Output Variables**:
 
-- `Authenticated-LoTE`: The validated JSON payload.
-- `LoTE-Status`: The validation result (e.g., `LoTE_VERIFICATION_PASSED`).
-- `LoTE-Sub-Status`: detailed error codes.
+- `Authenticated-LoTE`: The validated LoTE payload.
+- `LoTE-Status`: The validation result, for example `LoTE_VERIFICATION_PASSED`.
+- `LoTE-Sub-Status`: Detailed error codes supplementing `LoTE-Status`.
 
-**Validation Steps**:
+##### JSON LoTE Signature Verification and OJA Binding
+
+This procedure applies when the LoTE is JSON formatted and uses the Compact JAdES Baseline B profile. In the APTITUDE profile, `x5t#S256` is the selected certificate-reference implementation choice for this format. A Compact JAdES signature is a compact JWS; when the JWT representation is selected, the decoded payload SHALL contain the private `LoTE` claim defined in the Compact JAdES profile.
+
+The validator SHALL perform the following operations before using any payload value for pivot discovery or trust-anchor extraction:
+
+1. Parse the JWS Compact Serialization into its protected header, payload, and signature parts. The protected header SHALL contain `alg`, `iat`, and `x5t#S256`; an algorithm value of `none` SHALL be rejected.
+2. Decode `x5t#S256` from Base64url and compute the SHA-256 digest of the DER encoding of each certificate in the authorized certificate set. Exactly one certificate in `OJA-LoTE-Certs-Set` SHALL match the value. Set that certificate as `LoTE-Signer-Cert`.
+3. Verify the JWS signature over the JWS Signing Input using the public key in `LoTE-Signer-Cert`.
+4. Decode the payload. If the JWT representation is selected, require the private `LoTE` claim. Validate the LoTE object against `LoTE_Payload_Json_schema.yaml`; otherwise validate the JSON payload against the applicable JSON LoTE schema.
+5. Confirm that the `LoTEType` in the authenticated payload equals `Requested-LoTE-Type` and that the `DistributionPoints` value is the endpoint published by the OJA for that type.
+
+If any operation fails, validation SHALL stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and the applicable signature, certificate-binding, format, or type sub-status.
+
+##### XML LoTE Signature Verification and OJA Binding
+
+This procedure applies when the LoTE is XML formatted and uses XAdES Baseline B. XAdES Baseline B is specified by [ETSI EN 319 132-1]; [ETSI EN 319 132-2] defines extended XAdES signatures and is not the governing specification for the Baseline B profile.
+
+The validator SHALL perform the following operations before using any LoTE value for pivot discovery or trust-anchor extraction:
+
+1. Validate the XML document against the applicable LoTE XML schema and locate the enveloped `ds:Signature` and its `xades:QualifyingProperties`.
+2. Validate the XML signature references, including the reference to the LoTE document with `URI=""`, the enveloped-signature transform, and exclusive XML canonicalization. Validate the reference to `xades:SignedProperties` with `Type="http://uri.etsi.org/01903#SignedProperties"`.
+3. Extract the signing certificate from `ds:KeyInfo/ds:X509Data/ds:X509Certificate`. The first `xades:SigningCertificateV2/xades:Cert` SHALL contain the digest of the DER encoding of this certificate. The digest SHALL use SHA-256 and the `DigestValue` SHALL use the XML signature Base64 encoding.
+4. Compare the extracted certificate, by exact DER certificate identity, with the certificates in `OJA-LoTE-Certs-Set`. Set the matching certificate as `LoTE-Signer-Cert`.
+5. Verify the XML signature using `LoTE-Signer-Cert`, including the signed properties and all signed LoTE data objects.
+6. Confirm that the LoTE type in the authenticated XML document equals `Requested-LoTE-Type` and that its distribution point is the endpoint published by the OJA for that type.
+
+If any operation fails, validation SHALL stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and the applicable signature, certificate-binding, format, or type sub-status. XAdES `SigningCertificateV2` is not by itself a trust anchor; the exact certificate match to the OJA certificate set is required.
+
+##### LoTE Validation Operations
+
 The validation SHALL perform the following steps:
 
-1. (Initialization) Download the JWT file from `OJEU-LoTE-Loc` and assign it to `LoTE`.
-2. (Parsing) Extract the first certificate from the `x5c` header of `LoTE` and assign it to `LoTE-Signer-Cert`.
-3. (Pivot Discovery) Iterate through the `uriValue` claims in the `SchemeInformationURI` object. Count the number of valid URIs found before encountering the URI matching `OJEU-Loc`. Let $n$ be that count.
-    - If no URI matches `OJEU-Loc`: Validation SHALL fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and `LoTE-Sub-Status` set to `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE`. (This implies a Trust Anchor migration is required).
-4. (<artifacts:List of Trusted Entities (LoTE)|LoTE> Location Conflict) Check the condition: `OJEU-LoTE-Loc != LoTELocation` AND `LoTE != Content at LoTELocation`.
+1. (Initialization) Select the OJA record for `Requested-LoTE-Type`, download the JSON/JWT or XML/XAdES file from `OJA-LoTE-Loc`, and assign it to `LoTE`.
+2. (Parsing) Set `LoTE-Format` to `JSON` or `XML`. For JSON, resolve `LoTE-Signer-Cert` by matching the protected `x5t#S256` value against the DER SHA-256 digests of the certificates in `OJA-LoTE-Certs-Set`. For XML, extract the signing certificate from `ds:KeyInfo/ds:X509Data/ds:X509Certificate` and match its `xades:SigningCertificateV2` DER digest against `OJA-LoTE-Certs-Set`.
+3. (Pivot Discovery) Iterate through the `uriValue` claims in the `SchemeInformationURI` object. Count the number of valid URIs found before encountering the URI matching `OJA-Loc`. Let $n$ be that count.
+    - If no URI matches `OJA-Loc`: Validation SHALL fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and `LoTE-Sub-Status` set to `OJA_LOCATION_INPUT_NOT_MATCHING_OJA_LOCATION_IN_LoTE`. (This implies a Trust Anchor migration is required).
+4. (<artifacts:List of Trusted Entities (LoTE)|LoTE> Location Conflict) Check the condition: `OJA-LoTE-Loc != LoTELocation` AND `LoTE != Content at LoTELocation`.
     - (`LoTELocation` is the URI in the `PointersToOtherLoTE` claim of `LoTE` with `SchemeTerritory` = `EU`).
     - If `TRUE`: Validation SHALL stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and `LoTE-Sub-Status` set to `LoTE_FILE_CONFLICT`.
     - If `FALSE`, proceed to the next step.
-5. (<artifacts:List of Trusted Entities (LoTE)|LoTE> Freshness) Check the condition: `OJEU-LoTE-Loc == LoTELocation` AND `LoTE !=` Content at `LoTELocation`.
-    - If `TRUE`: Set `OJEU-LoTE-Loc` to `LoTELocation` and restart from Step 1.
+5. (<artifacts:List of Trusted Entities (LoTE)|LoTE> Freshness) Check the condition: `OJA-LoTE-Loc == LoTELocation` AND `LoTE !=` Content at `LoTELocation`.
+    - If `TRUE`: Set `OJA-LoTE-Loc` to `LoTELocation` and restart from Step 1.
     - If `FALSE`, proceed to the next step.
-6. (Digital Signature Validation) Validate the cryptographic signature of the current `LoTE` using the public key from `LoTE-Signer-Cert`.
+6. (Digital Signature Validation) Validate the cryptographic signature of the current `LoTE` using the format-specific Compact JAdES or XAdES Baseline B procedure and the public key from `LoTE-Signer-Cert`.
     - If validation fails: Stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and `LoTE-Sub-Status` set to `LoTE_SIGNATURE_VERIFICATION_FAILED`.
     - If successful:
         - Set `LoTESO-Cert` to `LoTE-Signer-Cert`.
@@ -85,26 +123,29 @@ The validation SHALL perform the following steps:
     - Case $n>0$ (History Chain):
         - Iterate $i$ from 1 to $n$ (from most recent Pivot to oldest). Let `Pivot` be the file downloaded from the $i$-th URI.
         - (Link Check) Set `Pivot-Certs-Set` to the certificates in the `PointersToOtherLoTE` claim (territory `EU`) of `Pivot`. If `LoTESO-Cert` (the signer of the previous file in the chain) is not in `Pivot-Certs-Set`, validation SHALL fail with `LoTE-Sub-Status` set to `PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
-        - (Update Signer) Set `LoTESO-Cert` to the first certificate in the `x5c` header parameter of `Pivot`.
-        - (Verify Signature) Validate the signature of `Pivot` using `LoTESO-Cert`. If it fails, validation SHALL fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED`, and `LoTE-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
+        - (Update Signer) For JSON `Pivot`, resolve `LoTESO-Cert` by matching its protected `x5t#S256` value against `Pivot-Certs-Set`. For XML `Pivot`, extract the signing certificate from `ds:KeyInfo/ds:X509Data/ds:X509Certificate` and match its `xades:SigningCertificateV2` DER digest against `Pivot-Certs-Set`.
+        - (Verify Signature) Validate the signature of `Pivot` using the applicable Compact JAdES or XAdES Baseline B procedure and `LoTESO-Cert`. If it fails, validation SHALL fail with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED`, and `LoTE-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
         - The loop continues, walking backwards until LoTESO-Cert represents the signer of the oldest Pivot.
-8. (<artifacts:Trust Anchor> Validation) Verify the end of the chain. If `LoTESO-Cert` (from the last Pivot or current <artifacts:List of Trusted Entities (LoTE)|LoTE>) is not in `OJEU-LoTE-Certs-Set` (the <artifacts:Trust Anchor>), validation SHALL fail with `LoTE-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
+8. (<artifacts:Trust Anchor> Validation) Verify the end of the chain. If `LoTESO-Cert` (from the last Pivot or current <artifacts:List of Trusted Entities (LoTE)|LoTE>) is not in `OJA-LoTE-Certs-Set` (the <artifacts:Trust Anchor>), validation SHALL fail with `LoTE-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJA`.
 9. (Expiration) If current time > `NextUpdate` claim of `LoTE`, validation SHALL fail.
-10. (Success) Set `Authenticated-LoTE` to `LoTE`, `LoTE-Status` to `LoTE_VERIFICATION_PASSED`.
-11. (Update Bookmark) If `OJEU-LoTE-Loc` does not match the `LoTELocation` in `Authenticated-LoTE` (territory `EU`), update `OJEU-LoTE-Loc` to that value.
+10. (Success) Set `Authenticated-LoTE` to `LoTE`, `LoTE-Status` to `LoTE_VERIFICATION_PASSED`, and `LoTE-Sub-Status` to an empty list.
+11. (Update Bookmark) If `OJA-LoTE-Loc` does not match the `LoTELocation` in `Authenticated-LoTE` (territory `EU`), update `OJA-LoTE-Loc` to that value.
 12. (Update Anchor) [Caution: This step modifies the Root of Trust configuration]
-    - If `OJEU-Loc` does not match the first URI in `SchemeInformationURI`, update `OJEU-LoTE-Loc`.
-    - Update `OJEU-LoTE-Certs-Set` according to the new <artifacts:Trust Anchor> either in `Authenticated-LoTE` or from a new <artifacts:Official Journal of the European Union (OJEU)|OJEU> publication.
+    - If `OJA-Loc` does not match the first URI in `SchemeInformationURI`, update `OJA-LoTE-Loc`.
+    - Update `OJA-LoTE-Certs-Set` according to the new <artifacts:Trust Anchor> from a new OJA publication for the requested LoTE type.
+
+!!! warning
+
+    The LoTE validation process is mutuated from the [ETSI TS 119 615] standard, and adapted to the APTITUDE profiles context.
 
 **Remarks**:
 
-- Steps 4, 5 and 11 allow modifying the location of the <artifacts:List of Trusted Entities (LoTE)|LoTE> file without changing the <artifacts:Trust Anchor>, as long as the both the old and the new location have the same content (otherwise the validation fails with `LoTE_FILE_CONFLICT` status). This allows the <artifacts:List of Trusted Entities (LoTE)|LoTE> to be retrieved from different locations (e.g., mirrors) without affecting the <artifacts:Trust Anchor> validation as long as the content is the same.
-- In case of `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LoTE` error, it is likely that the <artifacts:Official Journal of the European Union (OJEU)|OJEU> publication has been updated with a new location for the <artifacts:List of Trusted Entities (LoTE)|LoTE>, and the validation process needs to be restarted with the new location.
-- In step 8, the validator established the binding of the signer certificate of the `LoTE` XML with the certificate referenced in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>, effectively using the latter as a <artifacts:Trust Anchor>.
+- The OJA record is type-specific: a validator SHALL NOT use the endpoint or certificate set published for one LoTE type to validate another LoTE type.
+- The JSON `x5t#S256` value binds the JWS signer to an OJA-published certificate by the SHA-256 digest of its DER encoding. The XML `SigningCertificateV2` value provides the corresponding XAdES certificate digest, and the validator additionally performs exact certificate matching against the OJA certificate set.
+- Payload fields are not trusted for pivot discovery, distribution-point changes, or trust-anchor extraction until the format-specific signature and OJA certificate binding have succeeded.
+- A cached LoTE and its OJA-authorized signer certificate MAY be reused only within the caching rules specified in the LoTE profile; the cache SHALL be refreshed no later than `NextUpdate` and when the OJA record changes.
 
-To validate a <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAA> <artifacts:List of Trusted Entities (LoTE)|LoTE> in XML format (XAdES) containing the sought <artifacts:Trust Anchor>, the <components:Wallet Unit> or WRP SHALL perform the same steps as described in [List of Trusted Lists Validation Process](#list-of-trusted-lists-validation-process) for the <artifacts:List of Trusted Entities (LoTE)|LoTE>, with the following difference: the variables and status codes used throughout have `LoTE` in place of `LOTL`.
-
-Below is a flowchart summarizing the above steps for the validation of the <artifacts:List of Trusted Entities (LoTE)|LoTE>:
+Below is a flowchart summarizing the validation of a <artifacts:List of Trusted Entities (LoTE)|LoTE>:
 
 ```mermaid
 flowchart TD
@@ -114,18 +155,18 @@ flowchart TD
     classDef process fill:#fff,stroke:#333,stroke-width:1px;
     classDef decision fill:#e7f3fe,stroke:#0056b3,stroke-width:1px;
 
-    Start([Start LoTE JWT Validation]) --> Init[1. Init & Download LoTE<br/>from OJEU-LoTE-Loc]:::process
+    Start([Start LoTE JWT Validation]) --> Init[1. Init & Download LoTE<br/>from OJA-LoTE-Loc]:::process
     Init --> Parse[2. Parse Header:<br/>Extract Signer Cert x5c]:::process
 
     %% Step 3: Pivot Discovery
-    Parse --> S3{3. Found OJEU-Loc URI in history?}:::decision
-    S3 -- "No (NotFound)" --> F3[Fail: OJEU Loc Not Found<br/>Trust Anchor Migration Needed]:::failure
+    Parse --> S3{3. Found OJA-Loc URI in history?}:::decision
+    S3 -- "No (NotFound)" --> F3[Fail: OJA Loc Not Found<br/>Trust Anchor Migration Needed]:::failure
 
     %% Steps 4 & 5: Location & Freshness Checks
     S3 -- "Yes (Set n)" --> S4{4. Location Conflict?<br/>Old-LoTE-Loc != New-LoTE-Loc AND <br/> Old-LoTE != New-LoTE}:::decision
     S4 -- Yes --> F4[Fail: File Conflict / Spoofing]:::failure
     S4 -- No --> S5{5. Freshness Check<br/>Old-LoTE-Loc == New-LoTE-Loc AND <br/> Old-LoTE != New-LoTE}:::decision
-    S5 -- "Yes (New Version Detected)" --> UpdateLoc[Update OJEU-LoTE-Loc]:::warning
+    S5 -- "Yes (New Version Detected)" --> UpdateLoc[Update OJA-LoTE-Loc]:::warning
     UpdateLoc --> Init
     S5 -- "No (Current is Fresh)" --> S6
 
@@ -153,8 +194,8 @@ flowchart TD
     LoopNext -- No --> S8
 
     %% Step 8: Trust Anchor Validation
-    S8{8. Trust Anchor Validation:<br/>Is Final Signer in OJEU-LoTE-Certs-Set?}:::decision
-    S8 -- No --> F8[Fail: Not authenticated by OJEU]:::failure
+    S8{8. Trust Anchor Validation:<br/>Is Final Signer in OJA-LoTE-Certs-Set?}:::decision
+    S8 -- No --> F8[Fail: Not authenticated by OJA]:::failure
 
     %% Step 9: Expiration
     S8 -- Yes --> S9{9. Expiration Check:<br/>Now > NextUpdate?}:::decision
@@ -164,8 +205,8 @@ flowchart TD
     S9 -- No --> Success[10. Validation PASSED]:::success
 
     %% Steps 11 & 12: Updates
-    Success --> UpdateBM[11. Update Local Bookmark OJEU-LoTE-Loc<br/>if changed in payload]:::process
-    UpdateBM --> UpdateTA[12. Update Trust Anchor <br/> Config if OJEU moved]:::warning
+    Success --> UpdateBM[11. Update Local Bookmark OJA-LoTE-Loc<br/>if changed in payload]:::process
+    UpdateBM --> UpdateTA[12. Update Trust Anchor Config]:::warning
     UpdateTA --> End([End Process])
 
     %% Consolidation of failure endpoints
@@ -176,172 +217,4 @@ flowchart TD
     FSigPivot --> EndFail
     F8 --> EndFail
     F9 --> EndFail
-```
-
-### Trusted List Validation
-
-This section defines the validation of <artifacts:Trusted List (TL)|Trusted Lists (TLs)>. The <artifacts:Trusted List (TL)|TL> is an XML artifact signed by a Member State Scheme Operator. In order to validate the <artifacts:Trusted List (TL)|TL>, the <components:Wallet Unit> or WRP uses the following validation hierarchy:
-
-1. The <components:Wallet Instance|Wallet>/<roles:Wallet-Relying Party (WRP)|WRP> SHALL first validate the EU List of <artifacts:Trusted List (TL)|Trusted Lists> (<artifacts:List Of Trusted Lists (LOTL)|LOTL>).
-2. The <components:Wallet Instance|Wallet>/<roles:Wallet-Relying Party (WRP)|WRP> uses the authenticated <artifacts:List Of Trusted Lists (LOTL)|LOTL> to discover and validate the <artifacts:Trusted List (TL)|TL>.
-
-#### European Union Member State Trusted List Retrieval and Validation Sequence Diagram
-
-```mermaid
-sequenceDiagram
-    participant Client
-    participant EU_API as EU LOTL Distribution Point
-    participant MS_Repo as MS TL Distribution Point
-
-    Client->>EU_API: Request LOTL (URL from OJEU) 
-    EU_API-->>Client: Returns EU List of Trusted Lists (XML)
-    Client->>Client: Validate LOTL
-    Client->>Client: Parse LOTL to find Target MS TL Pointer & Signing Keys
-    
-    Client->>MS_Repo: Request TL (URL from LOTL)
-    MS_Repo-->>Client: Returns Trusted List (XML)
-    Client->>Client: Validate TL Signature using LOTL certificate
-```
-
-In the diagram above, a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> downloads and validates a <artifacts:Trusted List (TL)|TL> by performing the following steps:
-
-1. requests the <artifacts:List Of Trusted Lists (LOTL)|LOTL> at the location indicated by the URL published in the <artifacts:Official Journal of the European Union (OJEU)|OJEU>;
-2. the <artifacts:List Of Trusted Lists (LOTL)|LOTL> distribution point returns the <artifacts:List Of Trusted Lists (LOTL)|LOTL> XML document;
-3. validates the signature/seal on the downloaded <artifacts:List Of Trusted Lists (LOTL)|LOTL> and verifies its validity;
-4. parses the <artifacts:List Of Trusted Lists (LOTL)|LOTL> to retrieve the location (`TSLLocation`) and the associated validation certificates (`DigitalId`) for the target Member State's <artifacts:Trusted List (TL)|Trusted List> Service Operator.
-5. requests the <artifacts:Trusted List (TL)|TL> at the location indicated by the `TSLLocation` field in the <artifacts:List Of Trusted Lists (LOTL)|LOTL>;
-6. the <artifacts:Trusted List (TL)|TL> distribution point returns the <artifacts:Trusted List (TL)|TL> XML document;
-7. validates the signature/seal on the downloaded MS <artifacts:Trusted List (TL)|TL> using the certificates obtained from the <artifacts:List Of Trusted Lists (LOTL)|LOTL> in Step 4.
-8. parses the <artifacts:Trusted List (TL)|TL> to retrieve the metadata and public key certificates of the relevant entities (e.g., <roles:QEAA Provider|QEAA Providers>, <roles:PuB-EAA Provider|Pub-EAA Providers>) and use them as trustworthy Trust Anchors for verifying signatures/seals on <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAAs> or <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAAs>.
-
-If any of the above verifications fail, the validation process SHALL be aborted and the <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be considered invalid. If all verifications succeed, the <components:Wallet Unit> or WRP can parse the <artifacts:Trusted List (TL)|TL> to retrieve the metadata and public key certificates of the relevant entities (i.e., <roles:QEAA Provider|QEAA Providers> or <roles:PuB-EAA Provider|Pub-EAA Providers>) and use them as trustworthy <artifacts:Trust Anchor|Trust Anchors> for verifying signatures/seals on <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAAs> or <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAAs>.
-
-#### European Union Member State Trusted List Validation Process
-
-To validate a <artifacts:Trusted List (TL)|TL> containing the sought <artifacts:Trust Anchor>, the <components:Wallet Unit> or <roles:Relying Party (RP)|Relying Party> SHALL validate both the <artifacts:List Of Trusted Lists (LOTL)|LOTL> and the <artifacts:Trusted List (TL)|TL>. The validation of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> is a prerequisite for the validation of the <artifacts:Trusted List (TL)|TL>, as the <artifacts:Trust Anchor> for validating the <artifacts:Trusted List (TL)|TL> is obtained from the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
-
-##### List of Trusted Lists Validation Process
-
-**Remarks**: The logic mirrors the <artifacts:List of Trusted Entities (LoTE)|LoTE> validation but uses XML signatures and <artifacts:Trusted List (TL)|TL>-specific elements. The validation process is as described in [ETSI TS 119 615].
-
-- The XML Pivot logic (Step 6) includes a "Self-Consistency Check" not present in the JWT logic due to the fact that the `Signature` element is not integrity protected.
-
-The <components:Wallet Unit> or <roles:Relying Party (RP)|Relying Party> initializes the following input variables for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> validation:
-
-- `OJEU-Loc`: URI value referencing the latest publication of the <artifacts:Official Journal of the European Union (OJEU)|Official Journal of the European Union> (<artifacts:Official Journal of the European Union (OJEU)|OJEU>) related to data on <artifacts:Trusted List (TL)|TL>.
-- `OJEU-LOTL-Loc`: URI value representing the location where the last processed instance of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> XML file is available. If not available, this is initialized from the `OJEU-Loc` publication.
-- `OJEU-LOTL-Certs-Set`: The set of certificates used to ensure the authenticity and integrity of the <artifacts:List Of Trusted Lists (LOTL)|LOTL>. Initialized from the `OJEU-Loc` publication.
-- `LOTL`: The XML file of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> currently being processed. Initialized as `null`.
-- `LOTL-Signer-Cert`: Extracted from `ds:X509Certificate` in the <artifacts:List Of Trusted Lists (LOTL)|LOTL> signature. Initialized as `null`.
-- `LOTLSO-Cert`: The certificate of the <roles:List of Trusted Lists Scheme Operator (LOTLSO)> extracted from the `KeyInfo` element of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> signature. Initialized as `null`.
-- `LOTLSO-Cert-Sets`: The set of trusted certificates extracted from the `PointersToOtherTSL` element (with `SchemeTerritory` = `EU`) within a <artifacts:List Of Trusted Lists (LOTL)|LOTL> or Pivot file. Initialized as `null`.
-
-The operations described below produce the following output variables:
-
-- `Authenticated-LOTL`: The authenticated XML version of the current instance of the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
-- `LOTL-Status`: The status indication of the process of authenticating the current instance of the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
-- `LOTL-Sub-Status`: A list of indications supplementing <artifacts:List Of Trusted Lists (LOTL)|LOTL>-Status indication of the process of authenticating the current instance of the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
-
-The validation operations for the <artifacts:List Of Trusted Lists (LOTL)|LOTL> SHALL perform the following steps (see [ETSI TS 119 615, clause 4.1.4] for reference):
-
-1. [PRO-4.1.4-1] (Initialization) Set `LOTL` to the XML file downloaded from `OJEU-LOTL-Loc`.
-2. [PRO-4.1.4-2] (Parsing) Set `LOTL-Signer-Cert` to the certificate extracted from the `ds:X509Certificate` element within the `ds:Signature` of the `LOTL`.
-3. [PRO-4.1.4-3, PRO-4.1.4-4] (Pivot Discovery) Iterate through the URIs in the `SchemeInformationURI` element. Count the number of successive valid XML URIs found before encountering the URI matching `OJEU-Loc`. Let $n$ be that count. If no URI matches `OJEU-Loc`, the validation SHALL fail with `LOTL-Status` set to `LOTL_VERIFICATION_FAILED` and `LOTL-Sub-Status` set to `OJEU_LOCATION_INPUT_NOT_MATCHING_OJEU_LOCATION_IN_LOTL`.
-4. [PRO-4.1.4-5] (<artifacts:List Of Trusted Lists (LOTL)|LOTL> Location Conflict) Check the condition: `OJEU-LOTL-Loc != TSLLocation` AND `LOTL != Content at TSLLocation`.
-    - (`TSLLocation` is the URI in the `PointersToOtherTSL` element of `LOTL` with `SchemeTerritory` = `EU`).
-    - If TRUE: Validation SHALL stop with `LOTL-Status` set to `LOTL_VERIFICATION_FAILED` and `LOTL-Sub-Status` set to `LOTL_FILE_CONFLICT`.
-    - If FALSE: Proceed to the next step.
-5. [PRO-4.1.4-6] (<artifacts:List Of Trusted Lists (LOTL)|LOTL> Freshness) Check the condition: `OJEU-LOTL-Loc == TSLLocation` AND `LOTL != Content at TSLLocation`.
-    - If TRUE: Set `OJEU-LOTL-Loc` to `TSLLocation` and restart from Step 1.
-    - If the result is `FALSE`, proceed to the next step.
-6. [PRO-4.1.4-7] Validate the digital signature of the current `LOTL` using the public key from `LOTL-Signer-Cert`.
-    - [PRO-4.1.4-8] If validation fails: Stop with `LOTL-Status` set to `LOTL_VERIFICATION_FAILED`.
-    - [PRO-4.1.4-9] If successful: Set `LOTLSO-Cert` to `LOTL-Signer-Cert`. Set `LOTLSO-Certs-Set` to the certificates found in the `PointersToOtherTSL` tuple (territory `EU`) of the current `LOTL`.
-7. (Intermediate Pivot Validation)
-    - [PRO-4.1.4-10] If $n = 0$ (No Pivots):
-        - If `LOTLSO-Cert` is not in `OJEU-LOTL-Certs-Set`, validation SHALL fail (Signer not authorized by <artifacts:Trust Anchor>). Otherwise, proceed to Step 8.
-    - [PRO-4.1.4-11] If $n > 0$ (History Chain):
-        - Iterate $i$ from 1 to $n$ (from most recent Pivot to oldest). Let `Pivot` be the file at the $i$-th URI.
-        - (Link Check) Set `Pivot-Certs-Set` to the certificates in the `PointersToOtherTSL` (territory `EU`) of `Pivot`. If `LOTLSO-Cert` (from the previous step) is not in `Pivot-Certs-Set`, validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
-        - (Extract Signer) Set `LOTLSO-Cert` to the certificate extracted from the signature of `Pivot`.
-        - (Self-Consistency Check) If `LOTLSO-Cert` is not in `Pivot-Certs-Set`, validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_i_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
-        - (Verify Signature) Validate the signature of `Pivot` using `LOTLSO-Cert`. If it fails, validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
-        - The loop continues with the new `LOTLSO-Cert` acting as the input for the next Pivot or the Anchor.
-8. [PRO-4.1.4-12] (<artifacts:Trust Anchor> Validation) If `LOTLSO-Cert` (from the last Pivot) is not in `OJEU-LOTL-Certs-Set` (the <artifacts:Trust Anchor>), validation SHALL fail with `LOTL-Sub-Status` set to `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJEU`.
-9. [PRO-4.1.4-13] (Expiration) If current time > `NextUpdate` of `LOTL`, validation SHALL fail with `LOTL-Sub-Status` set to `LOTL_NEXTUPDATE_PASSED`.
-10. [PRO-4.1.4-14, 15] (Success) Set `Authenticated-LOTL` to `LOTL`, `LOTL-Status` to `LOTL_VERIFICATION_PASSED`.
-11. [PRO-4.1.4-16] (Location Update) If `OJEU-LOTL-Loc` does not match the `TSLLocation` in `Authenticated-LOTL` (territory `EU`), update `OJEU-LOTL-Loc` to that value.
-12. [PRO-4.1.4-17] (Update Anchor) [Caution: This step modifies the Root of Trust configuration]
-    - If the `OJEU-Loc` does not match the URI to the first `SchemeInformationURI` tuple, set the `OJEU-Loc` variable to that URI.
-    - Update `OJEU-LOTL-Certs-Set` to the certificates found in `Authenticated-LOTL` (or from the new <artifacts:Official Journal of the European Union (OJEU)|OJEU> publication).
-
-##### European Union Member State Trusted List Validation Process
-
-The validation operations for the <artifacts:Trusted List (TL)|TL> SHALL perform the following steps (see [ETSI TS 119 615, clause 4.2.4] for reference).
-
-**Input variables**: [PRO-4.2.4-01, PRO-4.2.4-02]
-
-- `Authenticated-LOTL`: The authenticated XML version of the current instance of the <artifacts:List Of Trusted Lists (LOTL)|LOTL> obtained from the validation of the <artifacts:List Of Trusted Lists (LOTL)|LOTL>.
-- `EUTL-Status`: The XML file of the <artifacts:Trusted List (TL)|TL> currently being processed. This variable is initialized as `null`.
-- `EUTL-Sub-Status`: A list of indications supplementing `EUTL-Status` indication of the process of authenticating the current instance of the <artifacts:Trusted List (TL)|TL>.
-- `EUTL`: The XML file of the <artifacts:Trusted List (TL)|TL> currently being processed. This variable is initialized as `null`.
-- `EUTL-Certs-Set`: The full set of certificates used for ensuring authenticity and integrity of the <artifacts:Trusted List (TL)|TL>. This variable is initialized as `null`.
-- `EUTL-Signer-Cert`: The certificate extracted from the XML signature of the <artifacts:Trusted List (TL)|TL>. This variable is initialized as `null`.
-
-**Validation Steps**:
-
-1. [PRO-4.2.4-03] (Parsing) Parse the `Authenticated-LOTL` to find the `TSLLocation` field in the `PointersToOtherTSL` element with `SchemeTerritory` value matching the target Member State.
-2. [PRO-4.2.4-04] (<artifacts:Trusted List (TL)|TL> Download) Download the XML file from the `TSLLocation` found in the previous step and set the `EUTL` variable to the downloaded XML file.
-3. [PRO-4.2.4-05, PRO-4.2.4-06] (<artifacts:Trusted List (TL)|TL> Parsing) Parse the `Authenticated-LOTL` to find the `X509Certificates` tuple in the `ServiceDigitalIdentity` element of the `PointersToOtherTSL` element with `SchemeTerritory` value matching the target Member State, and set the `EUTL-Certs-Set` variable to the full set of certificates available in that tuple. The set the `EUTL-Signer-Cert` variable to the certificate extracted from the XML in the `ds:X509Certificate` element in the `ds:KeyInfo` element in the `Signature` element of the `EUTL`.
-4. [PRO-4.2.4-07, PRO-4.2.4-08, PRO-4.2.4-09] (<artifacts:Trusted List (TL)|TL> Integrity and Authenticity Validation)
-    - Validate the digital signature of the `EUTL` using the `EUTL-Signer-Cert`. If the signature validation fails, or it is undetermined, the validation SHALL fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, and `EUTL-Sub-Status` set to `EUTL_SIGNATURE_VERIFICATION_FAILED`.
-    - If the signature validation is successful, check that the `EUTL-Signer-Cert` is in the `EUTL-Certs-Set` (i.e., the signing certificate of the <artifacts:Trusted List (TL)|TL> has not been tampered with). If the check fails, the validation SHALL fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, `Authenticated-LOTL` set to `null`, and `EUTL-Sub-Status` set to `EUTLSO_SIGNER_CERT_NOT_AUTHENTICATED_BY_LOTL`.
-5. [PRO-4.2.4-10] (<artifacts:Trusted List (TL)|TL> Validity Check) Check the `NextUpdate` field in the `EUTL`.
-    - If the current date/time is greater than the `NextUpdate` value, the validation SHALL fail with `EUTL-Status` set to `EUTL_VERIFICATION_FAILED`, and `EUTL-Sub-Status` set to `WARNING_EUTL_NEXTUPDATE_PASSED`.
-6. [PRO-4.2.4-11, PRO-4.2.4-12] If all the above checks are successful, set `Authenticated-EUTL` to the value of the currently validated `EUTL`, `EUTL-Status` to `EUTL_VERIFICATION_PASSED`, and `EUTL-Sub-Status` to an empty list.
-
-Below is a flowchart summarizing the above steps for the validation of the <artifacts:Trusted List (TL)|TL>:
-
-```mermaid
-flowchart TD
-    Start([Start TL Validation]) --> Init[Initialize Variables:<br/>Authenticated-LOTL<br/>EUTL-Status = null<br/>EUTL = null<br/>EUTL-Sub-Status = null<br/>EUTL-Certs-Set = null<br/>EUTL-Signer-Cert = null]
-
-    %% Step 1: Parse LOTL for Location
-    Init --> Step1[Step 1: Parse Authenticated-LOTL<br/>Find TSLLocation for target Member State]
-    Step1 --> Step2[Step 2: Download TL<br/>Set EUTL = Downloaded XML]
-
-    %% Step 3: Parse Certs
-    Step2 --> Step3[Step 3: Extract Certificates<br/>1. Set EUTL-Certs-Set from LOTL<br/>2. Set EUTL-Signer-Cert from EUTL Signature]
-
-    %% Step 4: Integrity & Authenticity
-    Step3 --> Step4_Sig{Step 4a: Validate EUTL Signature<br/>using EUTL-Signer-Cert}
-    
-    %% 4a Failure
-    Step4_Sig -- Invalid/Undetermined --> FailSig([FAILED<br/>Status: EUTL_VERIFICATION_FAILED])
-
-    %% 4b Trust Check
-    Step4_Sig -- Valid --> Step4_Trust{Step 4b: Trust Check<br/>Is EUTL-Signer-Cert in<br/>EUTL-Certs-Set?}
-
-    %% 4b Failure
-    Step4_Trust -- No --> FailTrust([FAILED<br/>Status: EUTL_VERIFICATION_FAILED])
-
-    %% Step 5: Validity Check
-    Step4_Trust -- Yes --> Step5_Time{Step 5: Check NextUpdate<br/>Is Current Time > NextUpdate?}
-
-    %% 5 Failure
-    Step5_Time -- Yes (Expired) --> FailTime([FAILED<br/>Status: EUTL_VERIFICATION_FAILED])
-
-    %% Step 6: Success
-    Step5_Time -- No (Valid) --> Success([SUCCESS<br/>Set Authenticated-EUTL = EUTL<br/>Status: EUTL_VERIFICATION_PASSED])
-
-    %% Styling
-    classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:1px;
-    classDef decision fill:#fff9c4,stroke:#fbc02d,stroke-width:1px;
-    classDef success fill:#dcedc8,stroke:#33691e,stroke-width:2px;
-    classDef fail fill:#ffcdd2,stroke:#b71c1c,stroke-width:2px;
-
-    class Init,Step1,Step2,Step3 process;
-    class Step4_Sig,Step4_Trust,Step5_Time decision;
-    class Success success;
-    class FailSig,FailTrust,FailTime fail;
 ```

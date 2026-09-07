@@ -10,7 +10,7 @@
 
 {% include-markdown "../topics/registration-certificate.md" %}
 
-## List of Trusted Entities and List of Trusted Lists
+## List of Trusted Entities
 
 {% include-markdown "../topics/trusted-list-and-list-of-trusted-lists.md" %}
 
