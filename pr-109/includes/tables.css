@@ -1,12 +1,46 @@
 .md-typeset table {
     display: table;
     width: 100%;
+    min-width: auto;
     max-width: 100%;
     table-layout: auto;
     font-size: 0.75rem;
 }
 
-/* Scroll wrapper behavior if table overflows narrow screens */
+.md-typeset .md-typeset__table {
+    margin: 0;
+}
+
+.md-typeset table:not([class]) {
+    border: none;
+}
+
+.md-typeset table:not([class]) tr:first-of-type th,
+.md-typeset table:not([class]) tr:first-of-type td {
+    border-top-width: 0.1rem;
+}
+
+.md-typeset table:not([class]) tr:last-of-type th,
+.md-typeset table:not([class]) tr:last-of-type td {
+    border-bottom-width: 0.1rem;
+}
+
+.md-typeset table:not([class]) tr th:first-of-type,
+.md-typeset table:not([class]) tr td:first-of-type {
+    border-left-width: 0.1rem;
+}
+
+.md-typeset table:not([class]) tr th:last-of-type,
+.md-typeset table:not([class]) tr td:last-of-type {
+    border-right-width: 0.1rem;
+} 
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: .3em .6em;
+  vertical-align: middle;
+}
+
 .md-typeset .md-typeset__scrollwrap,
 .md-typeset table {
     overflow-x: auto;
