@@ -25,7 +25,7 @@
 | **Item Reference**               | **Date**   | **Standard Name/Details** |
 | -------------------------------- | ---------- | ------------------------- |
 | EU DIR 2006/112/EC               | 2006-11-28 | Council Directive 2006/112/EC of 28 November 2006 on the common system of value added tax |
-| REG EU 2024/1183                 | 2024-04-11 | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
+| EU REG 2024/1183                 | 2024-04-11 | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
 
 ## ETSI Specifications
 
