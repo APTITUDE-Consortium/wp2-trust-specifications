@@ -55,7 +55,7 @@ This specification defines the trust framework profiles for the APTITUDE Large S
 
 - [**Onboarding Process**](sections/onboarding-process.md): Defines the process through which entities become operational and recognisable in the common trust infrastructure. Within the APTITUDE LSP, it is realised as a mocked-up version of the <roles:Wallet-Relying Party (WRP)|Wallet-Relying Party> Registration and <processes:Notification> processes.
 
-- [**Trust Evaluation Processes**](sections/trust-evaluation-process.md): Outlines the necessary stages for <artifacts:Trust Anchor> validation, <processes:Authentication|authentication> and authorization processes.
+- [**Trust Evaluation Processes**](sections/trust-evaluation-process.md): Outlines the necessary stages for the Authentication Process, the Authorization Process, and the Sign/Seal Validation Process, together with <artifacts:Trust Anchor> validation.
 
 - [**Trust Checks**](sections/trust-checks.md): Describes the trust-related checks to be performed during Issuance and Presentation.
 
@@ -73,4 +73,6 @@ These specifications does not provide details on:
 
 ## Normative Language
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC 2119] [RFC 8174] when, and only when, they appear in all capitals, as shown here.
+
+Additionally, the key words "CONDITIONAL" and "PROHIBITED" are used within data tables to describe field requirements. "CONDITIONAL" indicates that a field's presence is dependent on specific rules described in the text, while "PROHIBITED" is equivalent to "SHALL NOT".

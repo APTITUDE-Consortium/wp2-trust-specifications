@@ -1,0 +1,7 @@
+```json
+{
+  "typ": "rc-wrp+jwt",
+  "alg": "ES256",
+  "x5c": ["<base64-encoded-certificate-chain>"]
+}
+```
