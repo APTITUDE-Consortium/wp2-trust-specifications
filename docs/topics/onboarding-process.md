@@ -68,7 +68,7 @@ graph LR
 
     OJEU(["Mocked OJEU root<br/>(LoTE/TL Provider self-signed root certificate)"])
 
-    subgraph LoTEs["Infrastructure LoTE"]
+    subgraph LoTE["Infrastructure LoTE"]
         L1[("LoTE with Registrars TA")]
         L2[("LoTE with Providers of WRPAC TA")]
         L3[("LoTE with Providers of WRPRC TA")]
@@ -84,7 +84,7 @@ graph LR
     L3 -->|"published at"| DP
 
     %% Style
-    style LoTEs fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
+    style LoTE fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
     classDef list fill:#e8f0fe,stroke:#abb2bf
     classDef dp fill:#f5f5f5,stroke:#999
     classDef root fill:#fde9d9,stroke:#d9a441
@@ -328,7 +328,7 @@ stateDiagram-v2
 
 These actions SHALL act on the **organisational entity**, that is its registration and the certificates issued to it, and not on the technical product it operates [ONBOARD-LC-02]. The certification lifecycle of the technical product, in particular the certification of a <components:Wallet Solution>, is a separate process, out of scope of this document. A change to that certification that does not affect the entity's eligibility SHALL be reflected as a notification update and SHALL NOT, by itself, be treated as de-onboarding. A change that makes the entity no longer eligible SHALL instead lead to its cancellation, whose effect on the trusted lists is defined by ONBOARD-LC-01 [ONBOARD-LC-03].
 
-The lifecycle of entities that are only notified is governed by the notification framework ([CIR 2024/2980]). The entity is published when notified, and upon cancellation it stops being trusted (`ARF GenNot_05`). For the <roles:Wallet Provider (WP)|Wallet Provider>, a cancellation additionally requires the revocation of all its valid <artifacts:Wallet Unit Attestation (WUA)|WUAs> (`ARF WPNot_06`). The same applies to the other notified entities published in their <artifacts:List of Trusted Entities (LoTE)|LoTEs> (PID and PuB-EAA Providers, Providers of WRPAC and WRPRC, and Registrars); QEAA Providers follow the corresponding lifecycle on the EUMS TL under the eIDAS Trusted List framework.
+The lifecycle of entities that are only notified is governed by the notification framework ([CIR 2024/2980]). The entity is published when notified, and upon cancellation it stops being trusted (`ARF GenNot_05`). For the <roles:Wallet Provider (WP)|Wallet Provider>, a cancellation additionally requires the revocation of all its valid <artifacts:Wallet Unit Attestation (WUA)|WUAs> (`ARF WPNot_06`). The same applies to the other notified entities published in their <artifacts:List of Trusted Entities (LoTE)|LoTE> (PID and PuB-EAA Providers, Providers of WRPAC and WRPRC, and Registrars); QEAA Providers follow the corresponding lifecycle on the EUMS TL under the eIDAS Trusted List framework.
 
 How "stops being trusted" is represented depends on the list type, and APTITUDE adopts the representation already supported by each format. The PuB-EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE> and the EUMS TL carry an explicit per-entry status, which on cancellation SHALL be set to withdrawn or invalid; the <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Wallet Provider (WP)|Wallet Provider>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>, and <roles:Registrar> <artifacts:List of Trusted Entities (LoTE)|LoTEs> carry no per-entry status (per [ETSI TS 119 602], `ServiceStatus` and the service history are not used for these types), so for them a cancelled entity SHALL be reflected by removing the entry [ONBOARD-LC-01]. The broader lifecycle of notified entities belongs to the Trust Management Process.
 

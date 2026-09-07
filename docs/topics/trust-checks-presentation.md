@@ -19,7 +19,7 @@ The objective is to identify:
 | **Entity**                                | **Role in Presentation trust evaluation**                                                                                                                 |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Wallet Instance / Wallet Unit (WI/WU)** | Main trust evaluator. Authenticates the WRP, evaluates authorization evidence, checks scope, evaluates EDPs, and presents results/advisories to the User. |
-| **Wallet Relying Party (WRP)**            | Requests attributes / attestations from the Wallet. May act directly or through an intermediary.                                                          |
+| **Wallet-Relying Party (WRP)**            | Requests attributes / attestations from the Wallet. May act directly or through an intermediary.                                                          |
 | **Relying Party Intermediary (RPI)**      | Acts on behalf of a final RP. Must be authenticated and bound to the final RP authorization context.                                                      |
 | **Provider of WRPAC**                     | Issues the Wallet-Relying Party Access Certificate used to authenticate the WRP/RPI.                                                                      |
 | **Provider of WRPRC**                     | Issues the Wallet-Relying Party Registration Certificate used as authorization evidence.                                                                  |

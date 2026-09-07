@@ -13,7 +13,7 @@ flowchart TD
     User((User))
     WU["Wallet Unit <br/> [WIA]"]
 
-   subgraph WRP["Wallet Relying Parties (WRPs) [WRPAC, WRPRC]"]
+   subgraph WRP["Wallet-Relying Parties (WRPs) [WRPAC, WRPRC]"]
         direction LR
         PIDP["PID Providers"]
         subgraph AP["Attestation Providers"]
@@ -69,7 +69,7 @@ While these trust evaluation processes and their artifacts (i.e., the <component
     ```mermaid
     flowchart TD
 
-    WRP["Wallet Relying Parties <br/> (WRPs)"]
+    WRP["Wallet-Relying Parties <br/> (WRPs)"]
 
     subgraph MS["Member State (MS)"]
         MSReg[MS <br/>Registrar]
@@ -91,7 +91,7 @@ While these trust evaluation processes and their artifacts (i.e., the <component
     classDef green fill:#8fbc8f,stroke:#2f4f4f
 
     class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
-    class ECLoTE,ECNS,Cat,LoTEs blue;
+    class ECLoTE,ECNS,Cat,LoTE blue;
     class MSReg,ProvAC,ProvRC,TLs,Reg green;
 
     %% Arrows
@@ -158,7 +158,7 @@ flowchart TD
     User((User))
     WU["Wallet Unit <br/> [WIA]"]
 
-   subgraph WRP["Wallet Relying Parties (WRPs) <br/>[WRPAC, WRPRC]"]
+   subgraph WRP["Wallet-Relying Parties (WRPs) <br/>[WRPAC, WRPRC]"]
         direction LR
         PIDP["PID Providers"]
         subgraph AP["Attestation Providers"]
@@ -184,8 +184,8 @@ flowchart TD
     subgraph EC["European Commission (EC)"]
         ECLoTE[EC LoTE <br/>Provider]
         Cat[/Catalogues/]
-        LoTEs[/LOTLs or LoTEs/]
-        ECLoTE --- LoTEs
+        LoTE[/LOTL or LoTE/]
+        ECLoTE --- LoTE
     end
 
 
@@ -207,7 +207,7 @@ flowchart TD
     classDef green fill:#8fbc8f,stroke:#2f4f4f
 
     class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
-    class ECLoTE,ECNS,Cat,LoTEs blue;
+    class ECLoTE,ECNS,Cat,LoTE blue;
     class MSTLP,MSReg,ProvAC,ProvRC,TLs,Reg green;
 
 

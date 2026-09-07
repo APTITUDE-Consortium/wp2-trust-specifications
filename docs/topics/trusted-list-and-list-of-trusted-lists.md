@@ -23,7 +23,7 @@ In the context of the <components:EUDI Wallet>, the EC will publish the related 
 
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> follows the same structure defined for <artifacts:Trusted List (TL)|TLs> on [ETSI TS 119 612]. A LoTE, however, supports both the JSON and XML formats, as defined in [ETSI TS 119 602].
 
-All <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1] for JSON-formatted LoTEs, and with XML Advanced Electronic Signatures (XAdES) Baseline B signature, as defined in [ETSI EN 319 132-1] for XML-formatted LoTEs.
+All <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1] for JSON-formatted LoTE, and with XML Advanced Electronic Signatures (XAdES) Baseline B signature, as defined in [ETSI EN 319 132-1] for XML-formatted LoTE.
 
 !!! choice
 
@@ -339,7 +339,7 @@ The certificate in `ds:KeyInfo` and the first certificate identified by `xades:S
 
 !!! choice
 
-    Within the APTITUDE profiles, QEAA Provider and EAA Provider LoTEs SHALL satisfy the same additional requirements as PID Provider LoTEs, with the provider type and type-specific URI values changed accordingly. The rows below specify those type-specific values.
+    Within the APTITUDE profiles, QEAA Provider and EAA Provider LoTE SHALL satisfy the same additional requirements as PID Provider LoTE, with the provider type and type-specific URI values changed accordingly. The rows below specify those type-specific values.
 
 Following Annexes D - I in [ETSI TS 119 602], together with the APTITUDE-specific QEAA and EAA provider profiles, below are detailed the additional requirements spelled out by type. As seen in [List of Trusted Entities](#list-of-trusted-entities), the <artifacts:List of Trusted Entities (LoTE)|LoTE> contains a sequence of two components: `ListAndSchemeInformation` and `TrustedEntitiesList`. Depending on the <artifacts:List of Trusted Entities (LoTE)|LoTE> type, the `ListAndSchemeInformation` component is further specified by the following parameters:
 
@@ -397,8 +397,8 @@ The `TrustedEntityServices` is an *Array* of `TrustedEntityService` *Objects*. E
 
     - `PID` for PID Providers Trust Anchors;
     - `WalletSolution` for Wallet Providers's owned Wallet Solutions Trust Anchors;
-    - `WRPAC` for Providers of Wallet Relying Party Access Certificate's Trust Anchors;
-    - `WRPRC` for Providers of Wallet Relying Party Registration Certificate's Trust Anchors;
+    - `WRPAC` for Providers of Wallet-Relying Party Access Certificate's Trust Anchors;
+    - `WRPRC` for Providers of Wallet-Relying Party Registration Certificate's Trust Anchors;
     - `PubEAA` for Pub-EAA Providers' Trust Anchors;
     - `QEAA` for QEAA Providers' Trust Anchors;
     - `EAA` for EAA Providers' Trust Anchors;

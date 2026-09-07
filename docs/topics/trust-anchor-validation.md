@@ -1,4 +1,4 @@
-The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of <artifacts:List of Trusted Entities (LoTE)|LoTEs>, which are the authoritative sources for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is an X.509 certificate containing the name and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)> to validate an artifact or <credentials:Attestation>.
+The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of <artifacts:List of Trusted Entities (LoTE)|LoTE>, which are the authoritative sources for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is an X.509 certificate containing the name and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)> to validate an artifact or <credentials:Attestation>.
 
 !!! choice
 

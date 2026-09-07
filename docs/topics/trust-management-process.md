@@ -4,10 +4,10 @@ In particular, this section is structured as follows:
 
 - Section [Ecosystem Participants](#ecosystem-participants) describes the various entities within the ecosystem, their roles and relationships.
 - Section [Entity Properties Schema](#entity-properties-schema) describes the various Properties of <roles:Wallet-Relying Party (WRP)|WRPs> and <roles:Wallet Provider (WP)|WPs>, the Trust Artifacts in which these Properties are contained, and the relationships between them.
-- Section [Abstract State Machine](#abstract-state-machine) describes the lifecycle *State* (an abstraction at the governance level that captures the current operational status and trustworthiness within the ecosystem) of <roles:Wallet-Relying Party (WRP)|WRPs>, <roles:Wallet Provider (WP)|WPs>, Trust Artifacts, and LoTEs, their definitions, and the effects that these states have on the entities' operational capabilities and trustworthiness.
+- Section [Abstract State Machine](#abstract-state-machine) describes the lifecycle *State* (an abstraction at the governance level that captures the current operational status and trustworthiness within the ecosystem) of <roles:Wallet-Relying Party (WRP)|WRPs>, <roles:Wallet Provider (WP)|WPs>, Trust Artifacts, and LoTE, their definitions, and the effects that these states have on the entities' operational capabilities and trustworthiness.
 - Section [Entity Lifecycle Operations](#entity-lifecycle-operations) describes the operational procedures triggered by changes in the Properties of <roles:Wallet-Relying Party (WRP)|WRPs> and <roles:Wallet Provider (WP)|WPs>, and the resulting effects on their lifecycle states and trustworthiness within the ecosystem.
 
-When a <roles:Wallet-Relying Party (WRP)|WRP>'s, <roles:Wallet Provider (WP)|WP>'s, or Trust Artifacts Properties change (e.g., key rotation), the Trust Artifact Providers or LoTE Providers have to update, revoke and issue or re-sign the corresponding Trust Artifacts or LoTEs, without necessarily altering the underlying Abstract State of the <roles:Wallet-Relying Party (WRP)|WRP>. These operational procedures are defined in [Entity Lifecycle Operations](#entity-lifecycle-operations).
+When a <roles:Wallet-Relying Party (WRP)|WRP>'s, <roles:Wallet Provider (WP)|WP>'s, or Trust Artifacts Properties change (e.g., key rotation), the Trust Artifact Providers or LoTE Providers have to update, revoke and issue or re-sign the corresponding Trust Artifacts or LoTE, without necessarily altering the underlying Abstract State of the <roles:Wallet-Relying Party (WRP)|WRP>. These operational procedures are defined in [Entity Lifecycle Operations](#entity-lifecycle-operations).
 
 ### Ecosystem Participants
 
@@ -174,7 +174,7 @@ flowchart LR
 
 In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: <roles:Registrar|Registrars>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, and <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.
 
-The following table describes the relationship between the Properties of Registrars and Providers of WRPAC/WRPRC and the LoTEs in which these Properties are contained.
+The following table describes the relationship between the Properties of Registrars and Providers of WRPAC/WRPRC and the LoTE in which these Properties are contained.
 
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
@@ -226,7 +226,7 @@ flowchart LR
 
 ### Abstract State Machine
 
-This section describes the lifecycle *State* of <roles:Wallet-Relying Party (WRP)|WRPs> and <roles:Wallet Provider (WP)|WPs>, as well as Trust Artifacts and LoTEs.
+This section describes the lifecycle *State* of <roles:Wallet-Relying Party (WRP)|WRPs> and <roles:Wallet Provider (WP)|WPs>, as well as Trust Artifacts and LoTE.
 
 !!! choice
 
@@ -254,8 +254,8 @@ State Machines are described only for <roles:Wallet-Relying Party (WRP)|WRPs>, <
 
     Within the APTITUDE profiles, the following historical-information rules SHALL apply:
 
-    - For <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:QEAA Provider|QEAA Providers>, <roles:EAA Provider|EAA Providers>, <roles:Wallet Provider (WP)|Wallet Providers>, Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, and <roles:Registrar|Registrars> and <components:Register|Registers> LoTEs, historical information, including historical keys and service states, SHALL NOT be retained in the current LoTE or its `ServiceHistory`. QEAA and EAA Provider LoTEs SHALL follow the PID Provider LoTE structure and management for this purpose. Previous states SHALL instead be archived as previous LoTE instances and made available through `SchemeInformationURI`.
-    - For <roles:PuB-EAA Provider|Pub-EAA Providers> LoTEs, withdrawn services and their certificates SHALL be retained in `ServiceHistory`. `HistoricalInformationPeriod` SHALL be `65535`; `ServiceStatus` SHALL use `notified` or `withdrawn`; and `StatusStartingTime` SHALL record when the status applies.
+    - For <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:QEAA Provider|QEAA Providers>, <roles:EAA Provider|EAA Providers>, <roles:Wallet Provider (WP)|Wallet Providers>, Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, and <roles:Registrar|Registrars> and <components:Register|Registers> LoTE, historical information, including historical keys and service states, SHALL NOT be retained in the current LoTE or its `ServiceHistory`. QEAA and EAA Provider LoTE SHALL follow the PID Provider LoTE structure and management for this purpose. Previous states SHALL instead be archived as previous LoTE instances and made available through `SchemeInformationURI`.
+    - For <roles:PuB-EAA Provider|Pub-EAA Providers> LoTE, withdrawn services and their certificates SHALL be retained in `ServiceHistory`. `HistoricalInformationPeriod` SHALL be `65535`; `ServiceStatus` SHALL use `notified` or `withdrawn`; and `StatusStartingTime` SHALL record when the status applies.
 
 Below the state diagram of the various actors.
 
@@ -317,12 +317,12 @@ Depending on the circumstances, an entity in the `REMOVED` state MAY have its <a
 
 #### Trust Artifacts and LoTE Lifecycle State Machine
 
-State Machines for Trust Artifacts and LoTEs are described below:
+State Machines for Trust Artifacts and LoTE are described below:
 
 - For <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <artifacts:Electronic Signature|Signature>/<artifacts:Electronic Seal|Seal> Certificates, the lifecycle states are `VALID` and `REVOKED`. The transition from `VALID` to `REVOKED` is triggered by the revocation of the artifact, which can be initiated by the corresponding Trust Artifact Provider due to various reasons such as key compromise, organizational changes, or non-compliance with framework policies. Once an artifact is in the `REVOKED` state, it SHALL NOT be trusted for any operational use within the ecosystem, and any entity relying on it SHALL reject it for authentication, authorization, or any other trust-related operations.
     - A <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> in `VALID` state SHALL NOT be present in the designated <artifacts:Certificate Revocation List (CRL)|CRL> and/or SHALL return a `good` status in the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> response. A WRPAC in `REVOKED` state SHALL be present in the designated <artifacts:Certificate Revocation List (CRL)|CRL> and/or SHALL return a `revoked` status in the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> response.
     - A <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in `VALID` state SHALL return a `0x00` status in the corresponding <artifacts:Status List Token>. A <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in `REVOKED` state SHALL have status value `0x01` within the corresponding <artifacts:Status List Token>.
-- For <artifacts:List of Trusted Entities (LoTE)|LoTE>s, the lifecycle states are `CURRENT` and `HISTORICAL`. The transition from `CURRENT` to `HISTORICAL` is triggered by the publication of a new LoTE version that replaces the previous version. Once a LoTE or its historical service data is in the `HISTORICAL` state, it SHALL NOT be used for operational trust decisions. Historical operations SHALL be resolved through `ServiceHistory` for Pub-EAA LoTEs and through archived previous LoTE instances referenced by `SchemeInformationURI` for the other LoTE types; LoTE trustworthiness SHALL be validated through authenticated pivoting (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)).
+- For <artifacts:List of Trusted Entities (LoTE)|LoTE>s, the lifecycle states are `CURRENT` and `HISTORICAL`. The transition from `CURRENT` to `HISTORICAL` is triggered by the publication of a new LoTE version that replaces the previous version. Once a LoTE or its historical service data is in the `HISTORICAL` state, it SHALL NOT be used for operational trust decisions. Historical operations SHALL be resolved through `ServiceHistory` for Pub-EAA LoTE and through archived previous LoTE instances referenced by `SchemeInformationURI` for the other LoTE types; LoTE trustworthiness SHALL be validated through authenticated pivoting (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)).
 - For <components:Register|Registers>, <artifacts:Embedded Disclosure Policy (EDP)|EDPs>, Status Lists, the lifecycle state is only `CURRENT`, since any change in these artifacts is reflected as an update of the artifact itself, and the previous version is not retained as a historical record.
 
 The diagram below highlights the state machine of the aforementioned artifacts:
@@ -340,7 +340,7 @@ stateDiagram-v2
     }
 
     %% 2. LoTE Lifecycle Group
-    state "LoTEs" as LoTEGroup {
+    state "LoTE" as LoTEGroup {
         [*] --> LoTE_CURRENT : Publication of Current Version
         state "CURRENT" as LoTE_CURRENT
         
@@ -357,7 +357,7 @@ stateDiagram-v2
     }
 ```
 
-The table below summarizes the lifecycle states, their definitions, the applicable Trust Artifacts and LoTEs, and the technical mean that conveys the validity of these artifacts. The three tables are divided by artifact type since they have different lifecycle states and transition triggers, these are respectively: `VALID` and `REVOKED` for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <artifacts:Electronic Signature|Signature>/<artifacts:Electronic Seal|Seal> Certificates, `CURRENT` and `HISTORICAL` for LoTEs, and only `CURRENT` for <components:Register|Registers>, <artifacts:Embedded Disclosure Policy (EDP)|EDPs> and Status Lists.
+The table below summarizes the lifecycle states, their definitions, the applicable Trust Artifacts and LoTE, and the technical mean that conveys the validity of these artifacts. The three tables are divided by artifact type since they have different lifecycle states and transition triggers, these are respectively: `VALID` and `REVOKED` for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <artifacts:Electronic Signature|Signature>/<artifacts:Electronic Seal|Seal> Certificates, `CURRENT` and `HISTORICAL` for LoTE, and only `CURRENT` for <components:Register|Registers>, <artifacts:Embedded Disclosure Policy (EDP)|EDPs> and Status Lists.
 
 | State | Definition | Applicable Artifacts | Technical Mean |
 | :--- | :--- | :--- | :--- |
@@ -366,8 +366,8 @@ The table below summarizes the lifecycle states, their definitions, the applicab
 
 | State | Definition | Applicable Artifacts | Technical Mean |
 | :--- | :--- | :--- | :--- |
-| `CURRENT` | Indicates that the current LoTE is the newest version, and previous versions are no longer valid for operational use within the ecosystem. | <artifacts:List of Trusted Entities (LoTE)\|LoTE>. | Publication of a new LoTE version; authenticated pivoting for LoTE trustworthiness; retention of withdrawn service history in `ServiceHistory` for Pub-EAA LoTEs; archival of previous LoTE instances through `SchemeInformationURI` for the other LoTE types. |
-| `HISTORICAL` | Indicates that a LoTE or its service history is a historical record and SHALL NOT be used for operational trust decisions, except for validating historical operations and LoTE trustworthiness via the applicable history mechanism. | <artifacts:List of Trusted Entities (LoTE)\|LoTE>. | For Pub-EAA LoTEs, resolution through `ServiceHistory`; for the other LoTE types, retrieval of archived previous LoTE instances through `SchemeInformationURI`; validation of LoTE trustworthiness via authenticated pivoting. |
+| `CURRENT` | Indicates that the current LoTE is the newest version, and previous versions are no longer valid for operational use within the ecosystem. | <artifacts:List of Trusted Entities (LoTE)\|LoTE>. | Publication of a new LoTE version; authenticated pivoting for LoTE trustworthiness; retention of withdrawn service history in `ServiceHistory` for Pub-EAA LoTE; archival of previous LoTE instances through `SchemeInformationURI` for the other LoTE types. |
+| `HISTORICAL` | Indicates that a LoTE or its service history is a historical record and SHALL NOT be used for operational trust decisions, except for validating historical operations and LoTE trustworthiness via the applicable history mechanism. | <artifacts:List of Trusted Entities (LoTE)\|LoTE>. | For Pub-EAA LoTE, resolution through `ServiceHistory`; for the other LoTE types, retrieval of archived previous LoTE instances through `SchemeInformationURI`; validation of LoTE trustworthiness via authenticated pivoting. |
 
 | State | Definition | Applicable Artifacts | Technical Mean |
 | :--- | :--- | :--- | :--- |
@@ -445,7 +445,7 @@ When an entity transitions to the `REMOVED` state, the relevant APTITUDE Trust A
 - **<artifacts:Electronic Signature|Signature>/<artifacts:Electronic Seal|Seal> Certificate Revocation**: The <roles:Certificate Authority (CA)|Certificate Authority> SHALL revoke the entity's current <artifacts:Electronic Signature|Signature>/<artifacts:Electronic Seal|Seal> certificate.
 - **<artifacts:List of Trusted Entities (LoTE)|LoTE> Update** [for a LoTE-listed <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:QEAA Provider|QEAA Provider>, <roles:EAA Provider|EAA Provider>, or <roles:PuB-EAA Provider|Pub-EAA Provider>]: the <roles:Wallet-Relying Party (WRP)|WRP> SHALL notify the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider>, which SHALL publish a new version of the applicable LoTE using the pivoting mechanism.
     - For a <roles:PuB-EAA Provider|Pub-EAA Provider>, the applicable LoTE SHALL set `ServiceStatus` to `withdrawn`, set `StatusStartingTime` to the time at which the withdrawn status takes effect, and SHALL retain the withdrawn service and its certificates in `ServiceHistory`.
-    - For the PID, QEAA, and EAA Provider LoTEs, the entity SHALL be removed from the current LoTE; historical keys and service states SHALL NOT be retained in `ServiceHistory` and SHALL instead be available from the archived previous LoTE instances referenced by `SchemeInformationURI`.
+    - For the PID, QEAA, and EAA Provider LoTE, the entity SHALL be removed from the current LoTE; historical keys and service states SHALL NOT be retained in `ServiceHistory` and SHALL instead be available from the archived previous LoTE instances referenced by `SchemeInformationURI`.
 
 **<roles:Wallet Provider (WP)|Wallet Providers> and Trust Artifact Provider Withdrawal or Removal**: For <roles:Wallet Provider (WP)|Wallet Providers>, <roles:Registrar|Registrars>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, or <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, the removal event SHALL trigger the following procedures:
 
