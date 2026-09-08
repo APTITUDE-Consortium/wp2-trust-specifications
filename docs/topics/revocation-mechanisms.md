@@ -1,9 +1,9 @@
 This section describes the artifacts that are employed in [Trust Management and Lifecycle](../sections/trust-management-lifecycle.md) to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:
 
-- To manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>, each <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> SHALL:
+- To manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificates (WRPACs)>, each <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> SHALL:
     - make available at least one revocation mechanism among [Certificate Revocation Lists](#certificate-revocation-lists) and [Online Certificate Status Protocol](#online-certificate-status-protocol);
     - issue <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> with at least an extension corresponding to the provided revocation mechanism as illustrated in [Wallet-Relying Party Access Certificate](../sections/trust-artifacts.md#wallet-relying-party-access-certificate).
-- To manage <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRCs)>, each <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
+- To manage <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRCs)>, each <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL:
     - make available an endpoint to request [Status List Tokens](#status-list-token);
     - issue <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> with the appropriate parameter `status` as described in [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate).
 - To manage <artifacts:Wallet Unit Attestation (WUA)|Wallet Unit Attestations (WUAs)>, each <roles:Wallet Provider (WP)|Wallet Provider> SHALL:
@@ -130,11 +130,11 @@ This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth
 
 !!! choice
 
-    Within the APTITUDE Profiles, the SLT Provider for WRPRC Status List Tokens SHALL be the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>.
+    Within the APTITUDE Profiles, the SLT Provider for WRPRC Status List Tokens SHALL be the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>.
 
 **Status List**
 
-According to the [ARF] and [ETSI TS 119 475], the WRPRC status is either `VALID` or `INVALID`; therefore, the <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL set the `bits` parameter in the SLT's `status_list` object to `1`. The value `0x00` represents `VALID`, and the value `0x01` represents `INVALID`.
+According to the [ARF] and [ETSI TS 119 475], the WRPRC status is either `VALID` or `INVALID`; therefore, the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL set the `bits` parameter in the SLT's `status_list` object to `1`. The value `0x00` represents `VALID`, and the value `0x01` represents `INVALID`.
 
 The SLT Provider SHALL pack entries starting with the least significant bit of each byte, compress the byte array using DEFLATE with the ZLIB data format, and publish the resulting Status List in the SLT.
 

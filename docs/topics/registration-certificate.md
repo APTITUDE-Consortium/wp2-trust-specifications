@@ -19,7 +19,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 - The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
 - The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL comply with the syntactic and semantic requirements specified in [CIR 2025/848, Annex V, Paragraph 3].
-- The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be signed with the digital signature of <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>.
+- The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be signed with the digital signature of <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>.
 - The JWT SHALL be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1].
 - The CWT SHALL be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].
 

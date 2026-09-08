@@ -63,8 +63,8 @@ While these trust evaluation processes and their artifacts (i.e., the <component
         - <roles:Wallet-Relying Party (WRP)|WRP> identification information.
         - <roles:Wallet-Relying Party (WRP)|WRP> type (<roles:Relying Party (RP)|RP>, <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:QEAA Provider>, <roles:PuB-EAA Provider>, <roles:EAA Provider>).
         - Entity-specific capabilities
-    3. *WRPAC Issuance*: The <roles:Wallet-Relying Party (WRP)|WRP> obtains a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> provided by a <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>.
-    4. *WRPRC Issuance*: The <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> issues a signed <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> containing registered capabilities.
+    3. *WRPAC Issuance*: The <roles:Wallet-Relying Party (WRP)|WRP> obtains a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> provided by a <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>.
+    4. *WRPRC Issuance*: The <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> issues a signed <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> containing registered capabilities.
 
     ```mermaid
     flowchart TD
@@ -102,7 +102,7 @@ While these trust evaluation processes and their artifacts (i.e., the <component
     ```
 
 - *<processes:Notification|Notification Process>*: the Member State sends data related to the registered entity to the European Commission. As result:
-    - For <roles:Wallet Provider (WP)|WPs>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, Member State <roles:Registrar|Registrars>, and <roles:PuB-EAA Provider|Pub-EAA Providers>: the notified entities are included in a <artifacts:List of Trusted Entities (LoTE)|LoTE> by a European Commission <artifacts:List of Trusted Entities (LoTE)|LoTE> Provider.
+    - For <roles:Wallet Provider (WP)|WPs>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, Member State <roles:Registrar|Registrars>, and <roles:PuB-EAA Provider|Pub-EAA Providers>: the notified entities are included in a <artifacts:List of Trusted Entities (LoTE)|LoTE> by a European Commission <artifacts:List of Trusted Entities (LoTE)|LoTE> Provider.
     - For <roles:QEAA Provider|QEAA Providers> and <roles:Qualified Trust Service Provider (QTSP)|QTSP>, the URL of the <artifacts:Trusted List (TL)|TL> is added in the EU <artifacts:List Of Trusted Lists (LOTL)>.
 
     ```mermaid
