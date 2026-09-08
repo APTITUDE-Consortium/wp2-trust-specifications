@@ -91,9 +91,11 @@ sequenceDiagram
     end
 ```
 
-> **NOTE 1:**  Attestation Providers can have a dedicated Authorization server that makes authorization-related endpoints available. That kind of implementation details are hidden in this schema, since the Attestation Provider bears the overall responsibility for responding to the Wallet Instance's requests.
+!!! note
+    Attestation Providers can have a dedicated Authorization server that makes authorization-related endpoints available. That kind of implementation details are hidden in this schema, since the Attestation Provider bears the overall responsibility for responding to the Wallet Instance's requests.
 
-> **NOTE 2:**  A nonce endpoint might be necessary as well however that feature does not have an impact on the trust-related checks.
+!!! note
+    A nonce endpoint might be necessary as well however that feature does not have an impact on the trust-related checks.
 
 ### Step-by-step Operations
 

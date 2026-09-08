@@ -114,13 +114,11 @@ The SLT Provider SHALL pack entries starting with the least significant bit of e
 
 **Status List Token**
 
-!!! choice
+!!! choice "APTITUDE Implementation Choices"
 
-    The SLT Provider SHALL act as both the Status Issuer and the Status Provider.
-    
-    It SHALL make each SLT available via HTTP GET at the URI specified by the WRPRC's `status.status_list.uri` member, using `application/statuslist+jwt` for a JWT SLT.
-    
-    The SLT format SHALL be either a JWT and SHALL be protected by a cryptographic signature.
+    - The SLT Provider SHALL act as both the Status Issuer and the Status Provider.
+    - It SHALL make each SLT available via HTTP GET at the URI specified by the WRPRC's `status.status_list.uri` member, using `application/statuslist+jwt` for a JWT SLT.
+    - The SLT format SHALL be either a JWT and SHALL be protected by a cryptographic signature.
 
 A JWT SLT SHALL be formatted as described in [Status List Token](#status-list-token).
 
@@ -132,13 +130,13 @@ For a JWT SLT, the signing certificate chain SHALL be carried in the `x5c` JOSE 
 
 This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/) for Wallet Instance Attestations or Key Attestations as described in [TS03] and [CIR 2026/1731].
 
-!!! choice
+!!! choice "APTITUDE Implementation Choice"
 
     Within the APTITUDE Profiles, the SLT Provider SHALL be the <roles:Wallet Provider (WP)|Wallet Provider>.
 
 !!! note "Signature Algorithms"
 
-    The Siganture Algorithms allowed for signing a Status List Token SHALL be these referenced in [TS03](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts3-wallet-unit-attestation.md#26-signature-algorithms), i.e., ES256 (ECDSA with SHA-256 and P-256), ES384 (ECDSA with SHA-384 and P-384), and ES512 (ECDSA with SHA-512 and P-512).
+    The Signature Algorithms allowed for signing a Status List Token SHALL be these referenced in [TS03](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts3-wallet-unit-attestation.md#26-signature-algorithms), i.e., ES256 (ECDSA with SHA-256 and P-256), ES384 (ECDSA with SHA-384 and P-384), and ES512 (ECDSA with SHA-512 and P-512).
 
 As specified in [TS03],
 
@@ -296,9 +294,9 @@ Each value is an object with the following members:
     }
     ```
 
-**Privacy Considerations**
+!!! warning "Privacy Considerations"
 
-To prevent Wallet Providers from tracking or profiling users based on their use of Wallet Unit Attestations, Wallet Providers SHALL integrate the status information for many WIAs (type-shared KAs are exempt from this requirement) into the same list and SHALL publish the SLT at the same `uri` for all those attestations. This specification requires Wallet Providers to configure Status Lists with at least 10000 status entries. If more attestations are issued, the Wallet Provider MAY create additional SLTs or increase the number of entries in the array, depending on practical considerations such as the total size of each SLT and the management of multiple endpoints.
+    To prevent Wallet Providers from tracking or profiling users based on their use of Wallet Unit Attestations, Wallet Providers SHALL integrate the status information for many WIAs (type-shared KAs are exempt from this requirement) into the same list and SHALL publish the SLT at the same `uri` for all those attestations. This specification requires Wallet Providers to configure Status Lists with at least 10000 status entries. If more attestations are issued, the Wallet Provider MAY create additional SLTs or increase the number of entries in the array, depending on practical considerations such as the total size of each SLT and the management of multiple endpoints.
 
 ### Certificate Revocation Lists
 
@@ -358,13 +356,13 @@ The `crlExtensions` field MAY contain various extensions. Notable standard exten
 
 ### Online Certificate Status Protocol
 
-**<protocols:Online Certificate Status Protocol (OCSP)>** [RFC 6960] enables applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
+The <protocols:Online Certificate Status Protocol (OCSP)>, defined in [RFC 6960], enables applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with CRLs and MAY also be used to obtain additional status information.
 
 An <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client issues a status request to an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response.
 
 If supported by the <roles:Certificate Authority (CA)|CA>, the URI to which the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> Responder can be invoked SHALL be present in the `authorityInfoAccess.accessLocation` extension of the [WRPAC](../sections/trust-artifacts.md#wallet-relying-party-access-certificate).
 
-This protocol specifies the data that SHALL be exchanged between the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client (which checks the status of one or more certificates) and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server (which provides the corresponding status). In this specific ecosystem, the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client can be a WU checking the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> of a WRP, and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server is the Provider of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
+This protocol specifies the data that SHALL be exchanged between the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client (which checks the status of one or more certificates) and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server (which provides the corresponding status). In this specific ecosystem, the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> client can be a Wallet Unit checking the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> of a WRP, and the <protocols:Online Certificate Status Protocol (OCSP)|OCSP> server is the Provider of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
 
 #### Online Certificate Status Protocol Request Format
 

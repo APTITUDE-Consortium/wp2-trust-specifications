@@ -1,9 +1,5 @@
 This section describes the format and contents of the <artifacts:List of Trusted Entities (LoTE)|LoTE> and how it is used to provide <artifacts:Trust Anchor|Trust Anchors> within the context of the <components:EUDI Wallet>.
 
-!!! choice
-
-    Within the APTITUDE profiles, only the <artifacts:List of Trusted Entities (LoTE)|LoTE> is used, as the <artifacts:Trusted List (TL)|Trusted Lists> and <artifacts:List Of Trusted Lists (LOTL)|LOTL> are not required.
-
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a compilation of the information submitted by Member States about the following entities:
 
 1. <roles:Provider of Person Identification Data (PID Provider)|PID Providers>;
@@ -14,28 +10,17 @@ The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a compilation of the inf
 
 In the context of the <components:EUDI Wallet>, the EC will publish the related <artifacts:List of Trusted Entities (LoTE)|LoTE> on the eIDAS Dashboard, which will be accessible at <https://eidas.ec.europa.eu/efda/wallet>.
 
-!!! choice
-
-    Within the APTITUDE profiles, the following entities SHALL have a dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>:
-
-    - <roles:QEAA Provider|QEAA Providers>;
-    - <roles:EAA Provider|EAA Providers>.
-
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> follows the same structure defined for <artifacts:Trusted List (TL)|TLs> on [ETSI TS 119 612]. A LoTE, however, supports both the JSON and XML formats, as defined in [ETSI TS 119 602].
 
 All <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1] for JSON-formatted LoTE, and with XML Advanced Electronic Signatures (XAdES) Baseline B signature, as defined in [ETSI EN 319 132-1] for XML-formatted LoTE.
 
-!!! choice
+!!! choice "APTITUDE Implementation Choices"
 
-    Within the APTITUDE profiles, each <artifacts:List of Trusted Entities (LoTE)|LoTE> type SHALL be published at a distinct endpoint. A LoTE consumer SHALL use the endpoint published for the required LoTE type and SHALL NOT infer the endpoint of one LoTE type from that of another type.
-
-!!! choice
-
-    The Official Journal of APTITUDE (OJA) SHALL provide LoTE discovery information to all APTITUDE entities. For each LoTE type, the OJA SHALL publish the LoTE location and the certificate or certificates authorized to verify that LoTE's signature. The OJA SHALL contain the distinct locations and LoTE signing certificates applicable to the different LoTE types.
-
-!!! choice
-
-    APTITUDE entities MAY cache a LoTE signing certificate used as a Trust Anchor, together with the authenticated LoTE from which it was obtained. Cached material SHALL be refreshed no later than the LoTE's `NextUpdate` value and when updated discovery information is published in the OJA.
+    - Only the <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be used; <artifacts:Trusted List (TL)|Trusted Lists> and <artifacts:List Of Trusted Lists (LOTL)|LOTL> SHALL NOT be used.
+    - <roles:QEAA Provider|QEAA Providers> and <roles:EAA Provider|EAA Providers> SHALL have a dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+    - Each <artifacts:List of Trusted Entities (LoTE)|LoTE> type SHALL be published at a distinct endpoint. A LoTE consumer SHALL use the endpoint published for the required LoTE type and SHALL NOT infer the endpoint of one LoTE type from that of another.
+    - The Official Journal of APTITUDE (OJA) SHALL provide LoTE discovery information to all APTITUDE entities. For each LoTE type, the OJA SHALL publish the LoTE location and the certificate(s) authorized to verify that LoTE's signature. The OJA SHALL contain the distinct locations and LoTE signing certificates applicable to each LoTE type.
+    - APTITUDE entities MAY cache a LoTE signing certificate used as a Trust Anchor, together with the authenticated LoTE from which it was obtained. Cached material SHALL be refreshed no later than the LoTE's `NextUpdate` value, and whenever updated discovery information is published in the OJA.
 
 ??? note "EUDI Wallet trusted list ecosystem"
 
@@ -73,9 +58,9 @@ The following table details the governing standards, publication scopes, and man
 | <roles:QEAA Provider\|QEAA Providers> Lists | This Specification | JSON or XML | Compact JAdES Baseline B or XAdES Baseline B |
 | <roles:EAA Provider\|EAA Providers> Lists | This Specification | JSON | Compact JAdES Baseline B |
 
-!!! choice
+!!! choice "APTITUDE Implementation Choice"
 
-    Within the APTITUDE profiles, the following formats SHALL be used for the different types of lists:
+    The following formats SHALL be used for the different types of lists:
 
     - <roles:PuB-EAA Provider> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].
     - <roles:Wallet Provider (WP)> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].
@@ -88,9 +73,9 @@ The following table details the governing standards, publication scopes, and man
 
 ##### Compact JAdES Baseline B Signature Profile
 
-!!! choice
+!!! choice "APTITUDE Implementation Choice"
 
-    Within the APTITUDE profiles, the use of a JWT representation for a JSON-formatted LoTE and the selection of the `x5t#S256` certificate-reference mechanism are implementation choices. This profile selects `x5t#S256` for JSON Compact JAdES signatures. The JWT Claims Set SHALL contain the LoTE object as the private `LoTE` claim.
+    The use of a JWT representation for a JSON-formatted LoTE and the selection of the `x5t#S256` certificate-reference mechanism are implementation choices. This profile selects `x5t#S256` for JSON Compact JAdES signatures. The JWT Claims Set SHALL contain the LoTE object as the private `LoTE` claim.
 
 For a JSON-formatted <artifacts:List of Trusted Entities (LoTE)|LoTE>, the Compact JAdES Baseline B signature SHALL be used, its protected JOSE header SHALL satisfy [ETSI TS 119 182-1, clauses 5.1 and 6.3]:
 
@@ -130,9 +115,9 @@ For an XML-formatted <artifacts:List of Trusted Entities (LoTE)|LoTE>, the XAdES
 | `xades:SigningCertificateV2` | REQUIRED | Exactly one `xades:SigningCertificateV2` SHALL be present. Its first `xades:Cert` SHALL identify the signing certificate through a digest of that certificate's DER encoding. |
 | `xades:DataObjectFormat` | REQUIRED (APTITUDE profile) | One `xades:DataObjectFormat` SHALL describe the signed LoTE document, excluding `xades:SignedProperties`, and SHALL contain its MIME type. |
 
-!!! choice
+!!! choice "APTITUDE Implementation Choice"
 
-    Within the APTITUDE profiles, the digest in `xades:SigningCertificateV2/xades:Cert/xades:CertDigest` SHALL use SHA-256 and its `ds:DigestValue` SHALL be the standard XML Signature Base64 encoding of the digest of the signing certificate's DER encoding. `IssuerSerialV2` SHALL NOT be used as the certificate binding, and the `xades:Cert/@URI` SHALL be omitted.
+    The digest in `xades:SigningCertificateV2/xades:Cert/xades:CertDigest` SHALL use SHA-256 and its `ds:DigestValue` SHALL be the standard XML Signature Base64 encoding of the digest of the signing certificate's DER encoding. `IssuerSerialV2` SHALL NOT be used as the certificate binding, and the `xades:Cert/@URI` SHALL be omitted.
 
 The `xades:SigningTime` value is a claimed signing time and SHALL NOT be treated as a trusted timestamp.
 
@@ -140,9 +125,9 @@ The certificate in `ds:KeyInfo` and the first certificate identified by `xades:S
 
 ##### LoTE Additional Requirements
 
-!!! choice
+!!! choice "APTITUDE Implementation Choice"
 
-    Within the APTITUDE profiles, QEAA Provider and EAA Provider LoTE SHALL satisfy the same additional requirements as PID Provider LoTE, with the provider type and type-specific URI values changed accordingly. The rows below specify those type-specific values.
+    QEAA Provider and EAA Provider LoTE SHALL satisfy the same additional requirements as PID Provider LoTE, with the provider type and type-specific URI values changed accordingly. The rows below specify those type-specific values.
 
 Following Annexes D - I in [ETSI TS 119 602], together with the APTITUDE-specific QEAA and EAA provider profiles, below are detailed the additional requirements spelled out by type. As seen in [List of Trusted Entities](#list-of-trusted-entities), the <artifacts:List of Trusted Entities (LoTE)|LoTE> contains a sequence of two components: `ListAndSchemeInformation` and `TrustedEntitiesList`. Depending on the <artifacts:List of Trusted Entities (LoTE)|LoTE> type, the `ListAndSchemeInformation` component is further specified by the following parameters:
 
@@ -194,9 +179,11 @@ The `TrustedEntityServices` is an *Array* of `TrustedEntityService` *Objects*. E
 | `TEServiceDefinitionURI` | [ETSI TS 119 602, clause 6.6.8] | REQUIRED | *Array* | No additional requirements. |
 | `ServiceInformationExtensions` | [ETSI TS 119 602, clause 6.6.9] | REQUIRED | *Array* | For a <roles:Wallet Provider (WP)>, the `ServiceInformationExtensions` component SHALL be used to provide the reference number of the <components:Wallet Solution> identified by the `ServiceName` component.<br><br>No additional requirements for the other <artifacts:List of Trusted Entities (LoTE)\|LoTE> types. |
 
-!!! choice
+!!! choice "APTITUDE Implementation Choices"
 
-    Within the APTITUDE profiles, the `ServiceTypeIdentifier` for all entities except the <roles:Registrar> SHALL be formed as a URI string `http://uri.etsi.org/SvcType/{Specific_attestation}/Issuance` or `http://uri.etsi.org/SvcType/{Specific_attestation}/Revocation`. The `{specific_attestation}` fragment SHALL be valued as:
+    The Trust Anchors for the `Issuance` and `Revocation` services SHALL be the same, and SHALL be listed in the `ServiceDigitalIdentity` component of the `ServiceInformation` component.
+
+    The `ServiceTypeIdentifier` for all entities except the <roles:Registrar> SHALL be formed as a URI string `http://uri.etsi.org/SvcType/{Specific_attestation}/Issuance` or `http://uri.etsi.org/SvcType/{Specific_attestation}/Revocation`. The `{specific_attestation}` fragment SHALL be valued as:
 
     - `PID` for PID Providers Trust Anchors;
     - `WalletSolution` for Wallet Providers's owned Wallet Solutions Trust Anchors;
@@ -207,10 +194,6 @@ The `TrustedEntityServices` is an *Array* of `TrustedEntityService` *Objects*. E
     - `EAA` for EAA Providers' Trust Anchors;
 
     For the Registrar LoTE type, the `ServiceTypeIdentifier` SHALL be formed as a URI string `http://uri.etsi.org/SvcType/Register`.
-
-!!! choice
-
-    Within the APTITUDE profiles, the Trust Anchors for the `Issuance` and `Revocation` services SHALL be the same, and SHALL be listed in the `ServiceDigitalIdentity` component of the `ServiceInformation` component.
 
 The following table details the additional requirements the `ServiceHistory.ServiceHistoryInstance` *Object* component SHALL satisfy depending on the <artifacts:List of Trusted Entities (LoTE)|LoTE> type.
 
