@@ -62,35 +62,9 @@ A JWT <artifacts:Status List Token> SHALL be formatted as described in Section 5
 
 The following is an example of the <artifacts:Status List Token> payload and header prior to signing and base64url encoding:
 
-??? example "Status List Token Header and Payload"
+??? example "Example: Status List Token Header and Payload"
 
-    **Header:**
-
-    ```json
-    {
-      "alg": "ES256",
-      "typ": "statuslist+jwt",
-      "x5c": [
-        "MIIDqjCCApKgAwIBAgIESLNEvDA...",
-        "MIICwzCCAasCCQCKVy9eKjvi+jA...",
-        "MIIDTDCCAjSgAwIBAgIJAPlnQYH..."
-      ]
-    }
-    ```
-
-    **Payload:**
-
-    ```json
-    {
-      "exp": 2291720170,
-      "iat": 1686920170,
-      "sub": "https://example-issuer.com/statuslists/1",
-      "status_list": {
-        "bits": 1,
-        "lst": "eNrbuRgAAhcBXQ"
-      }
-    }
-    ```
+    {% include-markdown "../examples/status-list-token.md" %}
 
 #### Status List Request
 
@@ -262,7 +236,7 @@ Each value is an object with the following members:
 | `key_attestation_status_management.revocation_action` | REQUIRED when `operational_check` is not `none` | *String* | The action taken when the KA is invalid. The value defined by this profile is `revoke_credential`. |
 | `key_attestation_status_management.policy_id` | RECOMMENDED | *String* | A stable identifier representing the KA status-management policy applied by the Credential Issuer. |
 
-??? example "Credential Issuer Metadata of an Attestation Provider monitoring both WIA and KA"
+??? example "Example: Credential Issuer Metadata of an Attestation Provider monitoring both WIA and KA"
 
     For example, an Attestation Provider may advertise monitoring of both WIA and KA status for a device-bound credential as follows:
 
@@ -293,7 +267,7 @@ Each value is an object with the following members:
     }
     ```
 
-??? example "Credential Issuer Metadata of an Attestation Provider not monitoring KA"
+??? example "Example: Credential Issuer Metadata of an Attestation Provider not monitoring KA"
 
     An Attestation Provider that does not perform operational monitoring of the KA would advertise:
 
