@@ -2,7 +2,7 @@ The **Trust Anchor Validation Process** establishes the cryptographic integrity 
 
 !!! choice
 
-    Within the APTITUDE profiles, all trust anchors for APTITUDE entities SHALL be obtained from the applicable dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. This applies to <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Wallet Provider (WP)|Wallet Providers>, Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)>, <roles:PuB-EAA Provider|PuB-EAA Providers>, <roles:Qualified Electronic Attestation of Attributes (QEAA) Provider|QEAA Providers>, <roles:Electronic Attestation of Attributes (EAA) Provider|EAA Providers>, and <roles:Registrar|Registrars> and their <components:Register|Registers>.
+    Within the APTITUDE profiles, all trust anchors for APTITUDE entities SHALL be obtained from the applicable dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. This applies to <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Wallet Provider (WP)|Wallet Providers>, Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)>, <roles:PuB-EAA Provider|PuB-EAA Providers>, <roles:QEAA Provider|QEAA Providers>, <roles:EAA Provider|EAA Providers>, and <roles:Registrar|Registrars> and their <components:Register|Registers>.
 
 Depending on the artifact or <credentials:Attestation> being verified, the validating Entity SHALL fetch, download, and validate the dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE> for the required entity type. The LoTE is used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating:
 
@@ -15,7 +15,7 @@ Depending on the artifact or <credentials:Attestation> being verified, the valid
 
 !!! choice
 
-    Within the APTITUDE profiles, the trust anchors for <roles:Qualified Electronic Attestation of Attributes (QEAA) Provider|QEAA Providers> and <roles:Electronic Attestation of Attributes (EAA) Provider|EAA Providers> SHALL be retrieved from and validated against their dedicated QEAA Provider and EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE>, respectively. The same LoTE validation process SHALL be used for these trust anchors as for all other APTITUDE entities.
+    Within the APTITUDE profiles, the trust anchors for <roles:QEAA Provider|QEAA Providers> and <roles:EAA Provider|EAA Providers> SHALL be retrieved from and validated against their dedicated QEAA Provider and EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE>, respectively. The same LoTE validation process SHALL be used for these trust anchors as for all other APTITUDE entities.
 
 To verify the authenticity of a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE>, the validating Entity SHALL:
 
