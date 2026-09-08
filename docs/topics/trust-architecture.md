@@ -1,220 +1,191 @@
-This section describes the trust-related processes by detailing the entities involved, high level flows and their relationships.
+This section defines the APTITUDE Trust Infrastructure components that enable functional trust evaluation mechanisms to be used in the APTITUDE pilots. It first identifies the entities that participate in pilot interactions, then describes the infrastructure through which WP2 establishes their trust, and finally introduces the Onboarding System that makes those entities operational and recognisable within that infrastructure.
 
-The main entities involved in the <components:EUDI Wallet> ecosystem are:
+### APTITUDE Entities
 
-- The <components:Wallet Unit>, installed and activated by the <roles:User> and provided through a <components:Wallet Solution> by a <roles:Wallet Provider (WP)>.
-- <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties (WRPs)>, which may be further classified as
-    - The <roles:Provider of Person Identification Data (PID Provider)|Providers of Person Identification Data (PID Providers)> and <roles:Attestation Provider (AP)|Attestation Providers (APs)> that interact with the <components:Wallet Unit> to issue <credentials:Attestation|Attestations>.
-    - The <roles:Relying Party (RP)|Relying Parties (RPs)> and <roles:Relying Party Intermediary (RPI)|Relying Party Intermediaries (RPI)> that interact with the <components:Wallet Unit> to request <credentials:Attestation|Attestations>.
+The APTITUDE pilots are business use case exerciing interactions within the EUDI Wallet ecosystem. The roles defined by that ecosystem therefore remain applicable, while their supporting trust infrastructure is realised within the APTITUDE pilot environment. The main entities participating in the pilots are:
+
+- The <roles:User>, who controls and uses a <components:Wallet Unit>. The Wallet Unit is a configuration of a <components:Wallet Solution> provided by a <roles:Wallet Provider (WP)>.
+- <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties (WRPs)>, which interact with the Wallet Unit in one or both of the following capacities:
+    - <roles:Provider of Person Identification Data (PID Provider)|PID Providers> and <roles:Attestation Provider (AP)|Attestation Providers> issue <credentials:Person Identification Data (PID)|PID> or <credentials:Attestation|Attestations> to the Wallet Unit. Attestation Providers comprise <roles:QEAA Provider|QEAA Providers>, <roles:PuB-EAA Provider|PuB-EAA Providers>, and non-qualified <roles:EAA Provider|EAA Providers>.
+    - <roles:Relying Party (RP)|Relying Parties (RPs)> and <roles:Relying Party Intermediary (RPI)|Relying Party Intermediaries (RPIs)> request Attestations from the Wallet Unit.
 
 ```mermaid
 flowchart TD
     WP["Wallet Provider (WP)"]
-    User((User))
-    WU["Wallet Unit <br/> [WIA]"]
+    User(("User"))
+    WU["Wallet Unit<br/>[WIA/KA]"]
 
-   subgraph WRP["Wallet-Relying Parties (WRPs) [WRPAC, WRPRC]"]
+    subgraph WRP["Wallet-Relying Parties (WRPs)<br/>[WRPAC, WRPRC]"]
         direction LR
-        PIDP["PID Providers"]
+        PIDP["PID Provider"]
         subgraph AP["Attestation Providers"]
-            QEAAP["QEAA <br/>Providers"]
-            PubP["Pub-EAA <br/>Providers"]
-            EAAP["non-qualified <br/>EAA Providers"]
+            QEAAP["QEAA Provider"]
+            PubP["PuB-EAA Provider"]
+            EAAP["Non-qualified<br/>EAA Provider"]
         end
-        RP["Relying Parties (RPs)"]
-        RPI["RP <br/>Intermediaries"]
+        RP["Relying Party (RP)"]
+        RPI["Relying Party<br/>Intermediary (RPI)"]
     end
 
-    %% Skeleton
-    PIDP ~~~ RPI
-    RPI ~~~ AP
-    RP ~~~ RPI
+    WP -->|"provides the Wallet Solution"| WU
+    User -->|"controls and uses"| WU
+    WU <-->|"PID/Attestation<br/>issuance or presentation"| WRP
 
-    %% Style
-    classDef WRP_entities fill:#ffefd5,stroke:#ffdab9;
-    style WRP fill:#ffffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-    style AP fill:#ffffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-
-    class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
-
-    %% Arrows
-    WP ---|"Provides Wallet Solution"| User 
-    User ---|"Controls/activates"| WU
-    WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP
+    classDef wrpEntity fill:#ffefd5,stroke:#ffdab9,color:#000;
+    class PIDP,QEAAP,PubP,EAAP,RP,RPI wrpEntity;
+    style WRP fill:#fff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style AP fill:#fff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
 ```
 
-To trust the interactions between these entities, the following trust evaluation processes are needed:
+The User and Wallet Unit participate in runtime issuance and presentation interactions but are not onboarded as organisational entities. The organisational entities made operational through the APTITUDE trust infrastructure are the Wallet Providers and the different types of WRP introduced above.
 
-- *Authentication Process*: a way to authenticate the identity of an entity. To achieve this:
-    - The <components:Wallet Unit> needs a <artifacts:Wallet Instance Attestation (WIA)>, an object that attests its integrity and is signed by the <roles:Wallet Provider (WP)|WP>.
-    - The <roles:Wallet-Relying Party (WRP)|WRP> needs a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)> attesting its identity.
-- *Sign/Seal Validation Process*: a way to validate signatures and seals on <credentials:Attestation|Attestations> and other signed Trust Artifacts.
-- *Authorization Process*: a way to check the authorization of an entity (i.e., *(i)* the <roles:Wallet-Relying Party (WRP)|WRP> entitlements, *(ii)* whether an <roles:Attestation Provider (AP)|AP> is eligible to issue an <credentials:Attestation>, and *(iii)* whether a <roles:Relying Party (RP)|RP> has the right to access the data it is requesting). To achieve this:
-    - The intended use of a <roles:Wallet-Relying Party (WRP)|WRP> is written in a signed <components:Register> and in a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)>.
-    - The <roles:Attestation Provider (AP)|AP> may write their own <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policies (EDPs)>.
-- *Trust Anchor Validation Process*: a way to check the integrity and authenticity of <artifacts:Trusted List (TL)|Trusted Lists (TL)> which serve as the <components:Authentic Source> for <artifacts:Trust Anchor|Trust Anchors> used to (a) verify signed objects such as <credentials:Person Identification Data (PID)|PIDs>, <credentials:Attestation|Attestations>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, and (b) <components:Register>. To achieve this:
-    - The public key of the corresponding private key used to sign is published on the <artifacts:Trusted List (TL)|TL> or on the <artifacts:List of Trusted Entities (LoTE)|LoTE> managed by the European Commission.
+### APTITUDE Trust Infrastructure
 
-While these trust evaluation processes and their artifacts (i.e., the <components:Register> and its common APIs, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, <artifacts:List of Trusted Entities (LoTE)|LoTE>, <artifacts:Trusted List (TL)|TLs> and <artifacts:Embedded Disclosure Policy (EDP)|EDPs>) will be further detailed in the [Trust Evaluation Process](../sections/trust-evaluation-process.md) and [Trust Artifacts](../sections/trust-artifacts.md) sections respectively, the processes to obtain and manage these artifacts are briefly detailed below:
+The APTITUDE pilot does not deploy the full stack Member State and European Commission infrastructure assumed by the EUDI Wallet framework. For piloting purposes, WP2 operates the corresponding registration, certificate issuance, and LoTE publication capabilities. Together, these capabilities establish the Trust Anchors and trust artifacts used by the [Trust Evaluation Process](../sections/trust-evaluation-process.md).
 
-- *WRP Registration Process*: To rely on <components:Wallet Unit|Wallet Units> for the purpose of providing a service, <roles:Wallet-Relying Party (WRP)|WRPs> register at a <roles:Registrar> in the Member State where they are established. Based on the type of service registered, registration includes: the attributes that the <roles:Relying Party (RP)|RP> intends to request from <components:Wallet Unit|Wallet Units> or the <data-elements:Attestation Type|Attestation type(s)> the <roles:Attestation Provider (AP)|AP> wants to issue to <components:Wallet Unit|Wallet Units>. The following steps are in common to all <roles:Wallet-Relying Party (WRP)|WRPs>:
-    1. *Identity and Catalogue Verification:* The <roles:Registrar> verifies the identity of the <roles:Wallet-Relying Party (WRP)|WRP> according to requirements in [ETSI TS 119 461]. The specific identity proofing level may vary based on entity type and applicable regulatory framework (e.g., <roles:Qualified Trust Service Provider (QTSP)|Qualified Trust Service Provider (QTSP)> requirements or Member State national legislation) and it is out of scope of the piloting. In this process, the <roles:Registrar> may use the <artifacts:Catalogue of Attributes> and <artifacts:Catalogue of Schemes for the Attestation of Attributes> managed by the European Commission for evaluating the registration request.
-    2. *Registration Record Creation*: The <roles:Registrar> creates registration records in the national <components:Register>, made available online both in human- and machine-readable formats. Records contains at least:
-        - <roles:Wallet-Relying Party (WRP)|WRP> identification information.
-        - <roles:Wallet-Relying Party (WRP)|WRP> type (<roles:Relying Party (RP)|RP>, <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:QEAA Provider>, <roles:PuB-EAA Provider>, <roles:EAA Provider>).
-        - Entity-specific capabilities
-    3. *WRPAC Issuance*: The <roles:Wallet-Relying Party (WRP)|WRP> obtains a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> provided by a <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>.
-    4. *WRPRC Issuance*: The <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> issues a signed <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> containing registered capabilities.
+The APTITUDE Trust Infrastructure consists of:
 
-    ```mermaid
-    flowchart TD
+- the APTITUDE <components:Public Key Infrastructure (PKI)|Public Key Infrastructure (PKI)>, which issues and manages the X.509 certificates required by the pilot;
+- the Registration Service and <components:Register>, which record the identity, role, and authorization information of WRPs;
+- the Certificate Issuance Services, which issue and manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, and Entity Sign/Seal Certificates;
+- the Publication Service, which signs and publishes the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE>; and
+- the Onboarding UI, which coordinates these services for each entity requesting onboarding.
 
-    WRP["Wallet-Relying Parties <br/> (WRPs)"]
+#### APTITUDE PKI
 
-    subgraph MS["Member State (MS)"]
-        MSReg[MS <br/>Registrar]
-        ProvAC[Provider of <br/>WRPAC]
-        ProvRC[Provider of <br/>WRPRC]
-        Reg[/"Register(s)"/]
-        MSReg---|"Publishes data"| Reg
-    end
+The APTITUDE PKI establishes the certificate chains used to authenticate pilot entities and validate the signatures or seals they create. WP2 SHALL establish the <roles:Certificate Authority (CA)|Certificate Authorities (CAs)> shown below. The <artifacts:Trust Anchor|Trust Anchor> Certificate of each CA SHALL be published in the corresponding LoTE.
 
-    subgraph EC["European Commission (EC)"]
-        Cat[/Catalogues/]
-    end
-
-    %% Style
-    style WRP fill:#ffefd5, stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-    style MS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
-    style EC fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
-    classDef blue fill:#e8f0fe,stroke:#abb2bf
-    classDef green fill:#8fbc8f,stroke:#2f4f4f
-
-    class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
-    class ECLoTE,ECNS,Cat,LoTE blue;
-    class MSReg,ProvAC,ProvRC,TLs,Reg green;
-
-    %% Arrows
-    WRP ---|"Request registration"| MSReg
-    ProvAC ---|"Issues WRPAC"| WRP
-    ProvRC-. "Issues WRPRC" .-> WRP
-    MSReg ---|"Checks Catalogues"| Cat
-    ```
-
-- *<processes:Notification|Notification Process>*: the Member State sends data related to the registered entity to the European Commission. As result:
-    - For <roles:Wallet Provider (WP)|WPs>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, Member State <roles:Registrar|Registrars>, and <roles:PuB-EAA Provider|Pub-EAA Providers>: the notified entities are included in a <artifacts:List of Trusted Entities (LoTE)|LoTE> by a European Commission <artifacts:List of Trusted Entities (LoTE)|LoTE> Provider.
-    - For <roles:QEAA Provider|QEAA Providers> and <roles:Qualified Trust Service Provider (QTSP)|QTSP>, the URL of the <artifacts:Trusted List (TL)|TL> is added in the EU <artifacts:List Of Trusted Lists (LOTL)>.
-
-    ```mermaid
-    flowchart LR
-
-    subgraph MS["Member State (MS)"]
-        MSTLP["MS  <br/>Scheme Operator  <br/>(SO)"]
-        TLs[/TLs/]
-        MSTLP ---|"publish"| TLs
-    end
-
-    subgraph EC["European Commission (EC)"]
-        ECLoTE[EC LoTE <br/>Provider]
-        LoTE1[/WP <br/>LoTE/]
-        LoTE2[/PID Providers <br/>LoTE/]
-        LoTE3[/Providers of <br/>WRPAC LoTE/]
-        LoTE4[/Providers of <br/>WRPRC LoTE/]
-        LoTE5[/MS Registrar <br/>LoTE/]
-        LoTE6[/Pub-EAA Providers <br/>LoTE/]
-        LOTL[/LOTL/]
-        ECLoTE ---|"publish"| LoTE1
-        ECLoTE ---|"publish"| LoTE2
-        ECLoTE ---|"publish"| LoTE3
-        ECLoTE ---|"publish"| LoTE4
-        ECLoTE ---|"publish"| LoTE5
-        ECLoTE ---|"publish"| LoTE6
-        ECLoTE ---|"publish"| LOTL
-    end
-
-    LoTE1 ~~~ LoTE2
-    LoTE3 ~~~ LoTE4
-    LoTE5 ~~~ LoTE6
-
-    %% Style
-    style EC fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
-    style MS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
-    classDef blue fill:#e8f0fe,stroke:#abb2bf
-    classDef green fill:#8fbc8f,stroke:#2f4f4f
-
-    class ECLoTE,ECNS,LoTE1,LoTE2,LoTE3,LoTE4,LoTE5,LoTE6,LOTL blue;
-    class MSTLP,TLs green;
-
-    %% Arrows
-    EC ---|"Notification Process <br/>(Trust Anchor or <br/>URL of the TL)"| MS
-    ```
-
-The following figure adds these two processes to the previous architecture.
+The diagram is organised into four layers, from the WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow shows a CA issuing a certificate to the corresponding entity, while a dashed arrow points from each CA to the LoTE in which its Trust Anchor is published.
 
 ```mermaid
-flowchart TD
+flowchart TB
+    PubSvc["WP2 Publication Service"]:::publication
 
-    WP["Wallet Provider (WP)"]
-    User((User))
-    WU["Wallet Unit <br/> [WIA]"]
-
-   subgraph WRP["Wallet-Relying Parties (WRPs) <br/>[WRPAC, WRPRC]"]
+    subgraph Lists["APTITUDE Lists of Trusted Entities"]
         direction LR
-        PIDP["PID Providers"]
-        subgraph AP["Attestation Providers"]
-            QEAAP["QEAA <br/>Providers"]
-            PubP["Pub-EAA <br/>Providers"]
-            EAAP["non-qualified <br/>EAA Providers"]
-        end
-        RP["Relying Parties (RPs)"]
-        RPI["RP <br/>Intermediaries"]
+        QEAA_L["QEAA Providers LoTE"]
+        PID_L["PID Providers LoTE"]
+        PuBEAA_L["PuB-EAA Providers LoTE"]
+        EAA_L["EAA Providers LoTE"]
+        WRPAC_L["Providers of WRPAC LoTE"]
+        Wallet_L["Wallet Providers LoTE"]
+        WRPRC_L["Providers of WRPRC LoTE"]
+        Registrar_L["Registrars and Registers LoTE"]
     end
 
-    subgraph MS["Member State (MS)"]
-        MSReg[MS <br/>Registrar]
-        ProvAC[Provider of <br/>WRPAC]
-        ProvRC[Provider of <br/>WRPRC]
-        MSTLP["MS  <br/>Scheme Operator  <br/>(SO)"]
-        TLs[/TLs/]
-        Reg[/"Register(s)"/]
-        MSTLP --- TLs
-        MSReg--- Reg
+    subgraph PKI["APTITUDE PKI - Certificate Authorities"]
+        direction LR
+        QEAA_CA["QEAA Provider<br/>Sign/Seal CA"]
+        PID_CA["PID Provider<br/>Sign/Seal CA"]
+        PuBEAA_CA["PuB-EAA Provider<br/>Sign/Seal CA"]
+        EAA_CA["EAA Provider<br/>Sign/Seal CA"]
+        WRPAC_CA["Provider of WRPAC"]
+        Wallet_CA["Wallet Provider<br/>Sign/Seal CA"]
+        WRPRC_CA["Provider of WRPRC"]
+        Registrar_CA["Registrar"]
     end
 
-    subgraph EC["European Commission (EC)"]
-        ECLoTE[EC LoTE <br/>Provider]
-        Cat[/Catalogues/]
-        LoTE[/LOTL or LoTE/]
-        ECLoTE --- LoTE
+    subgraph Entities["Corresponding APTITUDE Entities"]
+        direction LR
+        QEAA_Entity["QEAA Provider"]
+        PID_Entity["PID Provider"]
+        PuBEAA_Entity["PuB-EAA Provider"]
+        EAA_Entity["Non-qualified EAA Provider"]
+        WRP_Entity["Wallet-Relying Party"]
+        Wallet_Entity["Wallet Provider"]
     end
 
+    %% Preserve the four-tier layout while the Trust Anchor arrows point upward.
+    QEAA_L ~~~ QEAA_CA
+    PID_L ~~~ PID_CA
+    PuBEAA_L ~~~ PuBEAA_CA
+    EAA_L ~~~ EAA_CA
+    WRPAC_L ~~~ WRPAC_CA
+    Wallet_L ~~~ Wallet_CA
+    WRPRC_L ~~~ WRPRC_CA
+    Registrar_L ~~~ Registrar_CA
 
+    PubSvc ---->|"publishes"| QEAA_L
+    PubSvc -->|"publishes"| PID_L
+    PubSvc -->|"publishes"| PuBEAA_L
+    PubSvc -->|"publishes"| EAA_L
+    PubSvc -->|"publishes"| WRPAC_L
+    PubSvc -->|"publishes"| Wallet_L
+    PubSvc -->|"publishes"| WRPRC_L
+    PubSvc -->|"publishes"| Registrar_L
 
-    %% Skeleton
-    PIDP ~~~ RPI
-    RPI ~~~ AP
-    RP ~~~ RPI
-    ProvAC ~~~ ProvRC
-  
+    QEAA_CA -. "Trust Anchor" .-> QEAA_L
+    PID_CA -. "Trust Anchor" .-> PID_L
+    PuBEAA_CA -. "Trust Anchor" .-> PuBEAA_L
+    EAA_CA -. "Trust Anchor" .-> EAA_L
+    WRPAC_CA -. "Trust Anchor" .-> WRPAC_L
+    Wallet_CA -. "Trust Anchor" .-> Wallet_L
+    WRPRC_CA -. "Trust Anchor" .-> WRPRC_L
+    Registrar_CA -. "Trust Anchor" .-> Registrar_L
 
-    %% Style
-    classDef WRP_entities fill:#ffefd5, stroke:#ffdab9
-    style WRP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-    style AP fill:#ffff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-    style EC fill:#ffff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
-    style MS fill:#ffff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
-    classDef blue fill:#e8f0fe,stroke:#abb2bf
-    classDef green fill:#8fbc8f,stroke:#2f4f4f
+    QEAA_CA -->|"issues QEAA Provider Sign/Seal Certificate"| QEAA_Entity
+    PID_CA -->|"issues PID Provider Sign/Seal Certificate"| PID_Entity
+    PuBEAA_CA -->|"issues PuB-EAA Provider Sign/Seal Certificate"| PuBEAA_Entity
+    EAA_CA -->|"issues EAA Provider Sign/Seal Certificate"| EAA_Entity
+    WRPAC_CA -->|"issues WRPAC"| WRP_Entity
+    Wallet_CA -->|"issues Wallet Provider Sign/Seal Certificate"| Wallet_Entity
+    WRPRC_CA -->|"issues WRPRC"| WRP_Entity
 
-    class QEAAP,PIDP,PubP,EAAP,RP,RPI WRP_entities;
-    class ECLoTE,ECNS,Cat,LoTE blue;
-    class MSTLP,MSReg,ProvAC,ProvRC,TLs,Reg green;
-
-
-    %% Arrows
-    WP ---|Provides Wallet Solution| User 
-    User ---|Controls/activates| WU
-    WU ---|"Interacts (issue/present <br/>PID/Attestation)"| WRP 
-    WRP ---|"WRP Registration Process"| MS  
-    EC ---|"Notification Process <br/> through the EC Notification System"| MS
+    classDef publication fill:#d1ecf1,stroke:#17a2b8,color:#000;
+    style Lists fill:#fff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
+    style PKI fill:#fff,stroke:#ffc107,stroke-width:2px,rx:20,ry:20
+    style Entities fill:#fff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
 ```
+
+The CA certificates published as Trust Anchors are distinct from the end-entity certificates issued by those CAs. The profiles for both types of certificate are defined in [Trust Artifacts](../sections/trust-artifacts.md).
+
+#### APTITUDE Trust Service Overview
+
+The trust-infrastructure capabilities are exposed through the APTITUDE Onboarding System. In this specification, **Onboarding System** denotes the aggregate logical system; **service** denotes one of its Registration, Certificate Issuance, or Publication components.
+
+The Onboarding System enables APTITUDE participants to obtain the trust artifacts needed for pilot interactions. The path varies by entity type, as detailed in [Onboarding Paths by Entity Type](../sections/onboarding-process.md#onboarding-paths-by-entity-type), but comprises the following activities where applicable:
+
+1. The entity submits its identity and authorization information to the Registration Service. Within APTITUDE, the Registration Service SHALL verify that the requester is an APTITUDE participant and SHALL otherwise rely on the submitted self-declaration; it SHALL NOT perform the identity proofing defined in [ETSI TS 119 461] or [CIR 2025/848, Article 6].
+2. The entity submits the technical configuration and cryptographic material required for its role. The applicable Certificate Issuance Services issue its WRPAC, WRPRC, or Entity Sign/Seal Certificate.
+3. For an entity whose Trust Anchor must be published, the Publication Service uses its notifiable information to create or update the applicable LoTE entry.
+
+```mermaid
+flowchart TB
+    Entity(["APTITUDE participant<br/>requesting onboarding"])
+
+    subgraph System["APTITUDE Onboarding System"]
+        direction LR
+        UI["Onboarding UI"]:::interface
+        RegSvc["Registration Service"]:::service
+        CertSvc["Certificate Issuance Services<br/>WRPAC, WRPRC, Sign/Seal"]:::certificate
+        PubSvc["Publication Service"]:::service
+        Register[("Register")]:::store
+        Notification[("Notification dataset")]:::store
+
+        UI -->|"registration data"| RegSvc
+        RegSvc <-->|"create, read, update"| Register
+        UI -->|"certificate requests"| CertSvc
+        CertSvc -.->|"verify registration"| RegSvc
+        UI -->|"notifiable data"| PubSvc
+        PubSvc <-->|"manage"| Notification
+    end
+
+    Certificates{{"Issued Certificates"}}
+    Lists{{"LoTE"}}
+
+    Entity <-->|"submit data and receive results"| UI
+    CertSvc -->|"issues"| Certificates
+    PubSvc -->|"signs and publishes"| Lists
+
+    classDef interface fill:#d4edda,stroke:#28a745,color:#000;
+    classDef service fill:#d1ecf1,stroke:#17a2b8,color:#000;
+    classDef certificate fill:#fff3cd,stroke:#ffc107,color:#000;
+    classDef store fill:#f5f5f5,stroke:#999,color:#000;
+    style System fill:#fff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+```
+
+This figure is a logical overview rather than a deployment architecture. The component responsibilities, prerequisites, inputs, outputs, and entity-specific paths are specified in the following [Onboarding Process](../sections/onboarding-process.md) section.
+
+!!! warning
+
+    The implementation architecture of the Trust Services and components will be further defined in T2.3.1 but SHOULD adhere to these implementation profiles.
