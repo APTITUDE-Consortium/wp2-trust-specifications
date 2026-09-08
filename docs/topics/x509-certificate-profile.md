@@ -2,7 +2,7 @@ This section defines a general **X.509 Certificate Profile**, establishing the s
 
 Each X.509 certificate defined in this specification SHALL conform to the requirements of this section unless explicitly stated otherwise.
 
-As specified in [RFC 5280], X.509 certificates SHALL be a `SEQUENCE` of the following fields:
+In accordance with [RFC 5280, Section 4], the `Certificate` ASN.1 structure consists of a `SEQUENCE` composed of the following fields:
 
 | Field                       | Type            | Presence      | Description | Reference in [RFC 5280] |
 | --------------------------- | :-------------: | :-----------: |------------ | ----------------------- |
@@ -14,18 +14,16 @@ As specified in [RFC 5280], X.509 certificates SHALL be a `SEQUENCE` of the foll
 
     The rest of the section details the content of the `tbsCertificate` field only. For additional information on the `signatureAlgorithm` and `signatureValue` fields, refer to [RFC 5280].
 
-The `tbsCertificate` field SHALL contain a `TBSCertificate` structure, whose fields SHALL conform to [RFC 5280, Section 4.1.2].
-
-The following table defines the certificate fields applicable to the certificate profile specified in this document. For each field, the table defines its presence requirement, type, description, and corresponding reference in [RFC 5280]. Individual certificate profiles MAY provide additional contextual notes for these fields, but SHALL NOT alter the presence requirements specified herein.
+The `tbsCertificate` field SHALL contain a `TBSCertificate` structure conforming to [RFC 5280, Section 4.1.2]. The following table details the certificate fields for the profile specified in this document, including presence requirements, syntax types, descriptions, and corresponding references in [RFC 5280]. Individual certificate profiles MAY provide additional contextual notes for these fields, but SHALL NOT alter the presence requirements specified herein.
 
 | Field                       | Type            | Presence      | Description | Reference in [RFC 5280] |
 | --------------------------- | :-------------: | :-----------: |------------ | ----------------------- |
 | `version`                   | `INTEGER`       | REQUIRED      | Describes the version of the encoded certificate. For this profile, it SHALL be version 3 (value `2`). | Section 4.1.2.1 |
 | `serialNumber`              | `INTEGER`       | REQUIRED      | Represents the serial number of the certificate. | Section 4.1.2.2 |
 | `signature`                 | `SEQUENCE`      | REQUIRED      | Contains the algorithm identifier for the algorithm used by the <roles:Certificate Authority (CA)\|CA> to sign the certificate. The signature algorithm SHOULD be selected according to [ETSI TS 119 312], but MAY be superseded by national recommendations. | Section 4.1.2.3, Section 4.1.1.2 |
-| `issuer`                    | `SEQUENCE`      | REQUIRED      | Identifies entity that has signed and issued the certificate. It SHALL comply with the applicable requirements of [ETSI EN 319 412-2, Clause 4.2.3.2], as specified by the corresponding certificate profile. | Section 4.1.2.4 |
+| `issuer`                    | `CHOICE`        | REQUIRED      | Identifies the entity that has signed and issued the certificate. It SHALL comply with the applicable requirements of [ETSI EN 319 412-2, Clause 4.2.3.2], as specified by the corresponding certificate profile. | Section 4.1.2.4 |
 | `validity`                  | `SEQUENCE`      | REQUIRED      | Represents the time interval during which the <roles:Certificate Authority (CA)\|CA> warrants that it will maintain information about the status of the certificate. | Section 4.1.2.5 |
-| `subject`                   | `SEQUENCE`      | REQUIRED      | Identifies the entity associated with the public key stored in the subject public key field. It SHALL comply with the applicable requirements of [ETSI EN 319 412-3, Clause 4.2.1], as specified by the corresponding certificate profile. | Section 4.1.2.6 |
+| `subject`                   | `CHOICE`        | REQUIRED      | Identifies the entity associated with the public key stored in the subject public key field. It SHALL comply with the applicable requirements of [ETSI EN 319 412-3, Clause 4.2.1], as specified by the corresponding certificate profile. | Section 4.1.2.6 |
 | `subjectPublicKeyInfo`      | `SEQUENCE`      | REQUIRED      | Carries the public key and identifies the algorithm with which the key is used. The subject public key SHOULD be selected according to [ETSI TS 119 312] but MAY be superseded by national recommendations. | Section 4.1.2.7 |
 | `issuerUniqueID`            | `BIT STRING`    | PROHIBITED    | Represents the issuer unique identifiers, to handle the possibility of reuse of issuer names over time. | Section 4.1.2.8 |
 | `subjectUniqueID`           | `BIT STRING`    | PROHIBITED    | Represents the subject unique identifiers, to handle the possibility of reuse of subject names over time. | Section 4.1.2.8 |
