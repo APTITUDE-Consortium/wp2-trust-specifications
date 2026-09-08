@@ -205,63 +205,11 @@ Each value is an object with the following members:
 
 ??? example "Example: Credential Issuer Metadata of an Attestation Provider monitoring both WIA and KA"
 
-    For example, an Attestation Provider may advertise monitoring of both WIA and KA status for a device-bound credential as follows:
-
-    ```json
-    {
-      "credential_configurations_supported": {
-        "example_device_bound_credential": {
-          "format": "dc+sd-jwt",
-          "cryptographic_binding_methods_supported": [
-            "jwk"
-          ],
-          "wallet_attestation_status_management": {
-            "issuance_check": "wia",
-            "operational_check": "wia",
-            "maximum_check_interval": 86400,
-            "revocation_action": "revoke_credential",
-            "policy_id": "urn:eu:eudi:wallet-wia-status-policy:continuous"
-          },
-          "key_attestation_status_management": {
-            "issuance_check": "ka",
-            "operational_check": "ka",
-            "maximum_check_interval": 86400,
-            "revocation_action": "revoke_credential",
-            "policy_id": "urn:eu:eudi:wallet-ka-status-policy:continuous"
-          }
-        }
-      }
-    }
-    ```
+    {% include-markdown "../examples/credential-issuer-metadata-ka-wia.md" %}
 
 ??? example "Example: Credential Issuer Metadata of an Attestation Provider not monitoring KA"
 
-    An Attestation Provider that does not perform operational monitoring of the KA would advertise:
-
-    ```json
-    {
-      "credential_configurations_supported": {
-        "example_device_bound_credential": {
-          "format": "dc+sd-jwt",
-          "cryptographic_binding_methods_supported": [
-            "jwk"
-          ],
-          "wallet_attestation_status_management": {
-            "issuance_check": "wia",
-            "operational_check": "wia",
-            "maximum_check_interval": 86400,
-            "revocation_action": "revoke_credential",
-            "policy_id": "urn:eu:eudi:wallet-wia-status-policy:continuous"
-          },
-          "key_attestation_status_management": {
-            "issuance_check": "none",
-            "operational_check": "none",
-            "policy_id": "urn:eu:eudi:wallet-ka-status-policy:issuance-only"
-          }
-        }
-      }
-    }
-    ```
+    {% include-markdown "../examples/credential-issuer-metadata-wia.md" %}    
 
 !!! warning "Privacy Considerations"
 
