@@ -1,6 +1,6 @@
 # 1\. APTITUDE Trust Framework Implementation Profiles
 
-This document specifies the core architectural profiles for trust framework implementation within the APTITUDE Large-Scale Pilot (LSP). It defines the necessary trust architecture, the essential trust artifacts exchanged among pilot entities, and the high-level evaluation processes and precise trust checks to be executed during issuance and presentation flows. These profiles are compliant, unless otherwise specified, to the EUDI Wallet Architecture Reference Framework (ARF), its Technical Specifications, the relevant ETSI standards, and the other standards defined in the [Reference section](../docs/sections/references.md), adapted to the pilot context.
+This document specifies the core architectural profiles for trust framework implementation within the APTITUDE Large-Scale Pilot (LSP). It defines the necessary trust architecture, the essential trust artifacts exchanged among pilot entities, and the high-level evaluation processes and precise trust checks to be executed during issuance and presentation flows. These profiles are compliant, unless otherwise specified, to the EUDI Wallet Architecture Reference Framework (ARF), its Technical Specifications, the relevant ETSI standards, and the other standards defined in the [Reference section](sections/references.md), adapted to the pilot context.
 
 **Document roadmap:**
 
@@ -8,7 +8,7 @@ This document specifies the core architectural profiles for trust framework impl
 - [Trust Artifact Taxonomy](#12-trust-artifact-taxonomy) establishes the trust artifact vocabulary.
 - [Trust Processes Taxonomy](#13-trust-processes-taxonomy) defines the trust evaluation processes.
 - [Pilot Trust Infrastructure](#14-pilot-trust-infrastructure) describes the pilot trust infrastructure, i.e., what WP2 builds to support the pilots.
-- [Trust Use Cases](#15-trust-test-cases) describes the horizontal runtime and operational checks executed across the pilots.
+- [Trust Use Cases](#15-trust-use-cases) describes the horizontal runtime and operational checks executed across the pilots.
 
 ## 1.1. Introduction
 
@@ -70,7 +70,7 @@ Since the APTITUDE ecosystem does not feature Member States or EU Commission-typ
 | WP2 acts as the sole LoTE provider; the certificate anchoring the various LoTEs will be published via GitHub | 4 |
 | APTITUDE will not feature an Authentic Source mock-up and the related API | 5 |
 | APTITUDE will not feature a Catalogue of Attestation, relying instead on the Attestation Rulebooks published on GitHub by the various WPs | 6 |
-| APTITUDE will not feature an active management of entity lifecycles, and will instead check dedicated Trust use cases for revocation as described in [Trust Use Cases](#15-trust-test-cases) | 7 |
+| APTITUDE will not feature an active management of entity lifecycles, and will instead check dedicated Trust use cases for revocation as described in [Trust Use Cases](#15-trust-use-cases) | 7 |
 
 ## 1.2. Trust Artifact Taxonomy
 
@@ -84,15 +84,15 @@ The following table lists the trust artifacts defined in the profiles. For each,
 
 | Artifact | Producer | Reference |
 |---|---|---|
-| WRPAC | Provider of WRPAC (WP2 managed CA) | [WRPAC Profiles](../docs/topics/access-certificate.md) |
-| WRPRC | Provider of WRPRC (WP2 managed CA) | [WRPRC Profiles](../docs/topics/registration-certificate.md) |
-| Sign/Seal Certificates | Provider of Sign/Seal Certificates (WP2 managed CA) | [Sign/Seal Certificates Profile](../docs/topics/entity-end-certificate-profiles.md) |
-| CRLs, OCSP | Provider of WRPAC and Sign/Seal Certificates (WP2 managed CA component) | [Revocation Mechanisms](../docs/topics/revocation-mechanisms.md) |
-| TSL | Provider of WRPRC (WP2 managed CA component) | [Revocation Mechanisms](../docs/topics/revocation-mechanisms.md) |
-| Trust Anchor Certificate | Self-signed WP2 managed CA | [Trust Anchor Certificate Profiles](../docs/topics/trust-anchor-certificate-profiles.md) |
-| Register API | Registrar (WP2 managed service) | [Register API Profiles](../docs/api/register-api.md) |
-| EDP | Attestation Providers (Self-managed issuance) | [EDP Profiles](/docs/topics/embedded-disclosure-policy.md) |
-| List of Trusted Entities | LoTE Provider (WP2 managed service) | [LoTE Profiles](../docs/topics/trusted-list-and-list-of-trusted-lists.md) |
+| WRPAC | Provider of WRPAC (WP2 managed CA) | [WRPAC Profiles](sections/trust-artifacts.md#wallet-relying-party-access-certificate) |
+| WRPRC | Provider of WRPRC (WP2 managed CA) | [WRPRC Profiles](sections/trust-artifacts.md#wallet-relying-party-access-certificate) |
+| Sign/Seal Certificates | Provider of Sign/Seal Certificates (WP2 managed CA) | [Sign/Seal Certificates Profile](sections/trust-artifacts.md#entity-signseal-certificate) |
+| CRLs, OCSP | Provider of WRPAC and Sign/Seal Certificates (WP2 managed CA component) | [Revocation Mechanisms](sections/trust-management-lifecycle.md#revocation-mechanisms) |
+| TSL | Provider of WRPRC (WP2 managed CA component) | [Revocation Mechanisms](sections/trust-management-lifecycle.md#revocation-mechanisms) |
+| Trust Anchor Certificate | Self-signed WP2 managed CA | [Trust Anchor Certificate Profiles](sections/trust-artifacts.md#trust-anchor-certificate) |
+| Register API | Registrar (WP2 managed service) | [Register API Profiles](api/register-api.md) |
+| EDP | Attestation Providers (Self-managed issuance) | [EDP Profiles](sections/trust-artifacts.md#embedded-disclosure-policy) |
+| List of Trusted Entities | LoTE Provider (WP2 managed service) | [LoTE Profiles](sections/trust-artifacts.md#list-of-trusted-entities) |
 | WIA/KA | Wallet Provider | [TS03]; [CIR 2026/1731] |
 | WIA/KA Status List Token | Wallet Provider | [TS03]; [CIR 2026/1731] |
 
@@ -102,11 +102,11 @@ This section introduces the trust evaluation processes that the profiles specify
 
 ### 1.3.1. Issuance-Flow Trust Evaluation
 
-The high-level sequence of trust checks executed during credential issuance can be found in [Trust checks during Issuance](../docs/topics/trust-checks-issuance.md).
+The high-level sequence of trust checks executed during credential issuance can be found in [Trust checks during Issuance](sections/trust-checks.md#issuance).
 
 ### 1.3.2. Presentation-Flow Trust Evaluation
 
-The high-level sequence of trust checks executed during credential presentation can be found in [Trust checks during Presentation](../docs/topics/trust-checks-presentation.md).
+The high-level sequence of trust checks executed during credential presentation can be found in [Trust checks during Presentation](sections/trust-checks.md#presentation).
 
 ### 1.3.3. Shared Sub-Processes
 
@@ -126,7 +126,7 @@ This section maps with the services and components that WP2 will build within T2
 
 This section describes the high-level processes that WP2 will implement to set up the trust infrastructure needed for the piloting phase. For clarity purposes it also renders these processes in diagrammatic form.
 
-The Onboarding process, further detailed in [Onboarding Process](#onboarding-process), allows participants to register to the APTITUDE Trust Framework and obtain the trust artifacts needed to run trustworthy pilot interactions with the other members. The Onboarding Process can be characterized by three different phases:
+The Onboarding process, further detailed in [Onboarding Process](sections/onboarding-process.md), allows participants to register to the APTITUDE Trust Framework and obtain the trust artifacts needed to run trustworthy pilot interactions with the other members. The Onboarding Process can be characterized by three different phases:
 
 1. The entity submits its identity and authorization information to the Registration Service (e.g., organization name, role, entitlements, requested credentials, issued credentials) as specified. In accordance with the principles established in [Assumptions and Boundaries](#115-assumptions-and-boundaries), the Onboarding system SHALL NOT verify the identity of the onboardee according to [ETSI TS 119 461] or Art 6. of [CIR 2025/848] but SHALL only check that it is a member of the APTITUDE LSP and rely on the onboardee self-declaration for all the other information submitted.
 2. The entity submits its technical configurations (e.g., necessary cryptographic material, endpoints) needed for the piloting and receives the X509 certificates needed for the piloting phase.
@@ -273,7 +273,7 @@ Detailed versions of these Trust use cases are available in [RFC003](https://apt
 
 ### 1.5.2. Operational Trust Use Cases
 
-The operational Trust use cases are derived from the [Trust Management Process](../docs/topics/trust-management-process.md), [Onboarding Process](../docs/topics/onboarding-process.md), and [Revocation Mechanisms](../docs/topics/revocation-mechanisms.md). They verify both the successful path and the failure path of each management operation.
+The operational Trust use cases are derived from the [Trust Management Process](sections/trust-management-lifecycle.md#trust-management-process), [Onboarding Process](sections/onboarding-process.md), and [Revocation Mechanisms](sections/trust-management-lifecycle.md#revocation-mechanisms). They verify both the successful path and the failure path of each management operation.
 
 The runtime and operational tables are complementary. Runtime Trust use cases verify a trust decision against the artifacts available during an interaction. Operational Trust use cases verify that a single management process produces the expected infrastructure state or current artifact and, where applicable, that the linked runtime test case observes the resulting trust state. An operational test case SHALL pass when the WP2 checks and any applicable affected-entity or consuming-participant checks pass. Where the affected-entity responsibility is "None", WP2 performs the complete operational test.
 
