@@ -186,7 +186,7 @@ Each <roles:Registrar> provides an online service accessible via URL, obtained a
     - Check fresh Entity registration information as a backup to a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> failure.
     - Check that the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> obtained by the <roles:Wallet-Relying Party (WRP)|WRP> is bound to the service with which the <components:Wallet Instance|WI> is interacting.
 
-The <components:Wallet Instance|WI> MAY use this service for either permitted check. The service is queried using the entity unique identifier and, for presentation, the `intended_use_id`. The response provides the same authorization-relevant data as a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. A <components:Register> response SHALL NOT replace the mandatory WRPRC issuance or WRPRC check. The <roles:Registrar> online service is available through an API interface which is defined in [Register API](../topics/registry.md).
+The <components:Wallet Instance|WI> MAY use this service for either permitted check. The service is queried using the entity unique identifier and, for presentation, the `intended_use_id`. The response provides the same authorization-relevant data as a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. A <components:Register> response SHALL NOT replace the mandatory WRPRC issuance or WRPRC check. The <roles:Registrar> online service is available through an API interface which is defined in [Register API](../sections/trust-artifacts.md#register).
 
 !!! note
 
