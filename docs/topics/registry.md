@@ -345,7 +345,7 @@ DELETE is for deleting an existing <roles:Wallet-Relying Party (WRP)|WRP> entry 
 
 !!! warning
 
-    For [TS05] and [CIR 2025/848-Amendment], this method expects a request body with the `WalletRelyingParty` identifier, while in the corresponding YAML file [ts5-openapi31-registrar-api.yml](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml) the identifier is sent as a query parameter. This profile follows the [CIR 2025/848-Amendment].
+    For [TS05] and [CIR 2025/848-Amendment], this method expects a request body with the `WalletRelyingParty` identifier, while in the corresponding YAML file the identifier is sent as a query parameter. This profile follows the [CIR 2025/848-Amendment].
 
 **Response**
 
@@ -390,7 +390,7 @@ The common API SHALL support parameterised queries on `GET /wrp`. The following 
 
 !!! warning
 
-    The name of some query parameters differ from [TS05] and the corresponding YAML file [ts5-openapi31-registrar-api.yml](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/api/ts5-openapi31-registrar-api.yml) containing the OpenAPI specification of the JSON and REST based application programming interfaces (e.g., `intendedusecredentialmeta` vs `credentialmeta`). This profile follows the OpenAPI specification.
+    The name of some query parameters differ from [TS05] and the corresponding YAML file containing the OpenAPI specification of the JSON and REST based application programming interfaces (e.g., `intendedusecredentialmeta` vs `credentialmeta`). This profile follows the OpenAPI specification.
 
     In addition, this specification adds `providesattestation` to cover the [CIR 2025/848-Amendment] requirement for filtering parameter: type of attestations provided, returning the complete data set of each of the registered wallet-relying parties matching the value provided for this parameter.
 

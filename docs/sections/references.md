@@ -86,6 +86,7 @@ Other ETSI specifications that the previous specifications build upon:
 | RFC 7515                                    | 2015-05     | JSON Web Signature (JWS)  |
 | RFC 7519                                    | 2015-05     | JSON Web Token (JWT)      |
 | RFC 8174                                    | 2017-05     | Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words |
+| RFC 8392                                    | 2026-05     | CBOR Web Token (CWT) |
 | RFC 9052                                    | 2022-08     | CBOR Object Signing and Encryption (COSE): Structures and Process |
 | RFC 9360                                    | 2023-02     | CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificate |
 | RFC 9608                                    | 2024-06     | No Revocation Available for X.509 Public Key Certificates |

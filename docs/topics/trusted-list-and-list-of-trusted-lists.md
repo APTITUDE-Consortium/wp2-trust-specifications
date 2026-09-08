@@ -41,7 +41,7 @@ All <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be signed with Compac
 
 This section specifies the profiles and formats that the various <artifacts:List of Trusted Entities (LoTE)> within the APTITUDE pilot SHALL utilize, depending on their specific use cases.
 
-The following repository provides the base normative JSON and XML schemas required for implementing the <artifacts:List of Trusted Entities (LoTE)>: [https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities](https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities).
+The following repository provides the base normative JSON and XML schemas required for implementing the <artifacts:List of Trusted Entities (LoTE)>: <https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities>.
 
 #### Specific Formats and Uses
 

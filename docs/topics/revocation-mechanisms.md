@@ -12,7 +12,7 @@ This section describes the artifacts that are employed in [Trust Management and 
 
 ### Token Status List
 
-This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list](https://www.ietf.org/archive/id/draft-ietf-oauth-status-list-21.html) for artifacts whose status is managed using a Status List. A TSL conveys the current status of many artifacts in a compact, signed <artifacts:Status List Token>. The requirements in this profile apply unless refined by one of the artifact-specific profiles below.
+This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list] for artifacts whose status is managed using a Status List. A TSL conveys the current status of many artifacts in a compact, signed <artifacts:Status List Token>. The requirements in this profile apply unless refined by one of the artifact-specific profiles below.
 
 The Status Issuer is the entity that issues the <artifacts:Status List Token> about the status information of the artifact. The Status Provider is the entity that makes the <artifacts:Status List Token> available at an accessible endpoint. The artifact-specific profile SHALL define these roles and whether they are fulfilled by the same entity.
 
@@ -69,7 +69,7 @@ If caching-related HTTP headers are present in the HTTP response, consumers SHAL
 
 ##### Token Status List (WRPRC Profile)
 
-This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/) for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRCs)>.
+This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list] for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|Wallet-Relying Party Registration Certificates (WRPRCs)>.
 
 !!! choice
 
@@ -97,7 +97,7 @@ For a JWT SLT, the signing certificate chain SHALL be carried in the `x5c` JOSE 
 
 ##### Token Status List (Wallet Unit Attestation Profile)
 
-This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/) for Wallet Instance Attestations or Key Attestations as described in [TS03] and [CIR 2026/1731].
+This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth-status-list] for Wallet Instance Attestations or Key Attestations as described in [TS03] and [CIR 2026/1731].
 
 !!! choice "APTITUDE Implementation Choice"
 
@@ -105,7 +105,7 @@ This section profiles the Token Status List (TSL) mechanism of [draft-ietf-oauth
 
 !!! note "Signature Algorithms"
 
-    The Signature Algorithms allowed for signing a Status List Token SHALL be these referenced in [TS03](https://github.com/eu-digital-identity-wallet/eudi-doc-standards-and-technical-specifications/blob/main/docs/technical-specifications/ts3-wallet-unit-attestation.md#26-signature-algorithms), i.e., ES256 (ECDSA with SHA-256 and P-256), ES384 (ECDSA with SHA-384 and P-384), and ES512 (ECDSA with SHA-512 and P-512).
+    The Signature Algorithms allowed for signing a Status List Token SHALL be these referenced in [TS03], i.e., ES256 (ECDSA with SHA-256 and P-256), ES384 (ECDSA with SHA-384 and P-384), and ES512 (ECDSA with SHA-512 and P-512).
 
 As specified in [TS03],
 
@@ -169,7 +169,7 @@ This profile distinguishes between:
     
     For a non-device-bound credential, requirements concerning the KA do not apply, and only the status of the WIA SHALL be checked at issuance.
 
-For PIDs, the current [TS03] requirements, as reflected in [CIR 2026/1731](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601731), require the PID Provider to monitor both the WIA and KA status at least once every 24 hours when the technical validity period of the PID exceeds 24 hours.
+For PIDs, the current [TS03] requirements, as reflected in [CIR 2026/1731], require the PID Provider to monitor both the WIA and KA status at least once every 24 hours when the technical validity period of the PID exceeds 24 hours.
 
 !!! choice
 

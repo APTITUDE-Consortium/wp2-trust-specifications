@@ -1,6 +1,6 @@
 #### Certificate Path Validation
 
-The entity that performs the certificate path validation initializes the following variables according to [RFC 5280](https://datatracker.ietf.org/doc/html/rfc5280):
+The entity that performs the certificate path validation initializes the following variables according to [RFC 5280]:
 
 - `path`: The sequence $C_1 \dots C_n$.
 - `trust_anchor`: *trusted certificate* obtained from the `ServiceDigitalIdentity` component after validation of the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> or <artifacts:Trusted List (TL)|Trusted List>.
@@ -10,7 +10,7 @@ The entity that performs the certificate path validation initializes the followi
 
     The profiles for Trust Anchor certificates referenced within a <artifacts:List of Trusted Entities (LoTE)|LoTE> or <artifacts:Trusted List (TL)|Trusted List> are described in [Trust Anchor Certificate](../sections/trust-artifacts.md#trust-anchor-certificate).
 
-The entity that performs the certificate path validation follows the algorithm described below ([RFC 5280](https://datatracker.ietf.org/doc/html/rfc5280)):
+The entity that performs the certificate path validation follows the algorithm described below [RFC 5280]:
 
 **Step 1: Initialization**
 Initialize the state variables:
