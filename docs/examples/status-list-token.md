@@ -16,12 +16,13 @@
 
 ```json
 {
-  "exp": 2291720170,
-  "iat": 1686920170,
   "sub": "https://example-issuer.com/statuslists/1",
+  "iat": 1686920170,
+  "exp": 2291720170,
   "status_list": {
     "bits": 1,
     "lst": "eNrbuRgAAhcBXQ"
-  }
+  },
+  "ttl": 43200
 }
 ```

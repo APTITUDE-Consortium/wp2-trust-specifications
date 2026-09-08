@@ -50,3 +50,7 @@ The table below lists the trust artifacts defined in this document, along with t
 ## Online Certificate Status Protocol Artifacts
 
 {% include-markdown "../topics/ocsp-artifacts.md" %}
+
+## Status List Token
+
+{% include-markdown "../topics/status-list-token.md" %}

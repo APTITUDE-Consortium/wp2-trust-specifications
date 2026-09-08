@@ -32,39 +32,8 @@ The status values and their meanings are defined by the artifact-specific profil
 
 #### Status List Token
 
-The **<artifacts:Status List Token>** is available at the Status List Endpoint. The Status Provider SHALL make each <artifacts:Status List Token> available via HTTP GET at the URI specified by the status-list reference, using `application/statuslist+jwt` for a JWT <artifacts:Status List Token> or `application/statuslist+cwt` for a CWT <artifacts:Status List Token>. The format MAY be either a JWT or a CWT and SHALL be protected by a cryptographic signature.
-
-!!! choice
-
-    Within the APTITUDE profiles, the Status List Token SHALL be available in JWT format, and MAY be available in CWT format.
-
-A JWT <artifacts:Status List Token> SHALL be formatted as described in Section 5.1, and a CWT <artifacts:Status List Token> as described in Section 5.2, of [draft-ietf-oauth-status-list](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/). In addition, a JWT <artifacts:Status List Token> SHALL contain the following parameters:
-
-##### Status List Token Header
-
-| Parameter | Defined in | Presence | Format | Description |
-| :-------: | :--------: | :------: | :----: | :---------- |
-| `alg` | [RFC 7515] | REQUIRED | *String* | A digital signature algorithm identifier per the IANA "JSON Web Signature and Encryption Algorithms" registry. It SHALL NOT be set to `none` or to a symmetric algorithm (MAC) identifier. |
-| `typ` | [RFC 7515] | REQUIRED | *String* | Specifies the type of the Web Token. It SHALL be set to `statuslist+jwt`. |
-| `x5c` | [RFC 7515] | REQUIRED | *Array of Strings* | Contains the Base64-encoded certificate chain required to verify the <artifacts:Status List Token>'s signature. |
-
-##### Status List Token Payload
-
-| Parameter | Defined in | Presence | Format | Description |
-| :-------: | :--------: | :------: | :----: | :---------- |
-| `sub` | RFC 7519 | REQUIRED | *String* | The subject claim SHALL specify the URI of the <artifacts:Status List Token>. The value SHALL be equal to that of the `uri` claim contained in the status-list reference of the artifact. |
-| `iat` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the <artifacts:Status List Token> was issued. |
-| `exp` | RFC 7519 | REQUIRED | *NumericDate* | A timestamp indicating when the <artifacts:Status List Token> expires. |
-| `status_list` | OAuth Status List Draft | REQUIRED | *JSON Object* | A JSON Object that contains the Status List configurations and payload. |
-| `status_list.bits` | OAuth Status List Draft | REQUIRED | *Integer* | Specifies the number of bits per artifact in the compressed byte array. The allowed values are 1, 2, 4, and 8. |
-| `status_list.lst` | OAuth Status List Draft | REQUIRED | *Base64url-encoded String* | Contains the status values for all artifacts. The value SHALL be the base64url-encoded compressed byte array. |
-| `ttl` | OAuth Status List Draft | RECOMMENDED | *Integer* | Time to live claim expressed in seconds. It specifies the maximum amount of time, in seconds, that the <artifacts:Status List Token> can be cached by a consumer before a fresh copy SHOULD be retrieved. |
-
-The following is an example of the <artifacts:Status List Token> payload and header prior to signing and base64url encoding:
-
-??? example "Example: Status List Token Header and Payload"
-
-    {% include-markdown "../examples/status-list-token.md" %}
+The **<artifacts:Status List Token>** is available at the Status List Endpoint.
+The format for the Status List Token is specified in [Status List Token](../sections/trust-artifacts.md#status-list-token).
 
 #### Status List Request
 
