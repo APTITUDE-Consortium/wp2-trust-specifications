@@ -60,9 +60,7 @@ Given the considerations above, this specification covers the following topics:
 
 - [**Onboarding Process**](sections/onboarding-process.md): Defines the process by which entities become operational and recognizable within the APTITUDE ecosystem.
 
-- [**Trust Evaluation Processes**](sections/trust-evaluation-process.md): Outlines the stages of the trust-related processes.
-
-- [**Trust Checks**](sections/trust-checks.md): Describes the trust-related checks performed during Issuance and Presentation.
+- [**Trust Evaluation**](sections/trust-evaluation-process.md): Outlines the stages of the trust-related processes and how they are applied during Issuance and Presentation.
 
 - [**Trust Management and Lifecycle**](sections/trust-management-lifecycle.md): Defines the mechanisms for managing the status of <roles:Trusted Entity|Trusted Entities>.
 

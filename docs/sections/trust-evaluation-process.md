@@ -1,21 +1,12 @@
+This section defines how trust is established and verified within the APTITUDE ecosystem. It is organized in two parts:
+
+- [Core Processes](#core-processes): defines the individual evaluation procedures as self-contained processes, independent of the flow in which they are invoked.
+- [Trust Checks by Flow](#trust-checks-by-flow): describes how the core processes are performed during the Issuance and Presentation flows.
+
+## Core Processes
+
 {% include-markdown "../topics/trust-evaluation.md" %}
 
-## Trust Anchor Validation Process
+## Trust Checks by Flow
 
-{% include-markdown "../topics/trust-anchor-validation.md" %}
-
-## Sign/Seal Validation Process
-
-{% include-markdown "../topics/attestation-signature-validation-process.md" %}
-
-## Authentication Process
-
-{% include-markdown "../topics/authentication-process.md" %}
-
-## Authorization Process
-
-{% include-markdown "../topics/authorization-process.md" %}
-
-## X.509 Certificate Chain Validation
-
-{% include-markdown "../topics/X.509-certificate-validation.md" %}
+{% include-markdown "../topics/trust-checks.md" %}

@@ -23,13 +23,13 @@ To verify the authenticity of a retrieved <artifacts:List of Trusted Entities (L
 - verify the LoTE signature or seal using the format-specific procedure and bind the signer to the certificate set published in the OJA;
 - validate the LoTE structure, requested LoTE type, freshness, and any authenticated pivot history.
 
-### List of Trusted Entities Validation
+#### List of Trusted Entities Validation
 
 This section defines the validation of a <artifacts:List of Trusted Entities (LoTE)|LoTE>. A LoTE is a digitally signed or sealed JSON or XML artifact containing metadata and public keys for entities operating in the APTITUDE ecosystem.
 
 Before validating a <artifacts:List of Trusted Entities (LoTE)|LoTE>, the <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> SHALL select the required LoTE type and obtain its type-specific location and authorized signing certificate set from the OJA. The LoTE SHALL be downloaded from the location published for that type.
 
-#### List of Trusted Entities Retrieval and Validation Sequence Diagram
+##### List of Trusted Entities Retrieval and Validation Sequence Diagram
 
 ```mermaid
 sequenceDiagram
@@ -47,7 +47,7 @@ sequenceDiagram
   Client->>Client: Extract trust anchors for target entity
 ```
 
-#### List of Trusted Entities Validation Process
+##### List of Trusted Entities Validation Process
 
 The validator initializes the following variables:
 
@@ -69,7 +69,7 @@ The validator initializes the following variables:
 - `LoTE-Status`: The validation result, for example `LoTE_VERIFICATION_PASSED`.
 - `LoTE-Sub-Status`: Detailed error codes supplementing `LoTE-Status`.
 
-##### JSON LoTE Signature Verification and OJA Binding
+###### JSON LoTE Signature Verification and OJA Binding
 
 This procedure applies when the LoTE is JSON formatted and uses the Compact JAdES Baseline B profile. In the APTITUDE profile, `x5t#S256` is the selected certificate-reference implementation choice for this format. A Compact JAdES signature is a compact JWS; when the JWT representation is selected, the decoded payload SHALL contain the private `LoTE` claim defined in the Compact JAdES profile.
 
@@ -83,7 +83,7 @@ The validator SHALL perform the following operations before using any payload va
 
 If any operation fails, validation SHALL stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and the applicable signature, certificate-binding, format, or type sub-status.
 
-##### XML LoTE Signature Verification and OJA Binding
+###### XML LoTE Signature Verification and OJA Binding
 
 This procedure applies when the LoTE is XML formatted and uses XAdES Baseline B. XAdES Baseline B is specified by [ETSI EN 319 132-1]; [ETSI EN 319 132-2] defines extended XAdES signatures and is not the governing specification for the Baseline B profile.
 
@@ -98,7 +98,7 @@ The validator SHALL perform the following operations before using any LoTE value
 
 If any operation fails, validation SHALL stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and the applicable signature, certificate-binding, format, or type sub-status. XAdES `SigningCertificateV2` is not by itself a trust anchor; the exact certificate match to the OJA certificate set is required.
 
-##### LoTE Validation Operations
+###### LoTE Validation Operations
 
 The validation SHALL perform the following steps:
 
@@ -138,12 +138,12 @@ The validation SHALL perform the following steps:
 
     The LoTE validation process is mutuated from the [ETSI TS 119 615] standard, and adapted to the APTITUDE profiles context.
 
-**Remarks**:
+!!! note "Remarks"
 
-- The OJA record is type-specific: a validator SHALL NOT use the endpoint or certificate set published for one LoTE type to validate another LoTE type.
-- The JSON `x5t#S256` value binds the JWS signer to an OJA-published certificate by the SHA-256 digest of its DER encoding. The XML `SigningCertificateV2` value provides the corresponding XAdES certificate digest, and the validator additionally performs exact certificate matching against the OJA certificate set.
-- Payload fields are not trusted for pivot discovery, distribution-point changes, or trust-anchor extraction until the format-specific signature and OJA certificate binding have succeeded.
-- A cached LoTE and its OJA-authorized signer certificate MAY be reused only within the caching rules specified in the LoTE profile; the cache SHALL be refreshed no later than `NextUpdate` and when the OJA record changes.
+    - The OJA record is type-specific: a validator SHALL NOT use the endpoint or certificate set published for one LoTE type to validate another LoTE type.
+    - The JSON `x5t#S256` value binds the JWS signer to an OJA-published certificate by the SHA-256 digest of its DER encoding. The XML `SigningCertificateV2` value provides the corresponding XAdES certificate digest, and the validator additionally performs exact certificate matching against the OJA certificate set.
+    - Payload fields are not trusted for pivot discovery, distribution-point changes, or trust-anchor extraction until the format-specific signature and OJA certificate binding have succeeded.
+    - A cached LoTE and its OJA-authorized signer certificate MAY be reused only within the caching rules specified in the LoTE profile; the cache SHALL be refreshed no later than `NextUpdate` and when the OJA record changes.
 
 Below is a flowchart summarizing the validation of a <artifacts:List of Trusted Entities (LoTE)|LoTE>:
 
