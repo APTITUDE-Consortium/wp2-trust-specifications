@@ -426,7 +426,7 @@ A successful response (`200`) SHALL be JWS-signed response body.
     | `x5t#S256` | RECOMMENDED | SHA-256 thumbprint of the signing certificate (useful for pinning / key matching). | [RFC 7515, §4.1.8] |
     | `x5u` | OPTIONAL | URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation. | [RFC 7515, §4.1.5] |
     | `typ` | RECOMMENDED | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | [RFC 7515, §4.1.9] |
-    | `crit` | OPTIONAL | If used, all listed parameters MUST be understood and processed by verifiers; otherwise the JWS is invalid. `crit` MUST appear only in the protected header. | [RFC 7515, §4.1.11] |
+    | `crit` | OPTIONAL | If used, all listed parameters SHALL be understood and processed by verifiers; otherwise the JWS is invalid. `crit` SHALL appear only in the protected header. | [RFC 7515, §4.1.11] |
 
     !!! note
 

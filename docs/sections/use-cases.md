@@ -1,11 +1,11 @@
-This section describes a set of trust use cases applying horizontally to the APTITUDE Large Scale Pilot. In particular, considering the [APTITUDE Trust Architecture](../sections/trust-architecture.md), they leverage the [Trust Artifacts](../sections/trust-artifacts.md) to perform the [Trust Evaluation Processes](../sections/trust-evaluation-process.md).
+This section describes a set of trust use cases that apply horizontally across the APTITUDE ecosystem. In particular, drawing on the [APTITUDE Trust Architecture](../sections/trust-architecture.md), these use cases leverage the [Trust Artifacts](../sections/trust-artifacts.md) to perform the [Trust Evaluation Processes](../sections/trust-evaluation-process.md).
 
 The trust use cases are divided into the following categories:
 
 - **Runtime Trust Use Cases**: Verify trust decisions during issuance and presentation interactions.
 - **Operational Trust Use Cases**: Verify the conformance of the trust infrastructure when entities and trust artifacts are onboarded, updated, revoked, or removed.
 
-The above categories are complementary: the **Runtime Trust Use Cases** verify a trust decision against the artifacts available during an interaction, while the **Operational Trust Use Cases** verify that a single management process produces the expected infrastructure state or current artifact and, where applicable, that the linked runtime test case observes the resulting trust state.
+These categories are complementary: **Runtime Trust Use Cases** verify a trust decision against the artifacts available during an interaction, while **Operational Trust Use Cases** verify that a given management process produces the expected infrastructure state or artifact, and, where applicable, that the linked runtime use case observes the resulting trust state.
 
 ## Runtime Trust Use Cases
 

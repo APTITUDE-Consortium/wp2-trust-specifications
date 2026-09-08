@@ -64,7 +64,7 @@ Given the considerations above, this specification covers the following topics:
 
 - [**Trust Management and Lifecycle**](sections/trust-management-lifecycle.md): Defines the mechanisms for managing the status of <roles:Trusted Entity|Trusted Entities>.
 
-- [**Trust Use Cases**](sections/use-cases.md): TBD.
+- [**Trust Use Cases**](sections/use-cases.md): Describes a set of trust use cases applying horizontally across the pilot.
 
 ### Out of Scope
 

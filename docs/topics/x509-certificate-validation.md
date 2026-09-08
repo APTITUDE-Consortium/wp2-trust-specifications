@@ -1,4 +1,4 @@
-### Certificate Path Validation
+#### Certificate Path Validation
 
 The entity that performs the certificate path validation initializes the following variables according to [RFC 5280](https://datatracker.ietf.org/doc/html/rfc5280):
 
@@ -130,17 +130,17 @@ flowchart TD
     class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;
 ```
 
-#### Revocation Checking
+##### Revocation Checking
 
 The entity performing certificate path validation (e.g., the <components:Wallet Unit>) SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
-- If the certificate contains the `noRevAvail` extension AND the `ext-etsi-valassured-ST-certs` extension (see [Wallet Relying Party Access Certificate](../sections/trust-artifacts.md#wallet-relying-party-access-certificate)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
+- If the certificate contains the `noRevAvail` extension AND the `ext-etsi-valassured-ST-certs` extension (see [Wallet-Relying Party Access Certificate](../sections/trust-artifacts.md#wallet-relying-party-access-certificate)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
 - If the `cRLDistributionPoints` extension is present, the <components:Wallet Unit> MAY retrieve and validate the <artifacts:Certificate Revocation List (CRL)|CRL>.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the <components:Wallet Unit> MAY perform an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> lookup.
 
 For details regarding the formats and parameters of <artifacts:Certificate Revocation List (CRL)|CRLs> and <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responses, see [Revocation Mechanism](../sections/trust-management-lifecycle.md#revocation-mechanisms).
 
-##### CRL Validation
+###### CRL Validation
 
 When using a <artifacts:Certificate Revocation List (CRL)|CRL>, the <components:Wallet Unit> SHALL:
 
@@ -213,7 +213,7 @@ flowchart TD
     class Revoked,Revoked2,Revoked3,Revoked4,Revoked5 revoked;
 ```
 
-##### OCSP Response Validation
+###### OCSP Response Validation
 
 When using <protocols:Online Certificate Status Protocol (OCSP)|OCSP>, the <components:Wallet Unit> SHALL:
 
