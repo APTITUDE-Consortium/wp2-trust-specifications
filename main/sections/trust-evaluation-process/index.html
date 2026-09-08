@@ -999,7 +999,7 @@
 <ol>
 <li><a href="./#trust-anchor-validation-process"><strong>Trust Anchor Validation Process</strong></a>;</li>
 <li><a href="./#authentication-process"><strong>Authentication Process</strong></a>;</li>
-<li><a href="./#sign-seal-validation-process"><strong>Sign/Seal Validation Process</strong></a>;</li>
+<li><a href="./#signseal-validation-process"><strong>Sign/Seal Validation Process</strong></a>;</li>
 <li><a href="./#authorization-process"><strong>Authorization Process</strong></a>.</li>
 </ol>
 <p>The <a href="./#certificate-path-validation"><strong>X.509 Certificate Chain Validation</strong></a> algorithm is shared by the Authentication Process, the Sign/Seal Validation Process, and the Authorization Process. It validates a certificate path against the <a class="mkdocs-ezglossary-link"
@@ -1081,11 +1081,21 @@
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificate (WRPRC)</a>, <a class="mkdocs-ezglossary-link"
-    id="c46135ee0a6b33f066d50f31ecae7c80"
+    id="28d42c82a402a02898711199e73c289b"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
-    href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">PuB-EAA Providers</a>, <a href="roles:Qualified Electronic Attestation of Attributes (QEAA) Provider">QEAA Providers</a>, <a href="roles:Electronic Attestation of Attributes (EAA) Provider">EAA Providers</a>, and <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">PuB-EAA Providers</a>, <a class="mkdocs-ezglossary-link"
+    id="dbf12efa4c5965136ab190a076fa9b0a"
+    title="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
+    data-tooltip="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
+    name="roles:QEAA Provider"
+    href="../../glossary-definitions/#ba9c7de719dc10bf2f0637af443116a3">QEAA Providers</a>, <a class="mkdocs-ezglossary-link"
+    id="cc244422e514818fb9cad960097d3e5e"
+    title="Provider of EEAs."
+    data-tooltip="Provider of EEAs."
+    name="roles:EAA Provider"
+    href="../../glossary-definitions/#25618de6dced5276e214359c546b87e1">EAA Providers</a>, and <a class="mkdocs-ezglossary-link"
     id="0637a76b5c495922c1da5ebe62515bc4"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
@@ -1178,7 +1188,17 @@
 </ol>
 <div class="admonition choice">
 <p class="admonition-title">Choice</p>
-<p>Within the APTITUDE profiles, the trust anchors for <a href="roles:Qualified Electronic Attestation of Attributes (QEAA) Provider">QEAA Providers</a> and <a href="roles:Electronic Attestation of Attributes (EAA) Provider">EAA Providers</a> SHALL be retrieved from and validated against their dedicated QEAA Provider and EAA Provider <a class="mkdocs-ezglossary-link"
+<p>Within the APTITUDE profiles, the trust anchors for <a class="mkdocs-ezglossary-link"
+    id="43abcabe53f32ebf97a21b355a34538a"
+    title="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
+    data-tooltip="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
+    name="roles:QEAA Provider"
+    href="../../glossary-definitions/#ba9c7de719dc10bf2f0637af443116a3">QEAA Providers</a> and <a class="mkdocs-ezglossary-link"
+    id="c64c2bf2508c79994bbceec1be306873"
+    title="Provider of EEAs."
+    data-tooltip="Provider of EEAs."
+    name="roles:EAA Provider"
+    href="../../glossary-definitions/#25618de6dced5276e214359c546b87e1">EAA Providers</a> SHALL be retrieved from and validated against their dedicated QEAA Provider and EAA Provider <a class="mkdocs-ezglossary-link"
     id="a779d44f45e1630d11f75863d3a2b71b"
     title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
@@ -1780,17 +1800,17 @@
     data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
     name="roles:Provider of Person Identification Data (PID Provider)"
     href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</a>, <a class="mkdocs-ezglossary-link"
-    id="93850ab40da48bb9b1040fca62faa954"
+    id="3d9efcfadb14f527e3f4c0eb46af0dfe"
     title="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
     data-tooltip="Provider of Qualified Electronic Attestation of Attributes (QEAAs)."
     name="roles:QEAA Provider"
     href="../../glossary-definitions/#ba9c7de719dc10bf2f0637af443116a3">QEAA Providers</a>, <a class="mkdocs-ezglossary-link"
-    id="28d42c82a402a02898711199e73c289b"
+    id="6a2f42a8de301b8b7888d3dc61343205"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
     href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">PuB-EAA Providers</a>, and <a class="mkdocs-ezglossary-link"
-    id="8c6783283caf23b2c6fc47b3d15aaa43"
+    id="330445eeb3907d814cb6bc8ab5353843"
     title="Provider of EEAs."
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
@@ -2537,7 +2557,7 @@ class META,PRES transport</code></pre>
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
-    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> online service is available through an API interface which is defined in <a href="../topics/registry.md">Register API</a>.</p>
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</a> online service is available through an API interface which is defined in <a href="../trust-artifacts/#register">Register API</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <a class="mkdocs-ezglossary-link"
@@ -5099,7 +5119,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a>) SHALL determine the revocation status for every certificate in the path with one of the following methods:</p>
 <ul>
-<li>If the certificate contains the <code>noRevAvail</code> extension AND the <code>ext-etsi-valassured-ST-certs</code> extension (see <a href="../trust-artifacts/#wallet-relying-party-access-certificate-content">Wallet Relying Party Access Certificate Content</a>), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).</li>
+<li>If the certificate contains the <code>noRevAvail</code> extension AND the <code>ext-etsi-valassured-ST-certs</code> extension (see <a href="../trust-artifacts/#wallet-relying-party-access-certificate">Wallet Relying Party Access Certificate</a>), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).</li>
 <li>If the <code>cRLDistributionPoints</code> extension is present, the <a class="mkdocs-ezglossary-link"
     id="67b425da9c73bdc22f1144b2ce2b5eb6"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
