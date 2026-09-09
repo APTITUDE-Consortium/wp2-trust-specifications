@@ -1352,11 +1352,11 @@
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates (WRPACs)</a>, each <a class="mkdocs-ezglossary-link"
-    id="bddeb14a9cd7d396f420c8866e47c104"
+    id="a58b9b49ad7c02f88708fea0e859de64"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> SHALL:<ul>
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a> SHALL:<ul>
 <li>make available at least one revocation mechanism among <a href="#certificate-revocation-lists">Certificate Revocation Lists</a> and <a href="#online-certificate-status-protocol">Online Certificate Status Protocol</a>;</li>
 <li>issue <a class="mkdocs-ezglossary-link"
     id="c8559c15df33914ba315b827c437bfee"
@@ -1372,11 +1372,11 @@
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificates (WRPRCs)</a>, each <a class="mkdocs-ezglossary-link"
-    id="08837dcc0dade0852e37e57f9247a656"
+    id="003fe590dcf25dccec1b379e9d33f7ea"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL:<ul>
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a> SHALL:<ul>
 <li>make available an endpoint to request <a href="#status-list-token">Status List Tokens</a>;</li>
 <li>issue <a class="mkdocs-ezglossary-link"
     id="4ed80e803fd094648c8730579bb112a9"
@@ -1505,19 +1505,19 @@ The format for the Status List Token is specified in <a href="../../sections/tru
 <div class="admonition choice">
 <p class="admonition-title">Choice</p>
 <p>Within the APTITUDE Profiles, the SLT Provider for WRPRC Status List Tokens SHALL be the <a class="mkdocs-ezglossary-link"
-    id="f232a5caaffcc0ec692f691e28604d2d"
+    id="272f72fdb8c937d2e3dd93cd57eba4ed"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>.</p>
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a>.</p>
 </div>
 <p><strong>Status List</strong></p>
 <p>According to the [ARF] and [ETSI TS 119 475], the WRPRC status is either <code>VALID</code> or <code>INVALID</code>; therefore, the <a class="mkdocs-ezglossary-link"
-    id="d1d922c55f670b590ee30e2dad590f28"
+    id="a3f6e8f094874f05c18cec1f24608a7c"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> SHALL set the <code>bits</code> parameter in the SLT's <code>status_list</code> object to <code>1</code>. The value <code>0x00</code> represents <code>VALID</code>, and the value <code>0x01</code> represents <code>INVALID</code>.</p>
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a> SHALL set the <code>bits</code> parameter in the SLT's <code>status_list</code> object to <code>1</code>. The value <code>0x00</code> represents <code>VALID</code>, and the value <code>0x01</code> represents <code>INVALID</code>.</p>
 <p>The SLT Provider SHALL pack entries starting with the least significant bit of each byte, compress the byte array using DEFLATE with the ZLIB data format, and publish the resulting Status List in the SLT.</p>
 <p><strong>Status List Token</strong></p>
 <div class="admonition choice">
@@ -1876,7 +1876,7 @@ The format for the Status List Token is specified in <a href="../../sections/tru
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 8, 2026 12:44:07 UTC">September 8, 2026 12:44:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 9, 2026 09:03:21 UTC">September 9, 2026 09:03:21</span>
   </span>
 
     

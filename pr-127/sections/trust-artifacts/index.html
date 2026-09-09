@@ -1824,12 +1824,7 @@
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificate (WRPAC)</a></td>
-<td><a class="mkdocs-ezglossary-link"
-    id="4dbbda679dd4e5a0181fdc25bbffde37"
-    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPACs</a></td>
+<td><a href="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)">Provider of WRPACs</a></td>
 <td>Certification Authority managed by APTITUDE WP2</td>
 <td><a href="#wallet-relying-party-access-certificate">APTITUDE Wallet-Relying Party Access Certificate Profile</a></td>
 </tr>
@@ -1840,12 +1835,7 @@
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificate (WRPRC)</a></td>
-<td><a class="mkdocs-ezglossary-link"
-    id="f473ecee6cec6907464a1f2dff6c51b0"
-    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRCs</a></td>
+<td><a href="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)">Provider of WRPRCs</a></td>
 <td>Certification Authority managed by APTITUDE WP2</td>
 <td><a href="#wallet-relying-party-registration-certificate">APTITUDE Wallet-Relying Party Registration Certificate Profile</a></td>
 </tr>
@@ -2242,11 +2232,11 @@
 <td><code>certificatePolicies</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>It SHALL include a <code>PolicyInformation</code> structure with <code>policyIdentifier</code> set to one of the following values (defined in [ETSI TS 119 411-8]): <code>0.4.0.194118.1.1</code> (<code>NCP-n-eudiwrp</code>); <code>0.4.0.194118.1.2</code> (<code>NCP-l-eudiwrp</code>); <code>0.4.0.194118.1.3</code> (<code>QCP-n-eudiwrp</code>); <code>0.4.0.194118.1.4</code> (<code>QCP-l-eudiwrp</code>). Moreover, <code>policyQualifiers</code> SHALL contain a <code>cpsURI</code> that references an URL where the CPS of the <a class="mkdocs-ezglossary-link"
-    id="75ebaf2dbcdc2ddf1c55585b7a264466"
+    id="860ec0ed693c57e0d11b5a9bbbd8aeec"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> is located.</td>
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a> is located.</td>
 </tr>
 <tr>
 <td><code>subjectAltName</code></td>
@@ -6114,11 +6104,11 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> SHALL be signed with the digital signature of <a class="mkdocs-ezglossary-link"
-    id="c08028264bc0d9868b06eebf59797a0d"
+    id="e346e93c6f4b6cb52c64a36f647de661"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Providers of WRPRC</a>.</li>
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Providers of WRPRC</a>.</li>
 <li>The JWT SHALL be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1].</li>
 <li>The CWT SHALL be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].</li>
 </ul>
@@ -7257,11 +7247,11 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a>;</li>
 <li><a class="mkdocs-ezglossary-link"
-    id="7e2d21c21da3adf6207fd5abd6131129"
+    id="c85d1dc43c2244c2d74f4fa79e64a8ce"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Providers of Wallet Relying Party Access Certificate</a>;</li>
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Providers of Wallet-Relying Party Access Certificate</a>;</li>
 <li><a class="mkdocs-ezglossary-link"
     id="e65c865ad5176b13db7e3012d7a455d5"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
@@ -7412,22 +7402,22 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="92f73f4d0d77f4d198f0b24298545aeb"
+    id="23eb1a716505ca5044da2e152ad05b66"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a></td>
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a></td>
 <td style="text-align: left;">[ETSI TS 119 602 Annex F]</td>
 <td style="text-align: left;">European Union</td>
 <td style="text-align: left;">JSON</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="c2de399e74aa5c1e03e12366430a55cd"
+    id="af92cf83ad3a77feca8d40ec33d5f290"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a></td>
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a></td>
 <td style="text-align: left;">[ETSI TS 119 602 Annex G]</td>
 <td style="text-align: left;">European Union</td>
 <td style="text-align: left;">JSON</td>
@@ -7506,22 +7496,22 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="0676d99c1ce19cc367147855c50e1fd9"
+    id="8b03617b7badd10a889a245621e461d8"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> Lists</td>
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a> Lists</td>
 <td style="text-align: left;">TS 119 602 Annex F</td>
 <td style="text-align: left;">JSON</td>
 <td style="text-align: left;">Compact JAdES Baseline B</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="3cf20b7b3ede3d3b5c7e1038a68f7e9e"
+    id="118aa968c44205844732cc7c01fed688"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> Lists</td>
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a> Lists</td>
 <td style="text-align: left;">TS 119 602 Annex G</td>
 <td style="text-align: left;">JSON</td>
 <td style="text-align: left;">Compact JAdES Baseline B</td>
@@ -7594,17 +7584,17 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</a> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
 <li><a class="mkdocs-ezglossary-link"
-    id="609ff91a88741f061e4ec22de73dc339"
+    id="bce4ce131dd559ec72f4efccb3582642"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
 <li><a class="mkdocs-ezglossary-link"
-    id="40d9cf4418ebde3f8cd3f20334a4660d"
+    id="27b7e1ca373bd7f8dfa85627bcdba68d"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
 <li><a class="mkdocs-ezglossary-link"
     id="538a365686132cf7b769bd7258d0f767"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
@@ -8107,16 +8097,16 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</a>, <a class="mkdocs-ezglossary-link"
-    id="c4818db82d6a1cbbd5625907e8aa8cd5"
+    id="f9edb9fc41237a294083716238d4b4b9"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="82621c508b6cf7f9e11a539bd81bc208"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
+    id="20de8de69ace64d9118ed9d45b834bff"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
     id="b639da491832a6b0afb1e5751449d305"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
@@ -8277,16 +8267,16 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</a>, <a class="mkdocs-ezglossary-link"
-    id="4932f08e6d3cc4965dab07465c807577"
+    id="b0931000196f293b5fd562af0e545b58"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="011fc99324ce15222a7a6cbdf830af98"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
+    id="fa900ba0bc1710152a269c42bab527fc"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
     id="5a17faf9eb7ba236571355877bacad8e"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
@@ -8339,16 +8329,16 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</a>, <a class="mkdocs-ezglossary-link"
-    id="e42bb3b60b57dbb7fab7ae70d7ae4f43"
+    id="c1eca8667f7aa41d792a7e0453778b38"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="b719ece79862547ffd05b79d4cf0044b"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
+    id="8e9b166582bdb48fe653eca1cbe5eab4"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
     id="862e0fd8197996f2301fa5cc73ad89d6"
     title="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
@@ -8453,16 +8443,16 @@ A successful response (<code>200</code>) SHALL be JWS-signed response body.</p>
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</a>, <a class="mkdocs-ezglossary-link"
-    id="061e085ec9c6434473731fd7a581813c"
+    id="96a9058fdaf8a965620c5757398655b5"
     title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#d2e4b3e1ba7c90c9e57c1e8371f96033">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
-    id="d5a84157c380c2119befcd01b4aa44fb"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a>, <a class="mkdocs-ezglossary-link"
+    id="e402c325ca7180898dfde22391a352c9"
     title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
     data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)"
-    href="../../glossary-definitions/#51c68482c1c963c71b87a3ef20517a86">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a>, <a class="mkdocs-ezglossary-link"
     id="11d3631e01648f7d098bd391f8c4024e"
     title="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
