@@ -55,7 +55,7 @@ The Trust Infrastructure employed for APTITUDE consists of:
 
 The APTITUDE Public Key Infrastructure establishes the certificate chains used to authenticate pilot entities and to validate the signatures or seals they create. APTITUDE WP2 SHALL establish the <roles:Certificate Authority (CA)|Certificate Authorities (CAs)> shown below. The <artifacts:Trust Anchor|Trust Anchor> Certificate of each CA SHALL be published in the corresponding LoTE.
 
-The diagram below is organized into four layers, from the APTITUDE WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow indicates a CA issuing a certificate to the corresponding entity, while a dashed arrow points from each CA to the LoTE in which its Trust Anchor is published.
+The diagram is organised into four layers, from the WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow shows a CA issuing a certificate to the corresponding entity, while a dashed line connects each CA to the LoTE in which its Trust Anchor is published.
 
 ```mermaid
 flowchart TB
@@ -95,16 +95,6 @@ flowchart TB
         Wallet_Entity["Wallet Provider"]
     end
 
-    %% Preserve the four-tier layout while the Trust Anchor arrows point upward.
-    QEAA_L ~~~ QEAA_CA
-    PID_L ~~~ PID_CA
-    PuBEAA_L ~~~ PuBEAA_CA
-    EAA_L ~~~ EAA_CA
-    WRPAC_L ~~~ WRPAC_CA
-    Wallet_L ~~~ Wallet_CA
-    WRPRC_L ~~~ WRPRC_CA
-    Registrar_L ~~~ Registrar_CA
-
     PubSvc ---->|"publishes"| QEAA_L
     PubSvc -->|"publishes"| PID_L
     PubSvc -->|"publishes"| PuBEAA_L
@@ -114,14 +104,14 @@ flowchart TB
     PubSvc -->|"publishes"| WRPRC_L
     PubSvc -->|"publishes"| Registrar_L
 
-    QEAA_CA -. "Trust Anchor" .-> QEAA_L
-    PID_CA -. "Trust Anchor" .-> PID_L
-    PuBEAA_CA -. "Trust Anchor" .-> PuBEAA_L
-    EAA_CA -. "Trust Anchor" .-> EAA_L
-    WRPAC_CA -. "Trust Anchor" .-> WRPAC_L
-    Wallet_CA -. "Trust Anchor" .-> Wallet_L
-    WRPRC_CA -. "Trust Anchor" .-> WRPRC_L
-    Registrar_CA -. "Trust Anchor" .-> Registrar_L
+    QEAA_L -. "Trust Anchor" .- QEAA_CA
+    PID_L -. "Trust Anchor" .- PID_CA
+    PuBEAA_L -. "Trust Anchor" .- PuBEAA_CA
+    EAA_L -. "Trust Anchor" .- EAA_CA
+    WRPAC_L -. "Trust Anchor" .- WRPAC_CA
+    Wallet_L -. "Trust Anchor" .- Wallet_CA
+    WRPRC_L -. "Trust Anchor" .- WRPRC_CA
+    Registrar_L -. "Trust Anchor" .- Registrar_CA
 
     QEAA_CA -->|"issues QEAA Provider Sign/Seal Certificate"| QEAA_Entity
     PID_CA -->|"issues PID Provider Sign/Seal Certificate"| PID_Entity
