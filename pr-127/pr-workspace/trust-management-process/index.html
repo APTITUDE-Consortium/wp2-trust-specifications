@@ -1356,20 +1356,6 @@
   <h1>Trust management process</h1>
 
 <p>This section describes the high level trust management process within the APTITUDE Trust Framework. Its scope is describing the lifecycle of Entities and Trust Artifacts related to <a class="mkdocs-ezglossary-link"
-    id="7c835665c1da0c967438df9b3ea49248"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and <a class="mkdocs-ezglossary-link"
-    id="871f6da7a8e2fa71d6b494c390223a0f"
-    title="A natural or legal person who provides Wallet Solutions. [ARF]"
-    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
-    name="roles:Wallet Provider (WP)"
-    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a> within the ecosystem, and the relationships between them. Trust Artifacts are the transport mechanism of the Properties (specific Entity attributes categorized in Identity Information, Technical Information, and Policy and Authorization Information) which characterize the entities within the ecosystem, and they are issued and managed by other entities within the ecosystem (LoTE Providers and Trust Artifact Providers).</p>
-<p>In particular, this section is structured as follows:</p>
-<ul>
-<li>Section <a href="#ecosystem-participants">Ecosystem Participants</a> describes the various entities within the ecosystem, their roles and relationships.</li>
-<li>Section <a href="#entity-properties-schema">Entity Properties Schema</a> describes the various Properties of <a class="mkdocs-ezglossary-link"
     id="dfe1f6e9cf1ae1b3cb990d138322cb82"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
@@ -1379,42 +1365,56 @@
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
-    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a>, the Trust Artifacts in which these Properties are contained, and the relationships between them.</li>
-<li>Section <a href="#abstract-state-machine">Abstract State Machine</a> describes the lifecycle <em>State</em> (an abstraction at the governance level that captures the current operational status and trustworthiness within the ecosystem) of <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a> within the ecosystem, and the relationships between them. Trust Artifacts are the transport mechanism of the Properties (specific Entity attributes categorized in Identity Information, Technical Information, and Policy and Authorization Information) which characterize the entities within the ecosystem, and they are issued and managed by other entities within the ecosystem (LoTE Providers and Trust Artifact Providers).</p>
+<p>In particular, this section is structured as follows:</p>
+<ul>
+<li>Section <a href="#ecosystem-participants">Ecosystem Participants</a> describes the various entities within the ecosystem, their roles and relationships.</li>
+<li>Section <a href="#entity-properties-schema">Entity Properties Schema</a> describes the various Properties of <a class="mkdocs-ezglossary-link"
     id="50a30ce2706bc616a8178b07ecf3322f"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>, <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and <a class="mkdocs-ezglossary-link"
     id="0625e20f57d8a13bddb49f577ffaa96f"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a>, the Trust Artifacts in which these Properties are contained, and the relationships between them.</li>
+<li>Section <a href="#abstract-state-machine">Abstract State Machine</a> describes the lifecycle <em>State</em> (an abstraction at the governance level that captures the current operational status and trustworthiness within the ecosystem) of <a class="mkdocs-ezglossary-link"
+    id="cbfd0946138af3d8ac0cb14494d25212"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>, <a class="mkdocs-ezglossary-link"
+    id="36bad196433c4e13068437d26757dcbc"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a>, Trust Artifacts, and LoTE, their definitions, and the effects that these states have on the entities' operational capabilities and trustworthiness.</li>
 <li>Section <a href="#entity-lifecycle-operations">Entity Lifecycle Operations</a> describes the operational procedures triggered by changes in the Properties of <a class="mkdocs-ezglossary-link"
-    id="cbfd0946138af3d8ac0cb14494d25212"
+    id="d8cf9c8b09094d9369c70d5b13adba03"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and <a class="mkdocs-ezglossary-link"
-    id="36bad196433c4e13068437d26757dcbc"
+    id="0acd09eb258a9b47f761a4f21ae524f0"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a>, and the resulting effects on their lifecycle states and trustworthiness within the ecosystem.</li>
 </ul>
 <p>When a <a class="mkdocs-ezglossary-link"
-    id="d8cf9c8b09094d9369c70d5b13adba03"
+    id="c88e0ceaa441c63eb814bedb5162ed99"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>'s, <a class="mkdocs-ezglossary-link"
-    id="0acd09eb258a9b47f761a4f21ae524f0"
+    id="b04b8345c030a576d72e16e8bdb54878"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WP</a>'s, or Trust Artifacts Properties change (e.g., key rotation), the Trust Artifact Providers or LoTE Providers have to update, revoke and issue or re-sign the corresponding Trust Artifacts or LoTE, without necessarily altering the underlying Abstract State of the <a class="mkdocs-ezglossary-link"
-    id="c88e0ceaa441c63eb814bedb5162ed99"
+    id="027ac189d5d2a96514e175dd3360d7f6"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1532,17 +1532,17 @@
     data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
     name="roles:Relying Party (RP)"
     href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Parties</a>, <a class="mkdocs-ezglossary-link"
-    id="b04b8345c030a576d72e16e8bdb54878"
+    id="0588f63210aece707d078f4f0bde881f"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>) rely on Trust Lists and Trust Artifacts for assessing their trustworthiness to other participants within the ecosystems. In addition, they <em>issue</em>, <em>receive</em> or <em>manage</em> User Attestations or Wallet Attestations to and from <a class="mkdocs-ezglossary-link"
-    id="28fd059cb779903774b8a5028362c516"
+    id="563a8881c2bf20b38666d16ad47d1a6c"
     title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a> during issuance, presentation and <a class="mkdocs-ezglossary-link"
-    id="0588f63210aece707d078f4f0bde881f"
+    id="285aa43d1f03977902dca52e5f6f49a1"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -1676,13 +1676,13 @@
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
     href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">Pub-EAA Providers</a>), and <a class="mkdocs-ezglossary-link"
-    id="285aa43d1f03977902dca52e5f6f49a1"
+    id="14eef58730f6325303043529e16bda3c"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a>. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.</p>
 <p>All <a class="mkdocs-ezglossary-link"
-    id="027ac189d5d2a96514e175dd3360d7f6"
+    id="7c1cc7e8580080d6ae2c2a89a47d06ca"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1719,7 +1719,7 @@
 <tbody>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="7c1cc7e8580080d6ae2c2a89a47d06ca"
+    id="c207d66a1136840f8ad147f6d7940513"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1745,7 +1745,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="c207d66a1136840f8ad147f6d7940513"
+    id="dd418ffe24d3fc0fa5ef4be1ae9ebfcd"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1766,7 +1766,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="dd418ffe24d3fc0fa5ef4be1ae9ebfcd"
+    id="417bfa34d52ab25e73394af84ff910b2"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1792,7 +1792,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="417bfa34d52ab25e73394af84ff910b2"
+    id="721b0b3069ab773978fb46f05a1209fe"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1808,7 +1808,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="721b0b3069ab773978fb46f05a1209fe"
+    id="404162473381b897956dd12d4a1ee39b"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1829,7 +1829,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="404162473381b897956dd12d4a1ee39b"
+    id="6381e43e2b73862d964511bf395d5afb"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1850,7 +1850,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="6381e43e2b73862d964511bf395d5afb"
+    id="1c0059877c32463385c0f7395f876e63"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -1871,7 +1871,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="1c0059877c32463385c0f7395f876e63"
+    id="fb7a242c29b629e7436b0f74d61a86a7"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -2077,7 +2077,7 @@
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>.</p>
 </div>
 <p>All <a class="mkdocs-ezglossary-link"
-    id="14eef58730f6325303043529e16bda3c"
+    id="901d161ccd6bed4fe8154a428c1e66af"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2114,7 +2114,7 @@
 <tbody>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="901d161ccd6bed4fe8154a428c1e66af"
+    id="5392b6601845cb71b5c82e0d7b8a46b6"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2140,7 +2140,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="5392b6601845cb71b5c82e0d7b8a46b6"
+    id="91788c16b66feda29c6084cbb81c851b"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2166,7 +2166,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="91788c16b66feda29c6084cbb81c851b"
+    id="802c5882d68a6db86e1cee943ce00836"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2192,7 +2192,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="802c5882d68a6db86e1cee943ce00836"
+    id="738989b4ea111780e8e8d685d9e9ea92"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2218,7 +2218,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="738989b4ea111780e8e8d685d9e9ea92"
+    id="9e8ec1c8a474806f0927572ea81c5938"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2260,7 +2260,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="9e8ec1c8a474806f0927572ea81c5938"
+    id="6b463eb651be83d871044d18c306af88"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2286,7 +2286,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="6b463eb651be83d871044d18c306af88"
+    id="fcd3d464def9ec445c7154bc28794cb3"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2315,7 +2315,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The inclusion of <a class="mkdocs-ezglossary-link"
-    id="fcd3d464def9ec445c7154bc28794cb3"
+    id="0e735f5599dd723549ec5a31dabe65d3"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2340,29 +2340,29 @@
     data-tooltip="The act of transferring information to the European Commission. [ARF]"
     name="processes:Notification"
     href="../../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">notification</a> procedures as defined in [CIR 2025/848] (registration of <a class="mkdocs-ezglossary-link"
-    id="fb7a242c29b629e7436b0f74d61a86a7"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>) and [CIR 2024/2980] (notifications of <a class="mkdocs-ezglossary-link"
     id="608adb5e39236939c5d045088097f689"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>) and [CIR 2024/2980] (notifications of <a class="mkdocs-ezglossary-link"
+    id="c9dfa5db5b544f377ca84c139b2a71ff"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> and <a class="mkdocs-ezglossary-link"
-    id="0e735f5599dd723549ec5a31dabe65d3"
+    id="d02d28fdc5262c59c423227c2846f6cf"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WP</a>).</p>
 </div>
 <p>The diagram below highlights the dependences between <a class="mkdocs-ezglossary-link"
-    id="c9dfa5db5b544f377ca84c139b2a71ff"
+    id="7d4a067e7194081595383876bc435a4c"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a>'s and <a class="mkdocs-ezglossary-link"
-    id="d02d28fdc5262c59c423227c2846f6cf"
+    id="b1aec92a4508c7b6d97520be1326d3ce"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2712,12 +2712,12 @@
     authz --"is reflected in"--&gt; tl</code></pre>
 <h3 id="abstract-state-machine">Abstract State Machine<a class="headerlink" href="#abstract-state-machine" title="Permanent link">&para;</a></h3>
 <p>This section describes the lifecycle <em>State</em> of <a class="mkdocs-ezglossary-link"
-    id="7d4a067e7194081595383876bc435a4c"
+    id="395d2d5bcda3d08596457d16b097d3a5"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and <a class="mkdocs-ezglossary-link"
-    id="b1aec92a4508c7b6d97520be1326d3ce"
+    id="1128819a8bcc4e56523a74dcefc9786a"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2728,16 +2728,6 @@
 </div>
 <h4 id="entity-lifecycle-state-machine">Entity Lifecycle State Machine<a class="headerlink" href="#entity-lifecycle-state-machine" title="Permanent link">&para;</a></h4>
 <p>State Machines are described only for <a class="mkdocs-ezglossary-link"
-    id="395d2d5bcda3d08596457d16b097d3a5"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>, <a class="mkdocs-ezglossary-link"
-    id="1128819a8bcc4e56523a74dcefc9786a"
-    title="A natural or legal person who provides Wallet Solutions. [ARF]"
-    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
-    name="roles:Wallet Provider (WP)"
-    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a>, and the APTITUDE-profiled Trust Artifact Providers (Registrars and Providers of WRPAC/WRPRC). Their status is determined through Trust Artifacts or applicable LoTE entries. <a class="mkdocs-ezglossary-link"
     id="52912a0bccf9b0606418ffba92e85fa3"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
@@ -2747,12 +2737,22 @@
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a>, and the APTITUDE-profiled Trust Artifact Providers (Registrars and Providers of WRPAC/WRPRC). Their status is determined through Trust Artifacts or applicable LoTE entries. <a class="mkdocs-ezglossary-link"
+    id="269abfb4b66f77cc15ba564811ae65b0"
+    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>, <a class="mkdocs-ezglossary-link"
+    id="905cde2e5d83144ca3659803df881722"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a>, and APTITUDE-profiled Trust Artifact Providers participating in the APTITUDE Trust Framework are classified into one of the following mutually exclusive lifecycle States at any given time. The State dictates the entity's authorization level, operational capabilities, and how other participants SHALL interact with its cryptographic artifacts.</p>
 <ul>
 <li><code>UNREGISTERED</code>: Indicates that an entity does not currently hold a valid subscription or registration within the APTITUDE Trust Framework. This is the default baseline state. Entities in this state are outside the trust boundary and SHALL NOT participate in framework operations or federation protocols.</li>
 <li><code>REGISTERED</code>: Indicates that an entity has successfully completed the onboarding process, verified its identity, and has established ecosystem access.<ul>
 <li>A <a class="mkdocs-ezglossary-link"
-    id="269abfb4b66f77cc15ba564811ae65b0"
+    id="e9ccb1b38752653766709c8d8b2c4e16"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -2773,7 +2773,7 @@
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> binding this Identity information to a key controlled by the entity.</li>
 <li>A <a class="mkdocs-ezglossary-link"
-    id="905cde2e5d83144ca3659803df881722"
+    id="ccb83fce5479ba0381573c0619f5ed82"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2844,7 +2844,7 @@
     name="artifacts:Electronic Seal"
     href="../../glossary-definitions/#61701e918bfe1fb15287d60b31b63aca">Seal</a> certificate.</li>
 <li>A <a class="mkdocs-ezglossary-link"
-    id="ccb83fce5479ba0381573c0619f5ed82"
+    id="2a3583647abcc82bc23f4efbb2e5ef43"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2863,7 +2863,7 @@
 </li>
 <li><code>REMOVED</code>: Indicates the revocation of an entity's <code>REGISTERED</code> status due to voluntary offboarding, a severe security breach, or a critical compliance failure.<ul>
 <li>A <a class="mkdocs-ezglossary-link"
-    id="e9ccb1b38752653766709c8d8b2c4e16"
+    id="9906e91a8320964cef3075d757ff92a0"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -2874,7 +2874,7 @@
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is <code>revoked</code> or its applicable LoTE entry is removed or no longer active.</li>
 <li>A <a class="mkdocs-ezglossary-link"
-    id="2a3583647abcc82bc23f4efbb2e5ef43"
+    id="546d55ac62e428844dbeb0451ad2d6fd"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -2904,7 +2904,7 @@
     data-tooltip="Provider of EEAs."
     name="roles:EAA Provider"
     href="../../glossary-definitions/#25618de6dced5276e214359c546b87e1">EAA Providers</a>, <a class="mkdocs-ezglossary-link"
-    id="546d55ac62e428844dbeb0451ad2d6fd"
+    id="87008d0abb527c36a1d5f118284c43a1"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -3003,18 +3003,18 @@
 <td style="text-align: left;"><code>REGISTERED</code></td>
 <td style="text-align: left;">Indicates that an entity has successfully completed onboarding, verified its identity, and established baseline ecosystem network access.</td>
 <td style="text-align: left;">All <a class="mkdocs-ezglossary-link"
-    id="9906e91a8320964cef3075d757ff92a0"
+    id="5466ff42c2d8590e4395e11906c987a4"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a>, <a class="mkdocs-ezglossary-link"
-    id="87008d0abb527c36a1d5f118284c43a1"
+    id="136490b1de08ed843be01a1ea4d28ae6"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a>.</td>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="5466ff42c2d8590e4395e11906c987a4"
+    id="06da3ff063ead6e8806b3fc2ba5b3288"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -3029,13 +3029,13 @@
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a>.<br><br><a class="mkdocs-ezglossary-link"
-    id="136490b1de08ed843be01a1ea4d28ae6"
+    id="9c7d958fd138f32566b2b6e14ed4d6d3"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a>: Finalized onboarding records.</td>
 <td style="text-align: left;"><a class="mkdocs-ezglossary-link"
-    id="06da3ff063ead6e8806b3fc2ba5b3288"
+    id="20148bee09965b1f4f954a25cf16566c"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -3060,12 +3060,12 @@
 <td style="text-align: left;"><code>OPERATIONAL</code></td>
 <td style="text-align: left;">Indicates that an entity is explicitly authorized to perform role-related operations, provide services, and issue or verify artifacts.</td>
 <td style="text-align: left;"><code>REGISTERED</code> <a class="mkdocs-ezglossary-link"
-    id="20148bee09965b1f4f954a25cf16566c"
+    id="04d1478048c14206c6c3aa4509d07dc3"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and <a class="mkdocs-ezglossary-link"
-    id="9c7d958fd138f32566b2b6e14ed4d6d3"
+    id="5be3db5ecee5aa0a2bc24fd5459d57ed"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -3121,7 +3121,7 @@
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>.<br><br><strong><a class="mkdocs-ezglossary-link"
-    id="5be3db5ecee5aa0a2bc24fd5459d57ed"
+    id="6bc50d6154dc29d77654da0b40eba220"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -3178,7 +3178,7 @@
 <td style="text-align: left;">Indicates the revocation of an entity's <code>REGISTERED</code> status due to voluntary offboarding, a severe security breach, or a critical compliance failure.</td>
 <td style="text-align: left;">All deactivated, offboarded, or permanently banned framework participants.</td>
 <td style="text-align: left;"><strong><a class="mkdocs-ezglossary-link"
-    id="04d1478048c14206c6c3aa4509d07dc3"
+    id="1fbb4c96cb71976c924743f67b2a25b1"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -3198,7 +3198,7 @@
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> entry.<br><br><a class="mkdocs-ezglossary-link"
-    id="6bc50d6154dc29d77654da0b40eba220"
+    id="c4813709a36389231117f7a67a6ff88d"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -3593,12 +3593,12 @@
 <p>The following are the operational procedures that affect the Properties of APTITUDE Trust Artifact Providers and End-Entities, and the resulting effects on their State.</p>
 <h4 id="onboarding-process">Onboarding Process<a class="headerlink" href="#onboarding-process" title="Permanent link">&para;</a></h4>
 <p>The onboarding process governs the transition of an End-Entity (<a class="mkdocs-ezglossary-link"
-    id="1fbb4c96cb71976c924743f67b2a25b1"
+    id="17dd2e3372fa27a6ea9aed8ef4a0be59"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> or <a class="mkdocs-ezglossary-link"
-    id="c4813709a36389231117f7a67a6ff88d"
+    id="0a3eeb86585c985d578b876000b757ba"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -3612,12 +3612,12 @@
 <p>While in the <code>OPERATIONAL</code> state, entities MAY require <em>organizational updates</em> to their registered Properties, including their entity profiles, cryptographic materials, or operational parameters. Below we describe these updates and their operational effects on the Trust Artifacts, applicable LoTE, and the entity's state.</p>
 <h5 id="organizational-updates">Organizational Updates<a class="headerlink" href="#organizational-updates" title="Permanent link">&para;</a></h5>
 <p>As their organizational or regulatory circumstances evolve, <a class="mkdocs-ezglossary-link"
-    id="17dd2e3372fa27a6ea9aed8ef4a0be59"
+    id="65ca09bea969250bf44ec41821482ce2"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> and <a class="mkdocs-ezglossary-link"
-    id="0a3eeb86585c985d578b876000b757ba"
+    id="a66e60f09f5e147da0c104fd0285b5f3"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -3625,12 +3625,12 @@
 <h5 id="operational-effects-of-organizational-updates">Operational Effects of Organizational Updates<a class="headerlink" href="#operational-effects-of-organizational-updates" title="Permanent link">&para;</a></h5>
 <p>When there are organizational updates, the Trust Framework infrastructure SHALL propagate these changes to the relevant Trust Artifacts and, where applicable, to the entity's dedicated LoTE. The specific operational effects depend on the entity's role and the artifacts it utilizes.</p>
 <p><strong><a class="mkdocs-ezglossary-link"
-    id="65ca09bea969250bf44ec41821482ce2"
+    id="a63406b5d3dbaf4ed07f2d4cfa4875fa"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> Updates</strong>: For a <a class="mkdocs-ezglossary-link"
-    id="a63406b5d3dbaf4ed07f2d4cfa4875fa"
+    id="bcfa52a9f0975272ace62a61be0a501b"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -3638,7 +3638,7 @@
 <ul>
 <li><strong>Identity Information and Policies and Authorizations Updates</strong>:<ul>
 <li><strong>Registry Update</strong>: the <a class="mkdocs-ezglossary-link"
-    id="bcfa52a9f0975272ace62a61be0a501b"
+    id="a331fbe8d4b3651f7e80461967d31854"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -3767,7 +3767,7 @@
     data-tooltip="Data in electronic form which is attached to or logically associated with other data in electronic form to ensure the latter's origin and integrity. [ARF]"
     name="artifacts:Electronic Seal"
     href="../../glossary-definitions/#61701e918bfe1fb15287d60b31b63aca">Seal</a> Key update</strong>: the <a class="mkdocs-ezglossary-link"
-    id="a331fbe8d4b3651f7e80461967d31854"
+    id="7f6f85e11f90ee729e7fe1c56ba7c943"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -3868,7 +3868,7 @@
 </ul>
 </li>
 <li><strong>Authentication Key update</strong>: The <a class="mkdocs-ezglossary-link"
-    id="7f6f85e11f90ee729e7fe1c56ba7c943"
+    id="8ac2ac21d1ad430b1feab13bd6ae39f2"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -3931,12 +3931,12 @@
 </li>
 </ul>
 <p><strong><a class="mkdocs-ezglossary-link"
-    id="a66e60f09f5e147da0c104fd0285b5f3"
+    id="7555793770ed0efaad8fedc287156910"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a> and Trust Artifact Provider Updates</strong>: For <a class="mkdocs-ezglossary-link"
-    id="7555793770ed0efaad8fedc287156910"
+    id="3431eb617a9789b2533f77e2b4fe9da1"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -4100,19 +4100,19 @@
 <h5 id="operational-effects-of-removal">Operational Effects of Removal<a class="headerlink" href="#operational-effects-of-removal" title="Permanent link">&para;</a></h5>
 <p>When an entity transitions to the <code>REMOVED</code> state, the relevant APTITUDE Trust Artifact Providers and LoTE Providers SHALL immediately execute the necessary operations to halt the entity's operations while preserving historical evidence. The specific operational effects depend on the entity's role and the artifacts it utilizes.</p>
 <p><strong><a class="mkdocs-ezglossary-link"
-    id="8ac2ac21d1ad430b1feab13bd6ae39f2"
+    id="0d1ff4b23baf30434d75f69de8e618ea"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> Withdrawal or Removal</strong>: For <a class="mkdocs-ezglossary-link"
-    id="0d1ff4b23baf30434d75f69de8e618ea"
+    id="b3c8204142d8160c5167c8b48ed3515a"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> withdrawing or being removed from the Trust Framework following security incidents or policy violations, the removal event SHALL trigger the following procedures:</p>
 <ul>
 <li><strong>Registry Update</strong>: the <a class="mkdocs-ezglossary-link"
-    id="b3c8204142d8160c5167c8b48ed3515a"
+    id="edb117e946085294689a9f9cff4a5c53"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -4122,7 +4122,7 @@
     data-tooltip="An entity responsible for supervisory tasks in the designating Member State as regards trust services. [REG-EU-2024/1183]"
     name="roles:Supervisory Body"
     href="../../glossary-definitions/#99b0a0c4c2e37811f7142ed8cd217f74">Supervisory Body</a> MAY remove the <a class="mkdocs-ezglossary-link"
-    id="edb117e946085294689a9f9cff4a5c53"
+    id="ec6bb3f04bf0ea533ea2ae20fd0556cd"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -4236,7 +4236,7 @@
     data-tooltip="Provider of Public Electronic Attestation of Attributes (PuB-EAAs)."
     name="roles:PuB-EAA Provider"
     href="../../glossary-definitions/#a4615c9061de3b23bc87955ffedac4d1">Pub-EAA Provider</a>]: the <a class="mkdocs-ezglossary-link"
-    id="ec6bb3f04bf0ea533ea2ae20fd0556cd"
+    id="5673411c2f91d156a8a4f3a11bfbbf08"
     title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
@@ -4257,12 +4257,12 @@
 </li>
 </ul>
 <p><strong><a class="mkdocs-ezglossary-link"
-    id="3431eb617a9789b2533f77e2b4fe9da1"
+    id="0a351269385a9b75f50eed2d3ac05e4e"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
     href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a> and Trust Artifact Provider Withdrawal or Removal</strong>: For <a class="mkdocs-ezglossary-link"
-    id="0a351269385a9b75f50eed2d3ac05e4e"
+    id="3b7f19d3a9a61ae7504a71548534ae01"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -4315,7 +4315,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 9, 2026 09:03:21 UTC">September 9, 2026 09:03:21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 9, 2026 09:06:32 UTC">September 9, 2026 09:06:32</span>
   </span>
 
     
