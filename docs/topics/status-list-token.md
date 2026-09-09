@@ -25,7 +25,7 @@ The following table details the payload parameters for Status List Tokens in JWT
 | `iat`                       | `NumericDate`   | REQUIRED      | Represents the time at which the <artifacts:Status List Token> was issued. | Section 5.1 |
 | `exp`                       | `NumericDate`   | REQUIRED      | Represents the time at which the <artifacts:Status List Token> is considered expired. | Section 5.1 |
 | `status_list`               | `JSONObject`    | REQUIRED      | Contains the Status List configurations and payload. | Section 5.1 |
-| `ttl`                       | `Integer`       | RECOMMENDED   | Specifies the maximum amount of time, in seconds, that the Status List Token can be cached by a consumer before a fresh copy SHOULD be retrieved. | Section 5.1 |
+| `ttl`                       | `Integer`       | RECOMMENDED   | Specifies the maximum amount of time, in seconds, that the <artifacts:Status List Token> can be cached by a consumer before a fresh copy SHOULD be retrieved. | Section 5.1 |
 
 ??? example "Example: Status List Token in JWT Format"
 

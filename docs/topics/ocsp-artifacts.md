@@ -1,4 +1,4 @@
-The <protocols:Online Certificate Status Protocol (OCSP)> [RFC 6960] enables applications to determine the revocation status of identified certificates. This section specifies the structure of OCSP [Requests](#ocsp-request) and [Responses](#ocsp-response). The operational use of OCSP within the APTITUDE ecosystem is detailed in [Online Certificate Status Protocol](../sections/trust-management-lifecycle.md#online-certificate-status-protocol).
+The <protocols:Online Certificate Status Protocol (OCSP)> enables applications to determine the revocation status of identified certificates. This section specifies the structure of <protocols:Online Certificate Status Protocol (OCSP)> [Requests](#ocsp-request) and [Responses](#ocsp-response). The operational use of <protocols:Online Certificate Status Protocol (OCSP)> within the APTITUDE ecosystem is detailed in [Online Certificate Status Protocol](../sections/trust-management-lifecycle.md#online-certificate-status-protocol).
 
 ### OCSP Request
 
@@ -6,7 +6,7 @@ In accordance with [RFC 6960, Section 4.1], the `OCSPRequest` ASN.1 structure co
 
 | Field                       | Type            | Presence      | Description | Reference in [RFC 6960] |
 | --------------------------- | :-------------: | :-----------: |------------ | ----------------------- |
-| `tbsRequest`                | `SEQUENCE`      | REQUIRED      | Contains the optionally signed OCSP request. | Section 4.1.1 |
+| `tbsRequest`                | `SEQUENCE`      | REQUIRED      | Contains the optionally signed <protocols:Online Certificate Status Protocol (OCSP)> request. | Section 4.1.1 |
 | `optionalSignature`         | `SEQUENCE`      | OPTIONAL      | Contains the identifier for the cryptographic algorithm used to sign the request (if applicable). | Section 4.1.1 |
 
 !!! note

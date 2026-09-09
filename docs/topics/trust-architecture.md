@@ -2,12 +2,15 @@ This section defines the APTITUDE Trust Architecture, including all components t
 
 ### Entities
 
-The APTITUDE Large Scale Pilot implement business use cases that exercise interactions within the EUDI Wallet ecosystem. As a result, the roles defined by that ecosystem remain applicable, while the trust infrastructure supporting them is realized specifically within the APTITUDE boundaries. The main entities involved in APTITUDE are:
+The APTITUDE Large Scale Pilot implement business use cases that exercise interactions within the EUDI Wallet ecosystem. As a result, the roles defined by that ecosystem remain applicable, while the supporting trust infrastructure is realized specifically within the APTITUDE boundaries. The main entities involved in APTITUDE are:
 
-- The <roles:User>, who controls and uses a <components:Wallet Unit>, a configuration of a <components:Wallet Solution> provided by a <roles:Wallet Provider (WP)>.
-- <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties (WRPs)>, which interact with the Wallet Unit in one or both of the following capacities:
-    - <roles:Provider of Person Identification Data (PID Provider)|Providers of Person Identification Data (PID Providers)> and <roles:Attestation Provider (AP)|Attestation Providers (AP)> issue <credentials:Person Identification Data (PID)|PID> or <credentials:Attestation|Attestations> to the Wallet Unit. Attestation Providers comprise <roles:QEAA Provider|QEAA Providers>, <roles:PuB-EAA Provider|PuB-EAA Providers>, and non-qualified <roles:EAA Provider|EAA Providers>.
-    - <roles:Relying Party (RP)|Relying Parties (RPs)> and <roles:Relying Party Intermediary (RPI)|Relying Party Intermediaries (RPIs)> request <credentials:Attestation|Attestations> from the Wallet Unit.
+- The <roles:User>, who controls and uses a <components:Wallet Unit>, that is a configuration of a <components:Wallet Solution> provided by a <roles:Wallet Provider (WP)>.
+- <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties (WRPs)>, which interact with the <components:Wallet Unit> in one or both of the following capacities:
+    - <roles:Provider of Person Identification Data (PID Provider)|Providers of Person Identification Data (PID Providers)> and <roles:Attestation Provider (AP)|Attestation Providers (APs)> issue <credentials:Person Identification Data (PID)|PID> or <credentials:Attestation|Attestations> to the <components:Wallet Unit>. <roles:Attestation Provider (AP)|Attestation Providers> comprise:
+        - <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|Providers of Public Electronic Attestation of Attributes (PuB-EAA Providers)>;
+        - <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|Providers of Qualified Electronic Attestation of Attributes (QEAA Providers)>;
+        - <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|Providers of Electronic Attestation of Attributes (EAA Providers)>.
+    - <roles:Relying Party (RP)|Relying Parties (RPs)> and <roles:Relying Party Intermediary (RPI)|Relying Party Intermediaries (RPIs)> request <credentials:Attestation|Attestations> from the <components:Wallet Unit>.
 
 ```mermaid
 flowchart TD
@@ -15,7 +18,7 @@ flowchart TD
     User(("User"))
     WU["Wallet Unit<br/>[WIA/KA]"]
 
-    subgraph WRP["Wallet-Relying Parties (WRPs)<br/>[WRPAC, WRPRC]"]
+    subgraph WRP["Wallet-Relying Parties (WRPs) [WRPAC, WRPRC]"]
         direction LR
         PIDP["PID Provider"]
         subgraph AP["Attestation Providers"]
@@ -33,29 +36,29 @@ flowchart TD
 
     classDef wrpEntity fill:#ffefd5,stroke:#ffdab9,color:#000;
     class PIDP,QEAAP,PubP,EAAP,RP,RPI wrpEntity;
-    style WRP fill:#fff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
-    style AP fill:#fff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style WRP stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style AP stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
 ```
 
-The <roles:User> and <components:Wallet Unit> participate in runtime issuance and presentation interactions but are not onboarded as organizational entities. The organizational entities made operational through the APTITUDE trust infrastructure are the <roles:Wallet Provider (WP)|WPs> and the various types of <roles:Wallet-Relying Party (WRP)|WRPs> introduced above.
+The <roles:User> and <components:Wallet Unit> participate in runtime Issuance and Presentation interactions but are not onboarded as organizational entities. The organizational entities made operational through the APTITUDE trust infrastructure are the <roles:Wallet Provider (WP)|WPs> and the various types of <roles:Wallet-Relying Party (WRP)|WRPs> introduced above.
 
 ### Trust Infrastructure
 
-The APTITUDE Large Scale Pilot does not deploy the full-stack Member State and European Commission infrastructure assumed by the EUDI Wallet framework. For piloting purposes, APTITUDE WP2 operates the corresponding registration, certificate issuance, and LoTE publication capabilities. Together, these capabilities establish the Trust Anchors and trust artifacts used by the [Trust Evaluation Processes](../sections/trust-evaluation-process.md).
+The APTITUDE Large Scale Pilot does not deploy the full-stack Member State and European Commission infrastructure assumed by the <components:EUDI Wallet> framework. For piloting purposes, APTITUDE WP2 operates the corresponding capabilities regarding registration, certificate issuance, and publication of <artifacts:List of Trusted Entities (LoTE)\|artifacts:Lists of Trusted Entities (LoTE)>. Together, these capabilities establish the <artifacts:Trust Anchor|Trust Anchors> and trust artifacts used by the [Trust Evaluation Processes](../sections/trust-evaluation-process.md).
 
-The Trust Infrastructure employed for APTITUDE consists of:
+The trust infrastructure employed for APTITUDE consists of:
 
-- The APTITUDE <components:Public Key Infrastructure (PKI)|Public Key Infrastructure (PKI)>, which issues and manages the X.509 certificates required by the pilot.
-- The Registration Service and <components:Register>, which record the identity, role, and authorization information of WRPs.
+- The APTITUDE <components:Public Key Infrastructure (PKI)|Public Key Infrastructure (PKI)>, which issues and manages the X.509 certificates required by the ecosystem.
+- The Registration Service and <components:Register>, which record the identity, role, and authorization information of <roles:Wallet-Relying Party (WRP)|WRPs>.
 - The Certificate Issuance Services, which issue and manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, and Entity Sign/Seal Certificates.
 - The Publication Service, which signs and publishes the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 - The Onboarding UI, which coordinates these services for each entity requesting onboarding.
 
 #### Public Key Infrastructure
 
-The APTITUDE Public Key Infrastructure establishes the certificate chains used to authenticate pilot entities and to validate the signatures or seals they create. APTITUDE WP2 SHALL establish the <roles:Certificate Authority (CA)|Certificate Authorities (CAs)> shown below. The <artifacts:Trust Anchor|Trust Anchor> Certificate of each CA SHALL be published in the corresponding LoTE.
+The APTITUDE PKI establishes the certificate chains used to authenticate the entities involved and to validate the signatures or seals they create. APTITUDE WP2 SHALL establish the <roles:Certificate Authority (CA)|Certificate Authorities (CAs)> shown below. The <artifacts:Trust Anchor> Certificate of each <roles:Certificate Authority (CA)|CA> SHALL be published in the corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
-The diagram is organised into four layers, from the WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow shows a CA issuing a certificate to the corresponding entity, while a dashed line connects each CA to the LoTE in which its Trust Anchor is published.
+The diagram is organised into four layers, from the WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow shows a <roles:Certificate Authority (CA)|CA> issuing a certificate to the corresponding entity, while a dashed line connects each <roles:Certificate Authority (CA)|CA> to the <artifacts:List of Trusted Entities (LoTE)|LoTE> in which its <artifacts:Trust Anchor> is published.
 
 ```mermaid
 flowchart TB
@@ -122,22 +125,22 @@ flowchart TB
     WRPRC_CA -->|"issues WRPRC"| WRP_Entity
 
     classDef publication fill:#d1ecf1,stroke:#17a2b8,color:#000;
-    style Lists fill:#fff,stroke:#abb2bf,stroke-width:2px,rx:20,ry:20
-    style PKI fill:#fff,stroke:#ffc107,stroke-width:2px,rx:20,ry:20
-    style Entities fill:#fff,stroke:#ffdab9,stroke-width:2px,rx:20,ry:20
+    style Lists fill:#fff,stroke:#abb2bf,stroke-width:2px,color:#000,rx:20,ry:20
+    style PKI fill:#fff,stroke:#ffc107,stroke-width:2px,color:#000,rx:20,ry:20
+    style Entities fill:#fff,stroke:#ffdab9,stroke-width:2px,color:#000,rx:20,ry:20
 ```
 
-The CA certificates published as Trust Anchors are distinct from the end-entity certificates issued by those CAs. The profiles for both certificate types are defined in [Trust Artifacts](../sections/trust-artifacts.md).
+The <roles:Certificate Authority (CA)|CA> certificates published as <artifacts:Trust Anchor|Trust Anchors> are distinct from the end-entity certificates issued by those <roles:Certificate Authority (CA)|CAs>. The profiles for both certificate types are defined in [Trust Artifacts](../sections/trust-artifacts.md).
 
 #### Trust Service Overview
 
-The trust infrastructure capabilities are exposed through the APTITUDE **Onboarding System**. In this specification, Onboarding System denotes the aggregate logical system, while service denotes one of its constituent components (Registration, Certificate Issuance, or Publication).
+The trust infrastructure capabilities are exposed through the APTITUDE Onboarding System. In this specification, *Onboarding System* denotes the aggregate logical system, while *Service* denotes one of its constituent components (Registration, Certificate Issuance, or Publication).
 
 The Onboarding System enables APTITUDE Partners to obtain the trust artifacts required for interactions within the ecosystem. The path varies by entity type, as detailed in [Onboarding Paths by Entity Type](../sections/onboarding-process.md#onboarding-paths-by-entity-type), but comprises the following activities where applicable:
 
-1. The entity submits its identity and authorization information to the Registration Service. Within APTITUDE, the Registration Service SHALL verify that the requester is an APTITUDE participant, and SHALL otherwise rely on the submitted self-declaration; it SHALL NOT perform the identity proofing defined in [ETSI TS 119 461] or [CIR 2025/848, Article 6].
-2. The entity submits the technical configuration and cryptographic material required for its role. The applicable Certificate Issuance Services issue the corresponding WRPAC, WRPRC, or Entity Sign/Seal Certificate.
-3. For an entity whose Trust Anchor must be published, the Publication Service uses its notifiable information to create or update the applicable LoTE entry.
+1. The entity submits its identity and authorization information to the Registration Service. Within APTITUDE, the Registration Service SHALL verify that the requester is an APTITUDE Partner, and SHALL otherwise rely on the submitted self-declaration; it SHALL NOT perform the identity proofing defined in [ETSI TS 119 461] or [CIR 2025/848, Article 6].
+2. The entity submits the technical configuration and cryptographic material required for its role. The applicable Certificate Issuance Services issue the corresponding <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificate (WRPAC)>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, or Entity Sign/Seal Certificate.
+3. For an entity whose <artifacts:Trust Anchor> has to be published, the Publication Service uses its notifiable information to create or update the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.
 
 The figure below provides a logical overview rather than a deployment architecture. The component responsibilities, prerequisites, inputs, outputs, and entity-specific paths are specified in [Onboarding Process](../sections/onboarding-process.md).
 
@@ -169,13 +172,13 @@ flowchart TB
     CertSvc -->|"issues"| Certificates
     PubSvc -->|"signs and publishes"| Lists
 
-    classDef interface fill:#d4edda,stroke:#28a745,color:#000;
-    classDef service fill:#d1ecf1,stroke:#17a2b8,color:#000;
-    classDef certificate fill:#fff3cd,stroke:#ffc107,color:#000;
-    classDef store fill:#f5f5f5,stroke:#999,color:#000;
-    style System fill:#fff,stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+    classDef interface stroke:#28a745,color:#000;
+    classDef service stroke:#17a2b8,color:#000;
+    classDef certificate stroke:#ffc107,color:#000;
+    classDef store stroke:#999,color:#000;
+    style System stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
 ```
 
 !!! warning
 
-    The implementation architecture of the Trust Services and components will be further defined in T2.3.1, but SHOULD adhere to these implementation profiles.
+    The implementation architecture of the Trust Services and components will be further defined in task T2.3.1 (*Design and implementation of the trust infrastructure*), but SHOULD adhere to these implementation profiles.

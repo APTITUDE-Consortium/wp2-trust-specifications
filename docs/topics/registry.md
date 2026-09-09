@@ -1,9 +1,7 @@
-This section specifies requirements for the <roles:Registrar> of <roles:Wallet-Relying Party (WRP)|WRPs> and the national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> (the registry service) in the context of eIDAS2 and the <components:EUDI Wallet> ecosystem.
+A <roles:Registrar> is the designated body that:
 
-Formally, a <roles:Registrar> is the designated body that:
-
-- Manages the <roles:Wallet-Relying Party (WRP)|WRP> registration lifecycle (onboarding, update, suspension, cancellation),
-- Ensures the integrity and publication of registration information,
+- Manages the <roles:Wallet-Relying Party (WRP)|WRP> registration lifecycle (onboarding, update, suspension, cancellation);
+- Ensures the integrity and publication of registration information;
 - Ensures interoperability by exposing <roles:Wallet-Relying Party (WRP)|WRP> registration data via a national website and a single common REST API.
 
 The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about <roles:Wallet-Relying Party (WRP)|WRPs> and their authorisations/declared usage.
@@ -410,28 +408,6 @@ A successful response (`200`) SHALL be JWS-signed response body.
 !!! note
 
     The published API view excludes only `postalAddress` ([CIR 2025/848-Amendment, Annex I, point 4]). All other fields, including intended-use credential claims, are published as registered.
-
-<!--
-!!! note
-
-    This implementation profile uses *JWS Compact Serialization* for API responses (e.g., `application/jwt`). In JWS Compact Serialization, there is *no unprotected header*; therefore, the JOSE Header is the *JWS Protected Header* and is integrity-protected by the signature.
-
-    The following JOSE Protected Header requirements apply to Registry statements:
-
-    | Header parameter | Presence | Description | Reference |
-    | --- | --- | --- | --- |
-    | `alg` | REQUIRED | Signature/seal algorithm identifier. The value `none` SHALL NOT be used for Registry statements. | [RFC 7515, §4.1.1]; profile rule |
-    | `x5c` | RECOMMENDED (REQUIRED if no trust-list/key-resolution profile is defined) | X.509 certificate chain of the signer/sealer. The signing certificate SHALL be the first certificate in the array. | [RFC 7515, §4.1.6] |
-    | `kid` | RECOMMENDED | Key identifier to support key rollover and efficient verifier key selection. | [RFC 7515, §4.1.4] |
-    | `x5t#S256` | RECOMMENDED | SHA-256 thumbprint of the signing certificate (useful for pinning / key matching). | [RFC 7515, §4.1.8] |
-    | `x5u` | OPTIONAL | URL to signer certificate chain. If used, it SHALL be retrieved over TLS with server identity validation. | [RFC 7515, §4.1.5] |
-    | `typ` | RECOMMENDED | Media type hint for the complete JWS object (e.g., `JWT` / `application/jwt` or a profile-specific media type). | [RFC 7515, §4.1.9] |
-    | `crit` | OPTIONAL | If used, all listed parameters SHALL be understood and processed by verifiers; otherwise the JWS is invalid. `crit` SHALL appear only in the protected header. | [RFC 7515, §4.1.11] |
-
-    !!! note
-
-        The JOSE header parameter `x5c` above is part of the JWS signature envelope. It is distinct from any `x5c` attribute defined in the registry payload/data schema (e.g., Annex VI data schema fields).
--->
 
 ##### `GET /wrp/check-intended-use` — intended use check (REQUIRED)
 

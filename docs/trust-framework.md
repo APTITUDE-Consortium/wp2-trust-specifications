@@ -44,13 +44,13 @@ Version 1.1
 
 ## Introduction
 
-This document specifies implementation profiles for the Trust Framework's core conceptual and architectural components, as deployed within the APTITUDE Large Scale Pilot. It defines the trust architecture, the trust artifacts exchanged among entities, and the evaluation processes and trust checks to be performed during issuance and presentation flows. Except where explicitly noted, these profiles conform to the EUDI Wallet Architecture Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the [References](sections/references.md) section, as adapted for the APTITUDE context.
+This document specifies implementation profiles for the core conceptual and architectural components of the trust framework, as deployed within the APTITUDE Large Scale Pilot. It defines the trust architecture, the trust artifacts exchanged among entities, and the evaluation processes and trust checks to be performed during issuance and presentation flows. Except where explicitly noted, these profiles conform to the <components:EUDI Wallet> Architecture Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the [References](sections/references.md) section, adapted for the APTITUDE context.
 
 ---
 
 ## Scope and Structure
 
-The *Implementation Profiles for the Trust Framework* is intended to enable Partners to prove their identity and authorization, and to verify the authenticity and integrity of Attestations exchanged within the APTITUDE ecosystem. Given the Large Scale Pilot status of the project, these profiles are derived from the requirements of the covered Use Cases, rather than prescribing an abstract, universally applicable trust architecture. Furthermore, the profiles account for the specific constraints of the piloting phase and reflect implementation choices made accordingly, as detailed in the following sections, in order to deliver a functional trust infrastructure capable of supporting the piloting Use Cases.
+The *Implementation Profiles for the Trust Framework* are intended to enable Partners to prove their identity and authorization, as well as to verify the authenticity and integrity of Attestations exchanged within the APTITUDE ecosystem. Given the Large Scale Pilot status of the project, these profiles are derived from the requirements of the covered Use Cases, rather than prescribing an abstract, universally applicable trust architecture. Furthermore, the profiles account for the specific constraints of the piloting phase and reflect implementation choices made accordingly, as detailed in the following sections, in order to deliver a functional trust infrastructure capable of supporting the piloting Use Cases.
 
 Given the considerations above, this specification covers the following topics:
 
@@ -60,11 +60,11 @@ Given the considerations above, this specification covers the following topics:
 
 - [**Onboarding Process**](sections/onboarding-process.md): Defines the process by which entities become operational and recognizable within the APTITUDE ecosystem.
 
-- [**Trust Evaluation**](sections/trust-evaluation-process.md): Outlines the stages of the trust-related processes and how they are applied during Issuance and Presentation.
+- [**Trust Evaluation**](sections/trust-evaluation-process.md): Outlines the core trust-related processes and their application within the Issuance and Presentation flows.
 
 - [**Trust Management and Lifecycle**](sections/trust-management-lifecycle.md): Defines the mechanisms for managing the status of <roles:Trusted Entity|Trusted Entities>.
 
-- [**Trust Use Cases**](sections/use-cases.md): Describes a set of trust use cases applying horizontally across the pilot.
+- [**Trust Use Cases**](sections/use-cases.md): Describes a set of trust use cases applying horizontally across APTITUDE.
 
 ### Out of Scope
 
@@ -76,18 +76,18 @@ This document does not prescribe internal implementation architectures or choice
 
 The APTITUDE ecosystem does not include actors representing Member States or the European Commission within its deployment activities. Consequently, the following operations, as regulated by [ARF], have no corresponding responsible actor within the APTITUDE ecosystem.
 
-| #   | Operation                                                           | Responsible Actor(s) in EUDIW             |
+| #   | Operation                                                           | Responsible Actor(s) in EUDI Wallet       |
 | :-: | ------------------------------------------------------------------- | ----------------------------------------- |
-| 1   | Publication of Lists of Trusted Entities and Lists of Trusted Lists | European Commission                       |
-| 2   | Registration Process                                                | Member States                             |
-| 3   | Notification Process                                                | European Commission and Member States     |
-| 4   | Publication of Trusted Lists                                        | Member States                             |
-| 5   | Management of Authentic Sources                                     | Specific Entities within Member States    |
-| 6   | Publication and Management of Catalogues of Attestations            | European Commission                       |
-| 7   | Management of Entity Lifecycle                                      | Supervisory Body                          |
-| 8   | Certification Scheme                                                | Supervisory Body                          |
-| 9   | Issuance of WRPACs, WRPRCs and Sign/Seal Certificates               | Member States                             |
-| 10  | Publication of the Official Journal of the European Union (OJEU)    | European Commission                       |
+| 1   | Publication of <artifacts:List of Trusted Entities (LoTE)\|Lists of Trusted Entities> and <artifacts:List Of Trusted Lists (LOTL)\|Lists Of Trusted Lists> | European Commission |
+| 2   | Registration Process | Member States |
+| 3   | Notification Process | European Commission and Member States |
+| 4   | Publication of <artifacts:Trusted List (TL)\|Trusted Lists> | Member States |
+| 5   | Management of <components:Authentic Source\|Authentic Sources> | Specific Entities within Member States |
+| 6   | Publication and Management of Catalogues of Attestations | European Commission |
+| 7   | Management of Entity Lifecycle | <roles:Supervisory Body> |
+| 8   | Certification Scheme | <roles:Supervisory Body> |
+| 9   | Issuance of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|Wallet-Relying Party Access Certificates>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|Wallet-Relying Party Registration Certificates> and Sign/Seal Certificates | Member States |
+| 10  | Publication of the <artifacts:Official Journal of the European Union (OJEU)> | European Commission |
 
 To address this gap, the following implementation choices have been adopted:
 
@@ -96,13 +96,15 @@ To address this gap, the following implementation choices have been adopted:
 | The APTITUDE perimeter is limited to Partners officially enrolled in the Consortium. | — |
 | APTITUDE WP2 exposes specific services to emulate the missing institutional roles, as specified in [Trust Architecture](sections/trust-architecture.md). | 1, 2, 3 |
 | APTITUDE WP2 provides a single, simplified registration interface through which Partners self-declare their attributes and entitlements, without requiring dedicated administrative processes or certification scheme checks. | 2, 8 |
-| APTITUDE WP2 aggregates registration information into a single Register used for all entities. | 2 |
-| APTITUDE WP2 provides onboarding services to manage the associated operational processes (registration, notification, publication, certificate issuance). | 2, 3 |
-| The PKI architecture will not include a LOTL with an associated TL; instead, it will feature a LoTE per entity type, including QEAA and EAA Providers. | 1, 4 |
-| APTITUDE WP2 acts as the sole LoTE Provider; the certificate anchoring the various LoTE will be published via GitHub. | 1 |
-| APTITUDE will not feature Authentic Sources. | 5 |
-| APTITUDE will not feature Catalogues of Attestations. Instead, Attestation Rulebooks published on GitHub by the various WPs will be used. | 6 |
+| APTITUDE WP2 aggregates registration information into a single <components:Register> used for all entities. | 2 |
+| APTITUDE WP2 provides onboarding services to manage the associated operational processes (registration, <processes:Notification\|Notification>, publication, certificate issuance). | 2, 3 |
+| The <components:Public Key Infrastructure (PKI)\|Public Key Infrastructure> will not include a <artifacts:List Of Trusted Lists (LOTL)\|List Of Trusted List> with an associated <artifacts:Trusted List (TL)\|Trusted List>; instead, it will feature a <artifacts:List of Trusted Entities (LoTE)\|List of Trusted Entities> per entity type, including <roles:Provider of Electronic Attestation of Attributes (EAA Provider)\|EAA Providers> and <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Providers>. | 1, 4 |
+| APTITUDE WP2 acts as the sole <roles:List of Trusted Entities Provider (LoTE Provider)\|List of Trusted Entities Provider>; the certificate anchoring the various <artifacts:List of Trusted Entities (LoTE)\|List of Trusted Entities> will be published via GitHub. | 1 |
+| APTITUDE will not feature <components:Authentic Source\|Authentic Sources>. | 5 |
+| APTITUDE will not feature Catalogues of Attestations. Instead, <artifacts:Attestation Rulebook\|Attestation Rulebooks> published on GitHub by the various Use Cases will be used. | 6 |
 | APTITUDE will not feature active management of entity lifecycles, and will instead rely on dedicated Trust Use Cases for revocation. | 7 |
+
+All implementation choices made within this specification aim to ensure a functional trust infrastructure for the APTITUDE ecosystem. These choices are called out in dedicated boxes throughout the text, so that implementers can distinguish them at a glance from the surrounding normative and descriptive content.
 
 ---
 
