@@ -20,8 +20,8 @@ The table below lists the trust artifacts defined in this document, along with t
 | <artifacts:Trust Anchor> Certificate                              | Member State Certification Authority | Self-signed Certification Authority managed by APTITUDE WP2 | [APTITUDE Trust Anchor Certificate Profile](#trust-anchor-certificate) |
 | <artifacts:Wallet Instance Attestation (WIA)>                     | <roles:Wallet Provider (WP)\|Wallet Provider> | Wallet Provider | [TS03] |
 | Wallet Instance Attestation <artifacts:Status List Token>         | <roles:Wallet Provider (WP)\|Wallet Provider> | Wallet Provider | [TS03] |
-| <artifacts:Wallet-Relying Party Access Certificate (WRPAC)>       | <roles:Provider of Wallet Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPACs> | Certification Authority managed by APTITUDE WP2 | [APTITUDE Wallet-Relying Party Access Certificate Profile](#wallet-relying-party-access-certificate) |
-| <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)> | <roles:Provider of Wallet Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRCs> | Certification Authority managed by APTITUDE WP2 | [APTITUDE Wallet-Relying Party Registration Certificate Profile](#wallet-relying-party-registration-certificate) |
+| <artifacts:Wallet-Relying Party Access Certificate (WRPAC)>       | <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPACs> | Certification Authority managed by APTITUDE WP2 | [APTITUDE Wallet-Relying Party Access Certificate Profile](#wallet-relying-party-access-certificate) |
+| <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)> | <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRCs> | Certification Authority managed by APTITUDE WP2 | [APTITUDE Wallet-Relying Party Registration Certificate Profile](#wallet-relying-party-registration-certificate) |
 
 ## X.509 Certificates
 
