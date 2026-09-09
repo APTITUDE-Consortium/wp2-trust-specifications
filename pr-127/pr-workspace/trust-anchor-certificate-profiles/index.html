@@ -12,13 +12,13 @@
         <meta name="author" content="APTITUDE Consortium">
       
       
-        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/access-certificate/">
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/trust-anchor-certificate-profiles/">
       
       
-        <link rel="prev" href="../../sections/references/">
+        <link rel="prev" href="../status-list-token/">
       
       
-        <link rel="next" href="../attestation-signature-validation-process/">
+        <link rel="next" href="../trust-anchor-validation/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Access certificate - APTITUDE | Implementation Profiles for the Trust Framework</title>
+        <title>Trust anchor certificate profiles - APTITUDE | Implementation Profiles for the Trust Framework</title>
       
     
     
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Access certificate
+              Trust anchor certificate profiles
             
           </span>
         </div>
@@ -253,7 +253,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../access-certificate/" class="md-tabs__link">
           
   
   
@@ -727,17 +727,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
         
   
   
@@ -753,7 +746,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1099,10 +1091,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../trust-anchor-certificate-profiles/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1118,6 +1117,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1433,7 +1433,7 @@
 
 
   
-    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/access-certificate.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/trust-anchor-certificate-profiles.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1442,226 +1442,347 @@
     
       
     
-    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/access-certificate.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/trust-anchor-certificate-profiles.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-  <h1>Access certificate</h1>
+  <h1>Trust anchor certificate profiles</h1>
 
-<p>This section extends the general <a href="../../sections/trust-artifacts/#x509-certificate-profile">X.509 Certificate Profile</a> and specifies a Certificate Profile for <a class="mkdocs-ezglossary-link"
-    id="162ce8dd26224b357dc01f6a1c64b898"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates (WRPACs)</a>.</p>
-<p>According to [CIR 2025/848, Article 2], a <a class="mkdocs-ezglossary-link"
-    id="1a4b7e4fb900f0dbb104e313a020d44d"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is a certificate for electronic seals or signatures authenticating and validating the <a class="mkdocs-ezglossary-link"
-    id="d8929e463c751001b40209ae6c167537"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">Wallet-Relying Party (WRP)</a> when they interact with the <a class="mkdocs-ezglossary-link"
-    id="f68a09b7e74042dac70e65c5e143dd4b"
-    title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
-    data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
-    name="components:EUDI Wallet"
-    href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a>. For more details on the authentication process, see <a href="../../sections/trust-evaluation-process/#authentication-process">Authentication Process</a>.</p>
-<p>The suspension or cancellation of the <a class="mkdocs-ezglossary-link"
-    id="bf00cb66448881507f5367a46c8b7fe8"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> services involves revocation of all valid <a class="mkdocs-ezglossary-link"
-    id="d1b6232826c78f6cfdfe35023dab5486"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> by the relevant issuing authority, such that the <a class="mkdocs-ezglossary-link"
-    id="46eca51bacd46452ffba672d1b625203"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> is no longer able to interact with <a class="mkdocs-ezglossary-link"
-    id="a24cf291828384debbf7d2b785cc52db"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
-    data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
-    name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Units</a>. For more detail on the Trust Management processes, see <a href="../../sections/trust-management-lifecycle/">Trust Management and Lifecycle</a>.</p>
+<p>This section extends the general <a href="../../sections/trust-artifacts/#x509-certificate-profile">X.509 Certificate Profile</a> and specifies a Certificate Profile for entity <a class="mkdocs-ezglossary-link"
+    id="bb0d13e00f1847f538d31b2576df6102"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</a>.</p>
+<p>A <a class="mkdocs-ezglossary-link"
+    id="04318707cab5000be3db3e622139bb40"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the <a class="mkdocs-ezglossary-link"
+    id="102d9e41deb0200756c407693b065ce7"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is authoritative. Within the <a class="mkdocs-ezglossary-link"
+    id="652d15321af40689bd41e9681d2bdd9a"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> infrastructure, the <a class="mkdocs-ezglossary-link"
+    id="85e9f421befe04977511815ef2d72f7a"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> Certificate is referenced from the corresponding service entry through the <code>serviceDigitalIdentity</code> component.</p>
+<p><a class="mkdocs-ezglossary-link"
+    id="9de5fcf449009ed71adcd8b5d3df9317"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificates MAY be self-signed or non self-signed. In any case, <a class="mkdocs-ezglossary-link"
+    id="20a94266a2d4580c7fa6f5b2b16cb793"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Parties</a> SHALL NOT require an additional issuer chain above a <a class="mkdocs-ezglossary-link"
+    id="6fc2a451d20cde50ad50e16ab616252a"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>-designated trust anchor, even if it is not self-signed, as the <a class="mkdocs-ezglossary-link"
+    id="0e7950c531526ca190ce153664bbf3e4"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> is a trust-store input designated by policy.</p>
+<div class="admonition note">
+<p class="admonition-title">Relationship Between Trust Anchors and Entity Sign/Seal Certificates</p>
+<p>According to [OpenID4VC HAIP, Clause 6.1]:</p>
+<ul>
+<li><a class="mkdocs-ezglossary-link"
+    id="865db92a9bda8879bd9ca1b0f6083f33"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a>'s signing certificate SHALL be present in the <a class="mkdocs-ezglossary-link"
+    id="eaacd7c6a6eee5f77cdeb405eba554c9"
+    title="A composite structure, consisting of a JWS plus optional Disclosures, enabling selective disclosure of portions of the JWS payload. [RFC 9901]"
+    data-tooltip="A composite structure, consisting of a JWS plus optional Disclosures, enabling selective disclosure of portions of the JWS payload. [RFC 9901]"
+    name="formats:Selective Disclosure JWT (SD-JWT)"
+    href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</a> <code>x5c</code> header (the <code>x5c</code> header SHALL NOT be empty).</li>
+<li><a class="mkdocs-ezglossary-link"
+    id="8bef51f512da74603ae833193b0cc007"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificate of the <a class="mkdocs-ezglossary-link"
+    id="0e1f9954f75e8e7a9cf180f87593142e"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> SHALL NOT be present in the <a class="mkdocs-ezglossary-link"
+    id="3fb9593772d1a632540891c3ab4a9947"
+    title="A composite structure, consisting of a JWS plus optional Disclosures, enabling selective disclosure of portions of the JWS payload. [RFC 9901]"
+    data-tooltip="A composite structure, consisting of a JWS plus optional Disclosures, enabling selective disclosure of portions of the JWS payload. [RFC 9901]"
+    name="formats:Selective Disclosure JWT (SD-JWT)"
+    href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</a> <code>x5c</code> header.</li>
+</ul>
+<p>Therefore, <a class="mkdocs-ezglossary-link"
+    id="9e8a822c1351d0b7a321447b923ea8e4"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Providers</a>' Sign/Seal Certificates SHALL NOT be a <a class="mkdocs-ezglossary-link"
+    id="1fc4c1e16938a7ce563a0b58573d65a9"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificate.</p>
+</div>
 <details class="references">
 <summary>References</summary>
-<p>The technical standard specific to <a class="mkdocs-ezglossary-link"
-    id="242bb2373ffb8d81b201e629a70e8300"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> is [ETSI TS 119 411-8]. However, multiple other standards are referenced either directly or indirectly by [ETSI TS 119 411-8], containing requirements that are applicable to <a class="mkdocs-ezglossary-link"
-    id="d6967cd4b1dfde9a72ede3067faaba71"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> as well. The list below enumerates all the applicable standards and specifications that have been used to populate the table below:</p>
 <ul>
-<li><strong>CIR 2025/848</strong></li>
-<li><strong>ETSI EN 319 411-1</strong></li>
-<li><strong>ETSI EN 319 411-2</strong> (applicable if the certificate is qualified)</li>
-<li><strong>ETSI EN 319 412-1</strong></li>
-<li><strong>ETSI EN 319 412-3</strong> (applicable if the certificate is issued to legal persons)</li>
-<li><strong>ETSI EN 319 412-5</strong> (applicable if the certificate is qualified)</li>
-<li><strong>ETSI TS 119 411-8</strong></li>
-<li><strong>RFC 3647</strong></li>
-<li><strong>RFC 3739</strong></li>
+<li><strong>CIR 2024/2980</strong></li>
+<li><strong>ETSI TS 119 602</strong></li>
+<li><strong>ETSI TS 119 612</strong></li>
 <li><strong>RFC 5280</strong></li>
-<li><strong>RFC 9608</strong></li>
+<li><strong>RFC 5914</strong></li>
 </ul>
 </details>
-<div class="admonition note">
-<p class="admonition-title">Dependency Considerations</p>
-<p>The <a class="mkdocs-ezglossary-link"
-    id="bbe3b3e82585acd0381c78b4fbb74f39"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> attributes SHALL be derived from the information held in the <a class="mkdocs-ezglossary-link"
-    id="8f061e1bba07eeccfc9829ca7efc1b3d"
-    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
-    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
-    name="components:Register"
-    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> as specified in [ETSI TS 119 475, Clause 5.1.2]. This also implies that for some specific attributes in the <a class="mkdocs-ezglossary-link"
-    id="61fc6f19dbc6246de67ad523d26cf7bf"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> the same value SHALL be encountered in the corresponding <a class="mkdocs-ezglossary-link"
-    id="de7aaa3835c138aa5fe2c37e198af3d6"
-    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
-    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
-    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> if any.</p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p><a class="mkdocs-ezglossary-link"
+    id="011c1f072e460a74b515f00a24e4c818"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> Certificates SHALL be issued only to legal persons.</p>
 </div>
-<p>The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.</p>
+<p>The following table defines the profile-specific requirements for the certificate fields. Fields not listed in the table remain subject to the requirements defined in the <a href="../../sections/trust-artifacts/#x509-certificates">X.509 Certificate Profile</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Additional Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issuer</code></td>
+<td>If the certificate is self-signed, the issuer's distinguished name SHALL be identical to the subject's distinguished name. Otherwise, the issuer's distinguished name SHALL identify the entity that signed and issued the certificate and MAY differ from the subject's distinguished name.</td>
+</tr>
+<tr>
+<td><code>subject</code></td>
+<td>The distinguished name SHALL contain an <code>organizationName</code> attribute identifying that entity.</td>
+</tr>
+</tbody>
+</table>
+<p>The following table defines the complete set of extensions applicable to the certificate profile.</p>
 <table>
 <thead>
 <tr>
 <th>Extension</th>
-<th style="text-align: center;">Presence</th>
+<th>Presence</th>
 <th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>authorityKeyIdentifier</code></td>
-<td style="text-align: center;">REQUIRED</td>
-<td>The value of the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1].</td>
+<td>CONDITIONAL</td>
+<td><strong>REQUIRED IF:</strong> the certificate is not self-signed. For self-signed certificates, it is RECOMMENDED. If the extension is present, the value of the <code>keyIdentifier</code> field SHOULD be derived from the public key using the methods defined in [RFC 5280, Section 4.2.1.1].</td>
 </tr>
 <tr>
 <td><code>subjectKeyIdentifier</code></td>
-<td style="text-align: center;">OPTIONAL</td>
-<td>If present, its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2].</td>
+<td>REQUIRED</td>
+<td>Provides a key identifier for the <a class="mkdocs-ezglossary-link"
+    id="5c573337166ad9ff72faa4e6cef602dc"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> public key. Its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. This extension SHOULD support reliable Certificate Path construction and certificate matching in <a class="mkdocs-ezglossary-link"
+    id="853b1e12211f44eb1efb6c84cc5f64f4"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>-based deployments.</td>
 </tr>
 <tr>
 <td><code>keyUsage</code></td>
-<td style="text-align: center;">REQUIRED</td>
-<td>It SHALL contain one (and only one) of the key-usage settings <em>Type A</em>, <em>Type B</em>, or <em>Type F</em>. <em>Type A</em> SHOULD be used as per [ETSI EN 319 412-3, LEG-4.3.1-4].</td>
-</tr>
-<tr>
-<td><code>certificatePolicies</code></td>
-<td style="text-align: center;">REQUIRED</td>
-<td>It SHALL include a <code>PolicyInformation</code> structure with <code>policyIdentifier</code> set to one of the following values (defined in [ETSI TS 119 411-8]): <code>0.4.0.194118.1.1</code> (<code>NCP-n-eudiwrp</code>); <code>0.4.0.194118.1.2</code> (<code>NCP-l-eudiwrp</code>); <code>0.4.0.194118.1.3</code> (<code>QCP-n-eudiwrp</code>); <code>0.4.0.194118.1.4</code> (<code>QCP-l-eudiwrp</code>). Moreover, <code>policyQualifiers</code> SHALL contain a <code>cpsURI</code> that references an URL where the CPS of the <a class="mkdocs-ezglossary-link"
-    id="f74f16ca7f0aedb8eb67614862fa273a"
-    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
-    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
-    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a> is located.</td>
-</tr>
-<tr>
-<td><code>subjectAltName</code></td>
-<td style="text-align: center;">REQUIRED</td>
-<td>It SHALL include a <code>GeneralName</code> structure with one of the following parameters defined to provide valid contact information of the WRP: <code>uniformResourceIdentifier</code> (website for helpdesk/support matters), <code>otherName</code> with <code>type-id</code> set to <code>2.5.4.20</code> (<code>id-at-telephoneNumber</code>, phone number for WRP registration/usage matters), <code>rfc822Name</code> (email address for WRP registration/usage matters).</td>
-</tr>
-<tr>
-<td><code>cRLDistributionPoints</code></td>
-<td style="text-align: center;">CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <a class="mkdocs-ezglossary-link"
-    id="87ef7d1eb09d074714836927d5582a86"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
-    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
-    name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
-    id="f4ffa4f885fe191497a39db3f656c7b5"
+<td>REQUIRED</td>
+<td>It SHALL assert the <code>keyCertSign</code> bit. It MAY assert the <code>cRLSign</code> bit if the <a class="mkdocs-ezglossary-link"
+    id="1fbf8f82981dd642015ba27714670237"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificate is used by the <a class="mkdocs-ezglossary-link"
+    id="79841b7327436e376f2130bf286a11df"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> to sign <a class="mkdocs-ezglossary-link"
+    id="be19ad3e98024f853f4f7545c7b5e9cf"
     title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</td>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</a>. It SHOULD be limited to usages consistent with the <a class="mkdocs-ezglossary-link"
+    id="c32539acc73d468bdc677a3d032ed75d"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> role of the <a class="mkdocs-ezglossary-link"
+    id="1aa7ce216b9aad3f5e875334bb63fb80"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> certificate.</td>
+</tr>
+<tr>
+<td><code>certificatePolicies</code></td>
+<td>OPTIONAL</td>
+<td>It MAY include a <code>PolicyInformation</code> structure relevant to the issuing <a class="mkdocs-ezglossary-link"
+    id="855ecef687d5c1ad3eb4ede924d99074"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>'s practices.</td>
+</tr>
+<tr>
+<td><code>subjectAltName</code></td>
+<td>OPTIONAL</td>
+<td>It MAY include a <code>GeneralName</code> structure with additional information on the subject.</td>
+</tr>
+<tr>
+<td><code>issuerAltName</code></td>
+<td>OPTIONAL</td>
+<td>It MAY include a <code>GeneralName</code> structure with additional information on the issuer.</td>
+</tr>
+<tr>
+<td><code>basicConstraints</code></td>
+<td>REQUIRED</td>
+<td>The <code>cA</code> field SHALL be set to <code>TRUE</code>, signalling <a class="mkdocs-ezglossary-link"
+    id="5b03afb6d2e0d9dfb1fc7842f8c731cc"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> capability for X.509 path validation. The <code>pathLenConstraint</code> field MAY be present; in that case, it SHALL limit the number of non-self-issued intermediate <a class="mkdocs-ezglossary-link"
+    id="10916eefb36684945b09b57b1ef4a896"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> certificates below the <a class="mkdocs-ezglossary-link"
+    id="b565ef7ed6fb92323ed2d57c4b283a9a"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>. It is RECOMMENDED to set <code>pathLenConstraint</code> to <code>0</code> to prevent subordinate <a class="mkdocs-ezglossary-link"
+    id="7b33742d26e8653733f8ed68c5862b10"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> layers, unless a documented operational need exists to support additional intermediate <a class="mkdocs-ezglossary-link"
+    id="cd0ffea348013544a162ed40c478ded7"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> tiers.</td>
+</tr>
+<tr>
+<td><code>cRLDistributionPoints</code></td>
+<td>OPTIONAL</td>
+<td>It MAY include <a class="mkdocs-ezglossary-link"
+    id="8063951725e12bec87c2ba4114b3036b"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> distribution point URIs, when <a class="mkdocs-ezglossary-link"
+    id="622e0e8b2f586269c8726709ee97512b"
+    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>-based revocation is used.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
-<td style="text-align: center;">REQUIRED</td>
-<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <a class="mkdocs-ezglossary-link"
-    id="618a271b51b8ef06066af5854a9f3ed4"
+<td>OPTIONAL</td>
+<td>If applicable, it MAY include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and an <code>accessLocation</code> specifying at least one access location of a valid <a class="mkdocs-ezglossary-link"
+    id="6c15fc9d9393cdad206afbea95b3dc64"
     title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>. If <a class="mkdocs-ezglossary-link"
-    id="fb5b7051429e10982393806e559cc133"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
-    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
-    name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> is supported by the issuing <a class="mkdocs-ezglossary-link"
-    id="4a4410770e55d2183c4b1675d854a0e8"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> certificate of the issuing <a class="mkdocs-ezglossary-link"
+    id="09643cacf5eda9286eb4df02455b43f7"
     title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <a class="mkdocs-ezglossary-link"
-    id="cb5e5dfc0df5b807ce435d82c9572fa4"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>.<br />It MAY also include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <a class="mkdocs-ezglossary-link"
+    id="a9ed04492cde551325c07f605ee5aa4d"
     title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder authoritative to provide certificate status information for the certificate.</td>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder authoritative to provide certificate status information for the certificate, when <a class="mkdocs-ezglossary-link"
+    id="e2f4540f85379aeb3dae2c5d1d4f48d3"
+    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a>-based revocation is used.</td>
 </tr>
 <tr>
 <td><code>qcStatements</code></td>
-<td style="text-align: center;">OPTIONAL</td>
-<td>It MAY contain <code>QCStatement</code> structures among those defined in [ETSI EN 319 412-5, Clause 4.2]. In any case, it SHALL NOT contain:<ul><li>A <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>), referred to as <code>esi4-qcStatement-1</code>.</li><li>A <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>), referred to as <code>esi4-qcStatement-4</code>.</li><li>A <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.7</code> (<code>id-etsi-qcs-QcCClegislation</code>), referred to as <code>esi4-qcStatement-7</code>.</li></ul></td>
+<td>OPTIONAL</td>
+<td>It MAY contain <code>QCStatement</code> structures among those defined in [ETSI EN 319 412-5, Clause 4.2]. In any case, it SHALL NOT contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.7</code> (<code>id-etsi-qcs-QcCClegislation</code>), referred to as <code>esi4-qcStatement-7</code>.</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition choice">
-<p class="admonition-title">APTITUDE Implementation Choices</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>pathLenConstraint</code> restricts the depth of certification paths below the <a class="mkdocs-ezglossary-link"
+    id="a0d4f1fd709c40799ebad183c1dcd2d6"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a>, as follows:</p>
 <ul>
-<li><a class="mkdocs-ezglossary-link"
-    id="f282bbb1da1ca902e66ed623f2f3c966"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> SHALL be issued only to legal persons.</li>
-<li><a class="mkdocs-ezglossary-link"
-    id="13614df0eee65a132e256d6e57845d50"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> SHALL be long-lived. Therefore, the extensions <code>ext-etsi-valassured-ST-certs</code> and <code>noRevAvail</code> SHALL NOT be specified.</li>
-<li><a class="mkdocs-ezglossary-link"
-    id="a78c6af038347f95a372a6975abf6b9c"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> SHALL NOT be Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL NOT contain <code>QCStatement</code> structures with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>) or <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>).</li>
+<li>A value of <code>0</code> means that the <a class="mkdocs-ezglossary-link"
+    id="beb1e9faf846f157d8754352562f09f2"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> MAY issue end-entity certificates but SHALL NOT allow additional non-self-issued intermediate <a class="mkdocs-ezglossary-link"
+    id="397e18c7495bdbfc72cd12f05c98bb7a"
+    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> certificates in the path.</li>
+<li>Absence of the <code>pathLenConstraint</code> implies that no explicit limit is imposed by the certificate itself.</li>
 </ul>
+<p>This profile allows the field to be OPTIONAL to support interoperability with different <a class="mkdocs-ezglossary-link"
+    id="0d813b90d1c2c856f0c90d7e139b7b03"
+    title="Systems, software, and communication protocols that are used by EUDI Wallet ecosystem components to distribute, manage, and control public keys. A PKI publishes public keys and establishes trust within an environment by validating and verifying the public keys mapping to an entity. [ARF]"
+    data-tooltip="Systems, software, and communication protocols that are used by EUDI Wallet ecosystem components to distribute, manage, and control public keys. A PKI publishes public keys and establishes trust within an environment by validating and verifying the public keys mapping to an entity. [ARF]"
+    name="components:Public Key Infrastructure (PKI)"
+    href="../../glossary-definitions/#5c9da07f7d8d505f9d6a74961860fdf0">PKI</a> deployment models. However, setting <code>pathLenConstraint</code> to <code>0</code> is RECOMMENDED to reduce trust hierarchy complexity, improve predictability of certificate chains, and limit the risk associated with unintended subordinate certification authorities.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Use Case-Specific Requirements</p>
+<p>Specific Use Cases could have custom <a class="mkdocs-ezglossary-link"
+    id="1e85e80fe8fb111911870778e1066163"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> Certificate requirements. Where strictly necessary, implementations MAY define and support additional extensions beyond the profile defined above.</p>
 </div>
 <details class="example">
-<summary>Example: WRPAC</summary>
-<p><!-- BEGIN INCLUDE ../examples/access-certificate.md -->
-<div class="highlight"><pre><span></span><code>AccessCertificate cert = {
+<summary>Example: Self-signed Entity Trust Anchor (root-style)</summary>
+<p><!-- BEGIN INCLUDE ../examples/trust-anchor-self-signed.md -->
+<div class="highlight"><pre><span></span><code>AccessCertificate trustAnchor = {
   tbsCertificate: {
     version: 2,                                           // Integer value 2 for v3
-    serialNumber: "0x6F3A0B91D2...",
+    serialNumber: "0x9D846F726A8..",
 
     signature: AlgorithmIdentifier {
       oid: "1.2.840.113549.1.1.11",                       // sha256WithRSAEncryption
@@ -1669,22 +1790,22 @@
     },
 
     issuer: DistinguishedName {
-      countryName: "IT",
-      organizationName: "Example Trust Services CA",
-      commonName: "Example CA",
-      organizationIdentifier: "VATIT-123456789"
+      countryName: "CZ",
+      organizationName: "Example Entity Trust Anchor CA",
+      commonName: "Example Entity Trust Anchor Root",
+      organizationIdentifier: "VATCZ-127263789"
     },
 
     validity: {
       notBefore: Time.utcTime("260127000000Z"),
-      notAfter: Time.utcTime("270127000000Z")
+      notAfter: Time.utcTime("310127000000Z")
     },
 
-    subject: DistinguishedName {
-      countryName: "IT",
-      organizationName: "Relying Party Example S.p.A.",
-      commonName: "Relying Party Example",
-      organizationIdentifier: "LEIXG-5493001KJTIIGC8Y1R12"
+    subject: DistinguishedName {                          // SHALL match the Issuer
+      countryName: "CZ",
+      organizationName: "Example Entity Trust Anchor CA",
+      commonName: "Example Entity Trust Anchor Root",
+      organizationIdentifier: "VATCZ-127263789"
     },
 
     subjectPublicKeyInfo: {
@@ -1701,55 +1822,127 @@
         oid: "2.5.29.35",                                 // authorityKeyIdentifier
         critical: false,
         value: AuthorityKeyIdentifier {
-          keyIdentifier: "HEX(20B_KEYID_OF_ISSUING_CA_PUBLIC_KEY)"
+          keyIdentifier: "SHA-1(ISSUER_PUBLIC_KEY_VALUE)"
         }
+      },
+
+      Extension {
+        oid: "2.5.29.14",                                 // subjectKeyIdentifier
+        critical: false,
+        value: SubjectKeyIdentifier("SHA-1(SUBJECT_PUBLIC_KEY_VALUE)")
       },
 
       Extension {
         oid: "2.5.29.15",                                 // keyUsage
         critical: true,
         value: KeyUsage {
-          nonRepudiation: true                            // Type A
+          keyCertSign: true,
+          cRLSign: true
           // All other bits set to false
         }
       },
 
       Extension {
-        oid: "2.5.29.32",                                 // certificatePolicies
+        oid: "2.5.29.19",                                 // basicConstraints
+        critical: true,
+        value: BasicConstraints {
+          cA: true,
+          pathLenConstraint: 0
+        }
+      }      
+    ]
+  },
+
+  signatureAlgorithm: AlgorithmIdentifier {
+    oid: "1.2.840.113549.1.1.11",                         // SHALL match/align with tbsCertificate.signature
+    params: NULL
+  },
+
+  signatureValue: "BASE64(SIGN(issuerPrivateKey, DER(tbsCertificate)))"
+}
+</code></pre></div></p>
+<!-- END INCLUDE -->
+</details>
+<details class="example">
+<summary>Example: Non-self-signed Entity Trust Anchor (pinned intermediate CA)</summary>
+<p><!-- BEGIN INCLUDE ../examples/trust-anchor-intermediate.md -->
+<div class="highlight"><pre><span></span><code>AccessCertificate trustAnchor = {
+  tbsCertificate: {
+    version: 2,                                           // Integer value 2 for v3
+    serialNumber: "0x736A63D6352..",
+
+    signature: AlgorithmIdentifier {
+      oid: "1.2.840.113549.1.1.11",                       // sha256WithRSAEncryption
+      params: NULL
+    },
+
+    issuer: DistinguishedName {
+      countryName: "CZ",
+      organizationName: "Example Root CA",
+      commonName: "Example Root",
+      organizationIdentifier: "VATCZ-987654321"
+    },
+
+    validity: {
+      notBefore: Time.utcTime("260127000000Z"),
+      notAfter: Time.utcTime("270127000000Z")
+    },
+
+    subject: DistinguishedName {
+      countryName: "CZ",
+      organizationName: "Example Entity Trust Anchor CA",
+      commonName: "Example Entity Trust Anchor (Pinned Intermediate)",
+      organizationIdentifier: "VATCZ-123481789"
+    },
+
+    subjectPublicKeyInfo: {
+      algorithm: AlgorithmIdentifier {
+        oid: "1.2.840.113549.1.1.1",                      // rsaEncryption
+        params: NULL
+      },
+
+      subjectPublicKey: "BASE64(SPKI_PUBLIC_KEY_BYTES)"
+    },
+
+    extensions: [
+      Extension {
+        oid: "2.5.29.35",                                 // authorityKeyIdentifier
         critical: false,
-        value: CertificatePolicies [
-          PolicyInformation {
-            policyIdentifier: "0.4.0.194118.1.2",         // NCP-l-eudiwrp
-            policyQualifiers: [
-              CPSuri("https://rpca.example.test/cps")
-            ]
-          }
+        value: AuthorityKeyIdentifier {
+          keyIdentifier: "SHA-1(ISSUER_PUBLIC_KEY_VALUE)"
+        }
+      },
+
+      Extension {
+        oid: "2.5.29.14",                                 // subjectKeyIdentifier
+        critical: false,
+        value: SubjectKeyIdentifier("SHA-1(SUBJECT_PUBLIC_KEY_VALUE)")
+      },
+
+      Extension {
+        oid: "2.5.29.15",                                 // keyUsage
+        critical: true,
+        value: KeyUsage {
+          keyCertSign: true
+          // All other bits set to false
+        }
+      },
+
+      Extension {
+        oid: "2.5.29.18",                                 // issuerAltName
+        critical: false,
+        value: IssuerAltName [
+          GeneralName.rfc822Name("info@root-ca.example.test")
         ]
       },
 
       Extension {
-        oid: "2.5.29.17",                                 // subjectAltName
-        critical: false,
-        value: SubjectAltName [
-          GeneralName.uniformResourceIdentifier("https://rp.example.test/support"),
-          GeneralName.rfc822Name("support@rp.example.test"),
-          GeneralName.otherName(
-            type-id: "2.5.4.20",                          // id-at-telephoneNumber
-            value: "+420111222333"
-          )
-        ]
-      },
-
-      Extension {
-        oid: "2.5.29.31",                                 // cRLDistributionPoints
-        critical: false,
-        value: CRLDistributionPoints [
-          DistributionPoint {
-            distributionPoint: DistributionPointName.fullName([
-              GeneralName.uniformResourceIdentifier("http://crl.example.test/issuing-ca.crl")
-            ])
-          }
-        ]
+        oid: "2.5.29.19",                                 // basicConstraints
+        critical: true,
+        value: BasicConstraints {
+          cA: true,
+          pathLenConstraint: 0
+        }
       },
 
       Extension {
@@ -1759,11 +1952,6 @@
           AccessDescription {
             accessMethod: "1.3.6.1.5.5.7.48.2",           // id-ad-caIssuers
             accessLocation: GeneralName.uniformResourceIdentifier("http://ca.example.test/caIssuers/issuing-ca.cer")
-          },
-
-          AccessDescription {
-            accessMethod: "1.3.6.1.5.5.7.48.1",           // id-ad-ocsp
-            accessLocation: GeneralName.uniformResourceIdentifier("http://ocsp.example.test")
           }
         ]
       }
@@ -1780,76 +1968,6 @@
 </code></pre></div></p>
 <!-- END INCLUDE -->
 </details>
-<div class="admonition warning">
-<p class="admonition-title">Security Considerations</p>
-<p>As the private key corresponding to the <a class="mkdocs-ezglossary-link"
-    id="6960212cb23725eff94b5716721e0474"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> is a signature/seal key, implementations SHALL prevent the <a class="mkdocs-ezglossary-link"
-    id="6b09767de6d422b12ea94a83440fe28c"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> key from becoming a general-purpose signing oracle.</p>
-<p><strong>SC-1 — No blind signing of attacker-controlled inputs.</strong></p>
-<p>The <a class="mkdocs-ezglossary-link"
-    id="f1bc650be35da8c91e096ee688f41ea3"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> (and any remote signing component used on its behalf, e.g., HSM/QSCD/remote seal) should only sign well-defined, locally constructed protocol artifacts and should not sign arbitrary bytes received from outside (e.g., <em>random</em> <a class="mkdocs-ezglossary-link"
-    id="4435adf103285f2b16b14051c18db908"
-    title="A single-use, unpredictable value issued by a server to prevent replay attacks; Wallets must include it verbatim in proofs or responses."
-    data-tooltip="A single-use, unpredictable value issued by a server to prevent replay attacks; Wallets must include it verbatim in proofs or responses."
-    name="data-elements:Nonce"
-    href="../../glossary-definitions/#30a68316857dc67701ca83b68abd8019">nonces</a>, hashes, or opaque challenges supplied by an attacker).
-For instance, when the interaction with the <a class="mkdocs-ezglossary-link"
-    id="b06da279c9b5f5a5c707981348a29c1a"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
-    data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
-    name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> takes plase as described in [OpenID4VP], the <a class="mkdocs-ezglossary-link"
-    id="c3eeaac32b6b171b98aa5d34f8db3b21"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> signs a self-constructed <a class="mkdocs-ezglossary-link"
-    id="ba98f205fcfb60cce0bc9b66376bf4fc"
-    title="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
-    data-tooltip="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
-    name="artifacts:Request Object"
-    href="../../glossary-definitions/#1213fa5e24bc0f9597bc7a6701069add">Request Object</a>. Before signing, the <a class="mkdocs-ezglossary-link"
-    id="a30a468679e0385fca9bce5753ed633b"
-    title="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
-    name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</a> SHOULD validate that the <a class="mkdocs-ezglossary-link"
-    id="64342b328d50e0b804efc95dfe5ff56f"
-    title="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
-    data-tooltip="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
-    name="artifacts:Request Object"
-    href="../../glossary-definitions/#1213fa5e24bc0f9597bc7a6701069add">Request Object</a> is fully context-bound (e.g., correct <code>aud</code>, <code>client_id</code>/<code>iss</code>, <code>exp</code>, <code>nonce</code>, and correct endpoint binding such as <code>response_uri</code>/<code>redirect_uri</code>, and the intended presentation definition). Any signing API should enforce a strict schema/allowlist and reject unexpected fields. This is particularly important when the key usage is set to non-repudiation, since this protects against the signing entity falsely denying some action and allows a reliable third party to determine the authenticity of signed data in case of later conflict.</p>
-<p><strong>SC-2 — Bind signatures to the intended protocol context.</strong></p>
-<p>Signed protocol objects should be clearly typed and scoped to the protocol to reduce <em>cross-context</em> misuse. In particular:</p>
-<ul>
-<li>Use an explicit JOSE <code>typ</code> value appropriate for secured authorization requests / OpenID4VP <a class="mkdocs-ezglossary-link"
-    id="d550e43cf3908c41d1158fc8ba1f0b9d"
-    title="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
-    data-tooltip="A JWT carrying OAuth 2.0 authorization request parameters as defined in RFC 9101, which may be passed by value or by reference (JAR); used in OID4VP to convey the Verifier's presentation request."
-    name="artifacts:Request Object"
-    href="../../glossary-definitions/#1213fa5e24bc0f9597bc7a6701069add">Request Objects</a>.</li>
-<li>Constrain accepted JOSE algorithms and key types, and reject insecure or unexpected values (e.g., <code>alg=none</code>).</li>
-</ul>
-<p><strong>SC-3 — Key protection, access control, and monitoring.</strong></p>
-<p>Private keys corresponding to <a class="mkdocs-ezglossary-link"
-    id="f02e5f9efa90583ee83f87558beae569"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</a> SHOULD be protected and operated under strong controls (access control for key use, audit logging, incident response, and operational monitoring). For remote signing, apply rate limiting and anomaly detection to reduce abuse.</p>
-</div>
 
 
 

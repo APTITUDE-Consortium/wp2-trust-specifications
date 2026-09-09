@@ -1,0 +1,2424 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/embedded-disclosure-policy/">
+      
+      
+        <link rel="prev" href="../certificate-revocation-list/">
+      
+      
+        <link rel="next" href="../entity-end-certificate-profiles/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Embedded disclosure policy - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../media/extra.css">
+    
+      <link rel="stylesheet" href="../../includes/admonitions.css">
+    
+      <link rel="stylesheet" href="../../includes/tables.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#policy-types" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Embedded disclosure policy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../trust-framework/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Trust Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access-certificate/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trust-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-evaluation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-management-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Management and Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Use Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attestation-signature-validation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attestation signature validation process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../certificate-revocation-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Certificate revocation list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#policy-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distribution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entity-end-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity end certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ocsp-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ocsp artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revocation-mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../status-list-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status list token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks presentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-management-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust management process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trusted-list-and-list-of-trusted-lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trusted list and list of trusted lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../x509-certificate-profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    X509 certificate profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../x509-certificate-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    X509 certificate validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/embedded-disclosure-policy.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/embedded-disclosure-policy.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Embedded disclosure policy</h1>
+
+<p>This section specifies the <a class="mkdocs-ezglossary-link"
+    id="ea57b54f1e985f270212ce032ff173f5"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">Embedded Disclosure Policy (EDP)</a> for the APTITUDE ecosystem.</p>
+<p>An <a class="mkdocs-ezglossary-link"
+    id="f3898660432cf4dd16af1de6e2e0bb51"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">Embedded Disclosure Policy</a> is defined in [CIR 2024/2979, Article 2(9)] as:</p>
+<blockquote>
+<p><em>"A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes"</em>.</p>
+</blockquote>
+<p>The <a class="mkdocs-ezglossary-link"
+    id="3fd2c103ac95aea188cb4b4e44ba0006"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> allows <a class="mkdocs-ezglossary-link"
+    id="8185daf30c0a86d3b2878adc15e49f87"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">APs</a> to indicate which <a class="mkdocs-ezglossary-link"
+    id="8c5336ee824eddafa51e526824baec02"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a> can access specific <a class="mkdocs-ezglossary-link"
+    id="8acabe1509a2e1beaccbeb2deafabdea"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</a>. <a class="mkdocs-ezglossary-link"
+    id="565b612c156a4975cb37af894681409e"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">APs</a> can optionally express an <a class="mkdocs-ezglossary-link"
+    id="62694bd612dbade0541162c1396d700b"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> for their <a class="mkdocs-ezglossary-link"
+    id="a0a1045bffc2c8dfb38e46ba1d687e54"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</a> (<code>EDP_01</code>).  [CIR 2024/2979, Article 10] establishes that <a class="mkdocs-ezglossary-link"
+    id="739b5f939f39e806991b23b3fc656bdf"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</a> SHALL ensure that <a class="mkdocs-ezglossary-link"
+    id="ca9b2e80c750d30f8e39fd7e05c493ed"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</a> with common <a class="mkdocs-ezglossary-link"
+    id="781c9f9c00e7a49709f4b94145622528"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDPs</a> (as listed in [CIR 2024/2979, Annex III]) can be processed by their <a class="mkdocs-ezglossary-link"
+    id="d5dff1e99fb0431ef34bbc76b2ba6b57"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instances</a>.</p>
+<p><a class="mkdocs-ezglossary-link"
+    id="618005f5bd82560b2992467d1479fdd5"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDPs</a> are applicable to <a class="mkdocs-ezglossary-link"
+    id="28ed81716f49ac9b43296fcf5cf8f46e"
+    title="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</a>, <a class="mkdocs-ezglossary-link"
+    id="e1e940f791f70a60e68ab1099ca5995d"
+    title="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+    name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
+    href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">PuB-EAA</a>, and <a class="mkdocs-ezglossary-link"
+    id="c2c554a275cab2a2bfddf9f22caddcd7"
+    title="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    data-tooltip="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    name="credentials:Electronic Attestation of Attributes (EAA)"
+    href="../../glossary-definitions/#a7a5d7b924e0172a1247714760380eab">EAA</a>. They are not applicable to <a class="mkdocs-ezglossary-link"
+    id="b9d931de45c5e5ff945ebcc3e3113253"
+    title="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
+    data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
+    name="credentials:Person Identification Data (PID)"
+    href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">PID</a> as the <a class="mkdocs-ezglossary-link"
+    id="456e6f8df1e4348df42e71bd71ad51a1"
+    title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    name="components:EUDI Wallet"
+    href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a> Regulation does not provide any requirement for <a class="mkdocs-ezglossary-link"
+    id="f1a0b98b7a407519450b92ec7feb3467"
+    title="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
+    data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
+    name="credentials:Person Identification Data (PID)"
+    href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">PID</a> to contain an <a class="mkdocs-ezglossary-link"
+    id="ea0cbd03e529499aa8009ceb660b84bf"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> (<code>EDP_01</code>).</p>
+<p>The main use cases enabled by <a class="mkdocs-ezglossary-link"
+    id="9257c6fecffd8bb186e38d784f034d08"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDPs</a> are:</p>
+<ul>
+<li>Implementing Sector-specific access control (e.g., only public sector or healthcare <a class="mkdocs-ezglossary-link"
+    id="9fa74ce52e0bf3b84cd334af995dbc05"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a>).</li>
+<li>Implementing Member State-specific access control (e.g., only <a class="mkdocs-ezglossary-link"
+    id="c9cb1a74fa20d3bd04f6dc68bed236ea"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a> registered within a specific Member State).</li>
+</ul>
+<details class="references">
+<summary>References</summary>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[CIR 2024/2979, Article 2(9)]</td>
+<td>Definition of <a class="mkdocs-ezglossary-link"
+    id="1ac91dd5acca242c37c560bb21726c0e"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">Embedded Disclosure Policy</a></td>
+</tr>
+<tr>
+<td>[CIR 2024/2979, Article 10]</td>
+<td><a class="mkdocs-ezglossary-link"
+    id="506ca2ca48697e2dce188d91e205f8f7"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</a> obligations for <a class="mkdocs-ezglossary-link"
+    id="b59ed5b125677ef9c7f97ab4ea082469"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> processing</td>
+</tr>
+<tr>
+<td>[CIR 2024/2979, Annex III]</td>
+<td>Common <a class="mkdocs-ezglossary-link"
+    id="88fddfaa4734fa8a8815ab8cb9e4b3c6"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> types</td>
+</tr>
+<tr>
+<td>[ETSI TS 119 472-3, Section 4.2.5]</td>
+<td><a class="mkdocs-ezglossary-link"
+    id="4dc048026e230e68566eb17ee755df8c"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> data model requirements (ISS-MDATA-EBD-4.2.5.2-01 through 13)</td>
+</tr>
+<tr>
+<td>[ETSI TS 119 475, Annex A.2]</td>
+<td>Common entitlement URIs</td>
+</tr>
+<tr>
+<td>[ETSI EN 319 412-1, Section 5.1.4]</td>
+<td>organizationIdentifier semantics</td>
+</tr>
+<tr>
+<td>[RFC 4514]</td>
+<td>LDAP string representation of Distinguished Names</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="policy-types">Policy Types<a class="headerlink" href="#policy-types" title="Permanent link">&para;</a></h3>
+<p>[CIR 2024/2979, Annex III] defines three common <a class="mkdocs-ezglossary-link"
+    id="9ae8ffc4e9279a641d960076dbc8b05d"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> types:</p>
+<ul>
+<li>
+<p><strong>No Policy.</strong> No <a class="mkdocs-ezglossary-link"
+    id="c62ea3f1ecb0e813e0000ef68332aac1"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is present, or the <a class="mkdocs-ezglossary-link"
+    id="31cff3c8d12040bd3ae953c9dfb26c98"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> explicitly indicates that no restrictions apply (<code>ISS-MDATA-EBD-4.2.5.2-06</code>).</p>
+</li>
+<li>
+<p><strong>Authorized Relying Parties Only.</strong> The <a class="mkdocs-ezglossary-link"
+    id="cf44c4f7e9ee1b67d23019b6d7521897"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> contains a list of <a class="mkdocs-ezglossary-link"
+    id="a08489209d959cdda37defdf31d1167a"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a> that are allowed to access the <a class="mkdocs-ezglossary-link"
+    id="f9d60906429ad79d38d4d51d0a829619"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>. According to [ETSI TS 119 472-3] (<code>ISS-MDATA-EBD-4.2.5.2-07</code>), authorized <a class="mkdocs-ezglossary-link"
+    id="b220733fc3772f2407e54b03b4cc8814"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a> are identified by their subject distinguished name as held in the <a class="mkdocs-ezglossary-link"
+    id="aebddf6d77762ed13ae034556947bc47"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, in LDAP string form as defined in [RFC 4514].
+For legal persons, the relevant DN attributes are <code>commonName</code>, <code>organizationName</code>, <code>organizationIdentifier</code>, and <code>countryName</code>.
+For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surname</code>, <code>serialNumber</code>, and <code>countryName</code>. The <code>organizationIdentifier</code> attribute type is represented by the LDAP string <code>ORGID</code>; the <code>serialNumber</code> attribute type is represented by <code>SN</code> (according to [ETSI TS 119 472-3] NOTE 1 and NOTE 2 to <code>ISS-MDATA-EBD-4.2.5.2-07</code>).</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>[ETSI TS 119 472-3] (<code>ISS-MDATA-EBD-4.2.5.2-07</code>) also allows identifying authorized <a class="mkdocs-ezglossary-link"
+    id="b87d9a973ba7f58ba07deb25ad74ee60"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a> by URI-encoded entitlements as specified in [ETSI TS 119 475], held in the <a class="mkdocs-ezglossary-link"
+    id="f783cb3e96b6bb1f121c4d60dd81711b"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>. [ETSI TS 119 475, Annex A.3] defines sub-entitlements for Service Providers, currently for Payment Service Providers (e.g. <code>https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai</code>). Future versions may include additional sector-specific sub-entitlements at national or EU level. This specification supports both the subject DN and the entitlement URI identification mechanisms.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>[ARF] (<code>EDP_02</code>) refers to "EU-wide unique identifiers", as defined in <code>Reg_32</code>, for the authorized <a class="mkdocs-ezglossary-link"
+    id="e01f4b46a2d7b135b0e1bbb63e478123"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RP</a> list. [ETSI TS 119 472-3] (<code>ISS-MDATA-EBD-4.2.5.2-07</code>) identifies authorized <a class="mkdocs-ezglossary-link"
+    id="1c20ee0c9a8ce600232853a619cbf283"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a> by their subject DN from the <a class="mkdocs-ezglossary-link"
+    id="acff0859fad12580e77930d4e135227c"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>. The <code>organizationIdentifier</code> attribute within the DN has the same semantics as the identifier given in <code>Reg_32</code>. This specification aligns with the [ETSI TS 119 472-3] formulation. Future ARF versions are expected to align accordingly.</p>
+</div>
+<ul>
+<li><strong>Specific Root of Trust.</strong> The <a class="mkdocs-ezglossary-link"
+    id="4f1a210bd5bcdbc1f92ea89825c846a2"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> contains a list of trusted roots or intermediate certificates. Only <a class="mkdocs-ezglossary-link"
+    id="bf798a60618733428643a328f89d5632"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a> whose <a class="mkdocs-ezglossary-link"
+    id="fe208dd7ed1b55e6f62e0cbfebf9c9a1"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> chain to one of these roots are allowed to access the <a class="mkdocs-ezglossary-link"
+    id="df5ecd2cd88139a5934a6cfd7cbea6cd"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>. According to [ETSI TS 119 472-3] (<code>ISS-MDATA-EBD-4.2.5.2-08/09</code>), each authorized root is identified by its issuer distinguished name in LDAP string form as defined in [RFC 4514] and the issuer's certificate serial number.</li>
+</ul>
+<h3 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h3>
+<p>The data model of the <a class="mkdocs-ezglossary-link"
+    id="f69b85cc65eb9fa2d4d3674f667d7408"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is defined in [ETSI TS 119 472-3, Section 4.2.5.2] through requirements <code>ISS-MDATA-EBD-4.2.5.2-01</code> to <code>ISS-MDATA-EBD-4.2.5.2-13</code>.</p>
+<h4 id="data-model-requirements">Data Model Requirements<a class="headerlink" href="#data-model-requirements" title="Permanent link">&para;</a></h4>
+<p>The data model defines the following elements:</p>
+<ul>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="118baf7d33ff5aba27604711785fdd99"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL be identified by a unique URI (<code>ISS-MDATA-EBD-4.2.5.2-01</code>). The <a class="mkdocs-ezglossary-link"
+    id="1d88885f75d58f40e74061ccb7077513"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> MAY be accessible through this URI (ISS-MDATA-EBD-4.2.5.2-02).</li>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="660ddfcf561edd5db4e6ec4a3c622e0a"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> association with an EAA SHALL be established by including its unique URI. The AP SHALL either include the URI together with the full policy data set, or provide only the URI if the policy data set has already been pre-loaded into the <a class="mkdocs-ezglossary-link"
+    id="3f7b283c3f0f29500a3c1e56f6ac9ee5"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> (<code>ISS-MDATA-EBD-4.2.5.2-03</code>).</li>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="e7533e9220fe7a666a9a5bff79221849"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> MAY include a description of the applicability of the policy to a particular community and/or class of application with common security requirements (<code>ISS-MDATA-EBD-4.2.5.2-04</code>).</li>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="616e50719163fd474a8d584964845618"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> MAY include an identifier of the authority responsible for the policy (<code>ISS-MDATA-EBD-4.2.5.2-05</code>).</li>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="5aec11b0cf96f28b075f23c48e9041b9"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> MAY indicate that no policy restrictions apply for the associated <a class="mkdocs-ezglossary-link"
+    id="4156567c2146da58870d4e3ea23a23a5"
+    title="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    data-tooltip="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    name="credentials:Electronic Attestation of Attributes (EAA)"
+    href="../../glossary-definitions/#a7a5d7b924e0172a1247714760380eab">EAA</a> (<code>ISS-MDATA-EBD-4.2.5.2-06</code>).</li>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="53d782500c7996d49123dc56394e6d78"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> MAY contain a list of authorized <a class="mkdocs-ezglossary-link"
+    id="37e4cd072567d42af9c9e115697b17ee"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a>, identified by subject DN as described in the <em>Policy Types</em> section (<code>ISS-MDATA-EBD-4.2.5.2-07</code>).</li>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="885a2279cc3878dc6eacdacef7e38727"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> MAY define a specific list of roots of trust, identified by issuer DN and certificate serial number (<code>ISS-MDATA-EBD-4.2.5.2-08/09</code>).</li>
+<li>Other information MAY be included in an <a class="mkdocs-ezglossary-link"
+    id="fc77f67819b361d46d3cb17eeff1cf35"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> Extension which MAY be ignored by the <a class="mkdocs-ezglossary-link"
+    id="584b0b64a3225f59a71e8b06a5ddcac6"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> (<code>ISS-MDATA-EBD-4.2.5.2-10</code>). The <a class="mkdocs-ezglossary-link"
+    id="ee17e802b58b79ee6fbe971eabe044f0"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> SHOULD be able to process the <a class="mkdocs-ezglossary-link"
+    id="938c6f125b7243c069ad885230e217f5"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> even if unrecognized extensions are present (<code>ISS-MDATA-EBD-4.2.5.2-11</code>).</li>
+<li>An <a class="mkdocs-ezglossary-link"
+    id="61a359c6aef454c3fc428d0a5270e4a6"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> Extension MAY contain alternative policy rules to be applied to specified attributes within the <a class="mkdocs-ezglossary-link"
+    id="201985dffb67c5e3cb5e6aa8ed0e58c6"
+    title="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    data-tooltip="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    name="credentials:Electronic Attestation of Attributes (EAA)"
+    href="../../glossary-definitions/#a7a5d7b924e0172a1247714760380eab">EAA</a> which are subject to <a class="mkdocs-ezglossary-link"
+    id="9ed7241fdd85caf9e8d8b9fd69b2a772"
+    title="The capability enabling the User to present a subset of the attributes included in a PID or attestation. [ARF]"
+    data-tooltip="The capability enabling the User to present a subset of the attributes included in a PID or attestation. [ARF]"
+    name="processes:Selective Disclosure"
+    href="../../glossary-definitions/#c591b628a647024fd09218c2dacebcc9">Selective Disclosure</a> (<code>ISS-MDATA-EBD-4.2.5.2-12</code>).</li>
+<li>The <a class="mkdocs-ezglossary-link"
+    id="e0a0cd8d5fea0c32c45866d15956b8d9"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHOULD contain a link to a website of the <a class="mkdocs-ezglossary-link"
+    id="cd6ec573183f3b5c23329dd3a0e90188"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> explaining the disclosure policy in layman's terms (<code>ISS-MDATA-EBD-4.2.5.2-13</code>, <code>EDP_05</code>).</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>[ETSI TS 119 472-3] (<code>ISS-MDATA-EBD-4.2.5.2-12</code>) provides for attribute-level policies, where alternative policy rules (no policy, authorized <a class="mkdocs-ezglossary-link"
+    id="4963049edc60af6d1519f56d89d832e6"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RP</a> only, or specific root of trust) can be defined for specific attributes within an <a class="mkdocs-ezglossary-link"
+    id="fdfef80c91b49fe2ff048cfe49b8b59b"
+    title="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    data-tooltip="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    name="credentials:Electronic Attestation of Attributes (EAA)"
+    href="../../glossary-definitions/#a7a5d7b924e0172a1247714760380eab">EAA</a> that are subject to <a class="mkdocs-ezglossary-link"
+    id="c0e18aec0b66677454812a3dbc301030"
+    title="The capability enabling the User to present a subset of the attributes included in a PID or attestation. [ARF]"
+    data-tooltip="The capability enabling the User to present a subset of the attributes included in a PID or attestation. [ARF]"
+    name="processes:Selective Disclosure"
+    href="../../glossary-definitions/#c591b628a647024fd09218c2dacebcc9">Selective Disclosure</a>. This capability is recognized but is not further detailed in this specification. Detailed handling of attribute-level <a class="mkdocs-ezglossary-link"
+    id="921ace28439b974aae25f8f387fa077d"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> will be addressed when the ETSI JSON schema for <a class="mkdocs-ezglossary-link"
+    id="5be1bfda6c1e74306460ef23cdda3b71"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is finalized and the policy mechanisms are fully defined.</p>
+</div>
+<h4 id="structure-and-encoding">Structure and Encoding<a class="headerlink" href="#structure-and-encoding" title="Permanent link">&para;</a></h4>
+<p>The following JSON structure is derived from the [ETSI TS 119 472-3] data model requirements.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The JSON schema and the parameter names are defined in this section and are not based on a normative ETSI specification. [ETSI TS 119 472-3, Section 4.2.5.2] defines the high level requirements for data model, but the final JSON schema will be published separately by ETSI (see [ETSI TS 119 472-3, Annex C]). The structure defined here is an implementation profile based on the ETSI data model requirements, and parameter names MAY change when the ETSI schema is published.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Presence</th>
+<th>Description</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>policy_uri</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Unique identifier of the <a class="mkdocs-ezglossary-link"
+    id="9a1a1ff2434a84ed1cb8b069cd64cbc0"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a>.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-01</code></td>
+</tr>
+<tr>
+<td><code>policy_type</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Policy type. Values: <code>"no_policy"</code>, <code>"authorized_rp_only"</code>, <code>"specific_root_of_trust"</code>.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-06/07/08</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">OPTIONAL</td>
+<td>Description of the applicability of the policy to a particular community or class of application.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-04</code></td>
+</tr>
+<tr>
+<td><code>policy_authority</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">OPTIONAL</td>
+<td>Identifier of the authority responsible for the policy.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-05</code></td>
+</tr>
+<tr>
+<td><code>policy_info_url</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">OPTIONAL</td>
+<td>Link to a website explaining the policy in layman's terms.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-13</code>, <code>EDP_05</code></td>
+</tr>
+<tr>
+<td><code>authorized_parties</code></td>
+<td style="text-align: center;"><code>Object[]</code></td>
+<td style="text-align: center;">CONDITIONAL</td>
+<td><strong>REQUIRED IF:</strong> <code>policy_type</code> is <code>"authorized_rp_only"</code>. List of authorized <a class="mkdocs-ezglossary-link"
+    id="136edd678fe6af9b09b27901f111af06"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RPs</a>.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-07</code></td>
+</tr>
+<tr>
+<td><code>authorized_parties[].subject_dn</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">OPTIONAL</td>
+<td>Subject DN of the <a class="mkdocs-ezglossary-link"
+    id="943b395094a7c5521892c22ff2d31aa1"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RP</a> from the <a class="mkdocs-ezglossary-link"
+    id="fd1475c2b0d28f7ebd06a0aec7322a8f"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>, in LDAP string form as defined in [RFC 4514]. At least one of <code>subject_dn</code> or <code>entitlement_uri</code> SHALL be present in each element.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-07</code></td>
+</tr>
+<tr>
+<td><code>authorized_parties[].entitlement_uri</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">OPTIONAL</td>
+<td>URI-encoded entitlement or sub-entitlement as specified in [ETSI TS 119 475, Annex A], held in the <a class="mkdocs-ezglossary-link"
+    id="45e67355bad3544537361d199d069b9e"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>. At least one of <code>subject_dn</code> or <code>entitlement_uri</code> SHALL be present in each element.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-07</code></td>
+</tr>
+<tr>
+<td><code>trusted_roots</code></td>
+<td style="text-align: center;"><code>Object[]</code></td>
+<td style="text-align: center;">CONDITIONAL</td>
+<td><strong>REQUIRED IF:</strong> <code>policy_type</code> is <code>"specific_root_of_trust"</code>. List of trusted roots.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-08</code></td>
+</tr>
+<tr>
+<td><code>trusted_roots[].issuer_dn</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Issuer DN in LDAP string form compliant with [RFC 4514].</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-09</code></td>
+</tr>
+<tr>
+<td><code>trusted_roots[].serial_number</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Certificate serial number of the issuer.</td>
+<td><code>ISS-MDATA-EBD-4.2.5.2-09</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="distribution">Distribution<a class="headerlink" href="#distribution" title="Permanent link">&para;</a></h3>
+<p>The <a class="mkdocs-ezglossary-link"
+    id="524e90c45a3706a812eb5c9f563fd1b7"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is distributed through <a class="mkdocs-ezglossary-link"
+    id="7e1c180851a708859adb2672063ba106"
+    title="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
+    data-tooltip="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
+    name="artifacts:Credential Issuer Metadata"
+    href="../../glossary-definitions/#5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</a> at issuance time. The <a class="mkdocs-ezglossary-link"
+    id="2264535d307dd983dbc0025936ece86d"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> SHALL include the <a class="mkdocs-ezglossary-link"
+    id="e96467d373afb166bda68db759cbdd50"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> (if any) by value in the Issuer Metadata, within the <code>credential_configurations_supported</code> parameter, in compliance with [OpenID4VCI] or the extension thereof specified in [ETSI TS 119 472-3] (<code>EDP_09</code>). The <a class="mkdocs-ezglossary-link"
+    id="e8bcb734be9af761c01194547df8812e"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL NOT be revealed to the <a class="mkdocs-ezglossary-link"
+    id="16ad9101720b4610d2890a94ba91b925"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RP</a> through the presentation protocol (per [ETSI TS 119 472-3, Section 4.2.5.1]).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>According to <code>ISS-MDATA-EBD-4.2.5.2-03</code>, the <a class="mkdocs-ezglossary-link"
+    id="96d72f4eb8d55f8ccf39fbbc8f0a96bd"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> may provide only the <code>policy_uri</code> if the policy data set has already been pre-loaded into the <a class="mkdocs-ezglossary-link"
+    id="ab4fa44371f5c60accc28e778626cd13"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a>. As the mechanism for pre-loading policies into a <a class="mkdocs-ezglossary-link"
+    id="8cde0e2639ab2b5d9010b573278573ba"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> is not specified in the current normative references, this option SHALL be considered out-of-scope of this specification, at least until further implementation details are provided by ETSI.</p>
+</div>
+<p>As described in section <a href="../../sections/trust-evaluation-process/#authorization-process">Authorization Process</a>, during <a class="mkdocs-ezglossary-link"
+    id="72093145527061b95af4f4371fbb50a8"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> issuance, the <a class="mkdocs-ezglossary-link"
+    id="a52efe28c2d8de10c53008856cddd83a"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> (if available) is stored locally by the <a class="mkdocs-ezglossary-link"
+    id="8dbc3ea45674bab93f9d85dc14d1f8d0"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> and it is associated with the specific <a class="mkdocs-ezglossary-link"
+    id="ad30bfc692f3620be2392173225a392a"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> for which it was retrieved.</p>
+<h3 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h3>
+<h4 id="validity-binding">Validity Binding<a class="headerlink" href="#validity-binding" title="Permanent link">&para;</a></h4>
+<p>The locally stored <a class="mkdocs-ezglossary-link"
+    id="59140f3f8750da59f8d91ae17c892bb0"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL remain valid as long as the <a class="mkdocs-ezglossary-link"
+    id="c71fcbbfac655b1a5b4b47a4000a2b33"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> it is associated with is valid and not revoked. The <a class="mkdocs-ezglossary-link"
+    id="b4d5dbb5ff33e39239a4728f34ecb1b5"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> SHALL NOT have an independent validity status or revocation mechanism separate from the <a class="mkdocs-ezglossary-link"
+    id="3a2c01d46dd8d60dc99515d2c9a1ceb4"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>.</p>
+<h4 id="update-mechanism">Update Mechanism<a class="headerlink" href="#update-mechanism" title="Permanent link">&para;</a></h4>
+<p>If an <a class="mkdocs-ezglossary-link"
+    id="9055d2156577aee89650a9f69f98ba6e"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> adds, changes, or deletes an <a class="mkdocs-ezglossary-link"
+    id="fcd6f2f05c62ae3a7c1e6314c9955814"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> for an <a class="mkdocs-ezglossary-link"
+    id="9ef518e860520ee6994aefa643b98b48"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>, the <a class="mkdocs-ezglossary-link"
+    id="0eb8e00c703cb146a928ba3d2ea9dbe7"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> SHALL revoke that <a class="mkdocs-ezglossary-link"
+    id="a5cf957a6a93743208af8ce323334097"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> (<code>EDP_11</code>). The <a class="mkdocs-ezglossary-link"
+    id="e208b1337a4e6153ffc987a7f37373e1"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> detects the policy change indirectly through the normal <a class="mkdocs-ezglossary-link"
+    id="352129fdd2fffa880fc3e5eae8e82c05"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> status checking mechanism (<a class="mkdocs-ezglossary-link"
+    id="37e2323f25c162bbf475ca7e1dab7395"
+    title="A mechanism provided by a PID Provider or an Attestation Provider (or a trusted party acting on its behalf) for communicating the revocation status of PIDs and attestations, by publishing status information (Valid or Invalid) for all relevant PIDs or attestations. [ARF]"
+    data-tooltip="A mechanism provided by a PID Provider or an Attestation Provider (or a trusted party acting on its behalf) for communicating the revocation status of PIDs and attestations, by publishing status information (Valid or Invalid) for all relevant PIDs or attestations. [ARF]"
+    name="protocols:Attestation Status List"
+    href="../../glossary-definitions/#d72c84e7eaf03c68481d4fb15dd2132b">Status List</a>), which will report that the <a class="mkdocs-ezglossary-link"
+    id="e57fa98fbf714b6502c9aaf41230e051"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> is revoked. The locally stored <a class="mkdocs-ezglossary-link"
+    id="22e45198612d7759210487c963821b71"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> is then implicitly invalidated together with the <a class="mkdocs-ezglossary-link"
+    id="bd6904cbaa053a6010bf92535883f493"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a>. The user needs to request a new issuance to obtain the <a class="mkdocs-ezglossary-link"
+    id="a95052b924a7d6d344cfd3a3fa476546"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> with the updated policy.</p>
+<p>Even a minor policy change (e.g., adding a single <a class="mkdocs-ezglossary-link"
+    id="03578e8c71d32fa09470c81c54bf7f78"
+    title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">RP</a> to the authorized list) requires revocation and re-issuance. The timing of detection depends on when the <a class="mkdocs-ezglossary-link"
+    id="c43d4703f22efec9effca55a4f9b7d0f"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> checks the <a class="mkdocs-ezglossary-link"
+    id="a8dd3c09cbf7b43726e1f8dabc7ca202"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> status: if the <a class="mkdocs-ezglossary-link"
+    id="ed92a59997d472f8243c1aa70dcf33fe"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> checks only at presentation time, a policy change will not be detected until the next presentation attempt.</p>
+<div class="admonition warning">
+<p class="admonition-title">Proactive Refresh</p>
+<p>The <a class="mkdocs-ezglossary-link"
+    id="be3b09067108af16f62df25e6cb3800b"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> MAY provide <a class="mkdocs-ezglossary-link"
+    id="2d3c8c348453031e72e74074641e7089"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a> through its URI. In this case, the <a class="mkdocs-ezglossary-link"
+    id="bf980d03a9b4d7f09103e49a902aada1"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> MAY proactively fetch the policy content at the <code>policy_uri</code> to check for updates, without waiting for an <a class="mkdocs-ezglossary-link"
+    id="310b720318d3815ebc3d212071c1e318"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</a> revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:</p>
+<ul>
+<li>It enables <a class="mkdocs-ezglossary-link"
+    id="8afde773bec2fb998a05981143c03734"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">AP</a> to unilaterally change an <a class="mkdocs-ezglossary-link"
+    id="e32a79bda4f2199f97651575548f95d0"
+    title="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
+    name="artifacts:Embedded Disclosure Policy (EDP)"
+    href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</a>, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)</li>
+<li>Technical details of this mechanism are not defined within ETSI standard.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 9, 2026 18:03:39 UTC">September 9, 2026 18:03:39</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../media/mermaid-init.js"></script>
+      
+        <script src="../../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -29,6 +29,14 @@
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/attestation-signature-validation-process/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/authentication-process/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/authorization-process/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
@@ -37,11 +45,23 @@
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/embedded-disclosure-policy/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/entity-end-certificate-profiles/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/ocsp-artifacts/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/onboarding-process/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/registration-certificate/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
@@ -54,6 +74,10 @@
     </url>
     <url>
          <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/status-list-token/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://aptitude-consortium.github.io/wp2-trust-specifications/pr-127/pr-workspace/trust-anchor-certificate-profiles/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
