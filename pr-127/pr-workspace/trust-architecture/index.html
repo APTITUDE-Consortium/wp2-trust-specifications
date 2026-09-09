@@ -1512,7 +1512,7 @@
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> Certificate of each CA SHALL be published in the corresponding LoTE.</p>
-<p>The diagram below is organized into four layers, from the APTITUDE WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow indicates a CA issuing a certificate to the corresponding entity, while a dashed arrow points from each CA to the LoTE in which its Trust Anchor is published.</p>
+<p>The diagram is organised into four layers, from the WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow shows a CA issuing a certificate to the corresponding entity, while a dashed line connects each CA to the LoTE in which its Trust Anchor is published.</p>
 <pre class="mermaid"><code>flowchart TB
     PubSvc["WP2 Publication Service"]:::publication
 
@@ -1550,16 +1550,6 @@
         Wallet_Entity["Wallet Provider"]
     end
 
-    %% Preserve the four-tier layout while the Trust Anchor arrows point upward.
-    QEAA_L ~~~ QEAA_CA
-    PID_L ~~~ PID_CA
-    PuBEAA_L ~~~ PuBEAA_CA
-    EAA_L ~~~ EAA_CA
-    WRPAC_L ~~~ WRPAC_CA
-    Wallet_L ~~~ Wallet_CA
-    WRPRC_L ~~~ WRPRC_CA
-    Registrar_L ~~~ Registrar_CA
-
     PubSvc ----&gt;|"publishes"| QEAA_L
     PubSvc --&gt;|"publishes"| PID_L
     PubSvc --&gt;|"publishes"| PuBEAA_L
@@ -1569,14 +1559,14 @@
     PubSvc --&gt;|"publishes"| WRPRC_L
     PubSvc --&gt;|"publishes"| Registrar_L
 
-    QEAA_CA -. "Trust Anchor" .-&gt; QEAA_L
-    PID_CA -. "Trust Anchor" .-&gt; PID_L
-    PuBEAA_CA -. "Trust Anchor" .-&gt; PuBEAA_L
-    EAA_CA -. "Trust Anchor" .-&gt; EAA_L
-    WRPAC_CA -. "Trust Anchor" .-&gt; WRPAC_L
-    Wallet_CA -. "Trust Anchor" .-&gt; Wallet_L
-    WRPRC_CA -. "Trust Anchor" .-&gt; WRPRC_L
-    Registrar_CA -. "Trust Anchor" .-&gt; Registrar_L
+    QEAA_L -. "Trust Anchor" .- QEAA_CA
+    PID_L -. "Trust Anchor" .- PID_CA
+    PuBEAA_L -. "Trust Anchor" .- PuBEAA_CA
+    EAA_L -. "Trust Anchor" .- EAA_CA
+    WRPAC_L -. "Trust Anchor" .- WRPAC_CA
+    Wallet_L -. "Trust Anchor" .- Wallet_CA
+    WRPRC_L -. "Trust Anchor" .- WRPRC_CA
+    Registrar_L -. "Trust Anchor" .- Registrar_CA
 
     QEAA_CA --&gt;|"issues QEAA Provider Sign/Seal Certificate"| QEAA_Entity
     PID_CA --&gt;|"issues PID Provider Sign/Seal Certificate"| PID_Entity
@@ -1656,7 +1646,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 9, 2026 09:06:32 UTC">September 9, 2026 09:06:32</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 9, 2026 10:53:25 UTC">September 9, 2026 10:53:25</span>
   </span>
 
     
