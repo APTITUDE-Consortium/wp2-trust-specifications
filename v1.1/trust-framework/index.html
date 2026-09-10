@@ -1,0 +1,1350 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/v1.1/trust-framework/">
+      
+      
+      
+        <link rel="next" href="../sections/trust-architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Overview - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../media/extra.css">
+    
+      <link rel="stylesheet" href="../includes/admonitions.css">
+    
+      <link rel="stylesheet" href="../includes/tables.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#implementation-profiles-for-the-trust-framework" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  APTITUDE Technical Specification
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Trust Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../pr-workspace/no-changes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APTITUDE Technical Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope and Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of Scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deviations-from-architecture-and-reference-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deviations from Architecture and Reference Framework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#normative-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normative Language
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sections/trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sections/trust-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sections/onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sections/trust-evaluation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sections/trust-management-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Management and Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sections/use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Use Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sections/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-workspace/no-changes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    No changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/trust-framework.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/trust-framework.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="implementation-profiles-for-the-trust-framework">Implementation Profiles for the Trust Framework<a class="headerlink" href="#implementation-profiles-for-the-trust-framework" title="Permanent link">&para;</a></h1>
+<p>Version 1.1</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td>2026-04-19</td>
+<td>First release.</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>2026-06-08</td>
+<td>Added section on Trust Management Process; editorial changes.</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>2026-07-27</td>
+<td>Added Onboarding Process and Trust Checks sections; expanded Trust Artifacts with Trust Anchor and Entity Sign/Seal Certificates subsections; integrated Register API OAS; structural and editorial changes.</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>2026-09-10</td>
+<td>Introduced a common profile for X.509 certificates; refactored Certificate Path Validation; updated Authorization Process to align with ARF 3.0.0; defined profile and checks for Key Attestation and Wallet Instance Attestation; consolidated implementation profiles and choices; structural and editorial changes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Authors</strong>:</p>
+<ul>
+<li>Pasquale Cerqua, <em>Istituto Poligrafico e Zecca dello Stato S.p.A.</em></li>
+<li>Gianmario Cortese, <em>Namirial S.p.A.</em></li>
+<li>Henry Faure-Geors, <em>Keynectis</em></li>
+<li>Francesco Antonio Marino, <em>Istituto Poligrafico e Zecca dello Stato S.p.A.</em></li>
+<li>Andrea Moro, <em>Fondazione Bruno Kessler</em></li>
+<li>Marco Pernpruner, <em>Fondazione Bruno Kessler</em></li>
+<li>Nuno Ponte, <em>Multicert</em></li>
+<li>Andreea Prian, <em>iDAKTO</em></li>
+<li>Leone Riello, <em>Tinexta Infocert S.p.A.</em></li>
+<li>Giada Sciarretta, <em>Fondazione Bruno Kessler</em></li>
+<li>Michal Šťava, <em>ARICOMA Digital S.R.O</em></li>
+<li>Nikolaos Triantafyllou, <em>University of the Aegean</em></li>
+<li>Hoang Van Hoan, <em>Keynectis</em></li>
+<li>Maroš Zelenák, <em>ARICOMA Digital S.R.O</em></li>
+</ul>
+<p><strong>Reviewers</strong>:</p>
+<ul>
+<li>Dominik František Bučík, <em>ARICOMA Digital S.R.O</em></li>
+<li>Filippos Feizidis, <em>GRNET</em></li>
+<li>George Fourtounis, <em>GRNET</em></li>
+<li>Byron Georgantopoulos, <em>GRNET</em></li>
+<li>Guillaume Hébert, <em>Keynectis</em></li>
+<li>Angel Palomares Perez, <em>Bull</em></li>
+<li>Leonardo Pio Palumbo, <em>Istituto Poligrafico e Zecca dello Stato S.p.A.</em></li>
+</ul>
+<p><strong>Feedback</strong>:</p>
+<ul>
+<li>Issue tracking system: <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues">https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This document specifies implementation profiles for the core conceptual and architectural components of the trust framework, as deployed within the APTITUDE Large Scale Pilot. It defines the trust architecture, the trust artifacts exchanged among entities, and the evaluation processes and trust checks to be performed during issuance and presentation flows. Except where explicitly noted, these profiles conform to the <span class="mkdocs-ezglossary-link"
+    id="42bbf47f49eb74e091d61b8a0103c518"
+    data-term="EUDI Wallet"
+    data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    name="components:EUDI Wallet"
+    href="../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</span> Architecture Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the <a href="../sections/references/">References</a> section, adapted for the APTITUDE context.</p>
+<hr />
+<h2 id="scope-and-structure">Scope and Structure<a class="headerlink" href="#scope-and-structure" title="Permanent link">&para;</a></h2>
+<p>The <em>Implementation Profiles for the Trust Framework</em> are intended to enable Partners to prove their identity and authorization, as well as to verify the authenticity and integrity of Attestations exchanged within the APTITUDE ecosystem. Given the Large Scale Pilot status of the project, these profiles are derived from the requirements of the covered Use Cases, rather than prescribing an abstract, universally applicable trust architecture. Furthermore, the profiles account for the specific constraints of the piloting phase and reflect implementation choices made accordingly, as detailed in the following sections, in order to deliver a functional trust infrastructure capable of supporting the piloting Use Cases.</p>
+<p>Given the considerations above, this specification covers the following topics:</p>
+<ul>
+<li>
+<p><a href="../sections/trust-architecture/"><strong>Trust Architecture</strong></a>: Describes the roles and logical interaction flows within the APTITUDE ecosystem.</p>
+</li>
+<li>
+<p><a href="../sections/trust-artifacts/"><strong>Trust Artifacts</strong></a>: Defines the required trust objects and their conceptual roles within the APTITUDE ecosystem.</p>
+</li>
+<li>
+<p><a href="../sections/onboarding-process/"><strong>Onboarding Process</strong></a>: Defines the process by which entities become operational and recognizable within the APTITUDE ecosystem.</p>
+</li>
+<li>
+<p><a href="../sections/trust-evaluation-process/"><strong>Trust Evaluation</strong></a>: Outlines the core trust-related processes and their application within the Issuance and Presentation flows.</p>
+</li>
+<li>
+<p><a href="../sections/trust-management-lifecycle/"><strong>Trust Management and Lifecycle</strong></a>: Defines the mechanisms for managing the status of <span class="mkdocs-ezglossary-link"
+    id="864f95d37e2d8bf0004638c0bcff4608"
+    data-term="Trusted Entity"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entities</span>.</p>
+</li>
+<li>
+<p><a href="../sections/use-cases/"><strong>Trust Use Cases</strong></a>: Describes a set of trust use cases applying horizontally across APTITUDE.</p>
+</li>
+</ul>
+<h3 id="out-of-scope">Out of Scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<p>This document does not prescribe internal implementation architectures or choices, deployment policies, operational policies (e.g., incident management, auditing, dispute resolution), or application-layer logic unrelated to trust. Detailed component and process specifications, service API definitions, and artifact profiles are provided in other APTITUDE tasks.</p>
+<hr />
+<h2 id="deviations-from-architecture-and-reference-framework">Deviations from Architecture and Reference Framework<a class="headerlink" href="#deviations-from-architecture-and-reference-framework" title="Permanent link">&para;</a></h2>
+<p>The APTITUDE ecosystem does not include actors representing Member States or the European Commission within its deployment activities. Consequently, the following operations, as regulated by [ARF], have no corresponding responsible actor within the APTITUDE ecosystem.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th>Operation</th>
+<th>Responsible Actor(s) in EUDI Wallet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>Publication of <span class="mkdocs-ezglossary-link"
+    id="8d9a1b7ef6ae9d4f13cb3f42c7e9d714"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">Lists of Trusted Entities</span> and <span class="mkdocs-ezglossary-link"
+    id="5213ed81a7e3d77492ffe4f8db7e36ea"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">Lists Of Trusted Lists</span></td>
+<td>European Commission</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>Registration Process</td>
+<td>Member States</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>Notification Process</td>
+<td>European Commission and Member States</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>Publication of <span class="mkdocs-ezglossary-link"
+    id="0623707e7b4f2a331b9cad055aa2f211"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</span></td>
+<td>Member States</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>Management of <span class="mkdocs-ezglossary-link"
+    id="dc7e4faf0d7e6bb70a5d3b794c351ffa"
+    data-term="Authentic Source"
+    data-tooltip="A repository or system, held under the responsibility of a public sector body or private entity, that contains and provides attributes about a natural or legal person or object and that is considered to be a primary source of that information or recognised as authentic in accordance with Union law or national law, including administrative practice. [ARF]"
+    name="components:Authentic Source"
+    href="../glossary-definitions/#bf3043259ef15ea248cda38699b7f4ee">Authentic Sources</span></td>
+<td>Specific Entities within Member States</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td>Publication and Management of Catalogues of Attestations</td>
+<td>European Commission</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td>Management of Entity Lifecycle</td>
+<td><span class="mkdocs-ezglossary-link"
+    id="19bbdca8bdaf4b13bd539e52337c1071"
+    data-term="Supervisory Body"
+    data-tooltip="An entity responsible for supervisory tasks in the designating Member State as regards trust services. [REG-EU-2024/1183]"
+    name="roles:Supervisory Body"
+    href="../glossary-definitions/#99b0a0c4c2e37811f7142ed8cd217f74">Supervisory Body</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td>Certification Scheme</td>
+<td><span class="mkdocs-ezglossary-link"
+    id="1fea683d3fac6d320acf4ba076d1d22c"
+    data-term="Supervisory Body"
+    data-tooltip="An entity responsible for supervisory tasks in the designating Member State as regards trust services. [REG-EU-2024/1183]"
+    name="roles:Supervisory Body"
+    href="../glossary-definitions/#99b0a0c4c2e37811f7142ed8cd217f74">Supervisory Body</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td>Issuance of <span class="mkdocs-ezglossary-link"
+    id="d7da2fb74f08d37cd5216f5b4a7e6562"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates</span>, <span class="mkdocs-ezglossary-link"
+    id="a18b70cff6cefb3b66804f8e6772c8cb"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificates</span> and Sign/Seal Certificates</td>
+<td>Member States</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td>Publication of the <span class="mkdocs-ezglossary-link"
+    id="e2b616424c9ce95432822b7419a2c2bf"
+    data-term="Official Journal of the European Union (OJEU)"
+    data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    name="artifacts:Official Journal of the European Union (OJEU)"
+    href="../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">Official Journal of the European Union (OJEU)</span></td>
+<td>European Commission</td>
+</tr>
+</tbody>
+</table>
+<p>To address this gap, the following implementation choices have been adopted:</p>
+<table>
+<thead>
+<tr>
+<th>Implementation Choice in APTITUDE</th>
+<th style="text-align: center;">Operation(s) Addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The APTITUDE perimeter is limited to Partners officially enrolled in the Consortium.</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>APTITUDE WP2 exposes specific services to emulate the missing institutional roles, as specified in <a href="../sections/trust-architecture/">Trust Architecture</a>.</td>
+<td style="text-align: center;">1, 2, 3</td>
+</tr>
+<tr>
+<td>APTITUDE WP2 provides a single, simplified registration interface through which Partners self-declare their attributes and entitlements, without requiring dedicated administrative processes or certification scheme checks.</td>
+<td style="text-align: center;">2, 8</td>
+</tr>
+<tr>
+<td>APTITUDE WP2 aggregates registration information into a single <span class="mkdocs-ezglossary-link"
+    id="231f4626cf7499c568aa4380778b1f9c"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> used for all entities.</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td>APTITUDE WP2 provides onboarding services to manage the associated operational processes (registration, <span class="mkdocs-ezglossary-link"
+    id="de49d6bc1cffa299a98b8fda67be04a4"
+    data-term="Notification"
+    data-tooltip="The act of transferring information to the European Commission. [ARF]"
+    name="processes:Notification"
+    href="../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">notification</span>, publication, certificate issuance).</td>
+<td style="text-align: center;">2, 3, 9</td>
+</tr>
+<tr>
+<td>The <span class="mkdocs-ezglossary-link"
+    id="34c20b64fb499e51e19cf52080a3b5b9"
+    data-term="Public Key Infrastructure (PKI)"
+    data-tooltip="Systems, software, and communication protocols that are used by EUDI Wallet ecosystem components to distribute, manage, and control public keys. A PKI publishes public keys and establishes trust within an environment by validating and verifying the public keys mapping to an entity. [ARF]"
+    name="components:Public Key Infrastructure (PKI)"
+    href="../glossary-definitions/#5c9da07f7d8d505f9d6a74961860fdf0">Public Key Infrastructure</span> will not include a <span class="mkdocs-ezglossary-link"
+    id="3032e8376a4f2cf47923a3153c1adc6b"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted List</span> with an associated <span class="mkdocs-ezglossary-link"
+    id="691d39fc6c8271598dae56e171d6916d"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span>; instead, it will feature a <span class="mkdocs-ezglossary-link"
+    id="e5099720c7896513eabaab7915fc289d"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities</span> per entity type, including <span class="mkdocs-ezglossary-link"
+    id="3841bf9e6f3d26fc483276378f277fef"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span> and <span class="mkdocs-ezglossary-link"
+    id="7ae48e082274bc7ecc2daabcb03bc847"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>.</td>
+<td style="text-align: center;">1, 4</td>
+</tr>
+<tr>
+<td>APTITUDE WP2 acts as the sole <span class="mkdocs-ezglossary-link"
+    id="a164ba128a10f5e7a3b676e101c53983"
+    data-term="List of Trusted Entities Provider (LoTE Provider)"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">List of Trusted Entities Provider</span>; the certificate anchoring the various <span class="mkdocs-ezglossary-link"
+    id="e3314974992e92877a6ed5bc63baaeb0"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities</span> will be published via GitHub.</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td>APTITUDE will not feature <span class="mkdocs-ezglossary-link"
+    id="fcead758a93ef1f6ebdad019562d9367"
+    data-term="Authentic Source"
+    data-tooltip="A repository or system, held under the responsibility of a public sector body or private entity, that contains and provides attributes about a natural or legal person or object and that is considered to be a primary source of that information or recognised as authentic in accordance with Union law or national law, including administrative practice. [ARF]"
+    name="components:Authentic Source"
+    href="../glossary-definitions/#bf3043259ef15ea248cda38699b7f4ee">Authentic Sources</span>.</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr>
+<td>APTITUDE will not feature Catalogues of Attestations. Instead, <span class="mkdocs-ezglossary-link"
+    id="bfe19ab3f692cc46e0deaada97526de3"
+    data-term="Attestation Rulebook"
+    data-tooltip="A document describing the attestation type, namespace(s), and other features for a specific attestation type. [ARF]"
+    name="artifacts:Attestation Rulebook"
+    href="../glossary-definitions/#0916abba47ca0e7c38aae98b2c82f593">Attestation Rulebooks</span> published on GitHub by the various Use Cases will be used.</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr>
+<td>APTITUDE will not feature active management of entity lifecycles, and will instead rely on dedicated Trust Use Cases for revocation.</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr>
+<td>APTITUDE will feature a dedicated authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE), namely the <span class="mkdocs-ezglossary-link"
+    id="e21f669003357ade1cc77eebcea05dd5"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">Official Journal of APTITUDE (OJA)</span>.</td>
+<td style="text-align: center;">10</td>
+</tr>
+</tbody>
+</table>
+<p>All implementation choices made within this specification aim to ensure a functional trust infrastructure for the APTITUDE ecosystem. These choices are called out in dedicated boxes throughout the text, so that implementers can distinguish them at a glance from the surrounding normative and descriptive content.</p>
+<div class="admonition warning">
+<p class="admonition-title">APTITUDE WP2</p>
+<p>Within this specification, <em>APTITUDE WP2</em> denotes Work Package 2 (<em>Technical standards and specifications</em>) of the APTITUDE Large Scale Pilot, not to be confused with the <span class="mkdocs-ezglossary-link"
+    id="739b5f939f39e806991b23b3fc656bdf"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</span> role.</p>
+</div>
+<hr />
+<h2 id="normative-language">Normative Language<a class="headerlink" href="#normative-language" title="Permanent link">&para;</a></h2>
+<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC 2119] [RFC 8174] when, and only when, they appear in all capitals, as shown here.</p>
+<p>Additionally, the key words "CONDITIONAL" and "PROHIBITED" are used within data tables to describe field requirements. "CONDITIONAL" indicates that a field's presence is dependent on specific rules described in the text, while "PROHIBITED" is equivalent to "SHALL NOT".</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 19:48:10 UTC">September 10, 2026 19:48:10</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../media/mermaid-init.js"></script>
+      
+        <script src="../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

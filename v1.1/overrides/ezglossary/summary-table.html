@@ -1,0 +1,30 @@
+<div class="mkdocs-ezglossary-summary table">
+<table id="{{ section }}">
+    <thead>
+        <tr>
+            <th>Term</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for term in terms %}
+        {% set defs = glossary.get(section, term, 'defs') %}
+        {% set definition = glossary.definition(section, term) %}
+        <tr>
+            <td>
+                {% if defs|length > 0 %}
+                {% set def = defs[0] %}
+                <a class="mkdocs-ezglossary-link"
+                   href="{{ root }}{{ def.page.url }}#{{ def.target }}"
+                   title="{{ definition | striptags }}"
+                   data-tooltip="{{ definition | striptags }}">{{ term }}</a>
+                {% else %}
+                {{ term }}
+                {% endif %}
+            </td>
+            <td>{{ definition | safe }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
