@@ -867,7 +867,7 @@
   <span class="md-ellipsis">
     
   
-    Authorization process
+    Authorization Process
   
 
     
@@ -1497,20 +1497,20 @@
 
   <h1>Entity end certificate profiles</h1>
 
-<p>This section extends the <a href="../../sections/trust-artifacts/#x509-certificate-profile">X.509 Certificate Profile</a> and specifies Certificate Profiles for Entity Sign/Seal Certificates, which are used for signing and sealing various <a class="mkdocs-ezglossary-link"
-    id="4ff7dd4360265b090e1d54d3d82d3f1a"
-    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+<p>This section extends the <a href="../../sections/trust-artifacts/#x509-certificate-profile">X.509 Certificate Profile</a> and specifies Certificate Profiles for Entity Sign/Seal Certificates, which are used for signing and sealing various <span class="mkdocs-ezglossary-link"
+    id="9ef518e860520ee6994aefa643b98b48"
+    data-term="Attestation"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
-    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</a>.</p>
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</span>.</p>
 <details class="references">
 <summary>References</summary>
-<p>To guarantee the interoperability across all entities of the <a class="mkdocs-ezglossary-link"
-    id="59503ca3e7f9aff622ea4bb7194f10c3"
-    title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+<p>To guarantee the interoperability across all entities of the <span class="mkdocs-ezglossary-link"
+    id="456e6f8df1e4348df42e71bd71ad51a1"
+    data-term="EUDI Wallet"
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
-    href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a> ecosystem, Entity Sign/Seal Certificates should adhere to common requirements, with respect to their content and format. The technical specifications describing such content are distributed between multiple documents and for a purpose of proper referencing are listed below:</p>
+    href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</span> ecosystem, Entity Sign/Seal Certificates should adhere to common requirements, with respect to their content and format. The technical specifications describing such content are distributed between multiple documents and for a purpose of proper referencing are listed below:</p>
 <ul>
 <li><strong>ETSI EN 319 411-1</strong></li>
 <li><strong>ETSI EN 319 411-2</strong> (applicable if the certificate is qualified)</li>
@@ -1527,23 +1527,23 @@
 <div class="admonition choice">
 <p class="admonition-title">APTITUDE Implementation Choices</p>
 <ul>
-<li>Entity Sign/Seal Certificates SHALL be issued by a <a class="mkdocs-ezglossary-link"
+<li>Entity Sign/Seal Certificates SHALL be issued by a <span class="mkdocs-ezglossary-link"
     id="cec8c8502f725a8d5d17568b2d099717"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> and SHALL NOT be self-signed.</li>
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span> and SHALL NOT be self-signed.</li>
 <li>Entity Sign/Seal Certificates SHALL be issued only to legal persons.</li>
 <li>Entity Sign/Seal Certificates SHALL be long-lived. Therefore, the extensions <code>ext-etsi-valassured-ST-certs</code> and <code>noRevAvail</code> SHALL NOT be specified.</li>
 </ul>
 </div>
 <h4 id="pid-provider-signseal-certificate">PID Provider Sign/Seal Certificate<a class="headerlink" href="#pid-provider-signseal-certificate" title="Permanent link">&para;</a></h4>
-<p>The specific requirements for <a class="mkdocs-ezglossary-link"
-    id="18504bfb7470172cc82d0605afe12bb9"
-    title="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+<p>The specific requirements for <span class="mkdocs-ezglossary-link"
+    id="88af7b1b76e16680fe4fbf1396da844e"
+    data-term="Provider of Person Identification Data (PID Provider)"
     data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
     name="roles:Provider of Person Identification Data (PID Provider)"
-    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</a> Sign/Seal Certificates are specified in [ETSI TS 119 412-6, Clause 4].</p>
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> Sign/Seal Certificates are specified in [ETSI TS 119 412-6, Clause 4].</p>
 <p>The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.</p>
 <table>
 <thead>
@@ -1582,42 +1582,42 @@
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td style="text-align: center;">CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <a class="mkdocs-ezglossary-link"
+<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <span class="mkdocs-ezglossary-link"
     id="37c0445ba14b6bcd941ce2fef3dfafa8"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <span class="mkdocs-ezglossary-link"
     id="2aa12ee26b529b09c65f56ce78dea839"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</td>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span>.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
 <td style="text-align: center;">REQUIRED</td>
-<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <a class="mkdocs-ezglossary-link"
+<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <span class="mkdocs-ezglossary-link"
     id="0e67c0ddd361f95fa99a7e8005685811"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>. If <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>. If <span class="mkdocs-ezglossary-link"
     id="fb250a129afc0f54a917b3ce0c04434d"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> is supported by the issuing <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> is supported by the issuing <span class="mkdocs-ezglossary-link"
     id="178e7778efae8231463df759164bcf24"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <span class="mkdocs-ezglossary-link"
     id="5c507853264ebd57160b963d8463834b"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder authoritative to provide certificate status information for the certificate, as described in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</td>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder authoritative to provide certificate status information for the certificate, as described in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</td>
 </tr>
 <tr>
 <td><code>qcStatements</code></td>
@@ -1628,12 +1628,12 @@
 </table>
 <div class="admonition choice">
 <p class="admonition-title">APTITUDE Implementation Choice</p>
-<p><a class="mkdocs-ezglossary-link"
-    id="c28d08b5c4811a845273cd0f5922493c"
-    title="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+<p><span class="mkdocs-ezglossary-link"
+    id="0a1e15730c3b1f896ab3d252ff938f37"
+    data-term="Provider of Person Identification Data (PID Provider)"
     data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
     name="roles:Provider of Person Identification Data (PID Provider)"
-    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</a> Sign/Seal Certificates are not Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL NOT contain <code>QCStatement</code> structures with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>) or <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>).</p>
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> Sign/Seal Certificates are not Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL NOT contain <code>QCStatement</code> structures with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>) or <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>).</p>
 </div>
 <details class="example">
 <summary>Example: PID Provider Sign/Seal Certificate</summary>
@@ -1780,12 +1780,12 @@
 <!-- END INCLUDE -->
 </details>
 <h4 id="wallet-provider-signseal-certificate">Wallet Provider Sign/Seal Certificate<a class="headerlink" href="#wallet-provider-signseal-certificate" title="Permanent link">&para;</a></h4>
-<p>The specific requirements for <a class="mkdocs-ezglossary-link"
+<p>The specific requirements for <span class="mkdocs-ezglossary-link"
     id="b085fb11824ad89307ac196e1e418be8"
-    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-term="Wallet Provider (WP)"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
-    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> Sign/Seal Certificates are specified in [ETSI TS 119 412-6, Clause 5].</p>
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> Sign/Seal Certificates are specified in [ETSI TS 119 412-6, Clause 5].</p>
 <p>The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.</p>
 <table>
 <thead>
@@ -1814,22 +1814,22 @@
 <tr>
 <td><code>certificatePolicies</code></td>
 <td>REQUIRED</td>
-<td>It SHALL include a <code>PolicyInformation</code> structure with <code>policyIdentifier</code> set to the OID of a certificate policy including at least (as per [ARF] requirement <code>EW-DM-38-001</code>):<ul><li>The requirements for <em>NCP</em>, defined in [ETSI EN 319 411-1], for KAs describing a keystore.</li><li>The requirements for <em>NCP+</em>, defined in [ETSI EN 319 411-1], for <a class="mkdocs-ezglossary-link"
+<td>It SHALL include a <code>PolicyInformation</code> structure with <code>policyIdentifier</code> set to the OID of a certificate policy including at least (as per [ARF] requirement <code>EW-DM-38-001</code>):<ul><li>The requirements for <em>NCP</em>, defined in [ETSI EN 319 411-1], for KAs describing a keystore.</li><li>The requirements for <em>NCP+</em>, defined in [ETSI EN 319 411-1], for <span class="mkdocs-ezglossary-link"
     id="cf92ffad9935cf98454b202ffadd7ecd"
-    title="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    data-term="Key Attestation (KA)"
     data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
     name="artifacts:Key Attestation (KA)"
-    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KAs</a> describing a <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KAs</span> describing a <span class="mkdocs-ezglossary-link"
     id="c1b6840876ecdeb7e9f18fd08089d9bf"
-    title="An application that manages critical assets by being linked to and using the cryptographic and non-cryptographic functions provided by the Wallet Secure Cryptographic Device. [ARF]"
+    data-term="Wallet Secure Cryptographic Application (WSCA)"
     data-tooltip="An application that manages critical assets by being linked to and using the cryptographic and non-cryptographic functions provided by the Wallet Secure Cryptographic Device. [ARF]"
     name="components:Wallet Secure Cryptographic Application (WSCA)"
-    href="../../glossary-definitions/#9d921b741321b80916a03631911b143d">WSCA</a>/<a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#9d921b741321b80916a03631911b143d">WSCA</span>/<span class="mkdocs-ezglossary-link"
     id="bf806fcc66d31e2e9790d18c86b8a769"
-    title="A tamper-resistant device that provides an environment that is linked to and used by the Wallet Secure Cryptographic Application to protect critical assets and provide cryptographic functions for the secure execution of critical operations. [ARF]"
+    data-term="Wallet Secure Cryptographic Device (WSCD)"
     data-tooltip="A tamper-resistant device that provides an environment that is linked to and used by the Wallet Secure Cryptographic Application to protect critical assets and provide cryptographic functions for the secure execution of critical operations. [ARF]"
     name="components:Wallet Secure Cryptographic Device (WSCD)"
-    href="../../glossary-definitions/#758f79d2022ab3a2f0a5e0c4a0fff03b">WSCD</a>.</li></ul></td>
+    href="../../glossary-definitions/#758f79d2022ab3a2f0a5e0c4a0fff03b">WSCD</span>.</li></ul></td>
 </tr>
 <tr>
 <td><code>subjectAltName</code></td>
@@ -1839,42 +1839,42 @@
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td>CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <a class="mkdocs-ezglossary-link"
+<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <span class="mkdocs-ezglossary-link"
     id="07b8a9609430239d4d5afe18c5f9a6c7"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <span class="mkdocs-ezglossary-link"
     id="767a7f78b184624c6f63ba21bc397279"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</td>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span>.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
 <td>REQUIRED</td>
-<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <a class="mkdocs-ezglossary-link"
+<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <span class="mkdocs-ezglossary-link"
     id="e40c91e4302eedc60c878eed96693d44"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>. If <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>. If <span class="mkdocs-ezglossary-link"
     id="02288d2f903fbab189b4bffd46fb6559"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> is supported by the issuing <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> is supported by the issuing <span class="mkdocs-ezglossary-link"
     id="2ac81fcb8873e99ffcfac9c60ddf0392"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <span class="mkdocs-ezglossary-link"
     id="90deb59b7b60ae064b6567b1ec20598b"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder authoritative to provide certificate status information for the certificate, as described in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</td>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder authoritative to provide certificate status information for the certificate, as described in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</td>
 </tr>
 <tr>
 <td><code>qcStatements</code></td>
@@ -1885,12 +1885,12 @@
 </table>
 <div class="admonition choice">
 <p class="admonition-title">APTITUDE Implementation Choice</p>
-<p><a class="mkdocs-ezglossary-link"
+<p><span class="mkdocs-ezglossary-link"
     id="28032ca5cb9248e74a562130b96ff62f"
-    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-term="Wallet Provider (WP)"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
-    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> Sign/Seal Certificates are not Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL NOT contain <code>QCStatement</code> structures with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>) or <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>).</p>
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> Sign/Seal Certificates are not Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL NOT contain <code>QCStatement</code> structures with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>) or <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>).</p>
 </div>
 <details class="example">
 <summary>Example: Wallet Provider Sign/Seal Certificate</summary>
@@ -2037,7 +2037,17 @@
 <!-- END INCLUDE -->
 </details>
 <h4 id="qeaa-provider-signseal-certificate">(Q)EAA Provider Sign/Seal Certificate<a class="headerlink" href="#qeaa-provider-signseal-certificate" title="Permanent link">&para;</a></h4>
-<p>The specific requirements for <a href="roles:Provider of Electronic Attestation of Attributes (EAA Provider)">EAA Provider</a> and <a href="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)">QEAA Provider</a> Sign/Seal Certificates are specified in Clauses 6 and 7 of [ETSI TS 119 412-6], respectively.</p>
+<p>The specific requirements for <span class="mkdocs-ezglossary-link"
+    id="71373612b22ec79d654b985d6e8fbbdd"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span> and <span class="mkdocs-ezglossary-link"
+    id="61b250740122bcff9efa663bd91fc2e6"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> Sign/Seal Certificates are specified in Clauses 6 and 7 of [ETSI TS 119 412-6], respectively.</p>
 <p>The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.</p>
 <table>
 <thead>
@@ -2076,57 +2086,57 @@
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td>CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <a class="mkdocs-ezglossary-link"
+<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <span class="mkdocs-ezglossary-link"
     id="1ad6ec3456391c3330f2d5d1b615b991"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <span class="mkdocs-ezglossary-link"
     id="e07d7b4904e4e4c79439b2ded80c560d"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</td>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span>.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
 <td>REQUIRED (only for QEAA)</td>
-<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <a class="mkdocs-ezglossary-link"
+<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <span class="mkdocs-ezglossary-link"
     id="76aaeed0264f9c973a9794fdd0af5d63"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>. If <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>. If <span class="mkdocs-ezglossary-link"
     id="4feeffd36029979a30899a55dfac8ecc"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> is supported by the issuing <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> is supported by the issuing <span class="mkdocs-ezglossary-link"
     id="edfdfe8bb8b62079e11e1bbe56103d32"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <span class="mkdocs-ezglossary-link"
     id="8e5acd09b2980a3876a49612175630ec"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder authoritative to provide certificate status information for the certificate, as described in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</td>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder authoritative to provide certificate status information for the certificate, as described in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</td>
 </tr>
 <tr>
 <td><code>qcStatements</code></td>
 <td>REQUIRED (QEAA), OPTIONAL (EAA)</td>
-<td>For <strong><a class="mkdocs-ezglossary-link"
-    id="3f38f33fe4827ca4e28382a8dac9f533"
-    title="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+<td>For <strong><span class="mkdocs-ezglossary-link"
+    id="4d91b05559463d3e398000d7c62be4ff"
+    data-term="Qualified Electronic Attestation of Attributes (QEAA)"
     data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
     name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
-    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</a></strong>: It SHALL contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>), referred to as <code>esi4-qcStatement-1</code>.<br />For <strong><a class="mkdocs-ezglossary-link"
-    id="fc1471f3dce09e93e9c818a3dd1a7268"
-    title="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</span></strong>: It SHALL contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>), referred to as <code>esi4-qcStatement-1</code>.<br />For <strong><span class="mkdocs-ezglossary-link"
+    id="4156567c2146da58870d4e3ea23a23a5"
+    data-term="Electronic Attestation of Attributes (EAA)"
     data-tooltip="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
     name="credentials:Electronic Attestation of Attributes (EAA)"
-    href="../../glossary-definitions/#a7a5d7b924e0172a1247714760380eab">EAA</a></strong>:<ul><li>It SHALL NOT contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>), referred to as <code>esi4-qcStatement-1</code>.</li><li>It SHALL NOT contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>), referred to as <code>esi4-qcStatement-4</code>.</li></ul>For <strong>both</strong>:<ul><li>It MAY contain additional <code>QCStatement</code> structures among those defined in [ETSI EN 319 412-5, Clause 4.2].</li><li>In any case, it SHALL NOT contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.7</code> (<code>id-etsi-qcs-QcCClegislation</code>), referred to as <code>esi4-qcStatement-7</code>.</li></ul></td>
+    href="../../glossary-definitions/#a7a5d7b924e0172a1247714760380eab">EAA</span></strong>:<ul><li>It SHALL NOT contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>), referred to as <code>esi4-qcStatement-1</code>.</li><li>It SHALL NOT contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>), referred to as <code>esi4-qcStatement-4</code>.</li></ul>For <strong>both</strong>:<ul><li>It MAY contain additional <code>QCStatement</code> structures among those defined in [ETSI EN 319 412-5, Clause 4.2].</li><li>In any case, it SHALL NOT contain a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.7</code> (<code>id-etsi-qcs-QcCClegislation</code>), referred to as <code>esi4-qcStatement-7</code>.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -2134,10 +2144,20 @@
 <p class="admonition-title">APTITUDE Implementation Choices</p>
 <ul>
 <li>
-<p><a href="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)">QEAA Provider</a> Sign/Seal Certificates SHALL be Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL contain at least a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>).</p>
+<p><span class="mkdocs-ezglossary-link"
+    id="92879173acdfa6849f6a3eb9e754d5fc"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> Sign/Seal Certificates SHALL be Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL contain at least a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>).</p>
 </li>
 <li>
-<p><a href="roles:Provider of Electronic Attestation of Attributes (EAA Provider)">EAA Provider</a> Sign/Seal Certificates SHALL NOT be Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL NOT contain <code>QCStatement</code> structures with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>) or <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>).</p>
+<p><span class="mkdocs-ezglossary-link"
+    id="45be90d32940d39cf2485d61843e0910"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span> Sign/Seal Certificates SHALL NOT be Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL NOT contain <code>QCStatement</code> structures with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>) or <code>0.4.0.1862.1.4</code> (<code>id-etsi-qcs-QcSSCD</code>).</p>
 </li>
 </ul>
 </div>
@@ -2326,42 +2346,42 @@
 <tr>
 <td><code>cRLDistributionPoints</code></td>
 <td>CONDITIONAL</td>
-<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <a class="mkdocs-ezglossary-link"
+<td><strong>REQUIRED IF:</strong> the certificate does not include any access location of an <span class="mkdocs-ezglossary-link"
     id="a05b6e7b630e8cbf7c397b8e87633bc2"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder or the validity assured extension as defined in [ETSI EN 319 412-1]. If present, it SHALL contain at least one reference to a publicly available <span class="mkdocs-ezglossary-link"
     id="54eb17f5672f1316ebe37b6636d026e6"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</td>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span>.</td>
 </tr>
 <tr>
 <td><code>authorityInfoAccess</code></td>
 <td>REQUIRED</td>
-<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <a class="mkdocs-ezglossary-link"
+<td>It SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.2</code> (<code>id-ad-caIssuers</code>) and <code>accessLocation</code> specifying at least one access location of a valid CA certificate of the issuing <span class="mkdocs-ezglossary-link"
     id="543b1fa82fcdef83fdf203e8e456a332"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>. If <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>. If <span class="mkdocs-ezglossary-link"
     id="cb483dca3296c087019796e11828a7b9"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> is supported by the issuing <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> is supported by the issuing <span class="mkdocs-ezglossary-link"
     id="0f7accae72d32d8d16ddd603c7056daa"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>, the extension SHALL include an <code>AccessDescription</code> structure with <code>accessMethod</code> set to <code>1.3.6.1.5.5.7.48.1</code> (<code>id-ad-ocsp</code>) and <code>accessLocation</code> specifying at least one <span class="mkdocs-ezglossary-link"
     id="8ed3bc57f17ec3b49a1174b567c5fb34"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responder authoritative to provide certificate status information for the certificate, as described in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</td>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder authoritative to provide certificate status information for the certificate, as described in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</td>
 </tr>
 <tr>
 <td><code>qcStatements</code></td>
@@ -2372,16 +2392,26 @@
 </table>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>While the specific requirements for <a href="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)">PuB-EAA Provider</a> Sign/Seal Certificates specified in [ETSI TS 119 412-6, Clause 8] do not require these certificates to be qualified, [EU REG 2024/1183, Art. 45f(1)(b)] requires <a class="mkdocs-ezglossary-link"
-    id="bcdbec15a64ef675e6f2de755195e243"
-    title="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
+<p>While the specific requirements for <span class="mkdocs-ezglossary-link"
+    id="a6c4bcffc6d2fa8d5d5444376d3eae60"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> Sign/Seal Certificates specified in [ETSI TS 119 412-6, Clause 8] do not require these certificates to be qualified, [EU REG 2024/1183, Art. 45f(1)(b)] requires <span class="mkdocs-ezglossary-link"
+    id="f5b23bd08eabf5090ce75a305eb3dae1"
+    data-term="Public Electronic Attestation of Attributes (PuB-EAA)"
     data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
     name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
-    href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">PuB-EAA</a> to be signed with a qualified certificate.</p>
+    href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">PuB-EAA</span> to be signed with a qualified certificate.</p>
 </div>
 <div class="admonition choice">
 <p class="admonition-title">APTITUDE Implementation Choice</p>
-<p>To comply with [EU REG 2024/1183, Art. 45f(1)(b)], although not explicitly required by [ARF] or [ETSI TS 119 412-6], <a href="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)">PuB-EAA Provider</a> Sign/Seal Certificates are Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL contain at least a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>).</p>
+<p>To comply with [EU REG 2024/1183, Art. 45f(1)(b)], although not explicitly required by [ARF] or [ETSI TS 119 412-6], <span class="mkdocs-ezglossary-link"
+    id="57159d7966cc280c653bab28976fb608"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> Sign/Seal Certificates are Qualified Certificates. Therefore, the <code>qcStatements</code> extension SHALL contain at least a <code>QCStatement</code> structure with <code>statementId</code> set to <code>0.4.0.1862.1.1</code> (<code>id-etsi-qcs-QcCompliance</code>).</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2561,7 +2591,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 13:54:13 UTC">September 10, 2026 13:54:13</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 17:26:54 UTC">September 10, 2026 17:26:54</span>
   </span>
 
     

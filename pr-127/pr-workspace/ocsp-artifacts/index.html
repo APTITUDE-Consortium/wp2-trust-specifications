@@ -872,7 +872,7 @@
   <span class="md-ellipsis">
     
   
-    Authorization process
+    Authorization Process
   
 
     
@@ -1559,22 +1559,22 @@
 
   <h1>Ocsp artifacts</h1>
 
-<p>The <a class="mkdocs-ezglossary-link"
+<p>The <span class="mkdocs-ezglossary-link"
     id="be2727ad60002b16b3be71e08312af29"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</a> enables applications to determine the revocation status of identified certificates. This section specifies the structure of <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</span> enables applications to determine the revocation status of identified certificates. This section specifies the structure of <span class="mkdocs-ezglossary-link"
     id="0946e821fee8ba0f1a876ffb67ef7a60"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</a> <a href="#ocsp-request">Requests</a> and <a href="#ocsp-response">Responses</a>. The operational use of <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</span> <a href="#ocsp-request">Requests</a> and <a href="#ocsp-response">Responses</a>. The operational use of <span class="mkdocs-ezglossary-link"
     id="5fc0a979a502e3f111f1ed8023f452f2"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</a> within the APTITUDE ecosystem is detailed in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</p>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</span> within the APTITUDE ecosystem is detailed in <a href="../../sections/trust-management-lifecycle/#online-certificate-status-protocol">Online Certificate Status Protocol</a>.</p>
 <h3 id="ocsp-request">OCSP Request<a class="headerlink" href="#ocsp-request" title="Permanent link">&para;</a></h3>
 <p>In accordance with [RFC 6960, Section 4.1], the <code>OCSPRequest</code> ASN.1 structure consists of a <code>SEQUENCE</code> composed of the following fields:</p>
 <table>
@@ -1592,12 +1592,12 @@
 <td><code>tbsRequest</code></td>
 <td style="text-align: center;"><code>SEQUENCE</code></td>
 <td style="text-align: center;">REQUIRED</td>
-<td>Contains the optionally signed <a class="mkdocs-ezglossary-link"
+<td>Contains the optionally signed <span class="mkdocs-ezglossary-link"
     id="0039f39b480cc7a3116330da5b85be45"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</a> request.</td>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</span> request.</td>
 <td>Section 4.1.1</td>
 </tr>
 <tr>
@@ -1724,17 +1724,17 @@
 <p class="admonition-title">APTITUDE Implementation Choices</p>
 <ul>
 <li>The response structure represented by the <code>responseBytes</code> field SHALL contain the <code>nonce</code> extension among the <code>responseExtensions</code>.</li>
-<li><a class="mkdocs-ezglossary-link"
+<li><span class="mkdocs-ezglossary-link"
     id="15e7714b184c4bb196a399aae059dfa9"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responders SHALL be capable of producing responses of the <code>id-pkix-ocsp-basic</code> response type. Correspondingly, <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responders SHALL be capable of producing responses of the <code>id-pkix-ocsp-basic</code> response type. Correspondingly, <span class="mkdocs-ezglossary-link"
     id="7c5b971462d9fef34e89286f29ef8ef5"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> clients SHALL be capable of receiving and processing responses of the <code>id-pkix-ocsp-basic</code> response type.</li>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> clients SHALL be capable of receiving and processing responses of the <code>id-pkix-ocsp-basic</code> response type.</li>
 </ul>
 </div>
 <details class="example">
@@ -1794,7 +1794,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 13:54:13 UTC">September 10, 2026 13:54:13</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 17:26:54 UTC">September 10, 2026 17:26:54</span>
   </span>
 
     

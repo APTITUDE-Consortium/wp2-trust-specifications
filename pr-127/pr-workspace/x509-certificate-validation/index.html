@@ -865,7 +865,7 @@
   <span class="md-ellipsis">
     
   
-    Authorization process
+    Authorization Process
   
 
     
@@ -1499,27 +1499,27 @@
 <p>The entity that performs the certificate path validation initializes the following variables according to [RFC 5280]:</p>
 <ul>
 <li><code>path</code>: The sequence <span class="arithmatex">\(C_1 \dots C_n\)</span>.</li>
-<li><code>trust_anchor</code>: <em>trusted certificate</em> obtained from the <code>ServiceDigitalIdentity</code> component after validation of the relevant <a class="mkdocs-ezglossary-link"
-    id="cf6a13f9aebfb031b274ba3dd8505302"
-    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+<li><code>trust_anchor</code>: <em>trusted certificate</em> obtained from the <code>ServiceDigitalIdentity</code> component after validation of the relevant <span class="mkdocs-ezglossary-link"
+    id="9919f6030d98c337f88cea6be9872f0c"
+    data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</li>
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.</li>
 <li><code>current_time</code>: The current date and time.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The profiles for <a class="mkdocs-ezglossary-link"
-    id="10ebf232ad99745057cb55a985312307"
-    title="An authoritative entity represented by a public key and associated data. [ARF]"
+<p>The profiles for <span class="mkdocs-ezglossary-link"
+    id="485b685cc39a3fba124b49ffe36a9d4b"
+    data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
-    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> Certificates referenced within a <a class="mkdocs-ezglossary-link"
-    id="10b6dd617bc990c9d8f5e3d6b1e3fc3c"
-    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificates referenced within a <span class="mkdocs-ezglossary-link"
+    id="6b5932c43bf4f163a2d2116fe9235a0f"
+    data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> are described in <a href="../../sections/trust-artifacts/#trust-anchor-certificate">Trust Anchor Certificate</a>.</p>
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> are described in <a href="../../sections/trust-artifacts/#trust-anchor-certificate">Trust Anchor Certificate</a>.</p>
 </div>
 <p>The entity that performs the certificate path validation follows the algorithm described below [RFC 5280]:</p>
 <p><strong>Step 1: Initialization</strong>
@@ -1540,17 +1540,17 @@ Iterate through the path for <span class="arithmatex">\(i\)</span> from <span cl
 <li>Basic Integrity &amp; Binding Checks:<ul>
 <li>Verify the signature of <span class="arithmatex">\(C_i\)</span> using <code>working_public_key</code>, <code>working_public_key_parameters</code>, and the algorithm identifier.</li>
 <li>Ensure <code>current_time</code> falls within the <code>notBefore</code> and <code>notAfter</code> validity period of <span class="arithmatex">\(C_i\)</span>.</li>
-<li>Check revocation status (<a class="mkdocs-ezglossary-link"
+<li>Check revocation status (<span class="mkdocs-ezglossary-link"
     id="7994face2525ea5b5742ef7d36fe569a"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> or <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> or <span class="mkdocs-ezglossary-link"
     id="9b3d801976f03dd80163877a5cc3c114"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a>) as defined in <a href="#revocation-checking">Revocation Checking</a>.</li>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span>) as defined in <a href="#revocation-checking">Revocation Checking</a>.</li>
 <li>Verify that the issuer name of <span class="arithmatex">\(C_i\)</span> matches <code>working_issuer_name</code>.</li>
 </ul>
 </li>
@@ -1576,12 +1576,12 @@ Iterate through the path for <span class="arithmatex">\(i\)</span> from <span cl
 </ol>
 <p><strong>Step 3: Preparation for Next Certificate</strong></p>
 <ol>
-<li>If <span class="arithmatex">\(i &lt; n\)</span> (i.e., <span class="arithmatex">\(C_i\)</span> is an intermediate <a class="mkdocs-ezglossary-link"
+<li>If <span class="arithmatex">\(i &lt; n\)</span> (i.e., <span class="arithmatex">\(C_i\)</span> is an intermediate <span class="mkdocs-ezglossary-link"
     id="dcefd39002f99828cad8f5d12455434d"
-    title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    data-term="Certificate Authority (CA)"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
-    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a>), perform the following updates:<ul>
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>), perform the following updates:<ul>
 <li>Set <code>working_issuer_name</code> to the Subject DN of <span class="arithmatex">\(C_i\)</span>.</li>
 <li>Set <code>working_public_key</code> to the Subject Public Key of <span class="arithmatex">\(C_i\)</span>.</li>
 <li>Update <code>working_public_key_parameters</code> and <code>working_public_key_algorithm</code> from <span class="arithmatex">\(C_i\)</span>.</li>
@@ -1670,159 +1670,159 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     class Start,DefineInputs,Success terminator;
     class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;</code></pre>
 <h5 id="revocation-checking">Revocation Checking<a class="headerlink" href="#revocation-checking" title="Permanent link">&para;</a></h5>
-<p>The entity performing certificate path validation (e.g., the <a class="mkdocs-ezglossary-link"
+<p>The entity performing certificate path validation (e.g., the <span class="mkdocs-ezglossary-link"
     id="f00f12f0755fb52f9764ad124c203359"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a>) SHALL determine the revocation status for every certificate in the path with one of the following methods:</p>
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span>) SHALL determine the revocation status for every certificate in the path with one of the following methods:</p>
 <ul>
 <li>If the certificate contains the <code>noRevAvail</code> extension AND the <code>ext-etsi-valassured-ST-certs</code> extension (see <a href="../../sections/trust-artifacts/#wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate</a>), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).</li>
-<li>If the <code>cRLDistributionPoints</code> extension is present, the <a class="mkdocs-ezglossary-link"
+<li>If the <code>cRLDistributionPoints</code> extension is present, the <span class="mkdocs-ezglossary-link"
     id="3cae61d2915f1dd2e912b89b7af219ce"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> MAY retrieve and validate the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> MAY retrieve and validate the <span class="mkdocs-ezglossary-link"
     id="8dd9268187af5b33a06272dcde7c101e"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</li>
-<li>If the <code>authorityInfoAccess</code> extension (with <code>id-ad-ocsp</code>) is present, the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span>.</li>
+<li>If the <code>authorityInfoAccess</code> extension (with <code>id-ad-ocsp</code>) is present, the <span class="mkdocs-ezglossary-link"
     id="023454eedfb589766a8f4a263b35ca08"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> MAY perform an <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> MAY perform an <span class="mkdocs-ezglossary-link"
     id="7dd6ef479a40c6fd28bed61cc423b5c9"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> lookup.</li>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> lookup.</li>
 </ul>
-<p>For details regarding the formats and parameters of <a class="mkdocs-ezglossary-link"
+<p>For details regarding the formats and parameters of <span class="mkdocs-ezglossary-link"
     id="8af3de51ad00eef7290e6bf28e150a54"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</a> and <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</span> and <span class="mkdocs-ezglossary-link"
     id="d662ed55efc0013478c6eb70955bd613"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responses, see <a href="../../sections/trust-management-lifecycle/#revocation-mechanisms">Revocation Mechanism</a>.</p>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responses, see <a href="../../sections/trust-management-lifecycle/#revocation-mechanisms">Revocation Mechanism</a>.</p>
 <h6 id="crl-validation">CRL Validation<a class="headerlink" href="#crl-validation" title="Permanent link">&para;</a></h6>
-<p>When using a <a class="mkdocs-ezglossary-link"
+<p>When using a <span class="mkdocs-ezglossary-link"
     id="9e69b7742b9948d2716be9d9ee49b251"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>, the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span>, the <span class="mkdocs-ezglossary-link"
     id="d31badfec887a5f6a7e0bed0fcf70d4b"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL:</p>
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> SHALL:</p>
 <ol>
-<li>Verify <code>current_time</code> is between <code>thisUpdate</code> and <code>nextUpdate</code>. If the <a class="mkdocs-ezglossary-link"
+<li>Verify <code>current_time</code> is between <code>thisUpdate</code> and <code>nextUpdate</code>. If the <span class="mkdocs-ezglossary-link"
     id="69ef669ecafeda9dd22d5b9d76c194b4"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> is expired, the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> is expired, the <span class="mkdocs-ezglossary-link"
     id="87ca520b69a700e2899357dd43b40970"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHOULD attempt to retrieve an updated <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> SHOULD attempt to retrieve an updated <span class="mkdocs-ezglossary-link"
     id="1d05b8675f4f36e183d79ad072e951dd"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>.</li>
-<li>Verify the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span>.</li>
+<li>Verify the <span class="mkdocs-ezglossary-link"
     id="974235ec171366c30a40fbdeaeebf6f0"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> is signed by the certificate issuer (or an authorized <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> is signed by the certificate issuer (or an authorized <span class="mkdocs-ezglossary-link"
     id="fbcc8d00c94e274ea4dd60b555a3d35c"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuer) by:<ul>
-<li>matching the <code>issuer</code> field of the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> issuer) by:<ul>
+<li>matching the <code>issuer</code> field of the <span class="mkdocs-ezglossary-link"
     id="d428bb186311412f93ae00d42af09122"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> with the <code>issuer</code> field of the certificate being checked;</li>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> with the <code>issuer</code> field of the certificate being checked;</li>
 </ul>
 </li>
 <li>Verify the <code>issuingDistributionPoint</code> matches the certificate's distribution point.<ul>
-<li><code>distributionPoint</code> field of the <code>cRLDistributionPoints</code> extension matches the <code>distributionPoint</code> field of the <code>IssuingDistributionPoint</code> extension of the <a class="mkdocs-ezglossary-link"
+<li><code>distributionPoint</code> field of the <code>cRLDistributionPoints</code> extension matches the <code>distributionPoint</code> field of the <code>IssuingDistributionPoint</code> extension of the <span class="mkdocs-ezglossary-link"
     id="ed4a31dfb655cb79d7600b1b23393d65"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> (if present);</li>
-<li>if the <code>BasicConstraints</code> extension is present in the certificate being checked, and has <code>cA</code> set to <code>TRUE</code> (respectively <code>FALSE</code>), the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> (if present);</li>
+<li>if the <code>BasicConstraints</code> extension is present in the certificate being checked, and has <code>cA</code> set to <code>TRUE</code> (respectively <code>FALSE</code>), the <span class="mkdocs-ezglossary-link"
     id="adb9a8f821faf1eff45565b9b0cd97cc"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> Issuing Distribution Point extension SHALL have the <code>onlyContainsCACerts</code> field set to <code>TRUE</code> (respectively have the <code>onlyContainsUserCerts</code> field set to <code>TRUE</code>)</li>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> Issuing Distribution Point extension SHALL have the <code>onlyContainsCACerts</code> field set to <code>TRUE</code> (respectively have the <code>onlyContainsUserCerts</code> field set to <code>TRUE</code>)</li>
 </ul>
 </li>
-<li>Validate the <a class="mkdocs-ezglossary-link"
+<li>Validate the <span class="mkdocs-ezglossary-link"
     id="a6a1e7e432ca62b5ce89e6269cf0a0cc"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> signature using the issuer's public key. If a key usage extension is present in the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> signature using the issuer's public key. If a key usage extension is present in the <span class="mkdocs-ezglossary-link"
     id="e40a39b523293d6c104fa33969ef1169"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuer's certificate, verify that the <code>cRLSign</code> bit is set.</li>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> issuer's certificate, verify that the <code>cRLSign</code> bit is set.</li>
 <li>Check if the certificate's serial number is listed in <code>revokedCertificates</code>. If an entry is found then the certificate status is set to <code>revoked</code>.</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In this case it is assumed that the issuer of both the <a class="mkdocs-ezglossary-link"
+<p>In this case it is assumed that the issuer of both the <span class="mkdocs-ezglossary-link"
     id="1e0b469aec8d4a96ae428f8bfc287409"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> and certificate do coincide, and that the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> and certificate do coincide, and that the <span class="mkdocs-ezglossary-link"
     id="0a0546c4b793ab5b72e719f0af845b16"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> is not signed by a delegated <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> is not signed by a delegated <span class="mkdocs-ezglossary-link"
     id="f9728ccf4a906a6692e457d30cee411a"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> issuer.</p>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> issuer.</p>
 </div>
-<p>If any of the steps 1-4 fail or the <a class="mkdocs-ezglossary-link"
+<p>If any of the steps 1-4 fail or the <span class="mkdocs-ezglossary-link"
     id="2d7a5ad5cc6e95e095e11c8d62c0db3d"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a> is unavailable, the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> is unavailable, the <span class="mkdocs-ezglossary-link"
     id="890895f96235054c5564683640360700"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL consider the certificate status as <code>unknown</code>. When all steps 1-4 succeed and the certificate serial number is not found in the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> SHALL consider the certificate status as <code>unknown</code>. When all steps 1-4 succeed and the certificate serial number is not found in the <span class="mkdocs-ezglossary-link"
     id="8ea06756f6a564bc4863cf3fe730bd93"
-    title="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
-    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</a>, the certificate SHALL be considered <code>good</code>.</p>
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span>, the certificate SHALL be considered <code>good</code>.</p>
 <pre class="mermaid"><code>flowchart TD
     Start([Start CRL Validation]) --&gt; Step1{Step 1: Time Check&lt;br/&gt;Is current_time between&lt;br/&gt;thisUpdate and nextUpdate?}
 
@@ -1875,42 +1875,42 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     class Valid valid;
     class Revoked,Revoked2,Revoked3,Revoked4,Revoked5 revoked;</code></pre>
 <h6 id="ocsp-response-validation">OCSP Response Validation<a class="headerlink" href="#ocsp-response-validation" title="Permanent link">&para;</a></h6>
-<p>When using <a class="mkdocs-ezglossary-link"
+<p>When using <span class="mkdocs-ezglossary-link"
     id="080aa5ee9b34179519deabf47f988c1b"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a>, the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span>, the <span class="mkdocs-ezglossary-link"
     id="3fa8e9104f7097cad8409bed3ca006e6"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHALL:</p>
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> SHALL:</p>
 <ol>
-<li>Verify <code>responseStatus</code> is <code>successful (0)</code>. If the <code>responseStatus</code> is not <code>successful</code>, the <a class="mkdocs-ezglossary-link"
+<li>Verify <code>responseStatus</code> is <code>successful (0)</code>. If the <code>responseStatus</code> is not <code>successful</code>, the <span class="mkdocs-ezglossary-link"
     id="6d39dceb9e72ebc6bce44d5ffb336655"
-    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
-    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> SHOULD attempt to retrieve an updated <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> SHOULD attempt to retrieve an updated <span class="mkdocs-ezglossary-link"
     id="6a89bd0f88abcd91452a49b84a3fc03f"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> response, and if that fails, the certificate status SHALL be considered <code>unknown</code>.</li>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> response, and if that fails, the certificate status SHALL be considered <code>unknown</code>.</li>
 <li>Verify <code>responseType</code> is <code>id-pkix-ocsp-basic</code>.</li>
-<li>Verify the response <code>signature</code> using the Responder's public key (<code>certs</code> field in the <a class="mkdocs-ezglossary-link"
+<li>Verify the response <code>signature</code> using the Responder's public key (<code>certs</code> field in the <span class="mkdocs-ezglossary-link"
     id="085ad2dff30b994674db747fcb346e62"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> response).<ul>
-<li><em>Note</em>: To ensure the <a class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> response).<ul>
+<li><em>Note</em>: To ensure the <span class="mkdocs-ezglossary-link"
     id="62948a785b434c530762bdca09b0939f"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> Responder is authorized, match the Issuer's key or check the delegation certificate signed by the Issuer.</li>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> Responder is authorized, match the Issuer's key or check the delegation certificate signed by the Issuer.</li>
 </ul>
 </li>
 <li>Verify <code>responderID</code> matches the signer, and the <code>CertID</code> hash fields match the certificate being checked.<ul>
@@ -1923,12 +1923,12 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>It is assumed that only basic <a class="mkdocs-ezglossary-link"
+<p>It is assumed that only basic <span class="mkdocs-ezglossary-link"
     id="bdc8548d491ce346062e278dbabbc12b"
-    title="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
-    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</a> responses (i.e., where <code>responseType</code> is <code>id-pkix-ocsp-basic</code>) are supported.</p>
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responses (i.e., where <code>responseType</code> is <code>id-pkix-ocsp-basic</code>) are supported.</p>
 </div>
 <p>If any of the checks in 2-4 fail, the certificate status SHALL be considered <code>unknown</code>. If all checks succeed, update the status of each certificate by matching the <code>certStatus</code> value in the <code>SingleResponse</code> to the requested <code>CertID</code>.</p>
 <pre class="mermaid"><code>flowchart TD
@@ -2000,7 +2000,7 @@ After processing <span class="arithmatex">\(C_n\)</span>:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 13:54:14 UTC">September 10, 2026 13:54:14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 17:26:54 UTC">September 10, 2026 17:26:54</span>
   </span>
 
     

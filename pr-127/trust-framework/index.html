@@ -978,7 +978,7 @@
   <span class="md-ellipsis">
     
   
-    Authorization process
+    Authorization Process
   
 
     
@@ -1664,12 +1664,12 @@
 </ul>
 <hr />
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>This document specifies implementation profiles for the core conceptual and architectural components of the trust framework, as deployed within the APTITUDE Large Scale Pilot. It defines the trust architecture, the trust artifacts exchanged among entities, and the evaluation processes and trust checks to be performed during issuance and presentation flows. Except where explicitly noted, these profiles conform to the <a class="mkdocs-ezglossary-link"
+<p>This document specifies implementation profiles for the core conceptual and architectural components of the trust framework, as deployed within the APTITUDE Large Scale Pilot. It defines the trust architecture, the trust artifacts exchanged among entities, and the evaluation processes and trust checks to be performed during issuance and presentation flows. Except where explicitly noted, these profiles conform to the <span class="mkdocs-ezglossary-link"
     id="42bbf47f49eb74e091d61b8a0103c518"
-    title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    data-term="EUDI Wallet"
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
-    href="../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a> Architecture Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the <a href="../sections/references/">References</a> section, adapted for the APTITUDE context.</p>
+    href="../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</span> Architecture Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the <a href="../sections/references/">References</a> section, adapted for the APTITUDE context.</p>
 <hr />
 <h2 id="scope-and-structure">Scope and Structure<a class="headerlink" href="#scope-and-structure" title="Permanent link">&para;</a></h2>
 <p>The <em>Implementation Profiles for the Trust Framework</em> are intended to enable Partners to prove their identity and authorization, as well as to verify the authenticity and integrity of Attestations exchanged within the APTITUDE ecosystem. Given the Large Scale Pilot status of the project, these profiles are derived from the requirements of the covered Use Cases, rather than prescribing an abstract, universally applicable trust architecture. Furthermore, the profiles account for the specific constraints of the piloting phase and reflect implementation choices made accordingly, as detailed in the following sections, in order to deliver a functional trust infrastructure capable of supporting the piloting Use Cases.</p>
@@ -1688,12 +1688,12 @@
 <p><a href="../sections/trust-evaluation-process/"><strong>Trust Evaluation</strong></a>: Outlines the core trust-related processes and their application within the Issuance and Presentation flows.</p>
 </li>
 <li>
-<p><a href="../sections/trust-management-lifecycle/"><strong>Trust Management and Lifecycle</strong></a>: Defines the mechanisms for managing the status of <a class="mkdocs-ezglossary-link"
+<p><a href="../sections/trust-management-lifecycle/"><strong>Trust Management and Lifecycle</strong></a>: Defines the mechanisms for managing the status of <span class="mkdocs-ezglossary-link"
     id="864f95d37e2d8bf0004638c0bcff4608"
-    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-term="Trusted Entity"
     data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
     name="roles:Trusted Entity"
-    href="../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entities</a>.</p>
+    href="../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entities</span>.</p>
 </li>
 <li>
 <p><a href="../sections/use-cases/"><strong>Trust Use Cases</strong></a>: Describes a set of trust use cases applying horizontally across APTITUDE.</p>
@@ -1715,17 +1715,17 @@
 <tbody>
 <tr>
 <td style="text-align: center;">1</td>
-<td>Publication of <a class="mkdocs-ezglossary-link"
+<td>Publication of <span class="mkdocs-ezglossary-link"
     id="8d9a1b7ef6ae9d4f13cb3f42c7e9d714"
-    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">Lists of Trusted Entities</a> and <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">Lists of Trusted Entities</span> and <span class="mkdocs-ezglossary-link"
     id="5213ed81a7e3d77492ffe4f8db7e36ea"
-    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-term="List Of Trusted Lists (LOTL)"
     data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
     name="artifacts:List Of Trusted Lists (LOTL)"
-    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">Lists Of Trusted Lists</a></td>
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">Lists Of Trusted Lists</span></td>
 <td>European Commission</td>
 </tr>
 <tr>
@@ -1740,22 +1740,22 @@
 </tr>
 <tr>
 <td style="text-align: center;">4</td>
-<td>Publication of <a class="mkdocs-ezglossary-link"
+<td>Publication of <span class="mkdocs-ezglossary-link"
     id="0623707e7b4f2a331b9cad055aa2f211"
-    title="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
-    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</a></td>
+    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</span></td>
 <td>Member States</td>
 </tr>
 <tr>
 <td style="text-align: center;">5</td>
-<td>Management of <a class="mkdocs-ezglossary-link"
+<td>Management of <span class="mkdocs-ezglossary-link"
     id="dc7e4faf0d7e6bb70a5d3b794c351ffa"
-    title="A repository or system, held under the responsibility of a public sector body or private entity, that contains and provides attributes about a natural or legal person or object and that is considered to be a primary source of that information or recognised as authentic in accordance with Union law or national law, including administrative practice. [ARF]"
+    data-term="Authentic Source"
     data-tooltip="A repository or system, held under the responsibility of a public sector body or private entity, that contains and provides attributes about a natural or legal person or object and that is considered to be a primary source of that information or recognised as authentic in accordance with Union law or national law, including administrative practice. [ARF]"
     name="components:Authentic Source"
-    href="../glossary-definitions/#bf3043259ef15ea248cda38699b7f4ee">Authentic Sources</a></td>
+    href="../glossary-definitions/#bf3043259ef15ea248cda38699b7f4ee">Authentic Sources</span></td>
 <td>Specific Entities within Member States</td>
 </tr>
 <tr>
@@ -1766,46 +1766,46 @@
 <tr>
 <td style="text-align: center;">7</td>
 <td>Management of Entity Lifecycle</td>
-<td><a class="mkdocs-ezglossary-link"
+<td><span class="mkdocs-ezglossary-link"
     id="19bbdca8bdaf4b13bd539e52337c1071"
-    title="An entity responsible for supervisory tasks in the designating Member State as regards trust services. [REG-EU-2024/1183]"
+    data-term="Supervisory Body"
     data-tooltip="An entity responsible for supervisory tasks in the designating Member State as regards trust services. [REG-EU-2024/1183]"
     name="roles:Supervisory Body"
-    href="../glossary-definitions/#99b0a0c4c2e37811f7142ed8cd217f74">Supervisory Body</a></td>
+    href="../glossary-definitions/#99b0a0c4c2e37811f7142ed8cd217f74">Supervisory Body</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">8</td>
 <td>Certification Scheme</td>
-<td><a class="mkdocs-ezglossary-link"
+<td><span class="mkdocs-ezglossary-link"
     id="1fea683d3fac6d320acf4ba076d1d22c"
-    title="An entity responsible for supervisory tasks in the designating Member State as regards trust services. [REG-EU-2024/1183]"
+    data-term="Supervisory Body"
     data-tooltip="An entity responsible for supervisory tasks in the designating Member State as regards trust services. [REG-EU-2024/1183]"
     name="roles:Supervisory Body"
-    href="../glossary-definitions/#99b0a0c4c2e37811f7142ed8cd217f74">Supervisory Body</a></td>
+    href="../glossary-definitions/#99b0a0c4c2e37811f7142ed8cd217f74">Supervisory Body</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">9</td>
-<td>Issuance of <a class="mkdocs-ezglossary-link"
+<td>Issuance of <span class="mkdocs-ezglossary-link"
     id="d7da2fb74f08d37cd5216f5b4a7e6562"
-    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
-    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates</a>, <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates</span>, <span class="mkdocs-ezglossary-link"
     id="a18b70cff6cefb3b66804f8e6772c8cb"
-    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificates</a> and Sign/Seal Certificates</td>
+    href="../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificates</span> and Sign/Seal Certificates</td>
 <td>Member States</td>
 </tr>
 <tr>
 <td style="text-align: center;">10</td>
-<td>Publication of the <a class="mkdocs-ezglossary-link"
+<td>Publication of the <span class="mkdocs-ezglossary-link"
     id="e2b616424c9ce95432822b7419a2c2bf"
-    title="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
+    data-term="Official Journal of the European Union (OJEU)"
     data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
     name="artifacts:Official Journal of the European Union (OJEU)"
-    href="../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">Official Journal of the European Union (OJEU)</a></td>
+    href="../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">Official Journal of the European Union (OJEU)</span></td>
 <td>European Commission</td>
 </tr>
 </tbody>
@@ -1832,77 +1832,87 @@
 <td style="text-align: center;">2, 8</td>
 </tr>
 <tr>
-<td>APTITUDE WP2 aggregates registration information into a single <a class="mkdocs-ezglossary-link"
+<td>APTITUDE WP2 aggregates registration information into a single <span class="mkdocs-ezglossary-link"
     id="231f4626cf7499c568aa4380778b1f9c"
-    title="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    data-term="Register"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
-    href="../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</a> used for all entities.</td>
+    href="../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> used for all entities.</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr>
-<td>APTITUDE WP2 provides onboarding services to manage the associated operational processes (registration, <a class="mkdocs-ezglossary-link"
+<td>APTITUDE WP2 provides onboarding services to manage the associated operational processes (registration, <span class="mkdocs-ezglossary-link"
     id="de49d6bc1cffa299a98b8fda67be04a4"
-    title="The act of transferring information to the European Commission. [ARF]"
+    data-term="Notification"
     data-tooltip="The act of transferring information to the European Commission. [ARF]"
     name="processes:Notification"
-    href="../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">Notification</a>, publication, certificate issuance).</td>
+    href="../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">Notification</span>, publication, certificate issuance).</td>
 <td style="text-align: center;">2, 3</td>
 </tr>
 <tr>
-<td>The <a class="mkdocs-ezglossary-link"
+<td>The <span class="mkdocs-ezglossary-link"
     id="34c20b64fb499e51e19cf52080a3b5b9"
-    title="Systems, software, and communication protocols that are used by EUDI Wallet ecosystem components to distribute, manage, and control public keys. A PKI publishes public keys and establishes trust within an environment by validating and verifying the public keys mapping to an entity. [ARF]"
+    data-term="Public Key Infrastructure (PKI)"
     data-tooltip="Systems, software, and communication protocols that are used by EUDI Wallet ecosystem components to distribute, manage, and control public keys. A PKI publishes public keys and establishes trust within an environment by validating and verifying the public keys mapping to an entity. [ARF]"
     name="components:Public Key Infrastructure (PKI)"
-    href="../glossary-definitions/#5c9da07f7d8d505f9d6a74961860fdf0">Public Key Infrastructure</a> will not include a <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#5c9da07f7d8d505f9d6a74961860fdf0">Public Key Infrastructure</span> will not include a <span class="mkdocs-ezglossary-link"
     id="3032e8376a4f2cf47923a3153c1adc6b"
-    title="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    data-term="List Of Trusted Lists (LOTL)"
     data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
     name="artifacts:List Of Trusted Lists (LOTL)"
-    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted List</a> with an associated <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted List</span> with an associated <span class="mkdocs-ezglossary-link"
     id="691d39fc6c8271598dae56e171d6916d"
-    title="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
-    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</a>; instead, it will feature a <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span>; instead, it will feature a <span class="mkdocs-ezglossary-link"
     id="e5099720c7896513eabaab7915fc289d"
-    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities</a> per entity type, including <a href="roles:Provider of Electronic Attestation of Attributes (EAA Provider)">EAA Providers</a> and <a href="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)">QEAA Providers</a>.</td>
+    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities</span> per entity type, including <span class="mkdocs-ezglossary-link"
+    id="3841bf9e6f3d26fc483276378f277fef"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span> and <span class="mkdocs-ezglossary-link"
+    id="7ae48e082274bc7ecc2daabcb03bc847"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>.</td>
 <td style="text-align: center;">1, 4</td>
 </tr>
 <tr>
-<td>APTITUDE WP2 acts as the sole <a class="mkdocs-ezglossary-link"
+<td>APTITUDE WP2 acts as the sole <span class="mkdocs-ezglossary-link"
     id="a164ba128a10f5e7a3b676e101c53983"
-    title="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    data-term="List of Trusted Entities Provider (LoTE Provider)"
     data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
     name="roles:List of Trusted Entities Provider (LoTE Provider)"
-    href="../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">List of Trusted Entities Provider</a>; the certificate anchoring the various <a class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">List of Trusted Entities Provider</span>; the certificate anchoring the various <span class="mkdocs-ezglossary-link"
     id="e3314974992e92877a6ed5bc63baaeb0"
-    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities</a> will be published via GitHub.</td>
+    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities</span> will be published via GitHub.</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr>
-<td>APTITUDE will not feature <a class="mkdocs-ezglossary-link"
+<td>APTITUDE will not feature <span class="mkdocs-ezglossary-link"
     id="fcead758a93ef1f6ebdad019562d9367"
-    title="A repository or system, held under the responsibility of a public sector body or private entity, that contains and provides attributes about a natural or legal person or object and that is considered to be a primary source of that information or recognised as authentic in accordance with Union law or national law, including administrative practice. [ARF]"
+    data-term="Authentic Source"
     data-tooltip="A repository or system, held under the responsibility of a public sector body or private entity, that contains and provides attributes about a natural or legal person or object and that is considered to be a primary source of that information or recognised as authentic in accordance with Union law or national law, including administrative practice. [ARF]"
     name="components:Authentic Source"
-    href="../glossary-definitions/#bf3043259ef15ea248cda38699b7f4ee">Authentic Sources</a>.</td>
+    href="../glossary-definitions/#bf3043259ef15ea248cda38699b7f4ee">Authentic Sources</span>.</td>
 <td style="text-align: center;">5</td>
 </tr>
 <tr>
-<td>APTITUDE will not feature Catalogues of Attestations. Instead, <a class="mkdocs-ezglossary-link"
+<td>APTITUDE will not feature Catalogues of Attestations. Instead, <span class="mkdocs-ezglossary-link"
     id="bfe19ab3f692cc46e0deaada97526de3"
-    title="A document describing the attestation type, namespace(s), and other features for a specific attestation type. [ARF]"
+    data-term="Attestation Rulebook"
     data-tooltip="A document describing the attestation type, namespace(s), and other features for a specific attestation type. [ARF]"
     name="artifacts:Attestation Rulebook"
-    href="../glossary-definitions/#0916abba47ca0e7c38aae98b2c82f593">Attestation Rulebooks</a> published on GitHub by the various Use Cases will be used.</td>
+    href="../glossary-definitions/#0916abba47ca0e7c38aae98b2c82f593">Attestation Rulebooks</span> published on GitHub by the various Use Cases will be used.</td>
 <td style="text-align: center;">6</td>
 </tr>
 <tr>
@@ -1914,12 +1924,12 @@
 <p>All implementation choices made within this specification aim to ensure a functional trust infrastructure for the APTITUDE ecosystem. These choices are called out in dedicated boxes throughout the text, so that implementers can distinguish them at a glance from the surrounding normative and descriptive content.</p>
 <div class="admonition warning">
 <p class="admonition-title">APTITUDE WP2</p>
-<p>Within this specification, <em>APTITUDE WP2</em> denotes Work Package 2 (<em>Technical standards and specifications</em>) of the APTITUDE Large Scale Pilot, not to be confused with the <a class="mkdocs-ezglossary-link"
+<p>Within this specification, <em>APTITUDE WP2</em> denotes Work Package 2 (<em>Technical standards and specifications</em>) of the APTITUDE Large Scale Pilot, not to be confused with the <span class="mkdocs-ezglossary-link"
     id="739b5f939f39e806991b23b3fc656bdf"
-    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-term="Wallet Provider (WP)"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
-    href="../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</a> role.</p>
+    href="../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</span> role.</p>
 </div>
 <hr />
 <h2 id="normative-language">Normative Language<a class="headerlink" href="#normative-language" title="Permanent link">&para;</a></h2>
