@@ -7,12 +7,12 @@ This section specifies the trust checks performed during Presentation flows, bot
 
 | Entity    | Role in Presentation Trust Evaluation |
 | --------- | ------------------------------------- |
-| <components:Wallet Instance> (<components:Wallet Unit>) | Main trust evaluator. Authenticates the <roles:Wallet-Relying Party (WRP)\|WRP>, evaluates authorization evidence, checks scope, evaluates <artifacts:Embedded Disclosure Policy (EDP)\|EDPs>, and presents results/advisories to the User. |
+| <components:Wallet Instance> (<components:Wallet Unit>) | Main trust evaluator. Authenticates the <roles:Wallet-Relying Party (WRP)\|WRP>, runs the common Authorization Process, evaluates scope and <artifacts:Embedded Disclosure Policy (EDP)\|EDPs>, and presents results/advisories to the User. |
 | <roles:Wallet-Relying Party (WRP)\|WRP> | Requests <credentials:Attestation\|Attestations> from the Wallet. May act directly or through an intermediary. |
 | <roles:Relying Party Intermediary (RPI)\|Relying Party Intermediary> | Acts on behalf of a final <roles:Relying Party (RP)\|RP>. SHALL be authenticated and bound to the final <roles:Relying Party (RP)\|RP> authorization context. |
 | <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC> | Issues the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> used to authenticate the <roles:Wallet-Relying Party (WRP)\|WRP> or <roles:Relying Party Intermediary (RPI)\|Relying Party Intermediary>. |
 | <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Issues the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> used as authorization evidence. |
-| <roles:Registrar> (<components:Register>) | Authoritative source of registration data, used as fallback when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is missing or invalid following [TS05]. |
+| <roles:Registrar> (<components:Register>) | Optional source of registration data, used as fallback when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is missing or invalid following [TS05]. A successfully validated response is authoritative; an invoked lookup or validation failure blocks authorization. |
 | <artifacts:List of Trusted Entities (LoTE)\|LoTE> | Infrastructure used to resolve <artifacts:Trust Anchor\|Trust Anchors> for the <roles:Trusted Entity\|Trusted Entities>. |
 | User | Makes the final disclosure decision, after the <components:Wallet Instance> displays identity, requested attributes, intended use, policy results and advisories. |
 
@@ -22,65 +22,72 @@ This section specifies the trust checks performed during Presentation flows, bot
 | Signed request artifact | **<protocols:Remote Flow>**: signed <protocols:OpenID for Verifiable Presentation (OID4VP)\|OID4VP> <artifacts:Request Object>. **<protocols:Proximity Flow>**: `ReaderAuth` / <artifacts:mdoc> request structure. |
 | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> | Authorization evidence for the (final) <roles:Relying Party (RP)\|RP>, including subject, entitlement, intended use, registered credential/claim scope, status, and intermediary relationship where applicable. |
 | <components:Register> response | Fallback authorization evidence when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is absent or invalid. |
-| RPRC_19a / request registration data | Presentation-request fields carrying (final) <roles:Relying Party (RP)\|RP> information and registry URI ([ARF, Topic 44]). |
+| RPRC_19a / request registration data | Presentation-request fields carrying (final) <roles:Relying Party (RP)\|RP> information and registry URI ([ARF, Topic 44]) for discovery and binding; these fields are not proof of registration. |
 | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> | Generated during issuance and stored locally by the Wallet during issuance and evaluated at presentation time. |
 | Requested attributes | **<protocols:Remote Flow>**: DCQL `credential_queries.claims`. **<protocols:Proximity Flow>**: `docRequest.itemRequest.nameSpaces`. |
 
 #### Common Presentation Trust Evaluation Model
 
-The authorization logic is common to <protocols:Remote Flow|Remote> and <protocols:Proximity Flow|Proximity> flows. The differences are limited to the transport, the location and format of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, and the way requested attributes are extracted.
+The authorization logic is common to <protocols:Remote Flow|Remote> and <protocols:Proximity Flow|Proximity> flows. The differences are limited to the transport, the location and format of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, and the way requested attributes are extracted. The user setting in this topic controls only the optional requested-scope comparison; it does not disable context, binding, intermediary-association, entitlement, or <artifacts:Embedded Disclosure Policy (EDP)|EDP> checks.
 
 ```mermaid
 flowchart TD
 Start([Presentation request received])
 Start --> A1[Check 1: Authenticate WRP/RPI using WRPAC]
-A1 --> A1D{WRPAC authentication OK?}
-    A1D -->|No| StopAuth[Stop: Authorization Process SHALL NOT start]
-A1D -->|Yes| U1{User opted in to RP verification?}
-U1 -->|No| SkipReg[Skip registration verification block]
-U1 -->|Yes| E1[Check 2: Extract authorization evidence]
-E1 --> E2{WRPRC present?}
+A1 --> A1D{Authentication OK?}
+A1D -->|No| StopAuth[Stop: Authorization Process SHALL NOT start]
+A1D --> E1[Check 2: Extract request and authorization context]
+E1 --> E1D{Request/context extraction valid?}
+E1D -->|No| StopMalformed[Stop: FAILED / NOT_AUTHORIZED / malformed request]
+E1D -->|Yes| E2{WRPRC present?}
 E2 -->|Yes| W1[Check 3A: Validate WRPRC]
-W1 --> W1D{WRPRC valid?}
-W1D -->|Yes| B1[Check 4: Binding verification]
-W1D -->|No| R1[Check 3B: Query and validate Register data]
-E2 -->|No| R1
-R1 --> R1D{Register data valid?}
-R1D -->|No| AdvNoData[Advisory: RP cannot be fully verified]
-R1D -->|Yes| B1
-B1 --> B1D{Binding OK?}
+W1 --> W1D{Valid WRPRC?}
+W1D -->|Yes| C1[Use valid authorization context]
+W1D -->|No| R0{Invoke optional Register?}
+E2 -->|No| R0
+R0 -->|No| C0[No valid authorization context]
+R0 -->|Yes| R1[Check 3B: Retrieve and validate Register response]
+R1 --> R1D{Register response valid?}
+R1D -->|No| StopRegister[Stop: FAILED / NOT_AUTHORIZED]
+R1D -->|Yes| C1
+C0 --> StopContext[Stop: FAILED / NOT_AUTHORIZED / no valid context]
+C1 --> I1{Intermediary scenario?}
+I1 -->|No| B1[Check 4: Verify direct binding]
+B1 --> B1D{Direct binding OK?}
 B1D -->|No| StopBind[Stop: NOT_AUTHORIZED / binding failure]
-B1D -->|Yes| I1{Intermediary scenario?}
+B1D -->|Yes| Ent1[Check 6: Verify Service_Provider entitlement]
 I1 -->|Yes| I2[Check 5: Verify intermediary association]
 I2 --> I2D{Association OK?}
 I2D -->|No| StopInt[Stop: INTERMEDIARY_NOT_AUTHORIZED]
-I2D -->|Yes| Ent1[Check 6: Entitlement verification on final RP context]
-I1 -->|No| Ent1
-Ent1 --> EntD{Service_Provider entitlement present?}
-EntD -->|No| AdvEnt[Advisory: wrong entitlement]
-EntD -->|Yes| S1[Check 7: Scope comparison]
-AdvEnt --> UserReg{User decision on advisory}
-AdvNoData --> UserReg
-UserReg -->|Deny| Deny1[Deny presentation]
-UserReg -->|Proceed| EDP1[Check 8: EDP evaluation]
-S1 --> SD{Requested attributes within registered scope?}
-SD -->|No| AdvScope[Advisory: over-asking detected]
+I2D -->|Yes| B2[Check 4a: Verify final RP context]
+B2 --> B2D{Final RP context coherent?}
+B2D -->|No| StopBind
+B2D -->|Yes| Ent1
+Ent1 --> EntD{Entitlement valid?}
+EntD -->|No| StopEnt[Stop: WRONG_ENTITLEMENT]
+EntD -->|Yes| S0{Check 7: Scope comparison enabled?}
+S0 -->|No| EDP1[Check 8: Evaluate EDP]
+S0 -->|Yes| S1[Compare requested attributes with registered scope]
+S1 --> SD{Scope within registered scope?}
+SD -->|No| AdvScope[Advisory: OVERASKING_DETECTED]
 SD -->|Yes| EDP1
-AdvScope --> UserReg
-SkipReg --> EDP1
-EDP1 --> EDPD{EDP satisfied or no EDP?}
-EDPD -->|No| AdvEDP[Advisory: EDP not satisfied]
-EDPD -->|Yes| UI1[Check 9: Display trust results and request User approval]
+AdvScope --> EDP1
+EDP1 --> EDPD{EDP satisfied or absent?}
+EDPD -->|No| AdvEDP[Advisory: EDP_NOT_SATISFIED]
+EDPD -->|Yes| UI1[Check 9: Display final RP, request and outcomes]
 AdvEDP --> UI1
-UI1 --> Final{User approves disclosure?}
+UI1 --> Final{User approves disclosure and/or overrides?}
 Final -->|Yes| Present[Present selected attestations]
-Final -->|No| Deny2[Deny presentation]
+Final -->|No| Deny[Deny presentation]
 Present --> End([End])
-Deny1 --> End
-Deny2 --> End
+Deny --> End
 StopAuth --> End
+StopMalformed --> End
+StopContext --> End
+StopRegister --> End
 StopBind --> End
 StopInt --> End
+StopEnt --> End
 ```
 
 ##### Flowchart to detailed trust-check index
@@ -90,30 +97,31 @@ Section [Common Presentation Trust Evaluation Model](#common-presentation-trust-
 | Flowchart | Trust Checks  | Notes |
 | --------- | ------------- | ----- |
 | **Check 1** — Authenticate <roles:Wallet-Relying Party (WRP)\|WRP>/RPI using <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> | `TC-PRES-001` | Direct match. |
-| **U1** — User opted in to RP verification? | `TC-PRES-002` | Same step; not numbered "Check *N*" in the diagram. |
-| **Check 2** — Extract authorization evidence | `TC-PRES-003` | Direct match. |
+| **S0** — Scope comparison enabled? | `TC-PRES-002` | The user setting controls only requested-scope comparison. |
+| **Check 2** — Extract request and authorization context | `TC-PRES-003` | Direct match. |
 | **Check 3A** — Validate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> | `TC-PRES-004`, `TC-PRES-005` | One diagram box; Section [Detailed Trust Checks](#detailed-trust-checks) splits format/algorithm validation from signature, chain, <artifacts:Trust Anchor>, temporal validity, and status. |
-| **Check 3B** — Query and validate Register data | `TC-PRES-006` | Direct match; also used when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is absent or Check 3A fails. |
-| **Check 4** — Binding verification | `TC-PRES-007`, `TC-PRES-010` | `TC-PRES-007` covers direct RP binding; `TC-PRES-010` (final RP context coherence) is not a separate flowchart box. |
+| **Check 3B** — Query and validate Register data | `TC-PRES-006` | Direct match; optional after <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is absent or Check 3A fails. An invoked failure blocks authorization. |
+| **Check 4**, **Check 4a** — Direct/final-RP binding verification | `TC-PRES-007`, `TC-PRES-010` | `TC-PRES-007` covers direct RP binding; `TC-PRES-010` covers the final-RP context box for an intermediary. |
 | **I1** — Intermediary scenario? | `TC-PRES-008` | Intermediary detection; decision diamond, not a "Check *N*" label. |
 | **Check 5** — Verify intermediary association | `TC-PRES-009` | Direct match. |
-| **Check 6** — Entitlement verification | `TC-PRES-011` | Direct match. |
+| **Check 6** — Entitlement verification | `TC-PRES-011` | Direct match; failure is non-overridable. |
 | **Check 7** — Scope comparison | `TC-PRES-012`, `TC-PRES-013` | Diagram merges attribute extraction and scope comparison. |
-| **Check 8** — EDP evaluation | `TC-PRES-014`, `TC-PRES-015`, `TC-PRES-016` | One diagram box; Section [Detailed Trust Checks](#detailed-trust-checks) splits presence, Authorized Relying Parties Only, and Specific Root of Trust. |
+| **Check 8** — EDP evaluation | `TC-PRES-014`, `TC-PRES-015`, `TC-PRES-016` | One diagram box after all non-overridable checks; Section [Detailed Trust Checks](#detailed-trust-checks) splits presence, Authorized Relying Parties Only, and Specific Root of Trust. |
 | **Check 9** — Display trust results and User approval | `TC-PRES-017` | Direct match |
 | *(implicit in <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> / <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> / <components:Register> validation)* | `TL-PRES-001` | LoTE checks (Section [Trust Anchor and Trusted List Checks](#trust-anchor-and-trusted-list-checks)); no dedicated flowchart node. |
 
-**Checks in Section [Detailed Trust Checks](#detailed-trust-checks) without a Section [Common Presentation Trust Evaluation Model](#common-presentation-trust-evaluation-model) "Check *N*" label:** `TC-PRES-008` (intermediary detection, see **I1**), `TC-PRES-010` (intermediated RP context coherence, folded into binding in the diagram), `TC-PRES-012` (requested-attribute extraction, prerequisite to Check 7).
+**Checks in Section [Detailed Trust Checks](#detailed-trust-checks) without a Section [Common Presentation Trust Evaluation Model](#common-presentation-trust-evaluation-model) "Check *N*" label:** `TC-PRES-008` (intermediary detection, see **I1**) and `TC-PRES-012` (requested-attribute extraction, prerequisite to Check 7).
 
 **Flowchart outcomes (not separate trust checks):**
 
 | Flowchart Node    | Typical Source Check      |
 | ----------------- | ------------------------- |
 | StopAuth          | `TC-PRES-001` failure |
-| AdvNoData         | `TC-PRES-003` / `TC-PRES-006` (incomplete evidence or <components:Register> validation failed) |
+| StopContext       | `TC-PRES-003` / `TC-PRES-004` / `TC-PRES-005` (no valid context after optional fallback) |
+| StopRegister      | `TC-PRES-006` (invoked Register validation failed) |
 | StopBind          | `TC-PRES-007` / `TC-PRES-010` |
 | StopInt           | `TC-PRES-009` |
-| AdvEnt            | `TC-PRES-011` |
+| StopEnt           | `TC-PRES-011` |
 | AdvScope          | `TC-PRES-013` |
 | AdvEDP            | `TC-PRES-014` to `TC-PRES-016` |
 
@@ -127,7 +135,7 @@ Section [Common Presentation Trust Evaluation Model](#common-presentation-trust-
 | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> chain | The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> authenticates the technical requester (<roles:Relying Party (RP)\|RP> or Intermediary) that signed the <artifacts:Request Object>. The certificate chain is carried in the JOSE header using `x5c`. The <components:Wallet Instance> uses this chain to validate the signer's certificate, check that it chains to a trusted root, and confirm that the request was signed by the entity represented by the access certificate. |
 | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> | The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is included by value inside `verifier_info`. |
 | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> format | JWT, `typ` = `rc-wrp+jwt`. |
-| <components:Register> fallback URL / <roles:Relying Party (RP)\|RP> information | Part of `verifier_info` metadata, under key `RPRC_19a`. If no usable <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is included, the <components:Wallet Instance> still needs enough information to identify the <roles:Relying Party (RP)\|RP>/service and find the responsible <components:Register>/<roles:Registrar>. For this reason `registrar_url` and <roles:Relying Party (RP)\|RP> information are included. |
+| <components:Register> fallback URL / <roles:Relying Party (RP)\|RP> information | Part of `verifier_info` metadata, under key `RPRC_19a`. If no usable <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is included, the <components:Wallet Instance> MAY use the supplied information to find the responsible <components:Register>/<roles:Registrar>. Register lookup is optional; if invoked, a retrieval or validation failure blocks authorization. |
 | Requested attributes | DCQL `credential_queries[].claims[]`. |
 
 ##### Remote flow trust-check diagram
@@ -144,8 +152,15 @@ WRPRC --> WI
 RPRC19a --> WI
 DCQL --> WI
 WI --> TA[Resolve trust anchors from LoTE / trusted-list infrastructure]
-WI --> Reg[Query Register if WRPRC missing or invalid]
-WI --> Eval[Perform binding, entitlement, scope and EDP checks]
+WI --> ContextD{WRPRC valid?}
+ContextD -->|Yes| Context[Valid authorization context from WRPRC]
+ContextD -->|No| RegChoice{Invoke optional Register?}
+RegChoice -->|No| StopContext[Stop: FAILED / NOT_AUTHORIZED]
+RegChoice -->|Yes| Reg[Query Register if WRPRC missing or invalid]
+Reg --> RegD{Register valid?}
+RegD -->|No| StopRegister[Stop: FAILED / NOT_AUTHORIZED]
+RegD -->|Yes| Context
+Context --> Eval[Perform binding, entitlement, scope and EDP checks]
 Eval --> User[Display results to User]
 ```
 
@@ -159,7 +174,7 @@ Eval --> User[Display results to User]
 | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> chain | The certificate chain is presented within the <roles:Wallet-Relying Party (WRP)\|WRP>-signed `ReaderAuth` element of the <artifacts:mdoc> request message. |
 | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> | The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is the registration/authorization evidence of the <roles:Relying Party (RP)\|RP> is extracted from the `euWrprc` member inside `requestInfo` in the ISO DeviceRequest. |
 | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> format | CWT, `typ` = `rc-wrp+cwt`. |
-| <components:Register> fallback URL / <roles:Relying Party (RP)\|RP> information | The <roles:Registrar> URL should be extracted from `requestInfo`; if no <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is present or it is invalid, the <components:Wallet Instance> applies <components:Register> validation using the `registry_uri`, <roles:Relying Party (RP)\|RP> identifier, and `intended_use_id` from the request extension. |
+| <components:Register> fallback URL / <roles:Relying Party (RP)\|RP> information | The <roles:Registrar> URL MAY be extracted from `requestInfo`; if no <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is present or it is invalid, the <components:Wallet Instance> MAY apply <components:Register> validation using the `registry_uri`, <roles:Relying Party (RP)\|RP> identifier, and `intended_use_id` from the request extension. An invoked retrieval or validation failure blocks authorization. |
 | Requested attributes | `docRequest.itemRequest.nameSpaces`. |
 
 !!! warning
@@ -180,8 +195,15 @@ EuWrprc --> WI
 ReqInfo --> WI
 Namespaces --> WI
 WI --> TA[Resolve trust anchors from LoTE / trusted-list infrastructure]
-WI --> Reg[Query Register if WRPRC missing or invalid]
-WI --> Eval[Perform binding, entitlement, scope and EDP checks]
+WI --> ContextD{WRPRC valid?}
+ContextD -->|Yes| Context[Valid authorization context from WRPRC]
+ContextD -->|No| RegChoice{Invoke optional Register?}
+RegChoice -->|No| StopContext[Stop: FAILED / NOT_AUTHORIZED]
+RegChoice -->|Yes| Reg[Query Register if WRPRC missing or invalid]
+Reg --> RegD{Register valid?}
+RegD -->|No| StopRegister[Stop: FAILED / NOT_AUTHORIZED]
+RegD -->|Yes| Context
+Context --> Eval[Perform binding, entitlement, scope and EDP checks]
 Eval --> User[Display results to User]
 ```
 
@@ -203,19 +225,19 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Negative result**               | Authentication failed. Authorization processing SHALL NOT start. |
 | **Test focus**                    | Valid chain, invalid chain, unknown <artifacts:Trust Anchor>, expired certificate, revoked certificate, invalid request signature, mismatched signing key. |
 
-##### TC-PRES-002 — User choice to verify RP registration information
+##### TC-PRES-002 — User choice for requested-scope comparison
 
 | Field                             | Description       |
 | --------------------------------- | ----------------- |
 | **Performed by**                  | <components:Wallet Instance>. |
 | **Checked entity**                | User configuration / Wallet policy. |
-| **Input artifacts**               | Wallet setting for RP verification. |
-| **Checks**                        | Determine whether the User has opted in to RP verification. The default should be enabled. |
-| **Positive result**               | Execute registration verification block: authorization evidence collection, binding, entitlement, and scope comparison. |
-| **Negative / disabled result**    | Skip registration verification block and proceed directly to <artifacts:Embedded Disclosure Policy (EDP)\|EDP> evaluation and User approval. |
-| **Test focus**                    | Default-enabled setting; enabled path; disabled path; UI indication that registration verification was skipped. |
+| **Input artifacts**               | Wallet setting for requested-scope comparison. |
+| **Checks**                        | Determine whether the User has disabled the optional requested-scope comparison. The setting SHALL be enabled by default and SHALL NOT disable authorization-context, binding, intermediary-association, entitlement, or <artifacts:Embedded Disclosure Policy (EDP)\|EDP> checks. |
+| **Positive result**               | Run the requested-scope comparison after the mandatory content checks. |
+| **Negative / disabled result**    | Skip only the requested-scope comparison and continue with <artifacts:Embedded Disclosure Policy (EDP)\|EDP> evaluation. |
+| **Test focus**                    | Default-enabled setting; enabled path; disabled path; UI indication that only scope comparison was skipped. |
 
-##### TC-PRES-003 — Authorization evidence extraction
+##### TC-PRES-003 — Authorization-context input extraction
 
 | Field                             | Description       |
 | --------------------------------- | ----------------- |
@@ -225,9 +247,9 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Remote input location**         | `verifier_info` in <artifacts:Request Object>. |
 | **Proximity input location**      | euWrprc and related registration data in requestInfo. |
 | **Checks**                        | Extract <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> if present. Extract RP/final RP identity, registry URI, and intended_use_id / intended-use reference needed for <components:Register> fallback and scope comparison. |
-| **Positive result**               | Authorization evidence is available from <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> or from request data sufficient to query the <components:Register>. |
-| **Negative result**               | Evidence cannot be obtained; Wallet records failed verification and proceeds with an advisory to the User, unless a later non-overridable check fails. |
-| **Test focus**                    | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> present; <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> absent but <components:Register> URL present; <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> absent and <components:Register> URL absent; malformed `verifier_info`; malformed `requestInfo`; missing intended-use identifier. |
+| **Positive result**               | A validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> establishes context, or discovery inputs are available to request the optional <components:Register> lookup. Request data alone is not authorization evidence. |
+| **Negative result**               | A malformed or unprocessable request, or missing context inputs, produces validation outcome `FAILED` and no valid authorization context. The final result is `NOT_AUTHORIZED`; the Wallet SHALL NOT continue to binding, entitlement, scope, or <artifacts:Embedded Disclosure Policy (EDP)\|EDP> checks. |
+| **Test focus**                    | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> present; <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> absent but <components:Register> URL present; <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> absent and <components:Register> URL absent; malformed `verifier_info`; malformed `requestInfo`; missing intended-use identifier; malformed requested-attribute extraction. |
 
 ##### TC-PRES-004 — WRPRC format and algorithm validation
 
@@ -240,7 +262,7 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Proximity rule**                | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is CWT and `typ` = `rc-wrp+cwt`; signing algorithm is taken from COSE header. |
 | **Checks**                        | Verify expected type, supported encoding, accepted signature algorithm, no none algorithm, no deprecated or forbidden algorithm. |
 | **Positive result**               | Proceed to <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> signature and certificate chain validation. |
-| **Negative result**               | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation returns `CERTIFICATE_INVALID`; Wallet falls back to <components:Register> validation. |
+| **Negative result**               | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation returns `CERTIFICATE_INVALID`; the Wallet MAY invoke the optional <components:Register> fallback. If it does not obtain a valid context, the final result is `NOT_AUTHORIZED`. |
 | **Test focus**                    | Correct type; wrong type; unsupported format; none algorithm; deprecated algorithm; malformed JWT/CWT/COSE. |
 
 ##### TC-PRES-005 — WRPRC signature, certificate chain, trust anchor, temporal validity and status
@@ -252,7 +274,7 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Input artifacts**               | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> signing certificate chain, <artifacts:List of Trusted Entities (LoTE)\|LoTE> <artifacts:Trust Anchor> for <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC>, WRPRC iat, exp, and status fields. |
 | **Checks**                        | Verify <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> signature; validate certificate chain; resolve <artifacts:Trust Anchor> for <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> from the relevant <artifacts:List of Trusted Entities (LoTE)\|LoTE>; verify temporal validity; verify status / revocation using the status field; verify coherence between <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> subject and scenario context. |
 | **Positive result**               | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> becomes authoritative authorization context. |
-| **Negative result**               | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation returns `CERTIFICATE_INVALID`; Wallet falls back to <components:Register> validation. |
+| **Negative result**               | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation returns `CERTIFICATE_INVALID`; the Wallet MAY invoke the optional <components:Register> fallback. If it does not obtain a valid context, the final result is `NOT_AUTHORIZED` and no later authorization check is run. |
 | **Test focus**                    | Valid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>; invalid signature; unknown <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> provider; expired <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>; not-yet-valid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>; revoked <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>; subject/context mismatch. |
 
 ##### TC-PRES-006 — Register fallback validation
@@ -261,11 +283,11 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | --------------------------------- | ----------------- |
 | **Performed by**                  | <components:Wallet Instance>. |
 | **Checked entity**                | <roles:Registrar> / <components:Register> response. |
-| **Input artifacts**               | Registry URI, entity identifier, intended-use identifier, signed <components:Register> response, <roles:Registrar> <artifacts:Trust Anchor> from <artifacts:List of Trusted Entities (LoTE)\|LoTE>. |
-| **Checks**                        | Extract <roles:Registrar> URL; connect over HTTPS; query by entity identifier and `intended_use_id`; verify response signature; resolve and validate <roles:Registrar> trust chain; verify that the response pertains to the relevant authorization subject and intended use; normalize <components:Register>-derived data into the same internal model used for WRPRC-derived data. |
+| **Input artifacts**               | Register URI, Authorization Subject identifier for the final RP, intended-use identifier, signed <components:Register> response, <roles:Registrar> <artifacts:Trust Anchor> from <artifacts:List of Trusted Entities (LoTE)\|LoTE>. |
+| **Checks**                        | Extract <roles:Registrar> URL; connect over HTTPS; query by the Authorization Subject identifier and `intended_use_id`; verify response signature; resolve and validate <roles:Registrar> trust chain; verify that the response pertains to the final RP authorization subject and intended use; normalize <components:Register>-derived data into the same internal model used for WRPRC-derived data. |
 | **Positive result**               | <components:Register> response becomes authoritative authorization context. |
-| **Negative result**               | <components:Register> validation returns `FAILED`; for presentation, this is an advisory to the User and may be overridden. |
-| **Test focus**                    | Successful <components:Register> lookup; unavailable <components:Register>; TLS failure; unsigned response; invalid response signature; wrong subject; wrong intended use; unknown <roles:Registrar> <artifacts:Trust Anchor>; stale or revoked <roles:Registrar> signing certificate. |
+| **Negative result**               | <components:Register> retrieval or validation returns `FAILED`; this is non-overridable and the final result is `NOT_AUTHORIZED`. The Wallet SHALL NOT continue to binding, entitlement, scope, or <artifacts:Embedded Disclosure Policy (EDP)\|EDP> checks. |
+| **Test focus**                    | Successful optional <components:Register> lookup; unavailable <components:Register>; TLS failure; unsigned response; invalid response signature; wrong subject; wrong intended use; unknown <roles:Registrar> <artifacts:Trust Anchor>; stale or revoked <roles:Registrar> signing certificate. |
 
 ##### TC-PRES-007 — Direct RP binding verification
 
@@ -298,7 +320,7 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Performed by**                  | <components:Wallet Instance>. |
 | **Checked entity**                | RPI acting on behalf of final RP. |
 | **Input artifacts**               | Authenticated intermediary identifier from <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, final RP authorization context from WRPRC or <components:Register>, intermediary structure where available. |
-| **Checks**                        | Verify that the authenticated intermediary is authorized to act on behalf of the final RP. If <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is valid, check that the final RP <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> contains an intermediary structure and that intermediary.sub matches the authenticated intermediary identifier. If <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is unavailable or invalid, query the <components:Register> and verify that the intermediary is listed as authorized for that RP. |
+| **Checks**                        | Verify that the authenticated intermediary is authorized to act on behalf of the final RP. If <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is valid, check that the final RP <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> contains an intermediary structure and that `intermediary.sub` matches the authenticated intermediary identifier. If the WRPRC is unavailable or invalid, use the already-established valid <components:Register> context; this check SHALL NOT initiate a separate Register query. |
 | **Positive result**               | Intermediary relationship is confirmed; subsequent authorization checks use the final RP context, not the intermediary context. |
 | **Negative result**               | `INTERMEDIARY_NOT_AUTHORIZED`; non-overridable. |
 | **Test focus**                    | Valid intermediary in <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>; valid intermediary in <components:Register> fallback; intermediary not listed; intermediary listed for different RP; mismatched `intermediary.sub`; missing final RP info. |
@@ -324,7 +346,7 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Input artifacts**               | Authorization context from <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> or <components:Register>, entitlements array. |
 | **Checks**                        | Verify that the authorization subject contains the expected presentation entitlement: <https://uri.etsi.org/19475/Entitlement/Service_Provider>. |
 | **Positive result**               | Entitlement is valid; proceed to scope comparison. |
-| **Negative result**               | `WRONG_ENTITLEMENT`; in presentation this is advisory and user-overridable. |
+| **Negative result**               | `WRONG_ENTITLEMENT`; non-overridable. Scope and <artifacts:Embedded Disclosure Policy (EDP)\|EDP> checks SHALL NOT run. |
 | **Test focus**                    | Correct `Service_Provider` entitlement; missing entitlement; wrong entitlement such as issuer/provider entitlement; entitlement present only for intermediary but not final RP; malformed URI. |
 
 ##### TC-PRES-012 — Requested-attribute extraction
@@ -338,8 +360,8 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Proximity rule**                | Extract from `docRequest.itemRequest.nameSpaces`. |
 | **Checks**                        | Build normalized list of requested credential types, document types, namespaces and claim paths for scope comparison and User display. |
 | **Positive result**               | Requested attributes are available in normalized form. |
-| **Negative result**               | Request cannot be reliably compared to registered scope; Wallet should present advisory or reject according to the profile’s request validation rules. |
-| **Test focus**                    | Single claim; multiple claims; nested claim path; unknown namespace; duplicate claim; malformed DCQL; malformed <artifacts:mdoc> namespace request. |
+| **Negative result**               | Request attributes cannot be reliably extracted; the final result is `NOT_AUTHORIZED`, non-overridable, with no new result code. The Wallet SHALL NOT classify this as `OVERASKING_DETECTED`. |
+| **Test focus**                    | Single claim; multiple claims; nested claim path; unknown namespace; duplicate claim; malformed DCQL; malformed <artifacts:mdoc> namespace request; malformed requested-attribute extraction. |
 
 ##### TC-PRES-013 — Scope comparison / over-asking detection
 
@@ -348,7 +370,7 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Performed by**                  | <components:Wallet Instance>. |
 | **Checked entity**                | RP/final RP authorization context and requested attributes. |
 | **Input artifacts**               | Normalized requested attributes, registered credentials, claim, `meta.vct_values`, `doctype_value` from <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> or <components:Register>. |
-| **Checks**                        | Compare requested attributes against registered scope. Matching is exact and case-sensitive. For SD-JWT VC, compare claim paths and `vct_values`. For mdoc, compare namespaces/items and `doctype_value`. |
+| **Checks**                        | Compare requested attributes against registered scope only when the user setting is enabled. Matching is exact and case-sensitive. For SD-JWT VC, compare claim paths and `vct_values`. For mdoc, compare namespaces/items and `doctype_value`. |
 | **Positive result**               | `VERIFICATION_PASSED`; requested attributes are within registered scope. |
 | **Negative result**               | `OVERASKING_DETECTED`; advisory and user-overridable. Wallet identifies unregistered attributes. |
 | **Test focus**                    | Exact match; case mismatch; extra unregistered attribute; registered credential type but unregistered claim; unregistered credential/document type; scope defined through <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>; scope defined through <components:Register> fallback. |
@@ -360,7 +382,7 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Performed by**                  | <components:Wallet Instance>. |
 | **Checked entity**                | Each matching attestation selected for possible presentation. |
 | **Input artifacts**               | Locally stored <artifacts:Embedded Disclosure Policy (EDP)\|EDP> associated with the attestation. |
-| **Checks**                        | Determine whether an <artifacts:Embedded Disclosure Policy (EDP)\|EDP> exists for the attestation. <credentials:Person Identification Data (PID)\|PID> are not assumed to have <artifacts:Embedded Disclosure Policy (EDP)\|EDPs>. <artifacts:Embedded Disclosure Policy (EDP)\|EDPs> apply to <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA>, <credentials:Public Electronic Attestation of Attributes (PuB-EAA)\|PuB-EAA>, and <credentials:Electronic Attestation of Attributes (EAA)\|EAA>. |
+| **Checks**                        | Determine whether an <artifacts:Embedded Disclosure Policy (EDP)\|EDP> exists for the attestation after all non-overridable checks have passed. <credentials:Person Identification Data (PID)\|PID> are not assumed to have <artifacts:Embedded Disclosure Policy (EDP)\|EDPs>. <artifacts:Embedded Disclosure Policy (EDP)\|EDPs> apply to <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA>, <credentials:Public Electronic Attestation of Attributes (PuB-EAA)\|PuB-EAA>, and <credentials:Electronic Attestation of Attributes (EAA)\|EAA>. |
 | **Positive result**               | If no <artifacts:Embedded Disclosure Policy (EDP)\|EDP> exists, the attestation is allowed subject to User approval. If <artifacts:Embedded Disclosure Policy (EDP)\|EDP> exists, proceed to <artifacts:Embedded Disclosure Policy (EDP)\|EDP> policy evaluation. |
 | **Negative result**               | Not applicable; absence of <artifacts:Embedded Disclosure Policy (EDP)\|EDP> is not a failure. |
 | **Test focus**                    | Attestation with no <artifacts:Embedded Disclosure Policy (EDP)\|EDP>; attestation with <artifacts:Embedded Disclosure Policy (EDP)\|EDP>; <credentials:Person Identification Data (PID)\|PID> with no <artifacts:Embedded Disclosure Policy (EDP)\|EDP>; multiple attestations with different <artifacts:Embedded Disclosure Policy (EDP)\|EDPs>. |
@@ -396,10 +418,10 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 | **Performed by**                  | <components:Wallet Instance> and User. |
 | **Checked entity**                | Final presentation decision. |
 | **Input artifacts**               | Results of authentication, registration verification, binding, intermediary, entitlement, scope, and <artifacts:Embedded Disclosure Policy (EDP)\|EDP> checks. |
-| **Checks**                        | Wallet displays at least: RP/final RP identity, intermediary identity where applicable, requested attributes, intended-use description, privacy-policy link, support/contact information where available, and advisories. User approves or denies disclosure. |
+| **Checks**                        | Wallet displays at least: final RP identity (using its identifier if its name is unavailable), requested attributes, intended-use description, privacy-policy link, support/contact information where available, and advisories. The intermediary identity SHALL NOT be displayed. User approves or denies disclosure and, when applicable, accepts each overridable scope and EDP warning. Both warnings MAY be accepted in the same operation. |
 | **Positive result**               | If User approves and no non-overridable failure exists, selected attestations are presented. |
 | **Negative result**               | If User denies, presentation is cancelled. If User denies an attestation affected by <artifacts:Embedded Disclosure Policy (EDP)\|EDP>, Wallet behaves as if the attestation does not exist. |
-| **Test focus**                    | Display direct RP identity; display intermediary and final RP identity; display unregistered attributes; display missing verification advisory; display <artifacts:Embedded Disclosure Policy (EDP)\|EDP> negative result; block continuation after non-overridable failure. |
+| **Test focus**                    | Display direct RP identity; display final RP identity for an intermediated presentation; do not display intermediary as authorization subject; display unregistered attributes; display missing verification advisory; display <artifacts:Embedded Disclosure Policy (EDP)\|EDP> negative result; block continuation after non-overridable failure. |
 
 #### Trust Anchor and Trusted List Checks
 
@@ -437,12 +459,13 @@ TA --> Use[Use trust anchor in certificate/path validation]
 | Check             | Negative Result       | Effect in Presentation    |
 | ----------------- | :-------------------: | ------------------------- |
 | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> authentication | Authentication failed | Blocking and non-overridable. The Authorization Process SHALL NOT start; <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> authentication is a precondition to the Authorization Process. |
-| <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation | `CERTIFICATE_INVALID` | Not final. Triggers <components:Register> fallback. |
-| <components:Register> validation | `FAILED` | Advisory to User; may proceed with warning. |
+| <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation | `CERTIFICATE_INVALID` | Not final. The Wallet MAY invoke the optional <components:Register> fallback; without a valid context, final result is `NOT_AUTHORIZED`. |
+| <components:Register> validation | `FAILED` | Blocking and non-overridable when the lookup was invoked; final result is `NOT_AUTHORIZED`. |
+| No valid authorization context | `FAILED` / `NOT_AUTHORIZED` | Blocking and non-overridable; binding, entitlement, scope, and <artifacts:Embedded Disclosure Policy (EDP)\|EDP> checks SHALL NOT run. |
 | Direct RP binding | `BINDING_FAILED` | Blocking; non-overridable. |
 | Intermediary association | `INTERMEDIARY_NOT_AUTHORIZED` | Blocking; non-overridable. |
 | Intermediated RP context coherence | `BINDING_FAILED` | Blocking; non-overridable. |
-| Entitlement verification | `WRONG_ENTITLEMENT` | Advisory; user-overridable in presentation. Non-overridable only for issuance. |
+| Entitlement verification | `WRONG_ENTITLEMENT` | Blocking and non-overridable; scope and <artifacts:Embedded Disclosure Policy (EDP)\|EDP> checks SHALL NOT run. |
 | Scope comparison | `OVERASKING_DETECTED` | Advisory; user-overridable. |
 | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> evaluation | `EDP_NOT_SATISFIED` | Advisory / negative policy result; user-overridable in the current APTITUDE presentation profile. |
 | User final approval | User denies | Presentation cancelled. |
@@ -454,10 +477,10 @@ The `TC-PRES` identifiers are local test-check identifiers; the authoritative pr
 | Checks in [APTITUDE-RFC003]   | APTITUDE Concept / Requirement    | Notes for Test Matrix |
 | ----------------------------- | --------------------------------- | --------------------- |
 | `TC-PRES-001`                 | `AUTHZ-GEN-01` / `AUTHZ-GEN-02` authentication prerequisite | Keep <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> validation as a precondition; if authentication fails, the Authorization Process SHALL not start. |
-| `TC-PRES-002`                 | `AUTHZ-PRES-04` user setting for RP verification | Registration verification is default-enabled but user-optional; <artifacts:Embedded Disclosure Policy (EDP)\|EDP> evaluation remains always executed. |
-| `TC-PRES-003`-`TC-PRES-006`   | `AUTHZ-GEN-05`-`AUTHZ-GEN-10`; <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation and <components:Register> fallback | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation failure returns `CERTIFICATE_INVALID` and triggers <components:Register> validation; <components:Register> `FAILED` is advisory in presentation. |
+| `TC-PRES-002`                 | `AUTHZ-PRES-04` user setting for requested-scope comparison | The setting is default-enabled but user-optional; disabling it skips only scope comparison and <artifacts:Embedded Disclosure Policy (EDP)\|EDP> evaluation remains mandatory. |
+| `TC-PRES-003`-`TC-PRES-006`   | `AUTHZ-GEN-05`-`AUTHZ-GEN-10`; <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation and <components:Register> fallback | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation failure returns `CERTIFICATE_INVALID`; <components:Register> remains optional, but an invoked `FAILED` result blocks authorization. |
 | `TC-PRES-007`-`TC-PRES-010`   | `AUTHZ-GEN-04`, `AUTHZ-GEN-11/12`, `AUTHZ-INT-03/04/06/07` | Direct RP binding and intermediary/final-RP coherence are non-overridable. Test final RP context separately from intermediary identity. |
-| `TC-PRES-011`                 | `AUTHZ-GEN-13`; presentation `Service_Provider` entitlement | `WRONG_ENTITLEMENT` is advisory/user-overridable in presentation. |
+| `TC-PRES-011`                 | `AUTHZ-GEN-13`; presentation `Service_Provider` entitlement | `WRONG_ENTITLEMENT` is blocking and non-overridable in presentation. |
 | `TC-PRES-012`-`TC-PRES-013`   | `AUTHZ-PRES-01` / `AUTHZ-PRES-02` scope comparison | Exact and case-sensitive comparison; `OVERASKING_DETECTED` SHALL identify unregistered attributes and is user-overridable. |
 | `TC-PRES-014`-`TC-PRES-016`   | `AUTHZ-EDP-03`-`AUTHZ-EDP-08` | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> SHALL be evaluated for each matching attestation. In intermediary scenarios evaluate the final RP, not the intermediary. |
-| `TC-PRES-017`                 | `AUTHZ-UI-07`-`AUTHZ-UI-12`; `AUTHZ-INT-05` | Display final RP, intermediary where applicable, requested attributes, intended use, privacy-policy link, and advisories before final approval. |
+| `TC-PRES-017`                 | `AUTHZ-UI-07`-`AUTHZ-UI-12`; `AUTHZ-INT-05` | Display the final RP, never the intermediary identity, together with requested attributes, intended use, privacy-policy link, and advisories before final approval. |
