@@ -4,7 +4,7 @@ A <roles:Registrar> is the designated body that:
 - Ensures the integrity and publication of registration information;
 - Ensures interoperability by exposing <roles:Wallet-Relying Party (WRP)|WRP> registration data via a national website and a single common REST API.
 
-The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about <roles:Wallet-Relying Party (WRP)|WRPs> and their authorisations/declared usage.
+The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is the publicly accessible system (dataset + API) that provides signed/sealed registration statements about <roles:Wallet-Relying Party (WRP)|WRPs> and their authorizations/declared usage.
 
 !!! note
 
@@ -18,7 +18,7 @@ The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is
 
     - **CIR 2025/848** on <roles:Wallet-Relying Party (WRP)|WRP> registration and <components:Register|Registers>.
     - **CIR 2025/848-Amendment**. This draft slightly modifies Annexes I-V of [CIR 2025/848] and introduces Annex VI for common API and data schema for <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs>.
-    - **ETSI TS 119 475** on <roles:Wallet-Relying Party (WRP)|WRP> attributes, entitlement URIs, <roles:Relying Party (RP)|RP> authorisation decision support.
+    - **ETSI TS 119 475** on <roles:Wallet-Relying Party (WRP)|WRP> attributes, entitlement URIs, <roles:Relying Party (RP)|RP> authorization decision support.
     - **RFC 7515**
     - **RFC 7519**
     - **RFC 8392**
@@ -73,7 +73,7 @@ The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is
 | PROVIDER-WRPAC-01 | Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> SHALL verify at issuance time that the WRP is included with valid registration status in the national Register and certificate info is consistent with Register info. | [CIR 2025/848, Annex IV §3(c)] |
 | PROVIDER-WRPAC-02 | Providers of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> SHALL continuously monitor changes in the national Register and revoke when changes require (especially suspension/cancellation). | [CIR 2025/848, Annex IV §3(e)] |
 | PROVIDER-WRPAC-03 | Providers of WRPAC SHALL publish revocation status timely and in any event within 24 hours after receipt of revocation request. | [CIR 2025/848, Annex IV §3(h)] |
-| PROVIDER-WRPRC-01 | Where a Member State authorises WRPRCs, it SHALL ensure each intended use is expressed in the WRPRC and that WRPRCs include a privacy policy URL and a general access policy. | [CIR 2025/848, Article 8(2)(b)–(c) and (g), Article 8(3)] |
+| PROVIDER-WRPRC-01 | Where a Member State authorizes WRPRCs, it SHALL ensure each intended use is expressed in the WRPRC and that WRPRCs include a privacy policy URL and a general access policy. | [CIR 2025/848, Article 8(2)(b)–(c) and (g), Article 8(3)] |
 | PROVIDER-WRPRC-02 | Providers of WRPRC SHALL verify at issuance time Register status, consistency with Register info, and validity of the WRPAC (when relevant). | [CIR 2025/848, Annex V §3(c)] |
 | PROVIDER-WRPRC-03 | Providers of WRPRC SHALL monitor Register changes, reissue/revoke when changes require. | [CIR 2025/848, Annex V §3(d)] |
 | PROVIDER-WRPRC-04 | Data exchange format for WRPRC SHALL be signed JWTs [RFC 7519] and CWTs [RFC 8392], using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT). | [CIR 2025/848, Annex V §4]; [ETSI TS 119 475, Section 4.4] |
@@ -290,7 +290,7 @@ The common API write methods (POST, PUT and DELETE) are defined for purposes of 
 
 !!! note
 
-    These methods SHALL be accessible by authorised users only.
+    These methods SHALL be accessible by authorized users only.
 
 ##### `POST /wrp` — create (REQUIRED)
 
@@ -309,7 +309,7 @@ POST is for creating a new <roles:Wallet-Relying Party (WRP)|WRP> entry in the <
 | `201` | Created. |
 | `400` | Bad request (invalid or incomplete payload). |
 | `401` | Unauthorized (missing or invalid authentication). |
-| `403` | Forbidden (caller not authorised by Member State). |
+| `403` | Forbidden (caller not authorized by Member State). |
 
 ##### `PUT /wrp` — update (REQUIRED)
 
@@ -328,7 +328,7 @@ PUT is for updating an existing <roles:Wallet-Relying Party (WRP)|WRP> entry in 
 | `200` | Successfully updated. |
 | `400` | Bad request (invalid or incomplete payload). |
 | `401` | Unauthorized (missing or invalid authentication). |
-| `403` | Forbidden (caller not authorised by Member State). |
+| `403` | Forbidden (caller not authorized by Member State). |
 | `404` | Not found. |
 
 ##### `DELETE /wrp` — delete (REQUIRED)
@@ -352,7 +352,7 @@ DELETE is for deleting an existing <roles:Wallet-Relying Party (WRP)|WRP> entry 
 | `204` | Successfully deleted. |
 | `400` | Bad request (invalid or incomplete payload). |
 | `401` | Unauthorized (missing or invalid authentication). |
-| `403` | Forbidden (caller not authorised by Member State). |
+| `403` | Forbidden (caller not authorized by Member State). |
 | `404` | Not found. |
 
 #### API Methods for Register Queries (Open API)

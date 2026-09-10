@@ -157,7 +157,7 @@ Eval --> User[Display results to User]
 | ----- | --------------------- |
 | Signed request artifact | The reader sends a `DeviceRequest`, which contains one or more document requests. The signed/security-relevant part is the `ReaderAuth` structure. |
 | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> chain | The certificate chain is presented within the <roles:Wallet-Relying Party (WRP)\|WRP>-signed `ReaderAuth` element of the <artifacts:mdoc> request message. |
-| <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> | The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is the registration/authorisation evidence of the <roles:Relying Party (RP)\|RP> is extracted from the `euWrprc` member inside `requestInfo` in the ISO DeviceRequest. |
+| <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> | The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is the registration/authorization evidence of the <roles:Relying Party (RP)\|RP> is extracted from the `euWrprc` member inside `requestInfo` in the ISO DeviceRequest. |
 | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> format | CWT, `typ` = `rc-wrp+cwt`. |
 | <components:Register> fallback URL / <roles:Relying Party (RP)\|RP> information | The <roles:Registrar> URL should be extracted from `requestInfo`; if no <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is present or it is invalid, the <components:Wallet Instance> applies <components:Register> validation using the `registry_uri`, <roles:Relying Party (RP)\|RP> identifier, and `intended_use_id` from the request extension. |
 | Requested attributes | `docRequest.itemRequest.nameSpaces`. |

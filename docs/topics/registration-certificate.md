@@ -30,7 +30,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 | [Header Attributes](#header-attributes)                               | REQUIRED              | Required header fields used to identify, sign, and validate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. |
 | [Core Identity Attributes](#core-identity-attributes)                 | REQUIRED              | Identity attributes of the subject WRP. |
 | [Service Description Attributes](#service-description-attributes)     | REQUIRED              | Multilingual service descriptions defining services provided by the WRP's. |
-| [Entitlements Attribute](#entitlements-attribute)                     | REQUIRED              | <data-elements:Entitlement\|Entitlements> defining what the WRP is authorised to do. |
+| [Entitlements Attribute](#entitlements-attribute)                     | REQUIRED              | <data-elements:Entitlement\|Entitlements> defining what the WRP is authorized to do. |
 | [Privacy and Policy Attributes](#privacy-and-policy-attributes)       | Partially REQUIRED    | Privacy policy information. |
 | [Supervisory Authority Attributes](#supervisory-authority-attributes) | REQUIRED              | Supervisory authority contact details for reporting suspicious data-processing behaviour. |
 | [Service Provider Attributes](#service-provider-attributes)           | CONDITIONAL           | Credential queries, purposes, and intended-use identifiers for service providers.<br />**REQUIRED FOR:** Service Providers. |
