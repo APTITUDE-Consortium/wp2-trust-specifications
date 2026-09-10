@@ -39,29 +39,17 @@ The format for the Status List Token is specified in [Status List Token](../sect
 
 A consumer SHALL request a <artifacts:Status List Token> at the URI referenced by the status-list reference. The request SHALL use HTTP GET and the media type corresponding to the requested format: `application/statuslist+jwt` for a JWT or `application/statuslist+cwt` for a CWT.
 
-Below is an example of such a request for a JWT <artifacts:Status List Token>.
+??? example "Status List Request in JWT format"
 
-```text
-  GET /statuslists/1 HTTP/1.1
-  Host: example.com
-  Accept: application/statuslist+jwt
-```
+   {% include-markdown "../examples/status-list-request-jwt.md" %}
 
 #### Status List Response
 
 The successful response SHALL contain a <artifacts:Status List Token> and have HTTP status code 200. The content type of the successful response SHALL correspond to the format of the returned token: `application/statuslist+jwt` for a JWT or `application/statuslist+cwt` for a CWT.
 
-```text
-  HTTP/1.1 200 OK
-  Content-Type: application/statuslist+jwt
+??? example "Status List Response in JWT format"
 
-  eyJhbGciOiJFUzI1NiIsImtpZCI6IjEyIiwidHlwIjoic3RhdHVzbGlzdCtqd3QifQ.e
-  yJleHAiOjIyOTE3MjAxNzAsImlhdCI6MTY4NjkyMDE3MCwiaXNzIjoiaHR0cHM6Ly9le
-  GFtcGxlLmNvbSIsInN0YXR1c19saXN0Ijp7ImJpdHMiOjEsImxzdCI6ImVOcmJ1UmdBQ
-  WhjQlhRIn0sInN1YiI6Imh0dHBzOi8vZXhhbXBsZS5jb20vc3RhdHVzbGlzdHMvMSIsI
-  nR0bCI6NDMyMDB9.2lKUUNG503R9htu4aHAYi7vjmr3sgApbfoDvPrl65N3URUO1EYqq
-  Ql45Jfzd-Av4QzlKa3oVALpLwOEUOq-U*g
-```
+    {% include-markdown "../examples/status-list-response-jwt.md" %}
 
 If caching-related HTTP headers are present in the HTTP response, consumers SHALL prioritize the `exp` and `ttl` claims within the <artifacts:Status List Token> over the HTTP headers for determining caching behavior.
 
