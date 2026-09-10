@@ -13,7 +13,7 @@ Within the pilot, consistently with [Trust Architecture](../sections/trust-archi
 
 This boundary is mapped onto the components of the Onboarding System in the summary table at the end of [Onboarding System](#onboarding-system).
 
-!!! choice
+!!! choice "APTITUDE Implementation Choice"
 
     Requirements specific to the APTITUDE ecosystem are identified inline with the prefix [`ONBOARD-...`] and consolidated in [Onboarding Requirements](#onboarding-requirements). Obligations defined in other sections of this specification, or in the normative baseline, are referenced where they apply, keeping their own identifiers.
 

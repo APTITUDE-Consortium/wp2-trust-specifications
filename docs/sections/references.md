@@ -22,6 +22,9 @@
 
 | Item Reference                              | Date        | Title                     |
 | ------------------------------------------- | ----------- | ------------------------- |
+| CIR 1352/2013                               | 2013-12-04  | Commission Implementing Regulation (EU) No 1352/2013 of 4 December 2013 establishing the forms provided for in Regulation (EU) No 608/2013 of the European Parliament and of the Council concerning customs enforcement of intellectual property rights |
+| CIR 2021/1042                               | 2021-06-18  | Commission Implementing Regulation (EU) 2021/1042 of 18 June 2021 laying down rules for the application of Directive (EU) 2017/1132 of the European Parliament and of the Council as regards technical specifications and procedures for the system of interconnection of registers and repealing Commission Implementing Regulation (EU) 2020/2244 |
+| CIR 2022/1860                               | 2022-06-10  | Commission Implementing Regulation (EU) 2022/1860 of 10 June 2022 laying down implementing technical standards for the application of Regulation (EU) No 648/2012 of the European Parliament and of the Council with regard to the standards, formats, frequency and methods and arrangements for reporting |
 | CIR 2024/2979                               | 2024-11-28  | Commission Implementing Regulation (EU) 2024/2979 of 28 November 2024 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards the integrity and core functionalities of European Digital Identity Wallets |
 | CIR 2024/2980                               | 2024-11-28  | Commission Implementing Regulation (EU) 2024/2980 of 28 November 2024 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards notifications to the Commission concerning the European Digital Identity Wallet ecosystem |
 | CIR 2025/848                                | 2025-05-06  | Commission Implementing Regulation (EU) 2025/848 of 6 May 2025 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards the registration of wallet-relying parties |
@@ -34,6 +37,7 @@
 | Item Reference                              | Date        | Title                     |
 | ------------------------------------------- | ----------- | ------------------------- |
 | EU DIR 2006/112/EC                          | 2006-11-28  | Council Directive 2006/112/EC of 28 November 2006 on the common system of value added tax |
+| EU REG 389/2012                             | 2012-05-02  | Council Regulation (EU) No 389/2012 of 2 May 2012 on administrative cooperation in the field of excise duties and repealing Regulation (EC) No 2073/2004 |
 | EU REG 2024/1183                            | 2024-04-11  | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
 
 ## ETSI Specifications
@@ -69,9 +73,12 @@ Other ETSI specifications that the previous specifications build upon:
 
 ## ISO/IEC Standards
 
-| Item Reference                | Version     | Date        | Title                     |
-| ----------------------------- | ----------- | ----------- | ------------------------- |
-| ISO/IEC 18013-5               |             |             | Personal identification --- ISO-compliant driving licence - Part 5: Mobile driving licence (mDL) application |
+| Item Reference                              | Date        | Title                     |
+| ------------------------------------------- | ----------- | ------------------------- |
+| ISO 639                                     | 2023-11     | Code for individual languages and language groups |
+| ISO 8601-1                                  | 2019-02     | Date and time — Representations for information interchange — Part 1: Basic rules |
+| ISO 17442-1                                 | 2020-08     | Financial services — Legal entity identifier (LEI) — Part 1: Assignment |
+| ISO/IEC 18013-5                             | 2021-09     | Personal identification — ISO-compliant driving licence — Part 5: Mobile driving licence (mDL) application |
 
 ## OIDF Standards
 
@@ -90,8 +97,10 @@ Other ETSI specifications that the previous specifications build upon:
 | RFC 2119                                    | 1997-03     | Key words for use in RFCs to Indicate Requirement Levels |
 | RFC 3647                                    | 2003-11     | Internet X.509 Public Key Infrastructure Certificate Policy and Certification Practices Framework |
 | RFC 3739                                    | 2004-03     | Internet X.509 Public Key Infrastructure - Qualified Certificates Profile |
+| RFC 3986                                    | 2005-01     | Uniform Resource Identifier (URI): Generic Syntax |
 | RFC 4514                                    | 2006-06     | Lightweight Directory Access Protocol (LDAP): String Representation of Distinguished Names |
 | RFC 5280                                    | 2008-05     | Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile |
+| RFC 5322                                    | 2008-10     | Internet Message Format |
 | RFC 6960                                    | 2013-05     | X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP |
 | RFC 7515                                    | 2015-05     | JSON Web Signature (JWS)  |
 | RFC 7519                                    | 2015-05     | JSON Web Token (JWT)      |

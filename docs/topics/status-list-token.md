@@ -5,7 +5,7 @@ Status List Tokens SHALL be protected by a cryptographic signature and SHALL be 
 - For JWT format: [draft-ietf-oauth-status-list, Section 5.1], [RFC 7515], [RFC 7519].
 - For CWT format: [draft-ietf-oauth-status-list, Section 5.2], [RFC 8392].
 
-!!! choice
+!!! choice "APTITUDE Implementation Choice"
 
     The <artifacts:Status List Token> SHALL be available in JWT format and MAY additionally be available in CWT format.
 

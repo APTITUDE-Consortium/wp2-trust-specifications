@@ -147,17 +147,16 @@ This profile distinguishes between:
 - **Runtime status validation**, performed as part of the <credentials:Attestation> issuance transaction and described in [APTITUDE-RFC001].
 - **Operational status monitoring**, performed by the <roles:Provider of Person Identification Data (PID Provider)|PID Provider> or <roles:Attestation Provider (AP)|Attestaion Provider> after issuance and during the technical validity period of the issued <credentials:Attestation>.
 
-!!! choice
+!!! choice "APTITUDE Implementation Choices"
 
-    For a device-bound <credentials:Attestation>, both the <artifacts:Wallet Instance Attestation (WIA)|WIA> and the <artifacts:Key Attestation (KA)|KA> are applicable, and the statuses of both SHALL be checked at issuance.
-    
-    For a non-device-bound <credentials:Attestation>, requirements concerning the <artifacts:Key Attestation (KA)|KA> do not apply, and only the status of the <artifacts:Wallet Instance Attestation (WIA)|WIA> SHALL be checked at issuance.
+    - For a device-bound <credentials:Attestation>, both the <artifacts:Wallet Instance Attestation (WIA)|WIA> and the <artifacts:Key Attestation (KA)|KA> are applicable, and the statuses of both SHALL be checked at issuance.
+    - For a non-device-bound <credentials:Attestation>, requirements concerning the <artifacts:Key Attestation (KA)|KA> do not apply, and only the status of the <artifacts:Wallet Instance Attestation (WIA)|WIA> SHALL be checked at issuance.
 
 For PIDs, the current [TS03] requirements, as reflected in [CIR 2026/1731], require the <roles:Provider of Person Identification Data (PID Provider)|PID Provider> to monitor both the <artifacts:Wallet Instance Attestation (WIA)|WIA> and <artifacts:Key Attestation (KA)|KA> status at least once every 24 hours when the technical validity period of the <credentials:Person Identification Data (PID)|PID> exceeds 24 hours.
 
-!!! choice
+!!! choice "APTITUDE Implementation Choices"
 
-    For other <data-elements:Attestation Type|Attestation Types>, within the APTITUDE ecosystem:
+    For other <data-elements:Attestation Type|Attestation Types>:
     
     - both <artifacts:Wallet Instance Attestation (WIA)|WIA> and <artifacts:Key Attestation (KA)|KA> operational checks SHALL be performed for device-bound <credentials:Attestation|Attestation> when operational monitoring is enabled; while,
     - only the <artifacts:Wallet Instance Attestation (WIA)|WIA> operational check SHALL be performed for non-device-bound <credentials:Attestation|Attestation> when operational monitoring is enabled.
