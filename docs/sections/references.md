@@ -1,3 +1,12 @@
+## APTITUDE Specifications
+
+| Item Reference                              | Date        | Title                     |
+| ------------------------------------------- | ----------- | ------------------------- |
+| APTITUDE-RFC001                             | 2026-07-23  | Credential Issuance Profile |
+| APTITUDE-RFC002                             | 2026-08-05  | Presentation Profile |
+| APTITUDE-RFC003                             | 2026-09-09  | Trust Evaluation |
+| APTITUDE-RFC004                             | 2026-09-09  | Revocation Profile |
+
 ## ARF and Technical Specifications (TS)
 
 | **Item Reference**            | **Version** | **Date**    | **Title**                 |
