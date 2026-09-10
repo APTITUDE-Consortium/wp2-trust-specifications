@@ -1515,7 +1515,12 @@
 
 <p>This section defines the APTITUDE Trust Architecture, including all components that enable the functional trust evaluation mechanisms used within the APTITUDE ecosystem. It first identifies the entities involved in the Large Scale Pilot, then describes the infrastructure through which APTITUDE WP2 establishes their trust, and finally introduces the Onboarding System that renders those entities operational and recognizable within the ecosystem.</p>
 <h3 id="entities">Entities<a class="headerlink" href="#entities" title="Permanent link">&para;</a></h3>
-<p>The APTITUDE Large Scale Pilot implement business use cases that exercise interactions within the EUDI Wallet ecosystem. As a result, the roles defined by that ecosystem remain applicable, while the supporting trust infrastructure is realized specifically within the APTITUDE boundaries. The main entities involved in APTITUDE are:</p>
+<p>The APTITUDE Large Scale Pilot implement business use cases that exercise interactions within the <a class="mkdocs-ezglossary-link"
+    id="1cfbcd2564b34170460db197f57e064b"
+    title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    name="components:EUDI Wallet"
+    href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</a> ecosystem. As a result, the roles defined by that ecosystem remain applicable, while the supporting trust infrastructure is realized specifically within the APTITUDE boundaries. The main entities involved in APTITUDE are:</p>
 <ul>
 <li>The <a class="mkdocs-ezglossary-link"
     id="7207dc43f7e7588d3823dd2d085679db"
@@ -1533,7 +1538,7 @@
     data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
     name="components:Wallet Solution"
     href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</a> provided by a <a class="mkdocs-ezglossary-link"
-    id="901d161ccd6bed4fe8154a428c1e66af"
+    id="5392b6601845cb71b5c82e0d7b8a46b6"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -1550,22 +1555,22 @@
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> in one or both of the following capacities:<ul>
 <li><a class="mkdocs-ezglossary-link"
-    id="0b5ae9d68197f8f2e44118e6367f328d"
+    id="7575d10b85416825ff0fe236cbba41bd"
     title="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
     data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
     name="roles:Provider of Person Identification Data (PID Provider)"
     href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">Providers of Person Identification Data (PID Providers)</a> and <a class="mkdocs-ezglossary-link"
-    id="d08385afae087f7867bb7ed6fd264919"
+    id="1dfc5356b9a98a91040764652e886f8e"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
     href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Providers (APs)</a> issue <a class="mkdocs-ezglossary-link"
-    id="374211b3a8208d7ab627814bc13e4261"
+    id="4887d2c444b04dae6c095fdd15347674"
     title="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
     data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
     name="credentials:Person Identification Data (PID)"
     href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">PID</a> or <a class="mkdocs-ezglossary-link"
-    id="713e72153cee9813f4b56bb47782a0a8"
+    id="09ef1820bf9f88aca4985ee8e85af6c7"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -1575,7 +1580,7 @@
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a>. <a class="mkdocs-ezglossary-link"
-    id="1dfc5356b9a98a91040764652e886f8e"
+    id="e4eb4f4c150a5a5037ded6b4e65c2396"
     title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -1596,7 +1601,7 @@
     data-tooltip="A Relying Party that offers services to other (intermediated) Relying Parties to, on their behalf, connect to Wallet Units and request the User attributes that these intermediated Relying Parties need. [ARF]"
     name="roles:Relying Party Intermediary (RPI)"
     href="../../glossary-definitions/#db24345e7f6ff09999d2ec1289087fc4">Relying Party Intermediaries (RPIs)</a> request <a class="mkdocs-ezglossary-link"
-    id="7f7be6d5e68bd1f2f67f07c9f4e7c72f"
+    id="7f0e5475844468fded1461b1ebfd526e"
     title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -1645,7 +1650,7 @@
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
     name="components:Wallet Unit"
     href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a> participate in runtime Issuance and Presentation interactions but are not onboarded as organizational entities. The organizational entities made operational through the APTITUDE trust infrastructure are the <a class="mkdocs-ezglossary-link"
-    id="5392b6601845cb71b5c82e0d7b8a46b6"
+    id="91788c16b66feda29c6084cbb81c851b"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
@@ -1657,7 +1662,7 @@
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRPs</a> introduced above.</p>
 <h3 id="trust-infrastructure">Trust Infrastructure<a class="headerlink" href="#trust-infrastructure" title="Permanent link">&para;</a></h3>
 <p>The APTITUDE Large Scale Pilot does not deploy the full-stack Member State and European Commission infrastructure assumed by the <a class="mkdocs-ezglossary-link"
-    id="1cfbcd2564b34170460db197f57e064b"
+    id="9a4ff91504200b6c9e9e56b4033a2d4d"
     title="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
@@ -1667,7 +1672,7 @@
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">artifacts:Lists of Trusted Entities (LoTE)</a>. Together, these capabilities establish the <a class="mkdocs-ezglossary-link"
-    id="aee858deb8eca6aa3b2e428cd64b44c4"
+    id="129f8d329f4f29f39f9e587be219d41c"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1711,13 +1716,23 @@
 <li>The Onboarding UI, which coordinates these services for each entity requesting onboarding.</li>
 </ul>
 <h4 id="public-key-infrastructure">Public Key Infrastructure<a class="headerlink" href="#public-key-infrastructure" title="Permanent link">&para;</a></h4>
-<p>The APTITUDE PKI establishes the certificate chains used to authenticate the entities involved and to validate the signatures or seals they create. APTITUDE WP2 SHALL establish the <a class="mkdocs-ezglossary-link"
+<p>The APTITUDE PKI establishes the certificate chains used to authenticate the entities involved and to validate the <a class="mkdocs-ezglossary-link"
+    id="891e7e023a4c089e86cb0c2116dee0af"
+    title="Data in electronic form which is attached to or logically associated with other data in electronic form and which is used by the signatory to sign. [ARF]"
+    data-tooltip="Data in electronic form which is attached to or logically associated with other data in electronic form and which is used by the signatory to sign. [ARF]"
+    name="artifacts:Electronic Signature"
+    href="../../glossary-definitions/#a3e0f39ba9b406ea47dad8347f5c10eb">signatures</a> or <a class="mkdocs-ezglossary-link"
+    id="4ac56ecf0705f88a3e1637d749667b63"
+    title="Data in electronic form which is attached to or logically associated with other data in electronic form to ensure the latter's origin and integrity. [ARF]"
+    data-tooltip="Data in electronic form which is attached to or logically associated with other data in electronic form to ensure the latter's origin and integrity. [ARF]"
+    name="artifacts:Electronic Seal"
+    href="../../glossary-definitions/#61701e918bfe1fb15287d60b31b63aca">seals</a> they create. APTITUDE WP2 SHALL establish the <a class="mkdocs-ezglossary-link"
     id="d43c953bdcc885873dc082e00e832da7"
     title="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
     href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">Certificate Authorities (CAs)</a> shown below. The <a class="mkdocs-ezglossary-link"
-    id="1068d5501d1191b309a3dbc37efeaa4d"
+    id="9c15dc0312ded1f34dc012f28c15ff76"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1748,7 +1763,7 @@
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> in which its <a class="mkdocs-ezglossary-link"
-    id="6a67708297257f3005bbf989d652cce5"
+    id="d4b7e853be11545cd28cd9a1795c09f8"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1826,7 +1841,7 @@
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
     href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</a> certificates published as <a class="mkdocs-ezglossary-link"
-    id="129f8d329f4f29f39f9e587be219d41c"
+    id="75e27404e5f6357c803b13df54e79b4d"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1839,7 +1854,7 @@
 <h4 id="trust-service-overview">Trust Service Overview<a class="headerlink" href="#trust-service-overview" title="Permanent link">&para;</a></h4>
 <p>The trust infrastructure capabilities are exposed through the APTITUDE Onboarding System. In this specification, <em>Onboarding System</em> denotes the aggregate logical system, while <em>Service</em> denotes one of its constituent components (Registration, WRPAC Issuance, WRPRC Issuance, Sign/Seal Certificate Issuance or Publication).</p>
 <p>The Onboarding System operates on a trust infrastructure whose entities are established and whose <a class="mkdocs-ezglossary-link"
-    id="9c15dc0312ded1f34dc012f28c15ff76"
+    id="4b881a298ef590729e091ab551917409"
     title="An authoritative entity represented by a public key and associated data. [ARF]"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1889,11 +1904,16 @@
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> entry. A <a class="mkdocs-ezglossary-link"
-    id="91788c16b66feda29c6084cbb81c851b"
+    id="802c5882d68a6db86e1cee943ce00836"
     title="A natural or legal person who provides Wallet Solutions. [ARF]"
     data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
     name="roles:Wallet Provider (WP)"
-    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> follows a notification-only path with respect to registration and WRP certificates: it bypasses those stages, obtains its Sign/Seal Certificate, and then submits its notifiable data to the Publication Service.</li>
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</a> follows a <a class="mkdocs-ezglossary-link"
+    id="b6b237981d760236573a86c8e99e30f4"
+    title="The act of transferring information to the European Commission. [ARF]"
+    data-tooltip="The act of transferring information to the European Commission. [ARF]"
+    name="processes:Notification"
+    href="../../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">notification</a>-only path with respect to registration and WRP certificates: it bypasses those stages, obtains its Sign/Seal Certificate, and then submits its notifiable data to the Publication Service.</li>
 <li>A <a class="mkdocs-ezglossary-link"
     id="1db82817f3d86dc7c5522f7de1c53847"
     title="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
@@ -1955,7 +1975,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 08:42:31 UTC">September 10, 2026 08:42:31</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 09:16:16 UTC">September 10, 2026 09:16:16</span>
   </span>
 
     
