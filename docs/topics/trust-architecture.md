@@ -24,7 +24,7 @@ flowchart TD
         subgraph AP["Attestation Providers"]
             QEAAP["QEAA Provider"]
             PubP["PuB-EAA Provider"]
-            EAAP["Non-qualified<br/>EAA Provider"]
+            EAAP["EAA Provider"]
         end
         RP["Relying Party (RP)"]
         RPI["Relying Party<br/>Intermediary (RPI)"]
@@ -93,7 +93,7 @@ flowchart TB
         QEAA_Entity["QEAA Provider"]
         PID_Entity["PID Provider"]
         PuBEAA_Entity["PuB-EAA Provider"]
-        EAA_Entity["Non-qualified EAA Provider"]
+        EAA_Entity["EAA Provider"]
         WRP_Entity["Wallet-Relying Party"]
         Wallet_Entity["Wallet Provider"]
     end

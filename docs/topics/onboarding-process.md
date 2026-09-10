@@ -206,7 +206,7 @@ The required inputs to onboard an operational entity depend on its type and on t
 
 !!! note
 
-    A <roles:Wallet-Relying Party (WRP)|WRP> that is also a notified entity (PID, PuB-EAA, QEAA, or non-qualified EAA Provider) provides both the registration data and the notifiable data: the former populates the <components:Register> and drives the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, the latter populates the corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE>. A <roles:Relying Party (RP)|Relying Party> or a <roles:Relying Party Intermediary (RPI)|Relying Party Intermediary> provides only the registration data, as it requires no <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.
+    A <roles:Wallet-Relying Party (WRP)|WRP> that is also a notified entity (<roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Provider>, <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, or <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Provider>) provides both the registration data and the notifiable data: the former populates the <components:Register> and drives the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, the latter populates the corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE>. A <roles:Relying Party (RP)|Relying Party> or a <roles:Relying Party Intermediary (RPI)|Relying Party Intermediary> provides only the registration data, as it requires no <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.
 
 ### Output
 

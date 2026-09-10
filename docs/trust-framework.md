@@ -4,10 +4,10 @@ Version 1.1
 
 | Version   | Date          | Description       |
 | --------- | ------------- | ----------------- |
-| 0.1       | 2026-04-19    | First release     |
-| 0.2       | 2026-06-08    | New section on Trust Management Process; editorial changes |
-| 1.0       | 2026-07-27    | Added Onboarding Process and Trust Checks sections; expanded Trust Artifacts with Trust Anchor and Entity Sign/Seal Certificates subsections; integrated Register API OAS; structural and editorial changes |
-| 1.1       |               |  |
+| 0.1       | 2026-04-19    | First release.     |
+| 0.2       | 2026-06-08    | Added section on Trust Management Process; editorial changes. |
+| 1.0       | 2026-07-27    | Added Onboarding Process and Trust Checks sections; expanded Trust Artifacts with Trust Anchor and Entity Sign/Seal Certificates subsections; integrated Register API OAS; structural and editorial changes. |
+| 1.1       | 2026-09-10    | Introduced a common profile for X.509 certificates; refactored Certificate Path Validation; updated Authorization Process to align with ARF 3.0.0; defined profile and checks for Key Attestation and Wallet Instance Attestation; consolidated implementation profiles and choices; structural and editorial changes. |
 
 **Authors**:
 
@@ -19,7 +19,7 @@ Version 1.1
 - Marco Pernpruner, *Fondazione Bruno Kessler*
 - Nuno Ponte, *Multicert*
 - Andreea Prian, *iDAKTO*
-- Leone Riello, *Infocert S.p.A.*
+- Leone Riello, *Tinexta Infocert S.p.A.*
 - Giada Sciarretta, *Fondazione Bruno Kessler*
 - Michal Šťava, *ARICOMA Digital S.R.O*
 - Nikolaos Triantafyllou, *University of the Aegean*
@@ -97,12 +97,13 @@ To address this gap, the following implementation choices have been adopted:
 | APTITUDE WP2 exposes specific services to emulate the missing institutional roles, as specified in [Trust Architecture](sections/trust-architecture.md). | 1, 2, 3 |
 | APTITUDE WP2 provides a single, simplified registration interface through which Partners self-declare their attributes and entitlements, without requiring dedicated administrative processes or certification scheme checks. | 2, 8 |
 | APTITUDE WP2 aggregates registration information into a single <components:Register> used for all entities. | 2 |
-| APTITUDE WP2 provides onboarding services to manage the associated operational processes (registration, <processes:Notification\|Notification>, publication, certificate issuance). | 2, 3 |
+| APTITUDE WP2 provides onboarding services to manage the associated operational processes (registration, <processes:Notification\|notification>, publication, certificate issuance). | 2, 3, 9 |
 | The <components:Public Key Infrastructure (PKI)\|Public Key Infrastructure> will not include a <artifacts:List Of Trusted Lists (LOTL)\|List Of Trusted List> with an associated <artifacts:Trusted List (TL)\|Trusted List>; instead, it will feature a <artifacts:List of Trusted Entities (LoTE)\|List of Trusted Entities> per entity type, including <roles:Provider of Electronic Attestation of Attributes (EAA Provider)\|EAA Providers> and <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Providers>. | 1, 4 |
 | APTITUDE WP2 acts as the sole <roles:List of Trusted Entities Provider (LoTE Provider)\|List of Trusted Entities Provider>; the certificate anchoring the various <artifacts:List of Trusted Entities (LoTE)\|List of Trusted Entities> will be published via GitHub. | 1 |
 | APTITUDE will not feature <components:Authentic Source\|Authentic Sources>. | 5 |
 | APTITUDE will not feature Catalogues of Attestations. Instead, <artifacts:Attestation Rulebook\|Attestation Rulebooks> published on GitHub by the various Use Cases will be used. | 6 |
 | APTITUDE will not feature active management of entity lifecycles, and will instead rely on dedicated Trust Use Cases for revocation. | 7 |
+| APTITUDE will feature a dedicated authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE), namely the <artifacts:Official Journal of APTITUDE (OJA)>. | 10 |
 
 All implementation choices made within this specification aim to ensure a functional trust infrastructure for the APTITUDE ecosystem. These choices are called out in dedicated boxes throughout the text, so that implementers can distinguish them at a glance from the surrounding normative and descriptive content.
 

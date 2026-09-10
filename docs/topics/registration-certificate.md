@@ -11,11 +11,10 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
     - **RFC 7519**
     - **RFC 8392**
 
-!!! choice "APTITUDE Implementation Choice"
+!!! choice "APTITUDE Implementation Choices"
 
-    <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> SHALL be issued only to legal persons.
-
-    The <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL issue a separate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> for each intended use of the registered <roles:Wallet-Relying Party (WRP)|WRP>.
+    - <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> SHALL be issued only to legal persons.
+    - The <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL issue a separate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> for each intended use of the registered <roles:Wallet-Relying Party (WRP)|WRP>.
 
 ### Format
 
