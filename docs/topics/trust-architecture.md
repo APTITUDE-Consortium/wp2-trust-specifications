@@ -2,7 +2,7 @@ This section defines the APTITUDE Trust Architecture, including all components t
 
 ### Entities
 
-The APTITUDE Large Scale Pilot implement business use cases that exercise interactions within the EUDI Wallet ecosystem. As a result, the roles defined by that ecosystem remain applicable, while the supporting trust infrastructure is realized specifically within the APTITUDE boundaries. The main entities involved in APTITUDE are:
+The APTITUDE Large Scale Pilot implement business use cases that exercise interactions within the <components:EUDI Wallet> ecosystem. As a result, the roles defined by that ecosystem remain applicable, while the supporting trust infrastructure is realized specifically within the APTITUDE boundaries. The main entities involved in APTITUDE are:
 
 - The <roles:User>, who controls and uses a <components:Wallet Unit>, that is a configuration of a <components:Wallet Solution> provided by a <roles:Wallet Provider (WP)>.
 - <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties (WRPs)>, which interact with the <components:Wallet Unit> in one or both of the following capacities:
@@ -56,7 +56,7 @@ The trust infrastructure employed for APTITUDE consists of:
 
 #### Public Key Infrastructure
 
-The APTITUDE PKI establishes the certificate chains used to authenticate the entities involved and to validate the signatures or seals they create. APTITUDE WP2 SHALL establish the <roles:Certificate Authority (CA)|Certificate Authorities (CAs)> shown below. The <artifacts:Trust Anchor> Certificate of each <roles:Certificate Authority (CA)|CA> SHALL be published in the corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+The APTITUDE PKI establishes the certificate chains used to authenticate the entities involved and to validate the <artifacts:Electronic Signature|signatures> or <artifacts:Electronic Seal|seals> they create. APTITUDE WP2 SHALL establish the <roles:Certificate Authority (CA)|Certificate Authorities (CAs)> shown below. The <artifacts:Trust Anchor> Certificate of each <roles:Certificate Authority (CA)|CA> SHALL be published in the corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
 The diagram is organised into four layers, from the WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow shows a <roles:Certificate Authority (CA)|CA> issuing a certificate to the corresponding entity, while a dashed line connects each <roles:Certificate Authority (CA)|CA> to the <artifacts:List of Trusted Entities (LoTE)|LoTE> in which its <artifacts:Trust Anchor> is published.
 
@@ -142,7 +142,7 @@ The **Onboarding UI** is the APTITUDE-specific orchestrator and single point of 
 
 1. A <roles:Wallet-Relying Party (WRP)|WRP> submits its registration data to the Registration Service. Within APTITUDE, registration SHALL be restricted to APTITUDE Partners; the Registration Service SHALL otherwise rely on the submitted self-declaration and SHALL NOT perform the identity proofing defined in [ETSI TS 119 461] or [CIR 2025/848, Article 6]. After successful verification, the Registration Service creates an active record in the <components:Register|WRP Register>.
 2. After the registration record is active, the <roles:Wallet-Relying Party (WRP)|WRP> requests the applicable <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The certificate issuance stage also covers Sign/Seal Certificates where applicable.
-3. A notified <roles:Wallet-Relying Party (WRP)|WRP> submits its notifiable data, after certificate issuance, to the Publication Service, which creates or updates the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry. A <roles:Wallet Provider (WP)|Wallet Provider> follows a notification-only path with respect to registration and WRP certificates: it bypasses those stages, obtains its Sign/Seal Certificate, and then submits its notifiable data to the Publication Service.
+3. A notified <roles:Wallet-Relying Party (WRP)|WRP> submits its notifiable data, after certificate issuance, to the Publication Service, which creates or updates the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry. A <roles:Wallet Provider (WP)|Wallet Provider> follows a <processes:Notification|notification>-only path with respect to registration and WRP certificates: it bypasses those stages, obtains its Sign/Seal Certificate, and then submits its notifiable data to the Publication Service.
 4. A <roles:Relying Party (RP)|Relying Party> or <roles:Relying Party Intermediary (RPI)|Relying Party Intermediary> completes onboarding after certificate issuance and does not require a <artifacts:List of Trusted Entities (LoTE)|LoTE> entry; trust in it is anchored through the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
 
 The figure below provides a logical overview rather than a deployment architecture. The notification data store is an internal detail of the Onboarding Process and is not represented here. The component responsibilities, prerequisites, inputs, outputs, and entity-specific paths are specified in [Onboarding Process](../topics/onboarding-process.md#onboarding-system).
