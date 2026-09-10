@@ -226,6 +226,25 @@
   
   
   
+    <li class="md-tabs__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  APTITUDE Technical Specification
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
     
     
       <li class="md-tabs__item">
@@ -325,6 +344,33 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APTITUDE Technical Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
       
@@ -355,10 +401,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -376,8 +422,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -691,10 +737,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -712,8 +758,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1530,59 +1576,710 @@
 
     rect rgb(230, 230, 230)
     Note over Wallet: Verify Attestation
-    Wallet-&gt;&gt;LoTL: 11a. Fetch EAA/PID/QEAA/Pub-EAA Provider LoTE
-    LoTL--&gt;&gt;Wallet: EAA/PID/QEAA/Pub-EAA Provider LoTE
+    Wallet-&gt;&gt;LoTL: 11a. Fetch Attestation Provider LoTE
+    LoTL--&gt;&gt;Wallet: Attestation Provider LoTE
     Note over Wallet: 11b. Validate LoTE
-    Note over Wallet: 11c. Identify the corresponding TL
-    Wallet-&gt;&gt;TL: 11d. Fetch TL
-    TL--&gt;&gt;Wallet: TL
-    Note over Wallet: 11e. Validate TL
-    Note over Wallet: 11f. Identify the corresponding trusted entity
-    Note over Wallet: 11g. Validate the Attestation signature
+    Note over Wallet: 11c. Validate Attestation signature
     end</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Attestation Providers can have a dedicated Authorization server that makes authorization-related endpoints available. That kind of implementation details are hidden in this schema, since the Attestation Provider bears the overall responsibility for responding to the Wallet Instance's requests.</p>
+<p><a class="mkdocs-ezglossary-link"
+    id="ab7098a471aa32cc1ad7ef734158513e"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Providers</a> can have a dedicated <a href="components:Authorization Server">Authorization Server</a> that makes authorization-related endpoints available. That kind of implementation details are hidden in this schema, since the <a class="mkdocs-ezglossary-link"
+    id="68da5b45bd988a95d335f984a89ab9e3"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> bears the overall responsibility for responding to the <a class="mkdocs-ezglossary-link"
+    id="cc2a0792b388878a96c8ba9f9aeee299"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a>'s requests.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>A nonce endpoint might be necessary as well however that feature does not have an impact on the trust-related checks.</p>
+<p>A <a class="mkdocs-ezglossary-link"
+    id="dabc086920cebb31e8dd225297595a23"
+    title="A single-use, unpredictable value issued by a server to prevent replay attacks; Wallets must include it verbatim in proofs or responses."
+    data-tooltip="A single-use, unpredictable value issued by a server to prevent replay attacks; Wallets must include it verbatim in proofs or responses."
+    name="data-elements:Nonce"
+    href="../../glossary-definitions/#30a68316857dc67701ca83b68abd8019">nonce</a> endpoint might be necessary as well however that feature does not have an impact on the trust-related checks.</p>
 </div>
 <h4 id="step-by-step-operations">Step-by-step Operations<a class="headerlink" href="#step-by-step-operations" title="Permanent link">&para;</a></h4>
-<p><strong>Step 1: Request EAA Issuance</strong> Various flows are possible for this step and this can depend on the wallet implementation. The Wallet Instance can be populated with a pre-defined set of credentials offered by different Attestation Providers or can fetch other offers via different means.</p>
-<p><strong>Step 2: Fetch Credential Issuer Metadata (OpenID4VCI)</strong> The Wallet Instance retrieves information about the Attestation Provider's technical capabilities, supported attestations, and display information from the Attestation Provider endpoint. This information includes the Provider of WRPRC. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the WRPAC in its Protected Header [AUTHZ-ISS-04].</p>
-<p><strong>Step 3a: Fetch Provider of WRPAC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPAC issuers from a publicly-known URL.</p>
-<p><strong>Step 3b: Validate LoTE</strong> The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
-<p><strong>Step 3c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPAC presented in the metadata JWS [AUTHZ-ISS-02].</p>
-<p><strong>Step 3d: Validate the WRPAC</strong> The Wallet Instance validates the authenticity and integrity of the WRPAC using the trust anchor of the trusted entity identitied in the LoTE.</p>
-<p><strong>Step 3e: Validate the metadata signature using the WRPAC</strong> The Wallet Instance validates the metadata JWS signature using the WRPAC [AUTHZ-ISS-05].</p>
-<p><strong>Step 4a: Fetch Provider of WRPRC LoTE</strong> The Wallet Instance retrieves the LoTE listing all the WRPRC issuers from a publicly-known URL [AUTHZ-ISS-07].</p>
-<p><strong>Step 4b: Validate LoTE</strong> The Wallet Instance validates the LoTE signature is order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
-<p><strong>Step 4c: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the LoTE trusted entity corresponding to the WRPRC presented in the Attestation Provider metadata.</p>
-<p><strong>Step 4d: Validate the WRPRC</strong> The Wallet Instance validates the authenticity and integrity of the WRPRC using the trust anchor of the trusted entity identitied in the LoTE [AUTHZ-GEN-08].</p>
-<p><strong>Step 4e: Check Provider entitlements</strong> The Wallet Instance verifies that the entitlement of issuing attestations is present in the WRPRC [AUTHZ-GEN-11, AUTHZ-GEN-13].</p>
-<p><strong>Step 5: Match WRPAC with WRPRC</strong> The Wallet Instance verifies that both the certificates are related to the same entity [AUTHZ-GEN-09, AUTHZ-GEN-12].</p>
-<p><strong>Step 6: Send WIA to PAR endpoint (OpenID4VCI)</strong> The Wallet Instance sends the WIA signed by the Wallet Provider, attesting that the Wallet Instance is a valid one.</p>
-<p><strong>Step 7a: Fetch Wallet Providers LoTE</strong> The Attestation Providers retrieves the LoTE listing all the Wallet Providers from a publicly-known URL. This list is necessary to validate different signed artifacts received from the Wallet Instance in the different requests. Attestation Providers can implement a caching mechanism of the LoTE so that they would not need to retrieve it multiple times in the course of the EAA issuance process. It is up to Attestation Providers to implement this mechanism or not and to decide for how long they would want to cache the list. This implies that in some cases, this step could be skipped.</p>
-<p><strong>Step 7b: Validate LoTE</strong> The Attestation Provider validates the LoTE signature in order to make sure the LoTE is authentic. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
-<p><strong>Step 7c: Identify the corresponding trusted entity</strong> The Attestation Provider identifies the LoTE trusted entity corresponding to the WIA presented in the request.</p>
-<p><strong>Step 7d: Validate the WIA signature</strong> The Attestation Provider checks the WIA integrity and authenticity by validating the JWT signature using the trust anchor of the trusted entity identitied in the LoTE.</p>
-<p><strong>Step 7e: Validate the WIA contents</strong> The Attestation Provider checks that the Wallet Instance is valid by verifying the status list referenced in the WIA. Extra cheks are performed like WIA validity checks and associated Proof-of-Possession checks.</p>
-<p><strong>Step 8: Send WIA to Token endpoint (OpenID4VCI)</strong> The Wallet Instance sends the WIA signed by the Wallet Provider, attesting that the Wallet Instance is a valid one.</p>
-<p><strong>Step 9: Send KA to Credential endpoint (OpenID4VCI)</strong> The Wallet Instance sends the KA signed by the Wallet Provider, attesting information about the security of cryptographic keys stored in the Wallet Unit.</p>
-<p><strong>Step 10a: Validate the KA signature</strong> The Attestation Provider checks the KA integrity and authenticity by validating the signature using the trust anchor of the trusted entity identitied in the LoTE.</p>
-<p><strong>Step 10b: Validate the KA contents</strong> The Attestation Provider checks that the cryptographic keys are protected according to its policy if any, and verifies the related Proof-of-Possessions if any.</p>
-<p><strong>Step 11a: Fetch EAA/PID/QEAA/Pub-EAA Provider LoTE</strong> The Wallet Instance retrieves the LoTE listing all the Providers of the corresponding type.</p>
-<p><strong>Step 11b: Validate EAA/PID/QEAA/Pub-EAA Provider LoTE</strong> The Wallet Instance validates the LoTE signature in order to make sure the LoTE is authentic. A good practice is to follow the clause 5 of ETSI TS 319 102-1 for validating AdES
-digital signatures. Extra checks are performed in order to make sure the LoTE is not outdated.</p>
-<p><strong>Step 11c: Identify the corresponding TL</strong> The Wallet Instance identifies the corresponding national TL needed to validate the Attestation received in the Credential Response.</p>
-<p><strong>Step 11d: Fetch TL</strong> The Wallet Instance retrieves the national TL listing all the trust services registered in that Member State.</p>
-<p><strong>Step 11e: Validate TL</strong> The Wallet Instance validates the TL signature in order to make sure the TL is authentic. Extra checks are performed in order to make sure the TL is not outdated.</p>
-<p><strong>Step 11f: Identify the corresponding trusted entity</strong> The Wallet Instance identifies the TL trusted entity corresponding to the signature of the Attestation issued.</p>
-<p><strong>Step 11g: Validate the Attestation signature</strong> The Wallet Instance checks the integrity and authenticity of the Attestation by validating the signature using the trust anchor of the trusted entity identitied in the TL. If multiple Attestations were received, they are all validated.</p>
-<blockquote>
-<p>If any of the checks described in the previous steps fail, the process can be aborted either by the Wallet Instance, the user, or the Attestation Provider.</p>
-</blockquote>
+<p><strong>Step 1: Request EAA Issuance.</strong> Various flows are possible for this step and this can depend on the wallet implementation. The <a class="mkdocs-ezglossary-link"
+    id="2845bee08b21f2142b41d3ebf67c00bb"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> can be populated with a pre-defined set of credentials offered by different <a class="mkdocs-ezglossary-link"
+    id="1c109578e28b9ec2ce36b9c2d9bda357"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Providers</a> or can fetch other offers via different means.</p>
+<p><strong>Step 2: Fetch <a class="mkdocs-ezglossary-link"
+    id="cdc0595ea1baa5678b4d125278cfaf4a"
+    title="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
+    data-tooltip="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
+    name="artifacts:Credential Issuer Metadata"
+    href="../../glossary-definitions/#5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</a> (<a class="mkdocs-ezglossary-link"
+    id="6e1585f6b74530acf843e4f73895f3f7"
+    title="OID4VCI is an open standard that defines a secure API for issuing Verifiable Credentials (VCs) to a user's digital wallet."
+    data-tooltip="OID4VCI is an open standard that defines a secure API for issuing Verifiable Credentials (VCs) to a user's digital wallet."
+    name="protocols:OpenID for Verifiable Credentials Issuance (OID4VCI)"
+    href="../../glossary-definitions/#58a5be9a1e264d868c06919368fa60bf">OID4VCI</a>).</strong> The <a class="mkdocs-ezglossary-link"
+    id="c60ce09fbc2563853b4c1c7683c75ec7"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> retrieves information about the <a class="mkdocs-ezglossary-link"
+    id="4682a48c86dc3914bb9685a84f613caf"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a>'s technical capabilities, supported attestations, and display information from the <a class="mkdocs-ezglossary-link"
+    id="afbcf44c134c2eaf0b673a61d606957a"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> endpoint. This information includes the <a class="mkdocs-ezglossary-link"
+    id="348ae3f9ae879b3d85fa5c7f2e2518d9"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a>. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the <a class="mkdocs-ezglossary-link"
+    id="f827c3887ff606e330e718e5cefbaf96"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> in its Protected Header [<code>AUTHZ-ISS-04</code>].</p>
+<p><strong>Step 3a: Fetch <a class="mkdocs-ezglossary-link"
+    id="0a6ef252da91e27e4c6f0df02cf31549"
+    title="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party access certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</a> <a class="mkdocs-ezglossary-link"
+    id="79164b5293b9d05bb15bc2ae84536396"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="79c88887566480f3097ce7b32a65d5aa"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> retrieves the <a class="mkdocs-ezglossary-link"
+    id="3c126665b6c9ebdf98d756251071b326"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> listing all the <a class="mkdocs-ezglossary-link"
+    id="b21a3e6eaea3567f8657ee5cbdc131da"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> issuers from a publicly-known URL.</p>
+<p><strong>Step 3b: Validate LoTE.</strong> The <a class="mkdocs-ezglossary-link"
+    id="e4df1b9fb6b4a91784e41bde1ed87954"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> validates the <a class="mkdocs-ezglossary-link"
+    id="b976a70175e551c0546587cb0dd80381"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> signature is order to make sure the <a class="mkdocs-ezglossary-link"
+    id="0db33ce12fa07026d6a4840fc7a2083a"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is authentic. Extra checks are performed in order to make sure the <a class="mkdocs-ezglossary-link"
+    id="4456917ee6e790f6782496dbf8b32379"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is not outdated.</p>
+<p><strong>Step 3c: Identify the corresponding <a class="mkdocs-ezglossary-link"
+    id="fcda2b9a3e22a183816c5ca1e08c3835"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="da82c1220344eb6ff9733f447d521abb"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> identifies the <a class="mkdocs-ezglossary-link"
+    id="a48fe7cb0bee92b2624c89549fa2bd33"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> <a class="mkdocs-ezglossary-link"
+    id="e5c657b37ddfd2cce1e7a7f75a19ad66"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a> corresponding to the <a class="mkdocs-ezglossary-link"
+    id="348f4bfcf79b332c62eeab5730df08ca"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> presented in the metadata JWS [<code>AUTHZ-ISS-02</code>].</p>
+<p><strong>Step 3d: Validate the <a class="mkdocs-ezglossary-link"
+    id="eb96b41efde96b6500c4cbe78a7a22db"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="77c71a5030eba64edf602c5bcf6b3b60"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> validates the authenticity and integrity of the <a class="mkdocs-ezglossary-link"
+    id="d44d5bae0a2c3a6f1843f7c2f1cf5472"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> using the trust anchor of the <a class="mkdocs-ezglossary-link"
+    id="9664b7166a89d836fc688af32d75498a"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a> identitied in the <a class="mkdocs-ezglossary-link"
+    id="6f38290387966119774d7317510638ca"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</p>
+<p><strong>Step 3e: Validate the metadata signature using the <a class="mkdocs-ezglossary-link"
+    id="4321617cff6af942e140fce9e668a567"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="4dda6fa38e2d3d6a24534bb26e2eb430"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> validates the metadata JWS signature using the <a class="mkdocs-ezglossary-link"
+    id="ac9a958da2bd4e1b8bf23aada9762512"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> [<code>AUTHZ-ISS-05</code>].</p>
+<p><strong>Step 4a: Fetch <a class="mkdocs-ezglossary-link"
+    id="133775c3895164aafd48992b4fef4520"
+    title="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (wallet-relying party) registration certificates to (wallet-)relying parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</a> <a class="mkdocs-ezglossary-link"
+    id="888e294ccc651f4dd71df4d5e016593a"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="92a1b1b1c6db887bf90aa617f3f3f95a"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> retrieves the <a class="mkdocs-ezglossary-link"
+    id="633521ba5d366124f83a178545b3c2f8"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> listing all the <a class="mkdocs-ezglossary-link"
+    id="da6600529637d2ab7cac1e1a1569b8cf"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> issuers from a publicly-known URL [<code>AUTHZ-ISS-07</code>].</p>
+<p><strong>Step 4b: Validate <a class="mkdocs-ezglossary-link"
+    id="14b6db3c1782a1048cc18b42673442af"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="0abbcaccfc24066637db784e9a9f5d25"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> validates the <a class="mkdocs-ezglossary-link"
+    id="c88de1ad71abfc0d76fa9a8f3f64f2d8"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> signature is order to make sure the <a class="mkdocs-ezglossary-link"
+    id="0bf7693c8e2feccb0774a4f03d37d068"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is authentic. Extra checks are performed in order to make sure the <a class="mkdocs-ezglossary-link"
+    id="182fd00c446e16e8580a93f29b7c4906"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is not outdated.</p>
+<p><strong>Step 4c: Identify the corresponding <a class="mkdocs-ezglossary-link"
+    id="9cde257529e4b9ce6a993a1c0b78a7fe"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="849ef97b2a71c33aff2a3b0b51a5cd89"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> identifies the <a class="mkdocs-ezglossary-link"
+    id="6aae9c03c1a1318cfbc38cd8755e4a80"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> <a class="mkdocs-ezglossary-link"
+    id="d7217c095b3cb2c38576c4877f9debd2"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a> corresponding to the <a class="mkdocs-ezglossary-link"
+    id="f3d79d135ff42f95b28a84eeb19a323d"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> presented in the <a class="mkdocs-ezglossary-link"
+    id="3132c28ade533ed020cb31f55f35a78c"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> metadata.</p>
+<p><strong>Step 4d: Validate the <a class="mkdocs-ezglossary-link"
+    id="94190a11d1daa7eb9962a6bc1a3f24c7"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="a5834af711f72a638b07703ae1034a0a"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> validates the authenticity and integrity of the <a class="mkdocs-ezglossary-link"
+    id="68b9a4a71a2bf5b1a2f1c3614faeadc3"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> using the <a class="mkdocs-ezglossary-link"
+    id="c9eb49a3ba5a4ce0a610e6a5d67d6a05"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> of the <a class="mkdocs-ezglossary-link"
+    id="31def42a3832f44b533d4fa0b133905a"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a> identitied in the <a class="mkdocs-ezglossary-link"
+    id="e843938d7fc1f9e84079cb68328d0eb9"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> [<code>AUTHZ-GEN-08</code>].</p>
+<p><strong>Step 4e: Check Provider entitlements.</strong> The <a class="mkdocs-ezglossary-link"
+    id="5ee1c781b5cd3aa91cfbc1e06555aa2d"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> verifies that the entitlement of issuing <a class="mkdocs-ezglossary-link"
+    id="66de3ce06cd3217e9b4809cf2b5ec33f"
+    title="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</a> is present in the <a class="mkdocs-ezglossary-link"
+    id="1147e5cfea876b01e4b9dc98856b5354"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a> [<code>AUTHZ-GEN-11</code>, <code>AUTHZ-GEN-13</code>].</p>
+<p><strong>Step 5: Match <a class="mkdocs-ezglossary-link"
+    id="e70579fda7908c976aa0c1b8100e8604"
+    title="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a provider of wallet-relying party access certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</a> with <a class="mkdocs-ezglossary-link"
+    id="127379b4cf59d49bd8b5c85e1ae4bc9b"
+    title="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="3650dc1921a7f542e48def35e04da509"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> verifies that both the certificates are related to the same entity [<code>AUTHZ-GEN-09</code>, <code>AUTHZ-GEN-12</code>].</p>
+<p><strong>Step 6: Send <a class="mkdocs-ezglossary-link"
+    id="69b0bbc48bcce5eb9e6ec98a51636daf"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> to PAR endpoint (<a class="mkdocs-ezglossary-link"
+    id="49067fb7b4a3e836bec8eea1bc69dc35"
+    title="OID4VCI is an open standard that defines a secure API for issuing Verifiable Credentials (VCs) to a user's digital wallet."
+    data-tooltip="OID4VCI is an open standard that defines a secure API for issuing Verifiable Credentials (VCs) to a user's digital wallet."
+    name="protocols:OpenID for Verifiable Credentials Issuance (OID4VCI)"
+    href="../../glossary-definitions/#58a5be9a1e264d868c06919368fa60bf">OID4VCI</a>).</strong> The <a class="mkdocs-ezglossary-link"
+    id="1263e5bcc660274e1bfdeee091cc3e36"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> sends the <a class="mkdocs-ezglossary-link"
+    id="6db69333fbb8df6eddbd29209638215d"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> signed by the <a class="mkdocs-ezglossary-link"
+    id="d02d28fdc5262c59c423227c2846f6cf"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WP</a>, attesting that the <a class="mkdocs-ezglossary-link"
+    id="d86e765ca193ae5d56275f8f63f30388"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> is a valid one.</p>
+<p><strong>Step 7a: Fetch <a class="mkdocs-ezglossary-link"
+    id="b1aec92a4508c7b6d97520be1326d3ce"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WP</a> <a class="mkdocs-ezglossary-link"
+    id="e9c193c3e5443074520fc77c9586962c"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="dd7e73b6b9e5733c532a4a7183f31338"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Providers</a> retrieves the <a class="mkdocs-ezglossary-link"
+    id="76bf78014de81feb84f24f8eec05cfd7"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> listing all the <a class="mkdocs-ezglossary-link"
+    id="1128819a8bcc4e56523a74dcefc9786a"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</a> from a publicly-known URL. This list is necessary to validate different signed artifacts received from the <a class="mkdocs-ezglossary-link"
+    id="b142f9fff513ed80cd1e62cf11e6e3e8"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> in the different requests. <a class="mkdocs-ezglossary-link"
+    id="0dd87f10a8a11a93da7e3c5589620389"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Providers</a> can implement a caching mechanism of the <a class="mkdocs-ezglossary-link"
+    id="ad6af6bd53533dc3d2c50c27be6316ea"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> so that they would not need to retrieve it multiple times in the course of the <a class="mkdocs-ezglossary-link"
+    id="88a4c9241d62d5e145aa3aa591ce5639"
+    title="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    data-tooltip="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
+    name="credentials:Electronic Attestation of Attributes (EAA)"
+    href="../../glossary-definitions/#a7a5d7b924e0172a1247714760380eab">EAA</a> issuance process. It is up to <a class="mkdocs-ezglossary-link"
+    id="b0eca5593d3689ec8a098da7da8001d3"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Providers</a> to implement this mechanism or not and to decide for how long they would want to cache the list. This implies that in some cases, this step could be skipped.</p>
+<p><strong>Step 7b: Validate <a class="mkdocs-ezglossary-link"
+    id="ef0f2028c799f25056611525e2854b0d"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="240119a121bff20ba11e08b692683f04"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> validates the <a class="mkdocs-ezglossary-link"
+    id="119f5f0c4126a625acfccc537eefd13b"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> signature in order to make sure the <a class="mkdocs-ezglossary-link"
+    id="34a5cd2dd3efa91b8737ccb7e7f66ab1"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is authentic. Extra checks are performed in order to make sure the <a class="mkdocs-ezglossary-link"
+    id="fb4c64d890c6fadf714509faaafcf56b"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is not outdated.</p>
+<p><strong>Step 7c: Identify the corresponding <a class="mkdocs-ezglossary-link"
+    id="b157bc9332c3dd77dad40b3873ac1ae2"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="378a26a71ca313242a1f96e3a8afaa86"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> identifies the <a class="mkdocs-ezglossary-link"
+    id="1151b6eedb75fe4516d3b94193b64073"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> <a class="mkdocs-ezglossary-link"
+    id="84a4522fcb4210eea5cbf8e159065d2d"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a> corresponding to the <a class="mkdocs-ezglossary-link"
+    id="bc894f4d239c9ee90ea8f8e9dd8ec8a5"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> presented in the request.</p>
+<p><strong>Step 7d: Validate the <a class="mkdocs-ezglossary-link"
+    id="a9db9a6b85028d13fcd6811f37be1820"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> signature.</strong> The <a class="mkdocs-ezglossary-link"
+    id="9f8f03527ed455c0c5dac5804b79e62d"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> checks the <a class="mkdocs-ezglossary-link"
+    id="010685f48ac2754d75f8bbb23d8296c4"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> integrity and authenticity by validating the JWT signature using the trust anchor of the <a class="mkdocs-ezglossary-link"
+    id="d1fea5f3213a266632b274c45ee73829"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a> identitied in the <a class="mkdocs-ezglossary-link"
+    id="7d261343100ceb869df5b69019ec8521"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</p>
+<p><strong>Step 7e: Validate the <a class="mkdocs-ezglossary-link"
+    id="7eb80f68a54c34d8a616b69788eabaa9"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> contents.</strong> The <a class="mkdocs-ezglossary-link"
+    id="83267c12b2d244c7db98ac8a93deddc0"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> checks that the <a class="mkdocs-ezglossary-link"
+    id="a56fdb73abff07376040d5e46813fe71"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> is valid by verifying the status list referenced in the <a class="mkdocs-ezglossary-link"
+    id="e41ea5ee552dcb41431c723efe3e548f"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a>. Extra cheks are performed like <a class="mkdocs-ezglossary-link"
+    id="f0a88627632ab730c8c13efeaf0599e3"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> validity checks and associated Proof-of-Possession checks.</p>
+<p><strong>Step 8: Send <a class="mkdocs-ezglossary-link"
+    id="2b644ffd282e5124eca039c2fbe208c5"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> to Token endpoint (<a class="mkdocs-ezglossary-link"
+    id="4bcfe6e83c6a17c6f18119e608066c13"
+    title="OID4VCI is an open standard that defines a secure API for issuing Verifiable Credentials (VCs) to a user's digital wallet."
+    data-tooltip="OID4VCI is an open standard that defines a secure API for issuing Verifiable Credentials (VCs) to a user's digital wallet."
+    name="protocols:OpenID for Verifiable Credentials Issuance (OID4VCI)"
+    href="../../glossary-definitions/#58a5be9a1e264d868c06919368fa60bf">OID4VCI</a>).</strong> The <a class="mkdocs-ezglossary-link"
+    id="ad87ed5913ddfdff4d1af6510f660068"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> sends the <a class="mkdocs-ezglossary-link"
+    id="a4f03bccb3b61ee7dba03d9633040dc3"
+    title="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</a> signed by the <a class="mkdocs-ezglossary-link"
+    id="a3df28b5cb2184d8551148623d248602"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WP</a>, attesting that the <a class="mkdocs-ezglossary-link"
+    id="f8837244fe4f1b5bec436a544f00133b"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> is a valid one.</p>
+<p><strong>Step 9: Send <a class="mkdocs-ezglossary-link"
+    id="d0a7814981c87694f43a487717a4a654"
+    title="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</a> to Credential endpoint (<a class="mkdocs-ezglossary-link"
+    id="87064c985507d7e3d81698d463628db8"
+    title="OID4VCI is an open standard that defines a secure API for issuing Verifiable Credentials (VCs) to a user's digital wallet."
+    data-tooltip="OID4VCI is an open standard that defines a secure API for issuing Verifiable Credentials (VCs) to a user's digital wallet."
+    name="protocols:OpenID for Verifiable Credentials Issuance (OID4VCI)"
+    href="../../glossary-definitions/#58a5be9a1e264d868c06919368fa60bf">OID4VCI</a>).</strong> The <a class="mkdocs-ezglossary-link"
+    id="7e6b3718df28b1ec61f4603fc8dc7f1b"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> sends the <a class="mkdocs-ezglossary-link"
+    id="7408436e04e0c5353b4858aa5d32315d"
+    title="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</a> signed by the <a class="mkdocs-ezglossary-link"
+    id="905cde2e5d83144ca3659803df881722"
+    title="A natural or legal person who provides Wallet Solutions. [ARF]"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WP</a>, attesting information about the security of cryptographic keys stored in the <a class="mkdocs-ezglossary-link"
+    id="c946e194362c58cafdeb299bd921cbf0"
+    title="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</a>.</p>
+<p><strong>Step 10a: Validate the <a class="mkdocs-ezglossary-link"
+    id="a0bf55b6140117551fd6573829fdac3c"
+    title="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</a> signature.</strong> The <a class="mkdocs-ezglossary-link"
+    id="fc7c1902fc4d1aa16911494101f372d8"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> checks the <a class="mkdocs-ezglossary-link"
+    id="778f36571553f9e1591b015caa500e43"
+    title="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</a> integrity and authenticity by validating the signature using the <a class="mkdocs-ezglossary-link"
+    id="51c536d6b96d3226dd0bc33a2e0c2ccd"
+    title="An authoritative entity represented by a public key and associated data. [ARF]"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</a> of the <a class="mkdocs-ezglossary-link"
+    id="380b403b8f16d8c213b9b9b64b967670"
+    title="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
+    name="roles:Trusted Entity"
+    href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entity</a> identitied in the <a class="mkdocs-ezglossary-link"
+    id="41e1a38d572a8819c7d826e9f3b99b0b"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</p>
+<p><strong>Step 10b: Validate the <a class="mkdocs-ezglossary-link"
+    id="773ee90d129c9c6e5eaa15ccb89ba12e"
+    title="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</a> contents.</strong> The <a class="mkdocs-ezglossary-link"
+    id="8cca7b869445d57b1ed88c37773dbcdd"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> checks that the cryptographic keys are protected according to its policy if any, and verifies the related Proof-of-Possessions if any.</p>
+<p><strong>Step 11a: Fetch EAA/PID/QEAA/Pub-EAA Provider <a class="mkdocs-ezglossary-link"
+    id="47741c84b3cb6e2044a094341b4a6b6c"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="fcbb40fe68497349d436583c10f14d30"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> retrieves the <a class="mkdocs-ezglossary-link"
+    id="46cdd10a5f34af4e097727de73ce33b6"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> listing all the Providers of the corresponding type.</p>
+<p><strong>Step 11b: Validate <a class="mkdocs-ezglossary-link"
+    id="42ecc651ac888c9aa5aef3c83f70ece4"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a> <a class="mkdocs-ezglossary-link"
+    id="d9309e32a449ac1b682a248eebeb8382"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>.</strong> The <a class="mkdocs-ezglossary-link"
+    id="c0835c1ba06d2e28783e116dc5cbe2ec"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> validates the <a class="mkdocs-ezglossary-link"
+    id="d14a0360d915a44b6ed2e956f4014ead"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> signature in order to make sure the <a class="mkdocs-ezglossary-link"
+    id="630d03ab2011678bdee432425ec1ccc6"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is authentic. A good practice is to follow the [ETSI TS 319 102-1, Clause 5] for validating AdES digital signatures. Extra checks are performed in order to make sure the <a class="mkdocs-ezglossary-link"
+    id="8a018dce119914eb2697345cdb480aa6"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a> is not outdated.</p>
+<p><strong>Step 11c: Validate Attestation signature.</strong> The <a class="mkdocs-ezglossary-link"
+    id="3c8adf384f8bfb994d5db606d491d788"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a> checks the integrity and authenticity of the Attestation by validating the signature using the trust anchor identified in the <a class="mkdocs-ezglossary-link"
+    id="cc07cff2a87ffe036cb030023fe40ffc"
+    title="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</a>. If multiple Attestations were received, they are all validated.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If any of the checks described in the previous steps fail, the process SHALL be aborted either by the <a class="mkdocs-ezglossary-link"
+    id="780c873f6a698558f480a6c20e94550a"
+    title="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    data-tooltip="The application installed and configured on a User's device or environment, which is part of a Wallet Unit, and that the User uses to interact with the Wallet Unit. [ARF]"
+    name="components:Wallet Instance"
+    href="../../glossary-definitions/#a886c8bc8feb4b7b239b07e272228cd9">Wallet Instance</a>, the user, or the <a class="mkdocs-ezglossary-link"
+    id="4201919899b0913bbda2df149ea8b63b"
+    title="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</a>.</p>
+</div>
 
 
 
@@ -1603,7 +2300,7 @@ digital signatures. Extra checks are performed in order to make sure the LoTE is
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 09:20:05 UTC">September 10, 2026 09:20:05</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 11:01:59 UTC">September 10, 2026 11:01:59</span>
   </span>
 
     
