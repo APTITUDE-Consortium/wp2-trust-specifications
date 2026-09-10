@@ -4990,12 +4990,12 @@ The format for the Status List Token is specified in <a href="../trust-artifacts
 <summary>Status List Request in JWT format</summary>
 </details>
 <!-- BEGIN INCLUDE ../examples/status-list-request-jwt.md -->
-<p><div class="highlight"><pre><span></span><code>GET /statuslists/1 HTTP/1.1
+<div class="highlight"><pre><span></span><code>GET /statuslists/1 HTTP/1.1
 Host: example.com
 Accept: application/statuslist+jwt
 </code></pre></div>
-   <!-- END INCLUDE -->
-</p>
+<!-- END INCLUDE -->
+
 <h4 id="status-list-response">Status List Response<a class="headerlink" href="#status-list-response" title="Permanent link">&para;</a></h4>
 <p>The successful response SHALL contain a <a class="mkdocs-ezglossary-link"
     id="9dc5a2aa9e3aa4516bef245ac74ef91e"
@@ -5015,8 +5015,8 @@ GFtcGxlLmNvbSIsInN0YXR1c19saXN0Ijp7ImJpdHMiOjEsImxzdCI6ImVOcmJ1UmdBQ
 WhjQlhRIn0sInN1YiI6Imh0dHBzOi8vZXhhbXBsZS5jb20vc3RhdHVzbGlzdHMvMSIsI
 nR0bCI6NDMyMDB9.2lKUUNG503R9htu4aHAYi7vjmr3sgApbfoDvPrl65N3URUO1EYqq
 Ql45Jfzd-Av4QzlKa3oVALpLwOEUOq-U*g
-</code></pre></div>
-<!-- END INCLUDE --></p>
+</code></pre></div></p>
+<!-- END INCLUDE -->
 </details>
 <p>If caching-related HTTP headers are present in the HTTP response, consumers SHALL prioritize the <code>exp</code> and <code>ttl</code> claims within the <a class="mkdocs-ezglossary-link"
     id="43437257d16f9f5a652c10781d3687ff"
