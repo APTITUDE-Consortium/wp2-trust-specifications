@@ -50,7 +50,7 @@ The trust infrastructure employed for APTITUDE consists of:
 
 - The APTITUDE <components:Public Key Infrastructure (PKI)|Public Key Infrastructure (PKI)>, which issues and manages the X.509 certificates required by the ecosystem.
 - The Registration Service and <components:Register>, which record the identity, role, and authorization information of <roles:Wallet-Relying Party (WRP)|WRPs>.
-- The Certificate Issuance Services, which issue and manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, and Entity Sign/Seal Certificates.
+- The Certificate Issuance Services, which issue and manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> during onboarding. The PKI also issues and manages the Entity Sign/Seal Certificates used by entities.
 - The Publication Service, which signs and publishes the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 - The Onboarding UI, which coordinates these services for each entity requesting onboarding.
 
@@ -134,49 +134,34 @@ The <roles:Certificate Authority (CA)|CA> certificates published as <artifacts:T
 
 #### Trust Service Overview
 
-The trust infrastructure capabilities are exposed through the APTITUDE Onboarding System. In this specification, *Onboarding System* denotes the aggregate logical system, while *Service* denotes one of its constituent components (Registration, Certificate Issuance, or Publication).
+The trust infrastructure capabilities are exposed through the APTITUDE Onboarding System. In this specification, *Onboarding System* denotes the aggregate logical system, while *Service* denotes one of its constituent components (Registration, WRPAC Issuance, WRPRC Issuance, Sign/Seal Certificate Issuance or Publication).
 
-The Onboarding System enables APTITUDE Partners to obtain the trust artifacts required for interactions within the ecosystem. The path varies by entity type, as detailed in [Onboarding Paths by Entity Type](../sections/onboarding-process.md#onboarding-paths-by-entity-type), but comprises the following activities where applicable:
+The Onboarding System operates on a trust infrastructure whose entities are established and whose <artifacts:Trust Anchor|Trust Anchors> are published before operational entity onboarding starts. Within APTITUDE, this one-time prerequisite is established out of band with no pilot software and is not part of the recurring onboarding flow. The recurring process enables APTITUDE operational entities to obtain the trust artifacts required for interactions within the ecosystem. Its detailed inputs, outputs, and entity-specific paths are defined in [Onboarding Process](../sections/onboarding-process.md).
 
-1. The entity submits its identity and authorization information to the Registration Service. Within APTITUDE, the Registration Service SHALL verify that the requester is an APTITUDE Partner, and SHALL otherwise rely on the submitted self-declaration; it SHALL NOT perform the identity proofing defined in [ETSI TS 119 461] or [CIR 2025/848, Article 6].
-2. The entity submits the technical configuration and cryptographic material required for its role. The applicable Certificate Issuance Services issue the corresponding <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|Wallet-Relying Party Access Certificate (WRPAC)>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, or Entity Sign/Seal Certificate.
-3. For an entity whose <artifacts:Trust Anchor> has to be published, the Publication Service uses its notifiable information to create or update the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.
+The **Onboarding UI** is the APTITUDE-specific orchestrator and single point of contact for an entity requesting onboarding. It collects the submitted data and SHALL trigger the applicable stages in order: registration, certificate issuance, and, where applicable, publication or update of the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> entry:
 
-The figure below provides a logical overview rather than a deployment architecture. The component responsibilities, prerequisites, inputs, outputs, and entity-specific paths are specified in [Onboarding Process](../sections/onboarding-process.md).
+1. A <roles:Wallet-Relying Party (WRP)|WRP> submits its registration data to the Registration Service. Within APTITUDE, registration SHALL be restricted to APTITUDE Partners; the Registration Service SHALL otherwise rely on the submitted self-declaration and SHALL NOT perform the identity proofing defined in [ETSI TS 119 461] or [CIR 2025/848, Article 6]. After successful verification, the Registration Service creates an active record in the <components:Register|WRP Register>.
+2. After the registration record is active, the <roles:Wallet-Relying Party (WRP)|WRP> requests the applicable <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The certificate issuance stage also covers Sign/Seal Certificates where applicable.
+3. A notified <roles:Wallet-Relying Party (WRP)|WRP> submits its notifiable data, after certificate issuance, to the Publication Service, which creates or updates the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry. A <roles:Wallet Provider (WP)|Wallet Provider> follows a notification-only path with respect to registration and WRP certificates: it bypasses those stages, obtains its Sign/Seal Certificate, and then submits its notifiable data to the Publication Service.
+4. A <roles:Relying Party (RP)|Relying Party> or <roles:Relying Party Intermediary (RPI)|Relying Party Intermediary> completes onboarding after certificate issuance and does not require a <artifacts:List of Trusted Entities (LoTE)|LoTE> entry; trust in it is anchored through the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
+
+The figure below provides a logical overview rather than a deployment architecture. The notification data store is an internal detail of the Onboarding Process and is not represented here. The component responsibilities, prerequisites, inputs, outputs, and entity-specific paths are specified in [Onboarding Process](../topics/onboarding-process.md#onboarding-system).
 
 ```mermaid
-flowchart TB
-    Entity(["APTITUDE participant<br/>requesting onboarding"])
+flowchart TD
+    ENTITY(["Operational entity<br/>submits applicable data"])
+    REG["Register WRP;<br/>create active WRP Register record"]
+    CERT["Issue applicable certificates<br/>WRPAC / WRPRC<br/>Sign/Seal where applicable"]
+    PUB["Publish or update applicable<br/>LoTE entry"]
+    ACTIVE(["Entity is Operational"])
 
-    subgraph System["APTITUDE Onboarding System"]
-        direction LR
-        UI["Onboarding UI"]:::interface
-        RegSvc["Registration Service"]:::service
-        CertSvc["Certificate Issuance Services<br/>WRPAC, WRPRC, Sign/Seal"]:::certificate
-        PubSvc["Publication Service"]:::service
-        Register[("Register")]:::store
-        Notification[("Notification dataset")]:::store
-
-        UI -->|"registration data"| RegSvc
-        RegSvc <-->|"create, read, update"| Register
-        UI -->|"certificate requests"| CertSvc
-        CertSvc -.->|"verify registration"| RegSvc
-        UI -->|"notifiable data"| PubSvc
-        PubSvc <-->|"manage"| Notification
-    end
-
-    Certificates{{"Issued Certificates"}}
-    Lists{{"LoTE"}}
-
-    Entity <-->|"submit data and receive results"| UI
-    CertSvc -->|"issues"| Certificates
-    PubSvc -->|"signs and publishes"| Lists
-
-    classDef interface stroke:#28a745,color:#000;
-    classDef service stroke:#17a2b8,color:#000;
-    classDef certificate stroke:#ffc107,color:#000;
-    classDef store stroke:#999,color:#000;
-    style System stroke:#2f4f4f,stroke-width:2px,rx:20,ry:20
+    ENTITY -->|"WRP"| REG
+    ENTITY -->|"Wallet Providers"| CERT
+    REG --> CERT
+    CERT -->|"PID / Attestation Provider<br/>or Wallet Provider"| PUB
+    CERT -->|"RP / RP Intermediary"| ACTIVE
+    PUB --> ACTIVE
+    ACTIVE -.->|"repeat for next entity"| ENTITY
 ```
 
 !!! warning
