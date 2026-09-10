@@ -1,12 +1,13 @@
 # Implementation Profiles for the Trust Framework
 
-Version 1.0
+Version 1.1
 
-| Version | Date       | Description   |
-| ------- | ---------- | ------------- |
-| 0.1     | 2026-04-19 | First release |
-| 0.2     | 2026-06-08 | New section on Trust Management Process; editorial changes |
-| 1.0     | 2026-07-27 | Added Onboarding Process and Trust Checks sections; expanded Trust Artifacts with Trust Anchor and Entity Sign/Seal Certificates subsections; integrated Register API OAS; structural and editorial changes |
+| Version   | Date          | Description       |
+| --------- | ------------- | ----------------- |
+| 0.1       | 2026-04-19    | First release     |
+| 0.2       | 2026-06-08    | New section on Trust Management Process; editorial changes |
+| 1.0       | 2026-07-27    | Added Onboarding Process and Trust Checks sections; expanded Trust Artifacts with Trust Anchor and Entity Sign/Seal Certificates subsections; integrated Register API OAS; structural and editorial changes |
+| 1.1       |               |  |
 
 **Authors**:
 
@@ -20,6 +21,7 @@ Version 1.0
 - Andreea Prian, *iDAKTO*
 - Leone Riello, *Infocert S.p.A.*
 - Giada Sciarretta, *Fondazione Bruno Kessler*
+- Michal Šťava, *ARICOMA Digital S.R.O*
 - Nikolaos Triantafyllou, *University of the Aegean*
 - Hoang Van Hoan, *Keynectis*
 - Maroš Zelenák, *ARICOMA Digital S.R.O*
@@ -33,11 +35,12 @@ Version 1.0
 - Guillaume Hébert, *Keynectis*
 - Angel Palomares Perez, *Bull*
 - Leonardo Pio Palumbo, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
-- Michal Šťava, *ARICOMA Digital S.R.O*
 
 **Feedback**:
 
 - Issue tracking system: <https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues>
+
+---
 
 ## Introduction
 
