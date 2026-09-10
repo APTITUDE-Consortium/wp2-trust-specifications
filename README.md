@@ -62,6 +62,7 @@ This project manages documentation versions using Git branches and release tags:
 
 | Version  | Documentation Preview |
 | :------- | :-------------------- |
+| `v1.1`   | [View HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v1.1/) |
 | `v1.0`   | [View HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v1.0/) |
 | `v0.2`   | [View HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.2/) |
 | `v0.1`   | [View HTML](https://aptitude-consortium.github.io/wp2-trust-specifications/v0.1/) |
