@@ -1,0 +1,2045 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/main/sections/use-cases/">
+      
+      
+        <link rel="prev" href="../trust-management-lifecycle/">
+      
+      
+        <link rel="next" href="../references/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Trust Use Cases - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../media/extra.css">
+    
+      <link rel="stylesheet" href="../../includes/admonitions.css">
+    
+      <link rel="stylesheet" href="../../includes/tables.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#runtime-trust-use-cases" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trust Use Cases
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  APTITUDE Technical Specification
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../trust-framework/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Trust Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pr-workspace/no-changes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APTITUDE Technical Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trust-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-evaluation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-management-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Management and Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Use Cases
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Use Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-trust-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Trust Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-trust-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Trust Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pr-workspace/no-changes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    No changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/sections/use-cases.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/sections/use-cases.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Trust Use Cases</h1>
+
+<p>This section describes a set of trust use cases that apply horizontally across the APTITUDE ecosystem. In particular, drawing on the <a href="../trust-architecture/">APTITUDE Trust Architecture</a>, these use cases leverage the <a href="../trust-artifacts/">Trust Artifacts</a> to perform the <a href="../trust-evaluation-process/">Trust Evaluation Processes</a>.</p>
+<p>The trust use cases are divided into the following categories:</p>
+<ul>
+<li><strong>Runtime Trust Use Cases</strong>: Verify trust decisions during issuance and presentation interactions.</li>
+<li><strong>Operational Trust Use Cases</strong>: Verify the conformance of the trust infrastructure when entities and trust artifacts are onboarded, updated, revoked, or removed.</li>
+</ul>
+<p>These categories are complementary: <strong>Runtime Trust Use Cases</strong> verify a trust decision against the artifacts available during an interaction, while <strong>Operational Trust Use Cases</strong> verify that a given management process produces the expected infrastructure state or artifact, and, where applicable, that the linked runtime use case observes the resulting trust state.</p>
+<h2 id="runtime-trust-use-cases">Runtime Trust Use Cases<a class="headerlink" href="#runtime-trust-use-cases" title="Permanent link">&para;</a></h2>
+<table>
+    <thead>
+        <tr>
+            <th>Trust Use Case</th>
+            <th>Involved Processes</th>
+            <th>Artifacts in Input</th>
+            <th>Checks</th>
+            <th>On Success</th>
+            <th>On Failure</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="bf6a2ba4698e2ae75ecbc4a35ae6beff"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Validation</td>
+            <td>
+                <ul>
+                    <li>Issuance</li>
+                    <li>Presentation</li>
+                </ul>
+            </td>
+            <td>Current <span class="mkdocs-ezglossary-link"
+    id="3318c2c3fcac6070c39c99ad03239bad"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, APTITUDE WP2 <span class="mkdocs-ezglossary-link"
+    id="dbc4aec39b8879ee7264b328a36a84dc"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> signing certificate (published on GitHub)</td>
+            <td>Validate the authenticity, integrity, currency, and applicable entity entry of the <span class="mkdocs-ezglossary-link"
+    id="94d08760d0b8459e17834963a316328d"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> using <span class="mkdocs-ezglossary-link"
+    id="ec7202727a3949fe0ebf8adb546e4165"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> Validation.</td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="243e60ce06a96aab91850ccdf9349268"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> is validated.</td>
+            <td>The process SHALL BE interrupted.</td>
+        </tr>
+        <tr>
+            <td>Entity Identity Validation</td>
+            <td>
+                <ul>
+                    <li>Issuance</li>
+                    <li>Presentation</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Validated <span class="mkdocs-ezglossary-link"
+    id="6475c82d78cea697becf13526d73b01b"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificate of the <span class="mkdocs-ezglossary-link"
+    id="b0931000196f293b5fd562af0e545b58"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</span></li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="863a2c985ebbe628f3d98ccbcd09fef2"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span></li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="7994face2525ea5b5742ef7d36fe569a"
+    data-term="Certificate Revocation List (CRL)"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> or <span class="mkdocs-ezglossary-link"
+    id="9b3d801976f03dd80163877a5cc3c114"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> response</li>
+                    <li>Entity-signed metadata</li>
+                </ol>
+            </td>
+            <td>
+                <ul>
+                    <li>Validate the Entity-signed metadata (depending on the flow type) using the <span class="mkdocs-ezglossary-link"
+    id="a3a22454545614f69c905b524b39bd4d"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span>.</li>
+                    <li>Validate the X.509 Chain starting with the <span class="mkdocs-ezglossary-link"
+    id="e57408fbb592f96ca8f34df4f16b8713"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span>, including its revocation status, using X.509 Validation with the <span class="mkdocs-ezglossary-link"
+    id="c1eca8667f7aa41d792a7e0453778b38"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</span> <span class="mkdocs-ezglossary-link"
+    id="088866078cb13b4f093634ad70990942"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> as input.</li>
+                </ul>
+            </td>
+            <td>The Entity SHALL BE considered authenticated.</td>
+            <td>The process SHALL BE interrupted as the Entity is not trusted.</td>
+        </tr>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="dd91ac7c4a4b01e724659cf9906975a6"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> Authenticity and Integrity</td>
+            <td>
+                <ul>
+                    <li>Issuance</li>
+                    <li>Presentation</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Sign/Seal Certificate</li>
+                    <li>Certificate-status information</li>
+                    <li>Validated <span class="mkdocs-ezglossary-link"
+    id="af8433537d6db8098ec7bed08a48b071"
+    data-term="Attestation Provider (AP)"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</span> <span class="mkdocs-ezglossary-link"
+    id="8ff2d26452c4061f01f4053516db7ff0"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> or <span class="mkdocs-ezglossary-link"
+    id="d9bfb93893ef8713120ae3d4014a56cb"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> <span class="mkdocs-ezglossary-link"
+    id="b155685ebf0dfba1dfcb326f9fa07d2f"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Validate the signed <span class="mkdocs-ezglossary-link"
+    id="b36f2bd5c0f82d315d99f58c8869d65c"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> or <span class="mkdocs-ezglossary-link"
+    id="99b0f71db2606dff24bec4c76e88edb7"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span>/<span class="mkdocs-ezglossary-link"
+    id="ab37e7e58fde5ce66bd16802f4a0b05b"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> signature using the Sign/Seal Certificate.</li>
+                    <li>Validate the X.509 Chain starting with the Sign/Seal Certificate, including its revocation status, using X.509 Validation with the <span class="mkdocs-ezglossary-link"
+    id="5ec290214b2f0fc0184dc5c47624f48f"
+    data-term="Attestation Provider (AP)"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</span> <span class="mkdocs-ezglossary-link"
+    id="618400552c5b6c06c9018bb7fce67aa9"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> or <span class="mkdocs-ezglossary-link"
+    id="98fecaa07c03838d2cdf8475048d1d65"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> <span class="mkdocs-ezglossary-link"
+    id="30e461fb3abcffad3157155f21d57a84"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> as input.</li>
+                </ul>
+            </td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="c8eff976eac7bdcdab3950bdee04e971"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> or <span class="mkdocs-ezglossary-link"
+    id="409e30778b001f162ed08da509817691"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span>/<span class="mkdocs-ezglossary-link"
+    id="489c369256767d3242783f769c3a61fb"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> SHALL BE considered authentic.</td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="f4a08c505984b8eaa2aedc8171ea78d0"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> or <span class="mkdocs-ezglossary-link"
+    id="7eb65f5ac27c448e936ac26572c0b290"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span>/<span class="mkdocs-ezglossary-link"
+    id="db550c46e041c125253a0209d4b26683"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> SHALL BE considered untrustworthy.</td>
+        </tr>
+        <tr>
+            <td>Entity Authorization Profile Verification</td>
+            <td>
+                <ul>
+                    <li>Issuance</li>
+                    <li>Presentation</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="5e9325c2ba272f2975866a2edaa007fb"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> and <span class="mkdocs-ezglossary-link"
+    id="70f144f85c2e0caf46938b1f4c166a48"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>, or <span class="mkdocs-ezglossary-link"
+    id="966bf2879eaadb34f85f2e0b5ca1d723"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> query response</li>
+                    <li>Validated <span class="mkdocs-ezglossary-link"
+    id="d9ebb168ce4f0878f974c1436aa6982c"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span> <span class="mkdocs-ezglossary-link"
+    id="cd01173e3950486242d552ddc3c61fe8"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> or <span class="mkdocs-ezglossary-link"
+    id="35a9047330f22353f336aeef341d3327"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span> certificate</li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="cc9ea92521224d23b21af66d3f009065"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Validate the <span class="mkdocs-ezglossary-link"
+    id="8ea9817f23a4e519c35abb1ad98edce2"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> signature, X.509 Chain, temporal validity, and <span class="mkdocs-ezglossary-link"
+    id="81e6476377db46e2d3d4d3d6bd359a77"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> status, or the <span class="mkdocs-ezglossary-link"
+    id="f7e39694cd464f714b90ee660fb890eb"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> response signature and signing-certificate chain, using X.509 Validation with the applicable <span class="mkdocs-ezglossary-link"
+    id="0e103a0878e2f35a6ca71a2b3f7564e8"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> as input.</li>
+                    <li>Validate the Entity authorization profile using Authorization Validation with the validated <span class="mkdocs-ezglossary-link"
+    id="5c9593eb3d50b52c7b52d48b3449e66f"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> or <span class="mkdocs-ezglossary-link"
+    id="2c418756f8e3aadb5d00f47f235ec573"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> query as input.</li>
+                </ul>
+            </td>
+            <td>The Entity SHALL be authorized for issuance or presentation.</td>
+            <td>The Entity SHOULD NOT be authorized for issuance or presentation; the user MAY override the decision in specific cases.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Detailed versions of these use cases are available in [APTITUDE-RFC003].</p>
+<h2 id="operational-trust-use-cases">Operational Trust Use Cases<a class="headerlink" href="#operational-trust-use-cases" title="Permanent link">&para;</a></h2>
+<p>The operational trust use cases are derived from the <a href="../trust-management-lifecycle/#trust-management-process">Trust Management Process</a>, <a href="../trust-management-lifecycle/#onboarding-process">Onboarding Process</a>, and <a href="../trust-management-lifecycle/#revocation-mechanisms">Revocation Mechanisms</a>. They verify both the successful path and the failure path of each management operation.</p>
+<p>An Operational Trust Use Case passes when the APTITUDE WP2 checks and any applicable affected-entity or consuming-participant checks pass. Where the affected-entity responsibility is "None", APTITUDE WP2 performs the complete operational test.</p>
+<p>APTITUDE WP2, acting as ecosystem manager and operator of the <span class="mkdocs-ezglossary-link"
+    id="d497bd58248caac15f1e6f65ca4007d9"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span>, Certificate Services, and Publication Service, executes and records the infrastructure-side checks. The affected entity SHALL provide only the event inputs, notifications, and deployment actions assigned to it in the table. Pilot participants that consume an updated artifact SHALL refresh or automatically integrate that artifact and SHALL execute the linked runtime check. A test case that orchestrates other management processes SHALL invoke their respective operational Trust use cases instead of repeating their checks.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Trust Use Case</th>
+            <th>Involved Process(es)</th>
+            <th>Artifact(s) in Input</th>
+            <th>APTITUDE WP2 Actions</th>
+            <th>Affected entity and pilot participant responsibility</th>
+            <th>On Success</th>
+            <th>On Failure</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="e02700aaabed4ac344b05c1ee7d69e81"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> Publication Service Readiness</td>
+            <td>Infrastructure <span class="mkdocs-ezglossary-link"
+    id="e92ecd75e0845135c20b543543f3bec3"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> Publication</td>
+            <td>
+                <ul>
+                    <li>APTITUDE WP2 <span class="mkdocs-ezglossary-link"
+    id="a78fb7bbed1eb4436a3a092acc480819"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> signing certificate</li>
+                    <li>Infrastructure <span class="mkdocs-ezglossary-link"
+    id="395e82fed8ca35955f740ef812cb36b2"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span></li>
+                    <li>Applicable <span class="mkdocs-ezglossary-link"
+    id="b13efabe77f08d1f48ed01f332ba5288"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> profiles</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Verify that every required <span class="mkdocs-ezglossary-link"
+    id="7cc8f6809845a92bea0f8584e12a1485"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> endpoint is available.</li>
+                    <li>Publish the APTITUDE WP2 <span class="mkdocs-ezglossary-link"
+    id="49d4cf72535619753653b62a02e10b6e"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> signing certificate.</li>
+                    <li>Verify that each published <span class="mkdocs-ezglossary-link"
+    id="97b71cf8d1daf9e73228f54a5f13e95c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> has a valid signature, conforms to its format, and contains the required infrastructure <span class="mkdocs-ezglossary-link"
+    id="c065c920890dcc88d9cf4c0deb30c176"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>.</li>
+                <ul>
+            </td>
+            <td>None</td>
+            <td>All the required <span class="mkdocs-ezglossary-link"
+    id="64d6ebbb3c72e5e87ad7a6d2b0572415"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> endpoints and valid <span class="mkdocs-ezglossary-link"
+    id="be6da32b6be223a0fee2c394ba232dff"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> are available.</td>
+            <td>The operational onboarding SHALL NOT start.</li>
+        </tr>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="072348ae944289e305a6a2d99685f6e1"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> Service Readiness</td>
+            <td><span class="mkdocs-ezglossary-link"
+    id="86f9060b67d605071bd74ce46020f4d9"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> service provisioning</td>
+            <td>
+                <ul>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="7449c5698cac783fe6ce59bc7709b4cc"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> API profile</li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="a2b75372b1ebf18af009f0ccfc9d89d7"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> data schema</li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="0d881cba322d91f583eeb227819cde32"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span> signing certificate</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Verify that the <span class="mkdocs-ezglossary-link"
+    id="ea5c2fb0c4c4e347ff89ca60e9bada47"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> API endpoints are available.</li>
+                    <li>Verify that writes are authenticated and restricted to the <span class="mkdocs-ezglossary-link"
+    id="f61dde723a3ebd0646f88d9c94506ef4"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span>.</li>
+                    <li>Verify that records and signed query responses conform to the applicable schemas.</li>
+                <ul>
+            </td>
+            <td>None</td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="30442afaea658ed3f75fb8e8e7a5e3bf"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> can be securely written and queried.</td>
+            <td><span class="mkdocs-ezglossary-link"
+    id="c5bcdd1dc9a9fc96e0bfc10c9026dc1f"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> registration SHALL NOT start.</li>
+        </tr>
+        <tr>
+            <td>Certificate Issuance Service Readiness</td>
+            <td>Certificate Service provisioning</td>
+            <td>
+                <ul>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="2dd0e0dd766f3eb04fd7f037afa75313"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span> Certificate Profile</li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="1af9896a87fd8720619d00f7f6c9c3a9"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> Certificate Profile</li>
+                    <li>Sign/Seal Certificate Profiles</li>
+                    <li>CA <span class="mkdocs-ezglossary-link"
+    id="eea2bf26b4c5cb511a88db67e728f629"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Verify that the interfaces required to request each supported certificate type are available.</li>
+                    <li>Issue test certificates.</li>
+                    <li>Verify that each issued certificate conforms to its applicable profile.</li>
+                <ul>
+            </td>
+            <td>None</td>
+            <td>The Certificate Services are available and issue profile-conformant certificates.</td>
+            <td>Certificate-dependent onboarding SHALL NOT start.</li>
+        </tr>
+        <tr>
+            <td>Certificate Status Service Readiness</td>
+            <td>Certificate status service provisioning</td>
+            <td>
+                <ul>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="8dd9268187af5b33a06272dcde7c101e"
+    data-term="Certificate Revocation List (CRL)"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> Profile</li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="7dd6ef479a40c6fd28bed61cc423b5c9"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> Profile</li>
+                    <li>Status List Profile</li>
+                    <li>Test Certificate</li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="423602ffe833ecbc11f33641bf229bb6"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span></li>
+                </ul>
+            </td>
+            <td>Verify that each configured status endpoint is available and returns a valid, correctly signed status artifact in the required format.</td>
+            <td>None</td>
+            <td>The configured Certificate and <span class="mkdocs-ezglossary-link"
+    id="b186856992e5ebeb079fc77e1793fb6b"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> status mechanisms are operational.</td>
+            <td>The corresponding Certificate Service SHALL NOT be considered ready.</li>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th>Trust Use Case</th>
+            <th>Involved Process(es)</th>
+            <th>Artifact(s) in Input</th>
+            <th>APTITUDE WP2 responsibility and checks</th>
+            <th>Affected entity and pilot participant responsibility</th>
+            <th>On Success</th>
+            <th>On Failure</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="c51e42868ca785392a07f7d3e2befe6b"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> Registration</td>
+            <td>Registration</td>
+            <td>
+                <ul>
+                    <li>Registration data</li>
+                    <li>APTITUDE participation evidence</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Verify that the entity is officially enrolled in APTITUDE.</li>
+                    <li>Create an active <span class="mkdocs-ezglossary-link"
+    id="e71f0861f28539032420caf5382299c3"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> record that conforms to the schema.</li>
+                <ul>
+            </td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="2d6afa41212ae17213045be03eaf04dd"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> SHALL submit its self-declared registration data through the Onboarding System.</td>
+            <td>An active <span class="mkdocs-ezglossary-link"
+    id="31ad47f59220d1f6a2357f5cf3d7db15"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> record is available.</td>
+            <td>The request SHALL BE rejected and the process interrupted.</li>
+        </tr>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="5c663a36091abb10d2e5ae4b5805a998"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> Certificate Issuance</td>
+            <td>Certificate issuance</td>
+            <td>
+                <ul>
+                    <li>Active <span class="mkdocs-ezglossary-link"
+    id="aa31d92052fb8bc356c88508bdfec974"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> record</li>
+                    <li>Certificate request</li>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="f7b8775aa0d014436b851a945029c1a7"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> public key</li>
+                    <li>Applicable Certificate Profile</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Verify the active registration status and data consistency.</li>
+                    <li>Issue the requested Certificate(s).</li>
+                <ul>
+            </td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="32f5a39ad10d3007280b0e3d995102e1"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> SHALL submit the cryptographic material and deploy each issued certificate at the intended instance or service supply point.</td>
+            <td>A valid certificate is issued and the applicable runtime test succeeds.</td>
+            <td>Issuance SHALL be refused.</li>
+        </tr>
+        <tr>
+            <td>Entity Publication</td>
+            <td><span class="mkdocs-ezglossary-link"
+    id="a3df8804cc8638dacf92d47568e9a536"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> Publication</td>
+            <td>
+                <ul>
+                    <li>Registered entity information</li>
+                    <li>Entity service information</li>
+                    <li>Sign/Seal <span class="mkdocs-ezglossary-link"
+    id="93b37288b0925ede7e486df2f57156cc"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Verify that the entity data is complete and create or update the applicable entity-type <span class="mkdocs-ezglossary-link"
+    id="88a476c4435142c23b7bf9cef9ceb470"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> entry.</li>
+                    <li>For a <span class="mkdocs-ezglossary-link"
+    id="6b22dd167aafcf13593c295ca05f6a9d"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> the required service information is the <span class="mkdocs-ezglossary-link"
+    id="6eac1e79683c646123fb7b8f3a2a9b21"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span></li>
+                <ul>
+            </td>
+            <td>The entity SHALL submit the required data and <span class="mkdocs-ezglossary-link"
+    id="05cbd2e2a2c0ab70ce62d3f5b26f574b"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span>.</td>
+            <td>The entity data is accepted for publication.</td>
+            <td>No <span class="mkdocs-ezglossary-link"
+    id="567f69858353312af2a2aabf0aad5657"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> entry SHALL BE created or updated.</li>
+        </tr>
+        <tr>
+            <td rowspan="2">Information update</td>
+            <td><span class="mkdocs-ezglossary-link"
+    id="1b6c7397b0514069072ac9c805665f8f"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> update</td>
+            <td>
+                <ul>
+                    <li>Updated identity, policy, or authorization data</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Update the <span class="mkdocs-ezglossary-link"
+    id="5381993b8d4464354f0217a8c56f57cf"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> record and verify that the resulting record conforms to the <span class="mkdocs-ezglossary-link"
+    id="07c6cadae1b47d15c881c029b94c3baa"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> schema.</li>
+                <ul>
+            </td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="b499d8a6856206a53f9b017c0c4180eb"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> SHALL submit the updated information through the Onboarding System.</td>
+            <td>The current <span class="mkdocs-ezglossary-link"
+    id="98b02bef9c517b04e4ff50d7d819ba98"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> record contains the updated information.</td>
+            <td>The record SHALL NOT be updated.</li>
+        </tr>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="00f289a599c0dfed6660a12947c457e4"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> update</td>
+            <td>
+                <ul>
+                    <li>Updated entity identity, service endpoint, <span class="mkdocs-ezglossary-link"
+    id="145fb2f313b2f3f2272140f65da5cfa1"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span>, or eligibility information</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Update the applicable <span class="mkdocs-ezglossary-link"
+    id="56eb576f32cf007abed67984089e2bbb"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> entry.</li>
+                    <li>When the entity becomes ineligible, invoke the applicable removal test case instead.</li>
+                <ul>
+            </td>
+            <td>The affected entity SHALL notify APTITUDE WP2 of the changed information.</td>
+            <td>The new entity information is included in the updated <span class="mkdocs-ezglossary-link"
+    id="a6e93d5db4a39de8a19c96b6e6ca05dd"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> content prepared and published.</td>
+            <td>The previous information SHALL remain in the prepared current content.</li>
+        </tr>
+        <tr>
+            <td>Cryptographic key material update</td>
+            <td>Certificate re-issuance</td>
+            <td>
+                <ul>
+                    <li>Updated identity, policy, authorization, or cryptographic material</li>
+                    <li>Applicable certificate profile</li>
+                </ul>
+            </td>
+            <td>Issue a replacement certificate for the new data and invoke the applicable <i>Certificate Revocation</i> test case for the former certificate.</td>
+            <td>The affected entity SHALL notify the Certificate Service, provide the new public key, and deploy the replacement certificate.</td>
+            <td>The replacement certificate is correctly issued an conforms to the applicable profile.</td>
+            <td>No valid replacement is available.</li>
+        </tr>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="6acf5a21c8885c8555714271ff26f5e2"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> version publication</td>
+            <td><span class="mkdocs-ezglossary-link"
+    id="57c2eec26e4b18833ad0d5ac11c1bcbe"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> distribution</td>
+            <td>
+                <ul>
+                    <li>Updated <span class="mkdocs-ezglossary-link"
+    id="fc59d752060863e17c4278b309cf1ee5"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> content</li>
+                    <li>Pivot <span class="mkdocs-ezglossary-link"
+    id="0638636802bb1ff9d08ff484d6cdf634"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> URI</li>
+                    <li>APTITUDE WP2 <span class="mkdocs-ezglossary-link"
+    id="7f755a90515919c35e3d6163b13a2664"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> signing certificate</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Publish a signed new current <span class="mkdocs-ezglossary-link"
+    id="044528226fc648238f49f8671a3c2955"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and make the replaced version at the applicable pivot URI for retro-compatibility.</li>
+                    <li>Update the <code>SchemeInformationURI</code> accordingly.</li>
+                <ul>
+            </td>
+            <td>Every participant that consumes the affected <span class="mkdocs-ezglossary-link"
+    id="6a3e646f4822a5fed37f6a387372a02c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> SHALL refresh its cached copy via the <span class="mkdocs-ezglossary-link"
+    id="b13788b14eb456b7d09934d608db621a"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Validation Process and SHALL NOT use old pivot versions for a current decision.</td>
+            <td>The endpoint serves the new current <span class="mkdocs-ezglossary-link"
+    id="db515f0c2061954bb5f5feeb9546efae"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and <span class="mkdocs-ezglossary-link"
+    id="fa1b2c9f55b1c252826b6087a90b5a87"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Validation uses its updated entry.</td>
+            <td>The new version is unavailable or invalid, or a participant continues to use the superseded version.</li>
+        </tr>
+        <tr>
+            <td rowspan="2">Certificate revocation</td>
+            <td><span class="mkdocs-ezglossary-link"
+    id="10d33f1a72e474a88d37fba269b73d73"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span> - Sign/Seal Certificate revocation</td>
+            <td>
+                <ul>
+                    <li>Certificate serial number</li>
+                    <li>Current <span class="mkdocs-ezglossary-link"
+    id="8af3de51ad00eef7290e6bf28e150a54"
+    data-term="Certificate Revocation List (CRL)"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> or <span class="mkdocs-ezglossary-link"
+    id="d662ed55efc0013478c6eb70955bd613"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> status database</li>
+                </ul>
+            </td>
+            <td>Update the configured <span class="mkdocs-ezglossary-link"
+    id="9e69b7742b9948d2716be9d9ee49b251"
+    data-term="Certificate Revocation List (CRL)"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> or <span class="mkdocs-ezglossary-link"
+    id="080aa5ee9b34179519deabf47f988c1b"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> status source and verify that it reports the certificate as revoked.</td>
+            <td>The affected entity SHALL stop using the certificate. Runtime participants SHALL retrieve current status information and reject it.</td>
+            <td>The certificate fails <i>Entity Identity Validation</i> or <i>Attestation Authenticity and Integrity</i>, as applicable.</td>
+            <td>The certificate remains accepted.</li>
+        </tr>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="c13f9d355e51e053dd84787b49dbd7de"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> revocation</td>
+            <td>
+                <ul>
+                    <li><span class="mkdocs-ezglossary-link"
+    id="efb0b13329079f75e18cce1053be2389"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> status reference and index</li>
+                    <li>current Status List</li>
+                </ul>
+            </td>
+            <td>The Provider or <span class="mkdocs-ezglossary-link"
+    id="79612e0e5bd196ce1cae6f4bf7aca492"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> SHALL set the assigned status value to <code>0x01</code>, publish the updated signed <span class="mkdocs-ezglossary-link"
+    id="bd0fba8de652105fa5da319d01a847d1"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>, and verify that its endpoint remains available.</td>
+            <td>The affected entity SHALL stop presenting the <span class="mkdocs-ezglossary-link"
+    id="cc14fca365d902252adc9ffd88c5471f"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span>. Wallet Units SHALL retrieve the current <span class="mkdocs-ezglossary-link"
+    id="813ec9177c53f1382ae14aec7c430a17"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> and apply the status in <i>Entity Authorization Profile Verification</i>.</td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="ed0adeded07c839ad0270a1bdc57e91b"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> is treated as revoked.</td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="10f1095598f6d24aa6d1db72b2c7c92f"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> remains valid or is accepted by a Wallet Unit.</li>
+        </tr>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="60699aecbf5ff81189965c377b6f96b4"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> deregistration</td>
+            <td>Entity removal</td>
+            <td>
+                <ul>
+                    <li>Removal request or decision</li>
+                    <li>Current entity record and related trust artifacts</li>
+                </ul>
+            </td>
+            <td>Orchestrate the applicable <span class="mkdocs-ezglossary-link"
+    id="610ae975905266fbc668cb9b59999713"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> cancellation or deletion, entity-related certificate revocation, and <span class="mkdocs-ezglossary-link"
+    id="2078b55978f3f960b4f20dccba78d3ca"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> update Trust use cases, and verify that each completes successfully.</td>
+            <td>For voluntary removal, the <span class="mkdocs-ezglossary-link"
+    id="b73d5136a3a4c5fabbb06b784c5b8ffe"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> SHALL submit the removal request to APTITUDE WP2; in every case it SHALL cease new framework operations. Participants SHALL reject new interactions with the removed entity.</td>
+            <td>The entity is <code>REMOVED</code> and all applicable runtime tests reject new interactions.</td>
+            <td>Any invoked operational test fails or a new interaction remains trusted.</li>
+        </tr>
+        <tr>
+            <td><span class="mkdocs-ezglossary-link"
+    id="a42cf99b1699248ccf8ebe8f449b521e"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span> deregistration</td>
+            <td>Entity removal</td>
+            <td>
+                <ul>
+                    <li>Removal request or decision</li>
+                    <li>Current <span class="mkdocs-ezglossary-link"
+    id="36516093af01409890d721d5eafcf0d3"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> entry</li>
+                    <li>Sign/Seal Certificate for the <span class="mkdocs-ezglossary-link"
+    id="dd7c9cafaafa580c6e8da04a242ba656"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span></li>
+                </ul>
+            </td>
+            <td>Orchestrate the applicable <span class="mkdocs-ezglossary-link"
+    id="61db4aa820a107f4f2f2f4f7effcd7e4"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> update and Sign/Seal certificate revocation Trust Use Cases, including <span class="mkdocs-ezglossary-link"
+    id="81fa757095b538e876659ba4ec8af3fc"
+    data-term="Wallet Unit Attestation (WUA)"
+    data-tooltip="A data object that describes the components of the Wallet Unit or allows authentication and validation of those components. [ARF]"
+    name="artifacts:Wallet Unit Attestation (WUA)"
+    href="../../glossary-definitions/#8b65d3aeb965c7ae9a28cf62c8382320">WUA</span> revocation.</td>
+            <td>For voluntary removal, the entity SHALL notify APTITUDE WP2 and cease new framework operations. Participants SHALL reject new interactions whose trust depends on the removed <span class="mkdocs-ezglossary-link"
+    id="a0149ca0a08049754caff55fa2ee83d2"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span>.</td>
+            <td>The <span class="mkdocs-ezglossary-link"
+    id="b7ef70391786f26106638ef18772a540"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span> can no longer be resolved as trusted from the current <span class="mkdocs-ezglossary-link"
+    id="9ef3f063b4ac13ebb8cf7c9fecf4b47a"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.</td>
+            <td>Any invoked operational test fails or a new interaction remains trusted through a <span class="mkdocs-ezglossary-link"
+    id="a667fb3e870556c1ed9b4ecc7aa96c42"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span>'s Instance.</li>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 11:01:08 UTC">September 10, 2026 11:01:08</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../media/mermaid-init.js"></script>
+      
+        <script src="../../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

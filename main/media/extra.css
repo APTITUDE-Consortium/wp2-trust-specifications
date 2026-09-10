@@ -36,7 +36,7 @@
 }
 
 .md-typeset table tr:nth-child(even) {
-  background-color: var(--md-typeset-table-striped-background-color, #f5f5f5);
+  background-color: var(--md-typeset-table-color--light, #f5f5f5)
 }
 
 /* Logo sizing */
@@ -69,7 +69,11 @@
 /* Safari-friendly fallback tooltip for ezglossary links */
 .mkdocs-ezglossary-link {
   position: relative;
+  cursor: help;
+  color: currentColor !important;
+  text-decoration: underline;
   text-decoration-style: dotted;
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 2px;
 }
 
@@ -81,17 +85,35 @@
   transform: translateX(-50%);
   top: calc(100% + 8px);
   z-index: 50;
-  max-width: min(36rem, calc(100vw - 2rem));
-  min-width: 14rem;
-  padding: 0.5rem 0.625rem;
+  width: 16rem;
+  padding: 2rem 0.625rem 0.625rem 0.625rem;
   border-radius: 0.4rem;
   border: 1px solid var(--md-default-fg-color--lightest);
   background: var(--md-default-bg-color);
   color: var(--md-default-fg-color);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   line-height: 1.35;
   white-space: normal;
+}
+
+.mkdocs-ezglossary-link:hover::before,
+.mkdocs-ezglossary-link:focus-visible::before {
+  content: attr(data-term);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 14px);
+  z-index: 51;
+  width: calc(16rem - 1.25rem);
+  font-weight: bold;
+  font-size: 0.65rem;
+  color: var(--md-default-fg-color);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Standards register — scoped to the wrapped table only */

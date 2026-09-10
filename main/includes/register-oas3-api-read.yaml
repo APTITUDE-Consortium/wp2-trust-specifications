@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
-  title: Wallet Relying Party Register API
+  title: Wallet-Relying Party Register API
   version: 1.0.0
-  description: Specification of the Wallet Relying Party (WRP) Register API in Aptitude Consortium
+  description: Specification of the Wallet-Relying Party (WRP) Register API in Aptitude Consortium
   license:
     name: CC BY 4.0
     url: https://creativecommons.org/licenses/by/4.0/
@@ -50,7 +50,7 @@ paths:
       tags:
         - Registration
       summary: Create a WRP entry
-      description: Creates a new Wallet Relying Party entry in the register.
+      description: Creates a new Wallet-Relying Party entry in the register.
       operationId: createWrp
       requestBody:
         $ref: '#/components/requestBodies/WalletRelyingPartyBody'
@@ -69,7 +69,7 @@ paths:
       tags:
         - Registration
       summary: Update a WRP entry
-      description: Updates an existing Wallet Relying Party entry in the register.
+      description: Updates an existing Wallet-Relying Party entry in the register.
       operationId: updateWrp
       requestBody:
         $ref: '#/components/requestBodies/WalletRelyingPartyBody'
@@ -90,7 +90,7 @@ paths:
       tags:
         - Registration
       summary: Delete a WRP entry
-      description: Deletes an existing Wallet Relying Party entry by identifier payload.
+      description: Deletes an existing Wallet-Relying Party entry by identifier payload.
       operationId: deleteWrp
       requestBody:
         $ref: '#/components/requestBodies/DeleteWrpBody'
@@ -140,7 +140,7 @@ paths:
       tags:
         - Public Register
       summary: Get a WRP by identifier
-      description: Fetch a single Wallet Relying Party entry using its identifier.
+      description: Fetch a single Wallet-Relying Party entry using its identifier.
       operationId: getWrpByIdentifier
       parameters:
         - $ref: '#/components/parameters/identifierPath'
@@ -424,7 +424,7 @@ components:
   responses:
     JwsWrpArrayResponse:
       description: >-
-        JWS-signed list of matching Wallet Relying Party entries, serialized as an
+        JWS-signed list of matching Wallet-Relying Party entries, serialized as an
         application/jwt JWS compact string. Once decoded and signature-verified, the
         JWT payload conforms to the SignedWRPArray schema defined in the components
         block: an array of WalletRelyingParty objects matching the query (postalAddress
@@ -501,7 +501,7 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
           example:
-            message: Requested Wallet Relying Party was not found.
+            message: Requested Wallet-Relying Party was not found.
   schemas:
     SignedWRPArray:
       type: object
@@ -606,7 +606,7 @@ components:
           has_next_page: true
     WalletRelyingParty:
       type: object
-      description: Wallet Relying Party registration object. In published API statements, postalAddress is excluded.
+      description: Wallet-Relying Party registration object. In published API statements, postalAddress is excluded.
       properties:
         legalPerson:
           $ref: '#/components/schemas/LegalPerson'
@@ -809,7 +809,7 @@ components:
     WalletRelyingPartyIntermediary:
       type: object
       description: >-
-        Reference to a Wallet Relying Party acting as a designated intermediary. Only
+        Reference to a Wallet-Relying Party acting as a designated intermediary. Only
         the subset needed to identify and locate the intermediary is carried here
         (see the usesIntermediary note in the registry specification).
       properties:
