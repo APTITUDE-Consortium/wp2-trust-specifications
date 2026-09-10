@@ -1,37 +1,50 @@
+## APTITUDE Specifications
+
+| Item Reference                              | Date        | Title                     |
+| ------------------------------------------- | ----------- | ------------------------- |
+| APTITUDE-RFC001                             | 2026-07-23  | Credential Issuance Profile |
+| APTITUDE-RFC002                             | 2026-08-05  | Presentation Profile |
+| APTITUDE-RFC003                             | 2026-09-09  | Trust Evaluation |
+| APTITUDE-RFC004                             | 2026-09-09  | Revocation Profile |
+
 ## ARF and Technical Specifications (TS)
 
-| **Item Reference**            | **Version** | **Date**    | **Title**                 |
+| Item Reference                | Version     | Date        | Title                     |
 | ----------------------------- | ----------- | ----------- | ------------------------- |
 | ARF                           | v2.9.0      | 2026-05-21  | Architecture and Reference Framework |
-| TS03                          | v1.5.2      | 2026-05-26  | Specification of Wallet Unit Attestations (WUA) used in issuance of PID and Attestations |
 | TS02                          | v1.0.1      | 2026-01-30  | Specification of systems enabling the notification and subsequent publication of Provider information |
+| TS03                          | v1.5.2      | 2026-05-26  | Specification of Wallet Unit Attestations (WUA) used in issuance of PID and Attestations |
 | TS05                          | v1.3        | 2026-02-13  | Specification of common formats and API for Relying Party Registration information |
 | TS06                          | v1.0.1      | 2026-01-30  | Common Set of Relying Party Information to be Registered |
 | TS11                          | v1.0.1      | 2026-01-30  | Specification of interfaces and formats for the catalogue of attributes and the catalogue of attestations |
 
 ## Commission Implementing Regulation (CIR)
 
-| **Item Reference**                          | **Date**    | **Title**                 |
+| Item Reference                              | Date        | Title                     |
 | ------------------------------------------- | ----------- | ------------------------- |
+| CIR 1352/2013                               | 2013-12-04  | Commission Implementing Regulation (EU) No 1352/2013 of 4 December 2013 establishing the forms provided for in Regulation (EU) No 608/2013 of the European Parliament and of the Council concerning customs enforcement of intellectual property rights |
+| CIR 2021/1042                               | 2021-06-18  | Commission Implementing Regulation (EU) 2021/1042 of 18 June 2021 laying down rules for the application of Directive (EU) 2017/1132 of the European Parliament and of the Council as regards technical specifications and procedures for the system of interconnection of registers and repealing Commission Implementing Regulation (EU) 2020/2244 |
+| CIR 2022/1860                               | 2022-06-10  | Commission Implementing Regulation (EU) 2022/1860 of 10 June 2022 laying down implementing technical standards for the application of Regulation (EU) No 648/2012 of the European Parliament and of the Council with regard to the standards, formats, frequency and methods and arrangements for reporting |
 | CIR 2024/2979                               | 2024-11-28  | Commission Implementing Regulation (EU) 2024/2979 of 28 November 2024 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards the integrity and core functionalities of European Digital Identity Wallets |
 | CIR 2024/2980                               | 2024-11-28  | Commission Implementing Regulation (EU) 2024/2980 of 28 November 2024 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards notifications to the Commission concerning the European Digital Identity Wallet ecosystem |
 | CIR 2025/848                                | 2025-05-06  | Commission Implementing Regulation (EU) 2025/848 of 6 May 2025 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards the registration of wallet-relying parties |
-| CIR 2025/1569                               | 2025-07-29  | Commission Implementing Regulation (EU) 2025/1569 of 29 July 2025 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards qualified electronic attestations of attributes and electronic attestations of attributes provided by or on behalf of a public sector body responsible for an authentic source |
 | CIR 2025/848-Amendment                      | N/A         | Applicable standards and specifications (draft) |
+| CIR 2025/1569                               | 2025-07-29  | Commission Implementing Regulation (EU) 2025/1569 of 29 July 2025 laying down rules for the application of Regulation (EU) No 910/2014 of the European Parliament and of the Council as regards qualified electronic attestations of attributes and electronic attestations of attributes provided by or on behalf of a public sector body responsible for an authentic source |
 | CIR 2026/1731                               | 2026-07-15  | Commission Implementing Regulation (EU) 2026/1731 of 15 July 2026 amending Implementing Regulations (EU) 2024/2977, (EU) 2024/2979, (EU) 2024/2980 and (EU) 2024/2982 as regards applicable standards and specifications |
 
 ## EU Directives and Regulations
 
-| **Item Reference**                          | **Date**    | **Title**                 |
+| Item Reference                              | Date        | Title                     |
 | ------------------------------------------- | ----------- | ------------------------- |
 | EU DIR 2006/112/EC                          | 2006-11-28  | Council Directive 2006/112/EC of 28 November 2006 on the common system of value added tax |
+| EU REG 389/2012                             | 2012-05-02  | Council Regulation (EU) No 389/2012 of 2 May 2012 on administrative cooperation in the field of excise duties and repealing Regulation (EC) No 2073/2004 |
 | EU REG 2024/1183                            | 2024-04-11  | Regulation (EU) 2024/1183 of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework |
 
 ## ETSI Specifications
 
 ETSI specifications for EU Digital Identity Wallets of main interest for the trust framework:
 
-| **Item Reference**            | **Version** | **Date**    | **Title**                 |
+| Item Reference                | Version     | Date        | Title                     |
 | ----------------------------  | ----------- | ----------- | ------------------------- |
 | ETSI TS 119 411-8             | V1.1.1      | 2025-10     | Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 8: Access Certificate Policy for EUDI Wallet Relying Parties |
 | ETSI TS 119 412-6             | V1.2.1      | 2026-04     | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 6: Certificate profile requirements for PID, Wallet, EAA, QEAA, and PSBEAA providers |
@@ -45,7 +58,7 @@ ETSI specifications for EU Digital Identity Wallets of main interest for the tru
 
 Other ETSI specifications that the previous specifications build upon:
 
-| **Item Reference**            | **Version** | **Date**    | **Title**                 |
+| Item Reference                | Version     | Date        | Title                     |
 | ----------------------------- | ----------- | ----------- | ------------------------- |
 | ETSI EN 319 132-1             | V1.3.1      | 2024-07     | Electronic Signatures and Trust Infrastructures (ESI); XAdES digital signatures; Part 1: Building blocks and XAdES baseline signatures |
 | ETSI EN 319 411-1             | V1.5.1      | 2025-04     | Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 1: General requirements |
@@ -60,13 +73,16 @@ Other ETSI specifications that the previous specifications build upon:
 
 ## ISO/IEC Standards
 
-| **Item Reference**            | **Version** | **Date**    | **Title**                 |
-| ----------------------------- | ----------- | ----------- | ------------------------- |
-| ISO/IEC 18013-5               |             |             | Personal identification --- ISO-compliant driving licence - Part 5: Mobile driving licence (mDL) application |
+| Item Reference                              | Date        | Title                     |
+| ------------------------------------------- | ----------- | ------------------------- |
+| ISO 639                                     | 2023-11     | Code for individual languages and language groups |
+| ISO 8601-1                                  | 2019-02     | Date and time — Representations for information interchange — Part 1: Basic rules |
+| ISO 17442-1                                 | 2020-08     | Financial services — Legal entity identifier (LEI) — Part 1: Assignment |
+| ISO/IEC 18013-5                             | 2021-09     | Personal identification — ISO-compliant driving licence — Part 5: Mobile driving licence (mDL) application |
 
 ## OIDF Standards
 
-| **Item Reference**            | **Version** | **Date**    | **Title**                 |
+| Item Reference                | Version     | Date        | Title                     |
 | ----------------------------- | ----------- | ----------- | ------------------------- |
 | OpenID4VC HAIP                | V1.0        | 2025-12     | OpenID4VC High Assurance Interoperability Profile |
 | OpenID4VCI                    | V1.0        | 2025-09     | OpenID for Verifiable Credential Issuance |
@@ -74,24 +90,28 @@ Other ETSI specifications that the previous specifications build upon:
 
 ## IETF Standards
 
-| **Item Reference**                          | **Date**    | **Title**                 |
+| Item Reference                              | Date        | Title                     |
 | ------------------------------------------- | ----------- | ------------------------- |
 | RFC 1950                                    | 1996-05     | ZLIB Compressed Data Format Specification version 3.3 |
 | RFC 1951                                    | 1996-05     | DEFLATE Compressed Data Format Specification version 1.3 |
 | RFC 2119                                    | 1997-03     | Key words for use in RFCs to Indicate Requirement Levels |
 | RFC 3647                                    | 2003-11     | Internet X.509 Public Key Infrastructure Certificate Policy and Certification Practices Framework |
 | RFC 3739                                    | 2004-03     | Internet X.509 Public Key Infrastructure - Qualified Certificates Profile |
+| RFC 3986                                    | 2005-01     | Uniform Resource Identifier (URI): Generic Syntax |
+| RFC 4514                                    | 2006-06     | Lightweight Directory Access Protocol (LDAP): String Representation of Distinguished Names |
 | RFC 5280                                    | 2008-05     | Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile |
+| RFC 5322                                    | 2008-10     | Internet Message Format |
 | RFC 6960                                    | 2013-05     | X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP |
 | RFC 7515                                    | 2015-05     | JSON Web Signature (JWS)  |
 | RFC 7519                                    | 2015-05     | JSON Web Token (JWT)      |
 | RFC 8174                                    | 2017-05     | Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words |
+| RFC 8392                                    | 2026-05     | CBOR Web Token (CWT) |
 | RFC 9052                                    | 2022-08     | CBOR Object Signing and Encryption (COSE): Structures and Process |
 | RFC 9360                                    | 2023-02     | CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificate |
 | RFC 9608                                    | 2024-06     | No Revocation Available for X.509 Public Key Certificates |
 
 ## IETF Drafts
 
-| **Item Reference**            | **Version** | **Date**   | **Standard Name/Details** |
+| Item Reference                | Version     | Date       | Standard Name/Details     |
 | ----------------------------- | ----------- | ---------- | ------------------------- |
 | draft-ietf-oauth-status-list  | 21          | 2026-06-21 | Token Status List (TSL)   |

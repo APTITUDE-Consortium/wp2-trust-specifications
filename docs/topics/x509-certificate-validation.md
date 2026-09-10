@@ -1,16 +1,16 @@
-### Certificate Path Validation
+#### Certificate Path Validation
 
-The entity that performs the certificate path validation initializes the following variables according to [RFC 5280](https://datatracker.ietf.org/doc/html/rfc5280):
+The entity that performs the certificate path validation initializes the following variables according to [RFC 5280]:
 
 - `path`: The sequence $C_1 \dots C_n$.
-- `trust_anchor`: *trusted certificate* obtained from the `ServiceDigitalIdentity` component after validation of the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> or <artifacts:Trusted List (TL)|Trusted List>.
+- `trust_anchor`: *trusted certificate* obtained from the `ServiceDigitalIdentity` component after validation of the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 - `current_time`: The current date and time.
 
 !!! note
 
-    The profiles for Trust Anchor certificates referenced within a <artifacts:List of Trusted Entities (LoTE)|LoTE> or <artifacts:Trusted List (TL)|Trusted List> are described in [Trust Anchor Certificate](../sections/trust-artifacts.md#trust-anchor-certificate).
+    The profiles for <artifacts:Trust Anchor> Certificates referenced within a <artifacts:List of Trusted Entities (LoTE)|LoTE> are described in [Trust Anchor Certificate](../sections/trust-artifacts.md#trust-anchor-certificate).
 
-The entity that performs the certificate path validation follows the algorithm described below ([RFC 5280](https://datatracker.ietf.org/doc/html/rfc5280)):
+The entity that performs the certificate path validation follows the algorithm described below [RFC 5280]:
 
 **Step 1: Initialization**
 Initialize the state variables:
@@ -62,8 +62,8 @@ Iterate through the path for $i$ from $1$ to $n$:
 After processing $C_n$:
 
 1. If `explicit_policy` > 0, decrement it.
-2. If `explicit_policy` > 0 OR `valid_policy_tree` is not NULL, the path is VALID.
-3. Otherwise, the path is INVALID.
+2. If `explicit_policy` > 0 OR `valid_policy_tree` is not NULL, the path is `VALID`.
+3. Otherwise, the path is `INVALID`.
 
 The following diagram describes the process for the validation of a certificate chain.
 
@@ -130,17 +130,17 @@ flowchart TD
     class AbortFailure,AbortPolicy,AbortConstraints,Failure abort;
 ```
 
-#### Revocation Checking
+##### Revocation Checking
 
 The entity performing certificate path validation (e.g., the <components:Wallet Unit>) SHALL determine the revocation status for every certificate in the path with one of the following methods:
 
-- If the certificate contains the `noRevAvail` extension AND the `ext-etsi-valassured-ST-certs` extension (see [Wallet Relying Party Access Certificate](../sections/trust-artifacts.md#wallet-relying-party-access-certificate)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
+- If the certificate contains the `noRevAvail` extension AND the `ext-etsi-valassured-ST-certs` extension (see [Wallet-Relying Party Access Certificate](../sections/trust-artifacts.md#wallet-relying-party-access-certificate)), revocation checking SHOULD be skipped (as the certificate's status is determined solely by validity period).
 - If the `cRLDistributionPoints` extension is present, the <components:Wallet Unit> MAY retrieve and validate the <artifacts:Certificate Revocation List (CRL)|CRL>.
 - If the `authorityInfoAccess` extension (with `id-ad-ocsp`) is present, the <components:Wallet Unit> MAY perform an <protocols:Online Certificate Status Protocol (OCSP)|OCSP> lookup.
 
 For details regarding the formats and parameters of <artifacts:Certificate Revocation List (CRL)|CRLs> and <protocols:Online Certificate Status Protocol (OCSP)|OCSP> responses, see [Revocation Mechanism](../sections/trust-management-lifecycle.md#revocation-mechanisms).
 
-##### CRL Validation
+###### CRL Validation
 
 When using a <artifacts:Certificate Revocation List (CRL)|CRL>, the <components:Wallet Unit> SHALL:
 
@@ -213,7 +213,7 @@ flowchart TD
     class Revoked,Revoked2,Revoked3,Revoked4,Revoked5 revoked;
 ```
 
-##### OCSP Response Validation
+###### OCSP Response Validation
 
 When using <protocols:Online Certificate Status Protocol (OCSP)|OCSP>, the <components:Wallet Unit> SHALL:
 

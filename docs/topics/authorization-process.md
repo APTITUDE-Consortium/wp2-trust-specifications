@@ -1,716 +1,322 @@
-This section specifies the Authorization Process that a <components:Wallet Instance|Wallet Instance (WI)> SHALL execute to determine whether an interaction with a Wallet-Relying Party (WRP) is allowed within the <components:EUDI Wallet> ecosystem. A <components:Wallet Instance> SHALL implement all the rules of the Authorization Process defined in this section [AUTHZ-GEN-03].
+# Authorization Process
 
-Authorization covers:
+This topic defines the common authorization process for issuance and presentation. It is applied after authentication and before an issuance or presentation operation is authorized. The trust-check topics define how the inputs are obtained for each operation; this topic defines how those inputs are evaluated and how the final decision is made.
 
-- **Issuance authorization**: whether a <roles:Provider of Person Identification Data (PID Provider)|PID Provider> or <roles:Attestation Provider (AP)> is registered for the relevant role and for the specific <data-elements:Attestation Type|Attestation type(s)> to be issued. This applies to <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:QEAA Provider|QEAA Providers>, <roles:PuB-EAA Provider|PuB-EAA Providers>, and <roles:EAA Provider|EAA Providers>.
-- **Presentation authorization**: whether a <roles:Relying Party (RP)> request is within its registered scope, whether any <artifacts:Embedded Disclosure Policy (EDP)|Embedded Disclosure Policy> permits disclosure, and whether the <roles:User> approves. This applies to both direct <roles:Relying Party (RP)|RP> and <roles:Relying Party Intermediary (RPI)|intermediated RP> interactions, and both <protocols:Remote Flow|Remote Flows> and <protocols:Proximity Flow|Proximity Flows>.
+The certificate, <components:Register>, and policy data models remain defined in the [WRPRC](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate), [Register](../sections/trust-artifacts.md#register), and [EDP](../sections/trust-artifacts.md#embedded-disclosure-policy) profiles. Transport and artifact placement remain defined in the applicable issuance and presentation trust checks.
 
-!!! note
+## Scope and Preconditions
 
-    Authentication process is out of scope. This section does not define access certificate validation rules, <artifacts:List of Trusted Entities (LoTE)|LoTE> validation procedures, certificate-path validation algorithms, revocation checking procedures for access certificates, the full trust-anchor validation model, nor the internal structure and encoding of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> (covered in section [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate)), nor <roles:Registrar> online service API definition.
+Authorization SHALL be evaluated only after the applicable [Authentication Process](../sections/trust-evaluation-process.md#authentication-process) has completed successfully (`AUTHZ-GEN-01`). The <components:Wallet Unit> SHALL use the same authorization process for issuance and presentation, while applying the operation-specific inputs and checks defined below (`AUTHZ-GEN-02`). A failed authentication or an unavailable authorization input SHALL prevent the operation from being authorized (`AUTHZ-GEN-03`).
 
-### Preconditions
+The Authorization Subject is the organization that requests the issuance or presentation operation. For a direct interaction it is the authenticated final <roles:Relying Party (RP)|RP>. For an intermediated interaction it is the final <roles:Relying Party (RP)|RP> identified by the request, not the <roles:Relying Party Intermediary (RPI)|intermediary> (`AUTHZ-GEN-04`).
 
-The Authorization Process SHALL start only after the WRP has been successfully authenticated according to the applicable specifications (see section [Authentication Process](../sections/trust-evaluation-process.md#authentication-process)) [AUTHZ-GEN-01]. If the WRP has not been authenticated, the Authorization Process SHALL NOT start [AUTHZ-GEN-02].
-This section does define how the <components:Wallet Instance|WI> SHALL use the already-authenticated WRP context as an input to authorization, including binding checks between the authenticated WRP, the authorization subject, and the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or <components:Register>-derived authorization context.
+## Inputs
 
-### Authorization Framework
+The Authorization Context is the operation-specific data inferred by the <components:Wallet Instance> from the authenticated flow inputs. For the presentation flow, it includes request-derived information such as the claimed final <roles:Relying Party (RP)|RP>, intended use, and requested <credentials:Attestation|Attestations> or claims; it is not, by itself, proof of registration.
 
-This subsection defines the conceptual model that defines all authorization decisions. It introduces the key concepts (authorization subject, data source hierarchy, decision outcomes, and override principles) that the subsequent subsections build upon.
+An Authorization Artifact is the authoritative transport of entity-specific authorization data. A validated WRPRC is an Authorization Artifact, and a validated Register response MAY serve as an Authorization Artifact when the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is absent or invalid. Authorization data carried by an Authorization Artifact includes the registered subject, intended use, entitlements, scope, and intermediary relationship. The <components:Wallet Instance> combines that authoritative authorization data with the Authorization Context for the subsequent checks.
 
-#### Authentication Prerequisite and Authorization Subject
+The applicable trust check process SHALL produce a normalized authorization input set. The input set SHALL contain the following where applicable:
 
-The <components:Wallet Instance|WI> SHALL distinguish between the authenticated WRP and the authorization subject [AUTHZ-GEN-04]. The authorization subject is the entity whose authorization is being evaluated:
+| Input     | Source and Use    |
+| --------- | ----------------- |
+| <artifacts:Presentation Request> | The request supplies the requested <credentials:Attestation\|Attestations>, claims, intended use, and the final <roles:Relying Party (RP)\|RP> identity for presentation (`AUTHZ-IN-01`). |
+| <artifacts:Credential Issuer Metadata> | Issuance obtains the <roles:Attestation Provider (AP)\|Attestation Provider> identity, supported <data-elements:Attestation Type\|Attestation Types>, and <roles:Attestation Provider (AP)\|Attestation Provider> authorization data from validated metadata (`AUTHZ-IN-02`). |
+| <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> and its trust path | The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> and its validated chain identify and authenticate the <roles:Relying Party (RP)\|RP> (`AUTHZ-IN-03`, `AUTHZ-IN-04`). |
+| <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> | The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> carrying authoritative registered <roles:Relying Party (RP)\|RP> data and intended use information (`AUTHZ-IN-05`). |
+| <components:Register> response | A validated response from the <components:Register> can serve as an Authorization Artifact when the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is absent or invalid (`AUTHZ-IN-06`). |
+| Intended use | The operation's intended use in the Authorization Context is compared with the intended use carried by the Authorization Artifact (`AUTHZ-IN-07`). |
+| <data-elements:Attestation Type> | Issuance identifies the requested or supported <data-elements:Attestation Type> from the <roles:Attestation Provider (AP)\|Attestation Provider> and <roles:Relying Party (RP)\|RP> authorization data (`AUTHZ-IN-08`). |
+| <artifacts:Embedded Disclosure Policy (EDP)\|EDP> | For presentation, an applicable <artifacts:Embedded Disclosure Policy (EDP)\|EDP> is evaluated against the operation and the final <roles:Relying Party (RP)\|RP> (`AUTHZ-IN-09`). |
+| User setting | For presentation, the <components:Wallet Instance> MAY disable the optional requested-scope comparison; the setting is enabled by default (`AUTHZ-IN-10`). |
 
-- In issuance: the <roles:Provider of Person Identification Data (PID Provider)|PID Provider> or <roles:Attestation Provider (AP)|AP>.
-- In direct presentation: the <roles:Relying Party (RP)|RP>.
-- In intermediated presentation: the final (intermediated) RP. The authenticated WRP in this case is the intermediary.
+The primary Authorization Artifact is the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> (`AUTHZ-GEN-05`). A <components:Register> lookup is optional and is not a prerequisite for authorization (`AUTHZ-GEN-06`). When both a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and a <components:Register> response are available, the <components:Wallet Instance> SHALL normalize the authorization data carried by those artifacts and use one consistent Authorization Context for all subsequent checks (`AUTHZ-GEN-07`).
 
-#### Source-Model Neutrality
+The authenticated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>-derived identity is authoritative for the authenticated identity. A successfully validated Authorization Artifact is authoritative for the registered authorization data it carries, and a validated <artifacts:Embedded Disclosure Policy (EDP)|EDP> is authoritative for its applicable disclosure constraints. Self-declared request data and a request-carried Registrar URL are discovery inputs only; neither is proof of registration. An authoritative value SHALL take precedence over a non-authoritative conflict. A conflict between authoritative identity or binding sources SHALL fail authorization non-overridably. If both <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <components:Register> Authorization Artifacts are used, content validation SHALL use the <components:Register>-derived authorization data only when its identity and intermediary-binding data remain consistent with the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
 
-The issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be the primary authorization evidence. The <components:Wallet Instance|WI> MAY use a verified <components:Register> response only for the permitted checks described below [AUTHZ-GEN-05]. The substantive authorization logic SHALL NOT change based on the data source [AUTHZ-GEN-06].
+## Authorization Artifact Validation
 
-#### Input Model
+This process validates the Authorization Artifact and establishes the authoritative authorization data used to complete the Authorization Context. It is the first stage of the common pipeline and SHALL complete before Authorization Content Validation starts.
 
-The <components:Wallet Instance|WI> SHALL base authorization decisions only on information derived from [AUTHZ-IN-01]:
+**Input**
 
-- Already authenticated WRP context.
-- A verified <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
-- A verified <components:Register> response, if the <components:Wallet Instance|WI> performs one of the permitted Register checks.
-- A verified <artifacts:Embedded Disclosure Policy (EDP)|EDP>, if provided by <roles:Attestation Provider (AP)|AP> during issuance.
+- A <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> obtained from the applicable authenticated issuance or presentation flow, when one is available.
+- The applicable <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> <artifacts:List of Trusted Entities (LoTE)|LoTE>, <artifacts:Trust Anchor|Trust Anchor>, certificate-status information, and current validation time.
+- For the optional <components:Register> procedure, a discovered <components:Register> endpoint, the Authorization Subject identifier, and the applicable intended-use identifier.
 
-The <components:Wallet Instance|WI> SHALL maintain an internal distinction between the following input classes [AUTHZ-IN-02]:
+**Outcome**
 
-- **Authenticated WRP context**: authoritative only for the identity of the WRP [AUTHZ-IN-03].
-- **Verified <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>-derived or <components:Register>-derived information**: authoritative for subject identity, entitlements, intended use, registered scope, intermediary relationship, issuance-type information, and privacy-policy references [AUTHZ-IN-04 and AUTHZ-IN-05].
-- **Self-declared information**: non-authoritative. The <components:Wallet Instance|WI> SHALL NOT rely on self-declared information for checks that require registered information or use it as a fallback when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or <components:Register> validation fails [AUTHZ-IN-06, AUTHZ-IN-10].
-- **Verified <artifacts:Embedded Disclosure Policy (EDP)|EDP>**: authoritative only if available. The <components:Wallet Instance|WI> SHALL rely on RP information to determine access permission [AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)|EDP>-06].
+- A successfully validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or <components:Register> response establishes the authoritative authorization data without introducing a new positive result code.
+- A missing or invalid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> produces `CERTIFICATE_INVALID` and permits the optional <components:Register> procedure.
+- If no valid Authorization Artifact is obtained, the stage produces `FAILED` and the final result is `NOT_AUTHORIZED`.
 
-Self-declared metadata SHALL NOT be used to establish registration, entitlements, scope, intermediary relationships, or issuance authorization.
+### WRPRC Validation
 
-Where authoritative sources conflict with non-authoritative sources, the authoritative sources SHALL supersede [AUTHZ-IN-07]. Where the authenticated WRP context conflicts with the identity or intermediary binding in the verified authorization context, the <components:Wallet Instance|WI> SHALL produce `NOT_AUTHORIZED` (non-overridable) [AUTHZ-IN-08].
+The <components:Wallet Instance> SHALL validate a supplied <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> before using it as an Authorization Artifact (`AUTHZ-GEN-08`). The <components:Wallet Instance> SHALL perform the following checks in order, following the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> profile and the applicable [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process), [X.509 Certificate Chain Validation](../sections/trust-evaluation-process.md#x509-certificate-chain-validation), and [Status Mechanism](../sections/trust-management-lifecycle.md#status-list-token) (`AUTHZ-GEN-09`):
 
-A request-carried <roles:Registrar> URL SHALL NOT be treated as sufficient proof of registered information by itself; it MAY be used only as a discovery hint unless confirmed by an authoritative source [AUTHZ-IN-09].
+1. **Format verification:** verify the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> encoding and profile syntax, including `typ = rc-wrp+jwt` for a JWT or `typ = rc-wrp+cwt` for a CWT in the applicable flow, and verify all required profile fields are present and well formed.
+2. **Algorithm verification:** verify that the declared signature algorithm is permitted by the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> profile and that the object is not unsigned.
+3. **Signature validation:** verify the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> signature using the signing certificate carried in the profile-defined certificate-chain member.
+4. **Trust Anchor validation:** validate the applicable <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> <artifacts:List of Trusted Entities (LoTE)|LoTE> and obtain the <artifacts:Trust Anchor|Trust Anchor> from that validated <artifacts:List of Trusted Entities (LoTE)|LoTE>; a certificate supplied only by the candidate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL NOT be accepted as the <artifacts:Trust Anchor|Trust Anchor>.
+5. **Certificate path validation:** validate the complete signing-certificate path against the obtained <artifacts:Trust Anchor|Trust Anchor>, including certificate signatures, <roles:Attestation Provider (AP)|Attestation Provider> relationships, validity periods, applicable constraints, certificate policies, and revocation status according to the referenced X.509 process.
+6. **<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> temporal validation:** verify the required `iat` value and, when present, the `exp` value against the current validation time.
+7. **<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> status validation:** retrieve the <artifacts:Status List Token> from `status.status_list.uri`, validate its protected format, signature, signing-certificate path, <artifacts:Trust Anchor|Trust Anchor>, freshness, and data model, and inspect the bit at `status.status_list.idx`; `0x00` represents a valid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and `0x01` represents an invalid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
+8. **Profile and interaction consistency:** verify that the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> subject, intended use, entitlements, registered scope, attestation-provider data, and intermediary data are semantically valid and consistent with the authenticated operation and the applicable request or issuance context.
 
-#### Decision Model
+If the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is absent or any mandatory validation check fails, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> Authorization Artifact outcome is `CERTIFICATE_INVALID`. The <components:Wallet Instance> SHALL then either use the optional <components:Register> procedure below or terminate Authorization Artifact Validation without a valid Authorization Artifact.
 
-The <components:Wallet Instance|WI> SHALL provide an authorization decision expressed as `AUTHORIZED` or `NOT_AUTHORIZED` [AUTHZ-UI-01].
+### Optional Register Validation
 
-Each evaluation procedure (defined later in this section) gives a granular verification result code when it detects a negative condition. These codes feed into the final decision and into the advisories presented to the <roles:User>.
+The <components:Register> procedure is a permitted fallback after a missing or invalid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, and it is also the only <components:Register> operation currently defined by this process (`AUTHZ-GEN-10`). The <components:Wallet Instance> SHALL:
 
-| Code | Phase | Meaning |
-|------|-------|---------|
-| `CERTIFICATE_INVALID` | Both | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation failed |
-| `FAILED` | Both | Registration data could not be obtained or verified |
-| `WRONG_ENTITLEMENT` | Both | Entity entitlement does not match expected role |
-| `ATTESTATION_TYPE_NOT_REGISTERED` | Issuance | Requested attestation type is not in registered list |
-| `BINDING_FAILED` | Both | Authorization subject does not match authenticated identity |
-| `INTERMEDIARY_NOT_AUTHORIZED` | Presentation | Intermediary association verification failed |
-| `VERIFICATION_PASSED` | Presentation | All requested attributes are registered |
-| `OVERASKING_DETECTED` | Presentation | Some requested attributes are not registered |
-| `EDP_SATISFIED` | Presentation | <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> conditions met |
-| `EDP_NOT_SATISFIED` | Presentation | <artifacts:Embedded Disclosure Policy (EDP)\|Embedded Disclosure Policy> conditions not met |
+1. **Discover the endpoint:** obtain the <components:Register> endpoint from the applicable request or metadata input; a request-carried URL is a discovery hint and is not proof of registration (`AUTHZ-REG-01`).
+2. **Retrieve the record:** use HTTPS and the <components:Register> profile's `GET /wrp` operation with the Authorization Subject identifier and intended-use identifier where applicable, requesting the complete registered record rather than a Boolean intended-use result (`AUTHZ-REG-02`, `AUTHZ-ISS-08`, `AUTHZ-PRES-06`).
+3. **Verify the response format:** require the successful response and media type defined by the <components:Register> profile and parse the signed registration statement as the profile-defined JWS representation.
+4. **Verify authenticity and trust:** validate the <roles:Registrar> signature, the <roles:Registrar> Sign/Seal Certificate, its certificate path, the applicable <roles:Registrar> <artifacts:List of Trusted Entities (LoTE)|LoTE> and <artifacts:Trust Anchor|Trust Anchor>, and any profile-defined temporal or status information (`AUTHZ-REG-03`, `AUTHZ-ISS-09`).
+5. **Verify pertinence and completeness:** verify that the response contains the Authorization Subject, intended use, and all authorization data required by the operation, and that those values match the authenticated interaction and query.
+6. **Normalize the result:** normalize the validated record into the same authorization-context model used for a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> (`AUTHZ-REG-04`).
 
-The Authorization Process SHALL support transparent decision-making and SHALL NOT be a purely hidden backend check [AUTHZ-UI-05].
+A successfully validated <components:Register> response is an Authorization Artifact and is authoritative for the authorization data it carries. If the <components:Wallet Instance> invokes the <components:Register> and retrieval or validation fails, the Authorization Artifact outcome SHALL be `FAILED` and Authorization Artifact validation SHALL fail. If the <components:Wallet Instance> does not invoke the optional procedure, or no valid response is obtained, there is no valid Authorization Artifact; the Authorization Artifact validation stage SHALL terminate with the existing validation outcome `FAILED` and the final result SHALL be `NOT_AUTHORIZED`. The earlier <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> Authorization Artifact outcome remains `CERTIFICATE_INVALID`. The <components:Wallet Instance> SHOULD notify the User when <components:Register> data are used, as specified in `RPRC_21`.
 
-#### Override Principles
+!!! choice "APTITUDE Implementation Choice"
 
-A `NOT_AUTHORIZED` decision can be either non-overridable (the <components:Wallet Instance|WI> blocks the interaction) or overridable (the <components:Wallet Instance|WI> presents the negative outcome and the <roles:User> can choose to proceed).
+    The <components:Register> MAY support a future service-binding lookup, but the current profile does not define the service-binding fields or comparison rules. A lookup MAY be performed only after an applicable profile defines its inputs and comparison procedure. An implementation SHALL NOT claim that capability until then; the open service-binding question remains tracked as issue [#114](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues/114).
 
-In **issuance** phase, all negative verification outcomes are non-overridable: the <components:Wallet Instance|WI> protects the <roles:User> from providers whose registration cannot be confirmed (per ISSU_24a, ISSU_34a, ISSU_34b).
+### Authorization Artifact Validation Outcome
 
-In **presentation** phase, two specific cases are overridable:
+This validation stage succeeds only when a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or an authoritative <components:Register> response has been fully validated. A validation failure is non-overridable and uses the existing validation outcome `FAILED` when no valid Authorization Artifact is obtained. The <components:Wallet Instance> SHALL NOT continue with binding, entitlement, scope, attestation-type, or EDP checks after an Authorization Artifact validation failure.
 
-1. Negative scope comparison (per RPRC_21: the <roles:User> is informed of unregistered attributes but can proceed).
-2. Negative <artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation (per EDP_07: the <roles:User> can deny or allow).
+## Authorization Content Validation
 
-All other presentation failures (binding failures and intermediary binding failures) are non-overridable because they indicate an integrity problem rather than a user-facing choice.
+The <components:Wallet Instance> SHALL perform content validation only after a valid Authorization Artifact has been established. The <components:Wallet Instance> SHALL use only the authenticated identity and interaction context, the validated Authorization Artifact, the normalized operation inputs, and a validated applicable <artifacts:Embedded Disclosure Policy (EDP)|EDP>. A failure in any non-overridable content check SHALL terminate the pipeline and prevent later checks.
 
-In case of non-overridable failures, the <components:Wallet Instance|WI> SHALL clearly inform the <roles:User> about the negative outcome. User-relevant information about overridable outcomes SHALL be presented as advisories, and the <roles:User> approval SHALL be a separate step from the authorization decision [AUTHZ-UI-02, AUTHZ-UI-03, AUTHZ-UI-04].
+**Input**
 
-!!! note "User opt-in"
+- The authoritative Authorization Context established by the preceding validation stage.
+- The authenticated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> identity and the normalized issuance or presentation inputs.
+- For presentation, the normalized final <roles:Relying Party (RP)|Relying Party>, intended use, requested <credentials:Attestation\|Attestations>, and requested claims.
+- For issuance, the requested <credentials:Attestation> or attestation type and validated <artifacts:Credential Issuer Metadata>.
+- For presentation, each locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> associated with a matching Attestation, when one exists.
 
-    The *WRPRC Validation Procedure* is mandatory. The *Scope Comparison Procedure* is executed only if the <roles:User> enabled scope comparison (RPRC_16). Override mechanisms define what happens when the procedure produces a negative result.
+**Process**
 
-The detailed override rules are provided in the [Override Rules](#override-rules) section.
+The following checks SHALL be performed in order. After a binding, intermediary-association, entitlement, or issuance attestation-type failure, the <components:Wallet Instance> SHALL stop this process and SHALL NOT perform later checks.
 
-### Authorization Evidences
+### Binding and Intermediary Association
 
-This section describes the data objects that carry authorization information such as where they originate, how they are distributed, and what parameters are relevant for authorization decisions. The evaluation procedures that operate on these data objects are defined in the section [Evaluation Procedures](#evaluation-procedures).
+The <components:Wallet Instance> SHALL ensure that the authenticated entity is the same entity described by the applicable authorization data (`AUTHZ-GEN-11`). The authenticated <roles:Wallet-Relying Party (WRP)|WRP> identity SHALL be the `organizationIdentifier` attribute in the subject Distinguished Name of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, as defined in [ETSI EN 319 412-1, Clause 5.1.4] and the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> profile in [ETSI TS 119 411-8].
 
-#### Registration Overview
+The <components:Wallet Instance> SHALL perform the following binding comparisons using the applicable identifier comparison rules:
 
-WRPs are registered with a <roles:Registrar> in their Member State before operating in the <components:EUDI Wallet> ecosystem. <roles:Relying Party (RP)|Relying Parties> declare one or more intended uses, each with a user-friendly description, the <data-elements:Attestation Type> and optionally the list of attributes needed, the purpose, and a privacy policy link. A <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be issued for each intended use (RPRC_09). <roles:Attestation Provider (AP)|Attestation Providers> declare which <data-elements:Attestation Type|Attestation types> they intend to issue (RPRC_15, RPRC_22a). <roles:Relying Party Intermediary (RPI)|Intermediaries> are registered as <roles:Relying Party (RP)|RPs> that act on behalf of other <roles:Relying Party (RP)|RPs>; the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> of the intermediated RP contains the `intermediary` structure identifying the authorized intermediary per [ETSI TS 119 475, Table 10].
+1. **<credentials:Attestation> Issuance:** match the <roles:Attestation Provider (AP)|Attestation Provider> identifier with the `sub` value of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or, when no <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is available, with the identifier used in the successful <components:Register> query, and with `issuer_info.data.identifier` in the validated <artifacts:Credential Issuer Metadata>. A mismatch produces `BINDING_FAILED`.
+2. **<credentials:Attestation> Presentation, direct scenario:** first assume the direct scenario and compare the authenticated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> `organizationIdentifier` with the final <roles:Relying Party (RP)|RP> identifier. The final <roles:Relying Party (RP)|RP> identifier SHALL also match the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> `sub` value or, when no <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is available, the identifier used in the successful <components:Register> query, and the request identifier: `verifier_info.data.identifier` in the <protocols:Remote Flow> <artifacts:Request Object> or `docRequest.itemsRequest[].requestInfo.EUWrpRegistrarInfo.identifier` in the <protocols:Proximity Flow>. If all identifiers match, direct binding succeeds.
+3. **<credentials:Attestation> Presentation, intermediated scenario:** if the direct comparison fails, the <components:Wallet Instance> SHALL attempt the intermediated scenario and compare the authenticated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> `organizationIdentifier` with the `intermediary.sub` value carried by the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or validated <components:Register> response. If the intermediary relationship is absent or invalid, the <components:Wallet Instance> SHALL produce `INTERMEDIARY_NOT_AUTHORIZED` (`AUTHZ-INT-03`). If the relationship is valid, the <components:Wallet Instance> SHALL verify that the final <roles:Relying Party (RP)|RP> identifier remains consistent across the request and the authoritative authorization data and SHALL use the final <roles:Relying Party (RP)|RP> for all subsequent authorization decisions (`AUTHZ-INT-02`). An inconsistent final <roles:Relying Party (RP)|RP> identity produces `BINDING_FAILED`.
 
-!!! choice
+The binding process SHALL use an already-established validated <components:Register> context when the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is unavailable. Binding and intermediary-association failures are non-overridable.
 
-    The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be issued for each intended use, and the <components:Wallet Instance|WI> SHALL perform the WRPRC check. The WRPRC check is mandatory and SHALL NOT be skipped based on <roles:User> opt-in.
+### Entitlement
 
-#### Data Object Lifecycle
+The Authorization Context SHALL contain the entitlement required by the operation (`AUTHZ-GEN-13`). The <components:Wallet Instance> SHALL parse the `entitlements` member of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or the profile-defined `entitlement` member of the validated <components:Register> response, normalize the result, and verify that the entitlements of the Authorization Subject match the expected role. Issuance SHALL require the entitlement for the requested <data-elements:Attestation Type> (`AUTHZ-ISS-01`), and presentation SHALL require the service-provider entitlement (`AUTHZ-PRES-08`).
 
-The following diagram shows the authorization evidences and how they flow between the entities in the ecosystem.
+The expected entitlement URI SHALL be the URI defined for the active role in [ETSI TS 119 475, Annex A.2]. For the roles covered by this process, the expected values are:
 
-```mermaid
-flowchart LR
-    subgraph Entities
-    AP([Attestation Provider])
-    RP([Relying Party])
-    REG([Registrar])
-    WI([Wallet Instance])
-    WRPRC_PROV([Provider of WRPRCs])
-    end
+- <roles:Provider of Person Identification Data (PID Provider)|PID Provider> during <credentials:Person Identification Data (PID)|PID> Issuance: `https://uri.etsi.org/19475/Entitlement/PID_Provider`.
+- <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider> during <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA Issuance>: `https://uri.etsi.org/19475/Entitlement/QEAA_Provider`.
+- <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Provider> during <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|PuB-EAA> Issuance: `https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider`.
+- <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Provider> during <credentials:Electronic Attestation of Attributes (EAA)|EAA> Issuance: `https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider`.
+- <roles:Relying Party (RP)|RP> during <credentials:Attestation> Presentation: `https://uri.etsi.org/19475/Entitlement/Service_Provider`.
 
-    subgraph Authorization Evidences
-    REGDATA[Registration Data]
-    WRPRC_OBJ[WRPRC]
-    EDP_OBJ[Embedded Disclosure Policy]
-    end
+The entitlement URI definitions in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <components:Register> profiles remain authoritative. The <components:Wallet Instance> SHALL compare the expected URI with the authoritative entitlement values using the profile-defined comparison rules. If the expected entitlement is not present, the <components:Wallet Instance> SHALL produce `WRONG_ENTITLEMENT` and terminate authorization non-overridably.
 
-    subgraph Transport Structures
-    META[Credential Issuer Metadata<br/>issuer_info array]
-    PRES[Presentation Request<br/>verifier_info / euWrprc]
-    end
+### Issuance Attestation Type
 
-    REGDATA -.created by.-> REG
-    REGDATA -.input to.-> WRPRC_PROV
-    REGDATA -.queried from register by.-> WI
-    WRPRC_OBJ -.issued by.-> WRPRC_PROV
-    WRPRC_OBJ -.verified by.-> WI
-    WRPRC_OBJ -.included in.-> PRES
-    WRPRC_OBJ -.included in.-> META
-    EDP_OBJ -.defined by.-> AP
-    EDP_OBJ -.stored and evaluated by.-> WI
-    EDP_OBJ -.included in.-> META
-    META -.published by.-> AP
-    PRES -.created by.-> RP
-    PRES -.sent to.-> WI
-    META -.fetched by.-> WI
+During <credentials:Attestation> Issuance, the <components:Wallet Instance> SHALL verify that the requested <credentials:Person Identification Data (PID)|PID> or <data-elements:Attestation Type|Attestation Type> is registered for the <roles:Attestation Provider (AP)|Attestation Provider>. The <components:Wallet Instance> SHALL compare the authoritative `provides_attestations` array from the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or validated <components:Register> response with the keys of `credential_configurations_supported` in the validated <artifacts:Credential Issuer Metadata> (`AUTHZ-ISS-02`, `AUTHZ-ISS-03`). For an <processes:Selective Disclosure Java Web Token Verifiable Credential (SD-JWT VC)|SD-JWT VC>, the comparison SHALL use `vct`; for an <artifacts:mdoc>, it SHALL use `docType`. The match SHALL be exact and case-sensitive. If the requested type is not registered or not supported, the <components:Wallet Instance> SHALL produce `ATTESTATION_TYPE_NOT_REGISTERED` and terminate authorization non-overridably.
 
-classDef ent fill:#90ee90,stroke:#228b22,stroke-width:1px;
-classDef obj fill:#ffe1e1,stroke:#333,stroke-width:2px;
-classDef transport fill:#fafad2,stroke:#d4c368,stroke-width:1px;
+### Presentation Scope
 
-class AP,RP,WRPRC_PROV,REG,WI ent
-class REGDATA,WRPRC_OBJ,EDP_OBJ obj
-class META,PRES transport
-```
+During <credentials:Attestation> Presentation, the <components:Wallet Instance> SHALL verify that the requested <credentials:Attestation|Attestations> and attributes fall within the registered scope carried in the `credentials` array of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or validated <components:Register> response (`AUTHZ-PRES-02`). The requested-scope comparison is an optional presentation check (`AUTHZ-PRES-01`).
 
-Registration data is collected at the <roles:Registrar> and the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> get it from <roles:Registrar> to provide it through a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. Registration data can also be queried directly by the <components:Wallet Instance|WI> using <roles:Registrar> online services for the permitted backup and binding checks. <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> are distributed to the <components:Wallet Instance|WI> through presentation requests (for RPs) or through <artifacts:Credential Issuer Metadata> (for <roles:Attestation Provider (AP)|APs>). EDPs are defined by the <roles:Attestation Provider (AP)|AP>, distributed through <artifacts:Credential Issuer Metadata>, stored locally by the <components:Wallet Instance|WI> during issuance, and evaluated at presentation time.
+!!! choice "APTITUDE Implementation Choice"
 
-#### Distribution Methods
+    The <components:Wallet Instance> SHALL offer the setting enabled by default and the setting SHALL affect only this comparison (`AUTHZ-PRES-04`).
 
-**Presentation flows.** <roles:Relying Party (RP)|RPs> include the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in the <artifacts:Presentation Request> by value (RPRC_19) in the:
+When scope comparison is enabled, the <components:Wallet Instance> SHALL apply the flow-specific extraction and matching rules:
 
-- `verifier_info` parameter included in the <artifacts:Request Object> JWT within the authorization request (<protocols:Remote Flow>, [ETSI TS 119 472-2] and [OpenID4VP, Section 5.1]). This is an array of JSON Objects containg <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in base64-encoded format and RPRC_19a data including the URL of <roles:Registrar> online service.
-- `euWrprc` (<formats:Concise Binary Object Representation (CBOR)|CBOR> byte string with serialized <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>) member of `requestInfo` included in the ISO DeviceRequest (<protocols:Proximity Flow>, [ETSI TS 119 472-2, Section 5.3]).
+- For the <protocols:Remote Flow>, extract the requested <credentials:Attestation|Attestations> and attributes from `dcql_query` in the <artifacts:Request Object> and compare them with the registered `credentials` entries, including `format`, `meta` and, for <processes:Selective Disclosure Java Web Token Verifiable Credential (SD-JWT VC)|SD-JWT VC>, `vct_values`, and compare requested attributes with the registered `claim` paths.
+- For the <protocols:Proximity Flow>, extract `docType` and `nameSpaces` from the `docRequests` of the <artifacts:mdoc> Request and compare them with `credentials[].meta.doctype_value` and `credentials[].claim`, respectively.
 
-!!! warning
+Every <credentials:Attestation>, format, type, and claim-path match SHALL be exact and case-sensitive. The <components:Wallet Instance> SHALL identify every requested <credentials:Attestation> or attribute for which no registered scope entry matches. If all checks applicable to the interaction succeed, the scope outcome is `VERIFICATION_PASSED`; if any requested <credentials:Attestation> or attribute is not registered, the <components:Wallet Instance> SHALL produce `OVERASKING_DETECTED` and identify the unregistered items (`AUTHZ-PRES-09`). When the User disables the setting, the <components:Wallet Instance> SHALL skip only the scope comparison without treating the request as failed.
 
-    Currently, the mapping of RPRC_19a data in the `requestInfo` map is not defined in [ETSI TS 119 472-2]
+### Embedded Disclosure Policy
 
-**Issuance flow.** <roles:Attestation Provider (AP)|APs> include authorization data in <artifacts:Credential Issuer Metadata> through the `issuer_info` array ([ETSI TS 119 472-3, Section 4.2.3]). This array contains:
+For presentation, <artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation is performed only after context, binding, intermediary association, entitlement, and any enabled scope checks have completed.
 
-- An element with format `"registration_cert"` containing the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> by value (ISS-MDATA-REG_CERT-4.2.3-04/05) (REQUIRED).
-- An element with format `"registrar_dataset"` containing self-declared registration information including `identifier`, `srvDescription`, `registryURI`, and `providesAttestations` (ISS-MDATA-REG_CERT-4.2.3-07 through 13) (REQUIRED).
+<artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation applies to <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|PuB-EAA>, and <credentials:Electronic Attestation of Attributes (EAA)|EAA>. <credentials:Person Identification Data (PID)|PID> does not assume or require an <artifacts:Embedded Disclosure Policy (EDP)|EDP> (`AUTHZ-EDP-01`). For each matching presentation <credentials:Attestation>, the <components:Wallet Instance> SHALL perform the following checks against the locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP>, if any:
 
-Metadata is signed with the <roles:Attestation Provider (AP)|AP> <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> private key (ISSU_22a). Authorization data cointained in the <artifacts:Embedded Disclosure Policy (EDP)|EDP> is also distributed through <artifacts:Credential Issuer Metadata> within `credential_configurations_supported` field.
+1. If no <artifacts:Embedded Disclosure Policy (EDP)|EDP> is stored for the <credentials:Attestation>, this check is superseded and the <artifacts:Embedded Disclosure Policy (EDP)|EDP> outcome is `EDP_SATISFIED` (`AUTHZ-EDP-03`).
+2. Read the <artifacts:Embedded Disclosure Policy (EDP)|EDP> `policy_type` defined in [ETSI TS 119 472-3, Section 4.2.5]. For `no_policy`, no restriction applies and the <artifacts:Embedded Disclosure Policy (EDP)|EDP> outcome is `EDP_SATISFIED`.
+3. For `authorized_rp_only`, compare the direct or final <roles:Relying Party (RP)|RP>'s <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> subject DN with the `authorized_parties[].subject_dn` entries and compare the <roles:Relying Party (RP)|RP>'s authoritative entitlements or sub-entitlements with the `authorized_parties[].entitlement_uri` entries. A match on either supported criterion is sufficient. The <components:Wallet Instance> SHALL NOT use the <roles:Relying Party Intermediary (RPI)|Intermediary> identity as a substitute (`AUTHZ-EDP-04`).
+4. For `specific_root_of_trust`, verify that the direct or final <roles:Relying Party (RP)|RP>'s <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> chain or the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> root selected for that final <roles:Relying Party (RP)|RP> contains one of the policy's `trusted_roots`. The <components:Wallet Instance> SHALL compare `issuer_dn` using LDAP DN comparison and `serial_number` using integer comparison, and SHALL NOT use the intermediary trust root as a substitute (`AUTHZ-EDP-05`).
+5. Evaluate the policy's authorized <roles:Relying Party (RP)|RP>, <credentials:Attestation>, and claim constraints against the final <roles:Relying Party (RP)|RP> and the operation (`AUTHZ-EDP-06`).
+6. If every applicable policy check succeeds, set the <artifacts:Embedded Disclosure Policy (EDP)|EDP> outcome to `EDP_SATISFIED`; otherwise set it to `EDP_NOT_SATISFIED`. The <components:Wallet Instance> SHALL present the applicable policy meaning, requested disclosures, and explanatory link when present in the confirmation UI (`AUTHZ-EDP-07`).
+7. If the User rejects an applicable <artifacts:Embedded Disclosure Policy (EDP)|EDP> disclosure, set the <artifacts:Embedded Disclosure Policy (EDP)|EDP> outcome to `EDP_NOT_SATISFIED` (`AUTHZ-EDP-08`). `EDP_NOT_SATISFIED` is an overridable presentation outcome only after all non-overridable checks have passed (`AUTHZ-EDP-09`).
 
-### Registrar Online Service
+## Authorization Decision and Override
 
-Each <roles:Registrar> provides an online service accessible via URL, obtained as described in the [Distribution Methods](#distribution-methods) section.
+The <components:Wallet Instance> SHALL produce the binary result `AUTHORIZED` or `NOT_AUTHORIZED` (`AUTHZ-UI-01`). User-relevant limitations SHALL be represented as advisories (`AUTHZ-UI-02`).
 
-!!! choice
+The <components:Wallet Instance> SHALL display all results and advisories with the requested attributes and request User approval (`AUTHZ-UI-03`, `AUTHZ-UI-07`).
 
-    A <components:Wallet Instance|WI> MAY still use the <components:Register> APIs to:
+User approval SHALL remain a separate step from the authorization decision (`AUTHZ-UI-04`), and the process SHALL support transparent decision-making (`AUTHZ-UI-05`).
 
-    - Check fresh Entity registration information as a backup to a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> failure.
-    - Check that the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> obtained by the <roles:Wallet-Relying Party (WRP)|WRP> is bound to the service with which the <components:Wallet Instance|WI> is interacting.
+The final result is determined as follows:
 
-The <components:Wallet Instance|WI> MAY use this service for either permitted check. The service is queried using the entity unique identifier and, for presentation, the `intended_use_id`. The response provides the same authorization-relevant data as a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. A <components:Register> response SHALL NOT replace the mandatory WRPRC issuance or WRPRC check. The <roles:Registrar> online service is available through an API interface which is defined in [Register API](../sections/trust-artifacts.md#register).
+| Conditions    | Final Result  |
+| ------------- | ------------- |
+| No valid Authorization Artifact or authoritative authorization data, <components:Register> failure, binding failure, invalid intermediary association, wrong entitlement, unsupported issuance <data-elements:Attestation Type>, or any other non-overridable failure | `NOT_AUTHORIZED` (`AUTHZ-UI-06`) |
+| Issuance with a valid Authorization Artifact and resulting Authorization Context, binding, entitlement, and supported attestation type | `AUTHORIZED` |
+| Presentation with a valid Authorization Artifact and resulting Authorization Context, binding, intermediary association where applicable, entitlement, scope passed or skipped, and `EDP_SATISFIED` | `AUTHORIZED` |
+| Presentation with only `OVERASKING_DETECTED` and/or `EDP_NOT_SATISFIED` remaining | `NOT_AUTHORIZED` until the user accepts the applicable override |
 
-!!! note
+In an intermediated presentation, missing final <roles:Relying Party (RP)|RP> information, missing authoritative data, binding failure, and negative scope or <artifacts:Embedded Disclosure Policy (EDP)|EDP> outcomes are negative cases for the final <roles:Relying Party (RP)|RP> (`AUTHZ-INT-06`).
 
-    The <components:Wallet Instance|WI> SHOULD inform the <roles:User> that an external query will be made (privacy consideration per RPRC_18).
+The <components:Wallet Instance> SHALL display the final <roles:Relying Party (RP)|RP> identity and intended use. It SHALL NOT display the <roles:Relying Party Intermediary (RPI)|Intermediary> identity (`AUTHZ-UI-08`).
 
-#### Embedded Disclosure Policy
+A non-overridable failure SHALL be clearly identified and SHALL not be presented as user-overridable.
 
-The <artifacts:Embedded Disclosure Policy (EDP)|EDP> is a set of rules defined by the <roles:Attestation Provider (AP)|AP> that restricts which <roles:Relying Party (RP)|RPs> can access specific <credentials:Attestation|Attestations>. The <artifacts:Embedded Disclosure Policy (EDP)|EDP> definition, data model, structure, encoding, and lifecycle are specified in the dedicated [Embedded Disclosure Policy](../sections/trust-artifacts.md#embedded-disclosure-policy) section of this specification.
+If the result is `AUTHORIZED`, the <components:Wallet Instance> SHALL proceed to normal User approval (`AUTHZ-UI-10`). If the result is `NOT_AUTHORIZED` and only overridable presentation outcomes remain, the <components:Wallet Instance> SHALL present the negative outcome and SHALL allow continuation if the User accepts every applicable override (`AUTHZ-UI-11`).
 
-For authorization purposes, the following aspects are relevant:
+All issuance failures are non-overridable. Only presentation scope overasking and <artifacts:Embedded Disclosure Policy (EDP)|EDP> failure MAY be overridden.
 
-- <artifacts:Embedded Disclosure Policy (EDP)|EDPs> are applicable to <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAAs>, <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|PuB-EAAs>, and non-qualified EAAs. They are not applicable to <credentials:Person Identification Data (PID)|PIDs> [AUTHZ-EDP-01].
-- During issuance, when the <roles:User> confirms, the <components:Wallet Instance|WI> SHALL retrieve and store locally the <artifacts:Embedded Disclosure Policy (EDP)|EDP> if present in the <artifacts:Credential Issuer Metadata> [AUTHZ-EDP-02].
-- At presentation time, for each <credentials:Attestation|Attestation> matching a request, the <components:Wallet Instance|WI> SHALL check its locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> and evaluate it against the requesting RP according to the [EDP Evaluation Procedure](#edp-evaluation-procedure) defined in this section.
-- Annex III of [CIR 2024/2979] defines three policy types that the WI SHALL support. In particular:
-    - No Policy.
-    - Authorized Relying Parties Only.
-    - Specific Root of Trust.
+The <components:Wallet Instance> SHALL record and enforce the final decision. A successful authorization produces `AUTHORIZED`; a rejected or failed authorization produces `NOT_AUTHORIZED`.
 
-### Evaluation Procedures
+## Phase Applicability
 
-This section defines the individual verification procedures that are composed into end-to-end flows in the [Operational Flows](#operational-flows) section. Each procedure is self-contained: it specifies its inputs, its processing logic, and its output (a verification result code). The override behaviour for each procedure's negative outcome is detailed in the [Override Rules](#override-rules) section.
+### Issuance
 
-#### WRPRC Validation Procedure
+Before running the common pipeline, the <components:Wallet Instance> SHALL retrieve and validate <artifacts:Credential Issuer Metadata>, including its signature, trust chain, and metadata content (`AUTHZ-ISS-04`, `AUTHZ-ISS-05`, `AUTHZ-ISS-06`). It SHALL extract the <roles:Attestation Provider (AP)|Attestation Provider> authorization data needed by the common pipeline (`AUTHZ-ISS-07`). The detailed sequence is defined in [Trust Checks for Issuance](../sections/trust-evaluation-process.md#issuance).
 
-The <components:Wallet Instance|WI> SHALL validate the issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> before relying on it [AUTHZ-GEN-08]. If the issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is absent, the mandatory check fails with `CERTIFICATE_INVALID`.
+After successful authorization, the <components:Wallet Instance> SHALL show the <roles:Attestation Provider (AP)|Attestation Provider>, <data-elements:Attestation Type>, service description, and applicable advisories before user confirmation (`AUTHZ-UI-09`). If an <artifacts:Embedded Disclosure Policy (EDP)|EDP> is accepted, the issuance process SHALL retain it with the authorization and <credentials:Attestation> result (`AUTHZ-ISS-10`).
 
-The validation procedure is:
+### Presentation
 
-1. **Format verification**: confirm `typ` is `rc-wrp+jwt` (remote) or `rc-wrp+cwt` (proximity)  ([ETSI TS 119 475, Section 5.2.1]).
-2. **Algorithm verification**: verify the conformance of signature algorithm (neither `"none"` nor deprecated).
-3. **Signature and Certificate chain validation**: verify the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> signature and validate the chain.
-4. **<artifacts:Trust Anchor> resolution**: fetch the trust anchor for the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> from <artifacts:List of Trusted Entities (LoTE)|LoTE>. The WI SHALL accept <artifacts:Trust Anchor|Trust Anchors> from all <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> <artifacts:List of Trusted Entities (LoTE)|LoTE> (ISSU_33a).
-5. **Temporal validity**: check `iat` and `exp` (if present).
-6. **Status verification**: check revocation status via the `status` field (RPRC_17).
-7. **Coherence check**: verify <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> subject and fields are coherent with the scenario [AUTHZ-GEN-09].
+<protocols:Remote Flow|Remote> and <protocols:Proximity Flow|Proximity> presentation use the same common pipeline (`AUTHZ-PRES-03`). <protocols:Remote Flow|Remote> presentation obtains and validates the request-derived Authorization Context and Authorization Artifact through its defined transport and trust checks (`AUTHZ-PRES-10`). <protocols:Proximity Flow|Proximity> presentation applies the corresponding device and transport checks; it SHALL retain the profile's limitation on the available proximity association evidence (`AUTHZ-PRES-11`).
 
-If any step fails, the procedure outputs `CERTIFICATE_INVALID`. This is not a final authorization decision; the <components:Wallet Instance|WI> MAY use the [Register Validation Procedure](#register-validation-procedure).
+<artifacts:Presentation Request> extraction SHALL produce the normalized requested attributes and intended use before content validation (`AUTHZ-PRES-05`). An intermediated presentation SHALL use the final Relying Party and its validated association for the common pipeline (`AUTHZ-INT-04`). The final <roles:Relying Party (RP)|RP> identity is displayed; the <roles:Relying Party Intermediary (RPI)|Intermediary> identity is not displayed (`AUTHZ-INT-05`). The detailed sequence is defined in [Trust Checks for Presentation](../sections/trust-evaluation-process.md#presentation).
 
-#### Register Validation Procedure
+## Result Codes
 
-When the <components:Wallet Instance|WI> checks the entity's Authorization information, it MAY contact the <components:Register> APIs [AUTHZ-GEN-10]:
+The process uses the following existing artifact, validation, and final outcomes, grouped by the stage that produces them.
 
-1. **Extract <roles:Registrar> URL** from the <artifacts:Presentation Request> (`verifier_info` in remote scenario or `requestInfo` in proximity scanario) during presentation flow, or from <artifacts:Credential Issuer Metadata> (`issuer_info.registry_uri`) during issuance flow. See [Distribution Methods](#distribution-methods) section for details.
-2. **Connect** to the <roles:Registrar> online service using HTTPS.
-3. **Query** using entity identifier and `intended_use_id` (presentation) or AP identifier (issuance).
-4. **Verify response signature**: the <components:Wallet Instance|WI> SHALL verify the signature of the response data according to TS5.
-5. **Resolve <roles:Registrar> trust chain**: the <components:Wallet Instance|WI> SHALL resolve the trust chain of the signing certificate and verify that the <roles:Registrar> <artifacts:Trust Anchor> is contained in the applicable <roles:Registrar> <artifacts:List of Trusted Entities (LoTE)|LoTE>.
-6. **Verify pertinence**: the <components:Wallet Instance|WI> SHALL verify that the response pertains to the relevant authorization subject and intended use [AUTHZ-REG-01], [AUTHZ-REG-02].
-7. **Normalize** <components:Register>-derived data into the same internal model used for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> data [AUTHZ-REG-03].
+### Authorization Artifact Validation Outcomes
 
-If the URL is not present, connection fails, or validation fails, the procedure outputs `FAILED` [AUTHZ-REG-04].
+| Outcome                               | Meaning   |
+| ------------------------------------- | --------- |
+| `CERTIFICATE_INVALID`                 | The supplied <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPRC> Authorization Artifact is absent or invalid; the optional <components:Register> Authorization Artifact fallback may be attempted. |
+| `FAILED`                              | Authorization Artifact validation failed because no valid Authorization Artifact was obtained; an invoked <components:Register> retrieval or validation failure produces this outcome. |
 
-There is no further fallback to self-declared metadata. If the WRPRC check fails and no Register check confirms the required authorization, the <components:Wallet Instance|WI> SHALL NOT use self-declared metadata to authorize the interaction or present it as verified [AUTHZ-IN-10]. For issuance, the <components:Wallet Instance|WI> SHALL block issuance; for presentation, it SHALL notify the <roles:User>.
+### Content Validation Outcomes
 
-#### Binding Verification Procedure
+| Outcome                               | Meaning   |
+| ------------------------------------- | --------- |
+| `BINDING_FAILED`                      | The authenticated, requested, and registered identities do not bind. |
+| `INTERMEDIARY_NOT_AUTHORIZED`         | The intermediary-to-final-party association is absent or invalid. |
+| `WRONG_ENTITLEMENT`                   | The Authorization Context does not contain the required entitlement. |
+| `ATTESTATION_TYPE_NOT_REGISTERED`     | Issuance <data-elements:Attestation Type> is not registered or supported. |
+| `VERIFICATION_PASSED`                 | Presentation requested-scope comparison passed. |
+| `OVERASKING_DETECTED`                 | Presentation requested scope exceeds <credentials:Attestation> scope. |
 
-The <components:Wallet Instance|WI> SHALL verify coherence between the authenticated WRP identity and the authorization context, regardless of whether the authorization context is derived from a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or from the <components:Register> [AUTHZ-GEN-11]. This procedure ensures that the authenticated entity (through <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>) is the same as the entity described in the authorization data.
+### EDP Outcomes
 
-##### Common Principle
+| Outcome                               | Meaning   |
+| ------------------------------------- | --------- |
+| `EDP_SATISFIED` / `EDP_NOT_SATISFIED` | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> evaluation passed or failed. |
 
-The WI SHALL compare the <roles:Wallet-Relying Party (WRP)|WRP> identifier extracted from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> subject (the `organizationIdentifier` in the subject DN, following [ETSI EN 319 412-1, clause 5.1.4]) against the authorization subject identifier available from:
+### Final Decisions
 
-- the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> `sub` field, when the WRPRC check succeeds.
-- The authorization data (RPRC_19a) extracted from the authentication request (`verifier_info` or `requestInfo`) in the presentation scenario.
-- The <components:Register> response (if queried).
+| Outcome                               | Meaning   |
+| ------------------------------------- | --------- |
+| `AUTHORIZED` / `NOT_AUTHORIZED`       | Final operation decision. |
 
-All available sources SHALL be mutually consistent.
+## Authorization Requirements
 
-##### Issuance Binding
+The following table restores the implementation and conformance mapping from the former requirements table with the updated authorization meanings. The normative clauses above remain authoritative; this table does not create additional requirements.
 
-During issuance, the <components:Wallet Instance|WI> SHALL verify that the <roles:Attestation Provider (AP)|AP> that signed the <artifacts:Credential Issuer Metadata> (identified by the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> in the `x5c` header of the JWS) is the same entity described in the authorization data [AUTHZ-GEN-11]. The <components:Wallet Instance|WI> SHALL check coherence between:
-
-- The <roles:Attestation Provider (AP)|AP> identifier from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> subject (extracted during metadata signature verification).
-- The `sub` field from the issued and validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> in `issuer_info`.
-- The `identifier` field from a verified <components:Register> response (if queried).
-
-If any pair of these identifiers is inconsistent, the procedure outputs `BINDING_FAILED`. Intermediary detection does not apply to issuance.
-
-##### Presentation Binding -- Intermediary Detection
-
-In presentation, before verifying binding, the <components:Wallet Instance|WI> SHALL check whether the interaction is direct or intermediated [AUTHZ-INT-01] by comparing:
-
-- The **authenticated WRP identifier**, extracted from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> subject DN.
-- The **claimed RP identifier**, extracted from the <artifacts:Presentation Request> fields according to RPRC_19a (item b). Following RPI_06, in an intermediated scenario these fields pertain to the intermediated RP.
-
-If the two identifiers match, the **direct RP scenario** applies. If they differ, the **intermediary scenario** applies.
-
-##### Direct RP Binding
-
-In the direct <roles:Relying Party (RP)|RP> scenario, the <components:Wallet Instance|WI> SHALL verify that the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or verified <components:Register> response is coherent with the already-established identities [AUTHZ-GEN-12]:
-
-- The authorization subject identifier from the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or verified <components:Register> response SHALL match the authenticated WRP identifier and the claimed <roles:Relying Party (RP)|RP> identifier from authorization data (RPRC_19a).
-
-If the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> `sub` does not match, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is not valid for this <roles:Relying Party (RP)|RP>. The procedure outputs `BINDING_FAILED` and the WI SHALL discard the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>; it MAY use the [Register Validation Procedure](#register-validation-procedure) for a permitted check.
-
-##### Intermediary Binding
-
-In the intermediary scenario, the <components:Wallet Instance|WI> SHALL perform the following verifications [AUTHZ-INT-02]:
-
-**Step 1: Identify the parties.** The <components:Wallet Instance|WI> identifies:
-
-- The **intermediary**: the entity authenticated via <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>. Its identifier is extracted from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> subject DN.
-- The **intermediated (final) RP**: the authorization subject. Its identifier and other data are obtained from the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, (optionally) a verified <components:Register> response, and/or the <artifacts:Presentation Request> fields.
-
-**Step 2: Verify intermediary association.** The <components:Wallet Instance|WI> SHALL verify that the intermediary is authorized to act on behalf of the intermediated RP. The verification depends on the available data source:
-
-- **If the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> check succeeds**: the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> of the intermediated RP SHALL contain the `intermediary` structure (per [ETSI TS 119 475, Table 10]). The WI SHALL verify that `intermediary.sub` matches the authenticated intermediary identifier from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>. The presence of the `intermediary` field in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, signed by the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs>, is authoritative evidence that the relationship is registered.
-- **If the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> check fails**: the <components:Wallet Instance|WI> MAY query the <components:Register> using the intermediated RP identifier (from RPRC_19a item b) and verify in the <components:Register> response that the authenticated intermediary is listed as an authorized intermediary for that RP.
-- **If both <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <components:Register> verification fail**: the <components:Wallet Instance|WI> SHALL NOT confirm the intermediary relationship.
-
-On failure of intermediary association verification, the procedure outputs SHALL be `INTERMEDIARY_NOT_AUTHORIZED` [AUTHZ-INT-03].
-
-**Step 3: Verify authorization subject coherence.** The <components:Wallet Instance|WI> SHALL additionally verify that the intermediated RP identifier is consistent across all available sources: the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> `sub` field when the WRPRC check succeeds, the presentation request fields per RPRC_19a, and the <components:Register> response (if queried). If any inconsistency is found, the procedure SHALL output `BINDING_FAILED`.
-
-**Step 4: Apply authorization context.** Once the intermediary association is confirmed, all subsequent authorization checks (entitlement verification, scope comparison, <artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation) SHALL use the intermediated <roles:Relying Party (RP)|RP> data, not the intermediary data [AUTHZ-INT-02].
-
-**Step 5: Display the final RP identity.** The <components:Wallet Instance|WI> SHALL display to the <roles:User> the intermediated RP identity and intended-use description. The intermediary identity SHALL NOT be displayed.
-The intermediated RP name can be obtained from:
-
-- the `name` (or `sub_ln`) from the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or
-- the <components:Register> response or
-- the <roles:Relying Party (RP)|RP> name from the <artifacts:Presentation Request> fields per RPRC_19a (item a).
-
-If the intermediated RP name is not available, the <components:Wallet Instance|WI> SHALL display its identifier instead of the name.
-
-!!! choice "WRPRC and WRPAC binding"
-
-    As discussed in [#114](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues/114), the APTITUDE Profiles do not implement the binding between WRPAC and WRPRC at the service level, as the necessary fields within the certificates are not described in the relevant technical specifications.
-
-!!! note
-
-    The <roles:Registrar> online service API, including the specific parameters for querying intermediary relationships, is defined in TS5. This specification does not define the <components:Register> API; it only defines how the <components:Wallet Instance|WI> uses the <components:Register> response for authorization purposes.
-
-#### Entitlement Verification Procedure
-
-The <components:Wallet Instance|WI> SHALL verify that the entitlements of the authorization subject match the expected role [AUTHZ-GEN-13].
-
-For **issuance**, the expected entitlement depends on the provider type:
-
-| Request type | Expected entitlement URI |
-|-------------|-------------------------|
-| PID | `https://uri.etsi.org/19475/Entitlement/PID_Provider` |
-| QEAA | `https://uri.etsi.org/19475/Entitlement/Q_EAA_Provider` |
-| PuB-EAA | `https://uri.etsi.org/19475/Entitlement/PuB_EAA_Provider` |
-| Non-qualified EAA | `https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider` |
-
-For **presentation**, the expected entitlement is `https://uri.etsi.org/19475/Entitlement/Service_Provider`.
-
-If the `entitlements` array does not contain the expected value, the procedure SHALL output `WRONG_ENTITLEMENT`.
-
-#### Attestation Type Verification Procedure (Issuance Only)
-
-The <components:Wallet Instance|WI> SHALL verify that the <credentials:Person Identification Data (PID)|PID> or <data-elements:Attestation Type> being requested is registered for the provider [AUTHZ-ISS-02]:
-
-- For <roles:Provider of Person Identification Data (PID Provider)|PID Providers> issuing <credentials:Person Identification Data (PID)|PIDs>, the <components:Wallet Instance|WI> MAY skip this step.
-- Otherwise, the <components:Wallet Instance|WI> SHALL match the `provides_attestations[]` array against the `credential_configurations_supported` keys in <artifacts:Credential Issuer Metadata>. Matching SHALL be case-sensitive and exact (`vct_value` for <formats:Selective Disclosure JWT (SD-JWT)|SD-JWT> VC, `doctype` for mDL).
-
-If not found, the procedure SHALL output `ATTESTATION_TYPE_NOT_REGISTERED`.
-
-#### Scope Comparison Procedure (Presentation Only, user-optional)
-
-The <components:Wallet Instance|WI> SHALL [AUTHZ-PRES-01]:
-
-1. Extract requested attributes: from `credential_queries[].claims[]` (remote/DCQL) or from `namespaces` (proximity).
-2. Compare against registered scope: match `credentials[].claim[]` and `credentials[].meta.vct_values` or `doctype_value` in the authorization context. Matching SHALL be case-sensitive and exact.
-
-If all match, the <components:Wallet Instance|WI> SHALL output `VERIFICATION_PASSED`. Otherwise, the <components:Wallet Instance|WI> SHALL output `OVERASKING_DETECTED` and identify the unregistered attributes [AUTHZ-PRES-02].
-
-#### EDP Evaluation Procedure
-
-For each <credentials:Attestation> matching a <artifacts:Presentation Request>, the <components:Wallet Instance|WI> SHALL check for a locally stored <artifacts:Embedded Disclosure Policy (EDP)|EDP> [AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)|EDP>-03]. If no <artifacts:Embedded Disclosure Policy (EDP)|EDP> exists, the <credentials:Attestation> is allowed (subject to User approval). Otherwise:
-
-In case of **Authorized Relying Parties Only** policy type [AUTHZ-EDP-04]:
-
-- Detect intermediary scenario.
-- Extract the identity information of the <roles:Relying Party (RP)|RP> (direct) or intermediated RP. The <components:Wallet Instance|WI> SHALL NOT use intermediary identity.
-- Match against the `authorized_parties` list: compare the <roles:Relying Party (RP)|RP> subject DN from <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> against `subject_dn` entries, and/or compare the RP entitlements or sub-entitlements from the validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or verified <components:Register> response against `entitlement_uri` entries. A match on either criterion is sufficient.
-
-If the checks are successful, the <components:Wallet Instance|WI> SHALL provide `EDP_SATISFIED` as output result, otherwise the <components:Wallet Instance|WI> SHALL provide `EDP_NOT_SATISFIED`.
-
-In case of **Specific Root of Trust** policy type [AUTHZ-EDP-05] and according to direct/intermediary scenario:
-
-- For direct <roles:Relying Party (RP)|RP>, the <components:Wallet Instance|WI> SHALL extract issuer DN and serial number from the root or intermediate certificates in the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> chain.
-- For intermediary, the <components:Wallet Instance|WI> SHALL retrieve root certificate information of the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRCs> for the intermediated RP. Then, the <components:Wallet Instance|WI> SHALL compare against the `trusted_roots` list and match `issuer_dn` using LDAP DN comparison and `serial_number` using integer comparison (as defined ISS-MDATA-EBD-4.2.5.2-09). If the check is satisfied, the <components:Wallet Instance|WI> SHALL output: `EDP_SATISFIED` or `EDP_NOT_SATISFIED`.
-
-The <components:Wallet Instance|WI> SHALL evaluate <artifacts:Embedded Disclosure Policy (EDP)|EDP> together with <roles:Relying Party (RP)|RP> information to determine access permission (EDP_06) [AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)|EDP>-06].
-If `EDP_SATISFIED`, the <components:Wallet Instance|WI> SHALL allow the <credentials:Attestation> presentation (subject to <roles:User> approval) and display explanatory link if present (EDP_05) [AUTHZ-EDP-07].
-If `EDP_NOT_SATISFIED`, the <components:Wallet Instance|WI> SHALL produce `NOT_AUTHORIZED`, present the outcome, and allow <roles:User> override (EDP_07) [AUTHZ-EDP-08].
-If the <roles:User> denies, the <components:Wallet Instance|WI> SHALL behave as if the <credentials:Attestation> does not exist (RPA_11).
-
-### Override Rules
-
-This section details the override behaviour for each procedure when it provides a negative outcome. Each row identifies a procedure, the phase in which it applies, the result code produced on failure, and whether the <roles:User> can override that outcome.
-
-| Evaluation Procedure | Phase | Negative Outcome | User Override |
-|---------------------|-------|-----------------|---------------|
-| <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> Validation | Both | `CERTIFICATE_INVALID` | <components:Register> APIs MAY be used for one of the permitted checks. <roles:User> is not involved |
-| <components:Register> Validation | Issuance | `FAILED` | Non-overridable [AUTHZ-ISS-01], [AUTHZ-UI-06] |
-| <components:Register> Validation | Presentation | `FAILED` | Overridable. Advisory to User [AUTHZ-PRES-06] |
-| Binding Verification | Issuance | `BINDING_FAILED` | Non-overridable [AUTHZ-UI-06] |
-| Binding Verification (direct RP) | Presentation | `BINDING_FAILED` | Non-overridable [AUTHZ-UI-06] |
-| Binding Verification (intermediary) | Presentation | `INTERMEDIARY_NOT_AUTHORIZED` | Non-overridable [AUTHZ-INT-03], [AUTHZ-UI-06] |
-| <data-elements:Entitlement> Verification | Issuance | `WRONG_ENTITLEMENT` | Non-overridable [AUTHZ-ISS-01], [AUTHZ-UI-06] |
-| <data-elements:Entitlement> Verification | Presentation | `WRONG_ENTITLEMENT` | Overridable. Advisory to User |
-| Attestation Type Verification | Issuance | `ATTESTATION_TYPE_NOT_REGISTERED` | Non-overridable [AUTHZ-ISS-03], [AUTHZ-UI-06] |
-| Scope Comparison | Presentation | `OVERASKING_DETECTED` | Overridable. Advisory to User [AUTHZ-PRES-02] |
-| <artifacts:Embedded Disclosure Policy (EDP)\|EDP> Evaluation | Presentation | `EDP_NOT_SATISFIED` | Overridable. User can deny or allow [AUTHZ-EDP-08] |
-
-### Operational Flows
-
-This section combines the evaluation procedures defined above into end-to-end flows for issuance and presentation.
-
-#### Authorization During Issuance
-
-##### Interaction Flow
-
-```mermaid
-sequenceDiagram
-    %%autonumber
-    participant User
-    participant WI as Wallet Instance
-    participant AP as Attestation Provider
-    participant TL as WRPRC LoTE
-    participant Reg as Register
-
-    User->>WI: 1. Request issuance
-    WI->>AP: 2. Fetch Credential Issuer Metadata (OpenID4VCI)
-    AP-->>WI: 3. Signed Credential Issuer Metadata
-
-    Note over WI: 4. Verify metadata signature (WRPAC)
-
-    alt Valid WRPRC in issuer_info (format "registration_cert")
-        Note over WI: 5a. Extract WRPRC
-        WI->>TL: 6a. Fetch trust anchor
-        TL-->>WI: 7a. Trust anchor
-        Note over WI: 8a. WRPRC Validation Procedure
-    else invalid WRPRC
-        opt Register backup check
-            Note over WI: 5b. Extract registryURI from registrar_dataset
-            WI->>Reg: 6b. Query registration data
-            Reg-->>WI: 7b. Registration data
-            Note over WI: 8b. Register Validation Procedure
-        end
-    end
-
-    Note over WI: 9. Binding Verification Procedure
-    Note over WI: 10. Entitlement Verification Procedure
-    Note over WI: 11. Attestation Type Verification Procedure
-
-    alt All verifications passed
-        WI->>User: 12a. Show provider info, request confirmation
-        User-->>WI: 13. User confirms
-        Note over WI: 14. Store EDP if present
-        WI->>AP: 15. Proceed with issuance
-    else Verification failed
-        WI->>User: 12b. Display warning, block issuance
-    end
-```
-
-##### Step-by-step Operations
-
-**Steps 1-3: Obtain <artifacts:Credential Issuer Metadata>.** The <components:Wallet Instance|WI> SHALL fetch metadata from the <roles:Attestation Provider (AP)|AP> using [OpenID4VCI] (ISSU_01) [AUTHZ-ISS-04]. These steps are not required if the <components:Wallet Instance|WI> already has the <artifacts:Credential Issuer Metadata> stored locally, for example if it is already fetched during the Authentication Process.
-
-**Step 4: Verify metadata signature.** The <components:Wallet Instance|WI> SHALL verify the metadata signature and <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> certificate chain [AUTHZ-ISS-05]. If verification fails, the <components:Wallet Instance|WI> provides `NOT_AUTHORIZED` code (non-overridable) [AUTHZ-ISS-06].
-
-**Steps 5-8: Extract authorization data.** The <components:Wallet Instance|WI> SHALL extract data from the `issuer_info` array [AUTHZ-ISS-07] and SHALL validate the required <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> using the *<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> Validation Procedure*. If the WRPRC is missing or invalid, the <components:Wallet Instance|WI> MAY use the *<components:Register> Validation Procedure* for a backup check. If the WRPRC check succeeds, the <components:Wallet Instance|WI> MAY use the <components:Register> for the permitted service-binding check. If the WRPRC check fails and no permitted Register check confirms the required authorization, the <components:Wallet Instance|WI> SHALL NOT use self-declared data as a fallback and SHALL block issuance [AUTHZ-ISS-08], [AUTHZ-ISS-09].
-
-**Step 9: Binding verification.** Apply the *Binding Verification Procedure* (issuance binding): verify that the <roles:Attestation Provider (AP)|AP> identifier from the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> (used to sign the metadata) is coherent with the `sub` in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and the `identifier` in a verified <components:Register> response, if queried [AUTHZ-GEN-11]. If incoherent, the WI returns `NOT_AUTHORIZED` code (non-overridable).
-
-**Step 10: <data-elements:Entitlement> verification.** Apply the *<data-elements:Entitlement> Verification Procedure*. If not confirmed, the WI provides `NOT_AUTHORIZED` code(non-overridable) [AUTHZ-ISS-01].
-
-**Step 11: <data-elements:Attestation Type> verification.** Apply the *Attestation Type Verification Procedure*. If not found, the <components:Wallet Instance|WI> returns `NOT_AUTHORIZED` code (non-overridable) [AUTHZ-ISS-02], [AUTHZ-ISS-03].
-
-**Steps 12-15: User confirmation and <artifacts:Embedded Disclosure Policy (EDP)|EDP> storage.** Display <roles:Attestation Provider (AP)|AP> information [AUTHZ-ISS-10], [AUTHZ-UI-09]. On confirmation, the <components:Wallet Instance|WI> store <artifacts:Embedded Disclosure Policy (EDP)|EDP> locally if present (EDP_09) [AUTHZ-EDP-02] and proceed. On cancellation, terminate.
-
-#### Authorization During Presentation
-
-##### Common Authorization Semantics
-
-The authorization logic is the same for remote and proximity flows [AUTHZ-PRES-03]. Main Differences are limited to:
-
-- Transport mechanism.
-- Where the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is extracted from.
-- <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> format (JWT vs CWT).
-- <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> data structure.
-
-##### Interaction Flow
-
-```mermaid
-sequenceDiagram
-    %%autonumber
-    participant RP as Relying Party
-    participant WI as Wallet Instance
-    participant TL as WRPRC LoTE
-    participant Reg as Register
-    participant User
-
-    RP->>WI: 1. Presentation Request
-
-    alt Valid WRPRC present
-        WI->>TL: 2a. Fetch trust anchor
-        TL-->>WI: 3a. Trust anchor
-        Note over WI: 4a. WRPRC Validation Procedure
-    else invalid WRPRC
-        opt Register backup check
-            Note over WI: 5b. Extract registryURI from registrar_dataset
-            WI->>Reg: 6b. Query registration data
-            Reg-->>WI: 7b. Registration data
-            Note over WI: 4b. Register Response Validation Procedure
-        end
-    end
-    Note over WI: 5. Binding Verification Procedure
-    Note over WI: 6. Entitlement Verification Procedure
-    alt User opted-in to scope comparison
-        Note over WI: 7. Scope Comparison Procedure
-    else User NOT opted-in
-        Note over WI: Skip optional Scope Comparison Procedure
-    end
-
-    Note over WI: 8. EDP Evaluation Procedure (always)
-    WI->>User: 9. Display results + advisories + request approval
-    User-->>WI: 10. User decision
-```
-
-##### Step-by-step Operations
-
-**Step 1: Receive request.** The <components:Wallet Instance|WI> SHALL perform the mandatory <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> check. The <roles:User> setting applies only to the optional Scope Comparison Procedure [AUTHZ-PRES-04].
-
-!!! note
-
-    The <components:Wallet Instance|WI> always executes WRPRC validation, binding verification, and entitlement verification (steps 2-6). If the WRPRC check fails, the <components:Wallet Instance|WI> MAY use the <components:Register> API to retrieve the necessary informations. <artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation (step 8) is always executed.
-
-**Steps 2-4: Collect authorization evidence.** Extract the required <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> from the request [AUTHZ-PRES-05]: from `verifier_info` (remote) or `euWrprc` in `requestInfo` (proximity), and apply the *<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> Validation Procedure*. If the WRPRC is missing or invalid, the <components:Wallet Instance|WI> MAY use the *<components:Register> Validation Procedure*. If the WRPRC check succeeds, the <components:Wallet Instance|WI> MAY use the <components:Register> to check that the certificate obtained by the WRP is bound to the service being used. If a lookup fails, the <components:Wallet Instance|WI> SHALL NOT use self-declared metadata as a fallback; instead it SHALL notify User, record `FAILED`, and proceed only with the presentation advisory and override rules [AUTHZ-PRES-06].
-
-**Step 5: Binding verification.** Apply the *Binding Verification Procedure* (direct or intermediary) [AUTHZ-PRES-07].
-
-**Step 6: <data-elements:Entitlement> verification.** Apply the *<data-elements:Entitlement> Verification Procedure* for `Service_Provider` [AUTHZ-PRES-08].
-
-**Step 7: Scope comparison.** Apply the *Scope Comparison Procedure*. Inform User of results [AUTHZ-PRES-09].
-
-**Step 8: <artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation.** Always executed regardless of registration verification [AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)|EDP>-09]. Apply the *<artifacts:Embedded Disclosure Policy (EDP)|EDP> Evaluation Procedure* for each matching Attestation.
-
-**Steps 9-10: User approval.** Present all results and request approval [AUTHZ-UI-07], [AUTHZ-UI-10]. Display at least [AUTHZ-UI-08], [AUTHZ-INT-05]:
-
-- RP/final RP identity,
-- requested attributes,
-- intended-use description,
-- privacy-policy link,  
-- advisories.
-
-If `AUTHORIZED`, the <components:Wallet Instance|WI> SHALL proceed to normal User approval. If `NOT_AUTHORIZED` and override is allowed, the <components:Wallet Instance|WI> SHALL present the negative outcome and MAY allow continuation [AUTHZ-UI-11]. If `NOT_AUTHORIZED` and override is not allowed, the <components:Wallet Instance|WI> SHALL NOT allow continuation [AUTHZ-UI-12].
-
-##### Remote Flow Specifics
-
-The RP Instance SHALL include RPRC_19a extension fields and the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> by value (RPRC_19) [AUTHZ-PRES-10]. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be JWT (`typ = "rc-wrp+jwt"`). Requested attributes SHALL be extracted from DCQL `credential_queries[].claims[]` paths.
-
-##### Proximity Flow Specifics
-
-The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is extracted from `euWrprc` in `requestInfo` according to [ETSI TS 119 472-2] [AUTHZ-PRES-11]. The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be CWT (`typ = "rc-wrp+cwt"`), signing algorithm from COSE header. Requested attributes SHALL be extracted from `docRequest.itemRequest.nameSpaces`.
-
-##### Intermediary Handling
-
-Intermediary handling applies to both flows [AUTHZ-INT-04]. The <components:Wallet Instance|WI> SHALL:
-
-- Authenticate the intermediary through its Access Certificate.
-- Detect the intermediary scenario.
-- Apply all authorization checks using the intermediated RP context.
-- Display the intermediated RP identity; the intermediary identity SHALL NOT be displayed.
-
-Negative cases SHALL result in `NOT_AUTHORIZED` code [AUTHZ-INT-06]. Override is allowed only for negative scope and negative <artifacts:Embedded Disclosure Policy (EDP)|EDP> [AUTHZ-INT-07].
-
-##### Combined Mechanisms Flowchart
-
-```mermaid
-flowchart TD
-    Start([Presentation request received]) --> ObtainData[Mandatory WRPRC validation]
-
-    ObtainData --> DataOK{WRPRC check<br/>passed?}
-    DataOK -->|No| RegisterChoice{Use Register<br/>check?}
-    RegisterChoice -->|Yes| RegisterData[Query Register]
-    RegisterChoice -->|No| WarnNoData[Advisory: cannot verify RP]
-    RegisterData --> RegisterOK{Register<br/>check passed?}
-    RegisterOK -->|No| WarnNoData
-    RegisterOK -->|Yes| Binding[Binding Verification]
-    DataOK -->|Yes| Binding
-
-    Binding --> BindOK{Binding<br/>OK?}
-    BindOK -->|No| BlockBinding[NOT_AUTHORIZED]
-    BindOK -->|Yes| Entitlement[Entitlement Verification]
-
-    Entitlement --> EntOK{Entitlement<br/>OK?}
-    EntOK -->|No| WarnEnt[Advisory: wrong entitlement]
-    EntOK -->|Yes| UserOptIn{User opted-in<br/>to scope comparison?}
-    UserOptIn -->|Yes| Scope[Scope Comparison]
-    UserOptIn -->|No| RegPassed[Registration checks complete]
-
-    Scope --> ScopeOK{All attributes<br/>registered?}
-    ScopeOK -->|Yes| RegPassed
-    ScopeOK -->|No| WarnScope[Advisory: unregistered attributes]
-
-    WarnNoData --> |Deny| Deny
-    WarnEnt --> UserReg{User decision}
-    WarnScope --> UserReg
-
-    UserReg -->|Deny| Deny[Deny presentation]
-    UserReg -->|Proceed| RegWarning[Proceed with warning]
-
-    RegPassed --> EDP
-    RegWarning --> EDP
-
-    EDP[EDP Evaluation<br/>for each Attestation]
-    EDP --> HasEDP{Has EDP?}
-    HasEDP -->|No| Allow[Allow Attestation]
-    HasEDP -->|Yes| EvalEDP[Evaluate policy]
-
-    EvalEDP --> EDPOk{Satisfied?}
-    EDPOk -->|Yes| Allow
-    EDPOk -->|No| Flag[Flag with advisory]
-
-    Allow --> More{More<br/>Attestations?}
-    Flag --> More
-    More -->|Yes| HasEDP
-    More -->|No| Approval[Show results + advisories<br/>Request User approval]
-
-    Approval --> Final{User decision}
-    Final -->|Approve| Present[Present Attestations]
-    Final -->|Deny| Deny
-
-    Present --> End([End])
-    Deny --> End
-    BlockBinding --> End
-
-    style Flag fill:#ffffcc
-    style Deny fill:#ffcccc
-    style BlockBinding fill:#ffcccc
-    style WarnNoData fill:#ffffcc
-    style WarnEnt fill:#ffffcc
-    style WarnScope fill:#ffffcc
-    style Present fill:#ccffcc
-    style RegPassed fill:#ccffcc
-```
-
-### Authorization Requirements
-
-!!! note
-
-    This table is provided for implementation and conformance-verification purposes. It consolidates the normative requirements defined throughout the specification body. In case of interpretative ambiguity between this table and the normative sections of the specification, the normative sections SHALL prevail.
-
-| ID | Requirement | Phase | Related HLRs |
-|----|-------------|-------|-------------|
-| AUTHZ-GEN-01 | The Authorization Process SHALL start only after the WRP has been successfully authenticated. | Both | -- |
-| AUTHZ-GEN-02 | If the WRP has not been authenticated, the Authorization Process SHALL NOT start. | Both | -- |
-| AUTHZ-GEN-03 | A conformant wallet SHALL implement all rules of the Authorization Process defined in this specification. | Both | -- |
-| AUTHZ-GEN-04 | The WI SHALL distinguish between the authenticated WRP and the authorization subject. | Both | -- |
-| AUTHZ-GEN-05 | The WI SHALL use the issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> as the primary authorization evidence and MAY use a verified <components:Register> response. | Both | RPRC_16, RPRC_18 |
-| AUTHZ-GEN-06 | The authorization logic SHALL NOT change based on the data source. | Both | -- |
-| AUTHZ-GEN-07 | Where both <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> and <components:Register> data are available, the WI SHALL normalize both into the same model. | Both | -- |
-| AUTHZ-GEN-08 | The WI SHALL validate the issued <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> for authenticity, integrity, temporal validity, status, and scenario coherence before relying on it. | Both | RPRC_17 |
-| AUTHZ-GEN-09 | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation SHALL include coherence check between <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> subject and scenario context. | Both | -- |
-| AUTHZ-GEN-10 | The WI MAY use the <components:Register> APIs only to check fresh Entity registration information as a backup to a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> failure or to check that the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> obtained by the WRP is bound to the service being used. | Both | RPRC_18 |
-| AUTHZ-GEN-11 | The WI SHALL verify coherence between authenticated WRP and authorization context in both issuance and presentation. | Both | -- |
-| AUTHZ-GEN-12 | For direct RP in presentation, the WI SHALL verify RP identifier from <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> matches `sub` in authorization context and RPRC_19a identifier. For issuance, the WI SHALL verify AP identifier from <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> matches `sub` in <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> and `identifier` in a verified <components:Register> response, if queried. | Both | RPRC_07, RPRC_08 |
-| AUTHZ-GEN-13 | The WI SHALL verify that entitlements match the expected role. | Both | ISSU_24a, ISSU_34a |
-| AUTHZ-IN-01 | Authorization decisions SHALL be based only on authenticated context, verified <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, verified <components:Register>, or verified <artifacts:Embedded Disclosure Policy (EDP)\|EDP>. | Both | -- |
-| AUTHZ-IN-02 | The WI SHALL maintain internal distinction between input classes. | Both | -- |
-| AUTHZ-IN-03 | Authenticated WRP context is authoritative only for WRP identity. | Both | -- |
-| AUTHZ-IN-04 | Verified <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>-derived information is authoritative for subject identity, entitlements, scope, etc. | Both | -- |
-| AUTHZ-IN-05 | Verified <components:Register>-derived information is authoritative for the same data set. | Both | -- |
-| AUTHZ-IN-06 | The WI SHALL NOT use self-declared information for checks requiring registered information or as a fallback when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> or <components:Register> validation fails. | Both | ISSU_24a note, ISSU_34a note |
-| AUTHZ-IN-07 | Authoritative sources SHALL prevail over non-authoritative sources. | Both | -- |
-| AUTHZ-IN-08 | Identity conflict between authenticated context and authorization context produces NOT_AUTHORIZED (non-overridable). | Both | -- |
-| AUTHZ-IN-09 | A request-carried <components:Register> URL SHALL NOT be treated as proof of registration; MAY be used as a discovery hint. | Both | -- |
-| AUTHZ-IN-10 | Self-declared metadata SHALL NOT be used as an authorization fallback when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> or <components:Register> validation fails. | Both | RPRC_18, ISSU_24a note |
-| AUTHZ-UI-01 | The WI SHALL produce AUTHORIZED or NOT_AUTHORIZED. | Both | -- |
-| AUTHZ-UI-02 | User-relevant limitations SHALL be represented as advisories. | Both | -- |
-| AUTHZ-UI-03 | Advisories SHALL be displayed to the Wallet User. | Both | -- |
-| AUTHZ-UI-04 | User approval SHALL be a separate step from the authorization decision. | Both | RPA_07 |
-| AUTHZ-UI-05 | The process SHALL support transparent decision-making and SHALL NOT be purely hidden. | Both | [CIR 2025/848] |
-| AUTHZ-UI-06 | Non-overridable cases: provider role/type failure in issuance, metadata signature failure, coherence failure, intermediary binding failure, registration status failure, missing minimum info, inability to obtain required authoritative info for issuance. | Both | ISSU_24a, ISSU_34a, RPRC_23 |
-| AUTHZ-UI-07 | For presentation, the WI SHALL present all results and advisories and request User approval. | Presentation | RPA_07 |
-| AUTHZ-UI-08 | For presentation, the WI SHALL show at minimum: RP/final RP identity, requested attributes, intended-use, privacy-policy, advisories. The intermediary identity SHALL NOT be displayed. | Presentation | RPRC_19a |
-| AUTHZ-UI-09 | For issuance, the WI SHALL show at minimum: provider name/type, attestation type, service description, advisories. | Issuance | RPRC_22a |
-| AUTHZ-UI-10 | If AUTHORIZED, proceed to normal User approval. | Both | RPA_07 |
-| AUTHZ-UI-11 | If NOT_AUTHORIZED and override allowed, present negative outcome and MAY allow continuation. | Both | EDP_07, RPRC_21 |
-| AUTHZ-UI-12 | If NOT_AUTHORIZED and override not allowed, SHALL NOT allow continuation. | Both | ISSU_24a, ISSU_34a |
-| AUTHZ-ISS-01 | If provider entitlement is not confirmed, produce NOT_AUTHORIZED (non-overridable), SHALL NOT request issuance. | Issuance | ISSU_24a, ISSU_34a, RPRC_23 |
-| AUTHZ-ISS-02 | The WI SHALL verify that the PID/attestation type is registered for the provider. | Issuance | ISSU_34b, RPRC_23 |
-| AUTHZ-ISS-03 | If attestation type is not registered, produce NOT_AUTHORIZED (non-overridable), SHALL NOT request issuance. | Issuance | ISSU_34b, RPRC_23 |
-| AUTHZ-ISS-04 | The WI SHALL fetch Credential Issuer Metadata via OpenID4VCI. | Issuance | ISSU_01 |
-| AUTHZ-ISS-05 | The WI SHALL verify metadata signature and <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> certificate chain. | Issuance | ISSU_22a, ISSU_32a |
-| AUTHZ-ISS-06 | If metadata signature verification fails, produce NOT_AUTHORIZED (non-overridable). | Issuance | -- |
-| AUTHZ-ISS-07 | The WI SHALL extract authorization data from issuer_info per [ETSI TS 119 472-3] section 4.2.3. | Issuance | RPRC_22 |
-| AUTHZ-ISS-08 | If <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation fails and no permitted <components:Register> check confirms the required authorization, the WI SHALL NOT use self-declared metadata as a fallback and SHALL block issuance. | Issuance | ISSU_24a note |
-| AUTHZ-ISS-09 | The WI SHALL NOT use self-declared metadata to authorize issuance or present it as verified registration information. | Issuance | ISSU_24a note |
-| AUTHZ-ISS-10 | On successful verification and User confirmation, proceed with issuance and store <artifacts:Embedded Disclosure Policy (EDP)\|EDP>. | Issuance | EDP_09 |
-| AUTHZ-PRES-01 | If User opted-in and registered scope available, the WI SHALL compare requested attributes against registered scope. | Presentation | RPRC_16, RPRC_21 |
-| AUTHZ-PRES-02 | If unregistered attributes detected, identify them and notify User. Override permitted. | Presentation | RPRC_21 |
-| AUTHZ-PRES-03 | Authorization logic SHALL be the same for remote and proximity flows. | Presentation | OIA_01 |
-| AUTHZ-PRES-04 | The WI SHALL offer a User setting for optional scope comparison, enabled by default. The setting SHALL NOT disable the mandatory <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> check. | Presentation | RPRC_16 |
-| AUTHZ-PRES-05 | The WI SHALL extract <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> per applicable flow (verifier_info or euWrprc). | Presentation | RPRC_19, RPRC_20 |
-| AUTHZ-PRES-06 | If authorization data cannot be obtained, the WI SHALL NOT use self-declared metadata as a fallback; it SHALL notify User and proceed only with an advisory and the applicable override rules. | Presentation | RPRC_18 |
-| AUTHZ-PRES-07 | The WI SHALL verify entitlements and binding after data extraction. | Presentation | RPRC_16 |
-| AUTHZ-PRES-08 | The WI SHALL verify Service_Provider entitlement. | Presentation | -- |
-| AUTHZ-PRES-09 | The WI SHALL inform User of scope comparison results. | Presentation | RPRC_21 |
-| AUTHZ-PRES-10 | Remote: RP Instance SHALL include RPRC_19a extension fields and the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> by value. | Presentation | RPRC_19, RPRC_19a |
-| AUTHZ-PRES-11 | Proximity: <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> SHALL be CWT, attributes from device request <data-elements:Namespace\|namespaces>. | Presentation | RPRC_20, OIA_01 |
-| AUTHZ-INT-01 | Intermediary scenario detected when <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> subject identifier differs from RPRC_19a claimed RP identifier. Detection is performed before <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> examination. | Presentation | RPI_07 |
-| AUTHZ-INT-02 | In intermediary scenarios, authorization inputs SHALL apply to intermediated RP; WI SHALL verify intermediary association. | Presentation | RPI_01 - RPI_10 |
-| AUTHZ-INT-03 | If intermediary binding fails, produce NOT_AUTHORIZED (non-overridable). | Presentation | RPI_07a |
-| AUTHZ-INT-04 | Intermediary handling applies to both remote and proximity flows. | Presentation | RPI_01 - RPI_10 |
-| AUTHZ-INT-05 | For intermediated presentation, the WI SHALL process and display the minimum required fields about the final RP; the intermediary identity SHALL NOT be displayed. | Presentation | RPRC_19a |
-| AUTHZ-INT-06 | Negative cases for intermediated presentation: missing final RP info, binding failure, missing authoritative data, negative <artifacts:Embedded Disclosure Policy (EDP)\|EDP>, negative scope. | Presentation | -- |
-| AUTHZ-INT-07 | Override permitted only for negative scope and negative <artifacts:Embedded Disclosure Policy (EDP)\|EDP> in intermediated presentation. | Presentation | EDP_07, RPRC_21 |
-| AUTHZ-REG-01 | The WI SHALL verify authenticity and integrity of <components:Register> response before relying on it. | Both | RPRC_18 |
-| AUTHZ-REG-02 | The WI SHALL verify <components:Register> response pertains to the relevant subject and intended use. | Both | -- |
-| AUTHZ-REG-03 | The WI SHALL normalize <components:Register>-derived data into the same model used for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> data. | Both | -- |
-| AUTHZ-REG-04 | If a permitted <components:Register> query is used and required authoritative information cannot be obtained, the WI SHALL NOT use self-declared metadata as a fallback; for both issuance and presentation it SHALL stop the interaction and SHALL notify User. | Both | RPRC_18 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-01 | The WI SHALL support <artifacts:Embedded Disclosure Policy (EDP)\|EDP> for QEAAs, PuB-EAAs, non-qualified EAAs. SHALL NOT assume PIDs have <artifacts:Embedded Disclosure Policy (EDP)\|EDP>. | Presentation | EDP_01 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-02 | During issuance, the WI SHALL store <artifacts:Embedded Disclosure Policy (EDP)\|EDP> locally if present. | Issuance | EDP_09, EDP_10 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-03 | At presentation, the WI SHALL check locally stored <artifacts:Embedded Disclosure Policy (EDP)\|EDP> for each matching Attestation. | Presentation | EDP_06, EDP_10 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-04 | The WI SHALL support authorized relying parties only policy evaluation. | Presentation | [CIR 2024/2979, Annex III, Discussion Topic D, Requirement 1] |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-05 | The WI SHALL support specific root of trust policy evaluation. | Presentation | [CIR 2024/2979, Annex III, Discussion Topic D, Requirement 2] |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-06 | The WI SHALL evaluate <artifacts:Embedded Disclosure Policy (EDP)\|EDP> together with RP information to determine access permission. | Presentation | EDP_06 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-07 | If <artifacts:Embedded Disclosure Policy (EDP)\|EDP> satisfied and explanatory link present, display it. | Presentation | EDP_05 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-08 | If <artifacts:Embedded Disclosure Policy (EDP)\|EDP> not satisfied, produce NOT_AUTHORIZED, present outcome, allow User override. | Presentation | EDP_07, RPA_11 |
-| AUTHZ-<artifacts:Embedded Disclosure Policy (EDP)\|EDP>-09 | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> evaluation is always executed regardless of registration verification result. | Presentation | EDP_06 |
+| ID                | Updated Requirement   | Phase | Canonical Clause  |
+| :---------------: | --------------------- | ----- | ----------------- |
+| `AUTHZ-GEN-01`    | Authorization is evaluated only after successful authentication. | Both | Scope and Preconditions |
+| `AUTHZ-GEN-02`    | The same authorization process is used for issuance and presentation with operation-specific inputs and checks. | Both | Scope and Preconditions |
+| `AUTHZ-GEN-03`    | Failed authentication or unavailable authorization input prevents authorization. | Both | Scope and Preconditions |
+| `AUTHZ-GEN-04`    | The Authorization Subject is selected according to direct or intermediated interaction rules. | Both | Scope and Preconditions |
+| `AUTHZ-GEN-05`    | The validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is the primary Authorization Artifact. | Both | Inputs |
+| `AUTHZ-GEN-06`    | <components:Register> lookup is optional and is not a prerequisite for authorization. | Both | Inputs |
+| `AUTHZ-GEN-07`    | Authorization data carried by <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> and <components:Register> artifacts are normalized into one consistent Authorization Context when both are available. | Both | Inputs |
+| `AUTHZ-GEN-08`    | A supplied <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is validated before it is used as an Authorization Artifact. | Both | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> Validation |
+| `AUTHZ-GEN-09`    | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> validation includes authenticity, status, validity, and scenario-coherence checks. | Both | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> Validation |
+| `AUTHZ-GEN-10`    | The defined <components:Register> procedure is an optional fallback after missing or invalid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. | Both | Optional <components:Register> Validation |
+| `AUTHZ-GEN-11`    | Authenticated identity, Authorization Context, and authorization data carried by the Authorization Artifact are compared with the operation request. | Both | Binding and Intermediary Association |
+| `AUTHZ-GEN-12`    | Direct and intermediated interactions use their respective identity and association rules. | Both | Binding and Intermediary Association |
+| `AUTHZ-GEN-13`    | The Authorization Context contains the entitlement required by the operation. | Both | Entitlement |
+| `AUTHZ-IN-01`     | The presentation request supplies requested <credentials:Attestation\|Attestations>, claims, intended use, and final <roles:Relying Party (RP)\|RP> identity. | Presentation | Inputs |
+| `AUTHZ-IN-02`     | Validated <artifacts:Credential Issuer Metadata> supplies issuance identity, supported types, and authorization data. | Issuance | Inputs |
+| `AUTHZ-IN-03`     | The validated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> context identifies and authenticates the <roles:Relying Party (RP)\|RP>. | Both | Inputs |
+| `AUTHZ-IN-04`     | The validated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> trust path supports <roles:Relying Party (RP)\|RP> authentication. | Both | Inputs |
+| `AUTHZ-IN-05`     | WRPRC supplies registered <roles:Relying Party (RP)\|RP> context and intended-use information. | Both | Inputs |
+| `AUTHZ-IN-06`     | A validated <components:Register> response can serve as an Authorization Artifact when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is absent or invalid. | Both | Inputs |
+| `AUTHZ-IN-07`     | Intended use is compared with the request-derived Authorization Context and the Authorization Artifact. | Both | Inputs |
+| `AUTHZ-IN-08`     | Issuance identifies the requested or supported <data-elements:Attestation Type> from <roles:Attestation Provider (AP)\|Attestation Provider> and authorization data. | Issuance | Inputs |
+| `AUTHZ-IN-09`     | Presentation evaluates an applicable <artifacts:Embedded Disclosure Policy (EDP)\|EDP> against the operation and final <roles:Relying Party (RP)\|RP>. | Presentation | Inputs |
+| `AUTHZ-IN-10`     | The default-enabled User setting controls only optional requested-scope comparison. | Presentation | Inputs |
+| `AUTHZ-UI-01`     | The <components:Wallet Instance> produces the binary result `AUTHORIZED` or `NOT_AUTHORIZED`. | Both | Authorization Decision and Override |
+| `AUTHZ-UI-02`     | User-relevant limitations are represented as advisories. | Both | Authorization Decision and Override |
+| `AUTHZ-UI-03`     | Results and advisories are displayed with the requested attributes and User approval is requested. | Presentation | Authorization Decision and Override |
+| `AUTHZ-UI-04`     | User approval remains separate from the authorization decision. | Both | Authorization Decision and Override |
+| `AUTHZ-UI-05`     | Authorization supports transparent decision-making. | Both | Authorization Decision and Override |
+| `AUTHZ-UI-06`     | Authorization Artifact, Authorization Context, binding, intermediary, entitlement, attestation-type, <components:Register>, and other non-overridable failures produce `NOT_AUTHORIZED`. | Both | Authorization Decision and Override |
+| `AUTHZ-UI-07`     | Presentation displays all results and advisories and requests User approval. | Presentation | Authorization Decision and Override |
+| `AUTHZ-UI-08`     | Presentation displays the final <roles:Relying Party (RP)\|RP> identity and does not display the intermediary identity. | Presentation | Authorization Decision and Override |
+| `AUTHZ-UI-09`     | Issuance displays the <roles:Attestation Provider (AP)\|Attestation Provider>, <data-elements:Attestation Type>, service description, and applicable advisories before confirmation. | Issuance | Issuance |
+| `AUTHZ-UI-10`     | An `AUTHORIZED` result proceeds to normal User approval. | Both | Authorization Decision and Override |
+| `AUTHZ-UI-11`     | Continuation after an overridable presentation failure may be offered after the User accepts every applicable override. | Presentation | Authorization Decision and Override |
+| `AUTHZ-UI-12`     | Continuation is prohibited when a `NOT_AUTHORIZED` result contains a non-overridable failure. | Both | Authorization Decision and Override |
+| `AUTHZ-ISS-01`    | Issuance requires the entitlement for the requested <data-elements:Attestation Type>. | Issuance | Entitlement |
+| `AUTHZ-ISS-02`    | Issuance compares the requested <data-elements:Attestation Type> with registered `provides_attestations` information. | Issuance | Issuance <data-elements:Attestation Type> |
+| `AUTHZ-ISS-03`    | Issuance compares the requested <data-elements:Attestation Type> with <artifacts:Credential Issuer Metadata> support. | Issuance | Issuance <data-elements:Attestation Type> |
+| `AUTHZ-ISS-04`    | The <components:Wallet Instance> retrieves and validates <artifacts:Credential Issuer Metadata>. | Issuance | Issuance |
+| `AUTHZ-ISS-05`    | The <components:Wallet Instance> validates the metadata signature and <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> trust chain. | Issuance | Issuance |
+| `AUTHZ-ISS-06`    | The <components:Wallet Instance> validates metadata content and supported-credential declarations. | Issuance | Issuance |
+| `AUTHZ-ISS-07`    | The <components:Wallet Instance> extracts <roles:Attestation Provider (AP)\|Attestation Provider> authorization data needed by the common process. | Issuance | Issuance |
+| `AUTHZ-ISS-08`    | The optional <components:Register> fallback uses the defined Authorization Artifact retrieval operation after invalid or absent <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>. | Issuance | Optional <components:Register> Validation |
+| `AUTHZ-ISS-09`    | The <components:Register> response used by issuance is authenticated, validated, and complete. | Issuance | Optional <components:Register> Validation |
+| `AUTHZ-ISS-10`    | An accepted <artifacts:Embedded Disclosure Policy (EDP)\|EDP> is retained with the authorization and <credentials:Attestation> result. | Issuance | Issuance |
+| `AUTHZ-PRES-01`   | Presentation scope comparison is optional. | Presentation | Presentation Scope |
+| `AUTHZ-PRES-02`   | Enabled scope comparison uses exact, case-sensitive matching of normalized requested attributes. | Presentation | Presentation Scope |
+| `AUTHZ-PRES-03`   | <protocols:Remote Flow\|Remote> and <protocols:Proximity Flow\|Proximity> presentation use the same common authorization pipeline. | Presentation | Presentation |
+| `AUTHZ-PRES-04`   | The default-enabled User setting affects only scope comparison and cannot disable other checks. | Presentation | Presentation Scope |
+| `AUTHZ-PRES-05`   | Presentation request extraction produces normalized requested attributes and intended use before content validation. | Presentation | Presentation |
+| `AUTHZ-PRES-06`   | The optional <components:Register> fallback retrieves and validates an Authorization Artifact when <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> is absent or invalid. | Presentation | Optional <components:Register> Validation |
+| `AUTHZ-PRES-07`   | Presentation applies direct or intermediated binding and association checks. | Presentation | Binding and Intermediary Association |
+| `AUTHZ-PRES-08`   | Presentation requires the service-provider entitlement. | Presentation | Entitlement |
+| `AUTHZ-PRES-09`   | Presentation reports the requested-scope comparison result and unmatched items. | Presentation | Presentation Scope |
+| `AUTHZ-PRES-10`   | <protocols:Remote Flow\|Remote> presentation obtains and validates the request-derived Authorization Context and Authorization Artifact through its defined flow. | Presentation | Presentation |
+| `AUTHZ-PRES-11`   | <protocols:Proximity Flow\|Proximity> presentation applies its defined device, transport, and association-evidence limitations. | Presentation | Presentation |
+| `AUTHZ-INT-01`    | The <components:Wallet Instance> determines whether presentation is direct or intermediated. | Presentation | Binding and Intermediary Association |
+| `AUTHZ-INT-02`    | Intermediated authorization validates the intermediary-to-final-party association and uses the final <roles:Relying Party (RP)\|RP> for decisions. | Presentation | Binding and Intermediary Association |
+| `AUTHZ-INT-03`    | An absent or invalid intermediary association produces `INTERMEDIARY_NOT_AUTHORIZED`. | Presentation | Binding and Intermediary Association |
+| `AUTHZ-INT-04`    | Intermediary handling applies to both <protocols:Remote Flow\|Remote> and <protocols:Proximity Flow\|Proximity> presentation. | Presentation | Presentation |
+| `AUTHZ-INT-05`    | Intermediated presentation displays the final <roles:Relying Party (RP)\|RP> and not the <roles:Relying Party Intermediary (RPI)\|Intermediary>. | Presentation | Presentation |
+| `AUTHZ-INT-06`    | Missing final-party data, authoritative data, binding, scope, or <artifacts:Embedded Disclosure Policy (EDP)\|EDP> outcomes are negative final-party cases. | Presentation | Authorization Decision and Override |
+| `AUTHZ-INT-07`    | Intermediated override is limited to negative scope and <artifacts:Embedded Disclosure Policy (EDP)\|EDP> outcomes. | Presentation | Authorization Decision and Override |
+| `AUTHZ-REG-01`    | The <components:Register> endpoint is discovered from applicable request or metadata input without treating its URL as registration proof. | Both | Optional Register Validation |
+| `AUTHZ-REG-02`    | The <components:Wallet Instance> retrieves the complete <components:Register> record over HTTPS using `GET /wrp`, Authorization Subject, and intended use. | Both | Optional Register Validation |
+| `AUTHZ-REG-03`    | The <components:Wallet Instance> validates <components:Register> authenticity, trust, freshness, status, subject, intended use, and completeness. | Both | Optional Register Validation |
+| `AUTHZ-REG-04`    | Validated <components:Register> data are normalized into the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>-derived Authorization Context model. | Both | Optional Register Validation |
+| `AUTHZ-EDP-01`    | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> applies to <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA>, <credentials:Public Electronic Attestation of Attributes (PuB-EAA)\|PuB-EAA>, and <credentials:Electronic Attestation of Attributes (EAA)\|EAA> attestations and is not assumed for <credentials:Person Identification Data (PID)\|PID>. | Presentation | Embedded Disclosure Policy |
+| `AUTHZ-EDP-02`    | Issuance retains an accepted <artifacts:Embedded Disclosure Policy (EDP)\|EDP> and does not evaluate it. | Issuance | Embedded Disclosure Policy |
+| `AUTHZ-EDP-03`    | No applicable <artifacts:Embedded Disclosure Policy (EDP)\|EDP> or a passing policy produces `EDP_SATISFIED`. | Presentation | Embedded Disclosure Policy |
+| `AUTHZ-EDP-04`    | Authorized `RP Only` evaluates the direct or final <roles:Relying Party (RP)\|RP>, not the intermediary. | Presentation | Embedded Disclosure Policy |
+| `AUTHZ-EDP-05`    | Specific Root of Trust evaluates the direct or final-party trust root, not the intermediary root. | Presentation | Embedded Disclosure Policy |
+| `AUTHZ-EDP-06`    | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> constraints are evaluated against the final <roles:Relying Party (RP)\|RP> and operation. | Presentation | Embedded Disclosure Policy |
+| `AUTHZ-EDP-07`    | Applicable <artifacts:Embedded Disclosure Policy (EDP)\|EDP> meaning, disclosures, and explanatory links are presented in the confirmation UI. | Presentation | Embedded Disclosure Policy |
+| `AUTHZ-EDP-08`    | Rejecting an applicable <artifacts:Embedded Disclosure Policy (EDP)\|EDP> disclosure produces `EDP_NOT_SATISFIED`. | Presentation | Embedded Disclosure Policy |
+| `AUTHZ-EDP-09`    | `EDP_NOT_SATISFIED` is overridable only after all non-overridable checks pass. | Presentation | Embedded Disclosure Policy |

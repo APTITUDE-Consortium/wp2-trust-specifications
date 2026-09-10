@@ -67,7 +67,6 @@ plugins:
       glob:
         - 'examples/**'
         - 'topics/**'
-        - 'profiles.md'
         - 'references.md'
   - include-markdown:
       comments: true
@@ -122,12 +121,13 @@ extra:
     provider: mike
 
 nav:
+  - APTITUDE Technical Specification: https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/
   - Trust Framework:
     - Overview: trust-framework.md
     - Trust Architecture: sections/trust-architecture.md
     - Trust Artifacts: sections/trust-artifacts.md
     - Onboarding Process: sections/onboarding-process.md
-    - Trust Evaluation Process: sections/trust-evaluation-process.md
-    - Trust Checks: sections/trust-checks.md
+    - Trust Evaluation: sections/trust-evaluation-process.md
     - Trust Management and Lifecycle: sections/trust-management-lifecycle.md
+    - Trust Use Cases: sections/use-cases.md
     - References: sections/references.md

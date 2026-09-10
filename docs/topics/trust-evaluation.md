@@ -1,8 +1,28 @@
-This section describes the **Trust Evaluation Process**, which establishes trust between two interacting entities by ensuring that their identities are verified against a recognized <artifacts:Trust Anchor> and that they are eligible to perform a particular operation (e.g., issuing or requesting an <credentials:Attestation> of a certain type). This process comprises four distinct sub-processes:
+This section describes the **Core Trust Evaluation Processes**, which establish trust between two interacting entities by verifying their identities against a recognized <artifacts:Trust Anchor> and confirming their eligibility to perform a given operation (e.g., issuing or requesting an <credentials:Attestation> of a specific type). These processes are as follows:
 
-1. [**Trust Anchor Validation Process**](../sections/trust-evaluation-process.md#trust-anchor-validation-process);
-2. [**Authentication Process**](../sections/trust-evaluation-process.md#authentication-process);
-3. [**Sign/Seal Validation Process**](../sections/trust-evaluation-process.md#signseal-validation-process);
-4. [**Authorization Process**](../sections/trust-evaluation-process.md#authorization-process).
+- [**Trust Anchor Validation Process**](#trust-anchor-validation-process);
+- [**Sign/Seal Validation Process**](#signseal-validation-process);
+- [**Authentication Process**](#authentication-process);
+- [**Authorization Process**](#authorization-process).
 
-The [**X.509 Certificate Chain Validation**](../sections/trust-evaluation-process.md#certificate-path-validation) algorithm is shared by the Authentication Process, the Sign/Seal Validation Process, and the Authorization Process. It validates a certificate path against the <artifacts:Trust Anchor> obtained from a validated <artifacts:List of Trusted Entities (LoTE)|LoTE> or <artifacts:Trusted List (TL)|Trusted List>.
+The [**X.509 Certificate Chain Validation**](#x509-certificate-chain-validation) process is shared across the Sign/Seal Validation Process, the Authentication Process, and the Authorization Process. It validates a certificate path against the <artifacts:Trust Anchor> obtained from a validated <artifacts:List of Trusted Entities (LoTE)|LoTE> or <artifacts:Trusted List (TL)|Trusted List>.
+
+### Trust Anchor Validation Process
+
+{% include-markdown "../topics/trust-anchor-validation.md" %}
+
+### Sign/Seal Validation Process
+
+{% include-markdown "../topics/attestation-signature-validation-process.md" %}
+
+### Authentication Process
+
+{% include-markdown "../topics/authentication-process.md" %}
+
+### Authorization Process
+
+{% include-markdown "../topics/authorization-process.md" %}
+
+### X.509 Certificate Chain Validation
+
+{% include-markdown "../topics/x509-certificate-validation.md" %}
