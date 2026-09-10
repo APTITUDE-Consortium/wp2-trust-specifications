@@ -106,6 +106,10 @@ To address this gap, the following implementation choices have been adopted:
 
 All implementation choices made within this specification aim to ensure a functional trust infrastructure for the APTITUDE ecosystem. These choices are called out in dedicated boxes throughout the text, so that implementers can distinguish them at a glance from the surrounding normative and descriptive content.
 
+!!! warning "APTITUDE WP2"
+
+    Within this specification, *APTITUDE WP2* denotes Work Package 2 (*Technical standards and specifications*) of the APTITUDE Large Scale Pilot, not to be confused with the <roles:Wallet Provider (WP)> role.
+
 ---
 
 ## Normative Language

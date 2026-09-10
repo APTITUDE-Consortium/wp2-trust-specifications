@@ -76,7 +76,7 @@ The national <components:Register> of <roles:Wallet-Relying Party (WRP)|WRPs> is
 | PROVIDER-WRPRC-01 | Where a Member State authorises WRPRCs, it SHALL ensure each intended use is expressed in the WRPRC and that WRPRCs include a privacy policy URL and a general access policy. | [CIR 2025/848, Article 8(2)(b)–(c) and (g), Article 8(3)] |
 | PROVIDER-WRPRC-02 | Providers of WRPRC SHALL verify at issuance time Register status, consistency with Register info, and validity of the WRPAC (when relevant). | [CIR 2025/848, Annex V §3(c)] |
 | PROVIDER-WRPRC-03 | Providers of WRPRC SHALL monitor Register changes, reissue/revoke when changes require. | [CIR 2025/848, Annex V §3(d)] |
-| PROVIDER-WRPRC-04 | Data exchange format for WRPRC SHALL be signed JWTs (RFC 7519) and CWTs (RFC 8392), using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT). | [CIR 2025/848, Annex V §4]; [ETSI TS 119 475, Section 4.4] |
+| PROVIDER-WRPRC-04 | Data exchange format for WRPRC SHALL be signed JWTs [RFC 7519] and CWTs [RFC 8392], using an Advanced Electronic Signature (AdES) with the B-B profile (JAdES per [ETSI TS 119 182-1] for JWT, COSE for CWT). | [CIR 2025/848, Annex V §4]; [ETSI TS 119 475, Section 4.4] |
 
 ### Register Data Schema
 
@@ -186,7 +186,7 @@ Normative identifier type URIs defined in [ETSI TS 119 475]:
 
 | Parameter | Type | Presence | Description |
 | --------- | ---- | -------- | ----------- |
-| `type` | `string` | REQUIRED | Policy type URI (RFC 3986). See defined policy type URIs below. |
+| `type` | `string` | REQUIRED | Policy type URI [RFC 3986]. See defined policy type URIs below. |
 | `policyURI` | `string` | REQUIRED | URL where the policy is published. |
 
 Defined policy type URIs:

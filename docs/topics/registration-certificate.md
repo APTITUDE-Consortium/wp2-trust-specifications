@@ -116,8 +116,8 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
 
 | Attribute         | Type          | Presence  | Description   | Reference |
 | ----------------- | :-----------: | :-------: | ------------- | --------- |
-| `privacy_policy`  | `string`      | REQUIRED  | URL to the <roles:Wallet-Relying Party\|WRP>'s privacy policy explaining data processing and storage practices. | [ETSI TS 119 475, Table 7] - `policyURI` |
-| `public_body`     | `boolean`     | OPTIONAL  | Boolean indicating whether the <roles:Wallet-Relying Party\|WRP> is a <roles:Public Sector Body>. | [ETSI TS 119 475, Table 10] - `isPSB` |
+| `privacy_policy`  | `string`      | REQUIRED  | URL to the <roles:Wallet-Relying Party (WRP)\|WRP>'s privacy policy explaining data processing and storage practices. | [ETSI TS 119 475, Table 7] - `policyURI` |
+| `public_body`     | `boolean`     | OPTIONAL  | Boolean indicating whether the <roles:Wallet-Relying Party (WRP)\|WRP> is a <roles:Public Sector Body>. | [ETSI TS 119 475, Table 10] - `isPSB` |
 
 #### Supervisory Authority Attributes
 

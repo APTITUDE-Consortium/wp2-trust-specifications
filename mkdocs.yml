@@ -121,6 +121,7 @@ extra:
     provider: mike
 
 nav:
+  - APTITUDE Technical Specification: https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/
   - Trust Framework:
     - Overview: trust-framework.md
     - Trust Architecture: sections/trust-architecture.md
