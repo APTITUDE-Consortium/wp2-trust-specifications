@@ -132,10 +132,10 @@ During Credential Issuance, the Wallet SHALL verify that the requested PID or At
 
 ### Presentation Scope
 
-During Credential Presentation, the Wallet SHALL verify that the requested Digital Credentials and attributes fall within the registered scope carried in the `credentials` array of the WRPRC or validated Register response (`AUTHZ-PRES-02`). The requested-scope comparison is an optional presentation check (`AUTHZ-PRES-01`). 
+During Credential Presentation, the Wallet SHALL verify that the requested Digital Credentials and attributes fall within the registered scope carried in the `credentials` array of the WRPRC or validated Register response (`AUTHZ-PRES-02`). The requested-scope comparison is an optional presentation check (`AUTHZ-PRES-01`).
 
 !!! choice
-        
+
     The Wallet SHALL offer the setting enabled by default and the setting SHALL affect only this comparison (`AUTHZ-PRES-04`).
 
 When scope comparison is enabled, the Wallet SHALL apply the flow-specific extraction and matching rules:
@@ -161,9 +161,9 @@ EDP evaluation applies to QEAA, PuB-EAA, and EAA attestations. PID does not assu
 
 ## Authorization Decision and Override
 
-The Wallet SHALL produce the binary result `AUTHORIZED` or `NOT_AUTHORIZED` (`AUTHZ-UI-01`). User-relevant limitations SHALL be represented as advisories (`AUTHZ-UI-02`). 
+The Wallet SHALL produce the binary result `AUTHORIZED` or `NOT_AUTHORIZED` (`AUTHZ-UI-01`). User-relevant limitations SHALL be represented as advisories (`AUTHZ-UI-02`).
 
-The Wallet SHALL display all results and advisories with the requested attributes and request User approval (`AUTHZ-UI-03`, `AUTHZ-UI-07`). 
+The Wallet SHALL display all results and advisories with the requested attributes and request User approval (`AUTHZ-UI-03`, `AUTHZ-UI-07`).
 
 User approval SHALL remain a separate step from the authorization decision (`AUTHZ-UI-04`), and the process SHALL support transparent decision-making (`AUTHZ-UI-05`).
 
@@ -178,7 +178,7 @@ The final result is determined as follows:
 
 In an intermediated presentation, missing final Relying Party information, missing authoritative data, binding failure, and negative scope or EDP outcomes are negative cases for the final Relying Party (`AUTHZ-INT-06`).
 
-The Wallet SHALL display the final Relying Party identity and intended use. It SHALL NOT display the intermediary identity (`AUTHZ-UI-08`). 
+The Wallet SHALL display the final Relying Party identity and intended use. It SHALL NOT display the intermediary identity (`AUTHZ-UI-08`).
 
 A non-overridable failure SHALL be clearly identified and SHALL not be presented as user-overridable.
 
