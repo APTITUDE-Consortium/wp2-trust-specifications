@@ -3262,7 +3262,7 @@
 <h3 id="issuance-attestation-type">Issuance Attestation Type<a class="headerlink" href="#issuance-attestation-type" title="Permanent link">&para;</a></h3>
 <p>During Credential Issuance, the Wallet SHALL verify that the requested PID or Attestation Type is registered for the Credential Issuer. The Wallet SHALL compare the authoritative <code>provides_attestations</code> array from the WRPRC or validated Register response with the keys of <code>credential_configurations_supported</code> in the validated Credential Issuer Metadata (<code>AUTHZ-ISS-02</code>, <code>AUTHZ-ISS-03</code>). For an SD-JWT VC, the comparison SHALL use <code>vct</code>; for an mdoc, it SHALL use <code>docType</code>. The match SHALL be exact and case-sensitive. If the requested type is not registered or not supported, the Wallet SHALL produce <code>ATTESTATION_TYPE_NOT_REGISTERED</code> and terminate authorization non-overridiably.</p>
 <h3 id="presentation-scope">Presentation Scope<a class="headerlink" href="#presentation-scope" title="Permanent link">&para;</a></h3>
-<p>During Credential Presentation, the Wallet SHALL verify that the requested Digital Credentials and attributes fall within the registered scope carried in the <code>credentials</code> array of the WRPRC or validated Register response (<code>AUTHZ-PRES-02</code>). The requested-scope comparison is an optional presentation check (<code>AUTHZ-PRES-01</code>). </p>
+<p>During Credential Presentation, the Wallet SHALL verify that the requested Digital Credentials and attributes fall within the registered scope carried in the <code>credentials</code> array of the WRPRC or validated Register response (<code>AUTHZ-PRES-02</code>). The requested-scope comparison is an optional presentation check (<code>AUTHZ-PRES-01</code>).</p>
 <div class="admonition choice">
 <p class="admonition-title">Choice</p>
 <p>The Wallet SHALL offer the setting enabled by default and the setting SHALL affect only this comparison (<code>AUTHZ-PRES-04</code>).</p>
@@ -3286,8 +3286,8 @@
 <li>If the User rejects an applicable EDP disclosure, set the EDP outcome to <code>EDP_NOT_SATISFIED</code> (<code>AUTHZ-EDP-08</code>). <code>EDP_NOT_SATISFIED</code> is an overridable presentation outcome only after all non-overridable checks have passed (<code>AUTHZ-EDP-09</code>).</li>
 </ol>
 <h2 id="authorization-decision-and-override">Authorization Decision and Override<a class="headerlink" href="#authorization-decision-and-override" title="Permanent link">&para;</a></h2>
-<p>The Wallet SHALL produce the binary result <code>AUTHORIZED</code> or <code>NOT_AUTHORIZED</code> (<code>AUTHZ-UI-01</code>). User-relevant limitations SHALL be represented as advisories (<code>AUTHZ-UI-02</code>). </p>
-<p>The Wallet SHALL display all results and advisories with the requested attributes and request User approval (<code>AUTHZ-UI-03</code>, <code>AUTHZ-UI-07</code>). </p>
+<p>The Wallet SHALL produce the binary result <code>AUTHORIZED</code> or <code>NOT_AUTHORIZED</code> (<code>AUTHZ-UI-01</code>). User-relevant limitations SHALL be represented as advisories (<code>AUTHZ-UI-02</code>).</p>
+<p>The Wallet SHALL display all results and advisories with the requested attributes and request User approval (<code>AUTHZ-UI-03</code>, <code>AUTHZ-UI-07</code>).</p>
 <p>User approval SHALL remain a separate step from the authorization decision (<code>AUTHZ-UI-04</code>), and the process SHALL support transparent decision-making (<code>AUTHZ-UI-05</code>).</p>
 <p>The final result is determined as follows:</p>
 <table>
@@ -3317,7 +3317,7 @@
 </tbody>
 </table>
 <p>In an intermediated presentation, missing final Relying Party information, missing authoritative data, binding failure, and negative scope or EDP outcomes are negative cases for the final Relying Party (<code>AUTHZ-INT-06</code>).</p>
-<p>The Wallet SHALL display the final Relying Party identity and intended use. It SHALL NOT display the intermediary identity (<code>AUTHZ-UI-08</code>). </p>
+<p>The Wallet SHALL display the final Relying Party identity and intended use. It SHALL NOT display the intermediary identity (<code>AUTHZ-UI-08</code>).</p>
 <p>A non-overridable failure SHALL be clearly identified and SHALL not be presented as user-overridable.</p>
 <p>If the result is <code>AUTHORIZED</code>, the Wallet SHALL proceed to normal User approval (<code>AUTHZ-UI-10</code>). If the result is <code>NOT_AUTHORIZED</code> and only overridable presentation outcomes remain, the Wallet SHALL present the negative outcome and SHALL allow continuation if the User accepts every applicable override (<code>AUTHZ-UI-11</code>).</p>
 <p>All issuance failures are non-overridable. Only presentation scope overasking and EDP failure MAY be overridden.</p>
