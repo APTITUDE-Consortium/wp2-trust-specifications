@@ -33,6 +33,7 @@ Version 1.1
 - George Fourtounis, *GRNET*
 - Byron Georgantopoulos, *GRNET*
 - Guillaume Hébert, *Keynectis*
+- Martin Hurych, *ARICOMA Digital S.R.O*
 - Angel Palomares Perez, *Bull*
 - Leonardo Pio Palumbo, *Istituto Poligrafico e Zecca dello Stato S.p.A.*
 
