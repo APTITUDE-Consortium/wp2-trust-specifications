@@ -22,7 +22,7 @@ The suspension or cancellation of the <roles:Wallet-Relying Party (WRP)|WRP> ser
 
 !!! note "Dependency Considerations"
 
-    The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> attributes SHALL be derived from the information held in the <components:Register> as specified in [ETSI TS 119 475, Clause 5.1.2]. This also implies that for some specific attributes in the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> the same value SHALL be encountered in the corresponding <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> if any.
+    The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> attributes SHALL be derived from the information held in the <components:Register> as specified in [ETSI TS 119 475, Clause 5.1.2]. This also implies that for some specific attributes in the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> the same value SHALL be encountered in the corresponding <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
 
 The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.
 
