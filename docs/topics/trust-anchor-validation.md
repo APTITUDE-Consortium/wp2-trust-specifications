@@ -108,9 +108,9 @@ The validator SHALL perform the following steps:
 
     - Select exactly one `Requested-LoTE-Type` entry from the trusted <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication at `OJA-Loc` and require a non-empty authorized signing certificate set.
     - Obtain `OJA-LoTE-Loc` and `OJA-LoTE-Certs-Set` for that type. Download the current `LoTE` from `OJA-LoTE-Loc` when no accepted cached list exists, 24 hours have elapsed since the cached list was retrieved, or its `NextUpdate` has been reached, whichever occurs first. A cached list SHALL NOT be used after a required refresh fails.
-    
+
     The validator SHALL NOT use the location or certificate set of another <artifacts:List of Trusted Entities (LoTE)|LoTE> type.
-    
+
     If the type-specific entry is absent or the current list cannot be obtained, validation SHALL fail with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
 2. **Verify signature, schema, and type.**
@@ -128,16 +128,16 @@ The validator SHALL perform the following steps:
 
     If any check fails, validation SHALL stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-5. **Check profile, freshness, and sequence.** 
+5. **Check profile, freshness, and sequence.**
 
     - Require `LoTEVersionIdentifier` to be `1`, a positive integer `LoTESequenceNumber`, and the type-specific values and presence rules in the <artifacts:List of Trusted Entities (LoTE)|LoTE> profile, including the service type identifiers and current service-status rules. For a <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Provider> service, require `StatusStartingTime` not to be later than the validation time.
     - Require a valid `ListIssueDateTime` and `NextUpdate`, with the issue time not later than the validation time, the next update later than the validation time, and the interval between them no longer than six months.
     - If `Highest-Accepted-Sequence` exists, reject a `LoTESequenceNumber` below it.
     - If the sequence number is equal but the digest of the signed list content differs from the previously accepted digest, reject the list as a publication conflict.
-    
+
     Any failure SHALL set `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-6. **Accept the list and select trust anchors.** 
+6. **Accept the list and select trust anchors.**
 
     - Select the applicable `TrustedEntityInformation` and `ServiceInformation` from the signature-verified list using `Requested-Entity-Identity` and `Requested-Service-Type`. For a <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Provider>, an operational <artifacts:Trust Anchor> SHALL be selected only from a current issuance or revocation service whose `ServiceStatus` is `http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/notified`; `ServiceHistory` and `withdrawn` services SHALL NOT supply operational <artifacts:Trust Anchor|Trust Anchors>. For all other list types, only services currently present in the list SHALL supply operational <artifacts:Trust Anchor|Trust Anchors>.
     - If the required entity, service, or certificate is absent or ambiguous, set `LoTE-Status = LoTE_VERIFICATION_FAILED` and stop. Otherwise extract the applicable certificate from `ServiceInformation.ServiceDigitalIdentity`.
