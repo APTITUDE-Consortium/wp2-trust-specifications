@@ -344,19 +344,17 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <td>
                 <ul>
                     <li>Updated <artifacts:List of Trusted Entities (LoTE)|LoTE> content</li>
-                    <li>Pivot <artifacts:List of Trusted Entities (LoTE)|LoTE> URI</li>
-                    <li>APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate</li>
+                    <li>Fixed <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoint and authorized signing certificate</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Publish a signed new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and make the replaced version at the applicable pivot URI for retro-compatibility.</li>
-                    <li>Update the <code>SchemeInformationURI</code> accordingly.</li>
-                <ul>
+                    <li>Publish the new signed current <artifacts:List of Trusted Entities (LoTE)|LoTE> at the fixed endpoint with an increased <code>LoTESequenceNumber</code>, a new <code>ListIssueDateTime</code>, and a valid <code>NextUpdate</code>.</li>
+                </ul>
             </td>
-            <td>Every participant that consumes the affected <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL refresh its cached copy via the <artifacts:Trust Anchor> Validation Process and SHALL NOT use old pivot versions for a current decision.</td>
-            <td>The endpoint serves the new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and <artifacts:Trust Anchor> Validation uses its updated entry.</td>
-            <td>The new version is unavailable or invalid, or a participant continues to use the superseded version.</li>
+            <td>Every participant that consumes the affected <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL refresh its cached copy via the <artifacts:Trust Anchor> Validation Process and SHALL reject a version whose sequence number is below the highest previously accepted for that type.</td>
+            <td>The fixed endpoint serves the new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and <artifacts:Trust Anchor> Validation accepts its updated entry.</td>
+            <td>The new version is unavailable or invalid, or a participant continues to use a superseded version.</td>
         </tr>
         <tr>
             <td rowspan="2">Certificate revocation</td>
