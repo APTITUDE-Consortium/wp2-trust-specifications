@@ -60,15 +60,17 @@ Other ETSI specifications that the previous specifications build upon:
 
 | Item Reference                | Version     | Date        | Title                     |
 | ----------------------------- | ----------- | ----------- | ------------------------- |
+| ETSI TS 319 102-1             | V1.4.1      | 2024-06     | Electronic Signatures and Trust Infrastructures (ESI); Procedures for Creation and Validation of AdES Digital Signatures; Part 1: Creation and Validation |
 | ETSI EN 319 132-1             | V1.3.1      | 2024-07     | Electronic Signatures and Trust Infrastructures (ESI); XAdES digital signatures; Part 1: Building blocks and XAdES baseline signatures |
 | ETSI EN 319 411-1             | V1.5.1      | 2025-04     | Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 1: General requirements |
 | ETSI EN 319 411-2             | V2.6.1      | 2025-06     | Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for Trust Service Providers issuing certificates; Part 2: Requirements for trust service providers issuing EU qualified certificates |
 | ETSI EN 319 412-1             | V1.7.0      | 2026-02     | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 1: Overview and common data structures |
 | ETSI EN 319 412-2             | V2.4.1      | 2025-06     | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 2: Certificate profile for certificates issued to natural persons |
 | ETSI EN 319 412-3             | V1.3.1      | 2023-09     | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 3: Certificate profile for certificates issued to legal persons |
-| ETSI EN 319 412-5             | V2.5        | 2025-06     | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 5: QCStatements |
+| ETSI EN 319 412-5             | V2.6.1      | 2026-05     | Electronic Signatures and Trust Infrastructures (ESI); Certificate Profiles; Part 5: QCStatements |
 | ETSI TS 119 182-1             | V1.2.1      | 2024-07     | Electronic Signatures and Trust Infrastructures (ESI); JAdES digital signatures; Part 1: Building blocks and JAdES baseline signatures |
-| ETSI TS 119 312               | V1.4        | 2023-08     | Electronic Signatures and Infrastructures (ESI); Cryptographic Suites |
+| ETSI TS 119 312               | V1.4.1      | 2021-08     | Electronic Signatures and Infrastructures (ESI); Cryptographic Suites |
+| ETSI TS 119 461               | V2.1.1      | 2025-02     | Electronic Signatures and Trust Infrastructures (ESI); Policy and security requirements for trust service components providing identity proofing of trust service subjects |
 | ETSI TS 119 495               | V1.7.1      | 2024-07     | Electronic Signatures and Trust Infrastructures (ESI); Sector Specific Requirements; Certificate Profiles and TSP Policy Requirements for Open Banking |
 
 ## ISO/IEC Standards
@@ -105,7 +107,7 @@ Other ETSI specifications that the previous specifications build upon:
 | RFC 7515                                    | 2015-05     | JSON Web Signature (JWS)  |
 | RFC 7519                                    | 2015-05     | JSON Web Token (JWT)      |
 | RFC 8174                                    | 2017-05     | Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words |
-| RFC 8392                                    | 2026-05     | CBOR Web Token (CWT) |
+| RFC 8392                                    | 2018-05     | CBOR Web Token (CWT) |
 | RFC 9052                                    | 2022-08     | CBOR Object Signing and Encryption (COSE): Structures and Process |
 | RFC 9360                                    | 2023-02     | CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificate |
 | RFC 9608                                    | 2024-06     | No Revocation Available for X.509 Public Key Certificates |
