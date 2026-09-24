@@ -1,4 +1,4 @@
-This process validates the signature on an <credentials:Attestation> (including a <artifacts:Wallet Instance Attestation (WIA)|WIA>) using the appropriate <artifacts:Electronic Signature|Signature>/<artifacts:Electronic Seal|Seal> Certificate. It is invoked during issuance and presentation flows. Sign/Seal Certificate chains are validated with the [X.509 Certificate Chain Validation](../sections/trust-evaluation-process.md#certificate-path-validation) algorithm.
+This process validates the signature on an <credentials:Attestation> (including a <artifacts:Wallet Instance Attestation (WIA)|WIA>) using the appropriate Sign/Seal Certificate. It is invoked during issuance and presentation flows. Sign/Seal Certificate chains are validated with the [X.509 Certificate Chain Validation](../sections/trust-evaluation-process.md#certificate-path-validation) algorithm.
 
 The process is structured as follows.
 

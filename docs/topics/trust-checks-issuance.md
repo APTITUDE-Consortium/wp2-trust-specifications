@@ -135,7 +135,7 @@ sequenceDiagram
 
 **Step 7c: Identify the corresponding <roles:Trusted Entity>.** The <roles:Attestation Provider (AP)|Attestation Provider> identifies the <artifacts:List of Trusted Entities (LoTE)|LoTE> <roles:Trusted Entity> corresponding to the <artifacts:Wallet Instance Attestation (WIA)|WIA> presented in the request.
 
-**Step 7d: Validate the <artifacts:Wallet Instance Attestation (WIA)|WIA> signature.** The <roles:Attestation Provider (AP)|Attestation Provider> checks the <artifacts:Wallet Instance Attestation (WIA)|WIA> integrity and authenticity by validating the JWT signature using the trust anchor of the <roles:Trusted Entity> identitied in the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+**Step 7d: Validate the <artifacts:Wallet Instance Attestation (WIA)|WIA> signature.** The <roles:Attestation Provider (AP)|Attestation Provider> checks the <artifacts:Wallet Instance Attestation (WIA)|WIA> integrity and authenticity by validating the JWT signature using the trust anchor of the <roles:Trusted Entity> identified in the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
 **Step 7e: Validate the <artifacts:Wallet Instance Attestation (WIA)|WIA> status.** The <roles:Attestation Provider (AP)|Attestation Provider> checks that the <components:Wallet Instance> is valid by verifying the status list referenced in the <artifacts:Wallet Instance Attestation (WIA)|WIA>. Extra checks performed are <artifacts:Wallet Instance Attestation (WIA)|WIA> validity and associated Proof-of-Possession.
 
@@ -143,7 +143,7 @@ sequenceDiagram
 
 **Step 9: Send <artifacts:Key Attestation (KA)|KA> to Credential endpoint (<protocols:OpenID for Verifiable Credentials Issuance (OID4VCI)|OID4VCI>).** The <components:Wallet Instance> sends the <artifacts:Key Attestation (KA)|KA> signed by the <roles:Wallet Provider (WP)|WP>, attesting information about the security of cryptographic keys stored in the <components:Wallet Unit>.
 
-**Step 10a: Validate the <artifacts:Key Attestation (KA)|KA> signature.** The <roles:Attestation Provider (AP)|Attestation Provider> checks the <artifacts:Key Attestation (KA)|KA> integrity and authenticity by validating the signature using the <artifacts:Trust Anchor> of the <roles:Trusted Entity> identitied in the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+**Step 10a: Validate the <artifacts:Key Attestation (KA)|KA> signature.** The <roles:Attestation Provider (AP)|Attestation Provider> checks the <artifacts:Key Attestation (KA)|KA> integrity and authenticity by validating the signature using the <artifacts:Trust Anchor> of the <roles:Trusted Entity> identified in the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
 **Step 10b: Validate the <artifacts:Key Attestation (KA)|KA> status.** The <roles:Attestation Provider (AP)|Attestation Provider> checks that the <artifacts:Key Attestation (KA)|KA> is valid by verifying the status list referenced within. Extra checks performed are <artifacts:Key Attestation (KA)|KA> validity and associated Proof-of-Possession.
 

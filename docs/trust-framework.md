@@ -44,7 +44,7 @@ Version 1.1
 
 ## Introduction
 
-This document specifies implementation profiles for the core conceptual and architectural components of the trust framework, as deployed within the APTITUDE Large Scale Pilot. It defines the trust architecture, the trust artifacts exchanged among entities, and the evaluation processes and trust checks to be performed during issuance and presentation flows. Except where explicitly noted, these profiles conform to the <components:EUDI Wallet> Architecture Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the [References](sections/references.md) section, adapted for the APTITUDE context.
+This document specifies implementation profiles for the core conceptual and architectural components of the trust framework, as deployed within the APTITUDE Large Scale Pilot. It defines the trust architecture, the trust artifacts exchanged among entities, and the evaluation processes and trust checks to be performed during issuance and presentation flows. Except where explicitly noted, these profiles conform to the <components:EUDI Wallet> Architecture and Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the [References](sections/references.md) section, adapted for the APTITUDE context.
 
 ---
 
@@ -72,7 +72,7 @@ This document does not prescribe internal implementation architectures or choice
 
 ---
 
-## Deviations from Architecture and Reference Framework
+## Deviations from the Architecture and Reference Framework
 
 The APTITUDE ecosystem does not include actors representing Member States or the European Commission within its deployment activities. Consequently, the following operations, as regulated by [ARF], have no corresponding responsible actor within the APTITUDE ecosystem.
 
@@ -98,7 +98,7 @@ To address this gap, the following implementation choices have been adopted:
 | APTITUDE WP2 provides a single, simplified registration interface through which Partners self-declare their attributes and entitlements, without requiring dedicated administrative processes or certification scheme checks. | 2, 8 |
 | APTITUDE WP2 aggregates registration information into a single <components:Register> used for all entities. | 2 |
 | APTITUDE WP2 provides onboarding services to manage the associated operational processes (registration, <processes:Notification\|notification>, publication, certificate issuance). | 2, 3, 9 |
-| The <components:Public Key Infrastructure (PKI)\|Public Key Infrastructure> will not include a <artifacts:List Of Trusted Lists (LOTL)\|List Of Trusted List> with an associated <artifacts:Trusted List (TL)\|Trusted List>; instead, it will feature a <artifacts:List of Trusted Entities (LoTE)\|List of Trusted Entities> per entity type, including <roles:Provider of Electronic Attestation of Attributes (EAA Provider)\|EAA Providers> and <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Providers>. | 1, 4 |
+| The <components:Public Key Infrastructure (PKI)\|Public Key Infrastructure> will not include a <artifacts:List Of Trusted Lists (LOTL)\|List Of Trusted Lists> with an associated <artifacts:Trusted List (TL)\|Trusted List>; instead, it will feature a <artifacts:List of Trusted Entities (LoTE)\|List of Trusted Entities> per entity type, including <roles:Provider of Electronic Attestation of Attributes (EAA Provider)\|EAA Providers> and <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Providers>. | 1, 4 |
 | APTITUDE WP2 acts as the sole <roles:List of Trusted Entities Provider (LoTE Provider)\|List of Trusted Entities Provider>; the certificate anchoring the various <artifacts:List of Trusted Entities (LoTE)\|List of Trusted Entities> will be published via GitHub. | 1 |
 | APTITUDE will not feature <components:Authentic Source\|Authentic Sources>. | 5 |
 | APTITUDE will not feature Catalogues of Attestations. Instead, <artifacts:Attestation Rulebook\|Attestation Rulebooks> published on GitHub by the various Use Cases will be used. | 6 |

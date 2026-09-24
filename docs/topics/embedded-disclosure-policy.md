@@ -10,7 +10,7 @@ The <artifacts:Embedded Disclosure Policy (EDP)|EDP> allows <roles:Attestation P
 
 The main use cases enabled by <artifacts:Embedded Disclosure Policy (EDP)|EDPs> are:
 
-- Implementing Sector-specific access control (e.g., only public sector or healthcare <roles:Relying Party (RP)|RPs>).
+- Implementing sector-specific access control (e.g., only public sector or healthcare <roles:Relying Party (RP)|RPs>).
 - Implementing Member State-specific access control (e.g., only <roles:Relying Party (RP)|RPs> registered within a specific Member State).
 
 ??? references
@@ -117,4 +117,4 @@ Even a minor policy change (e.g., adding a single <roles:Relying Party (RP)|RP> 
     The <roles:Attestation Provider (AP)|AP> MAY provide <artifacts:Embedded Disclosure Policy (EDP)|EDP> through its URI. In this case, the <components:Wallet Instance> MAY proactively fetch the policy content at the `policy_uri` to check for updates, without waiting for an <credentials:Attestation> revocation signal. However, this mechanism SHALL NOT be used in this specification for the following reason:
     
     - It enables <roles:Attestation Provider (AP)|AP> to unilaterally change an <artifacts:Embedded Disclosure Policy (EDP)|EDP>, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)
-    - Technical details of this mechanism are not defined within ETSI standard.
+    - Technical details of this mechanism are not defined within the ETSI standard.

@@ -5,7 +5,7 @@ This section describes the **Core Trust Evaluation Processes**, which establish 
 - [**Authentication Process**](#authentication-process);
 - [**Authorization Process**](#authorization-process).
 
-The [**X.509 Certificate Chain Validation**](#x509-certificate-chain-validation) process is shared across the Sign/Seal Validation Process, the Authentication Process, and the Authorization Process. It validates a certificate path against the <artifacts:Trust Anchor> obtained from a validated <artifacts:List of Trusted Entities (LoTE)|LoTE> or <artifacts:Trusted List (TL)|Trusted List>.
+The [**X.509 Certificate Chain Validation**](#x509-certificate-chain-validation) process is shared across the Sign/Seal Validation Process, the Authentication Process, and the Authorization Process. It validates a certificate path against the <artifacts:Trust Anchor> obtained from a validated <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
 ### Trust Anchor Validation Process
 

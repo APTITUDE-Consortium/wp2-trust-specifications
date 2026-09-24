@@ -2,7 +2,7 @@ This section introduces the trust artifacts used within the APTITUDE ecosystem. 
 
 !!! note
 
-    In this document, the term *trust artifact* refers to a structured data object exchanged or consulted during trust evaluation. Trust artifacts are distinct from <credentials:Attestation>, whose authenticity they help verify.
+    In this document, the term *trust artifact* refers to a structured data object exchanged or consulted during trust evaluation. Trust artifacts are distinct from <credentials:Attestation|Attestations>, whose authenticity they help verify.
 
 The table below lists the trust artifacts defined in this document, along with their responsible actors in the <components:EUDI Wallet> and APTITUDE ecosystems, and the corresponding reference:
 
@@ -13,7 +13,7 @@ The table below lists the trust artifacts defined in this document, along with t
 | <artifacts:Key Attestation (KA)>                                  | <roles:Wallet Provider (WP)\|Wallet Provider> | Wallet Provider | [TS03] |
 | Key Attestation <artifacts:Status List Token>                     | <roles:Wallet Provider (WP)\|Wallet Provider> | Wallet Provider | [TS03] |
 | <artifacts:List of Trusted Entities (LoTE)>                       | <roles:List of Trusted Entities Provider (LoTE Provider)\|LoTE Provider> | Service managed by APTITUDE WP2 | [APTITUDE List of Trusted Entities Profile](#list-of-trusted-entities) |
-| <protocols:Online Certificate Status Protocol (OCSP)> Artifacts   | Provider of WRPAC and Sign/Seal Certificates | Component of the Certification Authority managed by APTITUDE WP2 | [APTITUDE Online Certificate Status Protocol Artifacts Profile](#online-certificate-status-protocol-artifacts) |
+| <protocols:Online Certificate Status Protocol (OCSP)> Artifacts   | Provider of WRPAC and Sign/Seal Certificates | Component of the <roles:Certificate Authority> managed by APTITUDE WP2 | [APTITUDE Online Certificate Status Protocol Artifacts Profile](#online-certificate-status-protocol-artifacts) |
 | <components:Register> API                                         | <roles:Registrar> | Service managed by APTITUDE WP2 | [APTITUDE Register API Profile](#register) |
 | Sign/Seal Certificate                                             | Provider of Sign/Seal Certificates | <roles:Certificate Authority (CA)\|Certificate Authority> managed by APTITUDE WP2 | [APTITUDE Entity Sign/Seal Certificate Profile](#entity-signseal-certificate) |
 | Status List Token                                                 | <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Component of the <roles:Certificate Authority (CA)\|Certificate Authority> managed by APTITUDE WP2 | [APTITUDE Status List Token Profile](#status-list-token) |

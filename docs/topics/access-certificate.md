@@ -49,7 +49,7 @@ The following table defines the complete set of extensions applicable to the cer
 
 !!! warning "Security Considerations"
 
-    As the private key corresponding to the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is a signature/seal key, implementations SHALL prevent the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> key from becoming a general-purpose signing oracle.
+    As the private key corresponding to the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is a Sign/Seal key, implementations SHALL prevent the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> key from becoming a general-purpose signing oracle.
 
     **SC-1 — No blind signing of attacker-controlled inputs.**
 
