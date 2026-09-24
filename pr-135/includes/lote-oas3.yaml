@@ -1,0 +1,1028 @@
+openapi: 3.0.3
+info:
+  title: APTITUDE List of Trusted Entities (LoTE) retrieval
+  version: 1.1.1
+  description: >-
+    Illustrative retrieval paths for the eight APTITUDE JSON LoTE types. Each GET
+    returns a signed compact JWT. The actual fixed URI and authorized signing
+    certificates for each type are published by the OJA. Components describe the
+    decoded protected JOSE header and JWT Claims Set for schema visualization;
+    they are not a JSON representation of the HTTP response. Optional XML QEAA
+    support is outside the scope of this JSON API description.
+externalDocs:
+  description: ETSI TS 119 602 V1.1.1 (2025-11)
+  url: https://www.etsi.org/deliver/etsi_ts/119600_119699/119602/01.01.01_60/ts_119602v010101p.pdf
+tags:
+  - name: LoTE
+    description: Type-specific List of Trusted Entities retrieval.
+paths:
+  /lote/pid-providers:
+    get:
+      tags: [LoTE]
+      operationId: getPIDProviderLoTE
+      summary: Get the PID Provider LoTE
+      description: Illustrative path; use the fixed PID Provider LoTE URI published by the OJA. The decoded LoTEType is http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList.
+      responses:
+        '200':
+          description: Signed compact JWT containing the current PID Provider LoTE.
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/CompactLoTEJWT'
+              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+  /lote/wallet-providers:
+    get:
+      tags: [LoTE]
+      operationId: getWalletProviderLoTE
+      summary: Get the Wallet Provider LoTE
+      description: Illustrative path; use the fixed Wallet Provider LoTE URI published by the OJA. The decoded LoTEType is http://uri.etsi.org/19602/LoTEType/EUWalletProvidersList.
+      responses:
+        '200':
+          description: Signed compact JWT containing the current Wallet Provider LoTE.
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/CompactLoTEJWT'
+              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+  /lote/wrpac-providers:
+    get:
+      tags: [LoTE]
+      operationId: getWRPACProviderLoTE
+      summary: Get the WRPAC Provider LoTE
+      description: Illustrative path; use the fixed WRPAC Provider LoTE URI published by the OJA. The decoded LoTEType is http://uri.etsi.org/19602/LoTEType/EUWRPACProvidersList.
+      responses:
+        '200':
+          description: Signed compact JWT containing the current WRPAC Provider LoTE.
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/CompactLoTEJWT'
+              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+  /lote/wrprc-providers:
+    get:
+      tags: [LoTE]
+      operationId: getWRPRCProviderLoTE
+      summary: Get the WRPRC Provider LoTE
+      description: Illustrative path; use the fixed WRPRC Provider LoTE URI published by the OJA. The decoded LoTEType is http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList.
+      responses:
+        '200':
+          description: Signed compact JWT containing the current WRPRC Provider LoTE.
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/CompactLoTEJWT'
+              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+  /lote/pub-eaa-providers:
+    get:
+      tags: [LoTE]
+      operationId: getPubEAAProviderLoTE
+      summary: Get the PuB-EAA Provider LoTE
+      description: Illustrative path; use the fixed PuB-EAA Provider LoTE URI published by the OJA. The decoded LoTEType is http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList. This type includes current service status and historical service information.
+      responses:
+        '200':
+          description: Signed compact JWT containing the current PuB-EAA Provider LoTE.
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/CompactLoTEJWT'
+              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+  /lote/registrars-and-registers:
+    get:
+      tags: [LoTE]
+      operationId: getRegistrarAndRegisterLoTE
+      summary: Get the Registrar and Register LoTE
+      description: Illustrative path; use the fixed Registrar and Register LoTE URI published by the OJA. The decoded LoTEType is http://uri.etsi.org/19602/LoTEType/EURegistrarsAndRegistersList.
+      responses:
+        '200':
+          description: Signed compact JWT containing the current Registrar and Register LoTE.
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/CompactLoTEJWT'
+              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+  /lote/qeaa-providers:
+    get:
+      tags: [LoTE]
+      operationId: getQEAAProviderLoTE
+      summary: Get the QEAA Provider LoTE
+      description: Illustrative JSON path; use the fixed QEAA Provider LoTE URI published by the OJA. The decoded LoTEType is https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#qeaa-lote-type.
+      responses:
+        '200':
+          description: Signed compact JWT containing the current JSON QEAA Provider LoTE.
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/CompactLoTEJWT'
+              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+  /lote/eaa-providers:
+    get:
+      tags: [LoTE]
+      operationId: getEAAProviderLoTE
+      summary: Get the EAA Provider LoTE
+      description: Illustrative path; use the fixed EAA Provider LoTE URI published by the OJA. The decoded LoTEType is https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#eaa-lote-type.
+      responses:
+        '200':
+          description: Signed compact JWT containing the current EAA Provider LoTE.
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/CompactLoTEJWT'
+              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+
+components:
+  schemas:
+    CompactLoTEJWT:
+      type: string
+      description: >-
+        Signed compact JWT returned by the endpoint. Its decoded protected header and
+        claims are described by DecodedLoTEJWT. The third compact segment is the JWS
+        signature. The example is intentionally a placeholder, not a valid signature.
+      example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
+      x-decoded-schema:
+        $ref: '#/components/schemas/DecodedLoTEJWT'
+
+    DecodedLoTEJWT:
+      type: object
+      description: Illustrative decoded view of the signed compact JWT.
+      properties:
+        header:
+          $ref: '#/components/schemas/ProtectedJOSEHeader'
+        payload:
+          $ref: '#/components/schemas/LoTEJWTPayload'
+      required:
+        - header
+        - payload
+      additionalProperties: false
+      example:
+        header:
+          alg: ES256
+          iat: 1787054400
+          'x5t#S256': eyJleGFtcGxlLXRodW1icHJpbnQifQ
+        payload:
+          LoTE:
+            ListAndSchemeInformation:
+              LoTEVersionIdentifier: 1
+              LoTESequenceNumber: 1
+              LoTEType: http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList
+              SchemeOperatorName:
+                - lang: en
+                  value: APTITUDE LoTE Provider
+              SchemeOperatorAddress:
+                SchemeOperatorPostalAddress:
+                  - lang: en
+                    StreetAddress: 1 APTITUDE Avenue
+                    Locality: Brussels
+                    PostalCode: '1000'
+                    Country: BE
+                SchemeOperatorElectronicAddress:
+                  - lang: en
+                    uriValue: mailto:contact@aptitude.example
+              SchemeName:
+                - lang: en
+                  value: APTITUDE PID Provider Scheme
+              SchemeInformationURI:
+                - lang: en
+                  uriValue: https://oja.aptitude.example/publications/pid-providers
+              StatusDeterminationApproach: http://uri.etsi.org/19602/PIDProvidersList/StatusDetn/EU
+              SchemeTypeCommunityRules:
+                - lang: en
+                  uriValue: http://uri.etsi.org/19602/PIDProviders/schemerules/EU
+              SchemeTerritory: EU
+              PolicyOrLegalNotice:
+                - LoTELegalNotice: https://oja.aptitude.example/lote/pid-providers/legal-notice
+              ListIssueDateTime: '2026-08-18T12:00:00Z'
+              NextUpdate: '2027-02-18T12:00:00Z'
+            TrustedEntitiesList:
+              - TrustedEntityInformation:
+                  TEName:
+                    - lang: en
+                      value: Example PID Provider
+                  TETradeName:
+                    - lang: en
+                      value: BE:PID-EXAMPLE-001
+                  TEAddress:
+                    TEPostalAddress:
+                      - lang: en
+                        StreetAddress: 10 Example Street
+                        Locality: Brussels
+                        PostalCode: '1000'
+                        Country: BE
+                    TEElectronicAddress:
+                      - lang: en
+                        uriValue: mailto:provider@example.eu
+                      - lang: en
+                        uriValue: tel:+3225550100
+                  TEInformationURI:
+                    - lang: en
+                      uriValue: https://example.eu/pid-provider/policies
+                    - lang: en
+                      uriValue: http://uri.etsi.org/19602/ListOfTrustedEntities/PIDProvider/BE
+                TrustedEntityServices:
+                  - ServiceInformation:
+                      ServiceName:
+                        - lang: en
+                          value: PID issuance service
+                      ServiceDigitalIdentity:
+                        X509Certificates:
+                          - encoding: urn:ietf:rfc:5280
+                            specRef: RFC 5280
+                            val: MIIBexampleCertificateBase64
+                      ServiceTypeIdentifier: http://uri.etsi.org/19602/SvcType/PID/Issuance
+                  - ServiceInformation:
+                      ServiceName:
+                        - lang: en
+                          value: PID revocation service
+                      ServiceDigitalIdentity:
+                        X509Certificates:
+                          - encoding: urn:ietf:rfc:5280
+                            specRef: RFC 5280
+                            val: MIIBexampleCertificateBase64
+                      ServiceTypeIdentifier: http://uri.etsi.org/19602/SvcType/PID/Revocation
+
+    ProtectedJOSEHeader:
+      type: object
+      description: Protected JOSE header of a pilot JSON LoTE signature; x5c, kid and x5u are prohibited.
+      properties:
+        alg:
+          type: string
+          enum: [ES256]
+          description: Required ECDSA P-256 with SHA-256 signature algorithm.
+          example: ES256
+        iat:
+          type: integer
+          description: Required claimed signing time as a Unix timestamp; it is not a trusted timestamp.
+          example: 1787054400
+        'x5t#S256':
+          type: string
+          description: Required Base64url SHA-256 thumbprint of the DER-encoded authorized signing certificate in the OJA set for this LoTE type.
+          example: eyJleGFtcGxlLXRodW1icHJpbnQifQ
+      required:
+        - alg
+        - iat
+        - 'x5t#S256'
+      not:
+        anyOf:
+          - required: [x5c]
+          - required: [kid]
+          - required: [x5u]
+      additionalProperties: true
+      example:
+        alg: ES256
+        iat: 1787054400
+        'x5t#S256': eyJleGFtcGxlLXRodW1icHJpbnQifQ
+
+    LoTEJWTPayload:
+      type: object
+      description: JWT Claims Set. The private LoTE claim contains the JSON LoTE data model.
+      properties:
+        LoTE:
+          $ref: '#/components/schemas/LoTE'
+      required:
+        - LoTE
+      additionalProperties: true
+
+    LoTE:
+      type: object
+      description: >-
+        Current List of Trusted Entities for one OJA-published type. Pointers to other
+        LoTEs, distribution points and scheme extensions are prohibited in the pilot.
+      properties:
+        ListAndSchemeInformation:
+          $ref: '#/components/schemas/ListAndSchemeInformation'
+        TrustedEntitiesList:
+          $ref: '#/components/schemas/TrustedEntitiesList'
+      required:
+        - ListAndSchemeInformation
+        - TrustedEntitiesList
+      additionalProperties: false
+
+    ListAndSchemeInformation:
+      type: object
+      description: Required scheme and publication metadata for the current LoTE.
+      properties:
+        LoTEVersionIdentifier:
+          $ref: '#/components/schemas/LoTEVersionIdentifier'
+        LoTESequenceNumber:
+          $ref: '#/components/schemas/LoTESequenceNumber'
+        LoTEType:
+          $ref: '#/components/schemas/LoTEType'
+        SchemeOperatorName:
+          $ref: '#/components/schemas/SchemeOperatorName'
+        SchemeOperatorAddress:
+          $ref: '#/components/schemas/SchemeOperatorAddress'
+        SchemeName:
+          $ref: '#/components/schemas/SchemeName'
+        SchemeInformationURI:
+          $ref: '#/components/schemas/SchemeInformationURI'
+        StatusDeterminationApproach:
+          $ref: '#/components/schemas/StatusDeterminationApproach'
+        SchemeTypeCommunityRules:
+          $ref: '#/components/schemas/SchemeTypeCommunityRules'
+        SchemeTerritory:
+          $ref: '#/components/schemas/SchemeTerritory'
+        PolicyOrLegalNotice:
+          $ref: '#/components/schemas/PolicyOrLegalNotice'
+        HistoricalInformationPeriod:
+          $ref: '#/components/schemas/HistoricalInformationPeriod'
+        ListIssueDateTime:
+          $ref: '#/components/schemas/ListIssueDateTime'
+        NextUpdate:
+          $ref: '#/components/schemas/NextUpdate'
+      required:
+        - LoTEVersionIdentifier
+        - LoTESequenceNumber
+        - LoTEType
+        - SchemeOperatorName
+        - SchemeOperatorAddress
+        - SchemeName
+        - SchemeInformationURI
+        - StatusDeterminationApproach
+        - SchemeTypeCommunityRules
+        - SchemeTerritory
+        - PolicyOrLegalNotice
+        - ListIssueDateTime
+        - NextUpdate
+      additionalProperties: false
+
+    LoTEVersionIdentifier:
+      type: integer
+      enum: [1]
+      description: Required LoTE data model version; the APTITUDE profile fixes the value at 1.
+      example: 1
+
+    LoTESequenceNumber:
+      type: integer
+      minimum: 1
+      description: >-
+        Required monotonically increasing sequence number for this LoTE type. The
+        first published version is 1; every later version has a higher value.
+      example: 1
+
+    LoTEType:
+      type: string
+      format: uri
+      enum:
+        - http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList
+        - http://uri.etsi.org/19602/LoTEType/EUWalletProvidersList
+        - http://uri.etsi.org/19602/LoTEType/EUWRPACProvidersList
+        - http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList
+        - http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList
+        - http://uri.etsi.org/19602/LoTEType/EURegistrarsAndRegistersList
+        - https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#qeaa-lote-type
+        - https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#eaa-lote-type
+      description: >-
+        Required URI identifying the provider list type. It must match the URI for
+        the type-specific endpoint in the LoTE profile.
+      example: http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList
+
+    multiLangString:
+      type: object
+      description: Language-tagged text value.
+      properties:
+        lang:
+          type: string
+          description: Language tag for the text.
+          example: en
+        value:
+          type: string
+          description: Text in the stated language.
+          example: Example provider
+      required:
+        - lang
+        - value
+      additionalProperties: false
+
+    NonEmptyMultiLangURI:
+      type: object
+      description: Language-tagged, nonempty URI.
+      properties:
+        lang:
+          type: string
+          description: Language tag for the URI description.
+          example: en
+        uriValue:
+          type: string
+          format: uri
+          minLength: 1
+          description: Nonempty URI value.
+          example: https://example.eu/information
+      required:
+        - lang
+        - uriValue
+      additionalProperties: false
+
+    SchemeOperatorName:
+      type: array
+      description: Required names of the LoTE scheme operator in one or more languages.
+      items:
+        $ref: '#/components/schemas/multiLangString'
+      minItems: 1
+      example:
+        - lang: en
+          value: APTITUDE LoTE Provider
+
+    SchemeOperatorAddress:
+      type: object
+      description: Required postal and electronic contact addresses of the scheme operator.
+      properties:
+        SchemeOperatorPostalAddress:
+          $ref: '#/components/schemas/PostalAddresses'
+        SchemeOperatorElectronicAddress:
+          $ref: '#/components/schemas/ElectronicAddress'
+      required:
+        - SchemeOperatorPostalAddress
+        - SchemeOperatorElectronicAddress
+      additionalProperties: false
+      example:
+        SchemeOperatorPostalAddress:
+          - lang: en
+            StreetAddress: 1 APTITUDE Avenue
+            Locality: Brussels
+            PostalCode: '1000'
+            Country: BE
+        SchemeOperatorElectronicAddress:
+          - lang: en
+            uriValue: mailto:contact@aptitude.example
+
+    PostalAddresses:
+      type: array
+      description: One or more language-tagged postal addresses.
+      items:
+        $ref: '#/components/schemas/PostalAddress'
+      minItems: 1
+
+    PostalAddress:
+      type: object
+      description: Postal address in the stated language.
+      properties:
+        lang:
+          type: string
+          description: Language tag for the address.
+          example: en
+        StreetAddress:
+          type: string
+          description: Required street address.
+          example: 1 APTITUDE Avenue
+        Locality:
+          type: string
+          description: City or locality.
+          example: Brussels
+        StateOrProvince:
+          type: string
+          description: State or province, when applicable.
+          example: Brussels-Capital Region
+        PostalCode:
+          type: string
+          description: Postal code, when applicable.
+          example: '1000'
+        Country:
+          type: string
+          description: Required country code.
+          example: BE
+      required:
+        - lang
+        - StreetAddress
+        - Country
+      additionalProperties: false
+
+    ElectronicAddress:
+      type: array
+      description: One or more contact URIs; provider addresses include email and telephone contact URIs.
+      items:
+        $ref: '#/components/schemas/NonEmptyMultiLangURI'
+      minItems: 1
+      example:
+        - lang: en
+          uriValue: mailto:contact@example.eu
+        - lang: en
+          uriValue: tel:+3225550100
+
+    SchemeName:
+      type: array
+      description: Required multilingual name of the scheme represented by the LoTE.
+      items:
+        $ref: '#/components/schemas/multiLangString'
+      minItems: 1
+      example:
+        - lang: en
+          value: APTITUDE PID Provider Scheme
+
+    SchemeInformationURI:
+      type: array
+      description: Required single OJA publication URI for the applicable LoTE type.
+      items:
+        $ref: '#/components/schemas/NonEmptyMultiLangURI'
+      minItems: 1
+      maxItems: 1
+      example:
+        - lang: en
+          uriValue: https://oja.aptitude.example/publications/pid-providers
+
+    StatusDeterminationApproach:
+      type: string
+      format: uri
+      description: Required type-specific URI identifying how current service status is determined; see the LoTE profile table.
+      example: http://uri.etsi.org/19602/PIDProvidersList/StatusDetn/EU
+
+    SchemeTypeCommunityRules:
+      type: array
+      description: Required type-specific scheme rules URI; see the LoTE profile table.
+      items:
+        $ref: '#/components/schemas/NonEmptyMultiLangURI'
+      minItems: 1
+      example:
+        - lang: en
+          uriValue: http://uri.etsi.org/19602/PIDProviders/schemerules/EU
+
+    SchemeTerritory:
+      type: string
+      enum: [EU]
+      description: Required scheme territory; the APTITUDE profile fixes the value at EU.
+      example: EU
+
+    PolicyOrLegalNotice:
+      description: Required LoTE policy URI or legal notice, in one of the JSON binding forms.
+      oneOf:
+        - type: array
+          minItems: 1
+          items:
+            type: object
+            properties:
+              LoTEPolicy:
+                $ref: '#/components/schemas/NonEmptyMultiLangURI'
+            required:
+              - LoTEPolicy
+            additionalProperties: false
+        - type: array
+          minItems: 1
+          items:
+            type: object
+            properties:
+              LoTELegalNotice:
+                type: string
+                description: Legal notice text or URI.
+                example: https://oja.aptitude.example/lote/pid-providers/legal-notice
+            required:
+              - LoTELegalNotice
+            additionalProperties: false
+      example:
+        - LoTELegalNotice: https://oja.aptitude.example/lote/pid-providers/legal-notice
+
+    HistoricalInformationPeriod:
+      type: integer
+      enum: [65535]
+      description: >-
+        Required and fixed at 65535 for the PuB-EAA Provider LoTE; prohibited for
+        every other type. Historical information is never removed from that list.
+      example: 65535
+
+    ServiceDigitalIdentity:
+      type: object
+      description: >-
+        Required service identity. Current service records contain one or more X.509
+        trust anchor certificates. PuB-EAA history instead contains at least an
+        X509SKI and no X509Certificates.
+      properties:
+        X509Certificates:
+          type: array
+          description: DER-encoded X.509 certificates used as current trust anchors; absent from PuB-EAA ServiceHistory.
+          items:
+            $ref: '#/components/schemas/pkiOb'
+          minItems: 1
+        X509SubjectNames:
+          type: array
+          description: X.509 subject names identifying the service, when provided.
+          items:
+            $ref: '#/components/schemas/X509SubjectName'
+          minItems: 1
+        PublicKeyValues:
+          type: array
+          description: Public key values identifying the service, when provided.
+          items:
+            $ref: '#/components/schemas/PublicKeyValue'
+          minItems: 1
+        X509SKIs:
+          type: array
+          description: X.509 subject key identifiers; required for PuB-EAA ServiceHistory.
+          items:
+            $ref: '#/components/schemas/X509SKI'
+          minItems: 1
+        OtherIds:
+          type: array
+          description: Other service identifiers, when provided.
+          items:
+            $ref: '#/components/schemas/OtherId'
+          minItems: 1
+      additionalProperties: false
+      example:
+        X509Certificates:
+          - encoding: urn:ietf:rfc:5280
+            specRef: RFC 5280
+            val: MIIBexampleCertificateBase64
+
+    CurrentServiceDigitalIdentity:
+      description: Current service digital identity with at least one X.509 trust anchor certificate.
+      allOf:
+        - $ref: '#/components/schemas/ServiceDigitalIdentity'
+        - type: object
+          required:
+            - X509Certificates
+
+    HistoricalPubEAAServiceDigitalIdentity:
+      description: Historical PuB-EAA service identity with at least one X.509 SKI and no certificate.
+      allOf:
+        - $ref: '#/components/schemas/ServiceDigitalIdentity'
+        - type: object
+          required:
+            - X509SKIs
+          not:
+            required:
+              - X509Certificates
+      example:
+        X509SKIs:
+          - AQIDBAUGBwg=
+
+    pkiOb:
+      type: object
+      description: Encoded X.509 certificate object.
+      properties:
+        encoding:
+          type: string
+          format: uri
+          description: URI identifying the certificate encoding.
+          example: urn:ietf:rfc:5280
+        specRef:
+          type: string
+          description: Reference to the encoding specification.
+          example: RFC 5280
+        val:
+          type: string
+          format: base64
+          description: Required Base64-encoded DER certificate.
+          example: MIIBexampleCertificateBase64
+      required:
+        - val
+      additionalProperties: false
+
+    X509SubjectName:
+      type: string
+      description: X.509 distinguished name.
+      example: CN=Example PID Provider,O=Example Provider,C=BE
+
+    PublicKeyValue:
+      type: object
+      description: Public key value as a JSON Web Key; profile-defined key material is required when this optional field is used.
+      additionalProperties: true
+      example:
+        kty: EC
+        crv: P-256
+        x: eyExampleX
+        y: eyExampleY
+
+    X509SKI:
+      type: string
+      format: base64
+      description: Base64-encoded X.509 subject key identifier.
+      example: AQIDBAUGBwg=
+
+    OtherId:
+      type: string
+      description: Other identifier of a service digital identity.
+      example: example-service-key-1
+
+    ListIssueDateTime:
+      type: string
+      format: date-time
+      pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$'
+      description: Required LoTE issue time in UTC, with seconds precision and a Z designator.
+      example: '2026-08-18T12:00:00Z'
+
+    NextUpdate:
+      type: string
+      format: date-time
+      pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$'
+      description: >-
+        Required latest UTC time for the next publication. It is no more than six
+        months after ListIssueDateTime; consumers refresh within 24 hours of
+        retrieval or by NextUpdate, whichever is earlier.
+      example: '2027-02-18T12:00:00Z'
+
+    TrustedEntitiesList:
+      type: array
+      description: Required current trusted entities for this LoTE type.
+      items:
+        $ref: '#/components/schemas/TrustedEntity'
+      minItems: 1
+
+    TrustedEntity:
+      type: object
+      description: A trusted provider or registrar and its services.
+      properties:
+        TrustedEntityInformation:
+          $ref: '#/components/schemas/TrustedEntityInformation'
+        TrustedEntityServices:
+          $ref: '#/components/schemas/TrustedEntityServices'
+      required:
+        - TrustedEntityInformation
+        - TrustedEntityServices
+      additionalProperties: false
+
+    TrustedEntityServices:
+      type: array
+      description: Required services provided by the trusted entity.
+      items:
+        $ref: '#/components/schemas/TrustedEntityService'
+      minItems: 1
+
+    TrustedEntityService:
+      type: object
+      description: >-
+        Current service information. ServiceHistory applies to the PuB-EAA Provider
+        LoTE and is prohibited for the other pilot LoTE types.
+      properties:
+        ServiceInformation:
+          $ref: '#/components/schemas/ServiceInformation'
+        ServiceHistory:
+          $ref: '#/components/schemas/ServiceHistory'
+      required:
+        - ServiceInformation
+      additionalProperties: false
+
+    ServiceInformation:
+      type: object
+      description: >-
+        Current information about a trusted entity service. ServiceTypeIdentifier,
+        ServiceName and ServiceDigitalIdentity are required for every type. ServiceStatus
+        and StatusStartingTime are required only for PuB-EAA and prohibited otherwise.
+        ServiceSupplyPoints is required for Registrar and optional otherwise.
+        ServiceInformationExtensions is required for Wallet Provider and prohibited
+        otherwise.
+      properties:
+        ServiceName:
+          $ref: '#/components/schemas/ServiceName'
+        ServiceDigitalIdentity:
+          $ref: '#/components/schemas/CurrentServiceDigitalIdentity'
+        ServiceTypeIdentifier:
+          $ref: '#/components/schemas/ServiceTypeIdentifier'
+        ServiceStatus:
+          $ref: '#/components/schemas/ServiceStatus'
+        StatusStartingTime:
+          $ref: '#/components/schemas/StatusStartingTime'
+        SchemeServiceDefinitionURI:
+          $ref: '#/components/schemas/SchemeServiceDefinitionURI'
+        ServiceSupplyPoints:
+          $ref: '#/components/schemas/ServiceSupplyPoints'
+        TEServiceDefinitionURI:
+          $ref: '#/components/schemas/TEServiceDefinitionURI'
+        ServiceInformationExtensions:
+          $ref: '#/components/schemas/ServiceInformationExtensions'
+      required:
+        - ServiceName
+        - ServiceDigitalIdentity
+        - ServiceTypeIdentifier
+      additionalProperties: false
+
+    ServiceTypeIdentifier:
+      type: string
+      format: uri
+      description: >-
+        Required service type URI. PID, Wallet Provider, WRPAC, WRPRC and PuB-EAA
+        use their type-specific Issuance or Revocation URIs; Registrar uses
+        http://uri.etsi.org/19602/SvcType/Register. QEAA and EAA use their
+        APTITUDE-defined Issuance or Revocation URIs.
+      example: http://uri.etsi.org/19602/SvcType/PID/Issuance
+
+    ServiceName:
+      type: array
+      description: Required service name; Wallet Provider names the wallet solution and Registrar names the register.
+      items:
+        $ref: '#/components/schemas/multiLangString'
+      minItems: 1
+      example:
+        - lang: en
+          value: PID issuance service
+
+    ServiceStatus:
+      type: string
+      format: uri
+      enum:
+        - http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/notified
+        - http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/withdrawn
+      description: Required status of a current or historical PuB-EAA service; prohibited for other LoTE types.
+      example: http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/notified
+
+    StatusStartingTime:
+      type: string
+      format: date-time
+      pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$'
+      description: Required UTC instant at which the current or historical PuB-EAA service status became effective; prohibited for other LoTE types.
+      example: '2026-08-18T12:00:00Z'
+
+    SchemeServiceDefinitionURI:
+      type: array
+      description: Optional multilingual URI defining the service in the scheme.
+      items:
+        $ref: '#/components/schemas/NonEmptyMultiLangURI'
+      minItems: 1
+      example:
+        - lang: en
+          uriValue: https://example.eu/services/pid-issuance
+
+    ServiceSupplyPoints:
+      type: array
+      description: >-
+        URI where the service is supplied. Required for Registrar to identify a
+        machine-processable Register; optional for other LoTE types.
+      items:
+        $ref: '#/components/schemas/ServiceSupplyPointURI'
+      minItems: 1
+      example:
+        - ServiceType: http://uri.etsi.org/19602/SvcType/Register
+          uriValue: https://example.eu/register
+
+    ServiceSupplyPointURI:
+      type: object
+      description: Typed service supply point URI.
+      properties:
+        ServiceType:
+          type: string
+          format: uri
+          minLength: 1
+          description: Optional URI identifying the service type supplied at this point.
+          example: http://uri.etsi.org/19602/SvcType/Register
+        uriValue:
+          type: string
+          format: uri
+          minLength: 1
+          description: Required URI of the supply point.
+          example: https://example.eu/register
+      required:
+        - uriValue
+      additionalProperties: false
+
+    TEServiceDefinitionURI:
+      type: array
+      description: Optional multilingual URI defining the trusted entity service.
+      items:
+        $ref: '#/components/schemas/NonEmptyMultiLangURI'
+      minItems: 1
+      example:
+        - lang: en
+          uriValue: https://example.eu/service-definition
+
+    ServiceInformationExtensions:
+      type: array
+      minItems: 1
+      description: >-
+        Required for Wallet Provider and prohibited for the other pilot LoTE types.
+        At least one extension supplies the wallet solution reference number through
+        ServiceUniqueIdentifier.
+      items:
+        $ref: '#/components/schemas/ServiceInformationExtension'
+      example:
+        - Critical: true
+          ServiceUniqueIdentifier: https://example.eu/wallet-solutions/001
+
+    ServiceInformationExtension:
+      type: object
+      description: Service extension; the Wallet Provider set includes ServiceUniqueIdentifier identifying the wallet solution.
+      properties:
+        Critical:
+          type: boolean
+          description: Whether an implementation must recognize this extension to process the service.
+          example: true
+        ServiceUniqueIdentifier:
+          $ref: '#/components/schemas/ServiceUniqueIdentifier'
+      required:
+        - Critical
+      additionalProperties: true
+
+    ServiceUniqueIdentifier:
+      type: string
+      format: uri
+      minLength: 1
+      description: >-
+        Required scheme-specific URI carrying the reference number of the wallet
+        solution identified by ServiceName.
+      example: https://example.eu/wallet-solutions/001
+
+    ServiceHistory:
+      type: array
+      description: PuB-EAA service history retained in the current list; prohibited for other pilot LoTE types.
+      items:
+        $ref: '#/components/schemas/ServiceHistoryInstance'
+      minItems: 1
+
+    ServiceHistoryInstance:
+      type: object
+      description: >-
+        Historical PuB-EAA service state. The ServiceDigitalIdentity contains an
+        X509SKI and no X509Certificates; historical entries do not establish
+        current trust for validation.
+      properties:
+        ServiceName:
+          $ref: '#/components/schemas/ServiceName'
+        ServiceDigitalIdentity:
+          $ref: '#/components/schemas/HistoricalPubEAAServiceDigitalIdentity'
+        ServiceStatus:
+          $ref: '#/components/schemas/ServiceStatus'
+        StatusStartingTime:
+          $ref: '#/components/schemas/StatusStartingTime'
+      required:
+        - ServiceName
+        - ServiceDigitalIdentity
+        - ServiceStatus
+        - StatusStartingTime
+      additionalProperties: false
+      example:
+        ServiceName:
+          - lang: en
+            value: Public EAA issuance service
+        ServiceDigitalIdentity:
+          X509SKIs:
+            - AQIDBAUGBwg=
+        ServiceStatus: http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/withdrawn
+        StatusStartingTime: '2026-07-01T00:00:00Z'
+
+    TrustedEntityInformation:
+      type: object
+      description: Required identity and contact information for the trusted entity.
+      properties:
+        TEName:
+          $ref: '#/components/schemas/TEName'
+        TETradeName:
+          $ref: '#/components/schemas/TETradeName'
+        TEAddress:
+          $ref: '#/components/schemas/TEAddress'
+        TEInformationURI:
+          $ref: '#/components/schemas/TEInformationURI'
+      required:
+        - TEName
+        - TETradeName
+        - TEAddress
+        - TEInformationURI
+      additionalProperties: false
+
+    TEName:
+      type: array
+      description: Required multilingual name of the PID, QEAA, EAA, Wallet, WRPAC, WRPRC or PuB-EAA provider, or Registrar.
+      items:
+        $ref: '#/components/schemas/multiLangString'
+      minItems: 1
+      example:
+        - lang: en
+          value: Example PID Provider
+
+    TETradeName:
+      type: array
+      description: >-
+        Required official registration identifier where one exists. For a legal
+        entity it has the semantics of organizationIdentifier; for a natural person,
+        serialNumber. For PuB-EAA it also includes a URI reference to the law
+        establishing responsibility for the authentic source.
+      items:
+        $ref: '#/components/schemas/multiLangString'
+      minItems: 1
+      example:
+        - lang: en
+          value: BE:PID-EXAMPLE-001
+
+    TEAddress:
+      type: object
+      description: Required provider postal address, contact email and contact phone number.
+      properties:
+        TEPostalAddress:
+          $ref: '#/components/schemas/PostalAddresses'
+        TEElectronicAddress:
+          $ref: '#/components/schemas/ElectronicAddress'
+      required:
+        - TEPostalAddress
+        - TEElectronicAddress
+      additionalProperties: false
+      example:
+        TEPostalAddress:
+          - lang: en
+            StreetAddress: 10 Example Street
+            Locality: Brussels
+            PostalCode: '1000'
+            Country: BE
+        TEElectronicAddress:
+          - lang: en
+            uriValue: mailto:provider@example.eu
+          - lang: en
+            uriValue: tel:+3225550100
+
+    TEInformationURI:
+      type: array
+      description: >-
+        Required URI values including the provider's policies, terms and conditions,
+        any additional information page, and a type- and country-specific
+        http://uri.etsi.org/19602/ListOfTrustedEntities/[Type]/CC URI.
+      items:
+        $ref: '#/components/schemas/NonEmptyMultiLangURI'
+      minItems: 1
+      example:
+        - lang: en
+          uriValue: https://example.eu/pid-provider/policies
+        - lang: en
+          uriValue: http://uri.etsi.org/19602/ListOfTrustedEntities/PIDProvider/BE

@@ -1,0 +1,2826 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-135/pr-workspace/trusted-list-and-list-of-trusted-lists/">
+      
+      
+        <link rel="prev" href="../trust-management-process/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Trusted list and list of trusted lists - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../media/extra.css">
+    
+      <link rel="stylesheet" href="../../includes/admonitions.css">
+    
+      <link rel="stylesheet" href="../../includes/tables.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-models" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trusted list and list of trusted lists
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  APTITUDE Technical Specification
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../trust-framework/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Trust Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../onboarding-process/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APTITUDE Technical Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trust-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-evaluation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-management-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Management and Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Use Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks presentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-management-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust management process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trusted list and list of trusted lists
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trusted list and list of trusted lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/trusted-list-and-list-of-trusted-lists.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/trusted-list-and-list-of-trusted-lists.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Trusted list and list of trusted lists</h1>
+
+<p>This section describes the format and contents of the <span class="mkdocs-ezglossary-link"
+    id="039977bdce01a9c7a0e45354e1ea8c6c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and how it is used to provide <span class="mkdocs-ezglossary-link"
+    id="e7529216d8b4aa0a8074e373f30ae9ad"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> within APTITUDE.</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="7831532a5d6e9f1ebfbb299f4a2e7280"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> is a compilation of the information submitted by Member States about the following entities:</p>
+<ol>
+<li><span class="mkdocs-ezglossary-link"
+    id="cad2f91f0ac60fae977bfcbf9111c303"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>;</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="0a351269385a9b75f50eed2d3ac05e4e"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span>;</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="890c74a2a9e4e13523f0e6cdaaf741f9"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Providers of WRPAC</span>;</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="44071df22a60d7c4352ea1d1f83f5937"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Providers</span>;</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="3ec5044a0ac3cf4ac46697b74d6de886"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</span> and <span class="mkdocs-ezglossary-link"
+    id="0ed145d2b1b2363a76d4c2c42ca8f1ba"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Registers</span>.</li>
+</ol>
+<p>In the context of the <span class="mkdocs-ezglossary-link"
+    id="456e6f8df1e4348df42e71bd71ad51a1"
+    data-term="EUDI Wallet"
+    data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
+    name="components:EUDI Wallet"
+    href="../../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</span>, the EC will publish the related <span class="mkdocs-ezglossary-link"
+    id="b2b292e273a60b98e1f5b5458d5f94e3"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> on the eIDAS Dashboard, which will be accessible at <a href="https://eidas.ec.europa.eu/efda/wallet">https://eidas.ec.europa.eu/efda/wallet</a>.</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="501ac872757bfc597811d2bbecf88308"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> follows the same structure defined for <span class="mkdocs-ezglossary-link"
+    id="872749caf4806bef929f2f61dbde8666"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</span> on [ETSI TS 119 612]. A <span class="mkdocs-ezglossary-link"
+    id="d8dea54cf7005843404905456ed338a0"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, however, supports both the JSON and XML formats, as defined in [ETSI TS 119 602].</p>
+<p>All <span class="mkdocs-ezglossary-link"
+    id="b3b644924d8dcf37e1a3f3059bc93b5c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1] for JSON-formatted <span class="mkdocs-ezglossary-link"
+    id="f8a2da7228264ffa67b0bdd9fb9a600e"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, and with XML Advanced Electronic Signatures (XAdES) Baseline B signature, as defined in [ETSI EN 319 132-1] for XML-formatted <span class="mkdocs-ezglossary-link"
+    id="4e2cb633691605f9b835f0202180edaf"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.</p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choices</p>
+<ul>
+<li>Only the <span class="mkdocs-ezglossary-link"
+    id="c2a091d6cb46b542ec3f527d4c4c767b"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> SHALL be used; <span class="mkdocs-ezglossary-link"
+    id="1e1607d0f49704078c6e2d27e0b5a6a4"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</span> and <span class="mkdocs-ezglossary-link"
+    id="88bbaf531b33cdc5a3e2f55f36aef1bb"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> SHALL NOT be used.</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="27a922b0959c8e42a0d0ea57f0443c6d"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span> and <span class="mkdocs-ezglossary-link"
+    id="c132cae00a7aca6ef9d1e14a450bfa96"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span> SHALL have a dedicated <span class="mkdocs-ezglossary-link"
+    id="1e814278ee7382cd7401ec923b2ef1a9"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.</li>
+<li>Each <span class="mkdocs-ezglossary-link"
+    id="fa025b335689f9d24261bf7f62bc9dc1"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type SHALL be published at a distinct endpoint. A <span class="mkdocs-ezglossary-link"
+    id="44ec3d1a1d1cd25fc2a0aa37f23908a0"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> consumer SHALL use the endpoint published for the required <span class="mkdocs-ezglossary-link"
+    id="bcb63014e4e477235c3b2b2ee0b2aaff"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type and SHALL NOT infer the endpoint of one <span class="mkdocs-ezglossary-link"
+    id="2e7e625e809109cc3425a8b98235874d"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type from that of another.</li>
+<li>The <span class="mkdocs-ezglossary-link"
+    id="f02feba766d3cf784998949b1f13bf06"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">Official Journal of APTITUDE (OJA)</span> SHALL publish a fixed location and fixed authorized signing certificate set for each <span class="mkdocs-ezglossary-link"
+    id="ee67fea54963da40a8bdfe7a533cc4d2"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type. The publication URI, type-specific locations, and certificate sets SHALL remain unchanged during the pilot.</li>
+<li>APTITUDE entities MAY cache an accepted <span class="mkdocs-ezglossary-link"
+    id="57182e5f4c68f2deeb63119b7df5c51b"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>. A cached list SHALL be refreshed no later than 24 hours after its retrieval or its <code>NextUpdate</code> value, whichever occurs first. If the required refresh fails, the cached list SHALL NOT be used for a trust decision. </li>
+<li>The highest accepted <code>LoTESequenceNumber</code> and a SHA-256 digest of the accepted signed list content for each type SHALL be retained across refreshes and restarts.</li>
+</ul>
+</div>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Pilot OJA Publication</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="bc7290a0f147a8e240dc48c0b1cc8479"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication SHALL remain at a fixed URI for the duration of the pilot. It is not signed or independently authenticated. <span class="mkdocs-ezglossary-link"
+    id="eeac3c6abcfbbdc50875c725baf65cdc"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> consumers accept its type-specific locations and signing certificate sets as pilot discovery data. A successful comparison with that certificate set does not independently authenticate the <span class="mkdocs-ezglossary-link"
+    id="25783bef0db8983af042458b49bc70d1"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication.</p>
+</div>
+<details class="note">
+<summary>EUDI Wallet Trusted List Ecosystem</summary>
+<p>The following table dictates the governing standard, publication scope (i.e., at the Member State or European Union level), and the mandated data format for each list type. This table is informative only and SHALL NOT be used within the APTITUDE Profiles.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">List Type</th>
+<th style="text-align: left;">Governing Standard</th>
+<th style="text-align: left;">Publication Scope</th>
+<th style="text-align: left;">Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Traditional eIDAS <span class="mkdocs-ezglossary-link"
+    id="6ad9d7d6339b1e4c00f028c9418ccc45"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</span></td>
+<td style="text-align: left;">[ETSI TS 119 612]</td>
+<td style="text-align: left;">Member State</td>
+<td style="text-align: left;">XML</td>
+</tr>
+<tr>
+<td style="text-align: left;">List of <span class="mkdocs-ezglossary-link"
+    id="c463d8a93357e3641e0b355ee5a34092"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</span> (<span class="mkdocs-ezglossary-link"
+    id="297de992686f9544bf6a8106e5b92b55"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span>)</td>
+<td style="text-align: left;">[ETSI TS 119 612]</td>
+<td style="text-align: left;">European Union</td>
+<td style="text-align: left;">XML</td>
+</tr>
+<tr>
+<td style="text-align: left;">PID Provider Lists</td>
+<td style="text-align: left;">[ETSI TS 119 602 Annex D]</td>
+<td style="text-align: left;">European Union</td>
+<td style="text-align: left;">JSON</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="mkdocs-ezglossary-link"
+    id="3b7f19d3a9a61ae7504a71548534ae01"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider (WP)</span> Lists</td>
+<td style="text-align: left;">ETSI TS 119 602 Annex E</td>
+<td style="text-align: left;">European Union</td>
+<td style="text-align: left;">JSON</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="mkdocs-ezglossary-link"
+    id="04bdd9e0a6f8ce3fb3d443e9dce03670"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</span></td>
+<td style="text-align: left;">[ETSI TS 119 602 Annex F]</td>
+<td style="text-align: left;">European Union</td>
+<td style="text-align: left;">JSON</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="mkdocs-ezglossary-link"
+    id="1394de76ff19022bf1644294a34fbf1d"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span></td>
+<td style="text-align: left;">[ETSI TS 119 602 Annex G]</td>
+<td style="text-align: left;">European Union</td>
+<td style="text-align: left;">JSON</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="mkdocs-ezglossary-link"
+    id="1e7759818b2eeceea7605acb398693ae"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> Lists</td>
+<td style="text-align: left;">[ETSI TS 119 602 Annex H]</td>
+<td style="text-align: left;">European Union</td>
+<td style="text-align: left;">JSON or XML</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="mkdocs-ezglossary-link"
+    id="78fc09fa3d18dd4d4aeeafb42337aab4"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span> and <span class="mkdocs-ezglossary-link"
+    id="fff9d12ebd72c67c3d4c4bf0af6effaf"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> Provider Lists</td>
+<td style="text-align: left;">[ETSI TS 119 602 Annex I]</td>
+<td style="text-align: left;">European Union</td>
+<td style="text-align: left;">JSON</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="data-models">Data Models<a class="headerlink" href="#data-models" title="Permanent link">&para;</a></h3>
+<p>This section specifies the profiles and formats that the various <span class="mkdocs-ezglossary-link"
+    id="f35b7f02738150a622b5d75e704a85b7"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> within the APTITUDE ecosystem SHALL utilize, depending on their specific use cases.</p>
+<p>The following repository provides the base normative JSON and XML schemas required for implementing the <span class="mkdocs-ezglossary-link"
+    id="f182de1886a9494a3a678df3b1170639"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>: <a href="https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities">https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities</a>.</p>
+<p>The <a href="../../includes/lote-oas3.yaml">LoTE OpenAPI description</a> documents the pilot's type-specific retrieval endpoints and the JSON <span class="mkdocs-ezglossary-link"
+    id="ff7dc6d3c3c606c43b39c1649c2acde8"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> carried in a signed compact JWT. Its paths and example values are illustrative; the actual fixed endpoint and authorized signing certificates for each type are published by the <span class="mkdocs-ezglossary-link"
+    id="20a5af1ee9902fb07223aa19022a891d"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span>. The OpenAPI document covers the JSON representation; optional XML support for QEAA Provider Lists is described below.</p>
+<h4 id="specific-formats-and-uses">Specific Formats and Uses<a class="headerlink" href="#specific-formats-and-uses" title="Permanent link">&para;</a></h4>
+<p>The following table details the governing standards, publication scopes, and mandated data formats regarding the specific provider lists that SHALL be utilized within the APTITUDE ecosystem:</p>
+<table>
+<thead>
+<tr>
+<th>List Type</th>
+<th style="text-align: center;">Format</th>
+<th style="text-align: center;">Signature Format</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="mkdocs-ezglossary-link"
+    id="af2dcdbfc454ccfbff58e0bcca92f1ac"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> Lists</td>
+<td style="text-align: center;">JSON</td>
+<td style="text-align: center;">Compact JAdES Baseline B</td>
+<td>[ETSI TS 119 602, Annex D]</td>
+</tr>
+<tr>
+<td><span class="mkdocs-ezglossary-link"
+    id="51ea621f3b359daa425024d5d785ff21"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> Lists</td>
+<td style="text-align: center;">JSON</td>
+<td style="text-align: center;">Compact JAdES Baseline B</td>
+<td>[ETSI TS 119 602, Annex E]</td>
+</tr>
+<tr>
+<td><span class="mkdocs-ezglossary-link"
+    id="7608d9bebf713f29d8d821d0c71e5757"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</span> Lists</td>
+<td style="text-align: center;">JSON</td>
+<td style="text-align: center;">Compact JAdES Baseline B</td>
+<td>[ETSI TS 119 602, Annex F]</td>
+</tr>
+<tr>
+<td><span class="mkdocs-ezglossary-link"
+    id="d76d1ebc7111b80a5d4855e9cfbb2ef2"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span> Lists</td>
+<td style="text-align: center;">JSON</td>
+<td style="text-align: center;">Compact JAdES Baseline B</td>
+<td>[ETSI TS 119 602, Annex G]</td>
+</tr>
+<tr>
+<td><span class="mkdocs-ezglossary-link"
+    id="933a62b102edfa87e439ca3bffc8f304"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> Lists</td>
+<td style="text-align: center;">JSON</td>
+<td style="text-align: center;">Compact JAdES Baseline B</td>
+<td>[ETSI TS 119 602, Annex H]</td>
+</tr>
+<tr>
+<td><span class="mkdocs-ezglossary-link"
+    id="9f57dfd0e32e2c27a0e9b8ee54505350"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span> and <span class="mkdocs-ezglossary-link"
+    id="55e04fd2866a093e8d7ed2c977672827"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> Provider Lists</td>
+<td style="text-align: center;">JSON</td>
+<td style="text-align: center;">Compact JAdES Baseline B</td>
+<td>[ETSI TS 119 602, Annex I]</td>
+</tr>
+<tr>
+<td><span class="mkdocs-ezglossary-link"
+    id="bb1919ab265b2a2752f2f53f209139d4"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span> Lists</td>
+<td style="text-align: center;">JSON; XML MAY additionally be supported</td>
+<td style="text-align: center;">Compact JAdES Baseline B; XAdES Baseline B for XML</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="mkdocs-ezglossary-link"
+    id="084f029e8395d6eab52b447c8cb06d5d"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span> Lists</td>
+<td style="text-align: center;">JSON</td>
+<td style="text-align: center;">Compact JAdES Baseline B</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p>The following formats SHALL be used for the different types of lists:</p>
+<ul>
+<li><span class="mkdocs-ezglossary-link"
+    id="8a867b33324f505757a5c0a7fab0a909"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="94a481535db2a8d5f78a8bbfc168529c"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="d76b55ee336f4e97700dc81db9f48ae4"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</span> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="6bd9bf577898f60a122daa1bb3338adf"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="55d65621825553f83bc2d668340c15d1"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span> and <span class="mkdocs-ezglossary-link"
+    id="c4c9a58c3d99324a264a9096143692b0"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> Provider Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="cfce4c971411ec9e66947bdae6893b52"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+<li>During the pilot, <span class="mkdocs-ezglossary-link"
+    id="4cad8a7d9cc8b7d5600d0c99933b6720"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> Lists SHALL be published in JSON format and signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1]. Implementations MAY additionally support XML-formatted QEAA Provider Lists signed with XML Advanced Electronic Signatures (XAdES) Baseline B signature, as defined in [ETSI EN 319 132-1]. XML support SHALL NOT be required for pilot interoperability.</li>
+<li><span class="mkdocs-ezglossary-link"
+    id="3c5b3d1ee3f38a0bde25e350fc96b22d"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span> Lists are published in JSON format, and SHALL be signed with Compact JAdES Baseline B signature, as defined in [ETSI TS 119 182-1].</li>
+</ul>
+</div>
+<h5 id="compact-jades-baseline-b-signature-profile">Compact JAdES Baseline B Signature Profile<a class="headerlink" href="#compact-jades-baseline-b-signature-profile" title="Permanent link">&para;</a></h5>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p>The use of a JWT representation for a JSON-formatted <span class="mkdocs-ezglossary-link"
+    id="e70bb7d9e55d6936ece919f943d94a56"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and the selection of <code>x5t#S256</code> as the certificate-binding parameter are implementation choices. The JWT Claims Set SHALL contain the <span class="mkdocs-ezglossary-link"
+    id="9c0508c335bdc478e0376337031ed98e"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> object as the private <code>LoTE</code> claim.</p>
+</div>
+<p>For a JSON-formatted <span class="mkdocs-ezglossary-link"
+    id="2191386ae23798ed8d8347141297216c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, the Compact JAdES Baseline B signature SHALL be used, its protected JOSE header SHALL satisfy [ETSI TS 119 182-1, Clauses 5.1 and 6.3]:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center;">Presence</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alg</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>SHALL be <code>ES256</code>.</td>
+</tr>
+<tr>
+<td><code>iat</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Specifies the claimed signing time.</td>
+</tr>
+<tr>
+<td><code>x5t#S256</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Contains the Base64url-encoded SHA-256 thumbprint of the DER encoding of the authorized signing certificate in the type-specific <span class="mkdocs-ezglossary-link"
+    id="738cf1989266f8b43440f3333206dee8"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> certificate set.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>x5c</code>, <code>kid</code>, and <code>x5u</code> header parameters SHALL NOT be used in the pilot profile. A validator SHALL select the signing certificate only from the type-specific <span class="mkdocs-ezglossary-link"
+    id="90ed1c2126179573f0e32bd082aeaba4"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> certificate set, using <code>x5t#S256</code>.</p>
+<p>The following example shows the protected JOSE header and decoded JWT Claims Set for a <span class="mkdocs-ezglossary-link"
+    id="519dde066746090096aca190362f5c05"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> <span class="mkdocs-ezglossary-link"
+    id="590de9a7ad3ce6b84dc9b548d09f916c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>. The JWS signature part is omitted. The thumbprint value is a placeholder.</p>
+<details class="example">
+<summary>Example: PID Provider <span class="mkdocs-ezglossary-link"
+    id="6c485a9cee3e849da8987da7d3824320"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span></summary>
+<p><!-- BEGIN INCLUDE ../examples/lote-pid-provider.md -->
+<strong>Protected JOSE header</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ES256"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1787054400</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"x5t#S256"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;base64url-sha256-thumbprint-of-signing-certificate&gt;"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>JWT Claims Set</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"LoTE"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"ListAndSchemeInformation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"LoTEVersionIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"LoTESequenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"LoTEType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"SchemeOperatorName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APTITUDE LoTE Provider"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"SchemeOperatorAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"SchemeOperatorPostalAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"StreetAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 APTITUDE Avenue"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brussels"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"PostalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"SchemeOperatorElectronicAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"uriValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://oja.aptitude.example/contact"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"SchemeName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APTITUDE PID Provider Scheme"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"SchemeInformationURI"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"uriValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://oja.aptitude.example/publications/pid-providers"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"StatusDeterminationApproach"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://uri.etsi.org/19602/PIDProvidersList/StatusDetn/EU"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"SchemeTypeCommunityRules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"uriValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://uri.etsi.org/19602/PIDProviders/schemerules/EU"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"SchemeTerritory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EU"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"PolicyOrLegalNotice"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"LoTELegalNotice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://oja.aptitude.example/lote/pid-providers/legal-notice"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"ListIssueDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-08-18T12:00:00Z"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"NextUpdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2027-02-18T12:00:00Z"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"TrustedEntitiesList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"TrustedEntityInformation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"TEName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example PID Provider"</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">"TETradeName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE:PID-EXAMPLE-001"</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">"TEAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"TEPostalAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"StreetAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10 Example Street"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"Locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brussels"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"PostalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">"TEElectronicAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"uriValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mailto:pid-provider@example.eu"</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"TEInformationURI"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"uriValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.eu/pid-provider"</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"TrustedEntityServices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"ServiceInformation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"ServiceName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PID issuance service"</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">              </span><span class="p">],</span>
+<span class="w">              </span><span class="nt">"ServiceDigitalIdentity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"X509Certificates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"encoding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:ietf:rfc:5280"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"specRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RFC 5280"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;base64-encoded-DER-pid-provider-certificate&gt;"</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"ServiceTypeIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://uri.etsi.org/19602/SvcType/PID/Issuance"</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"ServiceInformation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"ServiceName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PID revocation service"</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">              </span><span class="p">],</span>
+<span class="w">              </span><span class="nt">"ServiceDigitalIdentity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"X509Certificates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"encoding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:ietf:rfc:5280"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"specRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RFC 5280"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"val"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;base64-encoded-DER-pid-provider-certificate&gt;"</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">"ServiceTypeIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://uri.etsi.org/19602/SvcType/PID/Revocation"</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<!-- END INCLUDE -->
+</details>
+<p>The <code>LoTE</code> claim uses the field names from <code>LoTE_Payload_Json_schema.yaml</code>, including <code>PolicyOrLegalNotice</code>, <code>TrustedEntitiesList</code>, <code>ServiceDigitalIdentity</code>, and <code>ServiceTypeIdentifier</code>. The same <span class="mkdocs-ezglossary-link"
+    id="faa6ce8e6bc62fbd6a906df1bc2aca9e"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> certificate is shown for the <code>Issuance</code> and <code>Revocation</code> services, as required by the APTITUDE profile.</p>
+<h5 id="xades-baseline-b-signature-profile">XAdES Baseline B Signature Profile<a class="headerlink" href="#xades-baseline-b-signature-profile" title="Permanent link">&para;</a></h5>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section therefore uses [ETSI EN 319 132-1] as the normative reference for the requested Baseline B profile.</p>
+</div>
+<p>For an XML-formatted <span class="mkdocs-ezglossary-link"
+    id="d519a32759f186d4f4dcf171f19e8936"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, the XAdES Baseline B signature SHALL be an enveloped XML signature. The following requirements apply in addition to the XML <span class="mkdocs-ezglossary-link"
+    id="48386f5b1727ccc73ee4f8d75ee72241"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> schema and the requirements in [ETSI TS 119 602, Clauses 6.8.0 and 6.8.1]:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th style="text-align: center;">Presence</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ds:Signature</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The signature SHALL be a child of the XML <code>ListOfTrustedEntities</code> document element.</td>
+</tr>
+<tr>
+<td>Document reference</td>
+<td style="text-align: center;">REQUIRED</td>
+<td>A <code>ds:Reference</code> with <code>URI=""</code> SHALL reference the <span class="mkdocs-ezglossary-link"
+    id="6dca5c0909cd7661bb7a012de6cc83a7"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> document and SHALL use the enveloped-signature transform followed by exclusive XML canonicalization.</td>
+</tr>
+<tr>
+<td><code>ds:CanonicalizationMethod</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The <code>ds:SignedInfo/ds:CanonicalizationMethod</code> SHALL identify exclusive XML canonicalization.</td>
+</tr>
+<tr>
+<td><code>ds:KeyInfo/ds:X509Data/ds:X509Certificate</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The signing certificate SHALL be present. It SHALL be the certificate used to verify <code>ds:SignatureValue</code>.</td>
+</tr>
+<tr>
+<td><code>xades:QualifyingProperties</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Exactly one <code>xades:QualifyingProperties</code> element SHALL be directly incorporated in one <code>ds:Object</code>, and its <code>Target</code> SHALL reference the <code>ds:Signature</code> identifier.</td>
+</tr>
+<tr>
+<td><code>xades:SignedProperties</code> reference</td>
+<td style="text-align: center;">REQUIRED</td>
+<td>A <code>ds:Reference</code> SHALL reference <code>xades:SignedProperties</code> with <code>Type="http://uri.etsi.org/01903#SignedProperties"</code>.</td>
+</tr>
+<tr>
+<td><code>xades:SigningTime</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Exactly one <code>xades:SigningTime</code> SHALL be present in <code>xades:SignedSignatureProperties</code> and SHALL express the claimed signing time in UTC.</td>
+</tr>
+<tr>
+<td><code>xades:SigningCertificateV2</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Exactly one <code>xades:SigningCertificateV2</code> SHALL be present. Its first <code>xades:Cert</code> SHALL identify the signing certificate through a digest of that certificate's DER encoding.</td>
+</tr>
+<tr>
+<td><code>xades:DataObjectFormat</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>One <code>xades:DataObjectFormat</code> SHALL describe the signed <span class="mkdocs-ezglossary-link"
+    id="7972dba3fb278919e576d95866050583"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> document, excluding <code>xades:SignedProperties</code>, and SHALL contain its MIME type.</td>
+</tr>
+</tbody>
+</table>
+<p>For XML-formatted <span class="mkdocs-ezglossary-link"
+    id="c2e842fcbc2dea0af8ae22e840562213"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, the signature method SHALL use ECDSA with SHA-256 and a P-256 signing key. The digest methods for the document and signed-properties references SHALL use SHA-256.</p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p>The digest in <code>xades:SigningCertificateV2/xades:Cert/xades:CertDigest</code> SHALL use SHA-256 and its <code>ds:DigestValue</code> SHALL be the standard XML Signature Base64 encoding of the digest of the signing certificate's DER encoding. <code>IssuerSerialV2</code> SHALL NOT be used as the certificate binding, and the <code>xades:Cert/@URI</code> SHALL be omitted.</p>
+</div>
+<p>The <code>xades:SigningTime</code> value is a claimed signing time and SHALL NOT be treated as a trusted timestamp.</p>
+<p>The certificate in <code>ds:KeyInfo</code> SHALL be identified by the first <code>xades:SigningCertificateV2/xades:Cert</code> through the digest of its DER encoding. The verifier SHALL compare that certificate by exact DER identity with the type-specific set supplied by the <span class="mkdocs-ezglossary-link"
+    id="454ceaefdb2d7ca429541febf5156932"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span>, as specified in the <a href="../../sections/trust-evaluation-process/#list-of-trusted-entities-validation-process">LoTE validation process</a>. A valid XAdES signature alone does not establish consistency with that set.</p>
+<h5 id="lote-additional-requirements">LoTE Additional Requirements<a class="headerlink" href="#lote-additional-requirements" title="Permanent link">&para;</a></h5>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p><span class="mkdocs-ezglossary-link"
+    id="c4e8db610b4809e68005b8869ae8f76a"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> and <span class="mkdocs-ezglossary-link"
+    id="7423fe17bafab91a856588bc0e1daf34"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span> <span class="mkdocs-ezglossary-link"
+    id="27a4d3c5edd5c61841cd489faaf594d1"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> SHALL satisfy the same additional requirements as <span class="mkdocs-ezglossary-link"
+    id="06444a61a54f923236bd6342fa1e8f71"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> <span class="mkdocs-ezglossary-link"
+    id="62e634f0cd47ab8525123b0f95e2e89c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, with the provider type and type-specific URI values changed accordingly. The rows below specify those type-specific values.</p>
+</div>
+<p>Following [ETSI TS 119 602, Annexes D-I], together with the APTITUDE-specific <span class="mkdocs-ezglossary-link"
+    id="348106f32a7c642cd61655b9458d6ae5"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> and <span class="mkdocs-ezglossary-link"
+    id="a9c5f3b85220d943dc2c7824b30f3bb0"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span> profiles, below are detailed the additional requirements spelled out by type. As seen in <a href="#list-of-trusted-entities">List of Trusted Entities</a>, the <span class="mkdocs-ezglossary-link"
+    id="3435b265a77495692e67d31bad10a008"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> contains a sequence of two components: <code>ListAndSchemeInformation</code> and <code>TrustedEntitiesList</code>. Depending on the <span class="mkdocs-ezglossary-link"
+    id="d73bc5abd3cb2c5be0e0a5e83abe2c48"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the <code>ListAndSchemeInformation</code> component is further specified by the following parameters:</p>
+<p>The QEAA Provider and EAA Provider <code>LoTEType</code>, <code>StatusDeterminationApproach</code>, <code>SchemeTypeCommunityRules</code>, and <code>ServiceTypeIdentifier</code> URIs are APTITUDE-defined identifiers documented in <a href="../lote-identifiers.md">APTITUDE LoTE identifiers</a>; the other type-specific values below are the ETSI profile values.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center;">Format</th>
+<th style="text-align: center;">Presence</th>
+<th>Description</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LoTEVersionIdentifier</code></td>
+<td style="text-align: center;"><code>Integer</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The value of the <code>LoTEVersionIdentifier</code> component SHALL be <code>1</code>.</td>
+<td>[ETSI TS 119 602, Clause 6.3.1]</td>
+</tr>
+<tr>
+<td><code>LoTESequenceNumber</code></td>
+<td style="text-align: center;"><code>Integer</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The first instance of every <span class="mkdocs-ezglossary-link"
+    id="4eaddd5ac197610b64cdac83be1bdff6"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type SHALL have <code>LoTESequenceNumber</code> set to <code>1</code>. Each subsequent published version of every <span class="mkdocs-ezglossary-link"
+    id="91c6e1344acacad75fce72f5097b5a72"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type SHALL have a higher <code>LoTESequenceNumber</code> than the preceding version.</td>
+<td>[ETSI TS 119 602, Clause 6.3.2]</td>
+</tr>
+<tr>
+<td><code>LoTEType</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="18e614e185831d9232f5d8157598ef6f"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the value of the <code>LoTEType</code> component SHALL be one of the following URIs:<ul><li>"http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList" for <span class="mkdocs-ezglossary-link"
+    id="1bb7469fc88c9ffa74204d27b1fae375"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>;</li><li>"https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#qeaa-lote-type" for <span class="mkdocs-ezglossary-link"
+    id="a38b70accf3bb7155bb0abdea54dd780"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>;</li><li>"https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#eaa-lote-type" for <span class="mkdocs-ezglossary-link"
+    id="78b2040c3cc3a3383b2dda212969a809"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWalletProvidersList" for <span class="mkdocs-ezglossary-link"
+    id="587395cc21166e0a4fe0fd3f58025a55"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPACProvidersList" for Providers of <span class="mkdocs-ezglossary-link"
+    id="7a33fb860b7bd93071ac17807f51064e"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList" for Providers of <span class="mkdocs-ezglossary-link"
+    id="705fcc95e55034d6c3d89ea31d682b1a"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span>;</li><li>"http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList" for <span class="mkdocs-ezglossary-link"
+    id="8b8824d547ccabd37395b8c2dfd0fb39"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">Pub-EAA Providers</span>;</li><li>"http://uri.etsi.org/19602/LoTEType/EURegistrarsAndRegistersList" for <span class="mkdocs-ezglossary-link"
+    id="807a722f0357df525a383e8696d8245e"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</span>.</li></ul></td>
+<td>[ETSI TS 119 602, Clause 6.3.3]</td>
+</tr>
+<tr>
+<td><code>SchemeOperatorName</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.3.4]</td>
+</tr>
+<tr>
+<td><code>SchemeOperatorAddress</code></td>
+<td style="text-align: center;"><code>Object</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.3.5]</td>
+</tr>
+<tr>
+<td><code>SchemeName</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.3.6]</td>
+</tr>
+<tr>
+<td><code>SchemeInformationURI</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The component SHALL contain exactly one URI: the <span class="mkdocs-ezglossary-link"
+    id="a7bfe1bb7a8fe028600e3ba698eec63c"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication URI for the applicable <span class="mkdocs-ezglossary-link"
+    id="c2dd2aa5b064f3bebf4560611e5c2d4b"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type.</td>
+<td>[ETSI TS 119 602, Clause 6.3.7], This Specification</td>
+</tr>
+<tr>
+<td><code>StatusDeterminationApproach</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="9ce810bd054c9cd65dc342ebf7904b68"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the value of the <code>StatusDeterminationApproach</code> component SHALL be one of the following URIs:<ul><li>"http://uri.etsi.org/19602/PIDProvidersList/StatusDetn/EU" for <span class="mkdocs-ezglossary-link"
+    id="0b0437d17a78be76e8332ac4e128e68f"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>;</li><li>"http://aptitude-consortium/SvcType/QEAAProviderList/StatusDetn" for <span class="mkdocs-ezglossary-link"
+    id="c78b5dbcbf1382d8fa8e9dad8ab39e93"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>;</li><li>"http://aptitude-consortium/SvcType/EAAProviderList/StatusDetn" for <span class="mkdocs-ezglossary-link"
+    id="f5699facd6f96f625066f979e47b95ce"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span>;</li><li>"http://uri.etsi.org/19602/WalletProvidersList/StatusDetn/EU" for <span class="mkdocs-ezglossary-link"
+    id="9003dec4b26c2f7505b8dce2731aa62a"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span>;</li><li>"http://uri.etsi.org/19602/WRPACProvidersList/StatusDetn/EU" for Providers of <span class="mkdocs-ezglossary-link"
+    id="3685d0b4c37861fcd41d6042062fb9f4"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span>;</li><li>"http://uri.etsi.org/19602/WRPRCProvidersList/StatusDetn/EU" for Providers of <span class="mkdocs-ezglossary-link"
+    id="8ec36e3d6b0310eb3bd8404c1334a152"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span>;</li><li>"http://uri.etsi.org/19602/PubEAAProvidersList/StatusDetn/EU" for <span class="mkdocs-ezglossary-link"
+    id="27f4e0422d5c984ab14ee208ebaa010e"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">Pub-EAA Providers</span>;</li><li>"http://uri.etsi.org/19602/RegistrarsAndRegistersList/StatusDetn/EU" for <span class="mkdocs-ezglossary-link"
+    id="68ef990e75a14ced9d8029f9b87aba9b"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</span>.</li></ul></td>
+<td>[ETSI TS 119 602, Clause 6.3.8]</td>
+</tr>
+<tr>
+<td><code>SchemeTypeCommunityRules</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="3d66fb867dfda810113674df165af673"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the value of the <code>SchemeTypeCommunityRules</code> component SHALL be one of the following URIs:<ul><li>"http://uri.etsi.org/19602/PIDProviders/schemerules/EU" for <span class="mkdocs-ezglossary-link"
+    id="35d2a0224507937bbf0afa5e21065ae7"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>;</li><li>"https://aptitude-consortium/SvcType/QEAAProvider/schemerules/EU" for <span class="mkdocs-ezglossary-link"
+    id="9f96d564533715f5684691e70ff7ef9f"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>;</li><li>"https://aptitude-consortium/SvcType/EAAProvider/schemerules/EU" for <span class="mkdocs-ezglossary-link"
+    id="c7ee4d380823a29dd53ec6766142a064"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span>;</li><li>"http://uri.etsi.org/19602/WalletProvidersList/schemerules/EU" for <span class="mkdocs-ezglossary-link"
+    id="6ab0efbe58374647cd2ad0ed66f56f24"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span>;</li><li>"http://uri.etsi.org/19602/WRPACProvidersList/schemerules/EU" for Providers of <span class="mkdocs-ezglossary-link"
+    id="feafef2d0f9e43808378276e36d8a999"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span>;</li><li>"http://uri.etsi.org/19602/WRPRCProvidersList/schemerules/EU" for Providers of <a href="artifacts:Wallet-Relying Party Registration Certificate (Provider of WRPRC)">Provider of WRPRC</a>;</li><li>"http://uri.etsi.org/19602/PubEAAProvidersList/schemerules/EU" for <span class="mkdocs-ezglossary-link"
+    id="4e0e3ac85101a3bd6152d9306e2b9a2f"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">Pub-EAA Providers</span>;</li><li>"http://uri.etsi.org/19602/RegistrarsAndRegistersList/schemerules/EU" for <span class="mkdocs-ezglossary-link"
+    id="0637a76b5c495922c1da5ebe62515bc4"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</span>.</li></ul></td>
+<td>[ETSI TS 119 602, Clause 6.3.9]</td>
+</tr>
+<tr>
+<td><code>SchemeTerritory</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The value of the <code>SchemeTerritory</code> component SHALL be <code>EU</code>.</td>
+<td>[ETSI TS 119 602, Clause 6.3.10]</td>
+</tr>
+<tr>
+<td><code>PolicyOrLegalNotice</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.3.11]</td>
+</tr>
+<tr>
+<td><code>HistoricalInformationPeriod</code></td>
+<td style="text-align: center;"><code>Integer</code></td>
+<td style="text-align: center;">CONDITIONAL</td>
+<td>For every <span class="mkdocs-ezglossary-link"
+    id="2edd292269e9f9eeda6e7c05da6bb89a"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type other than <span class="mkdocs-ezglossary-link"
+    id="09d7f3a69ef893477bdd4d73f4974541"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span>, this component SHALL NOT be present.<br><br>For the <span class="mkdocs-ezglossary-link"
+    id="60e564962e39c051836b2da29481bfe3"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> <span class="mkdocs-ezglossary-link"
+    id="14149d61ff5a8ee6a6339796953a12a9"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, it SHALL be <code>65535</code>, meaning that historical information in the list is never removed.</td>
+<td>[ETSI TS 119 602, Clause 6.3.12]</td>
+</tr>
+<tr>
+<td><code>PointersToOtherLoTE</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">PROHIBITED</td>
+<td>For every <span class="mkdocs-ezglossary-link"
+    id="10b138efd27df59802714f4609835f98"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the component SHALL NOT be present.</td>
+<td>This Specification</td>
+</tr>
+<tr>
+<td><code>ListIssueDateTime</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.3.14]</td>
+</tr>
+<tr>
+<td><code>NextUpdate</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The interval from <code>ListIssueDateTime</code> to <code>NextUpdate</code> SHALL NOT exceed 6 months.</td>
+<td>[ETSI TS 119 602, Clause 6.3.15]</td>
+</tr>
+<tr>
+<td><code>DistributionPoints</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">PROHIBITED</td>
+<td>The fixed endpoint is supplied by the <span class="mkdocs-ezglossary-link"
+    id="d416e203a2678a47cbc76252f5492c94"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> and SHALL NOT be duplicated in the list.</td>
+<td>[ETSI TS 119 602, Clause 6.3.16], This Specification</td>
+</tr>
+<tr>
+<td><code>SchemeExtensions</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">PROHIBITED</td>
+<td>The pilot does not use scheme extensions.</td>
+<td>[ETSI TS 119 602, Clause 6.3.17], This Specification</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Pilot History and Publication</p>
+<ul>
+<li>
+<p>The pilot SHALL publish only the current <span class="mkdocs-ezglossary-link"
+    id="b412d1b8eff24fed27429f0ebfda0f16"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> version for each type at its fixed endpoint.</p>
+</li>
+<li>
+<p>For types other than <span class="mkdocs-ezglossary-link"
+    id="1f97c8157722f96a737e4d7efff1c16d"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span>, the current list SHALL NOT contain historical service information, and the <span class="mkdocs-ezglossary-link"
+    id="56a03edaf401720813db5f8ae3c395e6"
+    data-term="List of Trusted Entities Provider (LoTE Provider)"
+    data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
+    name="roles:List of Trusted Entities Provider (LoTE Provider)"
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</span> SHALL NOT publish earlier instances for historical membership validation.</p>
+</li>
+</ul>
+<p>These pilot choices depart from the archive retrieval URI and self-pointer requirements for the corresponding profiles in [ETSI TS 119 602, Annexes D-G and I]. The <span class="mkdocs-ezglossary-link"
+    id="071ea8b142ed227bad37fa15a3b6051b"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> <span class="mkdocs-ezglossary-link"
+    id="43bd39cd8d4ce86f0c7303eaee11115a"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> SHALL retain its required <code>ServiceHistory</code> in the current list.</p>
+</div>
+<p><code>TrustedEntitiesList</code> is an <code>Array</code> of <code>Objects</code>, each possessing two primary subcomponents: <code>TrustedEntityInformation</code> and <code>TrustedEntityServices</code>.
+The following table details the additional requirements that <code>TrustedEntityInformation</code> SHALL satisfy depending on the <span class="mkdocs-ezglossary-link"
+    id="96d008de77462b2184a99fd79a621e69"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center;">Format</th>
+<th style="text-align: center;">Presence</th>
+<th>Description</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TEName</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="6df347b771505e0e9cc67bfdbe9b523b"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the value of the <code>TEName</code> component SHALL be the name of the <span class="mkdocs-ezglossary-link"
+    id="829f911b86dd56b24468dfedf6862fdb"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span>, <span class="mkdocs-ezglossary-link"
+    id="000e09b3306b3e71939be37bf8ca71cd"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span>, <span class="mkdocs-ezglossary-link"
+    id="ecfe5b42775da31ac3053e558d88542d"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span>, <span class="mkdocs-ezglossary-link"
+    id="4e318f2f3de00b6b45742eb7d44bba81"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span>, <span class="mkdocs-ezglossary-link"
+    id="b27c3699bca50cfa929710c8f4f460e0"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</span>, <span class="mkdocs-ezglossary-link"
+    id="c06a0306d62c29ff62d0265f73bced85"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span>, <span class="mkdocs-ezglossary-link"
+    id="1068cc795f3846363386f5d47b01369b"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span>, or <span class="mkdocs-ezglossary-link"
+    id="da1b5f6a3b2534818641f6f1aaa9431a"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span>.</td>
+<td>[ETSI TS 119 602, Clause 6.5.1]</td>
+</tr>
+<tr>
+<td><code>TETradeName</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="7d3027d003993b1253ca32eb681f3ea3"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the value of the <code>TETradeName</code> component SHALL include an official registration identifier as registered in official records (where such a registered identifier exists) that unambiguously identifies the entity.<br><br>In the case of a legal entity, the <code>TETradeName</code> component SHALL have the same semantics as the <code>organizationIdentifier</code> attribute in [ETSI EN 319 412-1].<br><br>In the case of a natural person, the <code>TETradeName</code> component SHALL have the same semantics as the <code>serialNumber</code> attribute in [ETSI EN 319 412-1].<br><br>For <span class="mkdocs-ezglossary-link"
+    id="0894973a13dd2c82e8f432b71821f481"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Providers</span>, the <code>TETradeName</code> SHALL additionally include the reference to the Union or national law under which the <span class="mkdocs-ezglossary-link"
+    id="958b63f5b41043b82f376eefba9351f9"
+    data-term="Public Sector Body"
+    data-tooltip="A state, regional or local authority, a body governed by public law or an association formed by one or several such authorities or one or several such bodies governed by public law, or a private entity mandated by at least one of those authorities, bodies or associations to provide public services, when acting under such a mandate. [ARF]"
+    name="roles:Public Sector Body"
+    href="../../glossary-definitions/#9278eab96ee22cb0df14ebd78c0c63f8">Public Sector Body</span> is established as responsible for the <span class="mkdocs-ezglossary-link"
+    id="0c1b5ab420fdfa25d650664ec350d618"
+    data-term="Authentic Source"
+    data-tooltip="A repository or system, held under the responsibility of a public sector body or private entity, that contains and provides attributes about a natural or legal person or object and that is considered to be a primary source of that information or recognised as authentic in accordance with Union law or national law, including administrative practice. [ARF]"
+    name="components:Authentic Source"
+    href="../../glossary-definitions/#bf3043259ef15ea248cda38699b7f4ee">Authentic Source</span>, formatted as a URI: <code>OJ</code> for the scheme part, followed by either <code>EU</code> or the 2 ISO 3166-1 country code characters, terminating with the unique identifier of the law.</td>
+<td>[ETSI TS 119 602, Clause 6.5.2]</td>
+</tr>
+<tr>
+<td><code>TEAddress</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="3fc0eeedb7755d60bd9d81365ac5670d"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the <code>TEAddress</code> component SHALL contain:<ul><li>the postal address of the provider;</li><li>the contact email and contact phone number of the provider.</li></ul></td>
+<td>[ETSI TS 119 602, Clause 6.5.3]</td>
+</tr>
+<tr>
+<td><code>TEInformationURI</code></td>
+<td style="text-align: center;"><code>Object</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="b1b4c1250ed28a55d06fc2335933d998"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the <code>TEInformationURI</code> component SHALL contain:<ul><li>The URL of the webpage that contains the policies, terms, and conditions of the respective provider applying to the provision and use of their services/components;</li><li>where applicable, the URL of the webpage that contains additional information about the provider;</li><li>a URI formatted as <code>http://uri.etsi.org/19602/ListOfTrustedEntities/[Type]/CC</code>, where <code>[Type]</code> is <code>PIDProvider</code>, <code>QEAAProvider</code>, <code>EAAProvider</code>, or another applicable provider type and <code>CC</code> is replaced by the ISO 3166-1 Alpha 2 country code of the responsible Member State.</li></ul></td>
+<td>[ETSI TS 119 602, Clause 6.5.4]</td>
+</tr>
+<tr>
+<td><code>TEInformationExtensions</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">PROHIBITED</td>
+<td>The pilot does not use trusted entity information extensions.</td>
+<td>[ETSI TS 119 602, Clause 6.5.5], This Specification</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>TEAddress</code> component's description for the <span class="mkdocs-ezglossary-link"
+    id="26f6cbdcb0396f21d7aff9eaad9ab524"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">Pub-EAA Providers</span> <span class="mkdocs-ezglossary-link"
+    id="3434baa3129ff7cac02fcaa7a12ec0c1"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> differs from c) of the <code>TEAddress</code> component's description in [ETSI TS 119 602, Annex H.3, Table H.2], which states "<em>the URI "<a href="http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC">http://uri.etsi.org/19602/ListOfTrustedEntities/PubEAAProvider/CC</a>" where "CC" is replaced by the ISO 3166-1 [2] Alpha 2 code of the Member State which is responsible for that <span class="mkdocs-ezglossary-link"
+    id="bfd67ea812fd91ddd4254b063cbc7987"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">Pub-EAA provider</span></em>". For conformance to the other <span class="mkdocs-ezglossary-link"
+    id="71370dc9db9b0ca69c0e97f5a6654b48"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> types, this has been moved to the <code>TEInformationURI</code> component's description, as it is more appropriate for the information it conveys.</p>
+</div>
+<p><code>TrustedEntityServices</code> is an <code>Array</code> of <code>TrustedEntityService</code>. Each <code>TrustedEntityService</code> contains <code>ServiceInformation</code>; <code>ServiceHistory</code> applies to the <span class="mkdocs-ezglossary-link"
+    id="02cc35390eb3c6f9fb246a55c3b7ad63"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> profile. The following table details the additional requirements that <code>ServiceInformation</code> SHALL satisfy depending on the <span class="mkdocs-ezglossary-link"
+    id="2862725640fb1e5db54825eb45fd2d5d"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center;">Format</th>
+<th style="text-align: center;">Presence</th>
+<th>Description</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ServiceTypeIdentifier</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="8d8b2acd312781dfe9bb5ac40720999e"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, specific URIs MAY be used as the value of the <code>ServiceTypeIdentifier</code> component, to the exclusion of any other (e.g., <code>http://uri.etsi.org/19602/SvcType/PID/Issuance</code> and <code>http://uri.etsi.org/19602/SvcType/PID/Revocation</code> for <span class="mkdocs-ezglossary-link"
+    id="f1a0b98b7a407519450b92ec7feb3467"
+    data-term="Person Identification Data (PID)"
+    data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
+    name="credentials:Person Identification Data (PID)"
+    href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">PID</span> services).</td>
+<td>[ETSI TS 119 602, Clause 6.6.1]</td>
+</tr>
+<tr>
+<td><code>ServiceName</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>For a <span class="mkdocs-ezglossary-link"
+    id="92749d9233f2ed08ee1135eca50db223"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span>, the <code>ServiceName</code> component SHALL be the name of the <span class="mkdocs-ezglossary-link"
+    id="aa8a43fd7e2e117140bd2b5dfb8a5a06"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span> it provides.<br><br>For a <span class="mkdocs-ezglossary-link"
+    id="c5c70d4a63353d98c88fee033a4bad25"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span>, the <code>ServiceName</code> component SHALL contain the name of the <span class="mkdocs-ezglossary-link"
+    id="d8ffb0203b41f127324dfd3004659d8c"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> for which the <span class="mkdocs-ezglossary-link"
+    id="59d77967ef20ec8e35c55a9970ec661c"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span> is responsible.<br><br>No additional requirements for the other <span class="mkdocs-ezglossary-link"
+    id="79ec6e9be4e61390b36c24bfcfcc55b5"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> types.</td>
+<td>[ETSI TS 119 602, Clause 6.6.2]</td>
+</tr>
+<tr>
+<td><code>ServiceDigitalIdentity</code></td>
+<td style="text-align: center;"><code>Object</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>Depending on the <span class="mkdocs-ezglossary-link"
+    id="0e16d08b059d85aade4e5750a4e89eae"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the <code>ServiceDigitalIdentity</code> component SHALL contain one or more <span class="mkdocs-ezglossary-link"
+    id="5658ab08de086cea8d6f4f073bafd5c7"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> certificates used to verify the signature or seal created by the provider to validate and authenticate their respective artifacts. The certified identity data SHALL include the name and registration number as specified in the <code>TEName</code> and <code>TETradeName</code> components. All certificates used as APTITUDE trust anchors SHALL be published in the applicable <span class="mkdocs-ezglossary-link"
+    id="3ee5e653e88e221e3f098b202c9177f6"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.</td>
+<td>[ETSI TS 119 602, Clause 6.6.3]</td>
+</tr>
+<tr>
+<td><code>ServiceStatus</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">CONDITIONAL</td>
+<td>The <code>ServiceStatus</code> component SHALL be present for <span class="mkdocs-ezglossary-link"
+    id="22e982166cd3dde6e8807732087f1ef2"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> <span class="mkdocs-ezglossary-link"
+    id="715e17180a62afaee1429fc50c05769c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and SHALL be <code>http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/notified</code> or <code>http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/withdrawn</code>.<br><br>The <code>ServiceStatus</code> component SHALL NOT be used for the other <span class="mkdocs-ezglossary-link"
+    id="e88d6b79cc60c140eac498f627401a28"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> types.</td>
+<td>[ETSI TS 119 602, Clause 6.6.4]</td>
+</tr>
+<tr>
+<td><code>StatusStartingTime</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">CONDITIONAL</td>
+<td>The <code>StatusStartingTime</code> component SHALL be present for <span class="mkdocs-ezglossary-link"
+    id="91f7019cd4680b0107579648b27f738f"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> <span class="mkdocs-ezglossary-link"
+    id="b6f76dfd8281290dfad4b366ed60909f"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.<br><br>The <code>StatusStartingTime</code> component SHALL NOT be used for the other <span class="mkdocs-ezglossary-link"
+    id="e8cb4186e8226714e29b1e9ca6a0fcdc"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> types.</td>
+<td>[ETSI TS 119 602, Clause 6.6.5]</td>
+</tr>
+<tr>
+<td><code>SchemeServiceDefinitionURI</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">OPTIONAL</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.6.6]</td>
+</tr>
+<tr>
+<td><code>ServiceSupplyPoints</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">CONDITIONAL</td>
+<td>For the <span class="mkdocs-ezglossary-link"
+    id="bd0b5615d26c24a5bd2f18778f1e01c9"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span> <span class="mkdocs-ezglossary-link"
+    id="8254d89ab4df547976adfc69579915e5"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, the <code>ServiceSupplyPoints</code> component SHALL contain the URI where the <span class="mkdocs-ezglossary-link"
+    id="8e07d261978b0ecceea7fd45e135296f"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> is available in a machine-processable manner. Any signed or sealed <span class="mkdocs-ezglossary-link"
+    id="a6bca06f316aa53d39c3ca6faac43355"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> data obtained at this URI SHALL be able to be authenticated using one of the certificates listed in the <code>ServiceDigitalIdentity</code> component.<br><br>It is optional for the other <span class="mkdocs-ezglossary-link"
+    id="4aa3dd9ab3bc2416d4ac3a97213f39ab"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> types.</td>
+<td>[ETSI TS 119 602, Clause 6.6.7]</td>
+</tr>
+<tr>
+<td><code>TEServiceDefinitionURI</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">OPTIONAL</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.6.8], This Specification</td>
+</tr>
+<tr>
+<td><code>ServiceInformationExtensions</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">CONDITIONAL</td>
+<td>For a <span class="mkdocs-ezglossary-link"
+    id="31229e9665c83d5b1af61fa565a0c01e"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span>, the <code>ServiceInformationExtensions</code> component SHALL provide the reference number of the <span class="mkdocs-ezglossary-link"
+    id="566cd7bfd7912212d656bdf431e53519"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span> identified by the <code>ServiceName</code> component.<br><br>It SHALL NOT be present for the other <span class="mkdocs-ezglossary-link"
+    id="29435f3a4a77b52aa370e2a88e511cae"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> types.</td>
+<td>[ETSI TS 119 602, Clause 6.6.9]</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choices</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="3151495b2ce32c5f3eb4318b7cb6f9ff"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> for the <code>Issuance</code> and <code>Revocation</code> services SHALL be the same, and SHALL be listed in the <code>ServiceDigitalIdentity</code> component of the <code>ServiceInformation</code> component.</p>
+<p>For the ETSI-profiled list types other than <span class="mkdocs-ezglossary-link"
+    id="79fba57a56e6cafc3b21291a32d191b2"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span>, the <code>ServiceTypeIdentifier</code> SHALL be formed as a URI string <code>http://uri.etsi.org/19602/SvcType/{Specific_attestation}/Issuance</code> or <code>http://uri.etsi.org/19602/SvcType/{Specific_attestation}/Revocation</code>. The <code>{specific_attestation}</code> fragment SHALL be valued as:</p>
+<ul>
+<li><code>PID</code> for <span class="mkdocs-ezglossary-link"
+    id="494864e2ecf9f8944bc753189820305d"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span> <span class="mkdocs-ezglossary-link"
+    id="5b475d261ce2690ea5b0c07b29b0f033"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>;</li>
+<li><code>WalletSolution</code> for <span class="mkdocs-ezglossary-link"
+    id="52ee6953b61b25a67e575241be8be856"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span>' owned <span class="mkdocs-ezglossary-link"
+    id="17a38f81e3ad27772c057a49edfdf671"
+    data-term="Wallet Solution"
+    data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
+    name="components:Wallet Solution"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span> <span class="mkdocs-ezglossary-link"
+    id="c9cb65e65948ae738d4bb43df8793771"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>;</li>
+<li><code>WRPAC</code> for <span class="mkdocs-ezglossary-link"
+    id="001b430e4b85140b76dad1ce434fa3f3"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Providers of WRPAC</span>'s <span class="mkdocs-ezglossary-link"
+    id="e4313bf26fb18b03b065ad18737c31eb"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>;</li>
+<li><code>WRPRC</code> for <span class="mkdocs-ezglossary-link"
+    id="22dcc8cbf695032c54b53f4736a5be67"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span>'s <span class="mkdocs-ezglossary-link"
+    id="416ea18c147467d872f775443475e9c2"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>;</li>
+<li><code>PubEAA</code> for <span class="mkdocs-ezglossary-link"
+    id="797fc5679a3843dae8c2cf7e512cd01c"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">Pub-EAA Providers</span>' <span class="mkdocs-ezglossary-link"
+    id="aee858deb8eca6aa3b2e428cd64b44c4"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>.</li>
+</ul>
+<p>For the pilot-specific <span class="mkdocs-ezglossary-link"
+    id="85235f70b1f24c398e0e8fe8bb6fb982"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> and <span class="mkdocs-ezglossary-link"
+    id="5b4f967121cc389f35c2ef1cc7ed191b"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span> lists, <code>ServiceTypeIdentifier</code> SHALL respectively use <code>http://aptitude-consortium/SvcType/{Specific_attestation}/Issuance</code>, <code>http://aptitude-consortium/SvcType/{Specific_attestation}/Revocation</code> as applicable.</p>
+<p>For the <span class="mkdocs-ezglossary-link"
+    id="4591362c801301acc8659c7f29c028d0"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span> <span class="mkdocs-ezglossary-link"
+    id="6245e7e90decc9db20240f9b11217313"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the <code>ServiceTypeIdentifier</code> SHALL be formed as a URI string <code>http://uri.etsi.org/19602/SvcType/Register</code>.</p>
+</div>
+<p>The following table details the additional requirements the <code>ServiceHistory.ServiceHistoryInstance</code> <em>Object</em> component SHALL satisfy depending on the <span class="mkdocs-ezglossary-link"
+    id="f4d39641adeaad0d083877722a63eeda"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center;">Format</th>
+<th style="text-align: center;">Presence</th>
+<th>Description</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ServiceName</code></td>
+<td style="text-align: center;"><code>Array</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.6.2]</td>
+</tr>
+<tr>
+<td><code>ServiceDigitalIdentity</code></td>
+<td style="text-align: center;"><code>Object</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>The <code>ServiceDigitalIdentity</code> of a <span class="mkdocs-ezglossary-link"
+    id="7b70b7eed6b4060709a3fe9517e1eed4"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span> <span class="mkdocs-ezglossary-link"
+    id="a1d1a5b90b87b985d699e681c0b0f010"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> SHALL contain at least the <code>X509SKI</code> component and SHALL NOT contain an <code>X509Certificate</code> component.<br><br>No additional requirements for the other <span class="mkdocs-ezglossary-link"
+    id="1bbe4ded0765b1c4d1e884afdab3f0d7"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> types.</td>
+<td>[ETSI TS 119 602, Clause 6.6.3]</td>
+</tr>
+<tr>
+<td><code>ServiceStatus</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.6.4]</td>
+</tr>
+<tr>
+<td><code>StatusStartingTime</code></td>
+<td style="text-align: center;"><code>String</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td>No additional requirements.</td>
+<td>[ETSI TS 119 602, Clause 6.6.5]</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 24, 2026 10:19:09 UTC">September 24, 2026 10:19:09</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../media/mermaid-init.js"></script>
+      
+        <script src="../../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
