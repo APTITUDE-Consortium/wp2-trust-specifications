@@ -1,4 +1,4 @@
-The **Trust Anchor Validation Process** establishes the cryptographic integrity and authenticity of <artifacts:List of Trusted Entities (LoTE)|LoTE>, which are the authoritative sources for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is an X.509 certificate containing the name and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> to validate an artifact or <credentials:Attestation>.
+The **Trust Anchor Validation Process** verifies the cryptographic integrity of a <artifacts:List of Trusted Entities (LoTE)|LoTE> and checks its signing certificate against the set published for its type in the <artifacts:Official Journal of APTITUDE (OJA)|OJA>. The accepted <artifacts:List of Trusted Entities (LoTE)|LoTE> is the source for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is an X.509 certificate containing the name and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> to validate an artifact or <credentials:Attestation>.
 
 !!! choice "APTITUDE Implementation Choice"
 
@@ -17,17 +17,23 @@ Depending on the artifact or <credentials:Attestation> being verified, the valid
 
     The <artifacts:Trust Anchor|Trust Anchors> for <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers> and <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers> SHALL be retrieved from and validated against their dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. The same <artifacts:List of Trusted Entities (LoTE)|LoTE> validation process SHALL be used for these <artifacts:Trust Anchor|Trust Anchors> as for all other APTITUDE entities.
 
-To verify the authenticity of a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE>, the validating entity SHALL:
+To validate a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE> under the APTITUDE pilot profile, the validating entity SHALL:
 
 - obtain the location and authorized signing certificate set for the requested <artifacts:List of Trusted Entities (LoTE)|LoTE> type from the <artifacts:Official Journal of APTITUDE (OJA)>;
-- verify the <artifacts:List of Trusted Entities (LoTE)|LoTE> signature or seal using the format-specific procedure and bind the signer to the certificate set published in the <artifacts:Official Journal of APTITUDE (OJA)|OJA>;
-- validate the <artifacts:List of Trusted Entities (LoTE)|LoTE> structure, requested <artifacts:List of Trusted Entities (LoTE)|LoTE> type, freshness, and any authenticated pivot history.
+- verify the <artifacts:List of Trusted Entities (LoTE)|LoTE> signature or seal using the format-specific procedure and compare its signing certificate, by exact DER certificate identity, with the certificate set published for that type in the <artifacts:Official Journal of APTITUDE (OJA)|OJA>;
+- validate the <artifacts:List of Trusted Entities (LoTE)|LoTE> structure, requested type, publication location, freshness, and sequence number.
 
 #### List of Trusted Entities Validation
 
 This section defines the validation of a <artifacts:List of Trusted Entities (LoTE)|LoTE>. The <artifacts:List of Trusted Entities (LoTE)|LoTE> format is specified in [List of Trusted Entities](../sections/trust-artifacts.md#list-of-trusted-entities).
 
-Before validating a <artifacts:List of Trusted Entities (LoTE)|LoTE>, the <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> SHALL select the required <artifacts:List of Trusted Entities (LoTE)|LoTE> type and obtain its type-specific location and authorized signing certificate set from the <artifacts:Official Journal of APTITUDE (OJA)|OJA>. The <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL be downloaded from the location published for that type.
+!!! choice "APTITUDE Pilot Discovery Assumption"
+
+    The <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication is made available at a fixed, locally configured URI only available to the APTITUDE pilots participants, but is not signed or independently authenticated in the pilot. 
+    
+    A <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> SHALL accept the type-specific <artifacts:List of Trusted Entities (LoTE)|LoTE> location and authorized signing certificate set obtained from that publication.
+
+For the duration of the pilot, the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication URI, each type-specific <artifacts:List of Trusted Entities (LoTE)|LoTE> location, and the authorized signing certificate set for each type will remain unchanged. New versions of a <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL replace the current version at that type's fixed location and SHALL be signed with a certificate from its fixed set.
 
 ##### List of Trusted Entities Retrieval and Validation Sequence Diagram
 
@@ -38,160 +44,110 @@ sequenceDiagram
   participant Distribution as LoTE Distribution Point
 
   Client->>OJA: Request discovery for required LoTE type
-  OJA-->>Client: Return type-specific location and signer certificates
-  Client->>Distribution: Request LoTE at OJA-published location
+  OJA-->>Client: Return fixed location and signer certificate set
+  Client->>Distribution: Request current LoTE at the type-specific location
   Distribution-->>Client: Return JSON/JWT or XML/XAdES LoTE
-  Client->>Client: Verify format-specific signature and OJA binding
-  Client->>Client: Validate schema and requested LoTE type
-  Client->>Client: Discover and validate authenticated pivots
-  Client->>Client: Extract trust anchors for target entity
+  Client->>Client: Verify format-specific signature, schema and type
+  Client->>Client: Compare signer certificate with OJA certificate set
+  Client->>Client: Check scheme URI, publication location, freshness and sequence
+  Client->>Client: Extract trust anchors from accepted LoTE
 ```
 
 ##### List of Trusted Entities Validation Process
 
-The validator initializes the following variables:
-
 **Input Variables**:
 
-- `Requested-LoTE-Type`: The LoTE type required for the artifact or Attestation being validated.
-- `OJA-Loc`: URI of the latest known OJA publication for the requested LoTE type.
-- `OJA-LoTE-Loc`: URI of the last processed LoTE instance for the requested type. It is initialized to the location published in the OJA.
-- `OJA-LoTE-Certs-Set`: The set of certificates authorized by the OJA to verify the requested LoTE type.
-- `LoTE`: The JSON/JWT or XML/XAdES LoTE currently being processed. Initialized as `NULL`.
+- `Requested-LoTE-Type`: The <artifacts:List of Trusted Entities (LoTE)|LoTE> type required for the artifact or <credentials:Attestation> being validated.
+- `Requested-Entity-Identity`: The identity of the entity whose <artifacts:Trust Anchor> is required, obtained from the artifact or protocol being validated.
+- `Requested-Service-Type`: The `ServiceTypeIdentifier` required for that artifact or protocol.
+- `OJA-Loc`: The fixed, locally configured URI of the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication.
+- `Highest-Accepted-Sequence`: The highest `LoTESequenceNumber` previously accepted for `Requested-LoTE-Type`, if any, together with a SHA-256 digest of the accepted signed list content at that sequence number; this state is retained across refreshes and restarts. The list content is the JWS Payload octets for JSON or the canonicalized document after the enveloped-signature transform for XML.
+
+**Working and Output Variables**:
+
+- `LoTE`: The JSON/JWT or XML/XAdES <artifacts:List of Trusted Entities (LoTE)|LoTE> being processed.
+- `OJA-LoTE-Loc`: The fixed location published by the <artifacts:Official Journal of APTITUDE (OJA)|OJA> for `Requested-LoTE-Type`.
+- `OJA-LoTE-Certs-Set`: The set of certificates published by the <artifacts:Official Journal of APTITUDE (OJA)|OJA> for verifying `Requested-LoTE-Type`.
 - `LoTE-Format`: The format of `LoTE`, either `JSON` or `XML`.
-- `LoTE-Signer-Cert`: The certificate used to verify the signature or seal on `LoTE`. Initialized as `NULL`.
-- `LoTESO-Cert`: The signer certificate of the current LoTE or pivot. Initialized as `NULL`.
-- `LoTESO-Certs-Set`: Certificates authorized by an authenticated `PointersToOtherLoTE` entry for the next pivot. Initialized as `NULL`.
-
-**Output Variables**:
-
-- `Authenticated-LoTE`: The validated LoTE payload.
+- `LoTE-Signer-Cert`: The certificate used to verify the signature or seal on `LoTE`.
 - `LoTE-Status`: The validation result, for example `LoTE_VERIFICATION_PASSED`.
-- `LoTE-Sub-Status`: Detailed error codes supplementing `LoTE-Status`.
 
-##### JSON LoTE Signature Verification and OJA Binding
+##### JSON LoTE Signature Verification
 
-This procedure applies when the LoTE is JSON formatted and uses the Compact JAdES Baseline B profile. In the APTITUDE profile, `x5t#S256` is the selected certificate-reference implementation choice for this format. A Compact JAdES signature is a compact JWS; when the JWT representation is selected, the decoded payload SHALL contain the private `LoTE` claim defined in the Compact JAdES profile.
+This procedure applies when the <artifacts:List of Trusted Entities (LoTE)|LoTE> is JSON formatted and uses the Compact JAdES Baseline B profile.
 
-The validator SHALL perform the following operations before using any payload value for pivot discovery or trust-anchor extraction:
+The validator SHALL perform the following operations. Values from the payload SHALL NOT be used to extract <artifacts:Trust Anchor|Trust Anchors> before all validation operations succeed:
 
-1. Parse the JWS Compact Serialization into its protected header, payload, and signature parts. The protected header SHALL contain `alg`, `iat`, and `x5t#S256`; an algorithm value of `none` SHALL be rejected.
-2. Decode `x5t#S256` from `Base64url` and compute the SHA-256 digest of the DER encoding of each certificate in the authorized certificate set. Exactly one certificate in `OJA-LoTE-Certs-Set` SHALL match the value. Set that certificate as `LoTE-Signer-Cert`.
-3. Verify the JWS signature over the JWS Signing Input using the public key in `LoTE-Signer-Cert`.
-4. Decode the payload. If the JWT representation is selected, require the private `LoTE` claim. Validate the LoTE object against `LoTE_Payload_Json_schema.yaml`; otherwise validate the JSON payload against the applicable JSON LoTE schema.
-5. Confirm that the `LoTEType` in the authenticated payload equals `Requested-LoTE-Type` and that the `DistributionPoints` value is the endpoint published by the OJA for that type.
+1. Parse the JWS Compact Serialization into exactly three parts and reject invalid Base64url encoding, duplicate JSON member names, detached or unencoded payloads, and unsupported critical header parameters. The protected header SHALL contain `alg` with value `ES256`, an integer `iat`, and `x5t#S256`; `x5c`, `kid`, `x5u`, and other certificate-binding parameters SHALL NOT be used. The `iat` value is a claimed signing time, not a trusted timestamp.
+2. Decode `x5t#S256` from Base64url and select exactly one certificate from `OJA-LoTE-Certs-Set` whose DER encoding has that SHA-256 digest. Set it as `LoTE-Signer-Cert`.
+3. Verify the JWS signature over the JWS Signing Input using the P-256 public key in `LoTE-Signer-Cert` and the `ES256` algorithm.
+4. Decode the JWT Claims Set and require the private `LoTE` claim containing the list object. Validate that object against the applicable profiled JSON payload schema.
+5. Confirm that the `LoTEType` in the signature-verified payload equals `Requested-LoTE-Type`.
 
-If any operation fails, validation SHALL stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and the applicable signature, certificate-binding, format, or type sub-status.
+If any operation fails, validation SHALL stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-##### XML LoTE Signature Verification and OJA Binding
+##### XML LoTE Signature Verification
 
-This procedure applies when the LoTE is XML formatted and uses XAdES Baseline B. XAdES Baseline B is specified by [@etsi_en_319_132_1_v1.3.1], while [@etsi_en_319_132_2_v1.1.1] defines extended XAdES signatures and is not the governing specification for the Baseline B profile.
+This procedure applies only when an implementation additionally supports an XML-formatted <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider> <artifacts:List of Trusted Entities (LoTE)|LoTE> using XAdES Baseline B. XML support is not required for pilot interoperability.
 
-The validator SHALL perform the following operations before using any LoTE value for pivot discovery or Trust Anchor extraction:
+The validator SHALL perform the following operations. Values from the XML document SHALL NOT be used to extract <artifacts:Trust Anchor|Trust Anchors> before all validation operations succeed:
 
-1. Validate the XML document against the applicable LoTE XML schema and locate the enveloped `ds:Signature` and its `xades:QualifyingProperties`.
-2. Validate the XML signature references, including the reference to the LoTE document with `URI=""`, the enveloped-signature transform, and exclusive XML canonicalization. Validate the reference to `xades:SignedProperties` with `Type="http://uri.etsi.org/01903#SignedProperties"`.
-3. Extract the signing certificate from `ds:KeyInfo/ds:X509Data/ds:X509Certificate`. The first `xades:SigningCertificateV2/xades:Cert` SHALL contain the digest of the DER encoding of this certificate. The digest SHALL use SHA-256 and the `DigestValue` SHALL use the XML signature Base64 encoding.
-4. Compare the extracted certificate, by exact DER certificate identity, with the certificates in `OJA-LoTE-Certs-Set`. Set the matching certificate as `LoTE-Signer-Cert`.
-5. Verify the XML signature using `LoTE-Signer-Cert`, including the signed properties and all signed LoTE data objects.
-6. Confirm that the LoTE type in the authenticated XML document equals `Requested-LoTE-Type` and that its distribution point is the endpoint published by the OJA for that type.
+1. Parse without external entities or DTD processing. Validate the document against the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> XML schema and require exactly one `ListOfTrustedEntities` document element containing exactly one enveloped `ds:Signature` and its `xades:QualifyingProperties`. Reject duplicate XML IDs.
+2. Require the signature to reference the entire document with `URI=""`, the enveloped-signature transform, and exclusive XML canonicalization, and to reference the unique `xades:SignedProperties` element with `Type="http://uri.etsi.org/01903#SignedProperties"`. Reject external references, additional references, and other transforms. Require SHA-256 reference digests and an ECDSA-with-SHA-256 signature method.
+3. Extract the signing certificate from `ds:KeyInfo/ds:X509Data/ds:X509Certificate`. The first `xades:SigningCertificateV2/xades:Cert` SHALL contain the SHA-256 digest of the DER encoding of this certificate, with `DigestValue` in XML Signature Base64 encoding. Set it as `LoTE-Signer-Cert`.
+4. Verify the XML signature using the P-256 public key in `LoTE-Signer-Cert`, including the signed properties and entire document reference. The application SHALL use this same signature-verified document element for all subsequent list checks and trust-anchor extraction.
+5. Confirm that the <artifacts:List of Trusted Entities (LoTE)|LoTE> type in the signature-verified XML document equals `Requested-LoTE-Type`.
 
-If any operation fails, validation SHALL stop with `LoTE-Status` set to `LoTE_VERIFICATION_FAILED` and the applicable signature, certificate-binding, format, or type sub-status. XAdES `SigningCertificateV2` is not by itself a Trust Anchor; the exact certificate match to the OJA certificate set is required.
+If any operation fails, validation SHALL stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-###### LoTE Validation Operations
+##### LoTE Validation Operations
 
-The validation SHALL perform the following steps:
+The validator SHALL perform the following steps:
 
-1. **Initialization.** Select the OJA record for `Requested-LoTE-Type`. Download the JSON/JWT or XML/XAdES file only from the locally configured `OJA-LoTE-Loc` and assign it to `LoTE`.
+1. **Retrieve the current list.**
 
-2. **Current LoTE Signature Integrity Verification.** Determine `LoTE-Format`. Run the applicable JSON or XML signature-validation procedure above.
-   - If verification fails, stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
-   - If successful, set `LoTESO-Cert = LoTE-Signer-Cert`.
+    - Select exactly one `Requested-LoTE-Type` entry from the trusted <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication at `OJA-Loc` and require a non-empty authorized signing certificate set.
+    - Obtain `OJA-LoTE-Loc` and `OJA-LoTE-Certs-Set` for that type. Download the current `LoTE` from `OJA-LoTE-Loc` when no accepted cached list exists, 24 hours have elapsed since the cached list was retrieved, or its `NextUpdate` has been reached, whichever occurs first. A cached list SHALL NOT be used after a required refresh fails.
+    
+    The validator SHALL NOT use the location or certificate set of another <artifacts:List of Trusted Entities (LoTE)|LoTE> type.
+    
+    If the type-specific entry is absent or the current list cannot be obtained, validation SHALL fail with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-3. **Payload and Pivot Discovery.** Now inspect the LoTE payload. Iterate through the `uriValue` claims in `SchemeInformationURI`. Count the valid pivot URIs occurring before the URI matching `OJA-Loc`; let $n$ be that count.
-   - If no URI matches `OJA-Loc`, validation SHALL fail with `LoTE-Sub-Status = OJA_LOCATION_INPUT_NOT_MATCHING_OJA_LOCATION_IN_LoTE`.
+2. **Verify signature, schema, and type.**
 
-4. **LoTE Location Conflict.** Obtain `LoTELocation` from the `PointersToOtherLoTE` entry whose `SchemeTerritory` is `EU`. Check:
+    Determine `LoTE-Format` and run the applicable JSON or XML signature-verification procedure above. Only a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider> list MAY use XML, and only when XML validation is supported. If any check fails, stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-   ```text
-   OJA-LoTE-Loc != LoTELocation AND LoTE != Content at LoTELocation
-   ```
+3. **Match the signing certificate.**
 
-   `LoTELocation` SHALL be dereferenced only after Step 2 has succeeded and subject to the applicable URI/network policy.
+    Require `LoTE-Signer-Cert` to match a certificate in `OJA-LoTE-Certs-Set` by exact DER certificate identity and require its X.509 validity period to include the validation time. Otherwise stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-   - If `TRUE`, stop with `LoTE-Sub-Status = LoTE_FILE_CONFLICT`.
-   - Otherwise continue.
+4. **Check the scheme URI and publication location.**
 
-5. **LoTE Freshness.** Check:
+    - Require `SchemeInformationURI` to contain exactly one URI, equal to `OJA-Loc`, and require `DistributionPoints` to be absent. The current list location is `OJA-LoTE-Loc`.
+    - For all <artifacts:List of Trusted Entities (LoTE)|LoTE> types, require `PointersToOtherLoTE` to be absent.
 
-   ```text
-   OJA-LoTE-Loc == LoTELocation AND LoTE != Content at LoTELocation
-   ```
+    If any check fails, validation SHALL stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-   - If `TRUE`, set `LoTE` to the content already fetched from `LoTELocation` and restart from Step 2.
-   - Otherwise continue.
+5. **Check profile, freshness, and sequence.** 
 
-6. **Current LoTE Pointer State.** Set `LoTESO-Certs-Set` to the certificates contained in the set `SeviceDigitalIdentity` elements of the `PointersToOtherLoTE` entry whose `SchemeTerritory = EU`.
+    - Require `LoTEVersionIdentifier` to be `1`, a positive integer `LoTESequenceNumber`, and the type-specific values and presence rules in the <artifacts:List of Trusted Entities (LoTE)|LoTE> profile, including the service type identifiers and current service-status rules. For a <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Provider> service, require `StatusStartingTime` not to be later than the validation time.
+    - Require a valid `ListIssueDateTime` and `NextUpdate`, with the issue time not later than the validation time, the next update later than the validation time, and the interval between them no longer than six months.
+    - If `Highest-Accepted-Sequence` exists, reject a `LoTESequenceNumber` below it.
+    - If the sequence number is equal but the digest of the signed list content differs from the previously accepted digest, reject the list as a publication conflict.
+    
+    Any failure SHALL set `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
-   - **[XML Only]** If $n=0$, verify that `LoTESO-Cert` is contained in `LoTESO-Certs-Set`. If not, fail with `LoTE_SIGNER_CERT_NOT_AUTHENTICATED_BY_LoTE` sub-status.
+6. **Accept the list and select trust anchors.** 
 
-7. **Intermediate Pivot Validation.**
-   - If $n=0$, proceed to Step 8.
-   - Otherwise, iterate $i=1\ldots n$, from the most recent pivot to the oldest:
-
-   **a. Fetch candidate pivot.** Download $Pivot_i$ from the corresponding $i$th `SchemeInformationURI` entry.
-
-   **b. Verify the pivot signature.**
-   - Let `Pivot-Signer-Cert` be the certificate used by the signature verification.
-   - If signature verification fails, fail with `PIVOT_i_SIGNATURE_VERIFICATION_FAILED`.
-
-   **c. Read the pivot certificate set pointer.** Set `Pivot-Certs-Set` to the certificates in the authenticated `PointersToOtherLoTE` entry for territory `EU`.
-
-   **d. Backward Link Check.** Verify that `LoTESO-Cert`, i.e. the signer of the previously processed newer object (`LoTE` for $i=1$ and $Pivot_{i-1}$ otherwise) is contained in `Pivot-Certs-Set`.
-   - Otherwise fail with `PIVOT_i-1_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
-
-   **e. Pivot signer self-consistency.**
-   **[XML Only]** Verify that `Pivot-Signer-Cert` itself is contained in `Pivot-Certs-Set`.
-   - Otherwise fail with `PIVOT_i_SIGNER_CERT_NOT_AUTHENTICATED_BY_PIVOT_i`.
-
-   **f. Advance the chain.** Set:
-
-   ```text
-   LoTESO-Cert = Pivot-Signer-Cert
-   ```
-
-   and continue with the next, older pivot.
-
-8. **OJA Trust Anchor Validation.** Verify that `LoTESO-Cert` (the signer of the oldest pivot, or the current LoTE when $n=0$) is contained in `OJA-LoTE-Certs-Set`. Otherwise fail with `PIVOT_n_SIGNER_CERT_NOT_AUTHENTICATED_BY_OJA`.
-
-9. **Expiration.** If `NextUpdate` is non-null and the current time is later than `NextUpdate`, validation SHALL fail.
-
-10. **Success.** Set `Authenticated-LoTE = LoTE`, `LoTE-Status = LoTE_VERIFICATION_PASSED`, and clear `LoTE-Sub-Status`.
-
-11. **Update Bookmark.** Only after successful authentication, if `OJA-LoTE-Loc` differs from the `LoTELocation` in `Authenticated-LoTE` for territory `EU`, update `OJA-LoTE-Loc`.
-
-12. **Update Anchor.** This step modifies the persistent Root of Trust configuration and SHALL operate only on authenticated migration information.
-
-    - Let `New-OJA-Loc` be the applicable first OJA publication URI in the `SchemeInformationURI` of `Authenticated-LoTE`.
-
-    - If `OJA-Loc == New-OJA-Loc`, no OJA Trust Anchor update SHALL be performed.
-
-    - If `OJA-Loc != New-OJA-Loc`:
-      - Set `OJA-Loc = New-OJA-Loc`.
-      - Set `OJA-LoTE-Certs-Set` either:
-        1. to the certificate set contained in the authenticated `PointersToOtherLoTE` entry of the migration pivot associated with `New-OJA-Loc`; or
-        2. to the certificate set obtained from the independently authenticated OJA publication referenced by `New-OJA-Loc`.
-
-!!! warning
-
-    The <artifacts:List of Trusted Entities (LoTE)|LoTE> validation process is mutuated from the [ETSI TS 119 615] standard, and adapted to the APTITUDE profiles context.
+    - Select the applicable `TrustedEntityInformation` and `ServiceInformation` from the signature-verified list using `Requested-Entity-Identity` and `Requested-Service-Type`. For a <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Provider>, an operational <artifacts:Trust Anchor> SHALL be selected only from a current issuance or revocation service whose `ServiceStatus` is `http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/notified`; `ServiceHistory` and `withdrawn` services SHALL NOT supply operational <artifacts:Trust Anchor|Trust Anchors>. For all other list types, only services currently present in the list SHALL supply operational <artifacts:Trust Anchor|Trust Anchors>.
+    - If the required entity, service, or certificate is absent or ambiguous, set `LoTE-Status = LoTE_VERIFICATION_FAILED` and stop. Otherwise extract the applicable certificate from `ServiceInformation.ServiceDigitalIdentity`.
+    - Persist `Highest-Accepted-Sequence` and the digest of the accepted signed list content for `Requested-LoTE-Type` before returning a successful result. If this state cannot be persisted, set `LoTE-Status = LoTE_VERIFICATION_FAILED` and stop. Otherwise set `LoTE-Status = LoTE_VERIFICATION_PASSED`.
 
 !!! note "Remarks"
 
-    - The OJA record is type-specific: a validator SHALL NOT use the endpoint or certificate set published for one LoTE type to validate another LoTE type.
-    - The JSON `x5t#S256` value binds the JWS signer to an OJA-published certificate by the SHA-256 digest of its DER encoding. The XML `SigningCertificateV2` value provides the corresponding XAdES certificate digest, and the validator additionally performs exact certificate matching against the OJA certificate set.
-    - Payload fields are not trusted for pivot discovery, distribution-point changes, or Trust Anchor extraction until the format-specific signature and OJA certificate binding have succeeded.
-    - A cached LoTE and its OJA-authorized signer certificate MAY be reused only within the caching rules specified in the LoTE profile; the cache SHALL be refreshed no later than `NextUpdate` and when the OJA record changes.
+    - The <artifacts:Official Journal of APTITUDE (OJA)|OJA> page is the pilot's discovery source. A passed validation result establishes signature integrity and conformity with the certificate set and location supplied by that page, subject to the pilot assumption stated above.
+    - The JSON `x5t#S256` value identifies the signing certificate in the type-specific <artifacts:Official Journal of APTITUDE (OJA)|OJA> set. The XML `SigningCertificateV2` value binds the XAdES signature to the certificate in `ds:KeyInfo`; the latter is authorized only by its exact DER match with the type-specific <artifacts:Official Journal of APTITUDE (OJA)|OJA> set.
+    - A cached <artifacts:List of Trusted Entities (LoTE)|LoTE> MAY be reused only within the caching rules specified in the <artifacts:List of Trusted Entities (LoTE)|LoTE> profile. At every trust decision, the validator SHALL check that 24 hours have not elapsed since retrieval, `NextUpdate` has not been reached, and `LoTE-Signer-Cert` is within its validity period. Rollback state SHALL be retained across refreshes and restarts.
 
 Below is a flowchart summarizing the validation of a <artifacts:List of Trusted Entities (LoTE)|LoTE>:
 
@@ -199,95 +155,19 @@ Below is a flowchart summarizing the validation of a <artifacts:List of Trusted 
 flowchart TD
     classDef failure fill:#f8d7da,stroke:#721c24,color:#721c24,font-weight:bold;
     classDef success fill:#d4edda,stroke:#155724,color:#155724,font-weight:bold;
-    classDef warning fill:#fff3cd,stroke:#856404,color:#856404;
     classDef process fill:#fff,stroke:#333,stroke-width:1px;
     classDef decision fill:#e7f3fe,stroke:#0056b3,stroke-width:1px;
-    style sub1 fill:#FFFFF0,stroke:#0288d1,stroke-width:2px
 
-    Start([Start LoTE Validation]) --> Init[1. Init & Download LoTE<br/>from locally configured OJA-LoTE-Loc]:::process
-
-    %% Step 2: Integrity verification BEFORE payload inspection
-    Init --> DetectFormat[2. Determine LoTE Format<br/>without semantic payload processing]:::process
-    DetectFormat --> ResolveSigner[Resolve LoTE-Signer-Cert<br/>from signature metadata / independent source]:::process
-    ResolveSigner --> S2{Verify Current LoTE<br/>Cryptographic Signature}:::decision
-
-    S2 -- Invalid --> F2[Fail: LoTE Signature<br/>Verification Failed]:::failure
-    S2 -- Valid --> ValidateStructure[Validate payload<br/>schema, LoTE type and profile]:::process
-    ValidateStructure --> SelfLoteCheck{XML Pivot signer self-consistency:<br/>Is Pivot-Signer-Cert<br/>in Pivot-Certs-Set?}:::decision
-    SelfLoteCheck -- No --> FSelf
-    SelfLoteCheck -- Yes --> IntegrityState[Set LoTESO-Cert = LoTE-Signer-Cert]:::warning
-
-    %% Step 3: Only now inspect SchemeInformationURI
-    IntegrityState --> S3{Found OJA-Loc URI<br/>in SchemeInformationURI history?}:::decision
-    S3 -- "No (NotFound)" --> F3[Fail: OJA Loc Not Found<br/>Trust Anchor Migration Needed]:::failure
-    S3 -- "Yes (Set n)" --> S4{Location Conflict?<br/>OJA-LoTE-Loc != LoTELocation AND<br/>LoTE != Content at LoTELocation}:::decision
-
-    %% Steps 4 & 5: Location & Freshness Checks
-    S4 -- Yes --> F4[Fail: LoTE File Conflict]:::failure
-    S4 -- No --> S5{5. Freshness Check<br/>OJA-LoTE-Loc == LoTELocation AND<br/>LoTE != Content at LoTELocation}:::decision
-
-    S5 -- "Yes (New Version Detected)" --> UpdateLoc[Update OJA-LoTE-Loc]:::warning
-    UpdateLoc --> Init
-    S5 -- "No (Current is Fresh)" --> S6
-
-    %% Step 6: Current LoTE pointer state
-    S6[6. Read EU<br/>PointersToOtherLoTE certificate set]:::process
-    S6 --> S6Check{Is n = 0?}:::decision
-
-    S6Check -- Yes --> SelfCheck{Is current LoTE signer<br/>contained in its <br/>self-pointer certificate set?}:::decision
-    SelfCheck -- No --> FSelf[Fail: LoTE Signer Not<br/>Authenticated by LoTE Self-Pointer]:::failure
-    SelfCheck -- Yes --> S8
-
-    S6Check -- "No (n > 0)" --> LoopStart[7. Start Pivot Loop<br/>i = 1 to n]:::process
-
-    %% Step 7: Pivot validation
-    subgraph sub1 [Pivot Validation Chain]
-        LoopStart --> DownloadPivot[Fetch candidate Pivot i<br/>from $i$th SchemeInformationURI]:::process
-
-        DownloadPivot --> PivotSig{Verify Pivot i Signature}:::decision
-        PivotSig -- Invalid --> FSigPivot[Fail: Pivot i<br/>Signature Invalid]:::failure
-
-        PivotSig -- Valid --> ReadPivotSet[Read Pivot-Certs-Set]:::process
-
-        ReadPivotSet --> LinkCheck{Backward Link Check:<br/>Is signer of newer LoTE/Pivot<br/>in Pivot-Certs-Set?}:::decision
-        LinkCheck -- No --> FLink[Fail: Broken Trust Chain<br/>Previous Signer Not Authenticated<br/>by Pivot i]:::failure
-
-        LinkCheck -- Yes --> SelfPivotCheck{XML Pivot signer self-consistency:<br/>Is Pivot-Signer-Cert<br/>in Pivot-Certs-Set?}:::decision
-        SelfPivotCheck -- No --> FSelfPivot[Fail: Pivot Signer Not<br/>Authenticated by Pivot i]:::failure
-
-        SelfPivotCheck -- Yes --> AdvanceSigner[Set LoTESO-Cert = Pivot-Signer-Cert]:::process
-        AdvanceSigner --> LoopNext{i < n ?<br/>More Pivots?}:::decision
-    end
-
-    LoopNext -- "Yes (i++)" --> DownloadPivot
-    LoopNext -- No --> S8
-
-    %% Step 8: Final OJA binding
-    S8{8. OJA Trust Anchor Validation:<br/>Is final LoTESO-Cert in<br/>OJA-LoTE-Certs-Set?}:::decision
-    S8 -- No --> F8[Fail: Final Signer Not<br/>Authenticated by OJA]:::failure
-
-    %% Step 9: Expiration
-    S8 -- Yes --> S9{9. Expiration Check:<br/>Now > NextUpdate?}:::decision
-    S9 -- Yes --> F9[Fail: LoTE Expired]:::failure
-
-    %% Step 10: Success
-    S9 -- No --> Success[10. Validation PASSED<br/>Set Authenticated-LoTE = LoTE]:::success
-
-    %% Steps 11 & 12: Persistent updates only after authentication
-    Success --> UpdateBM[11. Update Local Bookmark<br/>OJA-LoTE-Loc if authenticated<br/>LoTELocation changed]:::process
-
-    UpdateBM --> UpdateTA[12. Update Root of Trust Config<br/>only from Authenticated-LoTE and/or<br/>independently authenticated OJA data]:::warning
-
-    UpdateTA --> End([End Process])
-
-    %% Consolidation of failure endpoints
-    F2 --> EndFail([Stop: Validation FAILED]):::failure
-    F3 --> EndFail
-    F4 --> EndFail
-    FSelf --> EndFail
-    FSigPivot --> EndFail
-    FLink --> EndFail
-    FSelfPivot --> EndFail
-    F8 --> EndFail
-    F9 --> EndFail
+    Start([Start LoTE validation]) --> Fetch[1. Read type-specific OJA entry<br/>and fetch LoTE at fixed location]:::process
+    Fetch --> Sig{2. Verify signature,<br/>schema and type}:::decision
+    Sig -- Invalid --> Fail([Validation failed]):::failure
+    Sig -- Valid --> OJA{3. Signer certificate in<br/>OJA certificate set?}:::decision
+    OJA -- No --> Fail
+    OJA -- Yes --> Profile{4. Scheme URI and<br/>publication location valid?}:::decision
+    Profile -- No --> Fail
+    Profile -- Yes --> History{5. Freshness and<br/>sequence checks pass?}:::decision
+    History -- No --> Fail
+    History -- Yes --> Checks{6. Save rollback state and select<br/>current entity and service?}:::decision
+    Checks -- No --> Fail
+    Checks -- Yes --> Success([Accept LoTE and extract<br/>applicable trust anchor]):::success
 ```
