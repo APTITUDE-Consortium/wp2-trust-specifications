@@ -1,6 +1,6 @@
 # Implementation Profiles for the Trust Framework
 
-Version 1.1
+Version 1.1.1
 
 | Version   | Date          | Description       |
 | --------- | ------------- | ----------------- |
@@ -8,6 +8,7 @@ Version 1.1
 | 0.2       | 2026-06-08    | Added section on Trust Management Process; editorial changes. |
 | 1.0       | 2026-07-27    | Added Onboarding Process and Trust Checks sections; expanded Trust Artifacts with Trust Anchor and Entity Sign/Seal Certificates subsections; integrated Register API OAS; structural and editorial changes. |
 | 1.1       | 2026-09-10    | Introduced a common profile for X.509 certificates; refactored Certificate Path Validation; updated Authorization Process to align with ARF 3.0.0; defined profile and checks for Key Attestation and Wallet Instance Attestation; consolidated implementation profiles and choices; structural and editorial changes. |
+| 1.1.1     | 2026-09-25    | Structural and editorial changes. |
 
 **Authors**:
 
