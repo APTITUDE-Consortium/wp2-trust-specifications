@@ -690,6 +690,8 @@
       
         
       
+        
+      
     
     
     
@@ -1052,6 +1054,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../trust-checks-presentation/" class="md-nav__link">
         
   
@@ -1187,8 +1217,8 @@
     data-term="Notification"
     data-tooltip="The act of transferring information to the European Commission. [ARF]"
     name="processes:Notification"
-    href="../../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">Notification Process</span> (defined in <a href="../../sections/trust-architecture/">Trust Architecture</a>) through which entities become operational and recognisable in the common trust infrastructure of the pilot.</p>
-<p>Onboarding collects all the information needed to make entities operational and recognisable, and it replaces the administrative and regulatory processes that, outside the pilot, manage the registration, <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#bd658f99432f891c6fa3b6f5f2d88057">Notification Process</span> (defined in <a href="../../sections/trust-architecture/">Trust Architecture</a>) through which entities become operational and recognisable in the common trust infrastructure within APTITUDE.</p>
+<p>Onboarding collects all the information needed to make entities operational and recognisable, and it replaces the administrative and regulatory processes that, outside APTITUDE, manage the registration, <span class="mkdocs-ezglossary-link"
     id="b05277f45317954be028fb8617dfa69e"
     data-term="Notification"
     data-tooltip="The act of transferring information to the European Commission. [ARF]"
@@ -1199,7 +1229,7 @@
     data-tooltip="An entity that is recognized as trustworthy within a given approval scheme for a specific scope or purpose. [ETSI TS 119 602]"
     name="roles:Trusted Entity"
     href="../../glossary-definitions/#55d042d6ff047f981ffffa61de80774b">Trusted Entities</span> between Member States and the European Commission.</p>
-<p>Within the pilot, consistently with <a href="../../sections/trust-architecture/">Trust Architecture</a>, not all onboarding processes are implemented as defined in the [ARF] and related specifications:</p>
+<p>Within the APTITUDE ecosystem, consistently with <a href="../../sections/trust-architecture/">Trust Architecture</a>, not all onboarding processes are implemented as defined in the [ARF] and related specifications:</p>
 <ul>
 <li>The elements which follows the specifications are: the creation of the registration records, the certificates issuance and the respective profiles, and the <span class="mkdocs-ezglossary-link"
     id="6b994c4f06d35428bb1155dac317e79f"
@@ -1231,7 +1261,7 @@
     data-term="Wallet Solution"
     data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
     name="components:Wallet Solution"
-    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span> is <strong>out of scope of the pilot</strong>: it is an external process, and only its outcome is referenced. The data schemas, certificate profiles, <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span> is <strong>out of scope of APTITUDE</strong>: it is an external process, and only its outcome is referenced. The data schemas, certificate profiles, <span class="mkdocs-ezglossary-link"
     id="a4ccfa1eb3b4ccee8797bbba20a16255"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
@@ -1319,7 +1349,7 @@
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">trust anchors</span> published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [<code>ONBOARD-GEN-02</code>].</p>
-<p>Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software [<code>ONBOARD-PRE-01</code>]. The <span class="mkdocs-ezglossary-link"
+<p>Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no APTITUDE software [<code>ONBOARD-PRE-01</code>]. The <span class="mkdocs-ezglossary-link"
     id="226f226c279ab10dac002503ab694945"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
@@ -1378,7 +1408,7 @@
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and SHALL be treated as a Trusted input in any pilot use case.</li>
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and SHALL be treated as a Trusted input in any APTITUDE use case.</li>
 <li><strong>LoTE Signing Certificates</strong>. The signing certificates of the <span class="mkdocs-ezglossary-link"
     id="d19bd6d2e5f541e1eb056febc144d733"
     data-term="List of Trusted Entities Provider (LoTE Provider)"
@@ -1389,7 +1419,7 @@
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
-    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication supplies the location and authorized signing certificate set for each list type. The publication is not itself signed in the pilot.</li>
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication supplies the location and authorized signing certificate set for each list type. The publication is not itself signed within the APTITUDE ecosystem.</li>
 <li><strong>Notification of Trust Anchors</strong>. The <span class="mkdocs-ezglossary-link"
     id="e5aa4abfa74668d7eed1e4aed33dbf87"
     data-term="Trust Anchor"
@@ -1421,7 +1451,7 @@
 <h2 id="operational-entity-onboarding">Operational Entity Onboarding<a class="headerlink" href="#operational-entity-onboarding" title="Permanent link">&para;</a></h2>
 <p>This section describes the recurring process through which operational entities become active in the ecosystem, once the <a href="#trust-infrastructure-prerequisites">Trust Infrastructure Prerequisites</a> are in place (<code>ONBOARD-GEN-02</code>).</p>
 <h3 id="onboarding-system">Onboarding System<a class="headerlink" href="#onboarding-system" title="Permanent link">&para;</a></h3>
-<p>This section describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the <span class="mkdocs-ezglossary-link"
+<p>This section describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is an APTITUDE design choice and is not defined by the <span class="mkdocs-ezglossary-link"
     id="f68a09b7e74042dac70e65c5e143dd4b"
     data-term="EUDI Wallet"
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
@@ -1621,7 +1651,7 @@
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">WRP Register</span> at all.</p>
 </div>
-<p>Against this decomposition, the pilot boundary set out in the introduction of the Onboarding Process section is summarised below.</p>
+<p>Against this decomposition, the APTITUDE boundary set out in the introduction of the Onboarding Process section is summarised below.</p>
 <table>
 <thead>
 <tr>
@@ -1652,11 +1682,11 @@
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>)</td>
-<td>Implemented as pilot software</td>
+<td>Implemented as APTITUDE software</td>
 </tr>
 <tr>
 <td>Trust infrastructure setup (prerequisites)</td>
-<td>Performed out of band; no pilot software</td>
+<td>Performed out of band; no APTITUDE software</td>
 </tr>
 <tr>
 <td>The Member State to European Commission notification act, and the <span class="mkdocs-ezglossary-link"
@@ -1665,7 +1695,7 @@
     data-tooltip="The Official Journal of the European Union, published by the EU's Publications Office, is the official publication for EU legal acts. The authenticity and integrity of the machine processable version of the LOTL is ensured through a digital signature supported by a certificate which can be authenticated through a publication in the OJEU."
     name="artifacts:Official Journal of the European Union (OJEU)"
     href="../../glossary-definitions/#c46f2c1924108500a3ff8784480a361d">OJEU</span> publication</td>
-<td>Mocked, respectively by the Publication Service and by the pilot</td>
+<td>Mocked, respectively by the Publication Service and by APTITUDE</td>
 </tr>
 <tr>
 <td>The certification of a <span class="mkdocs-ezglossary-link"
@@ -1674,7 +1704,7 @@
     data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
     name="components:Wallet Solution"
     href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span></td>
-<td>External; out of scope of the pilot and only referenced</td>
+<td>External; out of scope of APTITUDE and only referenced</td>
 </tr>
 <tr>
 <td>Data schemas, certificate profiles, <span class="mkdocs-ezglossary-link"
@@ -2876,7 +2906,7 @@
 <tbody>
 <tr>
 <td style="text-align: center;"><code>ONBOARD-PRE-01</code></td>
-<td>Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software.</td>
+<td>Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no APTITUDE software.</td>
 <td>Prerequisites</td>
 <td>--</td>
 </tr>
@@ -3007,7 +3037,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 25, 2026 07:25:12 UTC">September 25, 2026 07:25:12</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 25, 2026 09:34:20 UTC">September 25, 2026 09:34:20</span>
   </span>
 
     
