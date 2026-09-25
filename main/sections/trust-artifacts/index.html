@@ -674,17 +674,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#format" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Format
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#attribute-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1166,7 +1155,7 @@
     data-term="Attestation"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
-    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span>, whose authenticity they help verify.</p>
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</span>, whose authenticity they help verify.</p>
 </div>
 <p>The table below lists the trust artifacts defined in this document, along with their responsible actors in the <span class="mkdocs-ezglossary-link"
     id="59503ca3e7f9aff622ea4bb7194f10c3"
@@ -1272,7 +1261,7 @@
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</span> Artifacts</td>
 <td>Provider of WRPAC and Sign/Seal Certificates</td>
-<td>Component of the Certification Authority managed by APTITUDE WP2</td>
+<td>Component of the <a href="roles:Certificate Authority">Certificate Authority</a> managed by APTITUDE WP2</td>
 <td><a href="#online-certificate-status-protocol-artifacts">APTITUDE Online Certificate Status Protocol Artifacts Profile</a></td>
 </tr>
 <tr>
@@ -1795,7 +1784,7 @@
     data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> if any.</p>
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span>.</p>
 </div>
 <p>The following table defines the complete set of extensions applicable to the certificate profile. Extensions not listed in the table SHALL NOT be present.</p>
 <table>
@@ -2039,7 +2028,7 @@
     data-term="Wallet-Relying Party Access Certificate (WRPAC)"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
-    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span> is a signature/seal key, implementations SHALL prevent the <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span> is a Sign/Seal key, implementations SHALL prevent the <span class="mkdocs-ezglossary-link"
     id="fb9ab2eaf10fc8123cc4c4619ac56e34"
     data-term="Wallet-Relying Party Access Certificate (WRPAC)"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
@@ -3210,7 +3199,7 @@ For instance, when the interaction with the <span class="mkdocs-ezglossary-link"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
-    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificate is referenced from the corresponding service entry through the <code>serviceDigitalIdentity</code> component.</p>
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificate is referenced from the corresponding service entry through the <code>ServiceDigitalIdentity</code> component.</p>
 <p><span class="mkdocs-ezglossary-link"
     id="bb0d13e00f1847f538d31b2576df6102"
     data-term="Trust Anchor"
@@ -5370,14 +5359,14 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span>.</li>
 </ul>
 </div>
-<h3 id="format">Format<a class="headerlink" href="#format" title="Permanent link">&para;</a></h3>
+<p>WRPRCs SHALL comply with the following format requirements:</p>
 <ul>
 <li>The <span class="mkdocs-ezglossary-link"
     id="a10b305fddb3858b7082671bea3fbf4b"
     data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> SHALL be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).</li>
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> SHALL be formatted as a signed JSON Web Token (JWT) or CBOR Web Token (CWT).</li>
 <li>The <span class="mkdocs-ezglossary-link"
     id="6b0a50f45d67b3fde3b707f28ef662ed"
     data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -5396,7 +5385,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Providers of WRPRC</span>.</li>
 <li>The JWT SHALL be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1].</li>
-<li>The CWT SHALL be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].</li>
+<li>The CWT SHALL be signed with an Advanced Electronic Signature following the structure defined in [RFC 9052] and [RFC 9360].</li>
 </ul>
 <h3 id="attribute-overview">Attribute Overview<a class="headerlink" href="#attribute-overview" title="Permanent link">&para;</a></h3>
 <table>
@@ -5846,7 +5835,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
 <tr>
 <td><code>ESig_ESeal_Creation_Provider</code></td>
 <td style="text-align: center;"><code>https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider</code></td>
-<td>Non-qualified provider for remote signature/seal creation</td>
+<td>Non-qualified provider for remote Sign/Seal creation</td>
 <td>Annex A.2.10</td>
 </tr>
 </tbody>
@@ -6801,7 +6790,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type from that of another.</li>
 <li>The <span class="mkdocs-ezglossary-link"
-    id="c4ae15ab8774ab83597a987c160211d8"
+    id="f75193f9138bfa8fc3b5e20d0315d454"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -6821,7 +6810,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the <span class="mkdocs-ezglossary-link"
-    id="f75193f9138bfa8fc3b5e20d0315d454"
+    id="a2bf1f48e88c2d37849a2c99d39640c1"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -6836,7 +6825,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>'s signature. The <span class="mkdocs-ezglossary-link"
-    id="a2bf1f48e88c2d37849a2c99d39640c1"
+    id="45b39e370d44b9230be6327e7a275b9f"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -6867,7 +6856,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>'s <code>NextUpdate</code> value, and whenever updated discovery information is published in the <span class="mkdocs-ezglossary-link"
-    id="45b39e370d44b9230be6327e7a275b9f"
+    id="c00b516ca10b38039b3a9d2af38b4854"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -7211,12 +7200,12 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> signing certificate published in the <span class="mkdocs-ezglossary-link"
-    id="c00b516ca10b38039b3a9d2af38b4854"
+    id="4843b8b6af8ce7c84a01f26b82f46cda"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span>. The verifier SHALL retrieve the matching certificate from the <span class="mkdocs-ezglossary-link"
-    id="4843b8b6af8ce7c84a01f26b82f46cda"
+    id="95ffc47e5358cf197f3e809321137d62"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -7241,7 +7230,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>. The JWS signature part is omitted. The certificate and thumbprint values are placeholders; an implementation SHALL replace them with the actual certificate DER value and the Base64url-encoded SHA-256 digest of the certificate published in the <span class="mkdocs-ezglossary-link"
-    id="95ffc47e5358cf197f3e809321137d62"
+    id="a35ce97766b10b35fd6188813a61a648"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -7538,7 +7527,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
 </div>
 <p>The <code>xades:SigningTime</code> value is a claimed signing time and SHALL NOT be treated as a trusted timestamp.</p>
 <p>The certificate in <code>ds:KeyInfo</code> and the first certificate identified by <code>xades:SigningCertificateV2</code> SHALL match exactly, by DER certificate identity, one of the certificates published by the <span class="mkdocs-ezglossary-link"
-    id="a35ce97766b10b35fd6188813a61a648"
+    id="91ad011bab8ed7dfb227eb8b1dfc5f16"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -7548,7 +7537,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type. A valid XAdES signature whose signing certificate is not authorized by the <span class="mkdocs-ezglossary-link"
-    id="91ad011bab8ed7dfb227eb8b1dfc5f16"
+    id="51c49eaa1ebba46e2ffdb3c716b24dfb"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -8040,7 +8029,7 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
 <td style="text-align: center;"><code>Object</code></td>
 <td style="text-align: center;">REQUIRED</td>
 <td>The component SHALL contain the endpoint dedicated to the applicable LoTE type. This endpoint SHALL be the location published for that LoTE type in the <span class="mkdocs-ezglossary-link"
-    id="51c49eaa1ebba46e2ffdb3c716b24dfb"
+    id="44365470de7d4b5d340009eb3b56b83c"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -8712,7 +8701,7 @@ The following table details the additional requirements that <code>TrustedEntity
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDPs</span> are:</p>
 <ul>
-<li>Implementing Sector-specific access control (e.g., only public sector or healthcare <span class="mkdocs-ezglossary-link"
+<li>Implementing sector-specific access control (e.g., only public sector or healthcare <span class="mkdocs-ezglossary-link"
     id="64f6a50dcd3270797f394a8f7b705066"
     data-term="Relying Party (RP)"
     data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
@@ -9383,7 +9372,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     data-tooltip="A set of rules, embedded in an electronic attestation of attributes by its provider, that indicates the conditions that a wallet-relying party has to meet to access the electronic attestation of attributes. [ARF]"
     name="artifacts:Embedded Disclosure Policy (EDP)"
     href="../../glossary-definitions/#fed98e7fb9c0a4d2db812b6e61202191">EDP</span>, and it may introduce privacy risks and management overhead (as stated in the Discussion Topic D)</li>
-<li>Technical details of this mechanism are not defined within ETSI standard.</li>
+<li>Technical details of this mechanism are not defined within the ETSI standard.</li>
 </ul>
 </div>
 <!-- END INCLUDE -->
@@ -10133,7 +10122,7 @@ For natural persons: <code>commonName</code>, <code>givenName</code>, <code>surn
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 9, 2026 18:02:48 UTC">September 9, 2026 18:02:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 24, 2026 09:13:31 UTC">September 24, 2026 09:13:31</span>
   </span>
 
     

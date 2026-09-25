@@ -1153,7 +1153,12 @@
     data-term="List of Trusted Entities Provider (LoTE Provider)"
     data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
     name="roles:List of Trusted Entities Provider (LoTE Provider)"
-    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</span> has its LoTE signing certificate referenced in the Official Journal of Aptitude.</li>
+    href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</span> has its LoTE signing certificate referenced in the <span class="mkdocs-ezglossary-link"
+    id="72b47da332a3a0ccf061c8d745b2a335"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span>.</li>
 <li><strong>Operational entities</strong> are the entities that are onboarded through that infrastructure in order to become operational and recognisable in the ecosystem, namely the <span class="mkdocs-ezglossary-link"
     id="bf00cb66448881507f5367a46c8b7fe8"
     data-term="Wallet-Relying Party (WRP)"
@@ -1210,7 +1215,7 @@
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> against which trust is later evaluated (see <a href="../trust-evaluation-process/#trust-anchor-validation-process">Trust Anchor Validation Process</a>). The operations below describe the trust infrastructure setup process.</p>
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> against which trust is later evaluated (see <a href="../trust-evaluation-process/#trust-anchor-validation-process">Trust Anchor Validation Process</a>). The operations below describes the trust infrastructure setup process.</p>
 <pre class="mermaid"><code>graph LR
 
     OJA(["OJA root&lt;br/&gt;(LoTE Provider root certificate)"])
@@ -1246,7 +1251,7 @@
     class DP dp;</code></pre>
 <p>The setup comprises the following operations:</p>
 <ol>
-<li><strong>Key and Certificate Provisioning</strong>. Each trust infrastructure entity provides its signing key and certificate. Within APTITUDE, the trust infrastructure signing entities MAY use self-signed root certificates with no higher certification authority or CA certificates with self managed PKI. Regardless of the choice, Trust in the certificate is conferred by the publication as a <span class="mkdocs-ezglossary-link"
+<li><strong>Key and Certificate Provisioning</strong>. Each trust infrastructure entity provides its signing key and certificate. Within APTITUDE, the trust infrastructure signing entities MAY use self-signed root certificates with no higher certification authority or CA certificates with self managed PKI. Regardless of the choice, trust in the certificate is conferred by the publication as a <span class="mkdocs-ezglossary-link"
     id="73161766007225270253480b7db751df"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
@@ -1263,7 +1268,7 @@
     data-tooltip="The body that is responsible for the operation and/or management of the approval scheme under which the corresponding LoTE is published. [ETSI TS 119 602]"
     name="roles:List of Trusted Entities Provider (LoTE Provider)"
     href="../../glossary-definitions/#f7e5b6c6dfbd9a30a19ca2831032c298">LoTE Provider</span> are used to validate the lists. Within APTITUDE, the <span class="mkdocs-ezglossary-link"
-    id="72b47da332a3a0ccf061c8d745b2a335"
+    id="1a2fada7ae8c73a57311618a908f8b4f"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -1278,7 +1283,7 @@
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> as described in the above picture.</li>
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> as shown in the above picture.</li>
 <li><strong>Signing and Publication</strong>. The <span class="mkdocs-ezglossary-link"
     id="864c2fc6fdde9952f6fda39c0ede561b"
     data-term="List of Trusted Entities Provider (LoTE Provider)"
@@ -1290,7 +1295,7 @@
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and publishes them at a distribution point referenced by the <span class="mkdocs-ezglossary-link"
-    id="1a2fada7ae8c73a57311618a908f8b4f"
+    id="c4ae15ab8774ab83597a987c160211d8"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -2352,7 +2357,7 @@
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> entry, as trust in it is anchored through the signed <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> entry, as trust in them is anchored through the signed <span class="mkdocs-ezglossary-link"
     id="b953b6a241601afd4e8bccd0508a5fdc"
     data-term="Register"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"

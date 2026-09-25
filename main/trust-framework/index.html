@@ -547,10 +547,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deviations-from-architecture-and-reference-framework" class="md-nav__link">
+  <a href="#deviations-from-the-architecture-and-reference-framework" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deviations from Architecture and Reference Framework
+        Deviations from the Architecture and Reference Framework
       
     </span>
   </a>
@@ -909,7 +909,7 @@
 
 
 <h1 id="implementation-profiles-for-the-trust-framework">Implementation Profiles for the Trust Framework<a class="headerlink" href="#implementation-profiles-for-the-trust-framework" title="Permanent link">&para;</a></h1>
-<p>Version 1.1</p>
+<p>Version 1.1.1</p>
 <table>
 <thead>
 <tr>
@@ -939,6 +939,11 @@
 <td>2026-09-10</td>
 <td>Introduced a common profile for X.509 certificates; refactored Certificate Path Validation; updated Authorization Process to align with ARF 3.0.0; defined profile and checks for Key Attestation and Wallet Instance Attestation; consolidated implementation profiles and choices; structural and editorial changes.</td>
 </tr>
+<tr>
+<td>1.1.1</td>
+<td>2026-09-25</td>
+<td>Structural and editorial changes.</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Authors</strong>:</p>
@@ -965,6 +970,7 @@
 <li>George Fourtounis, <em>GRNET</em></li>
 <li>Byron Georgantopoulos, <em>GRNET</em></li>
 <li>Guillaume Hébert, <em>Keynectis</em></li>
+<li>Martin Hurych, <em>ARICOMA Digital S.R.O</em></li>
 <li>Angel Palomares Perez, <em>Bull</em></li>
 <li>Leonardo Pio Palumbo, <em>Istituto Poligrafico e Zecca dello Stato S.p.A.</em></li>
 </ul>
@@ -979,7 +985,7 @@
     data-term="EUDI Wallet"
     data-tooltip="European Digital Identity Wallet, in accordance with Regulation (EU) 910/2014 (as amended), used in APTITUDE pilots."
     name="components:EUDI Wallet"
-    href="../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</span> Architecture Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the <a href="../sections/references/">References</a> section, adapted for the APTITUDE context.</p>
+    href="../glossary-definitions/#d38a42226239c5949e6fc8293f5ee12f">EUDI Wallet</span> Architecture and Reference Framework (ARF) and its associated Technical Specifications, the applicable ETSI standards, and the additional standards listed in the <a href="../sections/references/">References</a> section, adapted for the APTITUDE context.</p>
 <hr />
 <h2 id="scope-and-structure">Scope and Structure<a class="headerlink" href="#scope-and-structure" title="Permanent link">&para;</a></h2>
 <p>The <em>Implementation Profiles for the Trust Framework</em> are intended to enable Partners to prove their identity and authorization, as well as to verify the authenticity and integrity of Attestations exchanged within the APTITUDE ecosystem. Given the Large Scale Pilot status of the project, these profiles are derived from the requirements of the covered Use Cases, rather than prescribing an abstract, universally applicable trust architecture. Furthermore, the profiles account for the specific constraints of the piloting phase and reflect implementation choices made accordingly, as detailed in the following sections, in order to deliver a functional trust infrastructure capable of supporting the piloting Use Cases.</p>
@@ -1012,7 +1018,7 @@
 <h3 id="out-of-scope">Out of Scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
 <p>This document does not prescribe internal implementation architectures or choices, deployment policies, operational policies (e.g., incident management, auditing, dispute resolution), or application-layer logic unrelated to trust. Detailed component and process specifications, service API definitions, and artifact profiles are provided in other APTITUDE tasks.</p>
 <hr />
-<h2 id="deviations-from-architecture-and-reference-framework">Deviations from Architecture and Reference Framework<a class="headerlink" href="#deviations-from-architecture-and-reference-framework" title="Permanent link">&para;</a></h2>
+<h2 id="deviations-from-the-architecture-and-reference-framework">Deviations from the Architecture and Reference Framework<a class="headerlink" href="#deviations-from-the-architecture-and-reference-framework" title="Permanent link">&para;</a></h2>
 <p>The APTITUDE ecosystem does not include actors representing Member States or the European Commission within its deployment activities. Consequently, the following operations, as regulated by [ARF], have no corresponding responsible actor within the APTITUDE ecosystem.</p>
 <table>
 <thead>
@@ -1170,7 +1176,7 @@
     data-term="List Of Trusted Lists (LOTL)"
     data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
     name="artifacts:List Of Trusted Lists (LOTL)"
-    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted List</span> with an associated <span class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists</span> with an associated <span class="mkdocs-ezglossary-link"
     id="691d39fc6c8271598dae56e171d6916d"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
@@ -1274,7 +1280,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 19:48:10 UTC">September 10, 2026 19:48:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 25, 2026 09:53:33 UTC">September 25, 2026 09:53:33</span>
   </span>
 
     
