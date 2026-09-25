@@ -17,7 +17,7 @@ Depending on the artifact or <credentials:Attestation> being verified, the valid
 
     The <artifacts:Trust Anchor|Trust Anchors> for <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers> and <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers> SHALL be retrieved from and validated against their dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. The same <artifacts:List of Trusted Entities (LoTE)|LoTE> validation process SHALL be used for these <artifacts:Trust Anchor|Trust Anchors> as for all other APTITUDE entities.
 
-To validate a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE> under the APTITUDE pilot profile, the validating entity SHALL:
+To validate a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE> under the APTITUDE profile, the validating entity SHALL:
 
 - obtain the location and authorized signing certificate set for the requested <artifacts:List of Trusted Entities (LoTE)|LoTE> type from the <artifacts:Official Journal of APTITUDE (OJA)>;
 - verify the <artifacts:List of Trusted Entities (LoTE)|LoTE> signature or seal using the format-specific procedure and compare its signing certificate, by exact DER certificate identity, with the certificate set published for that type in the <artifacts:Official Journal of APTITUDE (OJA)|OJA>;
@@ -27,13 +27,13 @@ To validate a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE> under t
 
 This section defines the validation of a <artifacts:List of Trusted Entities (LoTE)|LoTE>. The <artifacts:List of Trusted Entities (LoTE)|LoTE> format is specified in [List of Trusted Entities](../sections/trust-artifacts.md#list-of-trusted-entities).
 
-!!! choice "APTITUDE Pilot Discovery Assumption"
+!!! choice "APTITUDE Discovery Assumption"
 
-    The <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication is made available at a fixed, locally configured URI only available to the APTITUDE pilots participants, but is not signed or independently authenticated in the pilot. 
+    The <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication is made available at a fixed, locally configured URI only available to the APTITUDE Partners, but is not signed or independently authenticated within APTITUDE. 
     
     A <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> SHALL accept the type-specific <artifacts:List of Trusted Entities (LoTE)|LoTE> location and authorized signing certificate set obtained from that publication.
 
-For the duration of the pilot, the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication URI, each type-specific <artifacts:List of Trusted Entities (LoTE)|LoTE> location, and the authorized signing certificate set for each type will remain unchanged. New versions of a <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL replace the current version at that type's fixed location and SHALL be signed with a certificate from its fixed set.
+For the duration of APTITUDE, the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication URI, each type-specific <artifacts:List of Trusted Entities (LoTE)|LoTE> location, and the authorized signing certificate set for each type will remain unchanged. New versions of a <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL replace the current version at that type's fixed location and SHALL be signed with a certificate from its fixed set.
 
 ##### List of Trusted Entities Retrieval and Validation Sequence Diagram
 
@@ -145,7 +145,7 @@ The validator SHALL perform the following steps:
 
 !!! note "Remarks"
 
-    - The <artifacts:Official Journal of APTITUDE (OJA)|OJA> page is the pilot's discovery source. A passed validation result establishes signature integrity and conformity with the certificate set and location supplied by that page, subject to the pilot assumption stated above.
+    - The <artifacts:Official Journal of APTITUDE (OJA)|OJA> page is the discovery source within the APTITUDE ecosystem. A passed validation result establishes signature integrity and conformity with the certificate set and location supplied by that page, subject to the assumption stated above.
     - The JSON `x5t#S256` value identifies the signing certificate in the type-specific <artifacts:Official Journal of APTITUDE (OJA)|OJA> set. The XML `SigningCertificateV2` value binds the XAdES signature to the certificate in `ds:KeyInfo`; the latter is authorized only by its exact DER match with the type-specific <artifacts:Official Journal of APTITUDE (OJA)|OJA> set.
     - A cached <artifacts:List of Trusted Entities (LoTE)|LoTE> MAY be reused only within the caching rules specified in the <artifacts:List of Trusted Entities (LoTE)|LoTE> profile. At every trust decision, the validator SHALL check that 24 hours have not elapsed since retrieval, `NextUpdate` has not been reached, and `LoTE-Signer-Cert` is within its validity period. Rollback state SHALL be retained across refreshes and restarts.
 

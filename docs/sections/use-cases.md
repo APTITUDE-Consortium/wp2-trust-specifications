@@ -118,7 +118,7 @@ The operational trust use cases are derived from the [Trust Management Process](
 
 An Operational Trust Use Case passes when the APTITUDE WP2 checks and any applicable affected-entity or consuming-participant checks pass. Where the affected-entity responsibility is "None", APTITUDE WP2 performs the complete operational test.
 
-APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>, Certificate Services, and Publication Service, executes and records the infrastructure-side checks. The affected entity SHALL provide only the event inputs, notifications, and deployment actions assigned to it in the table. Pilot participants that consume an updated artifact SHALL refresh or automatically integrate that artifact and SHALL execute the linked runtime check. A test case that orchestrates other management processes SHALL invoke their respective operational Trust use cases instead of repeating their checks.
+APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>, Certificate Services, and Publication Service, executes and records the infrastructure-side checks. The affected entity SHALL provide only the event inputs, notifications, and deployment actions assigned to it in the table. APTITUDE Partners that consume an updated artifact SHALL refresh or automatically integrate that artifact and SHALL execute the linked runtime check. A test case that orchestrates other management processes SHALL invoke their respective operational Trust use cases instead of repeating their checks.
 
 <table>
     <thead>
@@ -127,7 +127,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <th>Involved Process(es)</th>
             <th>Artifact(s) in Input</th>
             <th>APTITUDE WP2 Actions</th>
-            <th>Affected entity and pilot participant responsibility</th>
+            <th>Affected Entity and APTITUDE Partners' Responsibility</th>
             <th>On Success</th>
             <th>On Failure</th>
         </tr>
@@ -224,7 +224,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <th>Involved Process(es)</th>
             <th>Artifact(s) in Input</th>
             <th>APTITUDE WP2 responsibility and checks</th>
-            <th>Affected entity and pilot participant responsibility</th>
+            <th>Affected Entity and APTITUDE Partners' Responsibility</th>
             <th>On Success</th>
             <th>On Failure</th>
         </tr>

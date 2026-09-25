@@ -241,7 +241,7 @@ components:
 
     ProtectedJOSEHeader:
       type: object
-      description: Protected JOSE header of a pilot JSON LoTE signature; x5c, kid and x5u are prohibited.
+      description: Protected JOSE header of an APTITUDE JSON LoTE signature; x5c, kid and x5u are prohibited.
       properties:
         alg:
           type: string
@@ -285,7 +285,7 @@ components:
       type: object
       description: >-
         Current List of Trusted Entities for one OJA-published type. Pointers to other
-        LoTEs, distribution points and scheme extensions are prohibited in the pilot.
+        LoTEs, distribution points and scheme extensions are prohibited within APTITUDE.
       properties:
         ListAndSchemeInformation:
           $ref: '#/components/schemas/ListAndSchemeInformation'
@@ -738,7 +738,7 @@ components:
       type: object
       description: >-
         Current service information. ServiceHistory applies to the PuB-EAA Provider
-        LoTE and is prohibited for the other pilot LoTE types.
+        LoTE and is prohibited for the other APTITUDE LoTE types.
       properties:
         ServiceInformation:
           $ref: '#/components/schemas/ServiceInformation'
@@ -874,7 +874,7 @@ components:
       type: array
       minItems: 1
       description: >-
-        Required for Wallet Provider and prohibited for the other pilot LoTE types.
+        Required for Wallet Provider and prohibited for the other APTITUDE LoTE types.
         At least one extension supplies the wallet solution reference number through
         ServiceUniqueIdentifier.
       items:
@@ -908,7 +908,7 @@ components:
 
     ServiceHistory:
       type: array
-      description: PuB-EAA service history retained in the current list; prohibited for other pilot LoTE types.
+      description: PuB-EAA service history retained in the current list; prohibited for other APTITUDE LoTE types.
       items:
         $ref: '#/components/schemas/ServiceHistoryInstance'
       minItems: 1
