@@ -1,67 +1,12 @@
 [
   {
-    "version": "pr-137",
-    "title": "pr-137",
-    "aliases": []
-  },
-  {
     "version": "pr-135",
     "title": "pr-135",
     "aliases": []
   },
   {
-    "version": "pr-127",
-    "title": "pr-127",
-    "aliases": []
-  },
-  {
-    "version": "pr-121",
-    "title": "pr-121",
-    "aliases": []
-  },
-  {
-    "version": "pr-103",
-    "title": "pr-103",
-    "aliases": []
-  },
-  {
-    "version": "pr-89",
-    "title": "pr-89",
-    "aliases": []
-  },
-  {
-    "version": "pr-84",
-    "title": "pr-84",
-    "aliases": []
-  },
-  {
-    "version": "pr-46",
-    "title": "pr-46",
-    "aliases": []
-  },
-  {
-    "version": "pr-",
-    "title": "pr-",
-    "aliases": []
-  },
-  {
     "version": "main",
     "title": "main",
-    "aliases": []
-  },
-  {
-    "version": "branch-64-specification-of-register-read-api-in-oas3",
-    "title": "branch-64-specification-of-register-read-api-in-oas3",
-    "aliases": []
-  },
-  {
-    "version": "branch-TrustManagement",
-    "title": "branch-TrustManagement",
-    "aliases": []
-  },
-  {
-    "version": "branch-ms_trust_anchor_certificate_profiles",
-    "title": "branch-ms_trust_anchor_certificate_profiles",
     "aliases": []
   },
   {
@@ -94,11 +39,6 @@
   {
     "version": "v0.1",
     "title": "v0.1",
-    "aliases": []
-  },
-  {
-    "version": "v0.1-dev",
-    "title": "v0.1-dev",
     "aliases": []
   }
 ]
