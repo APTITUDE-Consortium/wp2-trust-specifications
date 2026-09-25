@@ -7644,7 +7644,10 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, the <code>ListAndSchemeInformation</code> component is further specified by the following parameters:</p>
-<p>The QEAA Provider and EAA Provider <code>LoTEType</code>, <code>StatusDeterminationApproach</code>, <code>SchemeTypeCommunityRules</code>, and <code>ServiceTypeIdentifier</code> URIs are APTITUDE-defined identifiers documented in <a href="../lote-identifiers.md">APTITUDE LoTE identifiers</a>; the other type-specific values below are the ETSI profile values.</p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p>The QEAA Provider and EAA Provider <code>LoTEType</code>, <code>StatusDeterminationApproach</code>, <code>SchemeTypeCommunityRules</code>, and <code>ServiceTypeIdentifier</code> URIs are APTITUDE-specific; the other type-specific values below are the ETSI profile values.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -7694,12 +7697,12 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-term="Provider of Person Identification Data (PID Provider)"
     data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
     name="roles:Provider of Person Identification Data (PID Provider)"
-    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>;</li><li>"https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#qeaa-lote-type" for <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>;</li><li>"http://aptitude-consortium.github.io/LoTEType/EAAProviderList" for <span class="mkdocs-ezglossary-link"
     id="c687c009f8cb51ca9a2774091fd610c0"
     data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
     name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>;</li><li>"https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#eaa-lote-type" for <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>;</li><li>"http://aptitude-consortium.github.io/LoTEType/QEAAProviderList" for <span class="mkdocs-ezglossary-link"
     id="ce68d3e82ef5922766c9f9d250aae2df"
     data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
@@ -7784,12 +7787,12 @@ The decoded JWS payload SHALL contain a single boolean claim.</p>
     data-term="Provider of Person Identification Data (PID Provider)"
     data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
     name="roles:Provider of Person Identification Data (PID Provider)"
-    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>;</li><li>"http://aptitude-consortium/SvcType/QEAAProviderList/StatusDetn" for <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>;</li><li>"http://aptitude-consortium.github.io/SvcType/QEAAProviderList/StatusDetn" for <span class="mkdocs-ezglossary-link"
     id="310cf8d6927524f9f9354f2d9cf3dd4c"
     data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
     name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>;</li><li>"http://aptitude-consortium/SvcType/EAAProviderList/StatusDetn" for <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>;</li><li>"http://aptitude-consortium.github.io/SvcType/EAAProviderList/StatusDetn" for <span class="mkdocs-ezglossary-link"
     id="daf06e5406beeafb029800a16f933f49"
     data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
@@ -8446,7 +8449,7 @@ The following table details the additional requirements that <code>TrustedEntity
     data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
     name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
-    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span> lists, <code>ServiceTypeIdentifier</code> SHALL respectively use <code>http://aptitude-consortium/SvcType/{Specific_attestation}/Issuance</code>, <code>http://aptitude-consortium/SvcType/{Specific_attestation}/Revocation</code> as applicable.</p>
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Provider</span> lists, <code>ServiceTypeIdentifier</code> SHALL respectively use <code>http://aptitude-consortium.github.io/SvcType/{Specific_attestation}/Issuance</code>, <code>http://aptitude-consortium.github.io/SvcType/{Specific_attestation}/Revocation</code> as applicable.</p>
 <p>For the <span class="mkdocs-ezglossary-link"
     id="33ef53772b04143c9772db6f02bbcccb"
     data-term="Registrar"
