@@ -16,13 +16,13 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
     - <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> SHALL be issued only to legal persons.
     - The <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC> SHALL issue a separate <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> for each intended use of the registered <roles:Wallet-Relying Party (WRP)|WRP>.
 
-### Format
+WRPRCs SHALL comply with the following format requirements:
 
-- The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be formatted as signed JSON Web Token (JWT) or CBOR Web Token (CWT).
+- The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be formatted as a signed JSON Web Token (JWT) or CBOR Web Token (CWT).
 - The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL comply with the syntactic and semantic requirements specified in [CIR 2025/848, Annex V, Paragraph 3].
 - The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL be signed with the digital signature of <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>.
 - The JWT SHALL be signed with a JSON Advanced Electronic Signature with the B-B profile as defined in [ETSI TS 119 182-1].
-- The CWT SHALL be signed with an Advanced Electronic Signature following structure as defined in [RFC 9052] and [RFC 9360].
+- The CWT SHALL be signed with an Advanced Electronic Signature following the structure defined in [RFC 9052] and [RFC 9360].
 
 ### Attribute Overview
 
@@ -111,7 +111,7 @@ This section defines <artifacts:Wallet-Relying Party Registration Certificate (W
     | `QCert_for_ESig_Provider`         | `https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider`      | <roles:Qualified Trust Service Provider (QTSP)\|QTSP> issuing qualified certificates for electronic signatures | Annex A.2.7 |
     | `rQSealCDs_Provider`              | `https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider`           | <roles:Qualified Trust Service Provider (QTSP)\|QTSP> managing remote qualified electronic seal creation devices | Annex A.2.8 |
     | `rQSigCDs_Provider`               | `https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider`            | <roles:Qualified Trust Service Provider (QTSP)\|QTSP> managing remote qualified electronic signature creation devices  | Annex A.2.9 |
-    | `ESig_ESeal_Creation_Provider`    | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | Non-qualified provider for remote signature/seal creation | Annex A.2.10 |
+    | `ESig_ESeal_Creation_Provider`    | `https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider` | Non-qualified provider for remote Sign/Seal creation | Annex A.2.10 |
 
 #### Privacy and Policy Attributes
 

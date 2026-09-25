@@ -2,7 +2,7 @@ This section defines the APTITUDE Trust Architecture, including all components t
 
 ### Entities
 
-The APTITUDE Large Scale Pilot implement business use cases that exercise interactions within the <components:EUDI Wallet> ecosystem. As a result, the roles defined by that ecosystem remain applicable, while the supporting trust infrastructure is realized specifically within the APTITUDE boundaries. The main entities involved in APTITUDE are:
+The APTITUDE Large Scale Pilot implements business use cases that exercise interactions within the <components:EUDI Wallet> ecosystem. As a result, the roles defined by that ecosystem remain applicable, while the supporting trust infrastructure is realised specifically within the APTITUDE boundaries. The main entities involved in APTITUDE are:
 
 - The <roles:User>, who controls and uses a <components:Wallet Unit>, that is a configuration of a <components:Wallet Solution> provided by a <roles:Wallet Provider (WP)>.
 - <roles:Wallet-Relying Party (WRP)|Wallet-Relying Parties (WRPs)>, which interact with the <components:Wallet Unit> in one or both of the following capacities:

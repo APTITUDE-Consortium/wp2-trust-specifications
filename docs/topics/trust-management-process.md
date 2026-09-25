@@ -11,17 +11,17 @@ When a <roles:Wallet-Relying Party (WRP)|WRP>'s, <roles:Wallet Provider (WP)|WP>
 
 ### Ecosystem Participants
 
-The entities in the ecosystem are divided in different groups depending on their role and the artifact that they issue.
+The entities in the ecosystem are divided into different groups depending on their role and the artifact that they issue.
 
-- *<roles:Supervisory Body|Supervisory Bodies>* continuously *supervise* other ecosystem entities. Supervision affect the states of dependent Entities.
+- *<roles:Supervisory Body|Supervisory Bodies>* continuously *supervise* other ecosystem entities. Supervision affects the states of dependent Entities.
 - *Member States and the European Commission* *define* and *manage* <artifacts:Attestation Rulebook|Attestation Rulebooks>, and *define* *Ecosystem Policies and Certification Schemas*. These affect dependent Entities during onboarding and their lifecycle.
 - *Scheme Operators* (<roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider>) *publish* and *manage* <artifacts:List of Trusted Entities (LoTE)|LoTE> that contain <artifacts:Trust Anchor|Trust Anchors> and Properties of other Entities. Inclusion in these artifacts is, by itself, also a statement about the role and authorization of the included entities within the ecosystem.
-- *Trust Artifacts Providers* (MS <roles:Registrar|Registrars>, <roles:Qualified Trust Service Provider (QTSP)|QTSPs>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>) *publish* and *manage* *Trust Artifacts* (<components:Register|Registers>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, <artifacts:Electronic Signature|Signature>/<artifacts:Electronic Seal|Seal> Certificates) which transports Properties (Identity Information, Technical configurations, and Authorization Information) of End-Entities.
-- *End-Entities* (<roles:Attestation Provider (AP)|Attestation Providers>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Relying Party (RP)|Relying Parties>, <roles:Wallet Provider (WP)|Wallet Provider>) rely on Trust Lists and Trust Artifacts for assessing their trustworthiness to other participants within the ecosystems. In addition, they *issue*, *receive* or *manage* User Attestations or Wallet Attestations to and from <components:Wallet Unit|Wallet Units> during issuance, presentation and <roles:Wallet Provider (WP)|WP>-specific management flows respectively.
+- *Trust Artifacts Providers* (MS <roles:Registrar|Registrars>, <roles:Qualified Trust Service Provider (QTSP)|QTSPs>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>) *publish* and *manage* *Trust Artifacts* (<components:Register|Registers>, <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>, Sign/Seal Certificates) which transports Properties (Identity Information, Technical configurations, and Authorization Information) of End-Entities.
+- *End-Entities* (<roles:Attestation Provider (AP)|Attestation Providers>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Relying Party (RP)|Relying Parties>, <roles:Wallet Provider (WP)|Wallet Provider>) rely on <artifacts:List of Trusted Entities (LoTE)|LoTE> and Trust Artifacts for assessing their trustworthiness to other participants within the ecosystems. In addition, they *issue*, *receive* or *manage* User Attestations or Wallet Attestations to and from <components:Wallet Unit|Wallet Units> during issuance, presentation and <roles:Wallet Provider (WP)|WP>-specific management flows respectively.
 
 !!! choice "APTITUDE Implementation Choices"
 
-    APTITUDE WP2 SHALL implement and make available all the necessary infrastructure to provide a functional Trust ecosystem as profiled in this specifications.
+    APTITUDE WP2 SHALL implement and make available all the necessary infrastructure to provide a functional Trust ecosystem as profiled in this specification.
 
     Due to the differences between the APTITUDE and the <components:EUDI Wallet> ecosystem, the following entities are not considered in the rest of the section:
     
@@ -44,45 +44,45 @@ The entities in the ecosystem are divided in different groups depending on their
 Trust Artifact Providers and End-Entities are characterized by three main classes of *Properties*:
 
 - **Identity Information**: This includes the organization's name, contact information, and organizational policies.
-- **Technical Configuration**: This includes the cryptographic materials (<artifacts:Electronic Signature|signature>/<artifacts:Electronic Seal|seal> keys, authentication keys) and technical endpoints necessary for ecosystem interactions.
-- **Policy and Authorization Information**: This includes the entity's entitlements, attestation provision capabilities, attestation request capabilities, <roles:Relying Party Intermediary (RPI)|intermediary> use permissions, intended use cases, <artifacts:Embedded Disclosure Policy (EDP)|EDPs>, and compliance with certification schemas.
+- **Technical Configuration**: This includes the cryptographic materials (Sign/Seal keys, authentication keys) and technical endpoints necessary for ecosystem interactions.
+- **Policy and Authorization Information**: This includes the entity's entitlements, attestation provision capabilities, attestation request capabilities, <roles:Relying Party Intermediary (RPI)|intermediary> use permissions, intended use cases, <artifacts:Embedded Disclosure Policy (EDP)|EDPs>, and compliance with onboarding policies.
 
 #### Properties Schema and associated Trust Artifacts
 
 In the tables below are found the relationship between the aforementioned Properties and the Trust Artifacts in which they are contained for specific entity types: <roles:Relying Party (RP)|Relying Party> (<roles:Relying Party Intermediary (RPI)|Intermediary>), <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Attestation Provider (AP)|Attestation Providers> (<roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers>, <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers>, and <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|Pub-EAA Providers>), and <roles:Wallet Provider (WP)|Wallet Providers>. Since different entity types have their information stored in different artifacts, the tables below are divided by specific types of entities.
 
-All <roles:Wallet-Relying Party (WRP)|WRPs> (<roles:Relying Party (RP)|Relying Parties>, <roles:Relying Party Intermediary (RPI)|Intermediaries>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, and <roles:Attestation Provider (AP)|Attestation Providers>) properties are embedded in various Trust Artifacts as follows:
+All <roles:Wallet-Relying Party (WRP)|WRPs>' (<roles:Relying Party (RP)|Relying Parties>, <roles:Relying Party Intermediary (RPI)|Intermediaries>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, and <roles:Attestation Provider (AP)|Attestation Providers>) properties are embedded in various Trust Artifacts as follows:
 
-| Entity Type | Properties Class | Entity Properties | Trust Artifacts |
-| :--- | :--- | :--- | :--- |
-| <roles:Wallet-Relying Party (WRP)\|WRP> | Identity Information | Organization name | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
-| <roles:Wallet-Relying Party (WRP)\|WRP> | Identity Information | Contact information | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <components:Register> |
-| <roles:Wallet-Relying Party (WRP)\|WRP> | Identity Information | Organizational Policy | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
-| <roles:Wallet-Relying Party (WRP)\|WRP> | Technical Configuration | Authentication key | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> |
-| <roles:Wallet-Relying Party (WRP)\|WRP> | Authorization Information | Entitlements | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
-| <roles:Wallet-Relying Party (WRP)\|WRP> | Authorization Information | Intermediary use permissions | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
-| <roles:Wallet-Relying Party (WRP)\|WRP> | Authorization Information | Service descriptions | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
-| <roles:Wallet-Relying Party (WRP)\|WRP> | Authorization Information | Supervision information | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
+| Properties Class | Entity Properties | Trust Artifacts |
+| :--- | :--- | :--- |
+| Identity Information | Organization name | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
+| Identity Information | Contact information | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <components:Register> |
+| Identity Information | Organizational Policy | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
+| Technical Configuration | Authentication key | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> |
+| Authorization Information | Entitlements | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
+| Authorization Information | Intermediary use permissions | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
+| Authorization Information | Service descriptions | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
+| Authorization Information | Supervision information | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
 
 All <roles:Provider of Person Identification Data (PID Provider)|PID Providers> and <roles:Attestation Provider (AP)|Attestation Providers> have additional specific property requirements embedded in various Trust Artifacts as follows:
 
-| Entity Type | Properties Class | Entity Properties | Trust Artifacts |
-| :--- | :--- | :--- | :--- |
-| <roles:Provider of Person Identification Data (PID Provider)\|PID Provider> or <roles:Attestation Provider (AP)\|Attestation Provider> | Technical Configuration | <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> key | <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> Certificate |
-| <roles:Provider of Person Identification Data (PID Provider)\|PID Provider> or <roles:Attestation Provider (AP)\|Attestation Provider> | Authorization Information | RP Permissions | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> |
-| <roles:Provider of Person Identification Data (PID Provider)\|PID Provider> or <roles:Attestation Provider (AP)\|Attestation Provider> | Authorization Information | Attestation provision capabilities | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
+| Properties Class | Entity Properties | Trust Artifacts |
+| :--- | :--- | :--- |
+| Technical Configuration | Sign/Seal key | Sign/Seal Certificate |
+| Authorization Information | RP Permissions | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> |
+| Authorization Information | Attestation provision capabilities | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <components:Register> |
 
 All <roles:Relying Party (RP)|Relying Parties> and <roles:Relying Party Intermediary (RPI)|Intermediaries> have additional specific property requirements embedded in various Trust Artifacts as follows:
 
-| Entity Type | Properties Class | Entity Properties | Trust Artifacts |
-| :--- | :--- | :--- | :--- |
-| <roles:Relying Party (RP)\|Relying Party> or <roles:Relying Party Intermediary (RPI)\|RPI> | Authorization Information | Attestation request capabilities | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, Register |
+| Properties Class | Entity Properties | Trust Artifacts |
+| :--- | :--- | :--- |
+| Authorization Information | Attestation request capabilities | <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, Register |
 
 !!! choice "APTITUDE Implementation Choice"
 
-    <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers> and <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers> SHALL be included in their respective dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. Their <artifacts:List of Trusted Entities (LoTE)|LoTE> entries SHALL provide the identity, service, and signature/seal <artifacts:Trust Anchor|Trust Anchor> properties used to establish their operational trust. Registration and role-specific authorization properties remain in the <components:Register> and, where applicable, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
+    <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers> and <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers> SHALL be included in their respective dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. Their <artifacts:List of Trusted Entities (LoTE)|LoTE> entries SHALL provide the identity, service, and Sign/Seal <artifacts:Trust Anchor|Trust Anchor> properties used to establish their operational trust. Registration and role-specific authorization properties remain in the <components:Register> and, where applicable, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
 
-All <roles:Wallet Provider (WP)|Wallet Providers>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>,<roles:Attestation Provider (AP)|Attestation Providers>, being referenced in the <artifacts:List of Trusted Entities (LoTE)|LoTE> as entities authorized to provide services to the ecosystem, have additional specific properties embedded in the <artifacts:List of Trusted Entities (LoTE)|LoTE> as follows:
+All <roles:Wallet Provider (WP)|Wallet Providers>, <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Attestation Provider (AP)|Attestation Providers>, being referenced in the <artifacts:List of Trusted Entities (LoTE)|LoTE> as entities authorized to provide services to the ecosystem, have additional specific properties embedded in the <artifacts:List of Trusted Entities (LoTE)|LoTE> as follows:
 
 | Entity Type | Properties Class | Entity Properties | Trust Artifacts |
 | :--- | :--- | :--- | :--- |
@@ -92,8 +92,8 @@ All <roles:Wallet Provider (WP)|Wallet Providers>, <roles:Provider of Person Ide
 | <roles:Wallet Provider (WP)\|WP>, <roles:Provider of Person Identification Data (PID Provider)\|PID Provider>, <roles:Attestation Provider (AP)\|Attestation Providers> | Authorization Information | Service descriptions | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
 | <roles:Wallet Provider (WP)\|WP>, <roles:Provider of Person Identification Data (PID Provider)\|PID Provider>, <roles:Attestation Provider (AP)\|Attestation Providers> | Authorization Information | Service endpoints | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
 | <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)\|Pub-EAA Provider> | Authorization Information | Service status | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
-| <roles:Wallet Provider (WP)\|WP>, <roles:Provider of Person Identification Data (PID Provider)\|PID Provider>, <roles:Attestation Provider (AP)\|Attestation Providers> | Authorization Information | Compliance to certification schema | <artifacts:List of Trusted Entities (LoTE)\|LoTE> (implicit via inclusion) |
-| <roles:Wallet Provider (WP)\|WP>, <roles:Provider of Person Identification Data (PID Provider)\|PID Provider>, <roles:Attestation Provider (AP)\|Attestation Providers> | Technical Configuration | Signature/Seal trust anchors | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
+| <roles:Wallet Provider (WP)\|WP>, <roles:Provider of Person Identification Data (PID Provider)\|PID Provider>, <roles:Attestation Provider (AP)\|Attestation Providers> | Authorization Information | Compliance to onboarding policies | <artifacts:List of Trusted Entities (LoTE)\|LoTE> (implicit via inclusion) |
+| <roles:Wallet Provider (WP)\|WP>, <roles:Provider of Person Identification Data (PID Provider)\|PID Provider>, <roles:Attestation Provider (AP)\|Attestation Providers> | Technical Configuration | Sign/Seal trust anchors | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
 
 !!! note
 
@@ -108,21 +108,21 @@ flowchart LR
     subgraph abst["WRP Properties"]
         direction LR
         id(["Identity Information<br>(organization name, contact information, organization policies)"])
-        tech(["Technical Configuration<br>(signature/seal key,<br>AuthN key, endpoints)"])
-        authz(["Policy and Authorization<br>(entitlements, attestation provision, attestation request, intermediary use, intended use, compliance to certification schema)"])
+        tech(["Technical Configuration<br>(Sign/Seal key,<br>AuthN key, endpoints)"])
+        authz(["Policy and Authorization<br>(entitlements, attestation provision, attestation request, intermediary use, intended use, compliance to onboarding policies)"])
     end
 
     subgraph arti["WRP Artifacts"]
         direction LR
         ac{{"WRPAC"}}
-        csig{{"Signature/Seal Certificate"}}
+        csig{{"Sign/Seal Certificate"}}
         rc{{"WRPRC"}}
     end
 
     tl{{"LoTE"}}
     reg{{"Register"}}
 
-    ca["Signature/Seal<br>Certificate Authority or QTSP"]
+    ca["Sign/Seal<br>Certificate Authority or QTSP"]
     acca["Provider of WRPAC"]
     rcca["Provider of WRPRC"]
     ent_reg["Registrar"]
@@ -154,15 +154,15 @@ flowchart LR
     subgraph abst_wp["WP Properties"]
         direction LR
         id_wp(["Identity Information<br>(organization name, contact information, organization policies)"])
-        tech_wp(["Technical Configuration<br>(signature/seal key,<br>endpoints)"])
-         authz_wp(["Policy and Authorization<br>(wallet attestation provision, compliance to certification schema)"])
+        tech_wp(["Technical Configuration<br>(Sign/Seal key,<br>endpoints)"])
+         authz_wp(["Policy and Authorization<br>(wallet attestation provision, compliance to onboarding policies)"])
     end
 
     subgraph arti_wp["WP Artifacts"]
         direction LR
-        csig_wp{{"Signature/Seal Certificate"}}
+        csig_wp{{"Sign/Seal Certificate"}}
     end
-    ca_wp["Signature/Seal<br>Certificate Authority or QTSP"]
+    ca_wp["Sign/Seal<br>Certificate Authority or QTSP"]
 
     wp --"characterized by"--> abst_wp
     authz_wp --"reflected in"--> tl
@@ -176,15 +176,15 @@ In the tables below are found the relationship between the aforementioned Proper
 
 The following table describes the relationship between the Properties of <roles:Registrar|Registrars>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, and the <artifacts:List of Trusted Entities (LoTE)|LoTE> in which these Properties are contained.
 
-| Entity Type | Properties Class | Entity Properties | Trust Artifacts |
-| :--- | :--- | :--- | :--- |
-| <roles:Registrar>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Identity Information | Organization name | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
-| <roles:Registrar>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Identity Information | Contact information | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
-| <roles:Registrar>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Identity Information | Organizational Policy | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
-| <roles:Registrar>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Authorization Information | Service descriptions | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
-| <roles:Registrar>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Authorization Information | Service endpoints | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
-| <roles:Registrar>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Technical Configuration | <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> key | <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> Certificate |
-| <roles:Registrar>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)\|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)\|Provider of WRPRC> | Technical Configuration | <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> <artifacts:Trust Anchor> | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
+| Properties Class | Entity Properties | Trust Artifacts |
+| :--- | :--- | :--- |
+| Identity Information | Organization name | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
+| Identity Information | Contact information | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
+| Identity Information | Organizational Policy | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
+| Authorization Information | Service descriptions | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
+| Authorization Information | Service endpoints | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
+| Technical Configuration | Sign/Seal key | Sign/Seal Certificate |
+| Technical Configuration | Sign/Seal <artifacts:Trust Anchor> | <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
 
 The diagram below highlights these dependences between Trust Artifact Provider Properties, artifacts in which these Properties are contained and entities that use this information to issue/publish Trust Artifacts:
 
@@ -195,20 +195,20 @@ flowchart LR
     subgraph abst["Entity Properties"]
         direction LR
         id(["Identity Information<br>(organization name, contact information, organization policies)"])
-        tech(["Technical Configuration<br>(signature/seal key,<br> endpoints)"])
-        authz(["Policy and Authorization<br>(compliance to certification schema)"])
+        tech(["Technical Configuration<br>(Sign/Seal key,<br> endpoints)"])
+        authz(["Policy and Authorization<br>(compliance to onboarding policies)"])
     end
 
     subgraph arti["Entity Artifacts"]
         direction LR
-        csig{{"Signature/Seal Certificate"}}
+        csig{{"Sign/Seal Certificate"}}
     end
 
     ms["Member State, European Commission"]
 
     tl{{"LoTE"}}
 
-    ca["Signature/Seal<br>Certificate Authority"]
+    ca["Sign/Seal<br>Certificate Authority"]
     tlp["LoTE Provider"]
 
     mid_ent --"characterized by"--> abst
@@ -239,7 +239,7 @@ State Machines are described only for <roles:Wallet-Relying Party (WRP)|WRPs>, <
 - `UNREGISTERED`: Indicates that an entity does not currently hold a valid subscription or registration within the APTITUDE ecosystem. This is the default baseline state. Entities in this state are outside the trust boundary and SHALL NOT participate in framework operations or federation protocols.
 - `REGISTERED`: Indicates that an entity has successfully completed the onboarding process, verified its identity, and has established ecosystem access.
     - A <roles:Wallet-Relying Party (WRP)|WRP> is in `REGISTERED` state if the <roles:Registrar> has inserted its Identity information within the <components:Register>, and possesses the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> binding this Identity information to a key controlled by the entity.
-    - A <roles:Wallet Provider (WP)|Wallet Provider> is in `REGISTERED` when it has completed the necessary certification and successfully completed the onboarding process.
+    - A <roles:Wallet Provider (WP)|Wallet Provider> is in `REGISTERED` when it has successfully completed the onboarding process.
 - `OPERATIONAL`: Indicates that an entity has successfully completed onboarding, and, crucially, has been authorized to perform role-related operations, provide services, and issue or verify artifacts in accordance with framework policies.
     - A <roles:Relying Party (RP)|RP> or <roles:Relying Party Intermediary (RPI)|RPI> is in `OPERATIONAL` state if it is `REGISTERED`, the <roles:Registrar> has inserted its Authorization information within the <components:Register>, and it possesses a valid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
     - A <roles:Provider of Person Identification Data (PID Provider)|PID Provider> or <roles:Attestation Provider (AP)|Attestation Provider> is in `OPERATIONAL` state if it is `REGISTERED`, the <roles:Registrar> has inserted its Authorization information within the <components:Register>, it is listed in the applicable LoTE, it possesses a valid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, and a valid <artifacts:Electronic Signature|Signature>/<artifacts:Electronic Seal|Seal> certificate.
@@ -272,13 +272,13 @@ stateDiagram-v2
     %% Define transitions
     Unreg --> Reg : Onboarding & Identity Verification<br>(WRPAC Issued & Register Inclusion)
     
-    Reg --> Op : Authorization Granted<br>(Signature/Seal Issued & listed in LoTE)
+    Reg --> Op : Authorization Granted<br>(Sign/Seal Issued & listed in LoTE)
     
     Op --> Reg : Authorization Lost<br>(e.g., Signature Certificate Expired or LoTE Entry Removed/Inactive)
     
     Reg --> Withdrawn : Registration Revoked<br>(WRPAC Revoked, Exclusion from Register)
     
-    Op --> Withdrawn : Critical Failure / Offboarding<br>(WRPAC, Signature/Seal Cert. Revoked, & Removed from LoTE)
+    Op --> Withdrawn : Critical Failure / Offboarding<br>(WRPAC, Sign/Seal Cert. Revoked, & Removed from LoTE)
     
     Withdrawn --> [*] : Terminal State
     
@@ -310,10 +310,10 @@ The table below summarizes the lifecycle states, their definitions, the entity t
 | :--- | :--- | :--- | :--- | :--- |
 | `UNREGISTERED` | Indicates that an entity does not currently hold a valid subscription or registration within the APTITUDE ecosystem. | All potential ecosystem participants prior to onboarding. | N/A | N/A |
 | `REGISTERED` | Indicates that an entity has successfully completed onboarding, verified its identity, and established baseline ecosystem network access. | All <roles:Wallet-Relying Party (WRP)\|WRPs>, <roles:Wallet Provider (WP)\|Wallet Providers>. | <roles:Wallet-Relying Party (WRP)\|WRP>: Valid <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC> and identity inclusion in the <components:Register>.<br><br><roles:Wallet Provider (WP)\|Wallet Provider>: Finalized onboarding records. | <roles:Wallet-Relying Party (WRP)\|WRP>: <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response with good status (or absence in <artifacts:Certificate Revocation List (CRL)\|CRL>) for the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>; active status in the <components:Register>.|
-| `OPERATIONAL` | Indicates that an entity is explicitly authorized to perform role-related operations, provide services, and issue or verify artifacts. | `REGISTERED` <roles:Wallet-Relying Party (WRP)\|WRPs> and <roles:Wallet Provider (WP)\|Wallet Providers>. | **<roles:Relying Party (RP)\|RP> (<roles:Relying Party Intermediary (RPI)\|Intermediary>)**: Authorization in <components:Register>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>.<br><br>**<roles:Provider of Person Identification Data (PID Provider)\|PID Provider> / <roles:Attestation Provider (AP)\|Attestation Provider>**: Valid <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> certificate, entry in the applicable <artifacts:List of Trusted Entities (LoTE)\|LoTE>, active <artifacts:List of Trusted Entities (LoTE)\|LoTE> status where applicable, authorization in <components:Register>, and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>.<br><br>**<roles:Wallet Provider (WP)\|Wallet Provider>**: Valid <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> certificate and entry in the applicable <artifacts:List of Trusted Entities (LoTE)\|LoTE>. | **Certificates**: <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response with `good` status or absence in <artifacts:Certificate Revocation List (CRL)\|CRL> for <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> certificates and WRPACs; <artifacts:Status List Token> with status set to `0x00`.<br><br>**<artifacts:List of Trusted Entities (LoTE)\|LoTE>**: Entry matching the entity.<br><br>**<components:Register>**: Validated role-specific authorization schema Properties. |
+| `OPERATIONAL` | Indicates that an entity is explicitly authorized to perform role-related operations, provide services, and issue or verify artifacts. | `REGISTERED` <roles:Wallet-Relying Party (WRP)\|WRPs> and <roles:Wallet Provider (WP)\|Wallet Providers>. | **<roles:Relying Party (RP)\|RP> (<roles:Relying Party Intermediary (RPI)\|Intermediary>)**: Authorization in <components:Register>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>.<br><br>**<roles:Provider of Person Identification Data (PID Provider)\|PID Provider> / <roles:Attestation Provider (AP)\|Attestation Provider>**: Valid Sign/Seal certificate, entry in the applicable <artifacts:List of Trusted Entities (LoTE)\|LoTE>, active <artifacts:List of Trusted Entities (LoTE)\|LoTE> status where applicable, authorization in <components:Register>, and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>.<br><br>**<roles:Wallet Provider (WP)\|Wallet Provider>**: Valid Sign/Seal certificate and entry in the applicable <artifacts:List of Trusted Entities (LoTE)\|LoTE>. | **Certificates**: <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response with `good` status or absence in <artifacts:Certificate Revocation List (CRL)\|CRL> for Sign/Seal certificates and WRPACs; <artifacts:Status List Token> with status set to `0x00`.<br><br>**<artifacts:List of Trusted Entities (LoTE)\|LoTE>**: Entry matching the entity.<br><br>**<components:Register>**: Validated role-specific authorization schema Properties. |
 | `REMOVED` | Indicates the revocation of an entity's `REGISTERED` status due to voluntary offboarding, a severe security breach, or a critical compliance failure. | All deactivated, offboarded, or permanently banned framework participants. | **<roles:Wallet-Relying Party (WRP)\|WRP>**: Revoked <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, removal from, or inactive status in, the applicable <artifacts:List of Trusted Entities (LoTE)\|LoTE> (if applicable), and <components:Register> entry.<br><br><roles:Wallet Provider (WP)\|Wallet Provider>: Removal from, or inactive status in, the current applicable <artifacts:List of Trusted Entities (LoTE)\|LoTE>. | <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response with `revoked` status or presence in a <artifacts:Certificate Revocation List (CRL)\|CRL> for the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>.|
 
-Depending on the circumstances, an entity in the `REMOVED` state MAY have its <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> certificates revoked, when this is not the case, all artifacts the entity has issued SHALL be considered valid for historical operations. Further details on this are found in the [Operational Effects of Removal](#operational-effects-of-removal) section.
+Depending on the circumstances, an entity in the `REMOVED` state MAY have its Sign/Seal certificates revoked, when this is not the case, all artifacts the entity has issued SHALL be considered valid for historical operations. Further details on this are found in the [Operational Effects of Removal](#operational-effects-of-removal) section.
 
 #### Trust Artifacts and LoTE Lifecycle State Machine
 
@@ -333,7 +333,7 @@ stateDiagram-v2
     direction TB
 
     %% 1. Certificates Lifecycle Group
-    state "Certificates (WRPAC, WRPRC, Signature/Seal)" as CertGroup {
+    state "Certificates (WRPAC, WRPRC, Sign/Seal)" as CertGroup {
         [*] --> VALID : Issuance / Provisioning
         VALID --> REVOKED : Revocation Trigger<br>(CRL, OCSP, or Status List)
         REVOKED --> [*] : Terminal State
@@ -361,8 +361,8 @@ The table below summarizes the lifecycle states, their definitions, the applicab
 
 | State | Definition | Applicable Artifacts | Technical Mean |
 | :--- | :--- | :--- | :--- |
-| `VALID` | Indicates that a Trust Artifact is currently valid and can be trusted for operational use within the ecosystem. | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> Certificates. | <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response with `good` status or absence in <artifacts:Certificate Revocation List (CRL)\|CRL> for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPACs> and <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> certificates; <artifacts:Status List Token> with status set to `0x00` for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>. |
-| `REVOKED` | Indicates that a Trust Artifact has been revoked and SHALL NOT be trusted for any operational use within the ecosystem. | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> Certificates. | <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response with `revoked` status or presence in <artifacts:Certificate Revocation List (CRL)\|CRL> for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPACs> and <artifacts:Electronic Signature\|Signature>/<artifacts:Electronic Seal\|Seal> certificates; <artifacts:Status List Token> with status set to `0x01` for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>. |
+| `VALID` | Indicates that a Trust Artifact is currently valid and can be trusted for operational use within the ecosystem. | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, Sign/Seal Certificates. | <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response with `good` status or absence in <artifacts:Certificate Revocation List (CRL)\|CRL> for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPACs> and Sign/Seal certificates; <artifacts:Status List Token> with status set to `0x00` for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>. |
+| `REVOKED` | Indicates that a Trust Artifact has been revoked and SHALL NOT be trusted for any operational use within the ecosystem. | <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, Sign/Seal Certificates. | <protocols:Online Certificate Status Protocol (OCSP)\|OCSP> response with `revoked` status or presence in <artifacts:Certificate Revocation List (CRL)\|CRL> for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPACs> and Sign/Seal certificates; <artifacts:Status List Token> with status set to `0x01` for <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRCs>. |
 
 | State | Definition | Applicable Artifacts | Technical Mean |
 | :--- | :--- | :--- | :--- |

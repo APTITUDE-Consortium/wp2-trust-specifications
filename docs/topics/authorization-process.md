@@ -43,7 +43,7 @@ This process validates the Authorization Artifact and establishes the authoritat
 **Outcome**
 
 - A successfully validated <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or <components:Register> response establishes the authoritative authorization data without introducing a new positive result code.
-- A missing or invalid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> produces `CERTIFICATE_INVALID` and permits the optional <components:Register> procedure.
+- A missing or invalid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> produces the `CERTIFICATE_INVALID` status code and permits the optional <components:Register> procedure.
 - If no valid Authorization Artifact is obtained, the stage produces `FAILED` and the final result is `NOT_AUTHORIZED`.
 
 ##### WRPRC Validation
@@ -178,7 +178,7 @@ In an intermediated presentation, missing final <roles:Relying Party (RP)|RP> in
 
 The <components:Wallet Instance> SHALL display the final <roles:Relying Party (RP)|RP> identity and intended use. It SHALL NOT display the <roles:Relying Party Intermediary (RPI)|Intermediary> identity (`AUTHZ-UI-08`).
 
-A non-overridable failure SHALL be clearly identified and SHALL not be presented as user-overridable.
+A non-overridable failure SHALL be clearly identified and SHALL NOT be presented as user-overridable.
 
 If the result is `AUTHORIZED`, the <components:Wallet Instance> SHALL proceed to normal User approval (`AUTHZ-UI-10`). If the result is `NOT_AUTHORIZED` and only overridable presentation outcomes remain, the <components:Wallet Instance> SHALL present the negative outcome and SHALL allow continuation if the User accepts every applicable override (`AUTHZ-UI-11`).
 
