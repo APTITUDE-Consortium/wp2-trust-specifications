@@ -1,0 +1,2437 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="APTITUDE | Implementation Profiles for the Trust Framework">
+      
+      
+        <meta name="author" content="APTITUDE Consortium">
+      
+      
+        <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-137/pr-workspace/revocation-mechanisms/">
+      
+      
+        <link rel="prev" href="../registration-certificate/">
+      
+      
+        <link rel="next" href="../trust-anchor-certificate-profiles/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Revocation mechanisms - APTITUDE | Implementation Profiles for the Trust Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../media/extra.css">
+    
+      <link rel="stylesheet" href="../../includes/admonitions.css">
+    
+      <link rel="stylesheet" href="../../includes/tables.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#token-status-list" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-header__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APTITUDE | Implementation Profiles for the Trust Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Revocation mechanisms
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  APTITUDE Technical Specification
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../trust-framework/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Trust Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access-certificate/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PR Workspace (Changed Files Only)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="APTITUDE | Implementation Profiles for the Trust Framework" class="md-nav__button md-logo" aria-label="APTITUDE | Implementation Profiles for the Trust Framework" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/APTITUDE-Consortium/aptitude-eudi-wallet-specs/refs/heads/main/docs/img/logo.png" alt="logo">
+
+    </a>
+    APTITUDE | Implementation Profiles for the Trust Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    APTITUDE-Consortium/wp2-trust-specifications
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://aptitude-consortium.github.io/aptitude-eudi-wallet-specs/latest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APTITUDE Technical Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Framework
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trust-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-evaluation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/trust-management-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Management and Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Use Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sections/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Workspace (Changed Files Only)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PR Workspace (Changed Files Only)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attestation-signature-validation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attestation signature validation process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedded-disclosure-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embedded disclosure policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration-certificate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration certificate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revocation mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#token-status-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token Status List
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-revocation-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Revocation Lists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#online-certificate-status-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Online Certificate Status Protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor certificate profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks presentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-management-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust management process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/edit/main/docs/pr-workspace/revocation-mechanisms.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/APTITUDE-Consortium/wp2-trust-specifications/raw/main/docs/pr-workspace/revocation-mechanisms.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Revocation mechanisms</h1>
+
+<p>This section describes the artifacts that are employed in <a href="../../sections/trust-management-lifecycle/">Trust Management and Lifecycle</a> to manage the status of certificates and entities by detailing respective formats and parameters. The main distinction is the following:</p>
+<ul>
+<li>To manage <span class="mkdocs-ezglossary-link"
+    id="a981dba8213344d5a2484b0f9f047498"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">Wallet-Relying Party Access Certificates (WRPACs)</span>, each <span class="mkdocs-ezglossary-link"
+    id="12d7e51298a04742477044d8c51cba00"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</span> SHALL:<ul>
+<li>make available at least one revocation mechanism among <span class="mkdocs-ezglossary-link"
+    id="e2b44601cd2477f043be57e474a09d6c"
+    data-term="Certificate Revocation List (CRL)"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">Certificate Revocation Lists (CRLs)</span> and <span class="mkdocs-ezglossary-link"
+    id="fb250a129afc0f54a917b3ce0c04434d"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</span>;</li>
+<li>issue <span class="mkdocs-ezglossary-link"
+    id="dfc3f1c165747336681b2eedd1a37eb3"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</span> with at least an extension corresponding to the provided revocation mechanism as illustrated in <a href="../../sections/trust-artifacts/#wallet-relying-party-access-certificate">Wallet-Relying Party Access Certificate</a>.</li>
+</ul>
+</li>
+<li>To manage <span class="mkdocs-ezglossary-link"
+    id="ab88d0b90a12d20f23dd267c37f11404"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">Wallet-Relying Party Registration Certificates (WRPRCs)</span>, each <span class="mkdocs-ezglossary-link"
+    id="74bb8f5244a2a54e21074df155ef2961"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span> SHALL:<ul>
+<li>make available an endpoint to request <span class="mkdocs-ezglossary-link"
+    id="10deb9270046cca6d31d20c1ad3f89c5"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Tokens</span>;</li>
+<li>issue <span class="mkdocs-ezglossary-link"
+    id="5873ccc680bac81c37dec93df127e655"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</span> with the appropriate parameter <code>status</code> as described in <a href="../../sections/trust-artifacts/#wallet-relying-party-registration-certificate">Wallet-Relying Party Registration Certificate</a>.</li>
+</ul>
+</li>
+<li>To manage <span class="mkdocs-ezglossary-link"
+    id="d5beb12a66b952ba3cba318dcaabda5b"
+    data-term="Wallet Unit Attestation (WUA)"
+    data-tooltip="A data object that describes the components of the Wallet Unit or allows authentication and validation of those components. [ARF]"
+    name="artifacts:Wallet Unit Attestation (WUA)"
+    href="../../glossary-definitions/#8b65d3aeb965c7ae9a28cf62c8382320">Wallet Unit Attestations (WUAs)</span>, each <span class="mkdocs-ezglossary-link"
+    id="5d1278f545cfa63095afa3bec410b09c"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> SHALL:<ul>
+<li>make available an endpoint to request <span class="mkdocs-ezglossary-link"
+    id="48e66a5dc41b8761bf146a112c329349"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Tokens</span>;</li>
+<li>issue <span class="mkdocs-ezglossary-link"
+    id="b7f1b2f41cbb1c4ac87caee823b9e621"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIAs</span> and <span class="mkdocs-ezglossary-link"
+    id="cf92ffad9935cf98454b202ffadd7ecd"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KAs</span> with the appropriate status-list references in <code>client_status.status.status_list</code> and <code>key_storage_status.status.status_list</code>, respectively, as described in <a href="#token-status-list-wallet-unit-attestation-profile">Token Status List (Wallet Unit Attestation Profile)</a>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="token-status-list">Token Status List<a class="headerlink" href="#token-status-list" title="Permanent link">&para;</a></h3>
+<p>This section profiles the Token Status List (TSL) mechanism defined in [draft-ietf-oauth-status-list] for artifacts whose status is managed using a Status List. A TSL conveys the current status of many artifacts in a compact, signed <span class="mkdocs-ezglossary-link"
+    id="44cddde8ce039bc35bb4e377f8a7887c"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>. The requirements in this profile apply unless refined by one of the artifact-specific profiles below.</p>
+<p>The Status Issuer is the entity that issues the <span class="mkdocs-ezglossary-link"
+    id="b12e2e32d39cda8de06513d81fec60df"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> about the status information of the artifact. The Status Provider is the entity that makes the <span class="mkdocs-ezglossary-link"
+    id="c4bb872d87c74f3d296b48c7a1209633"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> available at an accessible endpoint. The artifact-specific profile SHALL define these roles and whether they are fulfilled by the same entity.</p>
+<h4 id="status-list">Status List<a class="headerlink" href="#status-list" title="Permanent link">&para;</a></h4>
+<p>A Status List contains a compressed byte array whose entries represent the statuses of many artifacts. The artifact-specific profile SHALL define the status-list reference member. Each status-list reference SHALL contain a distinct, non-negative <code>idx</code> value and a <code>uri</code> identifying the <span class="mkdocs-ezglossary-link"
+    id="b0773fa2f17d75cc2e5884367d123625"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> that contains the corresponding entry. For a JWT-encoded artifact, <code>idx</code> is a JSON integer and <code>uri</code> is a JSON string; for a CWT-encoded artifact, <code>idx</code> is a <span class="mkdocs-ezglossary-link"
+    id="d2fd73bed85d103a35a43fefb3a29fce"
+    data-term="Concise Binary Object Representation (CBOR)"
+    data-tooltip="The binary serialisation format used for mdoc transfers."
+    name="formats:Concise Binary Object Representation (CBOR)"
+    href="../../glossary-definitions/#bd896d90646af3853fca4158c8c25077">CBOR</span> unsigned integer and <code>uri</code> is a CBOR text string. In both cases, <code>uri</code> SHALL be a URI conforming to [RFC 3986].</p>
+<p>The Status Issuer SHALL:</p>
+<ul>
+<li>Configure the <code>bits</code> value as one of <code>1</code>, <code>2</code>, <code>4</code>, or <code>8</code>. This value determines the number of bits used to represent the status of each artifact and therefore the number of possible status values.</li>
+<li>Create a byte array of size &gt;= (number of artifacts) * <code>bits</code> / 8. Depending on <code>bits</code>, each byte in the array corresponds to <code>8</code>, <code>4</code>, <code>2</code>, or <code>1</code> status values.</li>
+<li>Assign each artifact to a distinct index starting at <code>0</code> and set the status value for every issued artifact at the corresponding position in the byte array. The status meanings and encoded values are defined by the artifact-specific profile.</li>
+<li>Pack entries starting with the least significant bit of each byte.</li>
+<li>Compress the byte array using DEFLATE [RFC 1951] with the ZLIB [RFC 1950] data format. Implementations SHOULD use the highest compression level available.</li>
+</ul>
+<p>The status values and their meanings are defined by the artifact-specific profile.</p>
+<h4 id="status-list-token">Status List Token<a class="headerlink" href="#status-list-token" title="Permanent link">&para;</a></h4>
+<p>The <strong><span class="mkdocs-ezglossary-link"
+    id="1e9b78d93f77be21f0055dfb365a1766"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span></strong> is available at the Status List Endpoint.
+The format for the Status List Token is specified in <a href="../../sections/trust-artifacts/#status-list-token">Status List Token</a>.</p>
+<h4 id="status-list-request">Status List Request<a class="headerlink" href="#status-list-request" title="Permanent link">&para;</a></h4>
+<p>A consumer SHALL request a <span class="mkdocs-ezglossary-link"
+    id="dbd287355fe0dfef0f441ddbfc2f016f"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> at the URI referenced by the status-list reference. The request SHALL use <code>HTTP GET</code> and the media type corresponding to the requested format: <code>application/statuslist+jwt</code> for a JWT or <code>application/statuslist+cwt</code> for a CWT.</p>
+<details class="example">
+<summary>Status List Request in JWT format</summary>
+</details>
+<!-- BEGIN INCLUDE ../examples/status-list-request-jwt.md -->
+<div class="highlight"><pre><span></span><code>GET /statuslists/1 HTTP/1.1
+Host: example.com
+Accept: application/statuslist+jwt
+</code></pre></div>
+<!-- END INCLUDE -->
+
+<h4 id="status-list-response">Status List Response<a class="headerlink" href="#status-list-response" title="Permanent link">&para;</a></h4>
+<p>The successful response SHALL contain a <span class="mkdocs-ezglossary-link"
+    id="e6aa0052224b54808d542d323419d46c"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> and have HTTP status code <code>200 OK</code>. The content type of the successful response SHALL correspond to the format of the returned token: <code>application/statuslist+jwt</code> for a JWT or <code>application/statuslist+cwt</code> for a CWT.</p>
+<details class="example">
+<summary>Status List Response in JWT format</summary>
+<p><!-- BEGIN INCLUDE ../examples/status-list-response-jwt.md -->
+<div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK
+Content-Type: application/statuslist+jwt
+
+eyJhbGciOiJFUzI1NiIsImtpZCI6IjEyIiwidHlwIjoic3RhdHVzbGlzdCtqd3QifQ.e
+yJleHAiOjIyOTE3MjAxNzAsImlhdCI6MTY4NjkyMDE3MCwiaXNzIjoiaHR0cHM6Ly9le
+GFtcGxlLmNvbSIsInN0YXR1c19saXN0Ijp7ImJpdHMiOjEsImxzdCI6ImVOcmJ1UmdBQ
+WhjQlhRIn0sInN1YiI6Imh0dHBzOi8vZXhhbXBsZS5jb20vc3RhdHVzbGlzdHMvMSIsI
+nR0bCI6NDMyMDB9.2lKUUNG503R9htu4aHAYi7vjmr3sgApbfoDvPrl65N3URUO1EYqq
+Ql45Jfzd-Av4QzlKa3oVALpLwOEUOq-U*g
+</code></pre></div></p>
+<!-- END INCLUDE -->
+</details>
+<p>If caching-related HTTP headers are present in the HTTP response, consumers SHALL prioritize the <code>exp</code> and <code>ttl</code> claims within the <span class="mkdocs-ezglossary-link"
+    id="b222bcf0abc72b62e58e910c68a45b27"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> over the HTTP headers for determining caching behavior.</p>
+<h4 id="token-status-list-profiles">Token Status List Profiles<a class="headerlink" href="#token-status-list-profiles" title="Permanent link">&para;</a></h4>
+<h5 id="token-status-list-wrprc-profile">Token Status List (WRPRC Profile)<a class="headerlink" href="#token-status-list-wrprc-profile" title="Permanent link">&para;</a></h5>
+<p>This section profiles the TSL mechanism defined in [draft-ietf-oauth-status-list] for <span class="mkdocs-ezglossary-link"
+    id="3461e0a85d6bf1d034f04d1947b97907"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</span>.</p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="030ce0b8aaa4835d944baa062425a6c8"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> Provider for <span class="mkdocs-ezglossary-link"
+    id="280bf9e94e43a40014104dc6d191085b"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> <span class="mkdocs-ezglossary-link"
+    id="9951668c03d59da04e98c19ace9c8212"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> SHALL be the <span class="mkdocs-ezglossary-link"
+    id="003fe590dcf25dccec1b379e9d33f7ea"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span>.</p>
+</div>
+<p><strong>Status List</strong></p>
+<p>According to the [ARF] and [ETSI TS 119 475], the <span class="mkdocs-ezglossary-link"
+    id="1fd6363538670e224af00229f278ff8b"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> status is either <code>VALID</code> or <code>INVALID</code>; therefore, the <span class="mkdocs-ezglossary-link"
+    id="272f72fdb8c937d2e3dd93cd57eba4ed"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span> SHALL set the <code>bits</code> parameter in the <span class="mkdocs-ezglossary-link"
+    id="bd1eda852d171f9fcd9e5ab1747e3ddb"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>'s <code>status_list</code> object to <code>1</code>. The value <code>0x00</code> represents <code>VALID</code>, and the value <code>0x01</code> represents <code>INVALID</code>.</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="b1e32e2162e84d16f297f131ddaaf8a2"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> Provider SHALL pack entries starting with the least significant bit of each byte, compress the byte array using DEFLATE with the ZLIB data format, and publish the resulting Status List in the <span class="mkdocs-ezglossary-link"
+    id="cc49126bb7e4198be143edb335412f6d"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>.</p>
+<p><strong>Status List Token</strong></p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choices</p>
+<ul>
+<li>The <span class="mkdocs-ezglossary-link"
+    id="94c87a790ab72cd208a9b29ab61441ae"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> Provider SHALL act as both the Status Issuer and the Status Provider.</li>
+<li>It SHALL make each <span class="mkdocs-ezglossary-link"
+    id="ed375a378033651d0b3fa2cfffb8688b"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> available via <code>HTTP GET</code> at the URI specified by the <span class="mkdocs-ezglossary-link"
+    id="4ed80e803fd094648c8730579bb112a9"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span>'s <code>status.status_list.uri</code> member, using <code>application/statuslist+jwt</code> for a JWT <span class="mkdocs-ezglossary-link"
+    id="82be3fc9de080ff5385f8163923a116b"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>.</li>
+<li>The <span class="mkdocs-ezglossary-link"
+    id="b6984fd72a8197ceaa172c630b94d0b8"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> format SHALL be either a JWT and SHALL be protected by a cryptographic signature.</li>
+</ul>
+</div>
+<p>A JWT <span class="mkdocs-ezglossary-link"
+    id="bb2676a87deafef6e842a2a943b8694e"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> SHALL be formatted as described in <a href="#status-list-token">Status List Token</a>.</p>
+<p>Regardless of the format, the <span class="mkdocs-ezglossary-link"
+    id="85124f9e56a44d0245eb9497242e59d5"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> Provider for <span class="mkdocs-ezglossary-link"
+    id="3824c4ce57f9f3a982563c789878380c"
+    data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
+    data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
+    name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRCs</span> SHALL sign each <span class="mkdocs-ezglossary-link"
+    id="c84a896fa20142c248338280093f6287"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> using a valid X.509 certificate whose trust chain terminates at the Trust Anchor published in the <span class="mkdocs-ezglossary-link"
+    id="a3f6e8f094874f05c18cec1f24608a7c"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Provider of WRPRC</span> <span class="mkdocs-ezglossary-link"
+    id="e35d57406e47ee1d4d40f169eae2a29a"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.</p>
+<p>For a JWT <span class="mkdocs-ezglossary-link"
+    id="8dcbd2fe646dd807f61f5ad083af97f4"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>, the signing certificate chain SHALL be carried in the <code>x5c</code> JOSE header.</p>
+<h5 id="token-status-list-wallet-unit-attestation-profile">Token Status List (Wallet Unit Attestation Profile)<a class="headerlink" href="#token-status-list-wallet-unit-attestation-profile" title="Permanent link">&para;</a></h5>
+<p>This section profiles the TSL mechanism of [draft-ietf-oauth-status-list] for <span class="mkdocs-ezglossary-link"
+    id="134f0639defbecb171b38fa7a0f2c505"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">Wallet Instance Attestations (WIAs)</span> or <span class="mkdocs-ezglossary-link"
+    id="29fe33ab245bbe039dfa18d88d2ba58e"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">Key Attestations (KAs)</span> as described in [TS03] and [CIR 2026/1731].</p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="0ecfc7860a3ad9b24624cf1ba4635559"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> Provider SHALL be the <span class="mkdocs-ezglossary-link"
+    id="0625e20f57d8a13bddb49f577ffaa96f"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Signature Algorithms</p>
+<p>The Signature Algorithms allowed for signing a <span class="mkdocs-ezglossary-link"
+    id="5a7179f12180660cab776f8edf315021"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> SHALL be among those referenced in [TS03].</p>
+</div>
+<p>As specified in [TS03],</p>
+<ul>
+<li>A <span class="mkdocs-ezglossary-link"
+    id="5df3593adf1d4b1666c80bf2c13ddefe"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> SHALL include its Status List reference in <code>client_status.status.status_list</code>; and,</li>
+<li>A <span class="mkdocs-ezglossary-link"
+    id="18a33c68a70bc4eb4efe13e1d03e9b10"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> SHALL include its Status List reference in <code>key_storage_status.status.status_list</code>.</li>
+</ul>
+<p><strong>Status List</strong></p>
+<p>A Status List contains a compressed byte array whose entries represent the statuses of many <span class="mkdocs-ezglossary-link"
+    id="b5d9fe696d93f5ce9932cf4b44b4a61e"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIAs</span> or <span class="mkdocs-ezglossary-link"
+    id="b85a8070305111bd2453bdabb7554b4e"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KAs</span>.</p>
+<p>Each Status List reference SHALL contain <code>idx</code> and <code>uri</code>. Both <span class="mkdocs-ezglossary-link"
+    id="729d011df3dc7e35f4579fd8e5283601"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIAs</span> and <span class="mkdocs-ezglossary-link"
+    id="54e19ce6a4c1ccfe2aeef82e695890c2"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KAs</span> are JWTs; therefore, <code>idx</code> is a JSON integer and <code>uri</code> is a JSON string in each reference. In both cases, <code>uri</code> SHALL be a URI conforming to [RFC 3986].</p>
+<p>According to this specification, a <span class="mkdocs-ezglossary-link"
+    id="4c53712c3dc6517688f194255a35fb86"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> or <span class="mkdocs-ezglossary-link"
+    id="114acd7a0dcf3cf05de41d2b9cfaa7fd"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> can have one of the following statuses:</p>
+<ul>
+<li><code>VALID</code>. The <span class="mkdocs-ezglossary-link"
+    id="ea7743f8c4c2372e3cc92c4fb746b443"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> or <span class="mkdocs-ezglossary-link"
+    id="c3fef67d236ec4745661960e262c4635"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> is valid. This status is represented by <code>0x00</code> in the <span class="mkdocs-ezglossary-link"
+    id="2badc92e4a7c2b3650226bd4916abcae"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>.</li>
+<li><code>INVALID</code>. The <span class="mkdocs-ezglossary-link"
+    id="f6db8624fdfafef2d920d8a866d4d34b"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> or <span class="mkdocs-ezglossary-link"
+    id="71c69cddccf68cefaa14c7c6b29b44fe"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> is revoked. This status is represented by <code>0x01</code> in the <span class="mkdocs-ezglossary-link"
+    id="380f62754598b8322d9b03da0a350dda"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>.</li>
+</ul>
+<p>As a result, the <span class="mkdocs-ezglossary-link"
+    id="36bad196433c4e13068437d26757dcbc"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> SHALL set the <code>bits</code> parameter in the <span class="mkdocs-ezglossary-link"
+    id="7b36fc4090a2a65f4a2e28797e59f508"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>'s <code>status_list</code> object to <code>1</code>.</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="0acd09eb258a9b47f761a4f21ae524f0"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> SHALL pack entries starting with the least significant bit of each byte, compress the byte array using DEFLATE with the ZLIB data format, and publish the resulting Status List in the <span class="mkdocs-ezglossary-link"
+    id="8b042bd05204c9090f4613b2d2c537d9"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span>.</p>
+<p><strong>KA Index Assignment</strong></p>
+<p>According to <code>R_KA_1</code> of [CIR 2026/1731], a Wallet Provider SHALL choose one of the following index-assignment options for the <code>key_storage_status.status</code> claim in a <span class="mkdocs-ezglossary-link"
+    id="093674b00c69c676f996cc4b6ae1e111"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span>.</p>
+<ul>
+<li><strong>Option 1: <code>type-shared index</code></strong>. All <span class="mkdocs-ezglossary-link"
+    id="9d55b8fdd0a62ce72c5dda92f8299e28"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KAs</span> attesting keys stored in the same type of <span class="mkdocs-ezglossary-link"
+    id="bf806fcc66d31e2e9790d18c86b8a769"
+    data-term="Wallet Secure Cryptographic Device (WSCD)"
+    data-tooltip="A tamper-resistant device that provides an environment that is linked to and used by the Wallet Secure Cryptographic Application to protect critical assets and provide cryptographic functions for the secure execution of critical operations. [ARF]"
+    name="components:Wallet Secure Cryptographic Device (WSCD)"
+    href="../../glossary-definitions/#758f79d2022ab3a2f0a5e0c4a0fff03b">WSCD</span> or keystore SHALL contain the same index value in <code>key_storage_status.status</code>.</li>
+<li><strong>Option 2: <code>per-key-attestation index</code></strong>. A <span class="mkdocs-ezglossary-link"
+    id="e6b490f9d73787398273aab2a23e3dca"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> attesting keys stored in an individual <span class="mkdocs-ezglossary-link"
+    id="4ebac5d4832b7f3d628bed158d6686c2"
+    data-term="Wallet Secure Cryptographic Device (WSCD)"
+    data-tooltip="A tamper-resistant device that provides an environment that is linked to and used by the Wallet Secure Cryptographic Application to protect critical assets and provide cryptographic functions for the secure execution of critical operations. [ARF]"
+    name="components:Wallet Secure Cryptographic Device (WSCD)"
+    href="../../glossary-definitions/#758f79d2022ab3a2f0a5e0c4a0fff03b">WSCD</span> or keystore SHALL contain a pairwise-unique index value in <code>key_storage_status.status</code>.</li>
+</ul>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="b04b8345c030a576d72e16e8bdb54878"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> SHALL use <strong>Option 1: <code>type-shared index</code></strong>. As a result, the <code>idx</code> within the Status List reference SHOULD NOT not be unique per <span class="mkdocs-ezglossary-link"
+    id="4fa98fd9ac3d70fe662e0caf9a74e881"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> token as multiple <span class="mkdocs-ezglossary-link"
+    id="be90ea7208f8879deab4d278d413a3d8"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KAs</span> statuses may be referenced in the same index depending on the devices used.</p>
+</div>
+<p><strong>Status List Token</strong></p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choices</p>
+<ul>
+<li>The <span class="mkdocs-ezglossary-link"
+    id="0588f63210aece707d078f4f0bde881f"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> SHALL act as both the Status Issuer and the Status Provider.</li>
+<li>It SHALL make each <span class="mkdocs-ezglossary-link"
+    id="3f4f437210de573f3ec557822e8bbe9f"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> available via <code>HTTP GET</code> at the URI specified by either the <span class="mkdocs-ezglossary-link"
+    id="b41891c7e71dc1238bbc2d712364a950"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span>'s <code>client_status.status.status_list.uri</code> member or the <span class="mkdocs-ezglossary-link"
+    id="6e6da5bb8e85f7b2b79d6e0e4cb6a819"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span>'s <code>key_storage_status.status.status_list.uri</code> member, using <code>application/statuslist+jwt</code>.</li>
+<li>The <span class="mkdocs-ezglossary-link"
+    id="66b886a36f7575f71f3031cfdb3e1ac5"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> format SHALL be either a JWT and SHALL be protected by a cryptographic signature.</li>
+<li>Regardless of the chosen format, the <span class="mkdocs-ezglossary-link"
+    id="a0fe647aafa473dd5e1bc27962edb094"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> SHALL conform to <a href="#status-list-token">Status List Token</a>.</li>
+<li>Regardless of the format, the <span class="mkdocs-ezglossary-link"
+    id="285aa43d1f03977902dca52e5f6f49a1"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WP</span> SHALL sign the <span class="mkdocs-ezglossary-link"
+    id="1e973ff923c69c1dfdb7f812374d63da"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> using a valid X.509 certificate whose trust chain terminates at the <span class="mkdocs-ezglossary-link"
+    id="7c7882bc972c5bc3b800b574eb1702b3"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> published in the <span class="mkdocs-ezglossary-link"
+    id="14eef58730f6325303043529e16bda3c"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">WPs</span> <span class="mkdocs-ezglossary-link"
+    id="652d15321af40689bd41e9681d2bdd9a"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.</li>
+</ul>
+</div>
+<p><strong>Operational and Runtime Checks</strong></p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choice</p>
+<p>The following operational and runtime requirements are APTITUDE profiling choices derived from the possibilities in [CIR 2026/1731] and [TS03]. They do not replace the mandatory requirements applicable to <span class="mkdocs-ezglossary-link"
+    id="9d1bc26a13e2438bb491ecbf4cfddb93"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>.</p>
+</div>
+<p>This profile distinguishes between:</p>
+<ul>
+<li><strong>Runtime status validation</strong>, performed as part of the <span class="mkdocs-ezglossary-link"
+    id="5ad92d3eaf1ea4a9227a46a81b9366a3"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> issuance transaction and described in [APTITUDE-RFC001].</li>
+<li><strong>Operational status monitoring</strong>, performed by the <span class="mkdocs-ezglossary-link"
+    id="baab375c0782a9f080f68d0a698d6ab6"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> or <span class="mkdocs-ezglossary-link"
+    id="9e8a822c1351d0b7a321447b923ea8e4"
+    data-term="Attestation Provider (AP)"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestaion Provider</span> after issuance and during the technical validity period of the issued <span class="mkdocs-ezglossary-link"
+    id="85027c57ac9046e683c1f1c4e12e1144"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span>.</li>
+</ul>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choices</p>
+<ul>
+<li>For a device-bound <span class="mkdocs-ezglossary-link"
+    id="66de3ce06cd3217e9b4809cf2b5ec33f"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span>, both the <span class="mkdocs-ezglossary-link"
+    id="44fa5ba89c04d958eb079064aef26452"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> and the <span class="mkdocs-ezglossary-link"
+    id="77ffbde48e2bc6d4bd3599fb7bb311ee"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> are applicable, and the statuses of both SHALL be checked at issuance.</li>
+<li>For a non-device-bound <span class="mkdocs-ezglossary-link"
+    id="44fa4908c1912982845cd024d0b5254b"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span>, requirements concerning the <span class="mkdocs-ezglossary-link"
+    id="c81ac900393c038f545314b83540f19d"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> do not apply, and only the status of the <span class="mkdocs-ezglossary-link"
+    id="429d88f3ad523059c1c5023fbb03e3d5"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> SHALL be checked at issuance.</li>
+</ul>
+</div>
+<p>For PIDs, the current [TS03] requirements, as reflected in [CIR 2026/1731], require the <span class="mkdocs-ezglossary-link"
+    id="92dc10d130d004581a7257763211d25e"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Provider</span> to monitor both the <span class="mkdocs-ezglossary-link"
+    id="3fe0481b6cb14aa5ff2b2e8de266e377"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> and <span class="mkdocs-ezglossary-link"
+    id="26ea4babad771ebfb6a9f5cecc379b58"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> status at least once every 24 hours when the technical validity period of the <span class="mkdocs-ezglossary-link"
+    id="f1559bf7c6e1a8c6bd84c7294e4df748"
+    data-term="Person Identification Data (PID)"
+    data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
+    name="credentials:Person Identification Data (PID)"
+    href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">PID</span> exceeds 24 hours.</p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Implementation Choices</p>
+<p>For other <span class="mkdocs-ezglossary-link"
+    id="267cbb7fd344a361c3edc4c6d5c76a4b"
+    data-term="Attestation Type"
+    data-tooltip="An identifier for a type of attestation, unique within the context of the EUDI Wallet ecosystem. [ARF]"
+    name="data-elements:Attestation Type"
+    href="../../glossary-definitions/#229284f17964ba81cfdfc14532a0f8a3">Attestation Types</span>:</p>
+<ul>
+<li>both <span class="mkdocs-ezglossary-link"
+    id="7f44107bb5ac656e292df526da195a24"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> and <span class="mkdocs-ezglossary-link"
+    id="c042b0d6520f797f10779cf2f2ecc440"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> operational checks SHALL be performed for device-bound <span class="mkdocs-ezglossary-link"
+    id="0aa38427988fc01e43f0dbb9878573a9"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> when operational monitoring is enabled; while,</li>
+<li>only the <span class="mkdocs-ezglossary-link"
+    id="fc668f1b91ceb21750be9b5ab3a7709c"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> operational check SHALL be performed for non-device-bound <span class="mkdocs-ezglossary-link"
+    id="8f248899a5687d77e0a3d4b9cf7abe41"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> when operational monitoring is enabled.</li>
+</ul>
+</div>
+<p>An <span class="mkdocs-ezglossary-link"
+    id="052d364caa0e1d0edc51939dc42b0e7b"
+    data-term="Attestation Provider (AP)"
+    data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
+    name="roles:Attestation Provider (AP)"
+    href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Provider</span> that supports <span class="mkdocs-ezglossary-link"
+    id="0447366b7b6f3a103d03684091791a5f"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span>/<span class="mkdocs-ezglossary-link"
+    id="915d3e35a4c452b7fcfbfc005ad5c9a9"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> operational status checks SHALL advertise the status-management policy applicable to each Credential Configuration in its <span class="mkdocs-ezglossary-link"
+    id="169e35b52aff679a4abf7d04439380fe"
+    data-term="Credential Issuer Metadata"
+    data-tooltip="Artifact containing information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information. [OID4VCI]"
+    name="artifacts:Credential Issuer Metadata"
+    href="../../glossary-definitions/#5724ef1a5c5a7cde5118788d4f5f3ff4">Credential Issuer Metadata</span>. This profile defines the following additional members of a Credential Configuration object:</p>
+<ul>
+<li><code>wallet_attestation_status_management</code>;</li>
+<li><code>key_attestation_status_management</code>.</li>
+</ul>
+<p>Each value is an object with the following members:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Member</th>
+<th style="text-align: center;">Presence</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>wallet_attestation_status_management</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td style="text-align: center;"><em>Object</em></td>
+<td style="text-align: left;">The status-management policy for the <span class="mkdocs-ezglossary-link"
+    id="627cb24c12d66e49e09b1b74f34a3e53"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>wallet_attestation_status_management.issuance_check</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td style="text-align: center;"><em>String</em></td>
+<td style="text-align: left;">The issuance-time status check. The value SHALL be <code>wia</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>wallet_attestation_status_management.operational_check</code></td>
+<td style="text-align: center;">REQUIRED</td>
+<td style="text-align: center;"><em>String</em></td>
+<td style="text-align: left;">The post-issuance <span class="mkdocs-ezglossary-link"
+    id="c6679d9865c62a6ad7450f0e2cf03d39"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> status check. The value SHALL be <code>none</code> (no post-issuance <span class="mkdocs-ezglossary-link"
+    id="dc860a10f43ecc1e7d7477d9b6b2ff23"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> monitoring) or <code>wia</code> (the <span class="mkdocs-ezglossary-link"
+    id="192b96911778dca728e56f78d152d534"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> status is monitored).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>wallet_attestation_status_management.maximum_check_interval</code></td>
+<td style="text-align: center;">OPTIONAL unless <code>operational_check</code> is not <code>none</code></td>
+<td style="text-align: center;"><em>Integer</em></td>
+<td style="text-align: left;">The maximum interval between two <span class="mkdocs-ezglossary-link"
+    id="aae8f19463bdaed6a063d1ae5694f1a0"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> status checks, expressed in seconds.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>wallet_attestation_status_management.revocation_action</code></td>
+<td style="text-align: center;">REQUIRED when <code>operational_check</code> is not <code>none</code></td>
+<td style="text-align: center;"><em>String</em></td>
+<td style="text-align: left;">The action taken when the <span class="mkdocs-ezglossary-link"
+    id="5c613754d41a9172aaf7240a763eb8ad"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> is invalid. The value defined by this profile is <code>revoke_credential</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>wallet_attestation_status_management.policy_id</code></td>
+<td style="text-align: center;">RECOMMENDED</td>
+<td style="text-align: center;"><em>String</em></td>
+<td style="text-align: left;">A stable identifier representing the <span class="mkdocs-ezglossary-link"
+    id="0bad30747f4c2bd4e4e2c88e5f8fe414"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span> status-management policy applied by the Credential Issuer.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Member</th>
+<th style="text-align: left;">Presence</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>key_attestation_status_management</code></td>
+<td style="text-align: left;">REQUIRED for device-bound credentials; not applicable to non-device-bound credentials</td>
+<td style="text-align: left;"><em>Object</em></td>
+<td style="text-align: left;">The status-management policy for the <span class="mkdocs-ezglossary-link"
+    id="d5a35a1e682c5a06d682d7c8ccb4dca7"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>key_attestation_status_management.issuance_check</code></td>
+<td style="text-align: left;">REQUIRED for device-bound credentials</td>
+<td style="text-align: left;"><em>String</em></td>
+<td style="text-align: left;">The issuance-time status check. The value SHALL be <code>ka</code> if the <span class="mkdocs-ezglossary-link"
+    id="2de8ce478242ab159eb2bb9f13be55d9"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> for device bound credential, and SHOULD be <code>none</code> for non device-bound credential.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>key_attestation_status_management.operational_check</code></td>
+<td style="text-align: left;">REQUIRED for device-bound credentials</td>
+<td style="text-align: left;"><em>String</em></td>
+<td style="text-align: left;">The post-issuance <span class="mkdocs-ezglossary-link"
+    id="57e21c4654996429e18386a072370e80"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> status check. The value SHALL be <code>none</code> (no post-issuance <span class="mkdocs-ezglossary-link"
+    id="2318ef4cee08f2b6940f7e00ceb76b8d"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> monitoring) or <code>ka</code> (the <span class="mkdocs-ezglossary-link"
+    id="a7d7582d99ffa1079f735a7a875479d0"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> status is monitored).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>key_attestation_status_management.maximum_check_interval</code></td>
+<td style="text-align: left;">OPTIONAL unless <code>operational_check</code> is not <code>none</code></td>
+<td style="text-align: left;"><em>Integer</em></td>
+<td style="text-align: left;">The maximum interval between two <span class="mkdocs-ezglossary-link"
+    id="6f62756a69ec3c5ad3b4384802c0af78"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> status checks, expressed in seconds.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>key_attestation_status_management.revocation_action</code></td>
+<td style="text-align: left;">REQUIRED when <code>operational_check</code> is not <code>none</code></td>
+<td style="text-align: left;"><em>String</em></td>
+<td style="text-align: left;">The action taken when the <span class="mkdocs-ezglossary-link"
+    id="a3d60f35c203d2d836ff6127c51239b8"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> is invalid. The value defined by this profile is <code>revoke_credential</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>key_attestation_status_management.policy_id</code></td>
+<td style="text-align: left;">RECOMMENDED</td>
+<td style="text-align: left;"><em>String</em></td>
+<td style="text-align: left;">A stable identifier representing the <span class="mkdocs-ezglossary-link"
+    id="5953b70f9ae509c683a19f6ee42bfdea"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span> status-management policy applied by the Credential Issuer.</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>Example: Credential Issuer Metadata of an Attestation Provider monitoring both WIA and KA</summary>
+<p><!-- BEGIN INCLUDE ../examples/credential-issuer-metadata-ka-wia.md -->
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"credential_configurations_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"example_device_bound_credential"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dc+sd-jwt"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"cryptographic_binding_methods_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"jwk"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"wallet_attestation_status_management"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"issuance_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wia"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"operational_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wia"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"maximum_check_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"revocation_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"revoke_credential"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"policy_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:eu:eudi:wallet-wia-status-policy:continuous"</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"key_attestation_status_management"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"issuance_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ka"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"operational_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ka"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"maximum_check_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"revocation_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"revoke_credential"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"policy_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:eu:eudi:wallet-ka-status-policy:continuous"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<!-- END INCLUDE -->
+</details>
+<details class="example">
+<summary>Example: Credential Issuer Metadata of an Attestation Provider not monitoring KA</summary>
+<p><!-- BEGIN INCLUDE ../examples/credential-issuer-metadata-wia.md -->
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"credential_configurations_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"example_device_bound_credential"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dc+sd-jwt"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"cryptographic_binding_methods_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"jwk"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"wallet_attestation_status_management"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"issuance_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wia"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"operational_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wia"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"maximum_check_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"revocation_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"revoke_credential"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"policy_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:eu:eudi:wallet-wia-status-policy:continuous"</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"key_attestation_status_management"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"issuance_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"operational_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"policy_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:eu:eudi:wallet-ka-status-policy:issuance-only"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><!-- END INCLUDE -->    </p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Privacy Considerations</p>
+<p>To prevent <span class="mkdocs-ezglossary-link"
+    id="901d161ccd6bed4fe8154a428c1e66af"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span> from tracking or profiling users based on their use of <span class="mkdocs-ezglossary-link"
+    id="eeea65556421930394dd3ec0e9f7c183"
+    data-term="Wallet Unit Attestation (WUA)"
+    data-tooltip="A data object that describes the components of the Wallet Unit or allows authentication and validation of those components. [ARF]"
+    name="artifacts:Wallet Unit Attestation (WUA)"
+    href="../../glossary-definitions/#8b65d3aeb965c7ae9a28cf62c8382320">WUAs</span>, <span class="mkdocs-ezglossary-link"
+    id="5392b6601845cb71b5c82e0d7b8a46b6"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span> SHALL integrate the status information for many <span class="mkdocs-ezglossary-link"
+    id="1d50375b2f322d89e24d3b135b9db9fa"
+    data-term="Wallet Instance Attestation (WIA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
+    name="artifacts:Wallet Instance Attestation (WIA)"
+    href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIAs</span> (type-shared <span class="mkdocs-ezglossary-link"
+    id="78002327d50c823c25e777a0e92fb71e"
+    data-term="Key Attestation (KA)"
+    data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
+    name="artifacts:Key Attestation (KA)"
+    href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KAs</span> are exempt from this requirement) into the same list and SHALL publish the <span class="mkdocs-ezglossary-link"
+    id="d12d5df897bdcb5c029e4d90fb851fec"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> at the same <code>uri</code> for all those <span class="mkdocs-ezglossary-link"
+    id="2e0dbc403de13ebad67cd04162f65250"
+    data-term="Attestation"
+    data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
+    name="credentials:Attestation"
+    href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestations</span>. <span class="mkdocs-ezglossary-link"
+    id="91788c16b66feda29c6084cbb81c851b"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span> SHALL configure Status Lists with at least 10000 status entries. If more attestations are issued, the <span class="mkdocs-ezglossary-link"
+    id="802c5882d68a6db86e1cee943ce00836"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Provider</span> MAY create additional <span class="mkdocs-ezglossary-link"
+    id="dd31a87656dc886c62df30c686e30e35"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Tokens</span> or increase the number of entries in the array, depending on practical considerations such as the total size of each <span class="mkdocs-ezglossary-link"
+    id="43aad0710836aeef7c88701927db8a2f"
+    data-term="Status List Token"
+    data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
+    name="artifacts:Status List Token"
+    href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> and the management of multiple endpoints.</p>
+</div>
+<h3 id="certificate-revocation-lists">Certificate Revocation Lists<a class="headerlink" href="#certificate-revocation-lists" title="Permanent link">&para;</a></h3>
+<p>The format for <span class="mkdocs-ezglossary-link"
+    id="d82bd882b44277fe625bbf3118e2c270"
+    data-term="Certificate Revocation List (CRL)"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</span> is specified in <a href="../../sections/trust-artifacts/#certificate-revocation-list">Certificate Revocation List</a>.</p>
+<h3 id="online-certificate-status-protocol">Online Certificate Status Protocol<a class="headerlink" href="#online-certificate-status-protocol" title="Permanent link">&para;</a></h3>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="5c507853264ebd57160b963d8463834b"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">Online Certificate Status Protocol (OCSP)</span>, defined in [RFC 6960], enables applications to determine the exact revocation state of identified certificates. It provides more timely revocation information than is typically possible with <span class="mkdocs-ezglossary-link"
+    id="5c7d5226d3dc638733059d9a6cb8d1f7"
+    data-term="Certificate Revocation List (CRL)"
+    data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
+    name="artifacts:Certificate Revocation List (CRL)"
+    href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRLs</span> and MAY also be used to obtain additional status information.</p>
+<p>An <span class="mkdocs-ezglossary-link"
+    id="07b8a9609430239d4d5afe18c5f9a6c7"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> client issues a status request to an <span class="mkdocs-ezglossary-link"
+    id="02288d2f903fbab189b4bffd46fb6559"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> responder and SHALL suspend the acceptance of the certificates in question until the responder provides a valid response.</p>
+<p>If supported by the <span class="mkdocs-ezglossary-link"
+    id="39a6271de4662ab9cfce5649c3fc50c4"
+    data-term="Certificate Authority (CA)"
+    data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
+    name="roles:Certificate Authority (CA)"
+    href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span>, the URI at which the <span class="mkdocs-ezglossary-link"
+    id="90deb59b7b60ae064b6567b1ec20598b"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> Responder can be reached SHALL be present in the <code>authorityInfoAccess.accessLocation</code> extension of the <span class="mkdocs-ezglossary-link"
+    id="fcbed7bf13c2aed6167acd363b39276b"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span>.</p>
+<p>This protocol specifies the data that SHALL be exchanged between the <span class="mkdocs-ezglossary-link"
+    id="1ad6ec3456391c3330f2d5d1b615b991"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> client (which checks the status of one or more certificates) and the <span class="mkdocs-ezglossary-link"
+    id="4feeffd36029979a30899a55dfac8ecc"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> server (which provides the corresponding status). In this specific ecosystem, the <span class="mkdocs-ezglossary-link"
+    id="8e5acd09b2980a3876a49612175630ec"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> client can be a <span class="mkdocs-ezglossary-link"
+    id="0db31af9dea7458e15c9b8f173daaac8"
+    data-term="Wallet Unit"
+    data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> checking the <span class="mkdocs-ezglossary-link"
+    id="b7e927e328f7dae49bf0998c8986d6d2"
+    data-term="Wallet-Relying Party Access Certificate (WRPAC)"
+    data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
+    name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
+    href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span> of a WRP, and the <span class="mkdocs-ezglossary-link"
+    id="a05b6e7b630e8cbf7c397b8e87633bc2"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> server is the <span class="mkdocs-ezglossary-link"
+    id="a58b9b49ad7c02f88708fea0e859de64"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Provider of WRPAC</span>.</p>
+<p>The format for <span class="mkdocs-ezglossary-link"
+    id="cb483dca3296c087019796e11828a7b9"
+    data-term="Online Certificate Status Protocol (OCSP)"
+    data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
+    name="protocols:Online Certificate Status Protocol (OCSP)"
+    href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> Requests and Responses is specified in <a href="../../sections/trust-artifacts/#online-certificate-status-protocol-artifacts">Online Certificate Status Protocol Artifacts</a>.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 25, 2026 09:52:59 UTC">September 25, 2026 09:52:59</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+                <div>
+                    Made with
+                    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                        Material for MkDocs
+                    </a>
+                </div>
+            </div>
+            <div class="md-footer-cofunded">
+                <img src="../../img/eu-cofunded.png" alt="Co-funded by the European Union">
+            </div>
+        </div>
+    </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../media/mermaid-init.js"></script>
+      
+        <script src="../../media/mathjax-init.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
