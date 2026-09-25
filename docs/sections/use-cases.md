@@ -118,7 +118,7 @@ The operational trust use cases are derived from the [Trust Management Process](
 
 An Operational Trust Use Case passes when the APTITUDE WP2 checks and any applicable affected-entity or consuming-participant checks pass. Where the affected-entity responsibility is "None", APTITUDE WP2 performs the complete operational test.
 
-APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>, Certificate Services, and Publication Service, executes and records the infrastructure-side checks. The affected entity SHALL provide only the event inputs, notifications, and deployment actions assigned to it in the table. Pilot participants that consume an updated artifact SHALL refresh or automatically integrate that artifact and SHALL execute the linked runtime check. A test case that orchestrates other management processes SHALL invoke their respective operational Trust use cases instead of repeating their checks.
+APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>, Certificate Services, and Publication Service, executes and records the infrastructure-side checks. The affected entity SHALL provide only the event inputs, notifications, and deployment actions assigned to it in the table. APTITUDE Partners that consume an updated artifact SHALL refresh or automatically integrate that artifact and SHALL execute the linked runtime check. A test case that orchestrates other management processes SHALL invoke their respective operational Trust use cases instead of repeating their checks.
 
 <table>
     <thead>
@@ -127,7 +127,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <th>Involved Process(es)</th>
             <th>Artifact(s) in Input</th>
             <th>APTITUDE WP2 Actions</th>
-            <th>Affected entity and pilot participant responsibility</th>
+            <th>Affected Entity and APTITUDE Partners' Responsibility</th>
             <th>On Success</th>
             <th>On Failure</th>
         </tr>
@@ -224,7 +224,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <th>Involved Process(es)</th>
             <th>Artifact(s) in Input</th>
             <th>APTITUDE WP2 responsibility and checks</th>
-            <th>Affected entity and pilot participant responsibility</th>
+            <th>Affected Entity and APTITUDE Partners' Responsibility</th>
             <th>On Success</th>
             <th>On Failure</th>
         </tr>
@@ -344,19 +344,17 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <td>
                 <ul>
                     <li>Updated <artifacts:List of Trusted Entities (LoTE)|LoTE> content</li>
-                    <li>Pivot <artifacts:List of Trusted Entities (LoTE)|LoTE> URI</li>
-                    <li>APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate</li>
+                    <li>Fixed <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoint and authorized signing certificate</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Publish a signed new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and make the replaced version at the applicable pivot URI for retro-compatibility.</li>
-                    <li>Update the <code>SchemeInformationURI</code> accordingly.</li>
-                <ul>
+                    <li>Publish the new signed current <artifacts:List of Trusted Entities (LoTE)|LoTE> at the fixed endpoint with an increased <code>LoTESequenceNumber</code>, a new <code>ListIssueDateTime</code>, and a valid <code>NextUpdate</code>.</li>
+                </ul>
             </td>
-            <td>Every participant that consumes the affected <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL refresh its cached copy via the <artifacts:Trust Anchor> Validation Process and SHALL NOT use old pivot versions for a current decision.</td>
-            <td>The endpoint serves the new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and <artifacts:Trust Anchor> Validation uses its updated entry.</td>
-            <td>The new version is unavailable or invalid, or a participant continues to use the superseded version.</li>
+            <td>Every participant that consumes the affected <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL refresh its cached copy via the <artifacts:Trust Anchor> Validation Process and SHALL reject a version whose sequence number is below the highest previously accepted for that type.</td>
+            <td>The fixed endpoint serves the new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and <artifacts:Trust Anchor> Validation accepts its updated entry.</td>
+            <td>The new version is unavailable or invalid, or a participant continues to use a superseded version.</td>
         </tr>
         <tr>
             <td rowspan="2">Certificate revocation</td>

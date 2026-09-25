@@ -1,15 +1,15 @@
-This section describes the Onboarding Process within APTITUDE, where it is realised as the mocked-up version of the <roles:Wallet-Relying Party (WRP)|WRP> Registration Process and <processes:Notification|Notification Process> (defined in [Trust Architecture](../sections/trust-architecture.md)) through which entities become operational and recognisable in the common trust infrastructure of the pilot.
+This section describes the Onboarding Process within APTITUDE, where it is realised as the mocked-up version of the <roles:Wallet-Relying Party (WRP)|WRP> Registration Process and <processes:Notification|Notification Process> (defined in [Trust Architecture](../sections/trust-architecture.md)) through which entities become operational and recognisable in the common trust infrastructure within APTITUDE.
 
-Onboarding collects all the information needed to make entities operational and recognisable, and it replaces the administrative and regulatory processes that, outside the pilot, manage the registration, <processes:Notification|notification> and publication of <roles:Trusted Entity|Trusted Entities> between Member States and the European Commission.
+Onboarding collects all the information needed to make entities operational and recognisable, and it replaces the administrative and regulatory processes that, outside APTITUDE, manage the registration, <processes:Notification|notification> and publication of <roles:Trusted Entity|Trusted Entities> between Member States and the European Commission.
 
-Within the pilot, consistently with [Trust Architecture](../sections/trust-architecture.md), not all onboarding processes are implemented as defined in the [ARF] and related specifications:
+Within the APTITUDE ecosystem, consistently with [Trust Architecture](../sections/trust-architecture.md), not all onboarding processes are implemented as defined in the [ARF] and related specifications:
 
 - The elements which follows the specifications are: the creation of the registration records, the certificates issuance and the respective profiles, and the <artifacts:List of Trusted Entities (LoTE)|LoTE> publication which enable the distribution of the trust artifacts which enable trust evaluation.
 - The elements which differ according to the constraints highlighted in the [Introduction](../trust-framework.md#introduction) are: the <processes:Notification|notification> process between a Member State and the European Commission, the publication of the <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate in the <artifacts:Official Journal of APTITUDE (OJA)>, and the registration of entities with the prescribed regulatory checks.
 
 !!! note
 
-    The certification of technical products such as a <components:Wallet Solution> is **out of scope of the pilot**: it is an external process, and only its outcome is referenced. The data schemas, certificate profiles, <artifacts:List of Trusted Entities (LoTE)|LoTE> formats, and low-level protocols are instead **out of scope of this section only**: they are normatively defined in the referenced sections of this specification and are only pointed to from here.
+    The certification of technical products such as a <components:Wallet Solution> is **out of scope of APTITUDE**: it is an external process, and only its outcome is referenced. The data schemas, certificate profiles, <artifacts:List of Trusted Entities (LoTE)|LoTE> formats, and low-level protocols are instead **out of scope of this section only**: they are normatively defined in the referenced sections of this specification and are only pointed to from here.
 
 This boundary is mapped onto the components of the Onboarding System in the summary table at the end of [Onboarding System](#onboarding-system).
 
@@ -61,12 +61,13 @@ graph LR
 
 The [Onboarding System](#onboarding-system) operates on top of a trust infrastructure whose entities SHALL be established and have their <artifacts:Trust Anchor|trust anchors> published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [`ONBOARD-GEN-02`].
 
-Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software [`ONBOARD-PRE-01`]. The <artifacts:Trust Anchor|trust anchors> of the infrastructure entities are provided and shared among the participants as a one-time operational setup. What is implemented and testable is the result, i.e. the signed, published <artifacts:List of Trusted Entities (LoTE)|LoTE> against which trust is later evaluated (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)). The operations below describe the trust infrastructure setup process.
+Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no APTITUDE software [`ONBOARD-PRE-01`]. The <artifacts:Trust Anchor|trust anchors> of the infrastructure entities are provided and shared among the participants as a one-time operational setup. What is implemented and testable is the result, i.e. the signed, published <artifacts:List of Trusted Entities (LoTE)|LoTE> against which trust is later evaluated (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)). The operations below describe the trust infrastructure setup process.
 
 ```mermaid
 graph LR
 
-    OJA(["OJA root<br/>(LoTE Provider root certificate)"])
+    OJA(["Trusted OJA publication<br/>(LoTE URLs and signer certificates)"])
+    Signer(["LoTE Provider<br/>(authorized signing key)"])
 
     subgraph LoTE["Infrastructure LoTE"]
         L1[("LoTE with Registrars TA")]
@@ -78,11 +79,13 @@ graph LR
 
     DP[/"LoTE distribution point"/]
 
-    OJA -->|"signs / seals"| L1
-    OJA -->|"signs / seals"| L2
-    OJA -->|"signs / seals"| L3
-    OJA -->|"signs / seals"| L4
-    OJA -->|"signs / seals"| L5
+    Signer -->|"signs / seals"| L1
+    Signer -->|"signs / seals"| L2
+    Signer -->|"signs / seals"| L3
+    Signer -->|"signs / seals"| L4
+    Signer -->|"signs / seals"| L5
+    OJA -->|"identifies authorized signer"| Signer
+    OJA -->|"identifies endpoint"| DP
     L1 -->|"published at"| DP
     L2 -->|"published at"| DP
     L3 -->|"published at"| DP
@@ -95,14 +98,14 @@ graph LR
     classDef dp fill:#f5f5f5,stroke:#999
     classDef root fill:#fde9d9,stroke:#d9a441
     class L1,L2,L3,L4,L5 list;
-    class OJA root;
+    class OJA Signer root;
     class DP dp;
 ```
 
 The setup comprises the following operations:
 
-1. **Key and Certificate Provisioning**. Each trust infrastructure entity provides its signing key and certificate. Within APTITUDE, the trust infrastructure signing entities MAY use self-signed root certificates with no higher certification authority or CA certificates with self managed PKI. Regardless of the choice, Trust in the certificate is conferred by the publication as a <artifacts:Trust Anchor> in the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> and SHALL be treated as a Trusted input in any pilot use case.
-2. **LoTE Signing Certificates**. The signing certificates of the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> are used to validate the lists. Within APTITUDE, the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication is and distribution point where this artifact is made available to the APTITUDE Partners is an operational matter, out of scope of this document.
+1. **Key and Certificate Provisioning**. Each trust infrastructure entity provides its signing key and certificate. Within APTITUDE, the trust infrastructure signing entities MAY use self-signed root certificates with no higher certification authority or CA certificates with self managed PKI. Regardless of the choice, Trust in the certificate is conferred by the publication as a <artifacts:Trust Anchor> in the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> and SHALL be treated as a Trusted input in any APTITUDE use case.
+2. **LoTE Signing Certificates**. The signing certificates of the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> are used to validate the lists. Within APTITUDE, the trusted <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication supplies the location and authorized signing certificate set for each list type. The publication is not itself signed within the APTITUDE ecosystem.
 3. **Notification of Trust Anchors**. The <artifacts:Trust Anchor> of each infrastructure entity is listed in its corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE> as described in the above picture.
 4. **Signing and Publication**. The <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> signs/seals the <artifacts:List of Trusted Entities (LoTE)|LoTE> and publishes them at a distribution point referenced by the <artifacts:Official Journal of APTITUDE (OJA)|OJA>, so that they can be retrieved at validation time (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)).
 
@@ -112,7 +115,7 @@ This section describes the recurring process through which operational entities 
 
 ### Onboarding System
 
-This section describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is a pilot design choice and is not defined by the <components:EUDI Wallet> normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document. The diagram below shows how the operational entity requesting onboarding interacts with these components.
+This section describes the logical components that implement the Onboarding Process in APTITUDE and how they relate. It is an APTITUDE-specific logical view as the roles are normatively defined, but their decomposition into components is an APTITUDE design choice and is not defined by the <components:EUDI Wallet> normative framework. Technical implementation details (technologies, protocols, deployment) are out of scope of this document. The diagram below shows how the operational entity requesting onboarding interacts with these components.
 
 ```mermaid
 graph TB
@@ -186,14 +189,14 @@ The Onboarding System SHALL keep the <components:Register|WRP Register> and the 
 
     Notice that some infrastructure entities that are notified but not registered as <roles:Wallet-Relying Party (WRP)|WRPs> (<roles:Wallet Provider (WP)|WPs>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, <roles:Registrar|Registrars>) are not present in the <components:Register|WRP Register> at all.
 
-Against this decomposition, the pilot boundary set out in the introduction of the Onboarding Process section is summarised below.
+Against this decomposition, the APTITUDE boundary set out in the introduction of the Onboarding Process section is summarised below.
 
 | Element       | Within APTITUDE   |
 | ------------- | ----------------- |
-| Onboarding UI, Registration Service (with the <components:Register\|WRP Register> and its API), <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, Sign/Seal Certificate Issuance Services, and Publication Service (with the <artifacts:List of Trusted Entities (LoTE)\|LoTE>) | Implemented as pilot software |
-| Trust infrastructure setup (prerequisites) | Performed out of band; no pilot software |
-| The Member State to European Commission notification act, and the <artifacts:Official Journal of the European Union (OJEU)\|OJEU> publication | Mocked, respectively by the Publication Service and by the pilot |
-| The certification of a <components:Wallet Solution> | External; out of scope of the pilot and only referenced |
+| Onboarding UI, Registration Service (with the <components:Register\|WRP Register> and its API), <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, Sign/Seal Certificate Issuance Services, and Publication Service (with the <artifacts:List of Trusted Entities (LoTE)\|LoTE>) | Implemented as APTITUDE software |
+| Trust infrastructure setup (prerequisites) | Performed out of band; no APTITUDE software |
+| The Member State to European Commission notification act, and the <artifacts:Official Journal of the European Union (OJEU)\|OJEU> publication | Mocked, respectively by the Publication Service and by APTITUDE |
+| The certification of a <components:Wallet Solution> | External; out of scope of APTITUDE and only referenced |
 | Data schemas, certificate profiles, <artifacts:List of Trusted Entities (LoTE)\|LoTE> formats, low-level protocols | Defined in the referenced sections of this specification, not redefined here |
 
 ### Input
@@ -360,7 +363,7 @@ These actions SHALL act on the **organisational entity**, that is its registrati
 
 The lifecycle of entities that are only notified is governed by the <processes:Notification|notification> framework ([CIR 2024/2980]). The entity is published when notified, and upon cancellation it stops being trusted (`ARF GenNot_05`). For the <roles:Wallet Provider (WP)|Wallet Provider>, a cancellation additionally requires the revocation of all its valid <artifacts:Wallet Unit Attestation (WUA)|WUAs> (`ARF WPNot_06`). The same applies to the other notified entities published in their <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
-How *stops being trusted* is represented depends on the list type, and APTITUDE adopts the representation already supported by each format. The PuB-EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE> carries an explicit per-entry status, which on cancellation SHALL be set to withdrawn or invalid; the <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Wallet Provider (WP)|Wallet Provider>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>, and <roles:Registrar> <artifacts:List of Trusted Entities (LoTE)|LoTEs> carry no per-entry status (per [ETSI TS 119 602], `ServiceStatus` and the service history are not used for these types), so for them a cancelled entity SHALL be reflected by removing the entry [`ONBOARD-LC-01`]. The broader lifecycle of notified entities belongs to the Trust Management Process.
+How *stops being trusted* is represented depends on the list type, and APTITUDE adopts the representation already supported by each format. The PuB-EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE> carries an explicit per-entry status, which on cancellation SHALL be set to withdrawn; the <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Wallet Provider (WP)|Wallet Provider>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>, and <roles:Registrar> <artifacts:List of Trusted Entities (LoTE)|LoTEs> carry no per-entry status (per [ETSI TS 119 602], `ServiceStatus` and the service history are not used for these types), so for them a cancelled entity SHALL be reflected by removing the entry [`ONBOARD-LC-01`]. The broader lifecycle of notified entities belongs to the Trust Management Process.
 
 Finally, the artifacts produced by onboarding are consumed in the trust evaluation processes. The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is used in the [Authentication Process](../sections/trust-evaluation-process.md#authentication-process), Sign/Seal Certificates are used in the [Sign/Seal Validation Process](../sections/trust-evaluation-process.md#signseal-validation-process), the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and the <components:Register> are used in the [Authorization Process](../sections/trust-evaluation-process.md#authorization-process), the <artifacts:List of Trusted Entities (LoTE)|LoTE> <artifacts:Trust Anchor|Trust Anchors> are used in the [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process), and certificate revocation is covered by [Revocation Mechanisms](../sections/trust-management-lifecycle.md#revocation-mechanisms).
 
@@ -383,7 +386,7 @@ Finally, the artifacts produced by onboarding are consumed in the trust evaluati
 
 | ID                | Requirement   | Scope | External Requirements |
 | :---------------: | ------------- | ----- | --------------------- |
-| `ONBOARD-PRE-01`  | Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no pilot software. | Prerequisites | -- |
+| `ONBOARD-PRE-01`  | Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no APTITUDE software. | Prerequisites | -- |
 
 ### Registration
 
@@ -402,6 +405,6 @@ Finally, the artifacts produced by onboarding are consumed in the trust evaluati
 
 | ID                | Requirement   | Scope | External Requirements |
 | :---------------: | ------------- | ----- | --------------------- |
-| `ONBOARD-LC-01`   | <artifacts:List of Trusted Entities (LoTE)\|LoTE> carrying a per-entry status SHALL reflect cancellation by setting the status to withdrawn or invalid; <artifacts:List of Trusted Entities (LoTE)\|LoTE> carrying no per-entry status SHALL reflect it by removing the entry. | Onboarding | [ETSI TS 119 602], GenNot_05 |
+| `ONBOARD-LC-01`   | <artifacts:List of Trusted Entities (LoTE)\|LoTE> carrying a per-entry status SHALL reflect cancellation by setting the status to withdrawn; <artifacts:List of Trusted Entities (LoTE)\|LoTE> carrying no per-entry status SHALL reflect it by removing the entry. | Onboarding | [ETSI TS 119 602], GenNot_05 |
 | `ONBOARD-LC-02`   | Lifecycle actions (cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates. | Onboarding | [CIR 2025/848] Art. 9 |
 | `ONBOARD-LC-03`   | A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a <processes:Notification\|notification> update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its cancellation (effect of `ONBOARD-LC-01`). | Onboarding | -- |

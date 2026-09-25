@@ -151,7 +151,7 @@ WRPAC --> WI[Wallet Instance]
 WRPRC --> WI
 RPRC19a --> WI
 DCQL --> WI
-WI --> TA[Resolve trust anchors from LoTE / trusted-list infrastructure]
+WI --> TA[Resolve trust anchors from dedicated LoTE]
 WI --> ContextD{WRPRC valid?}
 ContextD -->|Yes| Context[Valid authorization context from WRPRC]
 ContextD -->|No| RegChoice{Invoke optional Register?}
@@ -194,7 +194,7 @@ ReaderAuth --> WI[Wallet Instance]
 EuWrprc --> WI
 ReqInfo --> WI
 Namespaces --> WI
-WI --> TA[Resolve trust anchors from LoTE / trusted-list infrastructure]
+WI --> TA[Resolve trust anchors from dedicated LoTE]
 WI --> ContextD{WRPRC valid?}
 ContextD -->|Yes| Context[Valid authorization context from WRPRC]
 ContextD -->|No| RegChoice{Invoke optional Register?}
@@ -433,8 +433,8 @@ A[Need trust anchor] --> B{Trust anchor type}
 B -->|Provider of WRPAC| L1[Check WRPAC Provider LoTE]
 B -->|Provider of WRPRC| L2[Check WRPRC Provider LoTE]
 B -->|Registrar| L3[Check Registrar LoTE]
-B -->|Qualified / TL-based entity| L4[Check LOTL and EUMS TL]
-L1 --> V[Validate trusted-list authenticity, integrity, freshness]
+B -->|PID / QEAA / EAA / PuB-EAA / Wallet Provider| L4[Check dedicated LoTE]
+L1 --> V[Validate LoTE signature, authorized signer, freshness and sequence]
 L2 --> V
 L3 --> V
 L4 --> V
@@ -448,8 +448,8 @@ TA --> Use[Use trust anchor in certificate/path validation]
 | --------------------------------- | ----------------- |
 | **Performed by**                  | <components:Wallet Instance> or trust-validation component used by Wallet. |
 | **Checked entity**                | <artifacts:List of Trusted Entities (LoTE)\|LoTE>. |
-| **Input artifacts**               | Trusted list, list signature, signing certificate, list metadata such as NextUpdate. |
-| **Checks**                        | Validate trusted-list signature; verify that the signing certificate is authentic for the list; check list freshness / NextUpdate; extract relevant trusted entity entry and <artifacts:Trust Anchor>. |
+| **Input artifacts**               | Type-specific LoTE, its signature, trusted OJA signing certificate set, and list metadata such as `NextUpdate` and `LoTESequenceNumber`. |
+| **Checks**                        | Validate the LoTE signature and type-specific profile; match the signing certificate to the trusted OJA set; check the 24-hour cache limit, `NextUpdate`, and persisted sequence; select the current applicable service and <artifacts:Trust Anchor>. |
 | **Positive result**               | <artifacts:Trust Anchor> can be used for certificate-path validation. |
 | **Negative result**               | <artifacts:Trust Anchor> cannot be used; dependent <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>/<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>/<components:Register> validation fails. |
 | **Test focus**                    | Valid list; invalid signature; expired list; signer not authorized; missing entity; wrong service type. |
