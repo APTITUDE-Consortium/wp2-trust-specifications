@@ -48,7 +48,7 @@ This section specifies the profiles and formats that the various <artifacts:List
 
 The following repository provides the base normative JSON and XML schemas required for implementing the <artifacts:List of Trusted Entities (LoTE)|LoTE>: <https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities>.
 
-The [LoTE OpenAPI description](../includes/lote-oas3.yaml) documents the pilot's type-specific retrieval endpoints and the JSON <artifacts:List of Trusted Entities (LoTE)|LoTE> carried in a signed compact JWT. Its paths and example values are illustrative; the actual fixed endpoint and authorized signing certificates for each type are published by the <artifacts:Official Journal of APTITUDE (OJA)|OJA>. The OpenAPI document covers the JSON representation; optional XML support for QEAA Provider Lists is described below.
+The [LoTE OpenAPI description](../api/lote-api.md) documents the APTITUDE type-specific retrieval endpoints and the JSON <artifacts:List of Trusted Entities (LoTE)|LoTE> carried in a signed compact JWT. Its paths and example values are illustrative; the actual fixed endpoint and authorized signing certificates for each type are published by the <artifacts:Official Journal of APTITUDE (OJA)|OJA>. The OpenAPI document covers the JSON representation; optional XML support for QEAA Provider Lists is described below.
 
 #### Specific Formats and Uses
 
