@@ -1,27 +1,30 @@
-The **Trust Anchor Validation Process** verifies the cryptographic integrity of a <artifacts:List of Trusted Entities (LoTE)|LoTE> and checks its signing certificate against the set published for its type in the <artifacts:Official Journal of APTITUDE (OJA)|OJA>. The accepted <artifacts:List of Trusted Entities (LoTE)|LoTE> is the source for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is an X.509 certificate containing the name and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> to validate an artifact or <credentials:Attestation>.
+The **Trust Anchor Validation Process** obtains a <artifacts:Trust Anchor> for a Wallet Unit, WRP or their trust-validation component. The [Trust Anchor definition](../sections/trust-artifacts.md#trust-anchor-certificate) governs the returned identity. This topic owns trust-source dispatch, current-list runtime acceptance, caching and rollback state.
 
-!!! choice "APTITUDE Implementation Choice"
+#### Trust-Source Dispatch
 
-    All <artifacts:Trust Anchor|Trust Anchors> SHALL be obtained from the applicable dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. This applies to <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Wallet Provider (WP)|Wallet Providers>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Providers>, <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers>, <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers>, <roles:Registrar|Registrars> and their <components:Register|Registers>.
+**Inputs and Outcome**
 
-Depending on the artifact or <credentials:Attestation> being verified, the validating entity SHALL fetch, download, and validate the dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE> for the required entity type. The <artifacts:List of Trusted Entities (LoTE)|LoTE> is used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating:
+Inputs are the requested artifact or attestation and provider kind, provider certificate and service identity, required service type, territory `CC` (uppercase ISO 3166-1 Alpha-2), and current runtime validation time. Authentication, runtime acceptance and service eligibility are separate results. Runtime rejection SHALL return no Trust Anchor.
 
-1. **Infrastructure Certificates**: <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>.
-2. **<artifacts:Wallet Unit Attestation (WUA)|Wallet Unit Attestations (WUAs)>**: <artifacts:Key Attestation (KA)> and <artifacts:Wallet Instance Attestation (WIA)>.
-3. **<credentials:Person Identification Data (PID)|PID> Signatures**: <credentials:Person Identification Data (PID)>.
-4. **<credentials:Attestation> Signatures and Seals**: <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, <credentials:Electronic Attestation of Attributes (EAA)|EAA>, and <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAA>.
-5. **Artifacts and <credentials:Attestation> Status and Revocation Information**: <artifacts:Status List Token> for <credentials:Attestation|Attestations>, <artifacts:Key Attestation (KA)|KA>, <artifacts:Wallet Instance Attestation (WIA)|WIA>, and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> status information; <artifacts:Certificate Revocation List (CRL)|CRL> or <protocols:Online Certificate Status Protocol (OCSP)|OCSP> for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and Sign/Seal Certificate status information.
-6. **Registrar-signed Artifacts**: <components:Register> information.
+The validator SHALL route QEAA requests exclusively through the pilot LOTL and TL, with no LoTE fallback. PID Providers, Wallet Providers, Providers of WRPAC, Providers of WRPRC, PuB-EAA Providers, EAA Providers, and Registrars and Registers SHALL use their respective seven retained JSON LoTE paths below. Stored lists and Trust Anchors SHALL preserve source/profile separation, following [ARF Trust Model, Section 6.6.3.6].
 
-!!! choice "APTITUDE Implementation Choice"
+#### Pilot TL and LOTL Runtime Acceptance
 
-    The <artifacts:Trust Anchor|Trust Anchors> for <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers> and <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers> SHALL be retrieved from and validated against their dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>. The same <artifacts:List of Trusted Entities (LoTE)|LoTE> validation process SHALL be used for these <artifacts:Trust Anchor|Trust Anchors> as for all other APTITUDE entities.
+The dispatch procedure SHALL initiate required retrieval under the cache rules below and [LOTL Authentication](../sections/trust-evaluation-process.md#lotl-authentication) and [TL Authentication](../sections/trust-evaluation-process.md#trusted-list-authentication), governed by [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.1–4.2]. Authentication hands off to the following common checks; these checks consume authentication outputs, retrieval time and persisted sequence/digest state and SHALL NOT invoke authentication again. Required refresh SHALL be attempted before rejecting a stale cached instance.
 
-To validate a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE> under the APTITUDE profile, the validating entity SHALL:
+1. Require successful authentication. Preserve all ETSI authentication statuses and sub-statuses on every local runtime failure. Report runtime acceptance separately; runtime rejection SHALL return no Trust Anchor or usable trust context.
+2. Independently check each authenticated current TL and LOTL against its applicable pilot profile in [Trust Artifacts](../sections/trust-artifacts.md#trusted-list), requiring `ListIssueDateTime` not later than the current runtime validation time and `NextUpdate` later than that time, under [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.3.14–5.3.15]. An overdue TL SHALL be rejected even with `EUTL_VERIFICATION_PASSED` and `WARNING_EUTL_NEXTUPDATE_PASSED`.
+3. Apply the sequence and signed-content-digest conflict checks below independently to each current list. All profile, freshness and state checks SHALL succeed, and the highest accepted state SHALL be successfully persisted, before reporting runtime success or returning usable trust context. Failure to persist SHALL reject runtime use without a Trust Anchor. Dispatch SHALL require acceptance of both current lists.
 
-- obtain the location and authorized signing certificate set for the requested <artifacts:List of Trusted Entities (LoTE)|LoTE> type from the <artifacts:Official Journal of APTITUDE (OJA)>;
-- verify the <artifacts:List of Trusted Entities (LoTE)|LoTE> signature or seal using the format-specific procedure and compare its signing certificate, by exact DER certificate identity, with the certificate set published for that type in the <artifacts:Official Journal of APTITUDE (OJA)|OJA>;
-- validate the <artifacts:List of Trusted Entities (LoTE)|LoTE> structure, requested type, publication location, freshness, and sequence number.
+This process supplies authenticated, runtime-accepted TL service information and service identity or path context. The calling [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process) procedure owns QEAA matching, qualification and provider binding under [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.3 and 4.6]; matching alone does not establish qualification. Service digital identity, status and effective time follow [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.5.3–5.5.5]. Any applicable CA Trust Anchor follows the existing Trust Anchor definition; non-CA direct service identities remain governed by the cited matching procedures rather than the CA-anchor profile. Absent or ambiguous eligible identities SHALL yield no Trust Anchor.
+
+**Current-List Cache and Rollback State**
+
+For each current pilot TL and LOTL independently, the validator SHALL retrieve the current list when no accepted cached instance exists, 24 hours have elapsed since retrieval, or `NextUpdate` has been reached, whichever occurs first. A failed required refresh SHALL reject runtime use without a Trust Anchor. Publication and update detection follow [ETSI TS 119 612 V2.4.1 (2025-08), Clause 6.1]; a published digest does not authenticate a list.
+
+For each logical current list, the validator SHALL persist across refreshes and restarts the highest accepted `TSLSequenceNumber` and a SHA-256 digest of the signed content (the canonicalized XML document after the enveloped-signature transform). Following [ETSI TS 119 612 V2.4.1 (2025-08), Clause 5.3.2], it SHALL reject lower sequences and equal sequences with differing signed-content digests. It SHALL update this state only after all runtime checks succeed and before reporting runtime acceptance. State SHALL remain separate for each TL territory, the LOTL, and each retained LoTE type, preserving source/profile separation through authenticated location updates.
+
+Archived pivots SHALL follow the cited LOTL authentication procedure and SHALL be exempt from current-list cache, freshness and rollback checks. They SHALL NOT substitute for current lists in runtime Trust Anchor selection.
 
 #### List of Trusted Entities Validation
 
@@ -46,7 +49,7 @@ sequenceDiagram
   Client->>OJA: Request discovery for required LoTE type
   OJA-->>Client: Return fixed location and signer certificate set
   Client->>Distribution: Request current LoTE at the type-specific location
-  Distribution-->>Client: Return JSON/JWT or XML/XAdES LoTE
+  Distribution-->>Client: Return JSON/JWT LoTE
   Client->>Client: Verify format-specific signature, schema and type
   Client->>Client: Compare signer certificate with OJA certificate set
   Client->>Client: Check scheme URI, publication location, freshness and sequence
@@ -61,14 +64,14 @@ sequenceDiagram
 - `Requested-Entity-Identity`: The identity of the entity whose <artifacts:Trust Anchor> is required, obtained from the artifact or protocol being validated.
 - `Requested-Service-Type`: The `ServiceTypeIdentifier` required for that artifact or protocol.
 - `OJA-Loc`: The fixed, locally configured URI of the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication.
-- `Highest-Accepted-Sequence`: The highest `LoTESequenceNumber` previously accepted for `Requested-LoTE-Type`, if any, together with a SHA-256 digest of the accepted signed list content at that sequence number; this state is retained across refreshes and restarts. The list content is the JWS Payload octets for JSON or the canonicalized document after the enveloped-signature transform for XML.
+- `Highest-Accepted-Sequence`: The highest `LoTESequenceNumber` previously accepted for `Requested-LoTE-Type`, if any, together with a SHA-256 digest of the accepted signed list content at that sequence number; this state is retained across refreshes and restarts. The list content is the JWS Payload octets.
 
 **Working and Output Variables**:
 
-- `LoTE`: The JSON/JWT or XML/XAdES <artifacts:List of Trusted Entities (LoTE)|LoTE> being processed.
+- `LoTE`: The JSON/JWT <artifacts:List of Trusted Entities (LoTE)|LoTE> being processed.
 - `OJA-LoTE-Loc`: The fixed location published by the <artifacts:Official Journal of APTITUDE (OJA)|OJA> for `Requested-LoTE-Type`.
 - `OJA-LoTE-Certs-Set`: The set of certificates published by the <artifacts:Official Journal of APTITUDE (OJA)|OJA> for verifying `Requested-LoTE-Type`.
-- `LoTE-Format`: The format of `LoTE`, either `JSON` or `XML`.
+- `LoTE-Format`: The format of `LoTE`, `JSON`.
 - `LoTE-Signer-Cert`: The certificate used to verify the signature or seal on `LoTE`.
 - `LoTE-Status`: The validation result, for example `LoTE_VERIFICATION_PASSED`.
 
@@ -83,20 +86,6 @@ The validator SHALL perform the following operations. Values from the payload SH
 3. Verify the JWS signature over the JWS Signing Input using the P-256 public key in `LoTE-Signer-Cert` and the `ES256` algorithm.
 4. Decode the JWT Claims Set and require the private `LoTE` claim containing the list object. Validate that object against the applicable profiled JSON payload schema.
 5. Confirm that the `LoTEType` in the signature-verified payload equals `Requested-LoTE-Type`.
-
-If any operation fails, validation SHALL stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
-
-##### XML LoTE Signature Verification
-
-This procedure applies only when an implementation additionally supports an XML-formatted <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider> <artifacts:List of Trusted Entities (LoTE)|LoTE> using XAdES Baseline B. XML support is not required for pilot interoperability.
-
-The validator SHALL perform the following operations. Values from the XML document SHALL NOT be used to extract <artifacts:Trust Anchor|Trust Anchors> before all validation operations succeed:
-
-1. Parse without external entities or DTD processing. Validate the document against the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> XML schema and require exactly one `ListOfTrustedEntities` document element containing exactly one enveloped `ds:Signature` and its `xades:QualifyingProperties`. Reject duplicate XML IDs.
-2. Require the signature to reference the entire document with `URI=""`, the enveloped-signature transform, and exclusive XML canonicalization, and to reference the unique `xades:SignedProperties` element with `Type="http://uri.etsi.org/01903#SignedProperties"`. Reject external references, additional references, and other transforms. Require SHA-256 reference digests and an ECDSA-with-SHA-256 signature method.
-3. Extract the signing certificate from `ds:KeyInfo/ds:X509Data/ds:X509Certificate`. The first `xades:SigningCertificateV2/xades:Cert` SHALL contain the SHA-256 digest of the DER encoding of this certificate, with `DigestValue` in XML Signature Base64 encoding. Set it as `LoTE-Signer-Cert`.
-4. Verify the XML signature using the P-256 public key in `LoTE-Signer-Cert`, including the signed properties and entire document reference. The application SHALL use this same signature-verified document element for all subsequent list checks and trust-anchor extraction.
-5. Confirm that the <artifacts:List of Trusted Entities (LoTE)|LoTE> type in the signature-verified XML document equals `Requested-LoTE-Type`.
 
 If any operation fails, validation SHALL stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
@@ -115,7 +104,7 @@ The validator SHALL perform the following steps:
 
 2. **Verify signature, schema, and type.**
 
-    Determine `LoTE-Format` and run the applicable JSON or XML signature-verification procedure above. Only a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider> list MAY use XML, and only when XML validation is supported. If any check fails, stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
+    Require JSON format and run JSON LoTE Signature Verification above. If any check fails, stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
 3. **Match the signing certificate.**
 
@@ -146,8 +135,9 @@ The validator SHALL perform the following steps:
 !!! note "Remarks"
 
     - The <artifacts:Official Journal of APTITUDE (OJA)|OJA> page is the discovery source within the APTITUDE ecosystem. A passed validation result establishes signature integrity and conformity with the certificate set and location supplied by that page, subject to the assumption stated above.
-    - The JSON `x5t#S256` value identifies the signing certificate in the type-specific <artifacts:Official Journal of APTITUDE (OJA)|OJA> set. The XML `SigningCertificateV2` value binds the XAdES signature to the certificate in `ds:KeyInfo`; the latter is authorized only by its exact DER match with the type-specific <artifacts:Official Journal of APTITUDE (OJA)|OJA> set.
-    - A cached <artifacts:List of Trusted Entities (LoTE)|LoTE> MAY be reused only within the caching rules specified in the <artifacts:List of Trusted Entities (LoTE)|LoTE> profile. At every trust decision, the validator SHALL check that 24 hours have not elapsed since retrieval, `NextUpdate` has not been reached, and `LoTE-Signer-Cert` is within its validity period. Rollback state SHALL be retained across refreshes and restarts.
+    - The JSON `x5t#S256` value identifies the signing certificate in the type-specific <artifacts:Official Journal of APTITUDE (OJA)|OJA> set.
+    - Cached-list reuse is governed by [LoTE Validation Operations](#lote-validation-operations), including required refresh, signer validity and persistent rollback state.
+
 
 Below is a flowchart summarizing the validation of a <artifacts:List of Trusted Entities (LoTE)|LoTE>:
 

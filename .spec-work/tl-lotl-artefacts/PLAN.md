@@ -223,7 +223,7 @@ Uses: TL/LOTL profiles (A-02, A-03); LOTL Authentication (A-06, `docs/topics/lot
 Delivers: Detail: cite. Define pilot TL Authentication by citing the complete source procedure for CC. Actors are Wallet Unit, WRP or their trust-validation component. Bind the source LOTL-authentication call to pilot LOTL Authentication; select XML TL tuple by emulated territory CC and MIME qualifiers from the authenticated pilot LOTL. The tuple provides location and directly trusted authorized TL-signer set, distinct from service identities and CA anchors. Preserve the input contract and Authenticated-EUTL, EUTL-Status, EUTL-Sub-Status including WARNING_EUTL_NEXTUPDATE_PASSED. Refer runtime acceptance, including rejection of overdue TL, to Trust Anchor Validation without relabelling the source authentication result or reproducing either procedure.
 Answers: none
 
-### A-08 · Algorithm · pending
+### A-08 · Algorithm · accepted
 
 Plan entry: Trust Evaluation / `docs/topics/trust-anchor-validation.md`
 Writes: `docs/topics/trust-anchor-validation.md`
