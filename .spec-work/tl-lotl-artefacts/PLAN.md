@@ -286,7 +286,7 @@ Uses: Roles (A-01); list profiles (A-02–A-04); runtime/service acceptance (A-0
 Delivers: Update scheme-operator responsibilities, QEAA property-to-artefact mappings, diagrams, operational evidence and update/removal effects to pilot TL QEAA service status. Add TL/LOTL publication lifecycle references; preserve TL withdrawal/status history and re-keying by citation. Replace duplicate runtime/cache/rollback definitions with A-08 references. Preserve remaining LoTE paths and existing unrelated entity/certificate lifecycle policy. Do not settle the pre-existing broad immediate-revocation versus conditional Sign/Seal revocation conflict or add historical-attestation validation.
 Answers: none
 
-### A-15 · Framing · pending
+### A-15 · Framing · accepted
 
 Plan entry: Trust Use Cases / `docs/sections/use-cases.md`
 Writes: `docs/sections/use-cases.md`
