@@ -304,7 +304,7 @@ Uses: Retained seven-type JSON LoTE profile (A-04); pilot XML TL/LOTL profiles (
 Delivers: Align existing OpenAPI view to seven retained JSON LoTE types: remove /lote/qeaa-providers, QEAA enum values, QEAA-specific schema conditions/descriptions and optional XML-QEAA-LoTE statements; update counts and dependent profile references/decoded views. Preserve all seven retained types and paths. XML TL/LOTL retrieval remains cited ETSI publication interface, outside this JSON/JWT API. Do not resolve the retained EAA URI conflict or add endpoint/schema choices.
 Answers: none
 
-### A-17 · Framing · pending
+### A-17 · Framing · accepted
 
 Plan entry: Trust Evaluation / `docs/topics/trust-evaluation.md`
 Writes: `docs/topics/trust-evaluation.md`
