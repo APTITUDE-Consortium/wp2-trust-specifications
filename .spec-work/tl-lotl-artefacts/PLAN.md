@@ -160,7 +160,7 @@ Changes the existing OpenAPI description from eight to seven JSON LoTE types: re
 
 ## Assignments
 
-### A-01 · Framing · pending
+### A-01 · Framing · accepted
 
 Plan entry: Trust Architecture / `docs/topics/trust-architecture.md`
 Writes: `docs/topics/trust-architecture.md`
