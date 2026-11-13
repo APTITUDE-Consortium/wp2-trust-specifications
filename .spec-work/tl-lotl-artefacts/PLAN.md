@@ -277,7 +277,7 @@ Uses: Common dispatch/runtime acceptance (A-08); Sign/Seal Validation (A-09); re
 Delivers: Update cross-cutting trust-source diagram and TL-PRES-001 dependency view for QEAA verification by receiving WRP through common TL/LOTL and Sign/Seal procedures. Retain LoTE-based WRPAC, WRPRC and Register authentication on request side. Replace repeated list-validation definitions with owning-procedure references. Align affected test-focus and traceability descriptions with authentication versus runtime acceptance. Preserve authorization, EDP, overrides and existing unresolved proximity mapping; do not introduce a second QEAA verification algorithm.
 Answers: none
 
-### A-14 · Framing · pending
+### A-14 · Framing · accepted
 
 Plan entry: Trust Management and Lifecycle / `docs/topics/trust-management-process.md`
 Writes: `docs/topics/trust-management-process.md`
