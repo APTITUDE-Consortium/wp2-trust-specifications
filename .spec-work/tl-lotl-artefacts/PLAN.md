@@ -232,7 +232,7 @@ Uses: List profiles (A-02–A-04); Trust Anchor definition (A-05); LOTL and TL A
 Delivers: Detail: cite for ETSI procedures; preserve the existing retained-LoTE verification. Make this topic the single owner of trust-source dispatch, current-list runtime acceptance, cache and rollback state. Inputs/context identify requested artefact/provider kind, provider certificate/service identity, territory CC and current runtime validation time. Route QEAA exclusively through authenticated pilot LOTL/TL, retaining seven LoTE paths and no QEAA fallback. Remove optional QEAA XML-LoTE verification. Separate authentication, runtime usability and service eligibility; preserve authentication statuses/sub-statuses and report runtime acceptance separately, returning no Trust Anchor after runtime rejection. Reject overdue current TL even when source authentication passes with warning. Apply existing 24-hour-or-NextUpdate cache limit, failed-required-refresh rejection, highest-sequence/signed-content-digest persistence independently to each current pilot TL and LOTL using TSLSequenceNumber; retain separate LoTE state and source/profile separation. Archived pivots follow cited source pivot procedure and are exempt from current-list cache/rollback checks. Refer source-based provider/service matching and the existing Trust Anchor definition; do not invent a qualification procedure here. Preserve unaffected retained-LoTE signature, type, signer and service checks.
 Answers: none
 
-### A-09 · Algorithm · pending
+### A-09 · Algorithm · accepted
 
 Plan entry: Trust Evaluation / `docs/topics/attestation-signature-validation-process.md`
 Writes: `docs/topics/attestation-signature-validation-process.md`
