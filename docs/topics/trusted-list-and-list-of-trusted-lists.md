@@ -1,3 +1,59 @@
+## Trusted List
+
+The pilot <artifacts:Trusted List (TL)|Trusted List> is the XML trust source for QEAA services, as envisaged in [ARF Trust Model, Section 6.3.2.4]. [ETSI TS 119 612 V2.4.1, Clauses 5.1–5.7, Annexes B–E and G] governs its model and interpretation except for the explicit pilot substitutions below.
+
+!!! choice "APTITUDE Implementation Choice"
+
+    The TL SHALL use XML encoded in UTF-8, `TSLVersionIdentifier = 6`, `TSLType = http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUgeneric`, and `SchemeTerritory` identifying the emulated Member State (`CC`). WP2 SHALL operate the pilot scheme as specified in [Trust Architecture](../sections/trust-architecture.md). These identifiers express pilot emulation and do not establish institutional EU qualified status. Actual deployment values SHALL come from pilot configuration and publication.
+
+### Runtime-Consumed Fields
+
+Presence and interpretation follow the cited clauses of [ETSI TS 119 612 V2.4.1]. This table identifies the fields used by the pilot; it does not replace the complete model or its other mandatory fields.
+
+| Field | Presence | Pilot role and source clause |
+| --- | --- | --- |
+| `TSLVersionIdentifier`, `TSLType`, `SchemeTerritory` | REQUIRED | Values specified above; Clauses 5.3.1, 5.3.3, 5.3.10. |
+| `SchemeOperatorName`, `SchemeOperatorAddress`, `SchemeName` | REQUIRED | SHALL identify the WP2 pilot operator and scheme; Clauses 5.3.4–5.3.6. |
+| `PolicyOrLegalNotice` | REQUIRED | SHALL identify pilot emulation and the absence of institutional EU qualified status; Clause 5.3.11. |
+| `TSLSequenceNumber` | REQUIRED | Version sequence with source-defined increment semantics; Clause 5.3.2. |
+| `SchemeInformationURI` | REQUIRED | Pilot scheme information; Clause 5.3.7. |
+| `PointersToOtherTSL` | REQUIRED for the emulated EU Member State profile | SHALL include the pilot LOTL pointer with location, signing identities and qualifiers; Clause 5.3.13. |
+| `ListIssueDateTime`, `NextUpdate` | REQUIRED | Issue and latest update times, including source closure semantics; Clauses 5.3.14–5.3.15. |
+| `HistoricalInformationPeriod` | REQUIRED | `65535`, meaning included history is never removed; Clause 5.3.12. |
+| `DistributionPoints` | OPTIONAL | Current-list locations with source-defined identical-copy semantics; Clause 5.3.16. |
+| `TSPName`, `TSPTradeName` | REQUIRED | Provider name and registration identifier/trade names, including the condition on availability of an official registration identifier; Clauses 5.4.1–5.4.2. |
+| `ServiceTypeIdentifier` | REQUIRED | SHALL be `http://uri.etsi.org/TrstSvc/Svctype/EAA/Q` for QEAA services; Clause 5.5.1.1(k). |
+| `ServiceDigitalIdentity` | REQUIRED | Listed service identity; Clause 5.5.3. |
+| `ServiceStatus`, `StatusStartingTime` | REQUIRED | Current status and its effective start; Clauses 5.5.4–5.5.5. |
+| `ServiceHistory` | CONDITIONAL | Present only when history applies; absent where no prior history exists. Instances follow Clauses 5.5.10–5.6. |
+| `ServiceInformationExtensions` | OPTIONAL, subject to applicable source conditions | Presence, criticality and interpretation follow Clauses 5.5.9, 5.6.6 and Annexes D and G. |
+
+The QEAA service model, provider identity and service status follow [ETSI TS 119 612, Clauses 5.4, 5.5.1.1(k), 5.5.3–5.5.5 and Annex G]. QEAA qualification and binding to the listed provider SHALL be evaluated by the [Sign/Seal Validation procedure](../sections/trust-evaluation-process.md#signseal-validation-process). The `EAA/Q` service identifies qualified attestation issuance; `CA/QC` certificate qualification SHALL NOT substitute for that QEAA service binding. Runtime acceptance, including rejection of overdue TLs while preserving the authentication result, is specified in [Trust Anchor Validation](../sections/trust-evaluation-process.md#trust-anchor-validation-process).
+
+### Signature and Publication
+
+The TL SHALL carry the scheme operator's XAdES-B-B signature and satisfy [ETSI TS 119 612, Clause 5.7 and Annex B], including its algorithm and list-signer certificate restrictions. The protected `ds:KeyInfo` contains the TLSO signing certificate without an associated certificate chain. XML retrieval and publication SHALL follow [ETSI TS 119 612, Clauses 6.1–6.2], using `application/vnd.etsi.tsl+xml`. The version-specific schema is the Annex C attachment `ts_119612v020401p0.zip` for V2.4.1.
+
+### Illustrative XML Excerpt
+
+This non-normative excerpt is deliberately incomplete, omitting mandatory fields, provider/service containers, pointer tuples and the signature. It is not a complete valid or signed TL. `CC` denotes the configured emulated territory.
+
+```xml
+<tsl:TrustServiceStatusList xmlns:tsl="http://uri.etsi.org/02231/v2#">
+  <tsl:SchemeInformation>
+    <tsl:TSLVersionIdentifier>6</tsl:TSLVersionIdentifier>
+    <tsl:TSLSequenceNumber>1</tsl:TSLSequenceNumber>
+    <tsl:TSLType>http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUgeneric</tsl:TSLType>
+    <!-- Other mandatory scheme fields omitted. -->
+    <tsl:SchemeTerritory>CC</tsl:SchemeTerritory>
+    <!-- Pilot LOTL pointer and update metadata omitted. -->
+  </tsl:SchemeInformation>
+  <!-- Provider/service containers omitted; QEAA ServiceTypeIdentifier:
+       http://uri.etsi.org/TrstSvc/Svctype/EAA/Q -->
+  <!-- XAdES-B-B signature omitted. -->
+</tsl:TrustServiceStatusList>
+```
+
 This section describes the format and contents of the <artifacts:List of Trusted Entities (LoTE)|LoTE> and how it is used to provide <artifacts:Trust Anchor|Trust Anchors> within APTITUDE.
 
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a compilation of the information submitted by Member States about the following entities:

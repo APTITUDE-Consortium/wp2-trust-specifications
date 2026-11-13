@@ -169,7 +169,7 @@ Uses: Existing roles and certificate profiles (`docs/topics/trust-architecture.m
 Delivers: Update Publication Service roles and PKI/publication diagrams for OJA → pilot LOTL → pilot TL → QEAA service and the seven retained LoTE paths. Identify WP2 as the emulated Member State TL and Commission LOTL scheme operators; keep pilot trust distinct from institutional EU qualified status. Distinguish directly trusted scheme-operator list-signing certificates, TL service digital identities, CA Trust Anchor Certificates and entity Sign/Seal Certificates. Update the onboarding overview and its diagram to select QEAA TL publication and refer to the detailed onboarding home, without defining a second procedure. Preserve unrelated registration, issuance and retained-LoTE behaviour.
 Answers: none
 
-### A-02 · Artefact · pending
+### A-02 · Artefact · accepted
 
 Plan entry: Trust Artifacts / Trusted List (new subsection)
 Writes: `docs/topics/trusted-list-and-list-of-trusted-lists.md`
