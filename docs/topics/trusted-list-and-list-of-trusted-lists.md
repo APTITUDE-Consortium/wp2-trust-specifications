@@ -1,10 +1,10 @@
 ## Trusted List
 
-The pilot <artifacts:Trusted List (TL)|Trusted List> is the XML trust source for QEAA services, as envisaged in [ARF Trust Model, Section 6.3.2.4]. [ETSI TS 119 612 V2.4.1, Clauses 5.1–5.7, Annexes B–E and G] governs its model and interpretation except for the explicit pilot substitutions below.
+The pilot <artifacts:Trusted List (TL)|Trusted List> is the XML trust source for <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> services, as envisaged in [ARF Trust Model, Section 6.3.2.4]. [ETSI TS 119 612 V2.4.1, Clauses 5.1–5.7, Annexes B–E and G] governs its data model.
 
 !!! choice "APTITUDE Implementation Choice"
 
-    The TL SHALL use XML encoded in UTF-8, `TSLVersionIdentifier = 6`, `TSLType = http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUgeneric`, and `SchemeTerritory` identifying the emulated Member State (`CC`). WP2 SHALL operate the pilot scheme as specified in [Trust Architecture](../sections/trust-architecture.md). These identifiers express pilot emulation and do not establish institutional EU qualified status. Actual deployment values SHALL come from pilot configuration and publication.
+    The <artifacts:Trusted List (TL)|TL> SHALL use XML encoded in UTF-8, `TSLVersionIdentifier = 6`, `TSLType = http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUgeneric`, and `SchemeTerritory` identifying the emulated Member State (`CC`). WP2 SHALL operate the pilot scheme as specified in [Trust Architecture](../sections/trust-architecture.md).
 
 ### Runtime-Consumed Fields
 
@@ -17,26 +17,26 @@ Presence and interpretation follow the cited clauses of [ETSI TS 119 612 V2.4.1]
 | `PolicyOrLegalNotice` | REQUIRED | SHALL identify pilot emulation and the absence of institutional EU qualified status; Clause 5.3.11. |
 | `TSLSequenceNumber` | REQUIRED | Version sequence with source-defined increment semantics; Clause 5.3.2. |
 | `SchemeInformationURI` | REQUIRED | Pilot scheme information; Clause 5.3.7. |
-| `PointersToOtherTSL` | REQUIRED for the emulated EU Member State profile | SHALL include the pilot LOTL pointer with location, signing identities and qualifiers; Clause 5.3.13. |
-| `ListIssueDateTime`, `NextUpdate` | REQUIRED | Issue and latest update times, including source closure semantics; Clauses 5.3.14–5.3.15. |
-| `HistoricalInformationPeriod` | REQUIRED | `65535`, meaning included history is never removed; Clause 5.3.12. |
-| `DistributionPoints` | OPTIONAL | Current-list locations with source-defined identical-copy semantics; Clause 5.3.16. |
+| `PointersToOtherTSL` | REQUIRED for the emulated EU Member State profile | SHALL include the pilot <artifacts:List Of Trusted Lists (LOTL)\|LOTL> pointer with location; Clause 5.3.13. |
+| `ListIssueDateTime`, `NextUpdate` | REQUIRED | Issue and latest update times; Clauses 5.3.14–5.3.15. |
+| `HistoricalInformationPeriod` | REQUIRED | `65535`; Clause 5.3.12. |
+| `DistributionPoints` | OPTIONAL | Current-list locations; Clause 5.3.16. |
 | `TSPName`, `TSPTradeName` | REQUIRED | Provider name and registration identifier/trade names, including the condition on availability of an official registration identifier; Clauses 5.4.1–5.4.2. |
-| `ServiceTypeIdentifier` | REQUIRED | SHALL be `http://uri.etsi.org/TrstSvc/Svctype/EAA/Q` for QEAA services; Clause 5.5.1.1(k). |
+| `ServiceTypeIdentifier` | REQUIRED | SHALL be `http://uri.etsi.org/TrstSvc/Svctype/EAA/Q` for <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA> services; Clause 5.5.1.1(k). |
 | `ServiceDigitalIdentity` | REQUIRED | Listed service identity; Clause 5.5.3. |
 | `ServiceStatus`, `StatusStartingTime` | REQUIRED | Current status and its effective start; Clauses 5.5.4–5.5.5. |
 | `ServiceHistory` | CONDITIONAL | Present only when history applies; absent where no prior history exists. Instances follow Clauses 5.5.10–5.6. |
 | `ServiceInformationExtensions` | OPTIONAL, subject to applicable source conditions | Presence, criticality and interpretation follow Clauses 5.5.9, 5.6.6 and Annexes D and G. |
 
-The QEAA service model, provider identity and service status follow [ETSI TS 119 612, Clauses 5.4, 5.5.1.1(k), 5.5.3–5.5.5 and Annex G]. QEAA qualification and binding to the listed provider SHALL be evaluated by the [Sign/Seal Validation procedure](../sections/trust-evaluation-process.md#signseal-validation-process). The `EAA/Q` service identifies qualified attestation issuance; `CA/QC` certificate qualification SHALL NOT substitute for that QEAA service binding. Runtime acceptance, including rejection of overdue TLs while preserving the authentication result, is specified in [Trust Anchor Validation](../sections/trust-evaluation-process.md#trust-anchor-validation-process).
+<credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> qualification and binding to the listed provider SHALL be evaluated by the [Sign/Seal Validation procedure](../sections/trust-evaluation-process.md#signseal-validation-process). Runtime acceptance, including rejection of overdue <artifacts:Trusted List (TL)|TLs> while preserving the authentication result, is specified in [Trust Anchor Validation](../sections/trust-evaluation-process.md#trust-anchor-validation-process).
 
 ### Signature and Publication
 
-The TL SHALL carry the scheme operator's XAdES-B-B signature and satisfy [ETSI TS 119 612, Clause 5.7 and Annex B], including its algorithm and list-signer certificate restrictions. The protected `ds:KeyInfo` contains the TLSO signing certificate without an associated certificate chain. XML retrieval and publication SHALL follow [ETSI TS 119 612, Clauses 6.1–6.2], using `application/vnd.etsi.tsl+xml`. The version-specific schema is the Annex C attachment `ts_119612v020401p0.zip` for V2.4.1.
+The <artifacts:Trusted List (TL)|TL> SHALL carry the scheme operator's XAdES-B-B signature and satisfy [ETSI TS 119 612, Clause 5.7 and Annex B], including its algorithm and list-signer certificate restrictions. The protected `ds:KeyInfo` contains the TLSO signing certificate without an associated certificate chain. XML retrieval and publication SHALL follow [ETSI TS 119 612, Clauses 6.1–6.2], using `application/vnd.etsi.tsl+xml`. The version-specific schema is the Annex C attachment `ts_119612v020401p0.zip` for V2.4.1.
 
 ### Illustrative XML Excerpt
 
-This non-normative excerpt is deliberately incomplete, omitting mandatory fields, provider/service containers, pointer tuples and the signature. It is not a complete valid or signed TL. `CC` denotes the configured emulated territory.
+This non-normative excerpt is deliberately incomplete, omitting mandatory fields, provider/service containers, pointer tuples and the signature. It is not a complete valid or signed <artifacts:Trusted List (TL)|TL>. `CC` denotes the configured emulated territory.
 
 ```xml
 <tsl:TrustServiceStatusList xmlns:tsl="http://uri.etsi.org/02231/v2#">
@@ -56,11 +56,11 @@ This non-normative excerpt is deliberately incomplete, omitting mandatory fields
 
 ## List Of Trusted Lists
 
-The pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> is the signed pointer list through which the pilot TL locations and authorized TL-signing identities are published. [ETSI TS 119 612 V2.4.1, Clauses 5.3.3, 5.3.7, 5.3.13–5.3.18, 5.7, 6 and Annexes A–D] governs its structure, signature and publication except for the pilot substitutions below. Authentication metadata and pivot information follow [ETSI TS 119 615 V1.4.1, Clauses 4.0–4.1].
+The pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> is the signed pointer list through which the pilot <artifacts:Trusted List (TL)|TL> locations and authorized TL-signing identities are published. [ETSI TS 119 612 V2.4.1, Clauses 5.3.3, 5.3.7, 5.3.13–5.3.18, 5.7, 6 and Annexes A–D] governs its structure, signature and publication except for the pilot substitutions below. Authentication metadata and pivot information follow [ETSI TS 119 615 V1.4.1, Clauses 4.0–4.1].
 
 !!! choice "APTITUDE Implementation Choice"
 
-    WP2 SHALL operate the sole pilot signed pointer-list profile as the LOTL scheme operator identified in [Trust Architecture](../sections/trust-architecture.md). The LOTL SHALL use XML encoded in UTF-8, `TSLVersionIdentifier = 6`, `TSLType = http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUlistofthelists`, and `SchemeTerritory = EU`. These values emulate the institutional EU profile and do not confer institutional EU qualified status. Deployment locations, operator identities and signing certificates SHALL be supplied by pilot configuration and publication.
+    WP2 SHALL operate the sole pilot signed pointer-list profile as the <artifacts:List Of Trusted Lists (LOTL)|LOTL> scheme operator identified in [Trust Architecture](../sections/trust-architecture.md). The <artifacts:List Of Trusted Lists (LOTL)|LOTL> SHALL use XML encoded in UTF-8, `TSLVersionIdentifier = 6`, `TSLType = http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUlistofthelists`, and `SchemeTerritory = EU`.
 
 ### LOTL Profile Metadata
 
@@ -70,12 +70,12 @@ The source model and its presence rules apply; the following table specifies the
 | --- | --- |
 | `SchemeOperatorName`, `SchemeOperatorAddress`, `SchemeName`, `PolicyOrLegalNotice` | SHALL identify the WP2 operator and pilot scheme, with a legal notice identifying pilot emulation and the absence of institutional EU qualified status. ETSI TS 119 612, Clauses 5.3.4–5.3.6 and 5.3.11. |
 | `TSLSequenceNumber` | SHALL carry the list sequence number with source-defined increment semantics; Clause 5.3.2. |
-| `SchemeInformationURI` | SHALL provide scheme information and the applicable OJA and archived pivot references, retaining the source order and transition information under the OJA substitution below; Clause 5.3.7 and ETSI TS 119 615, Clause 4.1. |
+| `SchemeInformationURI` | SHALL provide scheme information and the applicable <artifacts:Official Journal of APTITUDE (OJA)\|OJA> and archived pivot references, retaining the source order and transition information under the <artifacts:Official Journal of APTITUDE (OJA)\|OJA> substitution below; Clause 5.3.7 and ETSI TS 119 615, Clause 4.1. |
 | `ListIssueDateTime`, `NextUpdate` | SHALL carry issue and latest-update metadata under Clauses 5.3.14–5.3.15. |
-| `PointersToOtherTSL` | SHALL include the self-pointer as the first tuple and a pointer to each pilot TL. Each tuple SHALL bind `TSLLocation`, authorized signing identities in `ServiceDigitalIdentities`, and the `TSLType`, `SchemeTerritory` and MIME-type qualifiers under Clause 5.3.13 and Annex D. The self-pointer identifies the pilot LOTL with territory `EU`; each TL pointer identifies its emulated territory `CC`. XML pointers use `application/vnd.etsi.tsl+xml`. |
+| `PointersToOtherTSL` | SHALL include the self-pointer as the first tuple and a pointer to each pilot <artifacts:Trusted List (TL)\|TL>. Each tuple SHALL bind `TSLLocation`, authorized signing identities in `ServiceDigitalIdentities`, and the `TSLType`, `SchemeTerritory` and MIME-type qualifiers under Clause 5.3.13 and Annex D. The self-pointer identifies the pilot <artifacts:List Of Trusted Lists (LOTL)\|LOTL> with territory `EU`; each <artifacts:Trusted List (TL)\|TL> pointer identifies its emulated territory `CC`. XML pointers use `application/vnd.etsi.tsl+xml`. |
 | `TrustServiceProviderList` | SHALL be absent: this pointer-only artefact contains no TSP/service list; Clause 5.3.18. |
 
-The self-pointer and applicable archived pivot references SHALL preserve the source-defined signer/location continuity information of [ETSI TS 119 615 V1.4.1, Clause 4.1]. The LOTL signature and publication SHALL follow [ETSI TS 119 612 V2.4.1, Clauses 5.7 and 6, Annexes A–D], using the version-specific Annex C schema attachment `ts_119612v020401p0.zip`.
+The self-pointer and applicable archived pivot references SHALL preserve the source-defined signer/location continuity information of [ETSI TS 119 615 V1.4.1, Clause 4.1]. The <artifacts:List Of Trusted Lists (LOTL)|LOTL> signature and publication SHALL follow [ETSI TS 119 612 V2.4.1, Clauses 5.7 and 6, Annexes A–D], using the version-specific Annex C schema attachment `ts_119612v020401p0.zip`.
 
 ### Pilot OJA Bootstrap
 
@@ -83,15 +83,15 @@ The pilot substitutes the following parameters for those in [ETSI TS 119 615 V1.
 
 | Pilot parameter | Source parameter | Pilot meaning |
 | --- | --- | --- |
-| `OJA-Loc` | `OJEU-Loc` | Fixed configured URI of the pilot OJA publication. |
-| `OJA-LOTL-Loc` | `OJEU-LOTL-Loc` | Initial current XML LOTL location supplied by that publication. |
+| `OJA-Loc` | `OJEU-Loc` | Fixed configured URI of the pilot <artifacts:Official Journal of APTITUDE (OJA)\|OJA> publication. |
+| `OJA-LOTL-Loc` | `OJEU-LOTL-Loc` | Initial current XML <artifacts:List Of Trusted Lists (LOTL)\|LOTL> location supplied by that publication. |
 | `OJA-LOTL-Certs-Set` | `OJEU-LOTL-Certs-Set` | Full initial authorized LOTL-signing certificate set supplied by that publication. |
 
-The OJA publication is unsigned and is not independently authenticated. Consumers SHALL accept its bootstrap data under the explicit APTITUDE discovery assumption at the fixed configured OJA URI. This assumption does not establish institutional OJEU trust. Authenticated parameter updates and pivot continuity remain governed by the referenced LOTL authentication procedure. TL-signing authorization SHALL come from the authenticated LOTL pointer tuple, never directly from an OJA certificate set bypassing the LOTL. Authentication and runtime acceptance are specified in [Trust Evaluation Processes](../sections/trust-evaluation-process.md); this profile does not redefine those procedures.
+The <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication is unsigned and is not independently authenticated. Consumers SHALL accept its bootstrap data under the explicit APTITUDE discovery assumption at the fixed configured <artifacts:Official Journal of APTITUDE (OJA)|OJA> URI.
 
 ### Illustrative LOTL XML Excerpt
 
-This non-normative, deliberately incomplete XML excerpt omits mandatory metadata, signing identities, qualifiers and the signature. It is not a valid complete or signed LOTL. Comments identify the omitted tuple content; deployment values come from configuration.
+This non-normative, deliberately incomplete XML excerpt omits mandatory metadata, signing identities, qualifiers and the signature. It is not a valid complete or signed <artifacts:List Of Trusted Lists (LOTL)|LOTL>. Comments identify the omitted tuple content; deployment values come from configuration.
 
 ```xml
 <tsl:TrustServiceStatusList xmlns:tsl="http://uri.etsi.org/02231/v2#">
@@ -156,7 +156,7 @@ All retained <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL use JSON and
     | <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)\|PuB-EAA Provider> Lists | [ETSI TS 119 602 Annex H] | European Union | JSON or XML |
     | <roles:Registrar> and <components:Register> Provider Lists | [ETSI TS 119 602 Annex I] | European Union | JSON |
 
-Runtime acceptance, caching, refresh failure and persistent rollback state are specified in [Trust Anchor Validation](../sections/trust-evaluation-process.md#trust-anchor-validation-process). QEAA trust uses the pilot TL and LOTL profiles above, following [ARF Trust Model, Section 6.3.2.4].
+Runtime acceptance, caching, refresh failure and persistent rollback state are specified in [Trust Anchor Validation](../sections/trust-evaluation-process.md#trust-anchor-validation-process). <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> trust uses the pilot <artifacts:Trusted List (TL)|TL> and <artifacts:List Of Trusted Lists (LOTL)|LOTL> profiles above, following [ARF Trust Model, Section 6.3.2.4].
 
 ### Data Models
 
@@ -164,7 +164,7 @@ This section specifies the profiles and formats that the various <artifacts:List
 
 The following repository provides the base normative JSON and XML schemas required for implementing the <artifacts:List of Trusted Entities (LoTE)|LoTE>: <https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities>.
 
-The [LoTE OpenAPI description](../api/lote-api.md) documents the APTITUDE type-specific retrieval endpoints and the JSON <artifacts:List of Trusted Entities (LoTE)|LoTE> carried in a signed compact JWT. Its paths and example values are illustrative; the actual fixed endpoint and authorized signing certificates for each type are published by the <artifacts:Official Journal of APTITUDE (OJA)|OJA>. The OpenAPI document covers the seven retained JSON LoTE types. XML TL and LOTL publication is specified in their sibling profiles above.
+The [LoTE OpenAPI description](../api/lote-api.md) documents the APTITUDE type-specific retrieval endpoints and the JSON <artifacts:List of Trusted Entities (LoTE)|LoTE> carried in a signed compact JWT. Its paths and example values are illustrative; the actual fixed endpoint and authorized signing certificates for each type are published by the <artifacts:Official Journal of APTITUDE (OJA)|OJA>. The OpenAPI document covers the seven retained JSON <artifacts:List of Trusted Entities (LoTE)|LoTE> types. XML <artifacts:Trusted List (TL)|TL> and <artifacts:List Of Trusted Lists (LOTL)|LOTL> publication is specified in their sibling profiles above.
 
 #### Specific Formats and Uses
 
@@ -218,7 +218,7 @@ The `LoTE` claim uses the field names from `LoTE_Payload_Json_schema.yaml`, incl
 
 ##### LoTE Additional Requirements
 
-The EAA-associated `http://aptitude-consortium.github.io/LoTEType/QEAAProviderList` value below is retained as an unresolved EAA identifier; it does not identify a QEAA LoTE profile.
+The EAA-associated `http://aptitude-consortium.github.io/LoTEType/QEAAProviderList` value below is retained as an unresolved <credentials:Electronic Attestation of Attributes (EAA)|EAA> identifier; it does not identify a <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> <artifacts:List of Trusted Entities (LoTE)|LoTE> profile.
 
 !!! choice "APTITUDE Implementation Choice"
 
@@ -228,7 +228,7 @@ Following [ETSI TS 119 602, Annexes D-I], together with the APTITUDE-specific <r
 
 !!! choice "APTITUDE Implementation Choice"
 
-    The EAA Provider `LoTEType`, `StatusDeterminationApproach`, `SchemeTypeCommunityRules`, and `ServiceTypeIdentifier` URIs are APTITUDE-specific; the other type-specific values below are the ETSI profile values.
+    The <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Provider> `LoTEType`, `StatusDeterminationApproach`, `SchemeTypeCommunityRules`, and `ServiceTypeIdentifier` URIs are APTITUDE-specific; the other type-specific values below are the ETSI profile values.
 
 | Parameter                         | Format        | Presence  | Description   | References    |
 | --------------------------------- | :-----------: | :-------: | ------------- | ------------- |

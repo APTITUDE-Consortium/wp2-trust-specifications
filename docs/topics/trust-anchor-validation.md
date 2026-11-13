@@ -1,30 +1,97 @@
-The **Trust Anchor Validation Process** obtains a <artifacts:Trust Anchor> for a Wallet Unit, WRP or their trust-validation component. The [Trust Anchor definition](../sections/trust-artifacts.md#trust-anchor-certificate) governs the returned identity. This topic owns trust-source dispatch, current-list runtime acceptance, caching and rollback state.
+The **Trust Anchor Validation Process** verifies the cryptographic integrity of a <artifacts:List of Trusted Entities (LoTE)|LoTE> and checks its signing certificate against the set published for its type in the <artifacts:Official Journal of APTITUDE (OJA)|OJA>. For <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers>, it instead authenticates the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and the <artifacts:Trusted List (TL)|Trusted List> it points to. The accepted <artifacts:List of Trusted Entities (LoTE)|LoTE> and the accepted pilot <artifacts:Trusted List (TL)|Trusted List> are the sources for <artifacts:Trust Anchor|Trust Anchors>. A <artifacts:Trust Anchor> is an X.509 certificate containing the name and public key used by a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP> to validate an artifact or <credentials:Attestation>.
+
+!!! choice "APTITUDE Implementation Choice"
+
+    All <artifacts:Trust Anchor|Trust Anchors> SHALL be obtained from the applicable dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>, except those of <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers>, which SHALL be obtained from the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted Lists> as specified in this section. This applies to <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Wallet Provider (WP)|Wallet Providers>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Providers>, <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers>, <roles:Registrar|Registrars> and their <components:Register|Registers>.
+
+Depending on the artifact or <credentials:Attestation> being verified, the validating entity SHALL fetch, download, and validate the dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE> for the required entity type, or the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List> for <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>. The lists are used to retrieve <artifacts:Trust Anchor|Trust Anchors> for validating:
+
+1. **Infrastructure Certificates**: <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs>.
+2. **<artifacts:Wallet Unit Attestation (WUA)|Wallet Unit Attestations (WUAs)>**: <artifacts:Key Attestation (KA)> and <artifacts:Wallet Instance Attestation (WIA)>.
+3. **<credentials:Person Identification Data (PID)|PID> Signatures**: <credentials:Person Identification Data (PID)>.
+4. **<credentials:Attestation> Signatures and Seals**: <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> (through the pilot <artifacts:Trusted List (TL)|TL> and <artifacts:List Of Trusted Lists (LOTL)|LOTL>), <credentials:Electronic Attestation of Attributes (EAA)|EAA>, and <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|Pub-EAA>.
+5. **Artifacts and <credentials:Attestation> Status and Revocation Information**: <artifacts:Status List Token> for <credentials:Attestation|Attestations>, <artifacts:Key Attestation (KA)|KA>, <artifacts:Wallet Instance Attestation (WIA)|WIA>, and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> status information; <artifacts:Certificate Revocation List (CRL)|CRL> or <protocols:Online Certificate Status Protocol (OCSP)|OCSP> for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and Sign/Seal Certificate status information.
+6. **Registrar-signed Artifacts**: <components:Register> information.
+
+!!! choice "APTITUDE Implementation Choice"
+
+    The <artifacts:Trust Anchor|Trust Anchors> for <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers> SHALL be retrieved from and validated against their dedicated <artifacts:List of Trusted Entities (LoTE)|LoTE>, and the same <artifacts:List of Trusted Entities (LoTE)|LoTE> validation process SHALL be used for these <artifacts:Trust Anchor|Trust Anchors> as for all other APTITUDE entities. The <artifacts:Trust Anchor|Trust Anchors> for <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers> SHALL be retrieved only from the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List>, validated under the dispatch and runtime acceptance rules of this section, and SHALL NOT fall back to a <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+
+To validate a retrieved <artifacts:List of Trusted Entities (LoTE)|LoTE> under the APTITUDE profile, the validating entity SHALL:
+
+- obtain the location and authorized signing certificate set for the requested <artifacts:List of Trusted Entities (LoTE)|LoTE> type from the <artifacts:Official Journal of APTITUDE (OJA)>;
+- verify the <artifacts:List of Trusted Entities (LoTE)|LoTE> signature or seal using the format-specific procedure and compare its signing certificate, by exact DER certificate identity, with the certificate set published for that type in the <artifacts:Official Journal of APTITUDE (OJA)|OJA>;
+- validate the <artifacts:List of Trusted Entities (LoTE)|LoTE> structure, requested type, publication location, freshness, and sequence number.
 
 #### Trust-Source Dispatch
 
 **Inputs and Outcome**
 
-Inputs are the requested artifact or attestation and provider kind, provider certificate and service identity, required service type, territory `CC` (uppercase ISO 3166-1 Alpha-2), and current runtime validation time. Authentication, runtime acceptance and service eligibility are separate results. Runtime rejection SHALL return no Trust Anchor.
+Inputs are the requested artifact or attestation and provider kind, provider certificate and service identity, required service type, territory `CC` (uppercase ISO 3166-1 Alpha-2), and current runtime validation time. Authentication, runtime acceptance and service eligibility are separate results. Runtime rejection SHALL return no <artifacts:Trust Anchor>.
 
-The validator SHALL route QEAA requests exclusively through the pilot LOTL and TL, with no LoTE fallback. PID Providers, Wallet Providers, Providers of WRPAC, Providers of WRPRC, PuB-EAA Providers, EAA Providers, and Registrars and Registers SHALL use their respective seven retained JSON LoTE paths below. Stored lists and Trust Anchors SHALL preserve source/profile separation, following [ARF Trust Model, Section 6.6.3.6].
+The validator SHALL route <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> requests exclusively through the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>, with no <artifacts:List of Trusted Entities (LoTE)|LoTE> fallback. <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Wallet Provider (WP)|Wallet Providers>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Providers of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Providers of WRPRC>, <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Providers>, <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Providers>, and <roles:Registrar|Registrars> and <components:Register|Registers> SHALL use their respective seven retained JSON <artifacts:List of Trusted Entities (LoTE)|LoTE> paths below. Stored lists and <artifacts:Trust Anchor|Trust Anchors> SHALL preserve source/profile separation, following [ARF Trust Model, Section 6.6.3.6].
+
+#### LOTL Authentication
+
+This process authenticates the current pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> for a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP>. The complete procedure in [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.0 and 4.1.1–4.1.4] SHALL govern, subject to the pilot bootstrap mapping below.
+
+**Inputs and State**
+
+The validator SHALL use the input and state contract of Clause 4.1.2, with the following substitutions for the preconfigured parameters of Clause 4.0:
+
+| Pilot parameter | Source parameter | Pilot binding |
+| --- | --- | --- |
+| `OJA-Loc` | `OJEU-Loc` | Initially, the fixed locally configured URI of the pilot <artifacts:Official Journal of APTITUDE (OJA)\|OJA> publication. |
+| `OJA-LOTL-Loc` | `OJEU-LOTL-Loc` | Current <artifacts:List Of Trusted Lists (LOTL)\|LOTL> XML location supplied by that publication. |
+| `OJA-LOTL-Certs-Set` | `OJEU-LOTL-Certs-Set` | Full set of LOTL-signing certificates supplied by that publication. |
+
+The <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication is unsigned and is not independently authenticated. The validator SHALL accept its initial bootstrap data under the explicit APTITUDE discovery assumption at the fixed configured pilot <artifacts:Official Journal of APTITUDE (OJA)|OJA> URI.
+
+**Authentication**
+
+The validator SHALL execute the complete referenced procedure, including its archived-pivot processing and authenticated parameter updates, using the mapped pilot parameters. Source-defined status and sub-status identifiers SHALL retain their original names, including identifiers containing `OJEU`.
+
+For <artifacts:List Of Trusted Lists (LOTL)|LOTL> and pivot signature authentication, the validator SHALL directly trust the list-signing certificate as specified in Clause 4.1.4, with authorization established by that procedure. The CA <artifacts:Trust Anchor> Certificate profile and entity Sign/Seal certificate-chain rules SHALL NOT be applied to these directly trusted list-signing certificates; see [Trust Anchor Certificate Profiles](../sections/trust-artifacts.md#trust-anchor-certificate).
+
+**Outputs**
+
+The validator SHALL preserve `Authenticated-LOTL`, `LOTL-Status` and `LOTL-Sub-Status` as specified in Clauses 4.1.3–4.1.4, including initialization to void, all failure indications and supplementary indications, and the `LOTL_VERIFICATION_PASSED` success result. `Authenticated-LOTL` is the authenticated current XML <artifacts:List Of Trusted Lists (LOTL)|LOTL> on success and is void on authentication failure as specified by the source procedure.
+
+#### Trusted List Authentication
+
+This process authenticates the pilot <artifacts:Trusted List (TL)|Trusted List> for a <components:Wallet Unit> or <roles:Wallet-Relying Party (WRP)|WRP>. The complete procedure in [ETSI TS 119 615 V1.4.1, Clauses 4.2.1–4.2.4] SHALL govern, subject to the pilot bindings below.
+
+**Input**
+
+The validator SHALL use the input contract of Clause 4.2.2: `CC` is the uppercase ISO 3166-1 Alpha-2 country code of the emulated Member State whose <artifacts:Trusted List (TL)|TL> is requested.
+
+**Pilot Bindings**
+
+The LOTL-authentication call in Clause 4.2.4 SHALL invoke [LOTL Authentication](../sections/trust-evaluation-process.md#lotl-authentication), using its pilot <artifacts:Official Journal of APTITUDE (OJA)|OJA> bootstrap mapping. From the resulting `Authenticated-LOTL`, the validator SHALL select the `PointersToOtherTSL` tuple whose scheme-territory qualifier equals `CC` and whose MIME-type qualifier identifies XML (`application/vnd.etsi.tsl+xml`), as defined in the [LOTL profile](../sections/trust-artifacts.md#list-of-trusted-lists). That tuple supplies both `EUTL-Loc`, the XML <artifacts:Trusted List (TL)|TL> retrieval location, and `EUTL-Certs-Set`, the authorized TL-signing certificate set.
+
+The validator SHALL authenticate the <artifacts:Trusted List (TL)|TL> signature using `EUTL-Signer-Cert` as a directly trusted certificate authorized by that tuple, as specified in Clause 4.2.4. These list-signing certificates are distinct from <artifacts:Trusted List (TL)|TL> service digital identities and CA <artifacts:Trust Anchor> Certificates. The CA <artifacts:Trust Anchor> Certificate profile and entity Sign/Seal certificate-chain rules SHALL NOT be applied to the directly trusted TL-signing certificate; see [Trust Anchor Certificate Profiles](../sections/trust-artifacts.md#trust-anchor-certificate).
+
+**Outputs**
+
+The validator SHALL preserve `Authenticated-EUTL`, `EUTL-Status` and `EUTL-Sub-Status` under Clauses 4.2.3–4.2.4, including initialization to void, all failure and supplementary indications, and the `EUTL_VERIFICATION_PASSED` success result. `Authenticated-EUTL` is the authenticated XML <artifacts:Trusted List (TL)|TL> on success and remains void on authentication failure under that procedure. If the <artifacts:Trusted List (TL)|TL>'s `NextUpdate` has passed, the procedure adds `WARNING_EUTL_NEXTUPDATE_PASSED` while retaining its source-defined authentication result.
 
 #### Pilot TL and LOTL Runtime Acceptance
 
-The dispatch procedure SHALL initiate required retrieval under the cache rules below and [LOTL Authentication](../sections/trust-evaluation-process.md#lotl-authentication) and [TL Authentication](../sections/trust-evaluation-process.md#trusted-list-authentication), governed by [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.1–4.2]. Authentication hands off to the following common checks; these checks consume authentication outputs, retrieval time and persisted sequence/digest state and SHALL NOT invoke authentication again. Required refresh SHALL be attempted before rejecting a stale cached instance.
+The dispatch procedure SHALL initiate required retrieval under the cache rules below and [LOTL Authentication](../sections/trust-evaluation-process.md#lotl-authentication) and [Trusted List Authentication](../sections/trust-evaluation-process.md#trusted-list-authentication), governed by [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.1–4.2]. Authentication hands off to the following common checks; these checks consume authentication outputs, retrieval time and persisted sequence/digest state and SHALL NOT invoke authentication again. Required refresh SHALL be attempted before rejecting a stale cached instance.
 
-1. Require successful authentication. Preserve all ETSI authentication statuses and sub-statuses on every local runtime failure. Report runtime acceptance separately; runtime rejection SHALL return no Trust Anchor or usable trust context.
-2. Independently check each authenticated current TL and LOTL against its applicable pilot profile in [Trust Artifacts](../sections/trust-artifacts.md#trusted-list), requiring `ListIssueDateTime` not later than the current runtime validation time and `NextUpdate` later than that time, under [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.3.14–5.3.15]. An overdue TL SHALL be rejected even with `EUTL_VERIFICATION_PASSED` and `WARNING_EUTL_NEXTUPDATE_PASSED`.
-3. Apply the sequence and signed-content-digest conflict checks below independently to each current list. All profile, freshness and state checks SHALL succeed, and the highest accepted state SHALL be successfully persisted, before reporting runtime success or returning usable trust context. Failure to persist SHALL reject runtime use without a Trust Anchor. Dispatch SHALL require acceptance of both current lists.
+1. Require successful authentication. Preserve all ETSI authentication statuses and sub-statuses on every local runtime failure. Report runtime acceptance separately; runtime rejection SHALL return no <artifacts:Trust Anchor> or usable trust context.
+2. Independently check each authenticated current <artifacts:Trusted List (TL)|TL> and <artifacts:List Of Trusted Lists (LOTL)|LOTL> against its applicable pilot profile in [Trust Artifacts](../sections/trust-artifacts.md#trusted-list), requiring `ListIssueDateTime` not later than the current runtime validation time and `NextUpdate` later than that time, under [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.3.14–5.3.15]. An overdue <artifacts:Trusted List (TL)|TL> SHALL be rejected even with `EUTL_VERIFICATION_PASSED` and `WARNING_EUTL_NEXTUPDATE_PASSED`.
+3. Apply the sequence and signed-content-digest conflict checks below independently to each current list. All profile, freshness and state checks SHALL succeed, and the highest accepted state SHALL be successfully persisted, before reporting runtime success or returning usable trust context. Failure to persist SHALL reject runtime use without a <artifacts:Trust Anchor>. Dispatch SHALL require acceptance of both current lists.
 
-This process supplies authenticated, runtime-accepted TL service information and service identity or path context. The calling [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process) procedure owns QEAA matching, qualification and provider binding under [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.3 and 4.6]; matching alone does not establish qualification. Service digital identity, status and effective time follow [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.5.3–5.5.5]. Any applicable CA Trust Anchor follows the existing Trust Anchor definition; non-CA direct service identities remain governed by the cited matching procedures rather than the CA-anchor profile. Absent or ambiguous eligible identities SHALL yield no Trust Anchor.
+This process supplies authenticated, runtime-accepted <artifacts:Trusted List (TL)|TL> service information and service identity or path context. The calling [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process) procedure owns <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> matching, qualification and provider binding under [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.3 and 4.6]; matching alone does not establish qualification. Service digital identity, status and effective time follow [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.5.3–5.5.5]. Any applicable CA <artifacts:Trust Anchor> follows the existing <artifacts:Trust Anchor> definition; non-CA direct service identities remain governed by the cited matching procedures rather than the CA-anchor profile. Absent or ambiguous eligible identities SHALL yield no <artifacts:Trust Anchor>.
 
 **Current-List Cache and Rollback State**
 
-For each current pilot TL and LOTL independently, the validator SHALL retrieve the current list when no accepted cached instance exists, 24 hours have elapsed since retrieval, or `NextUpdate` has been reached, whichever occurs first. A failed required refresh SHALL reject runtime use without a Trust Anchor. Publication and update detection follow [ETSI TS 119 612 V2.4.1 (2025-08), Clause 6.1]; a published digest does not authenticate a list.
+For each current pilot <artifacts:Trusted List (TL)|TL> and <artifacts:List Of Trusted Lists (LOTL)|LOTL> independently, the validator SHALL retrieve the current list when no accepted cached instance exists, 24 hours have elapsed since retrieval, or `NextUpdate` has been reached, whichever occurs first. A failed required refresh SHALL reject runtime use without a <artifacts:Trust Anchor>. Publication and update detection follow [ETSI TS 119 612 V2.4.1 (2025-08), Clause 6.1]; a published digest does not authenticate a list.
 
-For each logical current list, the validator SHALL persist across refreshes and restarts the highest accepted `TSLSequenceNumber` and a SHA-256 digest of the signed content (the canonicalized XML document after the enveloped-signature transform). Following [ETSI TS 119 612 V2.4.1 (2025-08), Clause 5.3.2], it SHALL reject lower sequences and equal sequences with differing signed-content digests. It SHALL update this state only after all runtime checks succeed and before reporting runtime acceptance. State SHALL remain separate for each TL territory, the LOTL, and each retained LoTE type, preserving source/profile separation through authenticated location updates.
+For each logical current list, the validator SHALL persist across refreshes and restarts the highest accepted `TSLSequenceNumber` and a SHA-256 digest of the signed content (the canonicalized XML document after the enveloped-signature transform). Following [ETSI TS 119 612 V2.4.1 (2025-08), Clause 5.3.2], it SHALL reject lower sequences and equal sequences with differing signed-content digests. It SHALL update this state only after all runtime checks succeed and before reporting runtime acceptance. State SHALL remain separate for each <artifacts:Trusted List (TL)|TL> territory, the <artifacts:List Of Trusted Lists (LOTL)|LOTL>, and each retained <artifacts:List of Trusted Entities (LoTE)|LoTE> type, preserving source/profile separation through authenticated location updates.
 
-Archived pivots SHALL follow the cited LOTL authentication procedure and SHALL be exempt from current-list cache, freshness and rollback checks. They SHALL NOT substitute for current lists in runtime Trust Anchor selection.
+Archived pivots SHALL follow the cited <artifacts:List Of Trusted Lists (LOTL)|LOTL> authentication procedure and SHALL be exempt from current-list cache, freshness and rollback checks. They SHALL NOT substitute for current lists in runtime <artifacts:Trust Anchor> selection.
 
 #### List of Trusted Entities Validation
 
@@ -104,7 +171,7 @@ The validator SHALL perform the following steps:
 
 2. **Verify signature, schema, and type.**
 
-    Require JSON format and run JSON LoTE Signature Verification above. If any check fails, stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
+    Require JSON format and run JSON <artifacts:List of Trusted Entities (LoTE)|LoTE> Signature Verification above. If any check fails, stop with `LoTE-Status = LoTE_VERIFICATION_FAILED`.
 
 3. **Match the signing certificate.**
 

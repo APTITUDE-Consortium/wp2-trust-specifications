@@ -11,8 +11,7 @@
 
 | Item Reference                | Version     | Date        | Title                     |
 | ----------------------------- | ----------- | ----------- | ------------------------- |
-| ARF                           | v2.9.0      | 2026-05-21  | Architecture and Reference Framework |
-| [ARF Trust Model](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/f5789a77dfc6d5a85834c431465afbe543d0141a/docs/main/06-trust-model.md) | main, commit f5789a7 | N/A | Architecture and Reference Framework, Chapter 6: Trust model; pinned main snapshot retrieved 2026-11-13 |
+| ARF                           | v3.0.0      | 2026-05-21  | Architecture and Reference Framework |
 | TS02                          | v1.0.1      | 2026-01-30  | Specification of systems enabling the notification and subsequent publication of Provider information |
 | TS03                          | v1.5.2      | 2026-05-26  | Specification of Wallet Unit Attestations (WUA) used in issuance of PID and Attestations |
 | TS05                          | v1.3        | 2026-02-13  | Specification of common formats and API for Relying Party Registration information |

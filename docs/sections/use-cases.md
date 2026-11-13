@@ -31,14 +31,14 @@ These categories are complementary: **Runtime Trust Use Cases** verify a trust d
             </td>
             <td>
                 <ul>
-                    <li>For the retained LoTE types: current <artifacts:List of Trusted Entities (LoTE)|LoTE> and APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate (published on GitHub)</li>
-                    <li>For QEAA: current pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List>, as authenticated through the pilot LOTL and TL authentication procedures</li>
+                    <li>Current <artifacts:List of Trusted Entities (LoTE)|LoTE> and APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate (published on GitHub), for the <artifacts:List of Trusted Entities (LoTE)|LoTE> types</li>
+                    <li>Current pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List>, for <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA></li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>For the retained LoTE types: validate the authenticity, integrity, currency, and applicable entity entry of the <artifacts:List of Trusted Entities (LoTE)|LoTE> using <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation.</li>
-                    <li>For QEAA: authenticate the pilot LOTL and TL and accept each current list under the [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process), which SHALL reject an overdue TL even when its authentication passes with `WARNING_EUTL_NEXTUPDATE_PASSED`. QEAA SHALL NOT fall back to a <artifacts:List of Trusted Entities (LoTE)|LoTE>.</li>
+                    <li>Validate the authenticity, integrity, currency, and applicable entity entry of the <artifacts:List of Trusted Entities (LoTE)|LoTE> using <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation.</li>
+                    <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, authenticate the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List> and accept each current list under the Trust Anchor Validation Process, which rejects an overdue <artifacts:Trusted List (TL)|TL>.</li>
                 </ul>
             </td>
             <td>The <artifacts:Trust Anchor> is validated.</td>
@@ -82,14 +82,14 @@ These categories are complementary: **Runtime Trust Use Cases** verify a trust d
                     <li>Sign/Seal Certificate</li>
                     <li>Certificate-status information</li>
                     <li>Validated <roles:Attestation Provider (AP)|Attestation Provider> <artifacts:Trust Anchor> or <roles:Wallet Provider (WP)|Wallet Provider> <artifacts:Trust Anchor></li>
-                    <li>For a QEAA: the runtime-accepted pilot <artifacts:Trusted List (TL)|Trusted List> service information from the [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)</li>
+                    <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, the runtime-accepted pilot <artifacts:Trusted List (TL)|Trusted List> service information</li>
                 </ul>
             </td>
             <td>
                 <ul>
                     <li>Validate the signed <credentials:Attestation> or <artifacts:Key Attestation (KA)|KA>/<artifacts:Wallet Instance Attestation (WIA)|WIA> signature using the Sign/Seal Certificate.</li>
                     <li>Validate the X.509 Chain starting with the Sign/Seal Certificate, including its revocation status, using X.509 Validation with the <roles:Attestation Provider (AP)|Attestation Provider> <artifacts:Trust Anchor> or <roles:Wallet Provider (WP)|Wallet Provider> <artifacts:Trust Anchor> as input.</li>
-                    <li>For a QEAA: apply the [Sign/Seal Validation Process](../sections/trust-evaluation-process.md#signseal-validation-process) with the runtime-accepted pilot TL service information, and require a successful result with `QEAA-Results` equal to `Qualified`.</li>
+                    <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, apply the Sign/Seal Validation Process using the runtime-accepted pilot <artifacts:Trusted List (TL)|TL> service information, and require a successful result with <code>QEAA-Results</code> equal to <code>Qualified</code>.</li>
                 </ul>
             </td>
             <td>The <credentials:Attestation> or <artifacts:Key Attestation (KA)|KA>/<artifacts:Wallet Instance Attestation (WIA)|WIA> SHALL BE considered authentic.</td>
@@ -161,11 +161,11 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>Verify that every required <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoint is available.</li>
                     <li>Publish the APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate.</li>
                     <li>Verify that each published <artifacts:List of Trusted Entities (LoTE)|LoTE> has a valid signature, conforms to its format, and contains the required infrastructure <artifacts:Trust Anchor|Trust Anchors>.</li>
-                    <li>Verify that the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication provides the `OJA-LOTL-Loc` and `OJA-LOTL-Certs-Set` of the pilot LOTL, and that the pilot LOTL and each pilot TL are published, conform to their profiles, and pass the [LOTL Authentication](../sections/trust-evaluation-process.md#lotl-authentication) and [TL Authentication](../sections/trust-evaluation-process.md#trusted-list-authentication) procedures and the runtime acceptance of the [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process).</li>
+                    <li>For the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>, verify that the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication provides <code>OJA-LOTL-Loc</code> and <code>OJA-LOTL-Certs-Set</code>, and that the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and each pilot <artifacts:Trusted List (TL)|TL> are published, conform to their profiles, and pass the <artifacts:List Of Trusted Lists (LOTL)|LOTL> Authentication and <artifacts:Trusted List (TL)|Trusted List> Authentication procedures.</li>
                 <ul>
             </td>
             <td>None</td>
-            <td>All the required <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoints and valid <artifacts:List of Trusted Entities (LoTE)|LoTE> are available, and the pilot LOTL and TL are published and valid.</td>
+            <td>All the required <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoints and valid <artifacts:List of Trusted Entities (LoTE)|LoTE> are available, and the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL> are published and valid.</td>
             <td>The operational onboarding SHALL NOT start.</li>
         </tr>
         <tr>
@@ -292,19 +292,18 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>Registered entity information</li>
                     <li>Entity service information</li>
                     <li>Sign/Seal <artifacts:Trust Anchor></li>
-                    <li>For a QEAA Provider: QEAA service information and service status</li>
+                    <li>For a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, the <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> service information and service status</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Verify that the entity data is complete and, for the retained LoTE types, create or update the applicable entity-type <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.</li>
+                    <li>Verify that the entity data is complete and create or update the applicable entity-type <artifacts:List of Trusted Entities (LoTE)|LoTE> entry or, for a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, the pilot <artifacts:Trusted List (TL)|Trusted List> service entry.</li>
                     <li>For a <roles:Wallet Provider (WP)|Wallet Provider> the required service information is the <components:Wallet Solution></li>
-                    <li>For a QEAA Provider, publish the QEAA service information and service status as a service entry in the pilot <artifacts:Trusted List (TL)|Trusted List> under the [Trusted List](../sections/trust-artifacts.md#trusted-list) profile.</li>
                 <ul>
             </td>
             <td>The entity SHALL submit the required data and <artifacts:Trust Anchor>.</td>
-            <td>The entity data is accepted for publication, and for a QEAA Provider the service entry is accepted for the pilot <artifacts:Trusted List (TL)|Trusted List>.</td>
-            <td>No <artifacts:List of Trusted Entities (LoTE)|LoTE> entry SHALL BE created or updated, and for a QEAA Provider no pilot <artifacts:Trusted List (TL)|Trusted List> service entry SHALL BE created or updated.</li>
+            <td>The entity data is accepted for publication.</td>
+            <td>No <artifacts:List of Trusted Entities (LoTE)|LoTE> entry SHALL BE created or updated, and for a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider> no pilot <artifacts:Trusted List (TL)|Trusted List> service entry SHALL BE created or updated.</td>
         </tr>
         <tr>
             <td rowspan="2">Information update</td>
@@ -328,17 +327,16 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <td>
                 <ul>
                     <li>Updated entity identity, service endpoint, <artifacts:Trust Anchor>, or eligibility information</li>
-                    <li>For a QEAA Provider: updated service information or service status in the pilot <artifacts:Trusted List (TL)|Trusted List></li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Update the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry or, for a QEAA Provider, the pilot TL service entry.</li>
-                    <li>When the entity becomes ineligible, invoke the applicable removal test case instead. For a QEAA Provider, this withdraws the TL service with retained history, under the [Trust Management Process](../sections/trust-management-lifecycle.md#trust-management-process), and the withdrawn service SHALL NOT supply a Trust Anchor.</li>
+                    <li>Update the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry or, for a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, the pilot <artifacts:Trusted List (TL)|Trusted List> service entry.</li>
+                    <li>When the entity becomes ineligible, invoke the applicable removal test case instead.</li>
                 <ul>
             </td>
             <td>The affected entity SHALL notify APTITUDE WP2 of the changed information.</td>
-            <td>The new entity information is included in the updated <artifacts:List of Trusted Entities (LoTE)|LoTE> or pilot TL content prepared and published.</td>
+            <td>The new entity information is included in the updated <artifacts:List of Trusted Entities (LoTE)|LoTE> or pilot <artifacts:Trusted List (TL)|Trusted List> content prepared and published.</td>
             <td>The previous information SHALL remain in the prepared current content.</li>
         </tr>
         <tr>
@@ -362,18 +360,18 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                 <ul>
                     <li>Updated <artifacts:List of Trusted Entities (LoTE)|LoTE> content</li>
                     <li>Fixed <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoint and authorized signing certificate</li>
-                    <li>For QEAA: pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List> content, with their published locations and authorized signers</li>
+                    <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List> content, with their published locations and authorized signers</li>
                 </ul>
             </td>
             <td>
                 <ul>
                     <li>Publish the new signed current <artifacts:List of Trusted Entities (LoTE)|LoTE> at the fixed endpoint with an increased <code>LoTESequenceNumber</code>, a new <code>ListIssueDateTime</code>, and a valid <code>NextUpdate</code>.</li>
-                    <li>For the pilot LOTL and TL, publish the new signed current list at its published location with an increased <code>TSLSequenceNumber</code>, a new <code>ListIssueDateTime</code>, and a valid <code>NextUpdate</code>, under [ETSI TS 119 612 V2.4.1 (2025-08), Clause 6.1] and the pilot profiles.</li>
+                    <li>For the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>, publish the new signed current list at its published location with an increased <code>TSLSequenceNumber</code>, a new <code>ListIssueDateTime</code>, and a valid <code>NextUpdate</code>.</li>
                 </ul>
             </td>
-            <td>Every participant that consumes the affected list SHALL refresh its cached copy via the <artifacts:Trust Anchor> Validation Process and SHALL apply that process's rollback checks: for a <artifacts:List of Trusted Entities (LoTE)|LoTE>, reject a version whose sequence number is below the highest previously accepted for that type; for a pilot TL or LOTL, apply its persisted sequence and signed-content digest checks.</td>
-            <td>The fixed endpoint or published location serves the new current list and <artifacts:Trust Anchor> Validation accepts its updated entry.</td>
-            <td>The new version is unavailable, invalid, or overdue at runtime, or a participant continues to use a superseded version.</td>
+            <td>Every participant that consumes the affected <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL refresh its cached copy via the <artifacts:Trust Anchor> Validation Process and SHALL reject a version whose sequence number is below the highest previously accepted for that type; for the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>, the persisted sequence and signed-content digest checks apply.</td>
+            <td>The fixed endpoint serves the new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and <artifacts:Trust Anchor> Validation accepts its updated entry.</td>
+            <td>The new version is unavailable or invalid, or a participant continues to use a superseded version.</td>
         </tr>
         <tr>
             <td rowspan="2">Certificate revocation</td>
@@ -411,7 +409,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>Current entity record and related trust artifacts</li>
                 </ul>
             </td>
-            <td>Orchestrate the applicable <components:Register> cancellation or deletion, entity-related certificate revocation, and applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> update Trust use cases, and verify that each completes successfully. For a QEAA Provider, also invoke the pilot <artifacts:Trusted List (TL)|Trusted List> service withdrawal with retained history, under the [Trust Management Process](../sections/trust-management-lifecycle.md#trust-management-process).</td>
+            <td>Orchestrate the applicable <components:Register> cancellation or deletion, entity-related certificate revocation, and <artifacts:List of Trusted Entities (LoTE)|LoTE> update Trust use cases, and verify that each completes successfully. For a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, also invoke the pilot <artifacts:Trusted List (TL)|Trusted List> service withdrawal, which retains the service history.</td>
             <td>For voluntary removal, the <roles:Wallet-Relying Party (WRP)|WRP> SHALL submit the removal request to APTITUDE WP2; in every case it SHALL cease new framework operations. Participants SHALL reject new interactions with the removed entity.</td>
             <td>The entity is <code>REMOVED</code> and all applicable runtime tests reject new interactions.</td>
             <td>Any invoked operational test fails or a new interaction remains trusted.</li>
