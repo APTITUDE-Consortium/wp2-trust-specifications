@@ -3,12 +3,12 @@
 The entity that performs the certificate path validation initializes the following variables according to [RFC 5280]:
 
 - `path`: The sequence $C_1 \dots C_n$.
-- `trust_anchor`: *trusted certificate* obtained from the `ServiceDigitalIdentity` component after validation of the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+- `trust_anchor`: Applicable CA <artifacts:Trust Anchor> obtained from validated TL service information or the `ServiceDigitalIdentity` component of the relevant validated <artifacts:List of Trusted Entities (LoTE)|LoTE>, through [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process) and, where applicable, [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process).
 - `current_time`: The current date and time.
 
 !!! note
 
-    The profiles for <artifacts:Trust Anchor> Certificates referenced within a <artifacts:List of Trusted Entities (LoTE)|LoTE> are described in [Trust Anchor Certificate](../sections/trust-artifacts.md#trust-anchor-certificate).
+    The applicable CA-anchor profile is described in [Trust Anchor Certificate](../sections/trust-artifacts.md#trust-anchor-certificate). Non-CA direct service identities follow [ETSI TS 119 615 V1.4.1 (2026-05), Clause 4.3.4], invoked by [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process), and remain outside that profile. Directly trusted list signers follow [LOTL Authentication](../sections/trust-evaluation-process.md#lotl-authentication) and [TL Authentication](../sections/trust-evaluation-process.md#trusted-list-authentication) under [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.1.4 and 4.2.4] and likewise remain outside the CA-anchor profile. Service digital identities and TL signing certificates are governed by [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.5.3 and 5.7.1].
 
 The entity that performs the certificate path validation follows the algorithm described below [RFC 5280]:
 

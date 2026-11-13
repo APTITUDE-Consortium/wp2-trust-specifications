@@ -241,7 +241,7 @@ Uses: List profiles (A-02–A-04); CA-anchor distinction (A-05); common dispatch
 Delivers: Detail: cite. Update Sign/Seal Validation so QEAA uses authenticated runtime-accepted pilot TL service information and ETSI QEAA qualification; other attestation types retain LoTE routes. Inputs include QEAA, supporting signing certificate and current runtime Date-time; bind source TLS-Sti = http://uri.etsi.org/TrstSvc/Svctype/EAA/Q. Invoke source urn:etsi:esi:eaa:eu:qualified content indication, certificate/service and provider matching and eligible currently granted QEAA service. Require source success with QEAA-Results = Qualified under pilot trust; failure, not-qualified, indeterminate or runtime-unusable evidence fails validation. Distinguish QEAA service qualification from CA/QC qualified-certificate determination. Retain matching service identity/certificate/path context and source direct-identity or path-based matching, without assuming each identity is a CA or trusting an attestation-supplied certificate on its own. Invoke shared signature/path validation where applicable; do not duplicate its algorithms or common acceptance.
 Answers: none
 
-### A-10 · Algorithm · pending
+### A-10 · Algorithm · accepted
 
 Plan entry: Trust Evaluation / `docs/topics/x509-certificate-validation.md`
 Writes: `docs/topics/x509-certificate-validation.md`
