@@ -3,12 +3,13 @@ info:
   title: APTITUDE List of Trusted Entities (LoTE) retrieval
   version: 1.1.1
   description: >-
-    Illustrative retrieval paths for the eight APTITUDE JSON LoTE types. Each GET
+    Illustrative retrieval paths for the seven APTITUDE JSON LoTE types. Each GET
     returns a signed compact JWT. The actual fixed URI and authorized signing
     certificates for each type are published by the OJA. Components describe the
     decoded protected JOSE header and JWT Claims Set for schema visualization;
-    they are not a JSON representation of the HTTP response. Optional XML QEAA
-    support is outside the scope of this JSON API description.
+    they are not a JSON representation of the HTTP response. XML TL and LOTL
+    retrieval is outside the scope of this JSON API description and remains under
+    the cited ETSI publication interface.
 externalDocs:
   description: ETSI TS 119 602 V1.1.1 (2025-11)
   url: https://www.etsi.org/deliver/etsi_ts/119600_119699/119602/01.01.01_60/ts_119602v010101p.pdf
@@ -95,20 +96,6 @@ paths:
       responses:
         '200':
           description: Signed compact JWT containing the current Registrar and Register LoTE.
-          content:
-            application/jwt:
-              schema:
-                $ref: '#/components/schemas/CompactLoTEJWT'
-              example: eyJhbGciOiJFUzI1NiJ9.eyJMb1RFIjp7fX0.signature
-  /lote/qeaa-providers:
-    get:
-      tags: [LoTE]
-      operationId: getQEAAProviderLoTE
-      summary: Get the QEAA Provider LoTE
-      description: Illustrative JSON path; use the fixed QEAA Provider LoTE URI published by the OJA. The decoded LoTEType is https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#qeaa-lote-type.
-      responses:
-        '200':
-          description: Signed compact JWT containing the current JSON QEAA Provider LoTE.
           content:
             application/jwt:
               schema:
@@ -368,7 +355,6 @@ components:
         - http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList
         - http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList
         - http://uri.etsi.org/19602/LoTEType/EURegistrarsAndRegistersList
-        - https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#qeaa-lote-type
         - https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#eaa-lote-type
       description: >-
         Required URI identifying the provider list type. It must match the URI for
@@ -788,7 +774,7 @@ components:
       description: >-
         Required service type URI. PID, Wallet Provider, WRPAC, WRPRC and PuB-EAA
         use their type-specific Issuance or Revocation URIs; Registrar uses
-        http://uri.etsi.org/19602/SvcType/Register. QEAA and EAA use their
+        http://uri.etsi.org/19602/SvcType/Register. EAA uses the
         APTITUDE-defined Issuance or Revocation URIs.
       example: http://uri.etsi.org/19602/SvcType/PID/Issuance
 
@@ -965,7 +951,7 @@ components:
 
     TEName:
       type: array
-      description: Required multilingual name of the PID, QEAA, EAA, Wallet, WRPAC, WRPRC or PuB-EAA provider, or Registrar.
+      description: Required multilingual name of the PID, EAA, Wallet, WRPAC, WRPRC or PuB-EAA provider, or Registrar.
       items:
         $ref: '#/components/schemas/multiLangString'
       minItems: 1

@@ -295,7 +295,7 @@ Uses: Common acceptance/signature validation (A-08, A-09); onboarding (A-11); li
 Delivers: Update runtime Trust Anchor Validation, Attestation Authenticity/Integrity, publication readiness and affected entity/list update, withdrawal and version-publication cases to pilot LOTL/TL and QEAA service validation. Cite owning procedures for OJA bootstrap, status propagation, freshness and rollback. Cover authenticated-but-overdue TL rejection and QEAA versus retained-LoTE separation. Preserve other use cases and avoid a second procedure or new lifecycle policy.
 Answers: none
 
-### A-16 · Framing · pending
+### A-16 · Framing · accepted
 
 Plan entry: Linked interface descriptions / `docs/includes/lote-oas3.yaml`
 Writes: `docs/includes/lote-oas3.yaml`
