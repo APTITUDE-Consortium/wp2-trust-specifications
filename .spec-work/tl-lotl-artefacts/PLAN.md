@@ -6,7 +6,7 @@ Original ref: refactor-of-lote-val
 Slug: tl-lotl-artefacts
 Original thread: 4d16925d-76c2-48c0-b399-ae719565f2fd
 Base: 1e5f59bf16b80969ec224529db25f8da4add4323 · Map: mapped at 1e5f59bf16b80969ec224529db25f8da4add4323
-Models: planner codex/gpt-6.1-sol reasoningEffort=high; mapper codex/gpt-6.1-sol reasoningEffort=high; tracer codex/gpt-6.1-sol reasoningEffort=low
+Models: planner claudeAgent/claude-sonnet-5-5 effort=high; mapper codex/gpt-6.1-sol reasoningEffort=high; tracer claudeAgent/claude-haiku-5-5 effort=medium
 
 ## Sources
 
