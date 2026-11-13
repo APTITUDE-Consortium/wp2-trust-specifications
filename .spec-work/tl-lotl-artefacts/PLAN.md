@@ -196,7 +196,7 @@ Uses: Sibling TL and LOTL profiles (A-02, A-03, same file); common runtime accep
 Delivers: Complete the sole list-topic organization as sibling TL, LOTL and LoTE sections. Remove the TL/LOTL exclusion, QEAA LoTE type/URI/service variants and optional XML-QEAA-LoTE profile; leave seven JSON LoTE types and preserve existing PID example and all retained-LoTE model/semantics. Make OpenAPI link explicitly the retained JSON-LoTE view. Replace duplicated cache/rollback/runtime-acceptance definitions with references to Trust Anchor Validation, retaining LoTE artefact/publication constraints and OJA discovery profile. Do not resolve the pre-existing EAA URI conflict: the EAA-associated http://aptitude-consortium.github.io/LoTEType/QEAAProviderList value is retained as an unresolved EAA identifier, while actual QEAA entries are removed. Preserve the #list-of-trusted-entities anchor for parent assembly, whose include boundary A-18 will update. Do not redefine TL/LOTL or their procedures.
 Answers: none
 
-### A-05 · Artefact · pending
+### A-05 · Artefact · accepted
 
 Plan entry: Trust Artifacts / `docs/topics/trust-anchor-certificate-profiles.md`
 Writes: `docs/topics/trust-anchor-certificate-profiles.md`
