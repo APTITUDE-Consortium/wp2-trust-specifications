@@ -259,7 +259,7 @@ Uses: Scheme-operator roles (A-01); list profiles (A-02–A-04); authentication/
 Delivers: Change infrastructure prerequisites, Publication Service responsibilities, inputs/outputs, entity-specific paths, diagrams and affected ONBOARD summaries for OJA-bootstrapped LOTL/TL and QEAA service inclusion in pilot TL. Change QEAA cancellation to TL withdrawal with retained history. Preserve all other entity paths including EAA and seven retained LoTEs. Refer list profiles, evaluation and lifecycle homes for their rules, without restating authentication, freshness, rollback or lifecycle policy. Keep existing registration/certificate decisions and out-of-band one-time setup. No new exchanges, endpoints or registration-policy choices.
 Answers: none
 
-### A-12 · Flow frame · pending
+### A-12 · Flow frame · accepted
 
 Plan entry: Trust Evaluation / Trust Checks / issuance
 Writes: `docs/topics/trust-checks-issuance.md`
