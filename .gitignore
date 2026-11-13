@@ -3,4 +3,8 @@ docs/img
 docs/media
 docs/overrides
 site/
-/.opencode/
+.opencode
+
+# Local specification-writing skills and agent descriptions
+/.spec-writing
+/.agents/skills
