@@ -4,8 +4,8 @@ Onboarding collects all the information needed to make entities operational and 
 
 Within the APTITUDE ecosystem, consistently with [Trust Architecture](../sections/trust-architecture.md), not all onboarding processes are implemented as defined in the [ARF] and related specifications:
 
-- The elements which follows the specifications are: the creation of the registration records, the certificates issuance and the respective profiles, and the <artifacts:List of Trusted Entities (LoTE)|LoTE> publication which enable the distribution of the trust artifacts which enable trust evaluation.
-- The elements which differ according to the constraints highlighted in the [Introduction](../trust-framework.md#introduction) are: the <processes:Notification|notification> process between a Member State and the European Commission, the publication of the <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate in the <artifacts:Official Journal of APTITUDE (OJA)>, and the registration of entities with the prescribed regulatory checks.
+- The elements which follows the specifications are: the creation of the registration records, the certificates issuance and the respective profiles, and TL, LOTL and <artifacts:List of Trusted Entities (LoTE)|LoTE> publication which enable the distribution of the trust artifacts which enable trust evaluation.
+- The elements which differ according to the constraints highlighted in the [Introduction](../trust-framework.md#introduction) are: the <processes:Notification|notification> process between a Member State and the European Commission, the publication of LOTL bootstrap data and retained LoTE signing certificates in the <artifacts:Official Journal of APTITUDE (OJA)>, and the registration of entities with the prescribed regulatory checks.
 
 !!! note
 
@@ -23,7 +23,7 @@ The APTITUDE Onboarding System SHALL implement the Onboarding Process defined in
 
 The entities involved in onboarding fall into two categories, and this distinction underpins the whole process:
 
-- **Trust infrastructure entities** (in short, *infrastructure entities*) are the entities that operate the trust infrastructure through which onboarding is performed, namely registration, certificate issuance (the <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>, the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>, and the Provider of Sign/Seal Certificates), and publication of the <artifacts:List of Trusted Entities (LoTE)> (the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider>). The <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> has its LoTE signing certificate referenced in the Official Journal of Aptitude.
+- **Trust infrastructure entities** (in short, *infrastructure entities*) are the entities that operate the trust infrastructure through which onboarding is performed, namely registration, certificate issuance (the <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>, the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>, and the Provider of Sign/Seal Certificates), and publication of the <artifacts:List of Trusted Entities (LoTE)> (the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider>). The Publication Service also operates the pilot TL and LOTL, with WP2 emulating the Member State and Commission scheme operators. The OJA bootstraps the LOTL; the LOTL supplies the TL location and authorized signing identities. The seven retained LoTE types continue to use their type-specific OJA discovery data.
 - **Operational entities** are the entities that are onboarded through that infrastructure in order to become operational and recognisable in the ecosystem, namely the <roles:Wallet-Relying Party (WRP)|WRP> and the <roles:Wallet Provider (WP)|WP>.
 
 The onboarding process presupposes the existence of a functional trust infrastructure. Its one-time setup is a prerequisite that SHALL be satisfied before any operational entity can be onboarded; it is described in [Trust Infrastructure Prerequisites](#trust-infrastructure-prerequisites). The recurring process through which operational entities become active is described in [Operational Entity Onboarding](#operational-entity-onboarding).
@@ -61,22 +61,28 @@ graph LR
 
 The [Onboarding System](#onboarding-system) operates on top of a trust infrastructure whose entities SHALL be established and have their <artifacts:Trust Anchor|trust anchors> published before any operational entity can be onboarded. This setup is a one-time prerequisite and is not part of the recurring onboarding flow; operational entity onboarding SHALL NOT start before it is in place [`ONBOARD-GEN-02`].
 
-Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no APTITUDE software [`ONBOARD-PRE-01`]. The <artifacts:Trust Anchor|trust anchors> of the infrastructure entities are provided and shared among the participants as a one-time operational setup. What is implemented and testable is the result, i.e. the signed, published <artifacts:List of Trusted Entities (LoTE)|LoTE> against which trust is later evaluated (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)). The operations below describe the trust infrastructure setup process.
+Within APTITUDE, the trust infrastructure prerequisites SHALL be established out of band and require no APTITUDE software [`ONBOARD-PRE-01`]. The <artifacts:Trust Anchor|trust anchors> of the infrastructure entities are provided and shared among the participants as a one-time operational setup. What is implemented and testable is the result, i.e. the signed, published LOTL, TL and seven retained <artifacts:List of Trusted Entities (LoTE)|LoTE> types against which trust is later evaluated (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)). The operations below describe the trust infrastructure setup process.
 
 ```mermaid
 graph LR
 
-    OJA(["Trusted OJA publication<br/>(LoTE URLs and signer certificates)"])
-    Signer(["LoTE Provider<br/>(authorized signing key)"])
+    OJA(["Trusted OJA publication<br/>(LOTL bootstrap and retained LoTE discovery)"])
+    Signer(["Publication Service<br/>(LoTE Provider / TL and LOTL scheme operators)"])
 
     subgraph LoTE["Infrastructure LoTE"]
         L1[("LoTE with Registrars TA")]
         L2[("LoTE with Providers of WRPAC TA")]
         L3[("LoTE with Providers of WRPRC TA")]
         L4[("LoTE with Wallet Providers")]
-        L5[("LoTEs with Attestation and PID Providers")]
+        L5[("LoTEs with PID, PuB-EAA and EAA Providers")]
     end
 
+    LOTL[("Pilot LOTL")]
+    TL[("Pilot TL: QEAA services")]
+    OJA -->|"LOTL location and signing certificates"| LOTL
+    Signer -->|"WP2 signs as LOTL scheme operator"| LOTL
+    Signer -->|"WP2 signs as TL scheme operator"| TL
+    LOTL -->|"TL location and signing identities"| TL
     DP[/"LoTE distribution point"/]
 
     Signer -->|"signs / seals"| L1
@@ -104,10 +110,12 @@ graph LR
 
 The setup comprises the following operations:
 
-1. **Key and Certificate Provisioning**. Each trust infrastructure entity provides its signing key and certificate. Within APTITUDE, the trust infrastructure signing entities MAY use self-signed root certificates with no higher certification authority or CA certificates with self managed PKI. Regardless of the choice, Trust in the certificate is conferred by the publication as a <artifacts:Trust Anchor> in the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> and SHALL be treated as a Trusted input in any APTITUDE use case.
-2. **LoTE Signing Certificates**. The signing certificates of the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> are used to validate the lists. Within APTITUDE, the trusted <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication supplies the location and authorized signing certificate set for each list type. The publication is not itself signed within the APTITUDE ecosystem.
-3. **Notification of Trust Anchors**. The <artifacts:Trust Anchor> of each infrastructure entity is listed in its corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE> as described in the above picture.
+1. **Key and Certificate Provisioning**. Infrastructure service entities whose CA anchors are published in retained LoTEs MAY use self-signed root certificates with no higher certification authority or CA certificates with self managed PKI. Trust in these service CA certificates is conferred by publication as a <artifacts:Trust Anchor> in the relevant retained LoTE. TL and LOTL scheme-operator signer provisioning and direct trust follow the [TL and LOTL profiles](../sections/trust-artifacts.md#trusted-list) and [authentication procedures](../sections/trust-evaluation-process.md). Retained LoTE signer authorization follows operation 2.
+2. **LoTE Signing Certificates**. The signing certificates of the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> are used to validate the lists. Within APTITUDE, the trusted <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication supplies the location and authorized signing certificate set for each retained LoTE type. The publication is not itself signed within the APTITUDE ecosystem.
+3. **Notification of Trust Anchors**. The <artifacts:Trust Anchor> of each infrastructure service entity using the retained-LoTE CA-anchor route is listed in its corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE> as described in the above picture.
 4. **Signing and Publication**. The <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> signs/seals the <artifacts:List of Trusted Entities (LoTE)|LoTE> and publishes them at a distribution point referenced by the <artifacts:Official Journal of APTITUDE (OJA)|OJA>, so that they can be retrieved at validation time (see [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process)).
+
+The Publication Service SHALL also establish the pilot LOTL and TL before QEAA onboarding. WP2 emulates both institutional scheme operators; this pilot setup does not confer institutional EU qualified status. The out-of-band setup supplies `OJA-Loc`, `OJA-LOTL-Loc` and `OJA-LOTL-Certs-Set` through the unsigned OJA discovery assumption. The Publication Service signs and publishes the LOTL with its self-pointer and pilot TL pointer, and signs and publishes the pilot TL. TL signing authorization is supplied by the authenticated LOTL, rather than directly by the OJA. The [TL and LOTL profiles](../sections/trust-artifacts.md#trusted-list) govern the list content, signing identities and publication requirements, following [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.3.13, 5.7 and 6] and [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.0–4.2]. Authentication and runtime acceptance are defined in [Trust Evaluation Processes](../sections/trust-evaluation-process.md); list maintenance is defined in [Trust Management Process](../sections/trust-management-lifecycle.md).
 
 ## Operational Entity Onboarding
 
@@ -132,7 +140,7 @@ graph TB
         SSCsvc["Sign/Seal Certificate Issuance Service<br/>issue / revoke Sign/Seal Certificates"]
         PubSvc["Publication Service<br/>(mocked EC / MS-TLP)<br/>consolidate and publish"]
         NotifDS[("Notification dataset<br/>CIR 2024/2980 notifiable info")]
-        Lists[("LoTE")]
+        Lists[("Pilot TL / LOTL and seven retained LoTEs")]
 
         UI -->|"create / check / update registration"| RegSvc
         UI -->|"request WRPAC"| ACsvc
@@ -165,12 +173,12 @@ graph TB
 
 The components, and the role each realises, are:
 
-- **Onboarding UI** (APTITUDE-specific orchestrator). It is the single point of contact of the entities requesting onboarding and coordinates the other services. It collects the data submitted by the entity, and it SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the <artifacts:List of Trusted Entities (LoTE)|LoTE> entry [`ONBOARD-GEN-03`].
+- **Onboarding UI** (APTITUDE-specific orchestrator). It is the single point of contact of the entities requesting onboarding and coordinates the other services. It collects the data submitted by the entity, and it SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the applicable TL service or <artifacts:List of Trusted Entities (LoTE)|LoTE> entry [`ONBOARD-GEN-03`].
 - **Registration Service**. It implements the <roles:Registrar> role, handling verification and the management of the registration record and its status. It exposes the common REST API (see [Common Register API](../sections/trust-artifacts.md#common-register-api)).
 - **<roles:Wallet-Relying Party (WRP)|WRP> Register**. It is the <components:Register> defined by [CIR 2025/848], which stores the registration records.
 - **<artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> Issuance Service** and **<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> Issuance Service**. They realise the <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> and the <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>.
 - **Sign/Seal Certificate Issuance Service**. It realise the Sign/Seal Certificate Provider role which issues certificates to sign <credentials:Attestation|Attestations>, <credentials:Person Identification Data (PID)|PIDs> and <artifacts:Wallet Unit Attestation (WUA)|Wallet Unit Attestations>.
-- **Publication Service**. It realises the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> that signs and publishes the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+- **Publication Service**. It signs and publishes the pilot TL and LOTL as the WP2-emulated scheme operators, and realises the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> for the seven retained LoTE types.
 
 !!! note
 
@@ -179,7 +187,7 @@ The components, and the role each realises, are:
 The Onboarding System SHALL keep the <components:Register|WRP Register> and the <processes:Notification> dataset as two distinct data stores [`ONBOARD-GEN-04`], because the data needed for notification does not fully coincide with the data that populates the <components:Register|WRP Register>:
 
 - the **WRP Register** holds the <roles:Wallet-Relying Party (WRP)|WRP> registration records ([CIR 2025/848]), namely identification, intended use, and related data, as defined in [Register Data Schema](../sections/trust-artifacts.md#register-data-schema);
-- the **Notification dataset** holds the notifiable information related to the notifiable entity ([CIR 2024/2980]), namely identification, <artifacts:Trust Anchor|trust anchors>, and service supply points, whose fields are defined as <artifacts:List of Trusted Entities (LoTE)|LoTE> entries in [List of Trusted Entities](../sections/trust-artifacts.md#list-of-trusted-entities).
+- the **Notification dataset** holds the notifiable information related to the notifiable entity ([CIR 2024/2980]), namely identification, <artifacts:Trust Anchor|trust anchors>, and service supply points, whose QEAA provider and service fields follow the [Trusted List profile](../sections/trust-artifacts.md#trusted-list), and whose retained-type fields are defined in [List of Trusted Entities](../sections/trust-artifacts.md#list-of-trusted-entities).
 
 !!! note
 
@@ -193,23 +201,23 @@ Against this decomposition, the APTITUDE boundary set out in the introduction of
 
 | Element       | Within APTITUDE   |
 | ------------- | ----------------- |
-| Onboarding UI, Registration Service (with the <components:Register\|WRP Register> and its API), <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, Sign/Seal Certificate Issuance Services, and Publication Service (with the <artifacts:List of Trusted Entities (LoTE)\|LoTE>) | Implemented as APTITUDE software |
+| Onboarding UI, Registration Service (with the <components:Register\|WRP Register> and its API), <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>, Sign/Seal Certificate Issuance Services, and Publication Service (with the pilot TL / LOTL and seven retained LoTE types) | Implemented as APTITUDE software |
 | Trust infrastructure setup (prerequisites) | Performed out of band; no APTITUDE software |
 | The Member State to European Commission notification act, and the <artifacts:Official Journal of the European Union (OJEU)\|OJEU> publication | Mocked, respectively by the Publication Service and by APTITUDE |
 | The certification of a <components:Wallet Solution> | External; out of scope of APTITUDE and only referenced |
-| Data schemas, certificate profiles, <artifacts:List of Trusted Entities (LoTE)\|LoTE> formats, low-level protocols | Defined in the referenced sections of this specification, not redefined here |
+| Data schemas, certificate profiles, pilot TL / LOTL and seven retained LoTE formats, low-level protocols | Defined in [Trust Artifacts](../sections/trust-artifacts.md), including the TL, LOTL and retained LoTE profiles, not redefined here |
 
 ### Input
 
 The required inputs to onboard an operational entity depend on its type and on the onboarding path it follows (see [Onboarding Paths by Entity Type](#onboarding-paths-by-entity-type)). The following inputs SHALL be required:
 
 - **Registration data** of entities that are registered in the <components:Register>, i.e., all <roles:Wallet-Relying Party (WRP)|WRP> types. This data conforms to the `WalletRelyingParty` schema defined in [Register Data Schema](../sections/trust-artifacts.md#register-data-schema), which transposes the [CIR 2025/848, Annex I] and [CIR 2025/848-Amendment, Annex VI] set.
-- **Notifiable data** of entities published in a <artifacts:List of Trusted Entities (LoTE)|LoTE>, i.e., <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)\|PuB-EAA Provider>, <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Provider>, <roles:Provider of Electronic Attestation of Attributes (EAA Provider)\|EAA Provider>, and the <roles:Wallet Provider (WP)|WP>. This data covers the identification, <artifacts:Trust Anchor|Trust Anchors>, and service supply points needed for the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> entry, as defined in [List of Trusted Entities](../sections/trust-artifacts.md#list-of-trusted-entities).
+- **Publication data** of entities published in the pilot TL or a <artifacts:List of Trusted Entities (LoTE)|LoTE>, i.e., <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)\|PuB-EAA Provider>, <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Provider>, <roles:Provider of Electronic Attestation of Attributes (EAA Provider)\|EAA Provider>, and the <roles:Wallet Provider (WP)|WP>. This data covers the identification, <artifacts:Trust Anchor|Trust Anchors>, and service supply points submitted for publication. QEAA provider and service data follows the [Trusted List profile](../sections/trust-artifacts.md#trusted-list); retained-type entry data follows [List of Trusted Entities](../sections/trust-artifacts.md#list-of-trusted-entities).
 - **Cryptographic material**, namely the cryptographic material for which a <roles:Wallet-Relying Party (WRP)|WRP> requests a <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, generated according to [ETSI TS 119 411-8], and the cryptographic material for which <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Attestation Provider (AP)|Attestation Providers>, or <roles:Wallet Provider (WP)|Wallet Providers> request Sign/Seal Certificates used to sign or seal their <credentials:Attestation|Attestations>.
 
 !!! note
 
-    A <roles:Wallet-Relying Party (WRP)|WRP> that is also a notified entity (<roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Provider>, <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, or <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Provider>) provides both the registration data and the notifiable data: the former populates the <components:Register> and drives the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, the latter populates the corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE>. A <roles:Relying Party (RP)|Relying Party> or a <roles:Relying Party Intermediary (RPI)|Relying Party Intermediary> provides only the registration data, as it requires no <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.
+    A <roles:Wallet-Relying Party (WRP)|WRP> that is also a notified entity (<roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)|PuB-EAA Provider>, <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, or <roles:Provider of Electronic Attestation of Attributes (EAA Provider)|EAA Provider>) provides both the registration data and the notifiable data: the former populates the <components:Register> and drives the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, the latter populates the pilot TL service entry for a QEAA Provider, or the corresponding LoTE for the other listed providers. A <roles:Relying Party (RP)|Relying Party> or a <roles:Relying Party Intermediary (RPI)|Relying Party Intermediary> provides only the registration data, as it requires no <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.
 
 ### Output
 
@@ -219,16 +227,16 @@ A successful onboarding produces the artifacts below, whose data model and forma
 - the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, see [Wallet-Relying Party Access Certificate](../sections/trust-artifacts.md#wallet-relying-party-access-certificate);
 - the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, see [Wallet-Relying Party Registration Certificate](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate);
 - the applicable Sign/Seal Certificate for <roles:Provider of Person Identification Data (PID Provider)|PID Providers>, <roles:Attestation Provider (AP)|Attestation Providers>, or <roles:Wallet Provider (WP)|Wallet Providers>, see [Entity Sign/Seal Certificate Profile](../sections/trust-artifacts.md#entity-signseal-certificate);
-- the <artifacts:List of Trusted Entities (LoTE)|LoTE> entry produced by the [Notification and Publication](#notification-and-publication) step.
+- the pilot TL QEAA service entry or retained <artifacts:List of Trusted Entities (LoTE)|LoTE> entry produced by the [Notification and Publication](#notification-and-publication) step.
 
 ### Onboarding Paths by Entity Type
 
 Each entity type follows a different path and produces a different set of outputs, summarised in the table below.
 
-| Entity Type                   | Register Record   | WRPAC | WRPRC | Sign/Seal Certificate | LoTE Entry                                                    |
+| Entity Type                   | Register Record   | WRPAC | WRPRC | Sign/Seal Certificate | Published Entry                                                    |
 | ----------------------------- | :---------------: | :---: | :---: | :-------------------: | :-----------------------------------------------------------: |
 | <roles:Provider of Person Identification Data (PID Provider)\|PID Provider> | YES | YES | YES | YES | <roles:Provider of Person Identification Data (PID Provider)\|PID Providers> <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
-| <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Provider> | YES | YES | YES | YES | <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Provider> <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
+| <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)\|QEAA Provider> | YES | YES | YES | YES | Pilot TL QEAA service |
 | <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)\|PuB-EAA Provider> | YES | YES | YES | YES | <roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)\|PuB-EAA Providers> <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
 | <roles:Provider of Electronic Attestation of Attributes (EAA Provider)\|EAA Provider> | YES | YES | YES | YES | <roles:Provider of Electronic Attestation of Attributes (EAA Provider)\|EAA Provider> <artifacts:List of Trusted Entities (LoTE)\|LoTE> |
 | <roles:Relying Party (RP)\|Relying Party> | YES | YES | YES | NO | None |
@@ -265,19 +273,20 @@ Identity proofing is not repeated here; it is performed by the <roles:Registrar>
 
 ### Notification and Publication
 
-This step publishes a notified entity, together with the <artifacts:Trust Anchor> of the technical component it operates, in the appropriate <artifacts:List of Trusted Entities (LoTE)|LoTE>. <processes:Notification|Notification> is a separate, Member State level process ([CIR 2024/2980]) and is not a duty of the <roles:Registrar>. Within APTITUDE, the Member State to European Commission notification act SHALL be mocked by the Publication Service, triggered by the Onboarding UI, while the signing and publication of the <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL follow the normative framework [`ONBOARD-PUB-01`].
+This step publishes a QEAA service in the pilot TL, or a notified entity and its technical component trust anchor in the appropriate retained LoTE. <processes:Notification|Notification> is a separate, Member State level process ([CIR 2024/2980]) and is not a duty of the <roles:Registrar>. Within APTITUDE, the Member State to European Commission notification act SHALL be mocked by the Publication Service, triggered by the Onboarding UI, while the signing and publication of the pilot TL, LOTL and retained LoTEs SHALL follow the normative framework [`ONBOARD-PUB-01`].
 
-For a <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Attestation Provider (AP)|Attestation Provider>, or <roles:Wallet Provider (WP)|Wallet Provider>, the applicable Sign/Seal Certificate SHALL be issued before the notification data is submitted. The Sign/Seal Certificate is the notified entity's end-entity certificate and is distinct from both the <artifacts:Trust Anchor> published in the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> and the certificate used by the <roles:List of Trusted Entities Provider (LoTE Provider)|LoTE Provider> to sign the <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+For a <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Attestation Provider (AP)|Attestation Provider>, or <roles:Wallet Provider (WP)|Wallet Provider>, the applicable Sign/Seal Certificate SHALL be issued before the notification data is submitted. The Sign/Seal Certificate is the notified entity's end-entity certificate. For retained LoTE types it is distinct from the published service CA trust anchor and the LoTE signing certificate. QEAA service digital identities follow the [Trusted List profile](../sections/trust-artifacts.md#trusted-list), and matching follows [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process), including direct matching of a non-CA identity or matching through a CA anchor as applicable.
 
-- <roles:Provider of Person Identification Data (PID Provider)|PID Providers> and <roles:Attestation Provider (AP)|Attestation Providers> are added to the respective <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+- QEAA Providers follow the existing registration and certificate issuance steps, then the Publication Service SHALL include their QEAA service in the pilot TL under the [Trusted List profile](../sections/trust-artifacts.md#trusted-list). The submitted publication data supplies the provider and service information, service digital identity and status required by that profile. This emulates TL inclusion under [ARF, Chapter 6, Sections 6.3.2.1 and 6.3.2.4, main commit f5789a77dfc6d5a85834c431465afbe543d0141a].
+- PID, PuB-EAA and EAA Providers retain their respective LoTE publication paths, including the existing APTITUDE EAA path.
 - <roles:Wallet Provider (WP)|Wallet Providers> follow a <processes:Notification|notification>-only path, with no <components:Register> record, no <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, and no <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>; their Sign/Seal Certificates are issued before their <artifacts:Trust Anchor> is published in the <roles:Wallet Provider (WP)|Wallet Providers> <artifacts:List of Trusted Entities (LoTE)|LoTE>;
 - <roles:Relying Party (RP)|Relying Parties> and <roles:Relying Party Intermediary (RPI)|Relying Party Intermediaries> require no <artifacts:List of Trusted Entities (LoTE)|LoTE> entry, as trust in it is anchored through the signed <components:Register> and its <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
 
 !!! note
 
-    The Sign/Seal Certificate issued to a <roles:Provider of Person Identification Data (PID Provider)|PID Provider> or <roles:Attestation Provider (AP)|Attestation Provider> is the end-entity certificate with which its service supply point signs or seals <credentials:Person Identification Data (PID)|PIDs> or <credentials:Attestation|Attestations>; for a <roles:Wallet Provider (WP)|Wallet Provider> it is the certificate used by the <components:Wallet Solution> to sign or seal <artifacts:Wallet Unit Attestation (WUA)|WUAs>. The corresponding <artifacts:Trust Anchor> published in the <artifacts:List of Trusted Entities (LoTE)|LoTE> is the CA certificate at which the Sign/Seal Certificate chain terminates. The <artifacts:List of Trusted Entities (LoTE)|LoTE> entry therefore binds the organisational entity to the technical component that operates at runtime.
+    The Sign/Seal Certificate issued to a <roles:Provider of Person Identification Data (PID Provider)|PID Provider> or <roles:Attestation Provider (AP)|Attestation Provider> is the end-entity certificate with which its service supply point signs or seals <credentials:Person Identification Data (PID)|PIDs> or <credentials:Attestation|Attestations>; for a <roles:Wallet Provider (WP)|Wallet Provider> it is the certificate used by the <components:Wallet Solution> to sign or seal <artifacts:Wallet Unit Attestation (WUA)|WUAs>. For retained LoTE types, the corresponding <artifacts:Trust Anchor> published in the <artifacts:List of Trusted Entities (LoTE)|LoTE> is the CA certificate at which the Sign/Seal Certificate chain terminates. For those types, the <artifacts:List of Trusted Entities (LoTE)|LoTE> entry therefore binds the organisational entity to the technical component that operates at runtime.
 
-On failure, if publication does not complete, a notified entity MAY already hold its issued Sign/Seal Certificate and, where it is a <roles:Wallet-Relying Party (WRP)|WRP>, have an active registration record and hold its <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, but not yet be present in the <artifacts:List of Trusted Entities (LoTE)|LoTE>. The issued certificate and registration record alone do not make the entity trusted by <roles:Relying Party (RP)|RPs> until the entry is published.
+On failure, if publication does not complete, a notified entity MAY already hold its issued Sign/Seal Certificate and, where it is a <roles:Wallet-Relying Party (WRP)|WRP>, have an active registration record and hold its <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, but not yet have its service in the pilot TL or its entry in the applicable retained LoTE. The issued certificate and registration record alone do not make the entity trusted by <roles:Relying Party (RP)|RPs> until the entry is published.
 
 ### Detailed Flow
 
@@ -291,7 +300,7 @@ sequenceDiagram
     participant RCServ as WRPRC Issuance Service
     participant SSCServ as Sign/Seal Certificate Issuance Service
     participant PubServ as Publication Service
-    participant TL as LoTE
+    participant TL as Pilot TL / retained LoTE
 
     E->>UI: submit onboarding data and cryptographic material
     alt entity registers (any WRP)
@@ -325,7 +334,11 @@ sequenceDiagram
             SSCServ-->>UI: Sign/Seal Certificate
             UI-->>E: provide Sign/Seal Certificate
             UI->>PubServ: submit notifiable data
-            PubServ<<->>TL: publish to applicable LoTE
+            alt QEAA Provider
+                PubServ<<->>TL: include QEAA service in pilot TL
+            else PID / PuB-EAA / EAA Provider
+                PubServ<<->>TL: publish to applicable retained LoTE
+            end
             PubServ-->>UI: entry successfully created
             UI-->>E: publication confirmed
         end
@@ -363,7 +376,9 @@ These actions SHALL act on the **organisational entity**, that is its registrati
 
 The lifecycle of entities that are only notified is governed by the <processes:Notification|notification> framework ([CIR 2024/2980]). The entity is published when notified, and upon cancellation it stops being trusted (`ARF GenNot_05`). For the <roles:Wallet Provider (WP)|Wallet Provider>, a cancellation additionally requires the revocation of all its valid <artifacts:Wallet Unit Attestation (WUA)|WUAs> (`ARF WPNot_06`). The same applies to the other notified entities published in their <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
-How *stops being trusted* is represented depends on the list type, and APTITUDE adopts the representation already supported by each format. The PuB-EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE> carries an explicit per-entry status, which on cancellation SHALL be set to withdrawn; the <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Wallet Provider (WP)|Wallet Provider>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>, and <roles:Registrar> <artifacts:List of Trusted Entities (LoTE)|LoTEs> carry no per-entry status (per [ETSI TS 119 602], `ServiceStatus` and the service history are not used for these types), so for them a cancelled entity SHALL be reflected by removing the entry [`ONBOARD-LC-01`]. The broader lifecycle of notified entities belongs to the Trust Management Process.
+For a QEAA Provider, cancellation SHALL be reflected by withdrawal of the service in the pilot TL with retained service history, following [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.5.4–5.6 and Annex G] and the [Trust Management Process](../sections/trust-management-lifecycle.md), rather than removal from a QEAA LoTE [`ONBOARD-LC-01`].
+
+How *stops being trusted* is represented for the retained LoTEs depends on the list type, and APTITUDE adopts the representation already supported by each format. The PuB-EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE> carries an explicit per-entry status, which on cancellation SHALL be set to withdrawn; the <roles:Provider of Person Identification Data (PID Provider)|PID Provider>, <roles:Wallet Provider (WP)|Wallet Provider>, <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC>, <roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)|Provider of WRPRC>, and <roles:Registrar> <artifacts:List of Trusted Entities (LoTE)|LoTEs> carry no per-entry status (per [ETSI TS 119 602], `ServiceStatus` and the service history are not used for these types), and the EAA Provider LoTE uses the existing PID-style removal path defined in [List of Trusted Entities](../sections/trust-artifacts.md#list-of-trusted-entities), so for these types a cancelled entity SHALL be reflected by removing the entry [`ONBOARD-LC-01`]. The broader lifecycle of notified entities belongs to the Trust Management Process.
 
 Finally, the artifacts produced by onboarding are consumed in the trust evaluation processes. The <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> is used in the [Authentication Process](../sections/trust-evaluation-process.md#authentication-process), Sign/Seal Certificates are used in the [Sign/Seal Validation Process](../sections/trust-evaluation-process.md#signseal-validation-process), the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and the <components:Register> are used in the [Authorization Process](../sections/trust-evaluation-process.md#authorization-process), the <artifacts:List of Trusted Entities (LoTE)|LoTE> <artifacts:Trust Anchor|Trust Anchors> are used in the [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process), and certificate revocation is covered by [Revocation Mechanisms](../sections/trust-management-lifecycle.md#revocation-mechanisms).
 
@@ -379,7 +394,7 @@ Finally, the artifacts produced by onboarding are consumed in the trust evaluati
 | :---------------: | ------------- | ----- | --------------------- |
 | `ONBOARD-GEN-01`  | The APTITUDE Onboarding System SHALL implement the Onboarding Process defined in this section. | Both | -- |
 | `ONBOARD-GEN-02`  | Operational entity onboarding SHALL NOT start before the trust infrastructure prerequisites have been established. | Both | -- |
-| `ONBOARD-GEN-03`  | The Onboarding UI SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the <artifacts:List of Trusted Entities (LoTE)\|LoTE> entry. | Onboarding | -- |
+| `ONBOARD-GEN-03`  | The Onboarding UI SHALL trigger, in order, registration, certificate issuance, and, where applicable, publication or update of the applicable TL service or <artifacts:List of Trusted Entities (LoTE)\|LoTE> entry. | Onboarding | -- |
 | `ONBOARD-GEN-04`  | The Onboarding System SHALL keep the <components:Register\|WRP Register> and the <processes:Notification> dataset as two distinct data stores. | Both | -- |
 
 ### Prerequisites
@@ -399,12 +414,14 @@ Finally, the artifacts produced by onboarding are consumed in the trust evaluati
 
 | ID                | Requirement   | Scope | External Requirements |
 | :---------------: | ------------- | ----- | --------------------- |
-| `ONBOARD-PUB-01`  | Within APTITUDE, the Member State to European Commission notification act SHALL be mocked by the Publication Service, while the signing and publication of the <artifacts:List of Trusted Entities (LoTE)\|LoTE> SHALL follow the normative framework. | Onboarding | [CIR 2024/2980] |
+| `ONBOARD-PUB-01`  | Within APTITUDE, the Member State to European Commission notification act SHALL be mocked by the Publication Service, while the signing and publication of the pilot TL, LOTL and retained LoTEs SHALL follow the normative framework. | Onboarding | [CIR 2024/2980] |
 
 ### Lifecycle
 
 | ID                | Requirement   | Scope | External Requirements |
 | :---------------: | ------------- | ----- | --------------------- |
-| `ONBOARD-LC-01`   | <artifacts:List of Trusted Entities (LoTE)\|LoTE> carrying a per-entry status SHALL reflect cancellation by setting the status to withdrawn; <artifacts:List of Trusted Entities (LoTE)\|LoTE> carrying no per-entry status SHALL reflect it by removing the entry. | Onboarding | [ETSI TS 119 602], GenNot_05 |
+| `ONBOARD-LC-01`   | QEAA cancellation SHALL withdraw the service in the pilot TL with retained history; <artifacts:List of Trusted Entities (LoTE)\|LoTE> carrying a per-entry status SHALL reflect cancellation by setting the status to withdrawn; <artifacts:List of Trusted Entities (LoTE)\|LoTE> carrying no per-entry status SHALL reflect it by removing the entry. | Onboarding | [ETSI TS 119 602], GenNot_05; [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.5.4–5.6 and Annex G] |
 | `ONBOARD-LC-02`   | Lifecycle actions (cancellation, certificate revocation) SHALL act on the organisational entity, not on the technical product it operates. | Onboarding | [CIR 2025/848] Art. 9 |
 | `ONBOARD-LC-03`   | A change to a technical product the entity operates that does not affect eligibility SHALL be reflected as a <processes:Notification\|notification> update, not de-onboarding; a change that makes the entity ineligible SHALL lead to its cancellation (effect of `ONBOARD-LC-01`). | Onboarding | -- |
+
+QEAA onboarding outputs are consumed through LOTL and TL authentication, runtime acceptance and QEAA service/signature evaluation in [Trust Evaluation Processes](../sections/trust-evaluation-process.md). Publication alone does not establish runtime acceptance.

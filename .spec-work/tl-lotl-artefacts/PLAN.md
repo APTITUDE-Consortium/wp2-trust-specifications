@@ -250,7 +250,7 @@ Uses: CA anchor profile (A-05); list authentication (A-06, A-07); common dispatc
 Delivers: Change only trust_anchor input description and associated profile references to permit applicable CA anchor from validated TL service information as well as retained LoTEs. Cite ETSI matching for non-CA direct service identities and list authentication for directly trusted list signers, keeping both outside the CA-anchor profile. Preserve the shared RFC 5280, CRL and OCSP algorithms unchanged.
 Answers: none
 
-### A-11 · Flow frame · pending
+### A-11 · Flow frame · accepted
 
 Plan entry: Onboarding Process / `docs/topics/onboarding-process.md`
 Writes: `docs/topics/onboarding-process.md`
