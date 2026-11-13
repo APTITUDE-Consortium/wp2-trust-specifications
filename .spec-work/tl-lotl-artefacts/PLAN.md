@@ -313,7 +313,7 @@ Uses: LOTL Authentication (A-06); TL Authentication (A-07); common dispatch/runt
 Delivers: Add LOTL Authentication and Trusted List Authentication adjacent to Trust Anchor Validation in assembled core procedures and include each new topic exactly once with appropriate heading levels. Update overview trust-source references to distinguish QEAA TL service validation and retained-LoTE validation, citing owning procedures without redefining them. Preserve other core process assembly.
 Answers: none
 
-### A-18 · Framing · pending
+### A-18 · Framing · accepted
 
 Plan entry: Overview and entry point; Trust Artifacts parent; References
 Writes: `docs/trust-framework.md`, `docs/sections/trust-artifacts.md`, `docs/sections/references.md`

@@ -12,6 +12,7 @@
 | Item Reference                | Version     | Date        | Title                     |
 | ----------------------------- | ----------- | ----------- | ------------------------- |
 | ARF                           | v2.9.0      | 2026-05-21  | Architecture and Reference Framework |
+| [ARF Trust Model](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/f5789a77dfc6d5a85834c431465afbe543d0141a/docs/main/06-trust-model.md) | main, commit f5789a7 | N/A | Architecture and Reference Framework, Chapter 6: Trust model; pinned main snapshot retrieved 2026-11-13 |
 | TS02                          | v1.0.1      | 2026-01-30  | Specification of systems enabling the notification and subsequent publication of Provider information |
 | TS03                          | v1.5.2      | 2026-05-26  | Specification of Wallet Unit Attestations (WUA) used in issuance of PID and Attestations |
 | TS05                          | v1.3        | 2026-02-13  | Specification of common formats and API for Relying Party Registration information |
@@ -54,7 +55,7 @@ ETSI specifications for EU Digital Identity Wallets of main interest for the tru
 | ETSI TS 119 475               | V1.2.1      | 2026-03     | Electronic Signatures and Trust Infrastructures (ESI); Relying party attributes supporting EUDI Wallet user's authorisation decisions |
 | ETSI TS 119 602               | V1.1.1      | 2025-11     | Electronic Signatures and Trust Infrastructures (ESI); Lists of trusted entities; Data model |
 | ETSI TS 119 612               | V2.4.1      | 2025-08     | Electronic Signatures and Trust Infrastructures (ESI); Trusted Lists |
-| ETSI TS 119 615               | V1.3.1      | 2026-01     | Electronic Signatures and Trust Infrastructures (ESI); Trusted lists; Procedures for using and interpreting European Union Member States national trusted lists |
+| [ETSI TS 119 615](https://www.etsi.org/deliver/etsi_ts/119600_119699/119615/01.04.01_60/ts_119615v010401p.pdf) | V1.4.1      | 2026-05     | Electronic Signatures and Trust Infrastructures (ESI); Trusted lists; Procedures for using and interpreting European Union Member States national trusted lists |
 
 Other ETSI specifications that the previous specifications build upon:
 
