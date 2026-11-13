@@ -54,6 +54,65 @@ This non-normative excerpt is deliberately incomplete, omitting mandatory fields
 </tsl:TrustServiceStatusList>
 ```
 
+## List Of Trusted Lists
+
+The pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> is the signed pointer list through which the pilot TL locations and authorized TL-signing identities are published. [ETSI TS 119 612 V2.4.1, Clauses 5.3.3, 5.3.7, 5.3.13–5.3.18, 5.7, 6 and Annexes A–D] governs its structure, signature and publication except for the pilot substitutions below. Authentication metadata and pivot information follow [ETSI TS 119 615 V1.4.1, Clauses 4.0–4.1].
+
+!!! choice "APTITUDE Implementation Choice"
+
+    WP2 SHALL operate the sole pilot signed pointer-list profile as the LOTL scheme operator identified in [Trust Architecture](../sections/trust-architecture.md). The LOTL SHALL use XML encoded in UTF-8, `TSLVersionIdentifier = 6`, `TSLType = http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUlistofthelists`, and `SchemeTerritory = EU`. These values emulate the institutional EU profile and do not confer institutional EU qualified status. Deployment locations, operator identities and signing certificates SHALL be supplied by pilot configuration and publication.
+
+### LOTL Profile Metadata
+
+The source model and its presence rules apply; the following table specifies the pilot bindings rather than reproducing that model.
+
+| Field | Pilot binding and source clause |
+| --- | --- |
+| `SchemeOperatorName`, `SchemeOperatorAddress`, `SchemeName`, `PolicyOrLegalNotice` | SHALL identify the WP2 operator and pilot scheme, with a legal notice identifying pilot emulation and the absence of institutional EU qualified status. ETSI TS 119 612, Clauses 5.3.4–5.3.6 and 5.3.11. |
+| `TSLSequenceNumber` | SHALL carry the list sequence number with source-defined increment semantics; Clause 5.3.2. |
+| `SchemeInformationURI` | SHALL provide scheme information and the applicable OJA and archived pivot references, retaining the source order and transition information under the OJA substitution below; Clause 5.3.7 and ETSI TS 119 615, Clause 4.1. |
+| `ListIssueDateTime`, `NextUpdate` | SHALL carry issue and latest-update metadata under Clauses 5.3.14–5.3.15. |
+| `PointersToOtherTSL` | SHALL include the self-pointer as the first tuple and a pointer to each pilot TL. Each tuple SHALL bind `TSLLocation`, authorized signing identities in `ServiceDigitalIdentities`, and the `TSLType`, `SchemeTerritory` and MIME-type qualifiers under Clause 5.3.13 and Annex D. The self-pointer identifies the pilot LOTL with territory `EU`; each TL pointer identifies its emulated territory `CC`. XML pointers use `application/vnd.etsi.tsl+xml`. |
+| `TrustServiceProviderList` | SHALL be absent: this pointer-only artefact contains no TSP/service list; Clause 5.3.18. |
+
+The self-pointer and applicable archived pivot references SHALL preserve the source-defined signer/location continuity information of [ETSI TS 119 615 V1.4.1, Clause 4.1]. The LOTL signature and publication SHALL follow [ETSI TS 119 612 V2.4.1, Clauses 5.7 and 6, Annexes A–D], using the version-specific Annex C schema attachment `ts_119612v020401p0.zip`.
+
+### Pilot OJA Bootstrap
+
+The pilot substitutes the following parameters for those in [ETSI TS 119 615 V1.4.1, Clause 4.0]:
+
+| Pilot parameter | Source parameter | Pilot meaning |
+| --- | --- | --- |
+| `OJA-Loc` | `OJEU-Loc` | Fixed configured URI of the pilot OJA publication. |
+| `OJA-LOTL-Loc` | `OJEU-LOTL-Loc` | Initial current XML LOTL location supplied by that publication. |
+| `OJA-LOTL-Certs-Set` | `OJEU-LOTL-Certs-Set` | Full initial authorized LOTL-signing certificate set supplied by that publication. |
+
+The OJA publication is unsigned and is not independently authenticated. Consumers SHALL accept its bootstrap data under the explicit APTITUDE discovery assumption at the fixed configured OJA URI. This assumption does not establish institutional OJEU trust. Authenticated parameter updates and pivot continuity remain governed by the referenced LOTL authentication procedure. TL-signing authorization SHALL come from the authenticated LOTL pointer tuple, never directly from an OJA certificate set bypassing the LOTL. Authentication and runtime acceptance are specified in [Trust Evaluation Processes](../sections/trust-evaluation-process.md); this profile does not redefine those procedures.
+
+### Illustrative LOTL XML Excerpt
+
+This non-normative, deliberately incomplete XML excerpt omits mandatory metadata, signing identities, qualifiers and the signature. It is not a valid complete or signed LOTL. Comments identify the omitted tuple content; deployment values come from configuration.
+
+```xml
+<tsl:TrustServiceStatusList xmlns:tsl="http://uri.etsi.org/02231/v2#">
+  <tsl:SchemeInformation>
+    <tsl:TSLVersionIdentifier>6</tsl:TSLVersionIdentifier>
+    <tsl:TSLSequenceNumber>1</tsl:TSLSequenceNumber>
+    <tsl:TSLType>http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUlistofthelists</tsl:TSLType>
+    <!-- WP2 operator, scheme information and pilot legal notice omitted. -->
+    <tsl:SchemeTerritory>EU</tsl:SchemeTerritory>
+    <tsl:PointersToOtherTSL>
+      <!-- First OtherTSLPointer: self-pointer; LOTL location and signers,
+           EUlistofthelists type, EU territory, XML MIME qualifier. -->
+      <!-- One OtherTSLPointer per pilot TL: TL location and signers,
+           EUgeneric type, CC territory, XML MIME qualifier. -->
+    </tsl:PointersToOtherTSL>
+    <!-- ListIssueDateTime and NextUpdate omitted. -->
+  </tsl:SchemeInformation>
+  <!-- No TrustServiceProviderList; XAdES signature omitted. -->
+</tsl:TrustServiceStatusList>
+```
+
 This section describes the format and contents of the <artifacts:List of Trusted Entities (LoTE)|LoTE> and how it is used to provide <artifacts:Trust Anchor|Trust Anchors> within APTITUDE.
 
 The <artifacts:List of Trusted Entities (LoTE)|LoTE> is a compilation of the information submitted by Member States about the following entities:

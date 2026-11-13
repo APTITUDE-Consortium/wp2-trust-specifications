@@ -178,7 +178,7 @@ Uses: WP2 scheme-operator roles (A-01, `docs/topics/trust-architecture.md`); exi
 Delivers: Detail: cite. Add the sibling Trusted List subsection as the sole pilot TL profile, citing the XML data model/signature/publication provisions rather than reproducing them. Require XML/UTF-8, TSLVersionIdentifier = 6, TSLType = http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUgeneric and SchemeTerritory identifying the emulated Member State CC; state pilot emulation explicitly. Identify runtime-consumed fields and source-defined mandatory/conditional/optional presence with precise clauses: WP2 scheme-operator metadata and pilot legal notice, TSLSequenceNumber, SchemeInformationURI, PointersToOtherTSL pointing to pilot LOTL, ListIssueDateTime, NextUpdate, HistoricalInformationPeriod, TSPName, TSPTradeName, ServiceTypeIdentifier = http://uri.etsi.org/TrstSvc/Svctype/EAA/Q, ServiceDigitalIdentity, ServiceStatus, StatusStartingTime, conditional ServiceHistory; DistributionPoints and applicable ServiceInformationExtensions retain source presence/interpretation. Cite QEAA qualification/provider binding, distinct from CA/QC certificate qualification. Cite source XAdES-B-B/list-signer requirements and XML retrieval/media type; refer to Annex C version-specific schema attachment ts_119612v020401p0.zip. Actual deployment values come from configuration/publication. Add a short explicitly incomplete non-normative XML excerpt. Do not transplant XML-LoTE rules. A-04 owns removal of the existing exclusion/LoTE cleanup; do not otherwise modify that subsection.
 Answers: none
 
-### A-03 · Artefact · pending
+### A-03 · Artefact · accepted
 
 Plan entry: Trust Artifacts / List Of Trusted Lists (new subsection)
 Writes: `docs/topics/trusted-list-and-list-of-trusted-lists.md`
