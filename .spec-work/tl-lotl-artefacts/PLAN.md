@@ -187,7 +187,7 @@ Uses: TL profile (A-02, same file); scheme-operator roles (A-01).
 Delivers: Detail: cite. Add the sibling LOTL subsection as the sole pilot signed pointer-list profile and its OJA bootstrap, citing source structure/authentication metadata. Profile XML/UTF-8, TSLVersionIdentifier = 6, TSLType = http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUlistofthelists and SchemeTerritory = EU as pilot emulation. State WP2 scheme-operator metadata/pilot legal notice, TSLSequenceNumber, SchemeInformationURI including OJA/pivot references where applicable, ListIssueDateTime, NextUpdate, PointersToOtherTSL tuples with TSLLocation, authorized TL-signing identities, TSLType, SchemeTerritory and MIME qualifiers. Preserve source self-pointer and pivot information as applicable; include a self-pointer and each pilot TL pointer, with no TSP/service list. Map OJA-Loc, OJA-LOTL-Loc and OJA-LOTL-Certs-Set respectively to OJEU-Loc, OJEU-LOTL-Loc and OJEU-LOTL-Certs-Set. Keep the fixed configured unsigned-OJA discovery assumption explicit; TL signer authorization comes through authenticated LOTL, never direct OJA bypass. Include a short annotated incomplete XML excerpt. Do not redefine authentication/runtime procedures or rewrite LoTE material owned by A-04.
 Answers: none
 
-### A-04 · Artefact · pending
+### A-04 · Artefact · accepted
 
 Plan entry: Trust Artifacts / existing list topic (changed): retained LoTE profile
 Writes: `docs/topics/trusted-list-and-list-of-trusted-lists.md`
