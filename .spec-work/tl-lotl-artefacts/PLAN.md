@@ -205,7 +205,7 @@ Uses: TL/LOTL and retained LoTE profiles (A-02–A-04, `docs/topics/trusted-list
 Delivers: Change anchor-source references to cover eligible TL service information and retained-LoTE CA anchors. Scope the existing CA Trust Anchor Certificate profile and Sign/Seal-chain/header rules to CA certificates; preserve its existing constraints. Keep directly trusted list-signing certificates and non-CA service identities used by ETSI matching distinct and refer to owning list/evaluation sections. Do not require all TL service certificates to be CA certificates, or send directly trusted list signers through this profile.
 Answers: none
 
-### A-06 · Algorithm · pending
+### A-06 · Algorithm · accepted
 
 Plan entry: Trust Evaluation / `docs/topics/lotl-authentication.md` (new)
 Writes: `docs/topics/lotl-authentication.md`
