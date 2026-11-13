@@ -214,7 +214,7 @@ Uses: LOTL/OJA profile (A-03, `docs/topics/trusted-list-and-list-of-trusted-list
 Delivers: Detail: cite. Define pilot LOTL Authentication by citing the complete ETSI procedure, its input/state contract, pivots and outputs, rather than reproducing it. Actors are Wallet Unit, WRP or their trust-validation component. Map OJA-Loc, OJA-LOTL-Loc, OJA-LOTL-Certs-Set to OJEU-Loc, OJEU-LOTL-Loc, OJEU-LOTL-Certs-Set respectively, with fixed configured pilot OJA URI and explicit unsigned discovery assumption and no institutional trust claim. Preserve source authenticated parameter updates/pivot continuity and direct trust of the source-authorized list-signer certificate. Preserve Authenticated-LOTL, LOTL-Status, LOTL-Sub-Status and hand off current LOTL runtime usability to Trust Anchor Validation. Do not apply current-list cache/rollback rules to archived pivots or redefine common acceptance.
 Answers: none
 
-### A-07 · Algorithm · pending
+### A-07 · Algorithm · accepted
 
 Plan entry: Trust Evaluation / `docs/topics/trusted-list-authentication.md` (new)
 Writes: `docs/topics/trusted-list-authentication.md`
