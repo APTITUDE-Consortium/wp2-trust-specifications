@@ -268,7 +268,7 @@ Uses: Common dispatch/runtime acceptance (A-08); Sign/Seal Validation (A-09); re
 Delivers: Update participants/artefact labels, diagram and steps 11a–11c so issued QEAA acceptance invokes common TL/LOTL and Sign/Seal procedures, while other provider types use retained LoTEs. Replace step 7a unrestricted caching and repeated list-validation descriptions with references to Trust Anchor Validation. Preserve request-side WRPAC and other existing issuance/authorization interactions. Do not redefine authentication, runtime acceptance, matching or shared certificate validation.
 Answers: none
 
-### A-13 · Flow frame · pending
+### A-13 · Flow frame · accepted
 
 Plan entry: Trust Evaluation / Trust Checks / presentation
 Writes: `docs/topics/trust-checks-presentation.md`
