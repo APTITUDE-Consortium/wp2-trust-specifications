@@ -36,6 +36,8 @@ git sparse-checkout set \
   "docs/media/*" \
   "docs/overrides/*"
 
+git checkout
+
 popd > /dev/null
 
 # Merge assets into local project workspace

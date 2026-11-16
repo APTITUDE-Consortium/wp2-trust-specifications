@@ -52,7 +52,8 @@ ETSI specifications for EU Digital Identity Wallets of main interest for the tru
 | ETSI TS 119 472-2             | V1.2.1      | 2026-03     | Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 2: Profiles for EAA/PID Presentations to Relying Party |
 | ETSI TS 119 472-3             | V1.1.1      | 2026-03     | Electronic Signatures and Trust Infrastructures (ESI); Profiles for Electronic Attestation of Attributes; Part 3: Profiles for issuance of EAA or PID |
 | ETSI TS 119 475               | V1.2.1      | 2026-03     | Electronic Signatures and Trust Infrastructures (ESI); Relying party attributes supporting EUDI Wallet user's authorisation decisions |
-| ETSI TS 119 602               | V1.1.1      | 2025-11     | Electronic Signatures and Trust Infrastructures (ESI); Lists of trusted entities; Data model |
+| ETSI TS 119 602               | V1.1.1      | 2025-11     | Electronic Signatures and Trust Infrastructures (ESI); Lists of trusted entities; Data model. Repository: <https://forge.etsi.org/rep/esi/x19_60201_lists_of_trusted_entities>, tag `v1.1.1` |
+| ETSI TS 119 605               | V0.0.3      | 2026-06     | Electronic Signatures and Trust Infrastructures (ESI); Lists of trusted entities; Procedures for using and interpreting lists of trusted entities. Draft, marked work in progress |
 | ETSI TS 119 612               | V2.4.1      | 2025-08     | Electronic Signatures and Trust Infrastructures (ESI); Trusted Lists |
 | [ETSI TS 119 615](https://www.etsi.org/deliver/etsi_ts/119600_119699/119615/01.04.01_60/ts_119615v010401p.pdf) | V1.4.1      | 2026-05     | Electronic Signatures and Trust Infrastructures (ESI); Trusted lists; Procedures for using and interpreting European Union Member States national trusted lists |
 

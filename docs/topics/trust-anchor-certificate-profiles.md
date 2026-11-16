@@ -1,6 +1,6 @@
 This section extends the general [X.509 Certificate Profile](../sections/trust-artifacts.md#x509-certificate-profile) and specifies a Certificate Profile for CA certificates used as entity <artifacts:Trust Anchor|Trust Anchors>.
 
-A <artifacts:Trust Anchor> is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the <artifacts:Trust Anchor> is authoritative. <artifacts:Trust Anchor> Certificates may be selected from the elegible <artifacts:Trusted List (TL)|TL> or <artifacts:List of Trusted Entities (LoTE)|LoTE> service entries through the `ServiceDigitalIdentity` component. The list profiles are defined in [Trusted List and List Of Trusted Lists](../sections/trust-artifacts.md#trusted-list); dispatch and runtime acceptance belong to [Trust Anchor Validation](../sections/trust-evaluation-process.md#trust-anchor-validation-process).
+A <artifacts:Trust Anchor> is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the <artifacts:Trust Anchor> is authoritative. <artifacts:Trust Anchor> Certificates may be selected from the elegible <artifacts:Trusted List (TL)|TL> or <artifacts:List of Trusted Entities (LoTE)|LoTE> service entries through the `ServiceDigitalIdentity` component.
 
 <artifacts:Trust Anchor> certificates MAY be self-signed or non self-signed. In any case, <roles:Relying Party (RP)|Relying Parties> SHALL NOT require an additional issuer chain above a CA trust anchor selected from eligible <artifacts:Trusted List (TL)|TL> service information or a retained <artifacts:List of Trusted Entities (LoTE)|LoTE>, even if it is not self-signed, as the <artifacts:Trust Anchor> is a trust-store input designated by policy.
 
@@ -12,6 +12,8 @@ A <artifacts:Trust Anchor> is an authoritative entity represented by a public ke
     - <artifacts:Trust Anchor> certificate of the <roles:Attestation Provider (AP)|Attestation Provider> SHALL NOT be present in the <formats:Selective Disclosure JWT (SD-JWT)|SD-JWT> `x5c` header.
 
     Therefore, <roles:Attestation Provider (AP)|Attestation Providers>' Sign/Seal Certificates SHALL NOT be a <artifacts:Trust Anchor> certificate.
+
+    For a <artifacts:Trust Anchor> selected from a <artifacts:List of Trusted Entities (LoTE)|LoTE>, the end-entity certificate `C` is carried in the `x5c` chain `[C, I_1, ..., I_n]` that is passed to the [List of Trusted Entities Validation](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation); the <artifacts:Trust Anchor> is not passed. When the chain has no intermediate certificate (n = 0), `C` is issued directly by the <artifacts:Trust Anchor>.
 
 ??? references
 

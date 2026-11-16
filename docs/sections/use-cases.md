@@ -38,11 +38,12 @@ These categories are complementary: **Runtime Trust Use Cases** verify a trust d
             <td>
                 <ul>
                     <li>Validate the authenticity, integrity, currency, and applicable entity entry of the <artifacts:List of Trusted Entities (LoTE)|LoTE> using <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation.</li>
+                    <li>Require the <code>Status</code> of <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation to be <code>PROCESS_PASSED</code>. That process includes the status applicability and critical extension checks, and its <code>Sub-Status</code> identifies the failing check.</li>
                     <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, authenticate the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List> and accept each current list under the Trust Anchor Validation Process, which rejects an overdue <artifacts:Trusted List (TL)|TL>.</li>
                 </ul>
             </td>
             <td>The <artifacts:Trust Anchor> is validated.</td>
-            <td>The process SHALL BE interrupted.</td>
+            <td>The process SHALL BE interrupted and no <artifacts:Trust Anchor> is returned, including when <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation returns <code>PROCESS_FAILED</code> with <code>STATUS_NOT_APPLICABLE</code>, <code>STATUS_CONFLICT</code> or <code>CRITICAL_EXTENSION_FAILURE</code> as <code>Sub-Status</code>.</td>
         </tr>
         <tr>
             <td>Entity Identity Validation</td>
@@ -160,7 +161,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                 <ul>
                     <li>Verify that every required <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoint is available.</li>
                     <li>Publish the APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate.</li>
-                    <li>Verify that each published <artifacts:List of Trusted Entities (LoTE)|LoTE> has a valid signature, conforms to its format, and contains the required infrastructure <artifacts:Trust Anchor|Trust Anchors>.</li>
+                    <li>Verify that each published <artifacts:List of Trusted Entities (LoTE)|LoTE> passes <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation for its type.</li>
                     <li>For the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>, verify that the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication provides <code>OJA-LOTL-Loc</code> and <code>OJA-LOTL-Certs-Set</code>, and that the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and each pilot <artifacts:Trusted List (TL)|TL> are published, conform to their profiles, and pass the <artifacts:List Of Trusted Lists (LOTL)|LOTL> Authentication and <artifacts:Trusted List (TL)|Trusted List> Authentication procedures.</li>
                 <ul>
             </td>
