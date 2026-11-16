@@ -275,7 +275,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pr-workspace/onboarding-process/" class="md-tabs__link">
+        <a href="../pr-workspace/attestation-signature-validation-process/" class="md-tabs__link">
           
   
   
@@ -801,6 +801,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -851,6 +857,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../pr-workspace/attestation-signature-validation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attestation signature validation process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pr-workspace/onboarding-process/" class="md-nav__link">
         
   
@@ -859,6 +893,34 @@
     
   
     Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-workspace/trust-anchor-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor certificate profiles
   
 
     
@@ -1012,6 +1074,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-workspace/x509-certificate-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    X509 certificate validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1059,7 +1149,7 @@
 
 
 <h1 id="implementation-profiles-for-the-trust-framework">Implementation Profiles for the Trust Framework<a class="headerlink" href="#implementation-profiles-for-the-trust-framework" title="Permanent link">&para;</a></h1>
-<p>Version 1.1</p>
+<p>Version 1.1.1</p>
 <table>
 <thead>
 <tr>
@@ -1088,6 +1178,11 @@
 <td>1.1</td>
 <td>2026-09-10</td>
 <td>Introduced a common profile for X.509 certificates; refactored Certificate Path Validation; updated Authorization Process to align with ARF 3.0.0; defined profile and checks for Key Attestation and Wallet Instance Attestation; consolidated implementation profiles and choices; structural and editorial changes.</td>
+</tr>
+<tr>
+<td>1.1.1</td>
+<td>2026-09-25</td>
+<td>Structural and editorial changes.</td>
 </tr>
 </tbody>
 </table>
@@ -1315,33 +1410,67 @@
     data-term="Public Key Infrastructure (PKI)"
     data-tooltip="Systems, software, and communication protocols that are used by EUDI Wallet ecosystem components to distribute, manage, and control public keys. A PKI publishes public keys and establishes trust within an environment by validating and verifying the public keys mapping to an entity. [ARF]"
     name="components:Public Key Infrastructure (PKI)"
-    href="../glossary-definitions/#5c9da07f7d8d505f9d6a74961860fdf0">Public Key Infrastructure</span> will not include a <span class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#5c9da07f7d8d505f9d6a74961860fdf0">Public Key Infrastructure</span> will include a pilot <span class="mkdocs-ezglossary-link"
     id="3032e8376a4f2cf47923a3153c1adc6b"
     data-term="List Of Trusted Lists (LOTL)"
     data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
     name="artifacts:List Of Trusted Lists (LOTL)"
-    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted List</span> with an associated <span class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists</span> with an associated pilot <span class="mkdocs-ezglossary-link"
     id="691d39fc6c8271598dae56e171d6916d"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
-    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span>; instead, it will feature a <span class="mkdocs-ezglossary-link"
-    id="e5099720c7896513eabaab7915fc289d"
-    data-term="List of Trusted Entities (LoTE)"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities</span> per entity type, including <span class="mkdocs-ezglossary-link"
-    id="3841bf9e6f3d26fc483276378f277fef"
-    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
-    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
-    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
-    href="../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span> and <span class="mkdocs-ezglossary-link"
+    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> for <span class="mkdocs-ezglossary-link"
     id="7ae48e082274bc7ecc2daabcb03bc847"
     data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
     name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    href="../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>.</td>
+    href="../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>; it will feature a <span class="mkdocs-ezglossary-link"
+    id="e5099720c7896513eabaab7915fc289d"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities</span> per retained entity type, including <span class="mkdocs-ezglossary-link"
+    id="3841bf9e6f3d26fc483276378f277fef"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span>.</td>
 <td style="text-align: center;">1, 4</td>
+</tr>
+<tr>
+<td>APTITUDE WP2 emulates the Member State <span class="mkdocs-ezglossary-link"
+    id="872749caf4806bef929f2f61dbde8666"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> scheme operator and the European Commission <span class="mkdocs-ezglossary-link"
+    id="88bbaf531b33cdc5a3e2f55f36aef1bb"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists</span> scheme operator for the pilot <span class="mkdocs-ezglossary-link"
+    id="1e1607d0f49704078c6e2d27e0b5a6a4"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> and <span class="mkdocs-ezglossary-link"
+    id="297de992686f9544bf6a8106e5b92b55"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span>, as specified in <a href="../sections/trust-architecture/">Trust Architecture</a>. The pilot <span class="mkdocs-ezglossary-link"
+    id="a07f2d1fddef207fc834ae71b25b5bae"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> is bootstrapped from the explicit <span class="mkdocs-ezglossary-link"
+    id="e21f669003357ade1cc77eebcea05dd5"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">Official Journal of APTITUDE (OJA)</span> and does not confer institutional EU qualified status.</td>
+<td style="text-align: center;">1, 4, 10</td>
 </tr>
 <tr>
 <td>APTITUDE WP2 acts as the sole <span class="mkdocs-ezglossary-link"
@@ -1380,8 +1509,18 @@
 <td style="text-align: center;">7</td>
 </tr>
 <tr>
-<td>APTITUDE will feature a dedicated authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE), namely the <span class="mkdocs-ezglossary-link"
-    id="e21f669003357ade1cc77eebcea05dd5"
+<td>APTITUDE will feature a dedicated authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE <span class="mkdocs-ezglossary-link"
+    id="6b994c4f06d35428bb1155dac317e79f"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">List of Trusted Entities (LoTE)</span> and the pilot <span class="mkdocs-ezglossary-link"
+    id="a87c1021772aaaed65e9bad072d729a2"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">List Of Trusted Lists (LOTL)</span>, namely the <span class="mkdocs-ezglossary-link"
+    id="78b715c4a8e312a6c6ec631060648239"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -1424,7 +1563,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 10, 2026 19:48:10 UTC">September 10, 2026 19:48:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="November 13, 2026 23:57:33 UTC">November 13, 2026 23:57:33</span>
   </span>
 
     

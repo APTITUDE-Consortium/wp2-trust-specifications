@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://aptitude-consortium.github.io/wp2-trust-specifications/pr-135/pr-workspace/trust-anchor-validation/">
       
       
-        <link rel="prev" href="../onboarding-process/">
+        <link rel="prev" href="../trust-anchor-certificate-profiles/">
       
       
         <link rel="next" href="../trust-architecture/">
@@ -272,7 +272,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../onboarding-process/" class="md-tabs__link">
+        <a href="../attestation-signature-validation-process/" class="md-tabs__link">
           
   
   
@@ -687,6 +687,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -740,6 +746,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../attestation-signature-validation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attestation signature validation process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../onboarding-process/" class="md-nav__link">
         
   
@@ -748,6 +782,34 @@
     
   
     Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-anchor-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor certificate profiles
   
 
     
@@ -909,6 +971,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../x509-certificate-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    X509 certificate validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -958,27 +1048,47 @@
   <h1>Trust anchor validation</h1>
 
 <p>The <strong>Trust Anchor Validation Process</strong> verifies the cryptographic integrity of a <span class="mkdocs-ezglossary-link"
-    id="dfffc3a5b5fdb4e6b12754cdc2d56f70"
+    id="652d15321af40689bd41e9681d2bdd9a"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and checks its signing certificate against the set published for its type in the <span class="mkdocs-ezglossary-link"
-    id="c4ae15ab8774ab83597a987c160211d8"
+    id="f75193f9138bfa8fc3b5e20d0315d454"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
-    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span>. The accepted <span class="mkdocs-ezglossary-link"
-    id="dbb0ace7b5f12df6787b527651db605b"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span>. For <span class="mkdocs-ezglossary-link"
+    id="0060e2103683394f2438bd02acf6ede1"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>, it instead authenticates the pilot <span class="mkdocs-ezglossary-link"
+    id="6786e2cd902ea200d7e6cbdf99898f48"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and the <span class="mkdocs-ezglossary-link"
+    id="19bbacf89ef772b029b1ea206b6e603c"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> it points to. The accepted <span class="mkdocs-ezglossary-link"
+    id="6fc2a451d20cde50ad50e16ab616252a"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> is the source for <span class="mkdocs-ezglossary-link"
-    id="22ab72ea0d34765ea2aa02217193fbee"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> and the accepted pilot <span class="mkdocs-ezglossary-link"
+    id="e67a55ad115331d6528e5c98604b9b4f"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> are the sources for <span class="mkdocs-ezglossary-link"
+    id="011c1f072e460a74b515f00a24e4c818"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>. A <span class="mkdocs-ezglossary-link"
-    id="38aa6acdfc6ab6869d66170b626b0050"
+    id="5c573337166ad9ff72faa4e6cef602dc"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -993,7 +1103,7 @@
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> to validate an artifact or <span class="mkdocs-ezglossary-link"
-    id="6dc1aac8fdca0f8c0bfc271960e2792c"
+    id="f88311631af8e53ef27550e2f467bfad"
     data-term="Attestation"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -1001,16 +1111,31 @@
 <div class="admonition choice">
 <p class="admonition-title">APTITUDE Implementation Choice</p>
 <p>All <span class="mkdocs-ezglossary-link"
-    id="773d6a2ca4f3ff70d79716ae30c3e492"
+    id="1fbf8f82981dd642015ba27714670237"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> SHALL be obtained from the applicable dedicated <span class="mkdocs-ezglossary-link"
-    id="078c52acb17793c1acd39675e9019d2d"
+    id="853b1e12211f44eb1efb6c84cc5f64f4"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>. This applies to <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, except those of <span class="mkdocs-ezglossary-link"
+    id="d2f92fbb89d708b6a2ad28ac50ea77c5"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>, which SHALL be obtained from the pilot <span class="mkdocs-ezglossary-link"
+    id="7103f97401c7d1bcc419188256e84349"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and <span class="mkdocs-ezglossary-link"
+    id="b2524a15c330c567029d6b44ae9b05b9"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted Lists</span> as specified in this section. This applies to <span class="mkdocs-ezglossary-link"
     id="19e7b8e99e930ca6084da37ec469d1f9"
     data-term="Provider of Person Identification Data (PID Provider)"
     data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
@@ -1031,17 +1156,12 @@
     data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
     name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
     href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Providers of WRPRC</span>, <span class="mkdocs-ezglossary-link"
-    id="9cd94e2eb83894e10f00b773bc456b18"
+    id="08600d7a410523f55a33206074406ab1"
     data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
     name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
     href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Providers</span>, <span class="mkdocs-ezglossary-link"
-    id="2ff3a26980896584b1ad4bf87bd374f9"
-    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
-    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span>, <span class="mkdocs-ezglossary-link"
-    id="e78b8d7ae32326f4016be83c3e1b8870"
+    id="0f582259a57a821946125df3250a125b"
     data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
     name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
@@ -1051,41 +1171,51 @@
     data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
     name="roles:Registrar"
     href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</span> and their <span class="mkdocs-ezglossary-link"
-    id="95aa48bf16d6d6e1bd1c9d8102f7fb03"
+    id="214ceefa6a40b17ffcca4ffdba1f0dad"
     data-term="Register"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Registers</span>.</p>
 </div>
 <p>Depending on the artifact or <span class="mkdocs-ezglossary-link"
-    id="34d4b1508f18ad0220d2643841eab005"
+    id="68d643bcfbbf4a9d1c81ce652ad7ead0"
     data-term="Attestation"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
     href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> being verified, the validating entity SHALL fetch, download, and validate the dedicated <span class="mkdocs-ezglossary-link"
-    id="75a858788ba3ef22a5d5fc649dc51de2"
+    id="7a85a7613ad63ad8906021b726124ea5"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> for the required entity type. The <span class="mkdocs-ezglossary-link"
-    id="2e6ce497871f37cdb0110ea5745c9146"
-    data-term="List of Trusted Entities (LoTE)"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> is used to retrieve <span class="mkdocs-ezglossary-link"
-    id="cb253f592726ff3d8b48c636bc519c39"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> for the required entity type, or the pilot <span class="mkdocs-ezglossary-link"
+    id="84de2fd2f483cf31e9611f3d79145483"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and <span class="mkdocs-ezglossary-link"
+    id="23bb7a74c899c4a5a941b8fa42b7bf46"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> for <span class="mkdocs-ezglossary-link"
+    id="67ac25e6472d266f05225c26ca658d1d"
+    data-term="Qualified Electronic Attestation of Attributes (QEAA)"
+    data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</span>. The lists are used to retrieve <span class="mkdocs-ezglossary-link"
+    id="1aa7ce216b9aad3f5e875334bb63fb80"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> for validating:</p>
 <ol>
 <li><strong>Infrastructure Certificates</strong>: <span class="mkdocs-ezglossary-link"
-    id="ed531dd07c89d17b641f917ab0b0a7cd"
+    id="2c620bb983448011bc72a5465a7a1799"
     data-term="Wallet-Relying Party Access Certificate (WRPAC)"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPACs</span> and <span class="mkdocs-ezglossary-link"
-    id="1108943840b6690ce912b336f4c2e27b"
+    id="eb52675fc6839c5bd629f5a74b96ae2d"
     data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
@@ -1101,45 +1231,55 @@
     data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
     name="artifacts:Key Attestation (KA)"
     href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">Key Attestation (KA)</span> and <span class="mkdocs-ezglossary-link"
-    id="a0bef18a40f0aea2be4f8abf101dad1d"
+    id="b7f1b2f41cbb1c4ac87caee823b9e621"
     data-term="Wallet Instance Attestation (WIA)"
     data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
     name="artifacts:Wallet Instance Attestation (WIA)"
     href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">Wallet Instance Attestation (WIA)</span>.</li>
 <li><strong><span class="mkdocs-ezglossary-link"
-    id="0f6fd6caf6b45ff722b41749381376bc"
+    id="24878c56c54613b40268dc8f8a6595b6"
     data-term="Person Identification Data (PID)"
     data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
     name="credentials:Person Identification Data (PID)"
     href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">PID</span> Signatures</strong>: <span class="mkdocs-ezglossary-link"
-    id="24878c56c54613b40268dc8f8a6595b6"
+    id="5a239208fbf2b7cb00e20416ff6c4529"
     data-term="Person Identification Data (PID)"
     data-tooltip="A set of data that is issued in accordance with Union or national law and that enables the establishment of the identity of a natural or legal person, or of a natural person representing another natural person or a legal person. [ARF]"
     name="credentials:Person Identification Data (PID)"
     href="../../glossary-definitions/#8750d0def4c7e6c6f98312a328b42143">Person Identification Data (PID)</span>.</li>
 <li><strong><span class="mkdocs-ezglossary-link"
-    id="9ec49cda2c08d80a5b831451dbda9a9c"
+    id="f8b9fa0659e9a4f297e27b1ac551c461"
     data-term="Attestation"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
     href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> Signatures and Seals</strong>: <span class="mkdocs-ezglossary-link"
-    id="421cb98ee7f712b0b988aaf48eb85736"
+    id="c29ab9a2ebc1947e4eb0ef451d4caf33"
     data-term="Qualified Electronic Attestation of Attributes (QEAA)"
     data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
     name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
-    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</span>, <span class="mkdocs-ezglossary-link"
-    id="a4f070b75012cc55a41115ef3673e5a0"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</span> (through the pilot <span class="mkdocs-ezglossary-link"
+    id="361fb20b1c8918aa1cd554570ad7c71a"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> and <span class="mkdocs-ezglossary-link"
+    id="54e91b576a3fb8f399dd519f76435fbe"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span>), <span class="mkdocs-ezglossary-link"
+    id="168e4e985ed59355ebab7745909126a6"
     data-term="Electronic Attestation of Attributes (EAA)"
     data-tooltip="An attestation in electronic form that allows attributes to be authenticated. [ARF]"
     name="credentials:Electronic Attestation of Attributes (EAA)"
     href="../../glossary-definitions/#a7a5d7b924e0172a1247714760380eab">EAA</span>, and <span class="mkdocs-ezglossary-link"
-    id="eb431899fce44503d5997842fcc4438e"
+    id="254f3f1687cbd2c4079ce4aa3d389072"
     data-term="Public Electronic Attestation of Attributes (PuB-EAA)"
     data-tooltip="An electronic attestation of attributes issued by a public sector body that is responsible for an authentic source or by a public sector body that is designated by the Member State to issue such attestations of attributes on behalf of the public sector bodies responsible for authentic sources in accordance with Article 45f and with Annex VII. [ARF]"
     name="credentials:Public Electronic Attestation of Attributes (PuB-EAA)"
     href="../../glossary-definitions/#44944233953d7e2b27e16533f47afaf0">Pub-EAA</span>.</li>
 <li><strong>Artifacts and <span class="mkdocs-ezglossary-link"
-    id="bbbb1de6a2fbfa46e0ebae5ba3db4d83"
+    id="3950446af91ad8d4d6dfa5cade025fc6"
     data-term="Attestation"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -1149,7 +1289,7 @@
     data-tooltip="A token in JWT or CWT representation that contains a cryptographically secured Status List. [draft-ietf-oauth-status-list]"
     name="artifacts:Status List Token"
     href="../../glossary-definitions/#4f2822c02579affacfec5abc1f33f94d">Status List Token</span> for <span class="mkdocs-ezglossary-link"
-    id="7c6839788416de64ebd6c9da9b03c438"
+    id="8acabe1509a2e1beaccbeb2deafabdea"
     data-term="Attestation"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
@@ -1159,33 +1299,33 @@
     data-tooltip="A type of Wallet Unit Attestation that attests the certification and properties of a WSCA/WSCD or keystore available to the Wallet Unit, and that contains one or more public keys whose corresponding private keys are generated by and stored in that WSCA/WSCD or keystore, as well as a revocation reference for the WSCD or keystore. [ARF]"
     name="artifacts:Key Attestation (KA)"
     href="../../glossary-definitions/#f7405728798f91963aa64d07988697c7">KA</span>, <span class="mkdocs-ezglossary-link"
-    id="1adea1a587d073dbf121e2125e591913"
+    id="134f0639defbecb171b38fa7a0f2c505"
     data-term="Wallet Instance Attestation (WIA)"
     data-tooltip="A type of Wallet Unit Attestation that attests the integrity and authenticity of a Wallet Instance, and that carries a revocation reference for the Wallet Instance, as well as information about the Wallet Solution, including its name, version, and certification. [ARF]"
     name="artifacts:Wallet Instance Attestation (WIA)"
     href="../../glossary-definitions/#36d49f2047662aac1b022c41e1ef95d5">WIA</span>, and <span class="mkdocs-ezglossary-link"
-    id="eb52675fc6839c5bd629f5a74b96ae2d"
+    id="30f7d3d1e7e28e6d1be30eb6726e268a"
     data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> status information; <span class="mkdocs-ezglossary-link"
-    id="22798526a3247af51c08843cd162310f"
+    id="5c7d5226d3dc638733059d9a6cb8d1f7"
     data-term="Certificate Revocation List (CRL)"
     data-tooltip="A time-stamped list identifying revoked certificates that is signed by a CA or CRL issuer and made freely available in a public repository. [RFC 5280]"
     name="artifacts:Certificate Revocation List (CRL)"
     href="../../glossary-definitions/#8e799a6a16a4b8d1fb6be5e962015e8b">CRL</span> or <span class="mkdocs-ezglossary-link"
-    id="fb5b7051429e10982393806e559cc133"
+    id="37c0445ba14b6bcd941ce2fef3dfafa8"
     data-term="Online Certificate Status Protocol (OCSP)"
     data-tooltip="Enables applications to determine the (revocation) state of an identified certificate. [RFC 2560]"
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> for <span class="mkdocs-ezglossary-link"
-    id="2c620bb983448011bc72a5465a7a1799"
+    id="5069b0e86612241f53d481509ef4e831"
     data-term="Wallet-Relying Party Access Certificate (WRPAC)"
     data-tooltip="A certificate for electronic seals or signatures authenticating and validating the (Wallet-) Relying Party, issued by a Provider of Wallet-Relying Party Access Certificates. [ARF]"
     name="artifacts:Wallet-Relying Party Access Certificate (WRPAC)"
     href="../../glossary-definitions/#aa51aaf36c3e1c5ac1e8b37256fab1a1">WRPAC</span> and Sign/Seal Certificate status information.</li>
 <li><strong>Registrar-signed Artifacts</strong>: <span class="mkdocs-ezglossary-link"
-    id="214ceefa6a40b17ffcca4ffdba1f0dad"
+    id="cbfb91bd2b5c08571ff292d2e68bf590"
     data-term="Register"
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
@@ -1194,94 +1334,179 @@
 <div class="admonition choice">
 <p class="admonition-title">APTITUDE Implementation Choice</p>
 <p>The <span class="mkdocs-ezglossary-link"
-    id="3e478bc26e62048b0510006ab6772396"
+    id="b565ef7ed6fb92323ed2d57c4b283a9a"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> for <span class="mkdocs-ezglossary-link"
-    id="0060e2103683394f2438bd02acf6ede1"
-    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
-    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span> and <span class="mkdocs-ezglossary-link"
-    id="0f582259a57a821946125df3250a125b"
+    id="3ae0c76c6f1800f25889a2eb6f20f8ad"
     data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
     name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
     href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span> SHALL be retrieved from and validated against their dedicated <span class="mkdocs-ezglossary-link"
-    id="e35d57406e47ee1d4d40f169eae2a29a"
+    id="408fb1fd67246e2eec21e5c725daaa14"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>. The same <span class="mkdocs-ezglossary-link"
-    id="652d15321af40689bd41e9681d2bdd9a"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, and the same <span class="mkdocs-ezglossary-link"
+    id="54ba79e02adbd9cd2950e15720e1a058"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> validation process SHALL be used for these <span class="mkdocs-ezglossary-link"
-    id="bc0267607dec5983ce03965011dbffd9"
+    id="a0d4f1fd709c40799ebad183c1dcd2d6"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
-    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> as for all other APTITUDE entities.</p>
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> as for all other APTITUDE entities. The <span class="mkdocs-ezglossary-link"
+    id="beb1e9faf846f157d8754352562f09f2"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> for <span class="mkdocs-ezglossary-link"
+    id="3f2eaf29787e2b71d163b4e3635139b5"
+    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
+    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
+    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Providers</span> SHALL be retrieved only from the pilot <span class="mkdocs-ezglossary-link"
+    id="9f7708b87b0fe99d0a016624b8f86509"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and <span class="mkdocs-ezglossary-link"
+    id="01ad87ebe52269c8d8ef0726fbdc7aae"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span>, validated under the dispatch and runtime acceptance rules of this section, and SHALL NOT fall back to a <span class="mkdocs-ezglossary-link"
+    id="e629db8d2e797f5e73c12934628ae6fa"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>.</p>
 </div>
 <p>To validate a retrieved <span class="mkdocs-ezglossary-link"
-    id="6fc2a451d20cde50ad50e16ab616252a"
+    id="decb6ac38ae7209f32b0858e09c2480b"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> under the APTITUDE profile, the validating entity SHALL:</p>
 <ul>
 <li>obtain the location and authorized signing certificate set for the requested <span class="mkdocs-ezglossary-link"
-    id="853b1e12211f44eb1efb6c84cc5f64f4"
+    id="85a30b3f3787c9d4c8c022d3edc3d532"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type from the <span class="mkdocs-ezglossary-link"
-    id="f75193f9138bfa8fc3b5e20d0315d454"
+    id="a2bf1f48e88c2d37849a2c99d39640c1"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">Official Journal of APTITUDE (OJA)</span>;</li>
 <li>verify the <span class="mkdocs-ezglossary-link"
-    id="7a85a7613ad63ad8906021b726124ea5"
+    id="6c09dae9151745e3f6c74103d66d4ee2"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> signature or seal using the format-specific procedure and compare its signing certificate, by exact DER certificate identity, with the certificate set published for that type in the <span class="mkdocs-ezglossary-link"
-    id="a2bf1f48e88c2d37849a2c99d39640c1"
+    id="45b39e370d44b9230be6327e7a275b9f"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span>;</li>
 <li>validate the <span class="mkdocs-ezglossary-link"
-    id="408fb1fd67246e2eec21e5c725daaa14"
+    id="d29c3aa2805098af54e41ac3737909bd"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> structure, requested type, publication location, freshness, and sequence number.</li>
 </ul>
-<h4 id="list-of-trusted-entities-validation">List of Trusted Entities Validation<a class="headerlink" href="#list-of-trusted-entities-validation" title="Permanent link">&para;</a></h4>
-<p>This section defines the validation of a <span class="mkdocs-ezglossary-link"
-    id="54ba79e02adbd9cd2950e15720e1a058"
+<h4 id="trust-source-dispatch">Trust-Source Dispatch<a class="headerlink" href="#trust-source-dispatch" title="Permanent link">&para;</a></h4>
+<p><strong>Inputs and Outcome</strong></p>
+<p>Inputs are the requested artifact or attestation and provider kind, provider certificate and service identity, required service type, territory <code>CC</code> (uppercase ISO 3166-1 Alpha-2), and current runtime validation time. Authentication, runtime acceptance and service eligibility are separate results. Runtime rejection SHALL return no <span class="mkdocs-ezglossary-link"
+    id="1e85e80fe8fb111911870778e1066163"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span>.</p>
+<p>The validator SHALL route <span class="mkdocs-ezglossary-link"
+    id="315b3c69aa3fda2e74e182c5ab26e486"
+    data-term="Qualified Electronic Attestation of Attributes (QEAA)"
+    data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</span> requests exclusively through the pilot <span class="mkdocs-ezglossary-link"
+    id="674b898b432cbe305b6281b49a5af850"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and <span class="mkdocs-ezglossary-link"
+    id="eb65e57f5d1dcb71736884b636c12901"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span>, with no <span class="mkdocs-ezglossary-link"
+    id="8a5803539103b8d25c9c974dc69f3f4b"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>. The <span class="mkdocs-ezglossary-link"
-    id="e629db8d2e797f5e73c12934628ae6fa"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> fallback. <span class="mkdocs-ezglossary-link"
+    id="911b194e9363eab5917049028b970c05"
+    data-term="Provider of Person Identification Data (PID Provider)"
+    data-tooltip="A natural or legal person responsible for issuing and revoking the person identification data and ensuring that the person identification data of a user is cryptographically bound to a Wallet Unit. [ARF]"
+    name="roles:Provider of Person Identification Data (PID Provider)"
+    href="../../glossary-definitions/#662afff4a549df27a8c502bc6272ac56">PID Providers</span>, <span class="mkdocs-ezglossary-link"
+    id="871f6da7a8e2fa71d6b494c390223a0f"
+    data-term="Wallet Provider (WP)"
+    data-tooltip="A natural or legal person who provides Wallet Solutions. [ARF]"
+    name="roles:Wallet Provider (WP)"
+    href="../../glossary-definitions/#6c9890336883dbf630f9ecde42a72a6d">Wallet Providers</span>, <span class="mkdocs-ezglossary-link"
+    id="12d7e51298a04742477044d8c51cba00"
+    data-term="Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue Relying Party Access Certificates to (Wallet-) Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)"
+    href="../../glossary-definitions/#31bba57f66cd069f063caa6435a18e42">Providers of WRPAC</span>, <span class="mkdocs-ezglossary-link"
+    id="fb69a17f55a923cd1f337b3d321cde29"
+    data-term="Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    data-tooltip="A natural or legal person mandated by a Member State to issue (Wallet-Relying Party) registration certificates to (Wallet-)Relying Parties registered in that Member State. [ARF]"
+    name="roles:Provider of Wallet-Relying Party Registration Certificate (Provider of WRPRC)"
+    href="../../glossary-definitions/#b210fed20a77ffbda5dda2287d0a90ea">Providers of WRPRC</span>, <span class="mkdocs-ezglossary-link"
+    id="3d212e1645efad8dea17e1fe6c644736"
+    data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
+    name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
+    href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Providers</span>, <span class="mkdocs-ezglossary-link"
+    id="9a004a6cda15bbaa3aff1cd714b0ed91"
+    data-term="Provider of Electronic Attestation of Attributes (EAA Provider)"
+    data-tooltip="The entity responsible for issuing and revoking Electronic Attestation of Attributes (EAA)."
+    name="roles:Provider of Electronic Attestation of Attributes (EAA Provider)"
+    href="../../glossary-definitions/#4a9de6e3bbeaca6b9a71760a31e42bf5">EAA Providers</span>, and <span class="mkdocs-ezglossary-link"
+    id="26ef1c727a7f58a828d60208114710dc"
+    data-term="Registrar"
+    data-tooltip="The body responsible for establishing and maintaining the list of registered wallet-relying parties established in their territory who has been designated by a Member State. [ARF]"
+    name="roles:Registrar"
+    href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrars</span> and <span class="mkdocs-ezglossary-link"
+    id="b2cccdcfab082fa8c1ee4607a8c92c18"
+    data-term="Register"
+    data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
+    name="components:Register"
+    href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Registers</span> SHALL use their respective seven retained JSON <span class="mkdocs-ezglossary-link"
+    id="55e9784227ea46c100d74348d495e5b9"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> format is specified in <a href="../../sections/trust-artifacts/#list-of-trusted-entities">List of Trusted Entities</a>.</p>
-<div class="admonition choice">
-<p class="admonition-title">APTITUDE Discovery Assumption</p>
-<p>The <span class="mkdocs-ezglossary-link"
-    id="45b39e370d44b9230be6327e7a275b9f"
-    data-term="Official Journal of APTITUDE (OJA)"
-    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
-    name="artifacts:Official Journal of APTITUDE (OJA)"
-    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication is made available at a fixed, locally configured URI only available to the APTITUDE Partners, but is not signed or independently authenticated within APTITUDE. </p>
-<p>A <span class="mkdocs-ezglossary-link"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> paths below. Stored lists and <span class="mkdocs-ezglossary-link"
+    id="1e4c5c3a94aa4a18ae08cdb08910defc"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> SHALL preserve source/profile separation, following [ARF Trust Model, Section 6.6.3.6].</p>
+<h4 id="lotl-authentication">LOTL Authentication<a class="headerlink" href="#lotl-authentication" title="Permanent link">&para;</a></h4>
+<p>This process authenticates the current pilot <span class="mkdocs-ezglossary-link"
+    id="f11b119d2d696e68e62fa8bc1f64c08a"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> for a <span class="mkdocs-ezglossary-link"
     id="b06da279c9b5f5a5c707981348a29c1a"
     data-term="Wallet Unit"
     data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
@@ -1291,25 +1516,296 @@
     data-term="Wallet-Relying Party (WRP)"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span>. The complete procedure in [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.0 and 4.1.1–4.1.4] SHALL govern, subject to the pilot bootstrap mapping below.</p>
+<p><strong>Inputs and State</strong></p>
+<p>The validator SHALL use the input and state contract of Clause 4.1.2, with the following substitutions for the preconfigured parameters of Clause 4.0:</p>
+<table>
+<thead>
+<tr>
+<th>Pilot parameter</th>
+<th>Source parameter</th>
+<th>Pilot binding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OJA-Loc</code></td>
+<td><code>OJEU-Loc</code></td>
+<td>Initially, the fixed locally configured URI of the pilot <span class="mkdocs-ezglossary-link"
+    id="c00b516ca10b38039b3a9d2af38b4854"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication.</td>
+</tr>
+<tr>
+<td><code>OJA-LOTL-Loc</code></td>
+<td><code>OJEU-LOTL-Loc</code></td>
+<td>Current <span class="mkdocs-ezglossary-link"
+    id="3abc5d96563695c846b0fdd3864758a9"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> XML location supplied by that publication.</td>
+</tr>
+<tr>
+<td><code>OJA-LOTL-Certs-Set</code></td>
+<td><code>OJEU-LOTL-Certs-Set</code></td>
+<td>Full set of LOTL-signing certificates supplied by that publication.</td>
+</tr>
+</tbody>
+</table>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="4843b8b6af8ce7c84a01f26b82f46cda"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication is unsigned and is not independently authenticated. The validator SHALL accept its initial bootstrap data under the explicit APTITUDE discovery assumption at the fixed configured pilot <span class="mkdocs-ezglossary-link"
+    id="95ffc47e5358cf197f3e809321137d62"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> URI.</p>
+<p><strong>Authentication</strong></p>
+<p>The validator SHALL execute the complete referenced procedure, including its archived-pivot processing and authenticated parameter updates, using the mapped pilot parameters. Source-defined status and sub-status identifiers SHALL retain their original names, including identifiers containing <code>OJEU</code>.</p>
+<p>For <span class="mkdocs-ezglossary-link"
+    id="ced88067eb85a7f7ff9c1778d67d8438"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and pivot signature authentication, the validator SHALL directly trust the list-signing certificate as specified in Clause 4.1.4, with authorization established by that procedure. The CA <span class="mkdocs-ezglossary-link"
+    id="cb5d4e8ec94f56966300f422d7e960ad"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificate profile and entity Sign/Seal certificate-chain rules SHALL NOT be applied to these directly trusted list-signing certificates; see <a href="../../sections/trust-artifacts/#trust-anchor-certificate">Trust Anchor Certificate Profiles</a>.</p>
+<p><strong>Outputs</strong></p>
+<p>The validator SHALL preserve <code>Authenticated-LOTL</code>, <code>LOTL-Status</code> and <code>LOTL-Sub-Status</code> as specified in Clauses 4.1.3–4.1.4, including initialization to void, all failure indications and supplementary indications, and the <code>LOTL_VERIFICATION_PASSED</code> success result. <code>Authenticated-LOTL</code> is the authenticated current XML <span class="mkdocs-ezglossary-link"
+    id="a90d1774ce3db0e4f6e7bc24c57901dc"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> on success and is void on authentication failure as specified by the source procedure.</p>
+<h4 id="trusted-list-authentication">Trusted List Authentication<a class="headerlink" href="#trusted-list-authentication" title="Permanent link">&para;</a></h4>
+<p>This process authenticates the pilot <span class="mkdocs-ezglossary-link"
+    id="01c3b54ab6415462f53b3bbcfaacaf0d"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> for a <span class="mkdocs-ezglossary-link"
+    id="a7ac87290d4ccb8601b1c516ef2f789b"
+    data-term="Wallet Unit"
+    data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> or <span class="mkdocs-ezglossary-link"
+    id="ba3fe51ddef2ef67474cd2f72a358f45"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span>. The complete procedure in [ETSI TS 119 615 V1.4.1, Clauses 4.2.1–4.2.4] SHALL govern, subject to the pilot bindings below.</p>
+<p><strong>Input</strong></p>
+<p>The validator SHALL use the input contract of Clause 4.2.2: <code>CC</code> is the uppercase ISO 3166-1 Alpha-2 country code of the emulated Member State whose <span class="mkdocs-ezglossary-link"
+    id="140dc6212e51730a95c5c0e0feb199c4"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> is requested.</p>
+<p><strong>Pilot Bindings</strong></p>
+<p>The LOTL-authentication call in Clause 4.2.4 SHALL invoke <a href="../../sections/trust-evaluation-process/#lotl-authentication">LOTL Authentication</a>, using its pilot <span class="mkdocs-ezglossary-link"
+    id="a35ce97766b10b35fd6188813a61a648"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> bootstrap mapping. From the resulting <code>Authenticated-LOTL</code>, the validator SHALL select the <code>PointersToOtherTSL</code> tuple whose scheme-territory qualifier equals <code>CC</code> and whose MIME-type qualifier identifies XML (<code>application/vnd.etsi.tsl+xml</code>), as defined in the <a href="../../sections/trust-artifacts/#list-of-trusted-lists">LOTL profile</a>. That tuple supplies both <code>EUTL-Loc</code>, the XML <span class="mkdocs-ezglossary-link"
+    id="d50cbc09d0c893b6bfe6e4a74f824e5f"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> retrieval location, and <code>EUTL-Certs-Set</code>, the authorized TL-signing certificate set.</p>
+<p>The validator SHALL authenticate the <span class="mkdocs-ezglossary-link"
+    id="3a836318c482401477c893c144b57b66"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> signature using <code>EUTL-Signer-Cert</code> as a directly trusted certificate authorized by that tuple, as specified in Clause 4.2.4. These list-signing certificates are distinct from <span class="mkdocs-ezglossary-link"
+    id="98099a7e7d2fd6a9b8b3182e8758953c"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> service digital identities and CA <span class="mkdocs-ezglossary-link"
+    id="ff674a6c5467f12a35c7fb544308ec58"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificates. The CA <span class="mkdocs-ezglossary-link"
+    id="0d2211f20fa1cae0f9d4ef99344e5f84"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificate profile and entity Sign/Seal certificate-chain rules SHALL NOT be applied to the directly trusted TL-signing certificate; see <a href="../../sections/trust-artifacts/#trust-anchor-certificate">Trust Anchor Certificate Profiles</a>.</p>
+<p><strong>Outputs</strong></p>
+<p>The validator SHALL preserve <code>Authenticated-EUTL</code>, <code>EUTL-Status</code> and <code>EUTL-Sub-Status</code> under Clauses 4.2.3–4.2.4, including initialization to void, all failure and supplementary indications, and the <code>EUTL_VERIFICATION_PASSED</code> success result. <code>Authenticated-EUTL</code> is the authenticated XML <span class="mkdocs-ezglossary-link"
+    id="11fcfc7fdebcfef79907e700560572b7"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> on success and remains void on authentication failure under that procedure. If the <span class="mkdocs-ezglossary-link"
+    id="70015708dda688540f9e1d57584c5708"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span>'s <code>NextUpdate</code> has passed, the procedure adds <code>WARNING_EUTL_NEXTUPDATE_PASSED</code> while retaining its source-defined authentication result.</p>
+<h4 id="pilot-tl-and-lotl-runtime-acceptance">Pilot TL and LOTL Runtime Acceptance<a class="headerlink" href="#pilot-tl-and-lotl-runtime-acceptance" title="Permanent link">&para;</a></h4>
+<p>The dispatch procedure SHALL initiate required retrieval under the cache rules below and <a href="../../sections/trust-evaluation-process/#lotl-authentication">LOTL Authentication</a> and <a href="../../sections/trust-evaluation-process/#trusted-list-authentication">Trusted List Authentication</a>, governed by [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.1–4.2]. Authentication hands off to the following common checks; these checks consume authentication outputs, retrieval time and persisted sequence/digest state and SHALL NOT invoke authentication again. Required refresh SHALL be attempted before rejecting a stale cached instance.</p>
+<ol>
+<li>Require successful authentication. Preserve all ETSI authentication statuses and sub-statuses on every local runtime failure. Report runtime acceptance separately; runtime rejection SHALL return no <span class="mkdocs-ezglossary-link"
+    id="e7529216d8b4aa0a8074e373f30ae9ad"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> or usable trust context.</li>
+<li>Independently check each authenticated current <span class="mkdocs-ezglossary-link"
+    id="dc064c3be25f3298d4bd6f5b95be267c"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> and <span class="mkdocs-ezglossary-link"
+    id="c0dc511332997c601cce32ca6e082ebc"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> against its applicable pilot profile in <a href="../../sections/trust-artifacts/#trusted-list">Trust Artifacts</a>, requiring <code>ListIssueDateTime</code> not later than the current runtime validation time and <code>NextUpdate</code> later than that time, under [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.3.14–5.3.15]. An overdue <span class="mkdocs-ezglossary-link"
+    id="53ba2f2ec7b462a9d075cc8701282093"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> SHALL be rejected even with <code>EUTL_VERIFICATION_PASSED</code> and <code>WARNING_EUTL_NEXTUPDATE_PASSED</code>.</li>
+<li>Apply the sequence and signed-content-digest conflict checks below independently to each current list. All profile, freshness and state checks SHALL succeed, and the highest accepted state SHALL be successfully persisted, before reporting runtime success or returning usable trust context. Failure to persist SHALL reject runtime use without a <span class="mkdocs-ezglossary-link"
+    id="5658ab08de086cea8d6f4f073bafd5c7"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span>. Dispatch SHALL require acceptance of both current lists.</li>
+</ol>
+<p>This process supplies authenticated, runtime-accepted <span class="mkdocs-ezglossary-link"
+    id="a73b2b217349103d3f50402c33dfb3e4"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> service information and service identity or path context. The calling <a href="../../sections/trust-evaluation-process/#signseal-validation-process">Sign/Seal Validation</a> procedure owns <span class="mkdocs-ezglossary-link"
+    id="06dba9170115153cd1b4b2c7d4814616"
+    data-term="Qualified Electronic Attestation of Attributes (QEAA)"
+    data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
+    name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
+    href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</span> matching, qualification and provider binding under [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.3 and 4.6]; matching alone does not establish qualification. Service digital identity, status and effective time follow [ETSI TS 119 612 V2.4.1 (2025-08), Clauses 5.5.3–5.5.5]. Any applicable CA <span class="mkdocs-ezglossary-link"
+    id="3151495b2ce32c5f3eb4318b7cb6f9ff"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> follows the existing <span class="mkdocs-ezglossary-link"
+    id="5b475d261ce2690ea5b0c07b29b0f033"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> definition; non-CA direct service identities remain governed by the cited matching procedures rather than the CA-anchor profile. Absent or ambiguous eligible identities SHALL yield no <span class="mkdocs-ezglossary-link"
+    id="c9cb65e65948ae738d4bb43df8793771"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span>.</p>
+<p><strong>Current-List Cache and Rollback State</strong></p>
+<p>For each current pilot <span class="mkdocs-ezglossary-link"
+    id="9e3eff63ffad6497a970c3d3c0a090a3"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> and <span class="mkdocs-ezglossary-link"
+    id="da9380c45de690330f3388641efb4406"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> independently, the validator SHALL retrieve the current list when no accepted cached instance exists, 24 hours have elapsed since retrieval, or <code>NextUpdate</code> has been reached, whichever occurs first. A failed required refresh SHALL reject runtime use without a <span class="mkdocs-ezglossary-link"
+    id="e4313bf26fb18b03b065ad18737c31eb"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span>. Publication and update detection follow [ETSI TS 119 612 V2.4.1 (2025-08), Clause 6.1]; a published digest does not authenticate a list.</p>
+<p>For each logical current list, the validator SHALL persist across refreshes and restarts the highest accepted <code>TSLSequenceNumber</code> and a SHA-256 digest of the signed content (the canonicalized XML document after the enveloped-signature transform). Following [ETSI TS 119 612 V2.4.1 (2025-08), Clause 5.3.2], it SHALL reject lower sequences and equal sequences with differing signed-content digests. It SHALL update this state only after all runtime checks succeed and before reporting runtime acceptance. State SHALL remain separate for each <span class="mkdocs-ezglossary-link"
+    id="f4f900697067a6311334ae7ff3e1ffc8"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> territory, the <span class="mkdocs-ezglossary-link"
+    id="e237f75b82ec5fe6146bec57a8c128e1"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span>, and each retained <span class="mkdocs-ezglossary-link"
+    id="a779d44f45e1630d11f75863d3a2b71b"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type, preserving source/profile separation through authenticated location updates.</p>
+<p>Archived pivots SHALL follow the cited <span class="mkdocs-ezglossary-link"
+    id="08fbf1877a7dc63b36423d14c7c2a91a"
+    data-term="List Of Trusted Lists (LOTL)"
+    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
+    name="artifacts:List Of Trusted Lists (LOTL)"
+    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> authentication procedure and SHALL be exempt from current-list cache, freshness and rollback checks. They SHALL NOT substitute for current lists in runtime <span class="mkdocs-ezglossary-link"
+    id="416ea18c147467d872f775443475e9c2"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> selection.</p>
+<h4 id="list-of-trusted-entities-validation">List of Trusted Entities Validation<a class="headerlink" href="#list-of-trusted-entities-validation" title="Permanent link">&para;</a></h4>
+<p>This section defines the validation of a <span class="mkdocs-ezglossary-link"
+    id="12f34595da46f74f8a8a22cca7080cd1"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>. The <span class="mkdocs-ezglossary-link"
+    id="7b886bc8c46ea24947a357a515c75e66"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> format is specified in <a href="../../sections/trust-artifacts/#list-of-trusted-entities">List of Trusted Entities</a>.</p>
+<div class="admonition choice">
+<p class="admonition-title">APTITUDE Discovery Assumption</p>
+<p>The <span class="mkdocs-ezglossary-link"
+    id="91ad011bab8ed7dfb227eb8b1dfc5f16"
+    data-term="Official Journal of APTITUDE (OJA)"
+    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
+    name="artifacts:Official Journal of APTITUDE (OJA)"
+    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication is made available at a fixed, locally configured URI only available to the APTITUDE Partners, but is not signed or independently authenticated within APTITUDE. </p>
+<p>A <span class="mkdocs-ezglossary-link"
+    id="0db31af9dea7458e15c9b8f173daaac8"
+    data-term="Wallet Unit"
+    data-tooltip="A unique configuration of a Wallet Solution that includes Wallet instances, Wallet Secure Cryptographic Applications and Wallet Secure Cryptographic Devices provided by a Wallet Provider to an individual Wallet User. [ARF]"
+    name="components:Wallet Unit"
+    href="../../glossary-definitions/#19efe3de871ea7c8dc94e428e66b8cd5">Wallet Unit</span> or <span class="mkdocs-ezglossary-link"
+    id="a795822b3a464a479ad13d4eb83bb27d"
+    data-term="Wallet-Relying Party (WRP)"
+    data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
+    name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> SHALL accept the type-specific <span class="mkdocs-ezglossary-link"
-    id="decb6ac38ae7209f32b0858e09c2480b"
+    id="f7257062ac47d41c23eac6c9c0aef0b1"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> location and authorized signing certificate set obtained from that publication.</p>
 </div>
 <p>For the duration of APTITUDE, the <span class="mkdocs-ezglossary-link"
-    id="c00b516ca10b38039b3a9d2af38b4854"
+    id="51c49eaa1ebba46e2ffdb3c716b24dfb"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication URI, each type-specific <span class="mkdocs-ezglossary-link"
-    id="85a30b3f3787c9d4c8c022d3edc3d532"
+    id="8ef5813b895afa2d297745734591f907"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> location, and the authorized signing certificate set for each type will remain unchanged. New versions of a <span class="mkdocs-ezglossary-link"
-    id="6c09dae9151745e3f6c74103d66d4ee2"
+    id="4995c29c584d1e28f7e53397bee78295"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1323,7 +1819,7 @@
   Client-&gt;&gt;OJA: Request discovery for required LoTE type
   OJA--&gt;&gt;Client: Return fixed location and signer certificate set
   Client-&gt;&gt;Distribution: Request current LoTE at the type-specific location
-  Distribution--&gt;&gt;Client: Return JSON/JWT or XML/XAdES LoTE
+  Distribution--&gt;&gt;Client: Return JSON/JWT LoTE
   Client-&gt;&gt;Client: Verify format-specific signature, schema and type
   Client-&gt;&gt;Client: Compare signer certificate with OJA certificate set
   Client-&gt;&gt;Client: Check scheme URI, publication location, freshness and sequence
@@ -1332,64 +1828,64 @@
 <p><strong>Input Variables</strong>:</p>
 <ul>
 <li><code>Requested-LoTE-Type</code>: The <span class="mkdocs-ezglossary-link"
-    id="d29c3aa2805098af54e41ac3737909bd"
+    id="7ed1aa8a3a4838bb01d543fda9f572b5"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type required for the artifact or <span class="mkdocs-ezglossary-link"
-    id="c86d405214702287f7dd590a5e0062fc"
+    id="a0a1045bffc2c8dfb38e46ba1d687e54"
     data-term="Attestation"
     data-tooltip="When not further qualified, a collective term for a QEAA, PuB-EAA, or (non-qualified) EAA. [ARF]"
     name="credentials:Attestation"
     href="../../glossary-definitions/#34a15f9b3396eb9ec98d1f7bf1003e3b">Attestation</span> being validated.</li>
 <li><code>Requested-Entity-Identity</code>: The identity of the entity whose <span class="mkdocs-ezglossary-link"
-    id="45244f149d86684e194e4d84ff546e0a"
+    id="aee858deb8eca6aa3b2e428cd64b44c4"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> is required, obtained from the artifact or protocol being validated.</li>
 <li><code>Requested-Service-Type</code>: The <code>ServiceTypeIdentifier</code> required for that artifact or protocol.</li>
 <li><code>OJA-Loc</code>: The fixed, locally configured URI of the <span class="mkdocs-ezglossary-link"
-    id="4843b8b6af8ce7c84a01f26b82f46cda"
+    id="44365470de7d4b5d340009eb3b56b83c"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> publication.</li>
-<li><code>Highest-Accepted-Sequence</code>: The highest <code>LoTESequenceNumber</code> previously accepted for <code>Requested-LoTE-Type</code>, if any, together with a SHA-256 digest of the accepted signed list content at that sequence number; this state is retained across refreshes and restarts. The list content is the JWS Payload octets for JSON or the canonicalized document after the enveloped-signature transform for XML.</li>
+<li><code>Highest-Accepted-Sequence</code>: The highest <code>LoTESequenceNumber</code> previously accepted for <code>Requested-LoTE-Type</code>, if any, together with a SHA-256 digest of the accepted signed list content at that sequence number; this state is retained across refreshes and restarts. The list content is the JWS Payload octets.</li>
 </ul>
 <p><strong>Working and Output Variables</strong>:</p>
 <ul>
-<li><code>LoTE</code>: The JSON/JWT or XML/XAdES <span class="mkdocs-ezglossary-link"
-    id="8a5803539103b8d25c9c974dc69f3f4b"
+<li><code>LoTE</code>: The JSON/JWT <span class="mkdocs-ezglossary-link"
+    id="d887a03b37166203132fbe56637cf6d5"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> being processed.</li>
 <li><code>OJA-LoTE-Loc</code>: The fixed location published by the <span class="mkdocs-ezglossary-link"
-    id="95ffc47e5358cf197f3e809321137d62"
+    id="f3611dcdd10fc813efde64c239e82875"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> for <code>Requested-LoTE-Type</code>.</li>
 <li><code>OJA-LoTE-Certs-Set</code>: The set of certificates published by the <span class="mkdocs-ezglossary-link"
-    id="a35ce97766b10b35fd6188813a61a648"
+    id="f02feba766d3cf784998949b1f13bf06"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> for verifying <code>Requested-LoTE-Type</code>.</li>
-<li><code>LoTE-Format</code>: The format of <code>LoTE</code>, either <code>JSON</code> or <code>XML</code>.</li>
+<li><code>LoTE-Format</code>: The format of <code>LoTE</code>, <code>JSON</code>.</li>
 <li><code>LoTE-Signer-Cert</code>: The certificate used to verify the signature or seal on <code>LoTE</code>.</li>
 <li><code>LoTE-Status</code>: The validation result, for example <code>LoTE_VERIFICATION_PASSED</code>.</li>
 </ul>
 <h5 id="json-lote-signature-verification">JSON LoTE Signature Verification<a class="headerlink" href="#json-lote-signature-verification" title="Permanent link">&para;</a></h5>
 <p>This procedure applies when the <span class="mkdocs-ezglossary-link"
-    id="55e9784227ea46c100d74348d495e5b9"
+    id="b1f863b6359d2829f4c9cafee30b61b6"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> is JSON formatted and uses the Compact JAdES Baseline B profile.</p>
 <p>The validator SHALL perform the following operations. Values from the payload SHALL NOT be used to extract <span class="mkdocs-ezglossary-link"
-    id="c9cbda657ecc42f27fd32ff2c6ddf456"
+    id="1068d5501d1191b309a3dbc37efeaa4d"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1402,42 +1898,6 @@
 <li>Confirm that the <code>LoTEType</code> in the signature-verified payload equals <code>Requested-LoTE-Type</code>.</li>
 </ol>
 <p>If any operation fails, validation SHALL stop with <code>LoTE-Status = LoTE_VERIFICATION_FAILED</code>.</p>
-<h5 id="xml-lote-signature-verification">XML LoTE Signature Verification<a class="headerlink" href="#xml-lote-signature-verification" title="Permanent link">&para;</a></h5>
-<p>This procedure applies only when an implementation additionally supports an XML-formatted <span class="mkdocs-ezglossary-link"
-    id="d2f92fbb89d708b6a2ad28ac50ea77c5"
-    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
-    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> <span class="mkdocs-ezglossary-link"
-    id="a779d44f45e1630d11f75863d3a2b71b"
-    data-term="List of Trusted Entities (LoTE)"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> using XAdES Baseline B. XML support is not required for pilot interoperability.</p>
-<p>The validator SHALL perform the following operations. Values from the XML document SHALL NOT be used to extract <span class="mkdocs-ezglossary-link"
-    id="7c7882bc972c5bc3b800b574eb1702b3"
-    data-term="Trust Anchor"
-    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
-    name="artifacts:Trust Anchor"
-    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span> before all validation operations succeed:</p>
-<ol>
-<li>Parse without external entities or DTD processing. Validate the document against the applicable <span class="mkdocs-ezglossary-link"
-    id="12f34595da46f74f8a8a22cca7080cd1"
-    data-term="List of Trusted Entities (LoTE)"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> XML schema and require exactly one <code>ListOfTrustedEntities</code> document element containing exactly one enveloped <code>ds:Signature</code> and its <code>xades:QualifyingProperties</code>. Reject duplicate XML IDs.</li>
-<li>Require the signature to reference the entire document with <code>URI=""</code>, the enveloped-signature transform, and exclusive XML canonicalization, and to reference the unique <code>xades:SignedProperties</code> element with <code>Type="http://uri.etsi.org/01903#SignedProperties"</code>. Reject external references, additional references, and other transforms. Require SHA-256 reference digests and an ECDSA-with-SHA-256 signature method.</li>
-<li>Extract the signing certificate from <code>ds:KeyInfo/ds:X509Data/ds:X509Certificate</code>. The first <code>xades:SigningCertificateV2/xades:Cert</code> SHALL contain the SHA-256 digest of the DER encoding of this certificate, with <code>DigestValue</code> in XML Signature Base64 encoding. Set it as <code>LoTE-Signer-Cert</code>.</li>
-<li>Verify the XML signature using the P-256 public key in <code>LoTE-Signer-Cert</code>, including the signed properties and entire document reference. The application SHALL use this same signature-verified document element for all subsequent list checks and trust-anchor extraction.</li>
-<li>Confirm that the <span class="mkdocs-ezglossary-link"
-    id="7b886bc8c46ea24947a357a515c75e66"
-    data-term="List of Trusted Entities (LoTE)"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> type in the signature-verified XML document equals <code>Requested-LoTE-Type</code>.</li>
-</ol>
-<p>If any operation fails, validation SHALL stop with <code>LoTE-Status = LoTE_VERIFICATION_FAILED</code>.</p>
 <h5 id="lote-validation-operations">LoTE Validation Operations<a class="headerlink" href="#lote-validation-operations" title="Permanent link">&para;</a></h5>
 <p>The validator SHALL perform the following steps:</p>
 <ol>
@@ -1445,7 +1905,7 @@
 <p><strong>Retrieve the current list.</strong></p>
 <ul>
 <li>Select exactly one <code>Requested-LoTE-Type</code> entry from the trusted <span class="mkdocs-ezglossary-link"
-    id="91ad011bab8ed7dfb227eb8b1dfc5f16"
+    id="bc7290a0f147a8e240dc48c0b1cc8479"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
@@ -1453,7 +1913,7 @@
 <li>Obtain <code>OJA-LoTE-Loc</code> and <code>OJA-LoTE-Certs-Set</code> for that type. Download the current <code>LoTE</code> from <code>OJA-LoTE-Loc</code> when no accepted cached list exists, 24 hours have elapsed since the cached list was retrieved, or its <code>NextUpdate</code> has been reached, whichever occurs first. A cached list SHALL NOT be used after a required refresh fails.</li>
 </ul>
 <p>The validator SHALL NOT use the location or certificate set of another <span class="mkdocs-ezglossary-link"
-    id="f7257062ac47d41c23eac6c9c0aef0b1"
+    id="a437fd33cbf695057e02dbe25976ca6a"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1462,12 +1922,12 @@
 </li>
 <li>
 <p><strong>Verify signature, schema, and type.</strong></p>
-<p>Determine <code>LoTE-Format</code> and run the applicable JSON or XML signature-verification procedure above. Only a <span class="mkdocs-ezglossary-link"
-    id="3f2eaf29787e2b71d163b4e3635139b5"
-    data-term="Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
-    name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
-    href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> list MAY use XML, and only when XML validation is supported. If any check fails, stop with <code>LoTE-Status = LoTE_VERIFICATION_FAILED</code>.</p>
+<p>Require JSON format and run JSON <span class="mkdocs-ezglossary-link"
+    id="c5dd5f6766f9457f73ab3568b6ce486c"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> Signature Verification above. If any check fails, stop with <code>LoTE-Status = LoTE_VERIFICATION_FAILED</code>.</p>
 </li>
 <li>
 <p><strong>Match the signing certificate.</strong></p>
@@ -1478,7 +1938,7 @@
 <ul>
 <li>Require <code>SchemeInformationURI</code> to contain exactly one URI, equal to <code>OJA-Loc</code>, and require <code>DistributionPoints</code> to be absent. The current list location is <code>OJA-LoTE-Loc</code>.</li>
 <li>For all <span class="mkdocs-ezglossary-link"
-    id="8ef5813b895afa2d297745734591f907"
+    id="f11374151c5cf6910a0af17d6358a12a"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1490,12 +1950,12 @@
 <p><strong>Check profile, freshness, and sequence.</strong></p>
 <ul>
 <li>Require <code>LoTEVersionIdentifier</code> to be <code>1</code>, a positive integer <code>LoTESequenceNumber</code>, and the type-specific values and presence rules in the <span class="mkdocs-ezglossary-link"
-    id="4995c29c584d1e28f7e53397bee78295"
+    id="25537637e60e1c461e16efb1f4e6bce3"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> profile, including the service type identifiers and current service-status rules. For a <span class="mkdocs-ezglossary-link"
-    id="08600d7a410523f55a33206074406ab1"
+    id="c19d95d7576410d0bc51698fb13ee844"
     data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
     name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
@@ -1510,22 +1970,22 @@
 <p><strong>Accept the list and select trust anchors.</strong></p>
 <ul>
 <li>Select the applicable <code>TrustedEntityInformation</code> and <code>ServiceInformation</code> from the signature-verified list using <code>Requested-Entity-Identity</code> and <code>Requested-Service-Type</code>. For a <span class="mkdocs-ezglossary-link"
-    id="3d212e1645efad8dea17e1fe6c644736"
+    id="9667d0ce634a20c9396fdd33b080ddbe"
     data-term="Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
     data-tooltip="The entity responsible for issuing and revoking Public Electronic Attestation of Attributes (PuB-EAA)."
     name="roles:Provider of Public Electronic Attestation of Attributes (PuB-EAA Provider)"
     href="../../glossary-definitions/#10f1ae40ce0f71a98250d39b09c00f82">PuB-EAA Provider</span>, an operational <span class="mkdocs-ezglossary-link"
-    id="7e75347bd9c0dcdd9e51d30d655100f4"
+    id="6a67708297257f3005bbf989d652cce5"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> SHALL be selected only from a current issuance or revocation service whose <code>ServiceStatus</code> is <code>http://uri.etsi.org/19602/PubEAAProvidersList/SvcStatus/notified</code>; <code>ServiceHistory</code> and <code>withdrawn</code> services SHALL NOT supply operational <span class="mkdocs-ezglossary-link"
-    id="bb0d13e00f1847f538d31b2576df6102"
+    id="129f8d329f4f29f39f9e587be219d41c"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>. For all other list types, only services currently present in the list SHALL supply operational <span class="mkdocs-ezglossary-link"
-    id="04318707cab5000be3db3e622139bb40"
+    id="9c15dc0312ded1f34dc012f28c15ff76"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1539,37 +1999,22 @@
 <p class="admonition-title">Remarks</p>
 <ul>
 <li>The <span class="mkdocs-ezglossary-link"
-    id="51c49eaa1ebba46e2ffdb3c716b24dfb"
+    id="25783bef0db8983af042458b49bc70d1"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> page is the discovery source within the APTITUDE ecosystem. A passed validation result establishes signature integrity and conformity with the certificate set and location supplied by that page, subject to the assumption stated above.</li>
 <li>The JSON <code>x5t#S256</code> value identifies the signing certificate in the type-specific <span class="mkdocs-ezglossary-link"
-    id="44365470de7d4b5d340009eb3b56b83c"
-    data-term="Official Journal of APTITUDE (OJA)"
-    data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
-    name="artifacts:Official Journal of APTITUDE (OJA)"
-    href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> set. The XML <code>SigningCertificateV2</code> value binds the XAdES signature to the certificate in <code>ds:KeyInfo</code>; the latter is authorized only by its exact DER match with the type-specific <span class="mkdocs-ezglossary-link"
-    id="f3611dcdd10fc813efde64c239e82875"
+    id="20a5af1ee9902fb07223aa19022a891d"
     data-term="Official Journal of APTITUDE (OJA)"
     data-tooltip="The authoritative entity responsible for publishing and maintaining the certificates used to sign or seal the APTITUDE List of Trusted Entities (LoTE). Within the APTITUDE ecosystem, this entity serves as the functional equivalent of the Official Journal of the European Union (OJEU)."
     name="artifacts:Official Journal of APTITUDE (OJA)"
     href="../../glossary-definitions/#0e0cd390df6a393a7d658be75b677a66">OJA</span> set.</li>
-<li>A cached <span class="mkdocs-ezglossary-link"
-    id="7ed1aa8a3a4838bb01d543fda9f572b5"
-    data-term="List of Trusted Entities (LoTE)"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> MAY be reused only within the caching rules specified in the <span class="mkdocs-ezglossary-link"
-    id="d887a03b37166203132fbe56637cf6d5"
-    data-term="List of Trusted Entities (LoTE)"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> profile. At every trust decision, the validator SHALL check that 24 hours have not elapsed since retrieval, <code>NextUpdate</code> has not been reached, and <code>LoTE-Signer-Cert</code> is within its validity period. Rollback state SHALL be retained across refreshes and restarts.</li>
+<li>Cached-list reuse is governed by <a href="#lote-validation-operations">LoTE Validation Operations</a>, including required refresh, signer validity and persistent rollback state.</li>
 </ul>
 </div>
 <p>Below is a flowchart summarizing the validation of a <span class="mkdocs-ezglossary-link"
-    id="b1f863b6359d2829f4c9cafee30b61b6"
+    id="3b6607b646b3915c3c52a81c284badb8"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1612,7 +2057,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 25, 2026 09:34:20 UTC">September 25, 2026 09:34:20</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="November 16, 2026 16:25:00 UTC">November 16, 2026 16:25:00</span>
   </span>
 
     

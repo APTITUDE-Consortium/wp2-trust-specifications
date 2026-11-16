@@ -271,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pr-workspace/onboarding-process/" class="md-tabs__link">
+        <a href="../pr-workspace/attestation-signature-validation-process/" class="md-tabs__link">
           
   
   
@@ -684,6 +684,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -734,6 +740,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../pr-workspace/attestation-signature-validation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attestation signature validation process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pr-workspace/onboarding-process/" class="md-nav__link">
         
   
@@ -742,6 +776,34 @@
     
   
     Onboarding process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-workspace/trust-anchor-certificate-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust anchor certificate profiles
   
 
     
@@ -895,6 +957,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-workspace/x509-certificate-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    X509 certificate validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1035,7 +1125,7 @@ an applicability that has been proposed but not yet confirmed.</p>
 |[ETSI TS 119 412-6](https://www.etsi.org/deliver/etsi_ts/119400_119499/11941206/01.02.01_60/ts_11941206v010201p.pdf)| Certificate Profiles; Part 6: Certificate profile requirements for PID, Wallet, EAA, QEAA, and PSBEAA providers|1.2.1|Published|RFC-04, trust-fw — certificate profiles for PID, Wallet and (Q)EAA providers|trust-model|
 |[ETSI EN 319 132-1](https://www.etsi.org/deliver/etsi_en/319100_319199/31913201/01.03.01_60/en_31913201v010301p.pdf)| XAdES digital signatures; Part 1: Building blocks and XAdES baseline signatures|1.3.1|Published|trust-fw — XAdES B-B signature over the EU LOTL|trust-model|
 |[ETSI TS 119 182-1](https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.02.01_60/ts_11918201v010201p.pdf)| JAdES digital signatures; Part 1: Building blocks and JAdES baseline signatures|1.2.1|Published|trust-fw — JAdES B-B signature over the JWT realisation of the WRPRC|trust-model, format|
-|[ETSI TS 119 472-1](https://www.etsi.org/deliver/etsi_ts/119400_119499/11947201/01.02.01_60/ts_11947201v010201p.pdf)| Profiles for Electronic Attestation of Attributes; Part 1: General requirements|1.2.1|Published|RFC-01 — EAA data model underlying the issuance profile|issuance-process, issuance-protocol, format, trust-model, validation|
+|[ETSI TS 119 472-1](https://www.etsi.org/deliver/etsi_ts/119400_119499/11947201/01.02.01_60/ts_11947201v010201p.pdf)| Profiles for Electronic Attestation of Attributes; Part 1: General requirements|1.2.1|Published|RFC-01, RFC-02 — EAA data model and SD-JWT VC / ISO mdoc credential-format profiling|issuance-process, issuance-protocol, presentation-protocol, format, trust-model, validation|
 |[ETSI TS 119 472-2](https://www.etsi.org/deliver/etsi_ts/119400_119499/11947202/01.02.01_60/ts_11947202v010201p.pdf)| Profiles for Electronic Attestation of Attributes; Part 2: Profiles for EAA/PID Presentations to Relying Party|1.2.1|Published|RFC-02, RFC-05, trust-fw — EAA/PID presentation profiles|presentation-protocol|
 |[ETSI TS 119 472-3](https://www.etsi.org/deliver/etsi_ts/119400_119499/11947203/01.01.01_60/ts_11947203v010101p.pdf)| Profiles for Electronic Attestation of Attributes; Part 3: Profiles for issuance of EAA or PID|1.1.1|Published|RFC-01, trust-fw — EAA/PID issuance profiles|issuance-process, issuance-protocol|
 |[OpenID4VCI](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html)|OpenID for Verifiable Credential Issuance 1.0|1.0|Published|RFC-01, trust-fw — base issuance protocol|issuance-process, issuance-protocol, format, trust-model|
@@ -1056,25 +1146,26 @@ an applicability that has been proposed but not yet confirmed.</p>
 |[IETF RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)|The OAuth 2.0 Authorization Framework||Published|Not directly referenced — base specification of OpenID4VCI and OpenID4VP|issuance-protocol, presentation-protocol|
 |[IETF RFC 6960](https://datatracker.ietf.org/doc/html/rfc6960)|X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP||Published|RFC-04, trust-fw — OCSP revocation checking|trust-model, validation, other|
 |[IETF RFC 7515](https://www.rfc-editor.org/rfc/rfc7515)|JSON Web Signature (JWS)||Published|trust-fw — JWS realisation of the WRPRC|format, trust-model|
-|[IETF RFC 7516](https://datatracker.ietf.org/doc/rfc7516/)|JSON Web Encryption (JWE)||Published|Not directly referenced — encrypted response handling in OpenID4VP|presentation-protocol, format|
-|[IETF RFC 7518](https://datatracker.ietf.org/doc/rfc7518/)|JSON Web Algorithms (JWA)||Published|RFC-01 — A128GCM and A256GCM content encryption algorithms|format|
+|[IETF RFC 7516](https://datatracker.ietf.org/doc/rfc7516/)|JSON Web Encryption (JWE)||Published|RFC-02 — encrypted `direct_post.jwt` authorization responses|presentation-protocol, format|
+|[IETF RFC 7518](https://datatracker.ietf.org/doc/rfc7518/)|JSON Web Algorithms (JWA)||Published|RFC-01, RFC-02 — A128GCM and A256GCM content encryption algorithms|format|
 |[IETF RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)|JSON Web Token (JWT)||Published|trust-fw — JWT realisation of the WRPRC|format|
 |[IETF RFC 7636](https://datatracker.ietf.org/doc/html/rfc7636)|Proof Key for Code Exchange by OAuth Public Clients (PKCE)||Published|RFC-01 — PKCE with `S256` in the Authorisation Code Flow|issuance-protocol|
 |[IETF RFC 8174](https://datatracker.ietf.org/doc/html/rfc8174)|Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words||Published|All APTITUDE RFCs — normative language (BCP 14, with RFC 2119)|other|
 |[IETF RFC 8259](https://datatracker.ietf.org/doc/rfc8259/)|The JavaScript Object Notation (JSON) Data Interchange Format||Published|Not directly referenced — base encoding of all JSON artefacts|format|
 |[IETF RFC 8392](https://datatracker.ietf.org/doc/html/rfc8392)|CBOR Web Token (CWT)||Published|RFC-05, trust-fw — CWT realisation of the WRPRC|format, trust-model|
+|[IETF RFC 8414](https://datatracker.ietf.org/doc/html/rfc8414)|OAuth 2.0 Authorization Server Metadata||Published|RFC-02 — Wallet Metadata used for optional pre-request discovery|presentation-protocol|
 |[IETF RFC 8446](https://datatracker.ietf.org/doc/html/rfc8446)|The Transport Layer Security (TLS) Protocol Version 1.3||Published|Used but not referenced — transport protection of issuance, presentation and status endpoints|issuance-protocol, presentation-protocol, validation|
 |[IETF RFC 8610](https://www.rfc-editor.org/rfc/rfc8610.html)|Concise Data Definition Language (CDDL)||Published|RFC-05 — CDDL definitions of mdoc structures|format|
 |[IETF RFC 8949](https://datatracker.ietf.org/doc/html/rfc8949)|Concise Binary Object Representation (CBOR)||Published|RFC-05 — CBOR encoding of mdoc structures|format|
 |[IETF RFC 9052](https://www.rfc-editor.org/rfc/rfc9052)|CBOR Object Signing and Encryption (COSE): Structures and Process||Published|RFC-05, trust-fw — COSE structures for the CWT realisation of the WRPRC|format, trust-model|
-|[IETF RFC 9101](https://datatracker.ietf.org/doc/html/rfc9101)|The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)||Published|Used but not referenced — signed Request Object in RFC-02|presentation-protocol|
+|[IETF RFC 9101](https://datatracker.ietf.org/doc/html/rfc9101)|The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)||Published|RFC-02 — signed Request Object passed by `request_uri`|presentation-protocol|
 |[IETF RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110)|HTTP Semantics||Published|Used but not referenced — endpoint methods, header fields and status codes in RFC-03 clause 7|validation, trust-model, other|
 |[IETF RFC 9111](https://datatracker.ietf.org/doc/html/rfc9111)|HTTP Caching||Published|Used but not referenced — `Cache-Control` and `Expires` in RFC-03 clause 7.3; obsoletes RFC 7234|validation, trust-model, other|
 |[IETF RFC 9126](https://datatracker.ietf.org/doc/html/rfc9126)|OAuth 2.0 Pushed Authorization Requests (PAR)||Published|RFC-01 — Pushed Authorisation Requests in the Authorisation Code Flow|issuance-protocol|
 |[IETF RFC 9360](https://datatracker.ietf.org/doc/html/rfc9360)|CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificates||Published|trust-fw — X.509 header parameters of the CWT realisation of the WRPRC|trust-model, format|
 |[IETF RFC 9449](https://datatracker.ietf.org/doc/html/rfc9449)|OAuth 2.0 Demonstrating Proof of Possession (DPoP)||Published|RFC-01 — sender-constrained access tokens (DPoP)|issuance-protocol|
 |[IETF RFC 9608](https://datatracker.ietf.org/doc/html/rfc9608)|No Revocation Available for X.509 Public Key Certificates||Published|trust-fw — signalling the absence of revocation information for WRPAC certificates|trust-model, validation|
-|[IETF RFC 9901](https://datatracker.ietf.org/doc/rfc9901)|Selective Disclosure for JSON Web Tokens||Published|Not directly referenced — base specification of SD-JWT VC|format|
+|[IETF RFC 9901](https://datatracker.ietf.org/doc/rfc9901)|Selective Disclosure for JSON Web Tokens||Published|RFC-02 — KB-JWT holder binding for SD-JWT presentations; base specification of SD-JWT VC|format|
 |[IETF SD-JWT-VC](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/)|SD-JWT-based Verifiable Credentials (SD-JWT VC)|draft-ietf-oauth-sd-jwt-vc-13|Draft|RFC-01, RFC-02 — selective-disclosure credential format|format|
 |[IETF Client authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/)|OAuth 2.0 Attestation-Based Client Authentication|draft-ietf-oauth-attestation-based-client-auth-11|Draft|RFC-01 — attestation-based client authentication|presentation-protocol|
 |[IETF Token Status List](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/)|Token Status List (TSL)|draft-ietf-oauth-status-list-21|Draft|RFC-04, RFC-05, trust-fw — attestation status and revocation|validation, other|
@@ -1106,7 +1197,7 @@ an applicability that has been proposed but not yet confirmed.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 25, 2026 09:34:20 UTC">September 25, 2026 09:34:20</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="November 16, 2026 16:25:00 UTC">November 16, 2026 16:25:00</span>
   </span>
 
     
