@@ -1367,7 +1367,7 @@
     name="protocols:Online Certificate Status Protocol (OCSP)"
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> response</li>
                     <li>Entity-signed metadata</li>
-                </ol>
+                </ul>
             </td>
             <td>
                 <ul>
@@ -1750,18 +1750,8 @@
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
-    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> are published, conform to their profiles, and pass the <span class="mkdocs-ezglossary-link"
-    id="9570f6b9685692dcf27d6ab536054d8a"
-    data-term="List Of Trusted Lists (LOTL)"
-    data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
-    name="artifacts:List Of Trusted Lists (LOTL)"
-    href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> Authentication and <span class="mkdocs-ezglossary-link"
-    id="d30a960580352f4b0205f263db3dd9ed"
-    data-term="Trusted List (TL)"
-    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
-    name="artifacts:Trusted List (TL)"
-    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> Authentication procedures.</li>
-                <ul>
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> are published, conform to their profiles, and pass the List of Trusted Lists Validation and Trusted List Validation procedures.</li>
+                </ul>
             </td>
             <td>None</td>
             <td>All the required <span class="mkdocs-ezglossary-link"
@@ -1827,7 +1817,7 @@
     name="roles:Registrar"
     href="../../glossary-definitions/#56a0abdcb5efa50d94e4b816dedb5c86">Registrar</span>.</li>
                     <li>Verify that records and signed query responses conform to the applicable schemas.</li>
-                <ul>
+                </ul>
             </td>
             <td>None</td>
             <td>The <span class="mkdocs-ezglossary-link"
@@ -1841,7 +1831,7 @@
     data-term="Wallet-Relying Party (WRP)"
     data-tooltip="A relying party that intends to rely upon Wallet Units for the provision of public or private services by means of digital interaction. [ARF]"
     name="roles:Wallet-Relying Party (WRP)"
-    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> registration SHALL NOT start.</li>
+    href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> registration SHALL NOT start.</td>
         </tr>
         <tr>
             <td>Certificate Issuance Service Readiness</td>
@@ -1874,11 +1864,11 @@
                     <li>Verify that the interfaces required to request each supported certificate type are available.</li>
                     <li>Issue test certificates.</li>
                     <li>Verify that each issued certificate conforms to its applicable profile.</li>
-                <ul>
+                </ul>
             </td>
             <td>None</td>
             <td>The Certificate Services are available and issue profile-conformant certificates.</td>
-            <td>Certificate-dependent onboarding SHALL NOT start.</li>
+            <td>Certificate-dependent onboarding SHALL NOT start.</td>
         </tr>
         <tr>
             <td>Certificate Status Service Readiness</td>
@@ -1915,7 +1905,7 @@
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
     href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> status mechanisms are operational.</td>
-            <td>The corresponding Certificate Service SHALL NOT be considered ready.</li>
+            <td>The corresponding Certificate Service SHALL NOT be considered ready.</td>
         </tr>
     </tbody>
 </table>
@@ -1956,7 +1946,7 @@
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> record that conforms to the schema.</li>
-                <ul>
+                </ul>
             </td>
             <td>The <span class="mkdocs-ezglossary-link"
     id="4d8944217eabbac7025c3394c1569a5f"
@@ -1970,7 +1960,7 @@
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> record is available.</td>
-            <td>The request SHALL BE rejected and the process interrupted.</li>
+            <td>The request SHALL BE rejected and the process interrupted.</td>
         </tr>
         <tr>
             <td><span class="mkdocs-ezglossary-link"
@@ -2002,7 +1992,7 @@
                 <ul>
                     <li>Verify the active registration status and data consistency.</li>
                     <li>Issue the requested Certificate(s).</li>
-                <ul>
+                </ul>
             </td>
             <td>The <span class="mkdocs-ezglossary-link"
     id="80e1d5c01c40d27f86ea07fd32d9436a"
@@ -2011,7 +2001,7 @@
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> SHALL submit the cryptographic material and deploy each issued certificate at the intended instance or service supply point.</td>
             <td>A valid certificate is issued and the applicable runtime test succeeds.</td>
-            <td>Issuance SHALL be refused.</li>
+            <td>Issuance SHALL be refused.</td>
         </tr>
         <tr>
             <td>Entity Publication</td>
@@ -2057,7 +2047,7 @@
     data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
     name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
     href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span>, the pilot <span class="mkdocs-ezglossary-link"
-    id="2daf799121ed43133eb11a798c738e43"
+    id="d30a960580352f4b0205f263db3dd9ed"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
@@ -2073,7 +2063,7 @@
     data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
     name="components:Wallet Solution"
     href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span></li>
-                <ul>
+                </ul>
             </td>
             <td>The entity SHALL submit the required data and <span class="mkdocs-ezglossary-link"
     id="a775741b43c2b751bc195e3bf86bb32c"
@@ -2093,7 +2083,7 @@
     data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
     name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
     href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span> no pilot <span class="mkdocs-ezglossary-link"
-    id="087bf74245fe894c494cd9fb8cefda62"
+    id="2daf799121ed43133eb11a798c738e43"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
@@ -2125,7 +2115,7 @@
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> schema.</li>
-                <ul>
+                </ul>
             </td>
             <td>The <span class="mkdocs-ezglossary-link"
     id="d642e000e39c91b5d7f60c58b62629d6"
@@ -2139,7 +2129,7 @@
     data-tooltip="An electronic register used by a Member State to make information on WRP registered in that Member State publicly available as set out in Article 5b(5) of Regulation (EU) No 910/2014. [CIR 2024/2980]"
     name="components:Register"
     href="../../glossary-definitions/#bbec07f6b52063b7000ed9cad521aed9">Register</span> record contains the updated information.</td>
-            <td>The record SHALL NOT be updated.</li>
+            <td>The record SHALL NOT be updated.</td>
         </tr>
         <tr>
             <td><span class="mkdocs-ezglossary-link"
@@ -2171,13 +2161,13 @@
     data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
     name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
     href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span>, the pilot <span class="mkdocs-ezglossary-link"
-    id="faebf6ff4fe89817a80f9ed531c71d6b"
+    id="087bf74245fe894c494cd9fb8cefda62"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> service entry.</li>
                     <li>When the entity becomes ineligible, invoke the applicable removal test case instead.</li>
-                <ul>
+                </ul>
             </td>
             <td>The affected entity SHALL notify APTITUDE WP2 of the changed information.</td>
             <td>The new entity information is included in the updated <span class="mkdocs-ezglossary-link"
@@ -2186,12 +2176,12 @@
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> or pilot <span class="mkdocs-ezglossary-link"
-    id="785d3e2a0b9d587f75ff1ab4b6f02cbb"
+    id="faebf6ff4fe89817a80f9ed531c71d6b"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">Trusted List</span> content prepared and published.</td>
-            <td>The previous information SHALL remain in the prepared current content.</li>
+            <td>The previous information SHALL remain in the prepared current content.</td>
         </tr>
         <tr>
             <td>Cryptographic key material update</td>
@@ -2204,8 +2194,8 @@
             </td>
             <td>Issue a replacement certificate for the new data and invoke the applicable <i>Certificate Revocation</i> test case for the former certificate.</td>
             <td>The affected entity SHALL notify the Certificate Service, provide the new public key, and deploy the replacement certificate.</td>
-            <td>The replacement certificate is correctly issued an conforms to the applicable profile.</td>
-            <td>No valid replacement is available.</li>
+            <td>The replacement certificate is correctly issued and conforms to the applicable profile.</td>
+            <td>No valid replacement is available.</td>
         </tr>
         <tr>
             <td><span class="mkdocs-ezglossary-link"
@@ -2240,12 +2230,12 @@
     data-tooltip="An electronic attestation of attributes which is issued by a qualified trust service provider and meets the requirements laid down in Annex V. [ARF]"
     name="credentials:Qualified Electronic Attestation of Attributes (QEAA)"
     href="../../glossary-definitions/#2914eb989ff7ace33ea803168127aea7">QEAA</span>, pilot <span class="mkdocs-ezglossary-link"
-    id="7d04dec724feb710f496b7df023bd0e7"
+    id="9570f6b9685692dcf27d6ab536054d8a"
     data-term="List Of Trusted Lists (LOTL)"
     data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
     name="artifacts:List Of Trusted Lists (LOTL)"
     href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and <span class="mkdocs-ezglossary-link"
-    id="de1fd1553fa93ef24301e0ae9ae5ca10"
+    id="785d3e2a0b9d587f75ff1ab4b6f02cbb"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
@@ -2261,12 +2251,12 @@
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> at the fixed endpoint with an increased <code>LoTESequenceNumber</code>, a new <code>ListIssueDateTime</code>, and a valid <code>NextUpdate</code>.</li>
                     <li>For the pilot <span class="mkdocs-ezglossary-link"
-    id="f4918bf41cf20e9c9ccc0ce41871f6c5"
+    id="7d04dec724feb710f496b7df023bd0e7"
     data-term="List Of Trusted Lists (LOTL)"
     data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
     name="artifacts:List Of Trusted Lists (LOTL)"
     href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and <span class="mkdocs-ezglossary-link"
-    id="1854a945f321d77541b40460ef30da3c"
+    id="de1fd1553fa93ef24301e0ae9ae5ca10"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
@@ -2284,12 +2274,12 @@
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Validation Process and SHALL reject a version whose sequence number is below the highest previously accepted for that type; for the pilot <span class="mkdocs-ezglossary-link"
-    id="d800aaa967d6f78dd168a016c98af30c"
+    id="f4918bf41cf20e9c9ccc0ce41871f6c5"
     data-term="List Of Trusted Lists (LOTL)"
     data-tooltip="In order to allow access to the TLs of all Member States in an easy manner, the European Commission (EC) publishes a central list, called the List of Trusted Lists (LoTL), with links to the locations where the TLs are published as notified by Member States. [ETSI TS 119 615]"
     name="artifacts:List Of Trusted Lists (LOTL)"
     href="../../glossary-definitions/#c9098e4438b3b836eeedeb6f3dfed42f">LOTL</span> and <span class="mkdocs-ezglossary-link"
-    id="fb2d5388240faf793703771b43f0d8af"
+    id="1854a945f321d77541b40460ef30da3c"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
@@ -2344,7 +2334,7 @@
     href="../../glossary-definitions/#3c4c00d0a42c0a4935ec9ee01393ce84">OCSP</span> status source and verify that it reports the certificate as revoked.</td>
             <td>The affected entity SHALL stop using the certificate. Runtime participants SHALL retrieve current status information and reject it.</td>
             <td>The certificate fails <i>Entity Identity Validation</i> or <i>Attestation Authenticity and Integrity</i>, as applicable.</td>
-            <td>The certificate remains accepted.</li>
+            <td>The certificate remains accepted.</td>
         </tr>
         <tr>
             <td><span class="mkdocs-ezglossary-link"
@@ -2364,7 +2354,7 @@
                     <li>current Status List</li>
                 </ul>
             </td>
-            <td>The Provider or <span class="mkdocs-ezglossary-link"
+            <td>The Provider of <span class="mkdocs-ezglossary-link"
     id="1567c39fe1ccc8ab5fa72c6854a6709c"
     data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
@@ -2397,7 +2387,7 @@
     data-term="Wallet-Relying Party Registration Certificate (WRPRC)"
     data-tooltip="A data object that indicates the attributes the Relying Party has registered to intend to request from Users. [ARF]"
     name="artifacts:Wallet-Relying Party Registration Certificate (WRPRC)"
-    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> remains valid or is accepted by a Wallet Unit.</li>
+    href="../../glossary-definitions/#9390c8fc14418baf2a7df02cfac5d485">WRPRC</span> remains valid or is accepted by a Wallet Unit.</td>
         </tr>
         <tr>
             <td><span class="mkdocs-ezglossary-link"
@@ -2429,7 +2419,7 @@
     data-tooltip="The entity responsible for issuing and revoking Qualified Electronic Attestation of Attributes (QEAA)."
     name="roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)"
     href="../../glossary-definitions/#e37e5860a6bcd158d062e00bd1b83d50">QEAA Provider</span>, also invoke the pilot <span class="mkdocs-ezglossary-link"
-    id="f7117603709db43e1ea6e0c5b24ded1f"
+    id="fb2d5388240faf793703771b43f0d8af"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
@@ -2441,7 +2431,7 @@
     name="roles:Wallet-Relying Party (WRP)"
     href="../../glossary-definitions/#7355e42b188b5fd04aec331fbd8f0b2e">WRP</span> SHALL submit the removal request to APTITUDE WP2; in every case it SHALL cease new framework operations. Participants SHALL reject new interactions with the removed entity.</td>
             <td>The entity is <code>REMOVED</code> and all applicable runtime tests reject new interactions.</td>
-            <td>Any invoked operational test fails or a new interaction remains trusted.</li>
+            <td>Any invoked operational test fails or a new interaction remains trusted.</td>
         </tr>
         <tr>
             <td><span class="mkdocs-ezglossary-link"
@@ -2501,7 +2491,7 @@
     data-term="Wallet Solution"
     data-tooltip="A combination of software, hardware, services, settings, and configurations, including Wallet Instances, one or more Wallet Secure Cryptographic Applications and one or more Wallet Secure Cryptographic Devices. [ARF]"
     name="components:Wallet Solution"
-    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span>'s Instance.</li>
+    href="../../glossary-definitions/#a1b419fd922222e979e0893d2ae44f93">Wallet Solution</span>'s Instance.</td>
         </tr>
     </tbody>
 </table>
@@ -2525,7 +2515,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="November 16, 2026 17:30:23 UTC">November 16, 2026 17:30:23</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="November 16, 2026 17:37:47 UTC">November 16, 2026 17:37:47</span>
   </span>
 
     
