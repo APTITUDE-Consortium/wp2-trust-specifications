@@ -693,6 +693,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -754,6 +760,62 @@
     
   
     Attestation signature validation process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization process
   
 
     
@@ -874,6 +936,34 @@
     
   
     Trust architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trust-checks-issuance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust checks issuance
   
 
     
@@ -1048,59 +1138,59 @@
   <h1>Trust anchor certificate profiles</h1>
 
 <p>This section extends the general <a href="../../sections/trust-artifacts/#x509-certificate-profile">X.509 Certificate Profile</a> and specifies a Certificate Profile for CA certificates used as entity <span class="mkdocs-ezglossary-link"
-    id="38aa6acdfc6ab6869d66170b626b0050"
+    id="8bef51f512da74603ae833193b0cc007"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchors</span>.</p>
 <p>A <span class="mkdocs-ezglossary-link"
-    id="773d6a2ca4f3ff70d79716ae30c3e492"
+    id="1fc4c1e16938a7ce563a0b58573d65a9"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> is an authoritative entity represented by a public key and associated data. The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the <span class="mkdocs-ezglossary-link"
-    id="cb253f592726ff3d8b48c636bc519c39"
+    id="011c1f072e460a74b515f00a24e4c818"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> is authoritative. <span class="mkdocs-ezglossary-link"
-    id="3e478bc26e62048b0510006ab6772396"
+    id="5c573337166ad9ff72faa4e6cef602dc"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificates may be selected from the elegible <span class="mkdocs-ezglossary-link"
-    id="3c3896465247ccd7e90fee3e3369ed65"
-    data-term="Trusted List (TL)"
-    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
-    name="artifacts:Trusted List (TL)"
-    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> or <span class="mkdocs-ezglossary-link"
-    id="75a858788ba3ef22a5d5fc649dc51de2"
-    data-term="List of Trusted Entities (LoTE)"
-    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
-    name="artifacts:List of Trusted Entities (LoTE)"
-    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> service entries through the <code>ServiceDigitalIdentity</code> component. The list profiles are defined in <a href="../../sections/trust-artifacts/#trusted-list">Trusted List and List Of Trusted Lists</a>; dispatch and runtime acceptance belong to <a href="../../sections/trust-evaluation-process/#trust-anchor-validation-process">Trust Anchor Validation</a>.</p>
-<p><span class="mkdocs-ezglossary-link"
-    id="bc0267607dec5983ce03965011dbffd9"
-    data-term="Trust Anchor"
-    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
-    name="artifacts:Trust Anchor"
-    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> certificates MAY be self-signed or non self-signed. In any case, <span class="mkdocs-ezglossary-link"
-    id="0a84bd4f6d125476f7e716b43df9f03a"
-    data-term="Relying Party (RP)"
-    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
-    name="roles:Relying Party (RP)"
-    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Parties</span> SHALL NOT require an additional issuer chain above a CA trust anchor selected from eligible <span class="mkdocs-ezglossary-link"
     id="edf6ca45d097eaf8d4a91d8588f946d4"
     data-term="Trusted List (TL)"
     data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
     name="artifacts:Trusted List (TL)"
+    href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> or <span class="mkdocs-ezglossary-link"
+    id="e629db8d2e797f5e73c12934628ae6fa"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span> service entries through the <code>ServiceDigitalIdentity</code> component.</p>
+<p><span class="mkdocs-ezglossary-link"
+    id="1fbf8f82981dd642015ba27714670237"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> certificates MAY be self-signed or non self-signed. In any case, <span class="mkdocs-ezglossary-link"
+    id="87a897f93940f90cfae3723b6092d4f5"
+    data-term="Relying Party (RP)"
+    data-tooltip="A natural or legal person that relies upon electronic identification, European Digital Identity Wallets or other electronic identification means, or upon a trust service. [ARF]"
+    name="roles:Relying Party (RP)"
+    href="../../glossary-definitions/#becf30626d3616054723a7e5e9a6f458">Relying Parties</span> SHALL NOT require an additional issuer chain above a CA trust anchor selected from eligible <span class="mkdocs-ezglossary-link"
+    id="19bbacf89ef772b029b1ea206b6e603c"
+    data-term="Trusted List (TL)"
+    data-tooltip="List that provides information about the status and the status history of the trust services from trust service providers regarding compliance with the applicable requirements and the relevant provisions of the applicable legislation. [ARF]"
+    name="artifacts:Trusted List (TL)"
     href="../../glossary-definitions/#cb0ed76b2688e773c16f3b40bb8632bc">TL</span> service information or a retained <span class="mkdocs-ezglossary-link"
-    id="2e6ce497871f37cdb0110ea5745c9146"
+    id="decb6ac38ae7209f32b0858e09c2480b"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
     href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, even if it is not self-signed, as the <span class="mkdocs-ezglossary-link"
-    id="45244f149d86684e194e4d84ff546e0a"
+    id="1aa7ce216b9aad3f5e875334bb63fb80"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1108,14 +1198,14 @@
 <div class="admonition note">
 <p class="admonition-title">Relationship Between Trust Anchors and Entity Sign/Seal Certificates</p>
 <p>For <span class="mkdocs-ezglossary-link"
-    id="c9cbda657ecc42f27fd32ff2c6ddf456"
+    id="b565ef7ed6fb92323ed2d57c4b283a9a"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> Certificates covered by this profile and the <a href="../../sections/trust-artifacts/#entity-signseal-certificate">Entity Sign/Seal Certificate profiles</a>, according to [OpenID4VC HAIP, Clause 6.1]:</p>
 <ul>
 <li><span class="mkdocs-ezglossary-link"
-    id="376eb2c326dd0f69523700e13c649c7c"
+    id="96d72f4eb8d55f8ccf39fbbc8f0a96bd"
     data-term="Attestation Provider (AP)"
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -1126,12 +1216,12 @@
     name="formats:Selective Disclosure JWT (SD-JWT)"
     href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</span> <code>x5c</code> header (the <code>x5c</code> header SHALL NOT be empty).</li>
 <li><span class="mkdocs-ezglossary-link"
-    id="7c7882bc972c5bc3b800b574eb1702b3"
+    id="a0d4f1fd709c40799ebad183c1dcd2d6"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> certificate of the <span class="mkdocs-ezglossary-link"
-    id="3db810a6399c93464652b94f3ad9bb79"
+    id="9055d2156577aee89650a9f69f98ba6e"
     data-term="Attestation Provider (AP)"
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
@@ -1143,16 +1233,37 @@
     href="../../glossary-definitions/#386125f8f2eaa8485f988360ff372b6b">SD-JWT</span> <code>x5c</code> header.</li>
 </ul>
 <p>Therefore, <span class="mkdocs-ezglossary-link"
-    id="2b282b6d14704be19dbbdcd707170eb9"
+    id="0eb8e00c703cb146a928ba3d2ea9dbe7"
     data-term="Attestation Provider (AP)"
     data-tooltip="When not further qualified, a collective term for QEAA Provider, PuB-EAA Provider, or (non-qualified) EAA Provider [ARF], acting as an Issuer of electronic attestations of attributes."
     name="roles:Attestation Provider (AP)"
     href="../../glossary-definitions/#127ee837e29639fd5fa969f25197ff0b">Attestation Providers</span>' Sign/Seal Certificates SHALL NOT be a <span class="mkdocs-ezglossary-link"
-    id="7e75347bd9c0dcdd9e51d30d655100f4"
+    id="beb1e9faf846f157d8754352562f09f2"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> certificate.</p>
+<p>For a <span class="mkdocs-ezglossary-link"
+    id="1e85e80fe8fb111911870778e1066163"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> selected from a <span class="mkdocs-ezglossary-link"
+    id="85a30b3f3787c9d4c8c022d3edc3d532"
+    data-term="List of Trusted Entities (LoTE)"
+    data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
+    name="artifacts:List of Trusted Entities (LoTE)"
+    href="../../glossary-definitions/#305aadca6658eabc96eaefd42be7c910">LoTE</span>, the end-entity certificate <code>C</code> is carried in the <code>x5c</code> chain <code>[C, I_1, ..., I_n]</code> that is passed to the <a href="../../sections/trust-evaluation-process/#list-of-trusted-entities-validation">List of Trusted Entities Validation</a>; the <span class="mkdocs-ezglossary-link"
+    id="1e4c5c3a94aa4a18ae08cdb08910defc"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> is not passed. When the chain has no intermediate certificate (n = 0), <code>C</code> is issued directly by the <span class="mkdocs-ezglossary-link"
+    id="cb5d4e8ec94f56966300f422d7e960ad"
+    data-term="Trust Anchor"
+    data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
+    name="artifacts:Trust Anchor"
+    href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span>.</p>
 </div>
 <details class="references">
 <summary>References</summary>
@@ -1167,7 +1278,7 @@
 <div class="admonition choice">
 <p class="admonition-title">APTITUDE Implementation Choice</p>
 <p><span class="mkdocs-ezglossary-link"
-    id="bb0d13e00f1847f538d31b2576df6102"
+    id="ff674a6c5467f12a35c7fb544308ec58"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1211,12 +1322,12 @@
 <td><code>subjectKeyIdentifier</code></td>
 <td>REQUIRED</td>
 <td>Provides a key identifier for the <span class="mkdocs-ezglossary-link"
-    id="04318707cab5000be3db3e622139bb40"
+    id="0d2211f20fa1cae0f9d4ef99344e5f84"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span> public key. Its value SHOULD be derived from the subject public key using the methods defined in [RFC 5280, Section 4.2.1.2]. This extension SHOULD support reliable Certificate Path construction and certificate matching in <span class="mkdocs-ezglossary-link"
-    id="e35d57406e47ee1d4d40f169eae2a29a"
+    id="6c09dae9151745e3f6c74103d66d4ee2"
     data-term="List of Trusted Entities (LoTE)"
     data-tooltip="List of entities that are recognized as trustworthy within a given approval scheme for a specific scope or purpose. Based on [ETSI TS 119 602]. [ARF]"
     name="artifacts:List of Trusted Entities (LoTE)"
@@ -1226,7 +1337,7 @@
 <td><code>keyUsage</code></td>
 <td>REQUIRED</td>
 <td>It SHALL assert the <code>keyCertSign</code> bit. It MAY assert the <code>cRLSign</code> bit if the <span class="mkdocs-ezglossary-link"
-    id="102d9e41deb0200756c407693b065ce7"
+    id="e7529216d8b4aa0a8074e373f30ae9ad"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1246,7 +1357,7 @@
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
     href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span> role of the <span class="mkdocs-ezglossary-link"
-    id="85e9f421befe04977511815ef2d72f7a"
+    id="5658ab08de086cea8d6f4f073bafd5c7"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1286,7 +1397,7 @@
     data-tooltip="An entity which is trusted by one or more parties in the EUDI Wallet ecosystem to create and seal certificates. [ARF]"
     name="roles:Certificate Authority (CA)"
     href="../../glossary-definitions/#d417bf77697054dfcb62da273eb24024">CA</span> certificates below the <span class="mkdocs-ezglossary-link"
-    id="9de5fcf449009ed71adcd8b5d3df9317"
+    id="3151495b2ce32c5f3eb4318b7cb6f9ff"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1352,14 +1463,14 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code>pathLenConstraint</code> restricts the depth of certification paths below the <span class="mkdocs-ezglossary-link"
-    id="0e7950c531526ca190ce153664bbf3e4"
+    id="5b475d261ce2690ea5b0c07b29b0f033"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
     href="../../glossary-definitions/#9730fb081f0d1766c2cc7f2a59176979">Trust Anchor</span>, as follows:</p>
 <ul>
 <li>A value of <code>0</code> means that the <span class="mkdocs-ezglossary-link"
-    id="8bef51f512da74603ae833193b0cc007"
+    id="c9cb65e65948ae738d4bb43df8793771"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1381,7 +1492,7 @@
 <div class="admonition warning">
 <p class="admonition-title">Use Case-Specific Requirements</p>
 <p>Specific Use Cases could have custom <span class="mkdocs-ezglossary-link"
-    id="1fc4c1e16938a7ce563a0b58573d65a9"
+    id="e4313bf26fb18b03b065ad18737c31eb"
     data-term="Trust Anchor"
     data-tooltip="An authoritative entity represented by a public key and associated data. [ARF]"
     name="artifacts:Trust Anchor"
@@ -1599,7 +1710,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="November 16, 2026 16:25:00 UTC">November 16, 2026 16:25:00</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="November 16, 2026 17:33:51 UTC">November 16, 2026 17:33:51</span>
   </span>
 
     

@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: APTITUDE List of Trusted Entities (LoTE) retrieval
-  version: 1.1.1
+  version: 1.2.0
   description: >-
     Illustrative retrieval paths for the seven APTITUDE JSON LoTE types. Each GET
     returns a signed compact JWT. The actual fixed URI and authorized signing
@@ -10,8 +10,9 @@ info:
     they are not a JSON representation of the HTTP response. XML TL and LOTL
     retrieval is outside the scope of this JSON API description and remains under
     the cited ETSI publication interface.
+    Version 1.2.0 replaces the EAA Provider LoTEType identifier with http://aptitude-consortium.github.io/LoTEType/EAAProvidersList, makes TrustedEntitiesList optional in LoTE, defines criticality and the recognized ServiceUniqueIdentifier extension for ServiceInformationExtension, corrects the WRPRC StatusDeterminationApproach value, and states the optional components omitted from ServiceHistoryInstance. It also renames the field TEServiceDefinitionURI to ServiceDefinitionURI.
 externalDocs:
-  description: ETSI TS 119 602 V1.1.1 (2025-11)
+  description: ETSI TS 119 602 V1.1.1 (2025-11); ETSI TS 119 605 V0.0.3 (2026-06), draft cited as work in progress
   url: https://www.etsi.org/deliver/etsi_ts/119600_119699/119602/01.01.01_60/ts_119602v010101p.pdf
 tags:
   - name: LoTE
@@ -64,7 +65,7 @@ paths:
       tags: [LoTE]
       operationId: getWRPRCProviderLoTE
       summary: Get the WRPRC Provider LoTE
-      description: Illustrative path; use the fixed WRPRC Provider LoTE URI published by the OJA. The decoded LoTEType is http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList.
+      description: Illustrative path; use the fixed WRPRC Provider LoTE URI published by the OJA. The decoded LoTEType is http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList and the decoded StatusDeterminationApproach is http://uri.etsi.org/19602/WRPRCProvidersList/StatusDetn/EU.
       responses:
         '200':
           description: Signed compact JWT containing the current WRPRC Provider LoTE.
@@ -106,7 +107,7 @@ paths:
       tags: [LoTE]
       operationId: getEAAProviderLoTE
       summary: Get the EAA Provider LoTE
-      description: Illustrative path; use the fixed EAA Provider LoTE URI published by the OJA. The decoded LoTEType is https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#eaa-lote-type.
+      description: Illustrative path; use the fixed EAA Provider LoTE URI published by the OJA. The decoded LoTEType is http://aptitude-consortium.github.io/LoTEType/EAAProvidersList.
       responses:
         '200':
           description: Signed compact JWT containing the current EAA Provider LoTE.
@@ -280,7 +281,6 @@ components:
           $ref: '#/components/schemas/TrustedEntitiesList'
       required:
         - ListAndSchemeInformation
-        - TrustedEntitiesList
       additionalProperties: false
 
     ListAndSchemeInformation:
@@ -355,7 +355,7 @@ components:
         - http://uri.etsi.org/19602/LoTEType/EUWRPRCProvidersList
         - http://uri.etsi.org/19602/LoTEType/EUPubEAAProvidersList
         - http://uri.etsi.org/19602/LoTEType/EURegistrarsAndRegistersList
-        - https://aptitude-consortium.github.io/wp2-trust-specifications/latest/lote-identifiers/#eaa-lote-type
+        - http://aptitude-consortium.github.io/LoTEType/EAAProvidersList
       description: >-
         Required URI identifying the provider list type. It must match the URI for
         the type-specific endpoint in the LoTE profile.
@@ -695,7 +695,7 @@ components:
 
     TrustedEntitiesList:
       type: array
-      description: Required current trusted entities for this LoTE type.
+      description: Present if and only if one or more trusted entities are or were approved for this LoTE type (ETSI TS 119 602 V1.1.1, clause 6.4.0). When present, it contains at least one TrustedEntity.
       items:
         $ref: '#/components/schemas/TrustedEntity'
       minItems: 1
@@ -758,8 +758,8 @@ components:
           $ref: '#/components/schemas/SchemeServiceDefinitionURI'
         ServiceSupplyPoints:
           $ref: '#/components/schemas/ServiceSupplyPoints'
-        TEServiceDefinitionURI:
-          $ref: '#/components/schemas/TEServiceDefinitionURI'
+        ServiceDefinitionURI:
+          $ref: '#/components/schemas/ServiceDefinitionURI'
         ServiceInformationExtensions:
           $ref: '#/components/schemas/ServiceInformationExtensions'
       required:
@@ -846,9 +846,9 @@ components:
         - uriValue
       additionalProperties: false
 
-    TEServiceDefinitionURI:
+    ServiceDefinitionURI:
       type: array
-      description: Optional multilingual URI defining the trusted entity service.
+      description: Optional multilingual URI where relying parties can obtain service-specific information provided by the trusted entity (ETSI TS 119 602 V1.1.1, clause 6.6.8, component renamed from TEServiceDefinitionURI).
       items:
         $ref: '#/components/schemas/NonEmptyMultiLangURI'
       minItems: 1
@@ -871,11 +871,12 @@ components:
 
     ServiceInformationExtension:
       type: object
-      description: Service extension; the Wallet Provider set includes ServiceUniqueIdentifier identifying the wallet solution.
+      description: >-
+        Service extension. The Wallet Provider set recognizes ServiceUniqueIdentifier only, which identifies the wallet solution. A system using the LoTE must reject the LoTE if it encounters a critical extension it does not recognize; a non-critical extension it does not recognize may be ignored (the criticality semantics of SchemeExtensions, ETSI TS 119 602 V1.1.1, clause 6.3.17).
       properties:
         Critical:
           type: boolean
-          description: Whether an implementation must recognize this extension to process the service.
+          description: Criticality indication of the extension, with the semantics stated on ServiceInformationExtension. Required.
           example: true
         ServiceUniqueIdentifier:
           $ref: '#/components/schemas/ServiceUniqueIdentifier'
@@ -902,9 +903,7 @@ components:
     ServiceHistoryInstance:
       type: object
       description: >-
-        Historical PuB-EAA service state. The ServiceDigitalIdentity contains an
-        X509SKI and no X509Certificates; historical entries do not establish
-        current trust for validation.
+        Historical PuB-EAA service state. The ServiceDigitalIdentity contains an X509SKI and no X509Certificates; historical entries do not establish current trust for validation. The optional ServiceTypeIdentifier and ServiceInformationExtensions components allowed by ETSI TS 119 602 V1.1.1, clause 6.7, are omitted.
       properties:
         ServiceName:
           $ref: '#/components/schemas/ServiceName'
