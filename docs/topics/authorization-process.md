@@ -1,16 +1,12 @@
-# Authorization Process
-
 This topic defines the common authorization process for issuance and presentation. It is applied after authentication and before an issuance or presentation operation is authorized. The trust-check topics define how the inputs are obtained for each operation; this topic defines how those inputs are evaluated and how the final decision is made.
 
 The certificate, <components:Register>, and policy data models remain defined in the [WRPRC](../sections/trust-artifacts.md#wallet-relying-party-registration-certificate), [Register](../sections/trust-artifacts.md#register), and [EDP](../sections/trust-artifacts.md#embedded-disclosure-policy) profiles. Transport and artifact placement remain defined in the applicable issuance and presentation trust checks.
-
-## Scope and Preconditions
 
 Authorization SHALL be evaluated only after the applicable [Authentication Process](../sections/trust-evaluation-process.md#authentication-process) has completed successfully (`AUTHZ-GEN-01`). The <components:Wallet Unit> SHALL use the same authorization process for issuance and presentation, while applying the operation-specific inputs and checks defined below (`AUTHZ-GEN-02`). A failed authentication or an unavailable authorization input SHALL prevent the operation from being authorized (`AUTHZ-GEN-03`).
 
 The Authorization Subject is the organization that requests the issuance or presentation operation. For a direct interaction it is the authenticated final <roles:Relying Party (RP)|RP>. For an intermediated interaction it is the final <roles:Relying Party (RP)|RP> identified by the request, not the <roles:Relying Party Intermediary (RPI)|intermediary> (`AUTHZ-GEN-04`).
 
-## Inputs
+#### Inputs
 
 The Authorization Context is the operation-specific data inferred by the <components:Wallet Instance> from the authenticated flow inputs. For the presentation flow, it includes request-derived information such as the claimed final <roles:Relying Party (RP)|RP>, intended use, and requested <credentials:Attestation|Attestations> or claims; it is not, by itself, proof of registration.
 
@@ -34,7 +30,7 @@ The primary Authorization Artifact is the validated <artifacts:Wallet-Relying Pa
 
 The authenticated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>-derived identity is authoritative for the authenticated identity. A successfully validated Authorization Artifact is authoritative for the registered authorization data it carries, and a validated <artifacts:Embedded Disclosure Policy (EDP)|EDP> is authoritative for its applicable disclosure constraints. Self-declared request data and a request-carried Registrar URL are discovery inputs only; neither is proof of registration. An authoritative value SHALL take precedence over a non-authoritative conflict. A conflict between authoritative identity or binding sources SHALL fail authorization non-overridably. If both <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <components:Register> Authorization Artifacts are used, content validation SHALL use the <components:Register>-derived authorization data only when its identity and intermediary-binding data remain consistent with the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>.
 
-## Authorization Artifact Validation
+#### Authorization Artifact Validation
 
 This process validates the Authorization Artifact and establishes the authoritative authorization data used to complete the Authorization Context. It is the first stage of the common pipeline and SHALL complete before Authorization Content Validation starts.
 
@@ -50,7 +46,7 @@ This process validates the Authorization Artifact and establishes the authoritat
 - A missing or invalid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> produces `CERTIFICATE_INVALID` and permits the optional <components:Register> procedure.
 - If no valid Authorization Artifact is obtained, the stage produces `FAILED` and the final result is `NOT_AUTHORIZED`.
 
-### WRPRC Validation
+##### WRPRC Validation
 
 The <components:Wallet Instance> SHALL validate a supplied <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> before using it as an Authorization Artifact (`AUTHZ-GEN-08`). The <components:Wallet Instance> SHALL perform the following checks in order, following the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> profile and the applicable [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process), [X.509 Certificate Chain Validation](../sections/trust-evaluation-process.md#x509-certificate-chain-validation), and [Status Mechanism](../sections/trust-management-lifecycle.md#status-list-token) (`AUTHZ-GEN-09`):
 
@@ -65,7 +61,7 @@ The <components:Wallet Instance> SHALL validate a supplied <artifacts:Wallet-Rel
 
 If the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is absent or any mandatory validation check fails, the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> Authorization Artifact outcome is `CERTIFICATE_INVALID`. The <components:Wallet Instance> SHALL then either use the optional <components:Register> procedure below or terminate Authorization Artifact Validation without a valid Authorization Artifact.
 
-### Optional Register Validation
+##### Optional Register Validation
 
 The <components:Register> procedure is a permitted fallback after a missing or invalid <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, and it is also the only <components:Register> operation currently defined by this process (`AUTHZ-GEN-10`). The <components:Wallet Instance> SHALL:
 
@@ -82,11 +78,11 @@ A successfully validated <components:Register> response is an Authorization Arti
 
     The <components:Register> MAY support a future service-binding lookup, but the current profile does not define the service-binding fields or comparison rules. A lookup MAY be performed only after an applicable profile defines its inputs and comparison procedure. An implementation SHALL NOT claim that capability until then; the open service-binding question remains tracked as issue [#114](https://github.com/APTITUDE-Consortium/wp2-trust-specifications/issues/114).
 
-### Authorization Artifact Validation Outcome
+##### Authorization Artifact Validation Outcome
 
 This validation stage succeeds only when a <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or an authoritative <components:Register> response has been fully validated. A validation failure is non-overridable and uses the existing validation outcome `FAILED` when no valid Authorization Artifact is obtained. The <components:Wallet Instance> SHALL NOT continue with binding, entitlement, scope, attestation-type, or EDP checks after an Authorization Artifact validation failure.
 
-## Authorization Content Validation
+#### Authorization Content Validation
 
 The <components:Wallet Instance> SHALL perform content validation only after a valid Authorization Artifact has been established. The <components:Wallet Instance> SHALL use only the authenticated identity and interaction context, the validated Authorization Artifact, the normalized operation inputs, and a validated applicable <artifacts:Embedded Disclosure Policy (EDP)|EDP>. A failure in any non-overridable content check SHALL terminate the pipeline and prevent later checks.
 
@@ -102,7 +98,7 @@ The <components:Wallet Instance> SHALL perform content validation only after a v
 
 The following checks SHALL be performed in order. After a binding, intermediary-association, entitlement, or issuance attestation-type failure, the <components:Wallet Instance> SHALL stop this process and SHALL NOT perform later checks.
 
-### Binding and Intermediary Association
+##### Binding and Intermediary Association
 
 The <components:Wallet Instance> SHALL ensure that the authenticated entity is the same entity described by the applicable authorization data (`AUTHZ-GEN-11`). The authenticated <roles:Wallet-Relying Party (WRP)|WRP> identity SHALL be the `organizationIdentifier` attribute in the subject Distinguished Name of the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, as defined in [ETSI EN 319 412-1, Clause 5.1.4] and the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> profile in [ETSI TS 119 411-8].
 
@@ -114,7 +110,7 @@ The <components:Wallet Instance> SHALL perform the following binding comparisons
 
 The binding process SHALL use an already-established validated <components:Register> context when the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is unavailable. Binding and intermediary-association failures are non-overridable.
 
-### Entitlement
+##### Entitlement
 
 The Authorization Context SHALL contain the entitlement required by the operation (`AUTHZ-GEN-13`). The <components:Wallet Instance> SHALL parse the `entitlements` member of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or the profile-defined `entitlement` member of the validated <components:Register> response, normalize the result, and verify that the entitlements of the Authorization Subject match the expected role. Issuance SHALL require the entitlement for the requested <data-elements:Attestation Type> (`AUTHZ-ISS-01`), and presentation SHALL require the service-provider entitlement (`AUTHZ-PRES-08`).
 
@@ -128,11 +124,11 @@ The expected entitlement URI SHALL be the URI defined for the active role in [ET
 
 The entitlement URI definitions in the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <components:Register> profiles remain authoritative. The <components:Wallet Instance> SHALL compare the expected URI with the authoritative entitlement values using the profile-defined comparison rules. If the expected entitlement is not present, the <components:Wallet Instance> SHALL produce `WRONG_ENTITLEMENT` and terminate authorization non-overridably.
 
-### Issuance Attestation Type
+##### Issuance Attestation Type
 
 During <credentials:Attestation> Issuance, the <components:Wallet Instance> SHALL verify that the requested <credentials:Person Identification Data (PID)|PID> or <data-elements:Attestation Type|Attestation Type> is registered for the <roles:Attestation Provider (AP)|Attestation Provider>. The <components:Wallet Instance> SHALL compare the authoritative `provides_attestations` array from the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or validated <components:Register> response with the keys of `credential_configurations_supported` in the validated <artifacts:Credential Issuer Metadata> (`AUTHZ-ISS-02`, `AUTHZ-ISS-03`). For an <processes:Selective Disclosure Java Web Token Verifiable Credential (SD-JWT VC)|SD-JWT VC>, the comparison SHALL use `vct`; for an <artifacts:mdoc>, it SHALL use `docType`. The match SHALL be exact and case-sensitive. If the requested type is not registered or not supported, the <components:Wallet Instance> SHALL produce `ATTESTATION_TYPE_NOT_REGISTERED` and terminate authorization non-overridably.
 
-### Presentation Scope
+##### Presentation Scope
 
 During <credentials:Attestation> Presentation, the <components:Wallet Instance> SHALL verify that the requested <credentials:Attestation|Attestations> and attributes fall within the registered scope carried in the `credentials` array of the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> or validated <components:Register> response (`AUTHZ-PRES-02`). The requested-scope comparison is an optional presentation check (`AUTHZ-PRES-01`).
 
@@ -147,7 +143,7 @@ When scope comparison is enabled, the <components:Wallet Instance> SHALL apply t
 
 Every <credentials:Attestation>, format, type, and claim-path match SHALL be exact and case-sensitive. The <components:Wallet Instance> SHALL identify every requested <credentials:Attestation> or attribute for which no registered scope entry matches. If all checks applicable to the interaction succeed, the scope outcome is `VERIFICATION_PASSED`; if any requested <credentials:Attestation> or attribute is not registered, the <components:Wallet Instance> SHALL produce `OVERASKING_DETECTED` and identify the unregistered items (`AUTHZ-PRES-09`). When the User disables the setting, the <components:Wallet Instance> SHALL skip only the scope comparison without treating the request as failed.
 
-### Embedded Disclosure Policy
+##### Embedded Disclosure Policy
 
 For presentation, <artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation is performed only after context, binding, intermediary association, entitlement, and any enabled scope checks have completed.
 
@@ -161,7 +157,7 @@ For presentation, <artifacts:Embedded Disclosure Policy (EDP)|EDP> evaluation is
 6. If every applicable policy check succeeds, set the <artifacts:Embedded Disclosure Policy (EDP)|EDP> outcome to `EDP_SATISFIED`; otherwise set it to `EDP_NOT_SATISFIED`. The <components:Wallet Instance> SHALL present the applicable policy meaning, requested disclosures, and explanatory link when present in the confirmation UI (`AUTHZ-EDP-07`).
 7. If the User rejects an applicable <artifacts:Embedded Disclosure Policy (EDP)|EDP> disclosure, set the <artifacts:Embedded Disclosure Policy (EDP)|EDP> outcome to `EDP_NOT_SATISFIED` (`AUTHZ-EDP-08`). `EDP_NOT_SATISFIED` is an overridable presentation outcome only after all non-overridable checks have passed (`AUTHZ-EDP-09`).
 
-## Authorization Decision and Override
+#### Authorization Decision and Override
 
 The <components:Wallet Instance> SHALL produce the binary result `AUTHORIZED` or `NOT_AUTHORIZED` (`AUTHZ-UI-01`). User-relevant limitations SHALL be represented as advisories (`AUTHZ-UI-02`).
 
@@ -190,32 +186,32 @@ All issuance failures are non-overridable. Only presentation scope overasking an
 
 The <components:Wallet Instance> SHALL record and enforce the final decision. A successful authorization produces `AUTHORIZED`; a rejected or failed authorization produces `NOT_AUTHORIZED`.
 
-## Phase Applicability
+#### Phase Applicability
 
-### Issuance
+##### Issuance
 
 Before running the common pipeline, the <components:Wallet Instance> SHALL retrieve and validate <artifacts:Credential Issuer Metadata>, including its signature, trust chain, and metadata content (`AUTHZ-ISS-04`, `AUTHZ-ISS-05`, `AUTHZ-ISS-06`). It SHALL extract the <roles:Attestation Provider (AP)|Attestation Provider> authorization data needed by the common pipeline (`AUTHZ-ISS-07`). The detailed sequence is defined in [Trust Checks for Issuance](../sections/trust-evaluation-process.md#issuance).
 
 After successful authorization, the <components:Wallet Instance> SHALL show the <roles:Attestation Provider (AP)|Attestation Provider>, <data-elements:Attestation Type>, service description, and applicable advisories before user confirmation (`AUTHZ-UI-09`). If an <artifacts:Embedded Disclosure Policy (EDP)|EDP> is accepted, the issuance process SHALL retain it with the authorization and <credentials:Attestation> result (`AUTHZ-ISS-10`).
 
-### Presentation
+##### Presentation
 
 <protocols:Remote Flow|Remote> and <protocols:Proximity Flow|Proximity> presentation use the same common pipeline (`AUTHZ-PRES-03`). <protocols:Remote Flow|Remote> presentation obtains and validates the request-derived Authorization Context and Authorization Artifact through its defined transport and trust checks (`AUTHZ-PRES-10`). <protocols:Proximity Flow|Proximity> presentation applies the corresponding device and transport checks; it SHALL retain the profile's limitation on the available proximity association evidence (`AUTHZ-PRES-11`).
 
 <artifacts:Presentation Request> extraction SHALL produce the normalized requested attributes and intended use before content validation (`AUTHZ-PRES-05`). An intermediated presentation SHALL use the final Relying Party and its validated association for the common pipeline (`AUTHZ-INT-04`). The final <roles:Relying Party (RP)|RP> identity is displayed; the <roles:Relying Party Intermediary (RPI)|Intermediary> identity is not displayed (`AUTHZ-INT-05`). The detailed sequence is defined in [Trust Checks for Presentation](../sections/trust-evaluation-process.md#presentation).
 
-## Result Codes
+#### Result Codes
 
 The process uses the following existing artifact, validation, and final outcomes, grouped by the stage that produces them.
 
-### Authorization Artifact Validation Outcomes
+##### Authorization Artifact Validation Outcomes
 
 | Outcome                               | Meaning   |
 | ------------------------------------- | --------- |
 | `CERTIFICATE_INVALID`                 | The supplied <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPRC> Authorization Artifact is absent or invalid; the optional <components:Register> Authorization Artifact fallback may be attempted. |
 | `FAILED`                              | Authorization Artifact validation failed because no valid Authorization Artifact was obtained; an invoked <components:Register> retrieval or validation failure produces this outcome. |
 
-### Content Validation Outcomes
+##### Content Validation Outcomes
 
 | Outcome                               | Meaning   |
 | ------------------------------------- | --------- |
@@ -226,19 +222,19 @@ The process uses the following existing artifact, validation, and final outcomes
 | `VERIFICATION_PASSED`                 | Presentation requested-scope comparison passed. |
 | `OVERASKING_DETECTED`                 | Presentation requested scope exceeds <credentials:Attestation> scope. |
 
-### EDP Outcomes
+##### EDP Outcomes
 
 | Outcome                               | Meaning   |
 | ------------------------------------- | --------- |
 | `EDP_SATISFIED` / `EDP_NOT_SATISFIED` | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> evaluation passed or failed. |
 
-### Final Decisions
+##### Final Decisions
 
 | Outcome                               | Meaning   |
 | ------------------------------------- | --------- |
 | `AUTHORIZED` / `NOT_AUTHORIZED`       | Final operation decision. |
 
-## Authorization Requirements
+#### Authorization Requirements
 
 The following table restores the implementation and conformance mapping from the former requirements table with the updated authorization meanings. The normative clauses above remain authoritative; this table does not create additional requirements.
 

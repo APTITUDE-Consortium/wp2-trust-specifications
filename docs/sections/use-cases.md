@@ -165,8 +165,8 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                 <ul>
             </td>
             <td>None</td>
-            <td>All the required <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoints and valid <artifacts:List of Trusted Entities (LoTE)|LoTE> are available, and the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL> are published and valid.</td>
-            <td>The operational onboarding SHALL NOT start.</li>
+            <td>All the required <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoints and valid <artifacts:List of Trusted Entities (LoTE)|LoTE> are available.</td>
+            <td>The operational onboarding SHALL NOT start.</td>
         </tr>
         <tr>
             <td><components:Register> Service Readiness</td>
