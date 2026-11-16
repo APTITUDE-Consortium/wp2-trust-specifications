@@ -4,7 +4,7 @@
 {
   "alg": "ES256",
   "iat": 1787054400,
-  "x5t#S256": "<base64url-sha256-thumbprint-of-oja-certificate>"
+  "x5t#S256": "<base64url-sha256-thumbprint-of-signing-certificate>"
 }
 ```
 
@@ -49,18 +49,14 @@
       "SchemeInformationURI": [
         {
           "lang": "en",
-          "uriValue": "https://oja.aptitude.example/publications/pid-providers/2026-08-18"
-        },
-        {
-          "lang": "en",
-          "uriValue": "https://lote.aptitude.example/pid-providers/history"
+          "uriValue": "https://oja.aptitude.example/publications/pid-providers"
         }
       ],
       "StatusDeterminationApproach": "http://uri.etsi.org/19602/PIDProvidersList/StatusDetn/EU",
       "SchemeTypeCommunityRules": [
         {
           "lang": "en",
-          "uriValue": "http://uri.etsi.org/19602/PIDProvidersList/schemerules/EU"
+          "uriValue": "http://uri.etsi.org/19602/PIDProviders/schemerules/EU"
         }
       ],
       "SchemeTerritory": "EU",
@@ -69,46 +65,8 @@
           "LoTELegalNotice": "https://oja.aptitude.example/lote/pid-providers/legal-notice"
         }
       ],
-      "PointersToOtherLoTE": [
-        {
-          "LoTELocation": "https://lote.aptitude.example/pid-providers/current.jwt",
-          "ServiceDigitalIdentities": [
-            {
-              "X509Certificates": [
-                {
-                  "encoding": "urn:ietf:rfc:5280",
-                  "specRef": "RFC 5280",
-                  "val": "<base64-encoded-DER-signing-certificate>"
-                }
-              ]
-            }
-          ],
-          "LoTEQualifiers": [
-            {
-              "LoTEType": "http://uri.etsi.org/19602/LoTEType/EUPIDProvidersList",
-              "SchemeOperatorName": [
-                {
-                  "lang": "en",
-                  "value": "APTITUDE LoTE Provider"
-                }
-              ],
-              "SchemeTypeCommunityRules": [
-                {
-                  "lang": "en",
-                  "uriValue": "http://uri.etsi.org/19602/PIDProvidersList/schemerules/EU"
-                }
-              ],
-              "SchemeTerritory": "EU",
-              "MimeType": "application/jwt"
-            }
-          ]
-        }
-      ],
       "ListIssueDateTime": "2026-08-18T12:00:00Z",
-      "NextUpdate": "2027-02-18T12:00:00Z",
-      "DistributionPoints": [
-        "https://lote.aptitude.example/pid-providers/current.jwt"
-      ]
+      "NextUpdate": "2027-02-18T12:00:00Z"
     },
     "TrustedEntitiesList": [
       {
@@ -167,7 +125,7 @@
                   }
                 ]
               },
-              "ServiceTypeIdentifier": "http://uri.etsi.org/SvcType/PID/Issuance"
+              "ServiceTypeIdentifier": "http://uri.etsi.org/19602/SvcType/PID/Issuance"
             }
           },
           {
@@ -187,7 +145,7 @@
                   }
                 ]
               },
-              "ServiceTypeIdentifier": "http://uri.etsi.org/SvcType/PID/Revocation"
+              "ServiceTypeIdentifier": "http://uri.etsi.org/19602/SvcType/PID/Revocation"
             }
           }
         ]

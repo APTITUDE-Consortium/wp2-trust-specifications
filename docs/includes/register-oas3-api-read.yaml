@@ -645,7 +645,7 @@ components:
         providerType:
           type: string
           description: Provider subtype. For WRP records, typically WalletRelyingParty.
-          examples: 
+          examples:
             - WalletRelyingParty
         policy:
           type: array

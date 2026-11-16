@@ -29,10 +29,21 @@ These categories are complementary: **Runtime Trust Use Cases** verify a trust d
                     <li>Presentation</li>
                 </ul>
             </td>
-            <td>Current <artifacts:List of Trusted Entities (LoTE)|LoTE>, APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate (published on GitHub)</td>
-            <td>Validate the authenticity, integrity, currency, and applicable entity entry of the <artifacts:List of Trusted Entities (LoTE)|LoTE> using <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation.</td>
+            <td>
+                <ul>
+                    <li>Current <artifacts:List of Trusted Entities (LoTE)|LoTE> and APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate (published on GitHub), for the <artifacts:List of Trusted Entities (LoTE)|LoTE> types</li>
+                    <li>Current pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List>, for <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Validate the authenticity, integrity, currency, and applicable entity entry of the <artifacts:List of Trusted Entities (LoTE)|LoTE> using <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation.</li>
+                    <li>Require the <code>Status</code> of <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation to be <code>PROCESS_PASSED</code>. That process includes the status applicability and critical extension checks, and its <code>Sub-Status</code> identifies the failing check.</li>
+                    <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, authenticate the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List> and accept each current list under the Trust Anchor Validation Process, which rejects an overdue <artifacts:Trusted List (TL)|TL>.</li>
+                </ul>
+            </td>
             <td>The <artifacts:Trust Anchor> is validated.</td>
-            <td>The process SHALL BE interrupted.</td>
+            <td>The process SHALL BE interrupted and no <artifacts:Trust Anchor> is returned, including when <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation returns <code>PROCESS_FAILED</code> with <code>STATUS_NOT_APPLICABLE</code>, <code>STATUS_CONFLICT</code> or <code>CRITICAL_EXTENSION_FAILURE</code> as <code>Sub-Status</code>.</td>
         </tr>
         <tr>
             <td>Entity Identity Validation</td>
@@ -48,7 +59,7 @@ These categories are complementary: **Runtime Trust Use Cases** verify a trust d
                     <li><artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC></li>
                     <li><artifacts:Certificate Revocation List (CRL)|CRL> or <protocols:Online Certificate Status Protocol (OCSP)|OCSP> response</li>
                     <li>Entity-signed metadata</li>
-                </ol>
+                </ul>
             </td>
             <td>
                 <ul>
@@ -72,12 +83,14 @@ These categories are complementary: **Runtime Trust Use Cases** verify a trust d
                     <li>Sign/Seal Certificate</li>
                     <li>Certificate-status information</li>
                     <li>Validated <roles:Attestation Provider (AP)|Attestation Provider> <artifacts:Trust Anchor> or <roles:Wallet Provider (WP)|Wallet Provider> <artifacts:Trust Anchor></li>
+                    <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, the runtime-accepted pilot <artifacts:Trusted List (TL)|Trusted List> service information</li>
                 </ul>
             </td>
             <td>
                 <ul>
                     <li>Validate the signed <credentials:Attestation> or <artifacts:Key Attestation (KA)|KA>/<artifacts:Wallet Instance Attestation (WIA)|WIA> signature using the Sign/Seal Certificate.</li>
                     <li>Validate the X.509 Chain starting with the Sign/Seal Certificate, including its revocation status, using X.509 Validation with the <roles:Attestation Provider (AP)|Attestation Provider> <artifacts:Trust Anchor> or <roles:Wallet Provider (WP)|Wallet Provider> <artifacts:Trust Anchor> as input.</li>
+                    <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, apply the Sign/Seal Validation Process using the runtime-accepted pilot <artifacts:Trusted List (TL)|TL> service information, and require a successful result with <code>QEAA-Results</code> equal to <code>Qualified</code>.</li>
                 </ul>
             </td>
             <td>The <credentials:Attestation> or <artifacts:Key Attestation (KA)|KA>/<artifacts:Wallet Instance Attestation (WIA)|WIA> SHALL BE considered authentic.</td>
@@ -118,7 +131,7 @@ The operational trust use cases are derived from the [Trust Management Process](
 
 An Operational Trust Use Case passes when the APTITUDE WP2 checks and any applicable affected-entity or consuming-participant checks pass. Where the affected-entity responsibility is "None", APTITUDE WP2 performs the complete operational test.
 
-APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>, Certificate Services, and Publication Service, executes and records the infrastructure-side checks. The affected entity SHALL provide only the event inputs, notifications, and deployment actions assigned to it in the table. Pilot participants that consume an updated artifact SHALL refresh or automatically integrate that artifact and SHALL execute the linked runtime check. A test case that orchestrates other management processes SHALL invoke their respective operational Trust use cases instead of repeating their checks.
+APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>, Certificate Services, and Publication Service, executes and records the infrastructure-side checks. The affected entity SHALL provide only the event inputs, notifications, and deployment actions assigned to it in the table. APTITUDE Partners that consume an updated artifact SHALL refresh or automatically integrate that artifact and SHALL execute the linked runtime check. A test case that orchestrates other management processes SHALL invoke their respective operational Trust use cases instead of repeating their checks.
 
 <table>
     <thead>
@@ -127,7 +140,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <th>Involved Process(es)</th>
             <th>Artifact(s) in Input</th>
             <th>APTITUDE WP2 Actions</th>
-            <th>Affected entity and pilot participant responsibility</th>
+            <th>Affected Entity and APTITUDE Partners' Responsibility</th>
             <th>On Success</th>
             <th>On Failure</th>
         </tr>
@@ -141,14 +154,16 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate</li>
                     <li>Infrastructure <artifacts:Trust Anchor|Trust Anchors></li>
                     <li>Applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> profiles</li>
+                    <li>Pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List> profiles, and the <artifacts:Official Journal of APTITUDE (OJA)|OJA> bootstrap publication</li>
                 </ul>
             </td>
             <td>
                 <ul>
                     <li>Verify that every required <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoint is available.</li>
                     <li>Publish the APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate.</li>
-                    <li>Verify that each published <artifacts:List of Trusted Entities (LoTE)|LoTE> has a valid signature, conforms to its format, and contains the required infrastructure <artifacts:Trust Anchor|Trust Anchors>.</li>
-                <ul>
+                    <li>Verify that each published <artifacts:List of Trusted Entities (LoTE)|LoTE> passes <artifacts:List of Trusted Entities (LoTE)|LoTE> Validation for its type.</li>
+                    <li>For the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>, verify that the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publication provides <code>OJA-LOTL-Loc</code> and <code>OJA-LOTL-Certs-Set</code>, and that the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and each pilot <artifacts:Trusted List (TL)|TL> are published, conform to their profiles, and pass the List of Trusted Lists Validation and Trusted List Validation procedures.</li>
+                </ul>
             </td>
             <td>None</td>
             <td>All the required <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoints and valid <artifacts:List of Trusted Entities (LoTE)|LoTE> are available.</td>
@@ -169,11 +184,11 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>Verify that the <components:Register> API endpoints are available.</li>
                     <li>Verify that writes are authenticated and restricted to the <roles:Registrar>.</li>
                     <li>Verify that records and signed query responses conform to the applicable schemas.</li>
-                <ul>
+                </ul>
             </td>
             <td>None</td>
             <td>The <components:Register> can be securely written and queried.</td>
-            <td><roles:Wallet-Relying Party (WRP)|WRP> registration SHALL NOT start.</li>
+            <td><roles:Wallet-Relying Party (WRP)|WRP> registration SHALL NOT start.</td>
         </tr>
         <tr>
             <td>Certificate Issuance Service Readiness</td>
@@ -191,11 +206,11 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>Verify that the interfaces required to request each supported certificate type are available.</li>
                     <li>Issue test certificates.</li>
                     <li>Verify that each issued certificate conforms to its applicable profile.</li>
-                <ul>
+                </ul>
             </td>
             <td>None</td>
             <td>The Certificate Services are available and issue profile-conformant certificates.</td>
-            <td>Certificate-dependent onboarding SHALL NOT start.</li>
+            <td>Certificate-dependent onboarding SHALL NOT start.</td>
         </tr>
         <tr>
             <td>Certificate Status Service Readiness</td>
@@ -212,7 +227,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <td>Verify that each configured status endpoint is available and returns a valid, correctly signed status artifact in the required format.</td>
             <td>None</td>
             <td>The configured Certificate and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> status mechanisms are operational.</td>
-            <td>The corresponding Certificate Service SHALL NOT be considered ready.</li>
+            <td>The corresponding Certificate Service SHALL NOT be considered ready.</td>
         </tr>
     </tbody>
 </table>
@@ -224,7 +239,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <th>Involved Process(es)</th>
             <th>Artifact(s) in Input</th>
             <th>APTITUDE WP2 responsibility and checks</th>
-            <th>Affected entity and pilot participant responsibility</th>
+            <th>Affected Entity and APTITUDE Partners' Responsibility</th>
             <th>On Success</th>
             <th>On Failure</th>
         </tr>
@@ -243,11 +258,11 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                 <ul>
                     <li>Verify that the entity is officially enrolled in APTITUDE.</li>
                     <li>Create an active <components:Register> record that conforms to the schema.</li>
-                <ul>
+                </ul>
             </td>
             <td>The <roles:Wallet-Relying Party (WRP)|WRP> SHALL submit its self-declared registration data through the Onboarding System.</td>
             <td>An active <components:Register> record is available.</td>
-            <td>The request SHALL BE rejected and the process interrupted.</li>
+            <td>The request SHALL BE rejected and the process interrupted.</td>
         </tr>
         <tr>
             <td><roles:Wallet-Relying Party (WRP)|WRP> Certificate Issuance</td>
@@ -264,11 +279,11 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                 <ul>
                     <li>Verify the active registration status and data consistency.</li>
                     <li>Issue the requested Certificate(s).</li>
-                <ul>
+                </ul>
             </td>
             <td>The <roles:Wallet-Relying Party (WRP)|WRP> SHALL submit the cryptographic material and deploy each issued certificate at the intended instance or service supply point.</td>
             <td>A valid certificate is issued and the applicable runtime test succeeds.</td>
-            <td>Issuance SHALL be refused.</li>
+            <td>Issuance SHALL be refused.</td>
         </tr>
         <tr>
             <td>Entity Publication</td>
@@ -278,17 +293,18 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>Registered entity information</li>
                     <li>Entity service information</li>
                     <li>Sign/Seal <artifacts:Trust Anchor></li>
+                    <li>For a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, the <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> service information and service status</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Verify that the entity data is complete and create or update the applicable entity-type <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.</li>
+                    <li>Verify that the entity data is complete and create or update the applicable entity-type <artifacts:List of Trusted Entities (LoTE)|LoTE> entry or, for a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, the pilot <artifacts:Trusted List (TL)|Trusted List> service entry.</li>
                     <li>For a <roles:Wallet Provider (WP)|Wallet Provider> the required service information is the <components:Wallet Solution></li>
-                <ul>
+                </ul>
             </td>
             <td>The entity SHALL submit the required data and <artifacts:Trust Anchor>.</td>
             <td>The entity data is accepted for publication.</td>
-            <td>No <artifacts:List of Trusted Entities (LoTE)|LoTE> entry SHALL BE created or updated.</li>
+            <td>No <artifacts:List of Trusted Entities (LoTE)|LoTE> entry SHALL BE created or updated, and for a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider> no pilot <artifacts:Trusted List (TL)|Trusted List> service entry SHALL BE created or updated.</td>
         </tr>
         <tr>
             <td rowspan="2">Information update</td>
@@ -301,11 +317,11 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <td>
                 <ul>
                     <li>Update the <components:Register> record and verify that the resulting record conforms to the <components:Register> schema.</li>
-                <ul>
+                </ul>
             </td>
             <td>The <roles:Wallet-Relying Party (WRP)|WRP> SHALL submit the updated information through the Onboarding System.</td>
             <td>The current <components:Register> record contains the updated information.</td>
-            <td>The record SHALL NOT be updated.</li>
+            <td>The record SHALL NOT be updated.</td>
         </tr>
         <tr>
             <td><artifacts:List of Trusted Entities (LoTE)|LoTE> update</td>
@@ -316,13 +332,13 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             </td>
             <td>
                 <ul>
-                    <li>Update the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry.</li>
+                    <li>Update the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry or, for a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, the pilot <artifacts:Trusted List (TL)|Trusted List> service entry.</li>
                     <li>When the entity becomes ineligible, invoke the applicable removal test case instead.</li>
-                <ul>
+                </ul>
             </td>
             <td>The affected entity SHALL notify APTITUDE WP2 of the changed information.</td>
-            <td>The new entity information is included in the updated <artifacts:List of Trusted Entities (LoTE)|LoTE> content prepared and published.</td>
-            <td>The previous information SHALL remain in the prepared current content.</li>
+            <td>The new entity information is included in the updated <artifacts:List of Trusted Entities (LoTE)|LoTE> or pilot <artifacts:Trusted List (TL)|Trusted List> content prepared and published.</td>
+            <td>The previous information SHALL remain in the prepared current content.</td>
         </tr>
         <tr>
             <td>Cryptographic key material update</td>
@@ -335,8 +351,8 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             </td>
             <td>Issue a replacement certificate for the new data and invoke the applicable <i>Certificate Revocation</i> test case for the former certificate.</td>
             <td>The affected entity SHALL notify the Certificate Service, provide the new public key, and deploy the replacement certificate.</td>
-            <td>The replacement certificate is correctly issued an conforms to the applicable profile.</td>
-            <td>No valid replacement is available.</li>
+            <td>The replacement certificate is correctly issued and conforms to the applicable profile.</td>
+            <td>No valid replacement is available.</td>
         </tr>
         <tr>
             <td><artifacts:List of Trusted Entities (LoTE)|LoTE> version publication</td>
@@ -344,19 +360,19 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <td>
                 <ul>
                     <li>Updated <artifacts:List of Trusted Entities (LoTE)|LoTE> content</li>
-                    <li>Pivot <artifacts:List of Trusted Entities (LoTE)|LoTE> URI</li>
-                    <li>APTITUDE WP2 <artifacts:List of Trusted Entities (LoTE)|LoTE> signing certificate</li>
+                    <li>Fixed <artifacts:List of Trusted Entities (LoTE)|LoTE> endpoint and authorized signing certificate</li>
+                    <li>For <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|Trusted List> content, with their published locations and authorized signers</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Publish a signed new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and make the replaced version at the applicable pivot URI for retro-compatibility.</li>
-                    <li>Update the <code>SchemeInformationURI</code> accordingly.</li>
-                <ul>
+                    <li>Publish the new signed current <artifacts:List of Trusted Entities (LoTE)|LoTE> at the fixed endpoint with an increased <code>LoTESequenceNumber</code>, a new <code>ListIssueDateTime</code>, and a valid <code>NextUpdate</code>.</li>
+                    <li>For the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>, publish the new signed current list at its published location with an increased <code>TSLSequenceNumber</code>, a new <code>ListIssueDateTime</code>, and a valid <code>NextUpdate</code>.</li>
+                </ul>
             </td>
-            <td>Every participant that consumes the affected <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL refresh its cached copy via the <artifacts:Trust Anchor> Validation Process and SHALL NOT use old pivot versions for a current decision.</td>
-            <td>The endpoint serves the new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and <artifacts:Trust Anchor> Validation uses its updated entry.</td>
-            <td>The new version is unavailable or invalid, or a participant continues to use the superseded version.</li>
+            <td>Every participant that consumes the affected <artifacts:List of Trusted Entities (LoTE)|LoTE> SHALL refresh its cached copy via the <artifacts:Trust Anchor> Validation Process and SHALL reject a version whose sequence number is below the highest previously accepted for that type; for the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>, the persisted sequence and signed-content digest checks apply.</td>
+            <td>The fixed endpoint serves the new current <artifacts:List of Trusted Entities (LoTE)|LoTE> and <artifacts:Trust Anchor> Validation accepts its updated entry.</td>
+            <td>The new version is unavailable or invalid, or a participant continues to use a superseded version.</td>
         </tr>
         <tr>
             <td rowspan="2">Certificate revocation</td>
@@ -370,7 +386,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <td>Update the configured <artifacts:Certificate Revocation List (CRL)|CRL> or <protocols:Online Certificate Status Protocol (OCSP)|OCSP> status source and verify that it reports the certificate as revoked.</td>
             <td>The affected entity SHALL stop using the certificate. Runtime participants SHALL retrieve current status information and reject it.</td>
             <td>The certificate fails <i>Entity Identity Validation</i> or <i>Attestation Authenticity and Integrity</i>, as applicable.</td>
-            <td>The certificate remains accepted.</li>
+            <td>The certificate remains accepted.</td>
         </tr>
         <tr>
             <td><artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> revocation</td>
@@ -380,10 +396,10 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>current Status List</li>
                 </ul>
             </td>
-            <td>The Provider or <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL set the assigned status value to <code>0x01</code>, publish the updated signed <artifacts:Status List Token>, and verify that its endpoint remains available.</td>
+            <td>The Provider of <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> SHALL set the assigned status value to <code>0x01</code>, publish the updated signed <artifacts:Status List Token>, and verify that its endpoint remains available.</td>
             <td>The affected entity SHALL stop presenting the <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. Wallet Units SHALL retrieve the current <artifacts:Status List Token> and apply the status in <i>Entity Authorization Profile Verification</i>.</td>
             <td>The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> is treated as revoked.</td>
-            <td>The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> remains valid or is accepted by a Wallet Unit.</li>
+            <td>The <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> remains valid or is accepted by a Wallet Unit.</td>
         </tr>
         <tr>
             <td><roles:Wallet-Relying Party (WRP)|WRP> deregistration</td>
@@ -394,10 +410,10 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
                     <li>Current entity record and related trust artifacts</li>
                 </ul>
             </td>
-            <td>Orchestrate the applicable <components:Register> cancellation or deletion, entity-related certificate revocation, and <artifacts:List of Trusted Entities (LoTE)|LoTE> update Trust use cases, and verify that each completes successfully.</td>
+            <td>Orchestrate the applicable <components:Register> cancellation or deletion, entity-related certificate revocation, and <artifacts:List of Trusted Entities (LoTE)|LoTE> update Trust use cases, and verify that each completes successfully. For a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider>, also invoke the pilot <artifacts:Trusted List (TL)|Trusted List> service withdrawal, which retains the service history.</td>
             <td>For voluntary removal, the <roles:Wallet-Relying Party (WRP)|WRP> SHALL submit the removal request to APTITUDE WP2; in every case it SHALL cease new framework operations. Participants SHALL reject new interactions with the removed entity.</td>
             <td>The entity is <code>REMOVED</code> and all applicable runtime tests reject new interactions.</td>
-            <td>Any invoked operational test fails or a new interaction remains trusted.</li>
+            <td>Any invoked operational test fails or a new interaction remains trusted.</td>
         </tr>
         <tr>
             <td><components:Wallet Solution> deregistration</td>
@@ -412,7 +428,7 @@ APTITUDE WP2, acting as ecosystem manager and operator of the <roles:Registrar>,
             <td>Orchestrate the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> update and Sign/Seal certificate revocation Trust Use Cases, including <artifacts:Wallet Unit Attestation (WUA)|WUA> revocation.</td>
             <td>For voluntary removal, the entity SHALL notify APTITUDE WP2 and cease new framework operations. Participants SHALL reject new interactions whose trust depends on the removed <components:Wallet Solution>.</td>
             <td>The <components:Wallet Solution> can no longer be resolved as trusted from the current <artifacts:List of Trusted Entities (LoTE)|LoTE>.</td>
-            <td>Any invoked operational test fails or a new interaction remains trusted through a <components:Wallet Solution>'s Instance.</li>
+            <td>Any invoked operational test fails or a new interaction remains trusted through a <components:Wallet Solution>'s Instance.</td>
         </tr>
     </tbody>
 </table>

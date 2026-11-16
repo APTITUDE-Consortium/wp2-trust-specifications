@@ -3,7 +3,7 @@
 The entity that performs the certificate path validation initializes the following variables according to [RFC 5280]:
 
 - `path`: The sequence $C_1 \dots C_n$.
-- `trust_anchor`: *trusted certificate* obtained from the `ServiceDigitalIdentity` component after validation of the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+- `trust_anchor`: Applicable CA <artifacts:Trust Anchor> obtained from validated <artifacts:Trusted List (TL)|TL> service information or the `ServiceDigitalIdentity` component of the relevant validated <artifacts:List of Trusted Entities (LoTE)|LoTE>, through [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process) and, where applicable, [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process).
 - `current_time`: The current date and time.
 
 !!! note

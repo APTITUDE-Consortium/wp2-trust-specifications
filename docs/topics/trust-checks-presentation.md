@@ -151,7 +151,7 @@ WRPAC --> WI[Wallet Instance]
 WRPRC --> WI
 RPRC19a --> WI
 DCQL --> WI
-WI --> TA[Resolve trust anchors from LoTE / trusted-list infrastructure]
+WI --> TA[Resolve trust anchors from dedicated LoTE]
 WI --> ContextD{WRPRC valid?}
 ContextD -->|Yes| Context[Valid authorization context from WRPRC]
 ContextD -->|No| RegChoice{Invoke optional Register?}
@@ -194,7 +194,7 @@ ReaderAuth --> WI[Wallet Instance]
 EuWrprc --> WI
 ReqInfo --> WI
 Namespaces --> WI
-WI --> TA[Resolve trust anchors from LoTE / trusted-list infrastructure]
+WI --> TA[Resolve trust anchors from dedicated LoTE]
 WI --> ContextD{WRPRC valid?}
 ContextD -->|Yes| Context[Valid authorization context from WRPRC]
 ContextD -->|No| RegChoice{Invoke optional Register?}
@@ -425,34 +425,37 @@ For the mapping from Section [Common Presentation Trust Evaluation Model](#commo
 
 #### Trust Anchor and Trusted List Checks
 
-The following checks are used by several of the above procedures. They may be tested separately or as dependencies of <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>, and <components:Register> validation.
+These checks are dependencies of request-side <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC> and <components:Register> validation by the Wallet Instance and of received-QEAA verification by the <roles:Wallet-Relying Party (WRP)|WRP>. Request-side authentication and authorization retain their <artifacts:List of Trusted Entities (LoTE)|LoTE> routes through the [Authentication Process](../sections/trust-evaluation-process.md#authentication-process) and [Authorization Process](../sections/trust-evaluation-process.md#authorization-process).
+
+After receiving a <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, the <roles:Wallet-Relying Party (WRP)|WRP> SHALL invoke [Trust Anchor Validation](../sections/trust-evaluation-process.md#trust-anchor-validation-process) for the pilot <artifacts:Trusted List (TL)|TL>/<artifacts:List Of Trusted Lists (LOTL)|LOTL> route and then [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process) using the resulting runtime-accepted trust context. Failure of either procedure fails received-QEAA validation.
+
+The following diagram summarizes these dependencies.
 
 ```mermaid
 flowchart TD
-A[Need trust anchor] --> B{Trust anchor type}
-B -->|Provider of WRPAC| L1[Check WRPAC Provider LoTE]
-B -->|Provider of WRPRC| L2[Check WRPRC Provider LoTE]
-B -->|Registrar| L3[Check Registrar LoTE]
-B -->|Qualified / TL-based entity| L4[Check LOTL and EUMS TL]
-L1 --> V[Validate trusted-list authenticity, integrity, freshness]
-L2 --> V
-L3 --> V
-L4 --> V
-V --> TA[Extract trust anchor]
-TA --> Use[Use trust anchor in certificate/path validation]
+A[Wallet: validate request-side evidence] --> B[Common Trust Anchor Validation]
+B --> L[Retained WRPAC / WRPRC / Registrar LoTE route]
+L --> R[Authentication and Authorization procedures]
+Q[WRP: received QEAA] --> D[Common Trust Anchor Validation: pilot OJA to LOTL to TL]
+D --> H{Authentication and runtime acceptance succeed?}
+H -->|No| F[Received-QEAA validation fails]
+H -->|Yes| S[Invoke Sign/Seal Validation with accepted TL service context]
+S --> V{Sign/Seal Validation succeeds?}
+V -->|No| F
+V -->|Yes| P[Received-QEAA validation succeeds]
 ```
 
 ##### TL-PRES-001 — Trusted-list authenticity, integrity and freshness
 
 | Field                             | Description       |
 | --------------------------------- | ----------------- |
-| **Performed by**                  | <components:Wallet Instance> or trust-validation component used by Wallet. |
-| **Checked entity**                | <artifacts:List of Trusted Entities (LoTE)\|LoTE>. |
-| **Input artifacts**               | Trusted list, list signature, signing certificate, list metadata such as NextUpdate. |
-| **Checks**                        | Validate trusted-list signature; verify that the signing certificate is authentic for the list; check list freshness / NextUpdate; extract relevant trusted entity entry and <artifacts:Trust Anchor>. |
-| **Positive result**               | <artifacts:Trust Anchor> can be used for certificate-path validation. |
-| **Negative result**               | <artifacts:Trust Anchor> cannot be used; dependent <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>/<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>/<components:Register> validation fails. |
-| **Test focus**                    | Valid list; invalid signature; expired list; signer not authorized; missing entity; wrong service type. |
+| **Performed by**                  | Wallet Instance for request-side evidence; receiving <roles:Wallet-Relying Party (WRP)\|WRP> for <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA>; or their trust-validation component. |
+| **Checked entity**                | Retained type-specific <artifacts:List of Trusted Entities (LoTE)\|LoTE> for <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>, <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC> and <components:Register> evidence; pilot <artifacts:List Of Trusted Lists (LOTL)\|LOTL> and <artifacts:Trusted List (TL)\|TL> for <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA>. |
+| **Input artifacts**               | Applicable evidence, provider/service identity, current runtime validation time and trust-source inputs defined by [Trust Anchor Validation](../sections/trust-evaluation-process.md#trust-anchor-validation-process). |
+| **Checks**                        | Invoke <artifacts:Trust Anchor> Validation for dispatch, list authentication and runtime acceptance. For received <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA>, invoke Sign/Seal Validation with the accepted <artifacts:Trusted List (TL)\|TL> context for signature, applicable path and service-qualification checks. |
+| **Positive result**               | Runtime-usable trust context is available to the dependent validation procedure; <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA> acceptance additionally requires Sign/Seal Validation success. |
+| **Negative result**               | No usable trust context is returned on runtime rejection; dependent <artifacts:Wallet-Relying Party Access Certificate (WRPAC)\|WRPAC>/<artifacts:Wallet-Relying Party Registration Certificate (WRPRC)\|WRPRC>/<components:Register> or received-QEAA validation fails. Preserve ETSI authentication statuses and sub-statuses separately from runtime acceptance. On the LoTE route, preserve the `Status` and `Sub-Status` of the [List of Trusted Entities Validation Process](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation-process) next to the TL and LOTL statuses such as `EUTL_VERIFICATION_PASSED`. |
+| **Test focus**                    | Retained <artifacts:List of Trusted Entities (LoTE)\|LoTE> routes for request-side evidence; <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA> exclusively through pilot <artifacts:Trusted List (TL)\|TL>/<artifacts:List Of Trusted Lists (LOTL)\|LOTL> with no <artifacts:List of Trusted Entities (LoTE)\|LoTE> fallback; authentication failure; on the LoTE route, critical-extension failure (`CRITICAL_EXTENSION_FAILURE`), status applicability failure (`STATUS_NOT_APPLICABLE`, `STATUS_CONFLICT`) and sequence rollback (`LOTE_SEQUENCE_ROLLBACK`); overdue <artifacts:Trusted List (TL)\|TL> rejected at runtime even with `EUTL_VERIFICATION_PASSED` and `WARNING_EUTL_NEXTUPDATE_PASSED`; common cache/rollback failures; Sign/Seal qualification failure and success. |
 
 #### Decision and Override Matrix
 
@@ -484,3 +487,4 @@ The `TC-PRES` identifiers are local test-check identifiers; the authoritative pr
 | `TC-PRES-012`-`TC-PRES-013`   | `AUTHZ-PRES-01` / `AUTHZ-PRES-02` scope comparison | Exact and case-sensitive comparison; `OVERASKING_DETECTED` SHALL identify unregistered attributes and is user-overridable. |
 | `TC-PRES-014`-`TC-PRES-016`   | `AUTHZ-EDP-03`-`AUTHZ-EDP-08` | <artifacts:Embedded Disclosure Policy (EDP)\|EDP> SHALL be evaluated for each matching attestation. In intermediary scenarios evaluate the final RP, not the intermediary. |
 | `TC-PRES-017`                 | `AUTHZ-UI-07`-`AUTHZ-UI-12`; `AUTHZ-INT-05` | Display the final RP, never the intermediary identity, together with requested attributes, intended use, privacy-policy link, and advisories before final approval. |
+| `TL-PRES-001` | [ARF Trust Model, Section 6.6.3.6]; [ETSI TS 119 615 V1.4.1 (2026-05), Clauses 4.1–4.3, 4.6 and 4.12]; [ETSI TS 119 605 V0.0.3 (2026-06), Clauses 4.2, 4.5 and 4.6.4, PRO-4.6.4-13 and PRO-4.6.4-14] (work in progress) | Test list authentication separately from runtime acceptance; an overdue authenticated <artifacts:Trusted List (TL)\|TL> is unusable. Request-side evidence retains <artifacts:List of Trusted Entities (LoTE)\|LoTE> routes; receiving-WRP <credentials:Qualified Electronic Attestation of Attributes (QEAA)\|QEAA> verification uses common <artifacts:Trusted List (TL)\|TL>/<artifacts:List Of Trusted Lists (LOTL)\|LOTL> and Sign/Seal procedures. |

@@ -4,3 +4,8 @@ docs/media
 docs/overrides
 site/
 .opencode
+
+# Local specification-writing skills and agent descriptions
+/.spec-writing
+/.spec-work
+/.agents/skills

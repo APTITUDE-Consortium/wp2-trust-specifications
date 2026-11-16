@@ -89,10 +89,16 @@ sequenceDiagram
 
     rect rgb(230, 230, 230)
     Note over Wallet: Verify Attestation
-    Wallet->>LoTE: 11a. Fetch Attestation Provider LoTE
-    LoTE-->>Wallet: Attestation Provider LoTE
-    Note over Wallet: 11b. Validate LoTE
-    Note over Wallet: 11c. Validate Attestation signature
+    alt PID, PuB-EAA or EAA (LoTE route)
+        Wallet->>LoTE: 11a. Fetch Attestation Provider LoTE
+        LoTE-->>Wallet: Attestation Provider LoTE
+        Note over Wallet: 11b. Validate LoTE
+        Note over Wallet: 11c. Validate Attestation signature
+    else QEAA (pilot LOTL and TL route)
+        Note over Wallet: 11a. Fetch pilot LOTL and TL
+        Note over Wallet: 11b. Validate pilot LOTL and TL
+        Note over Wallet: 11c. Validate Attestation signature
+    end
     end
     else Authorization context or content validation fails
         Note over Wallet: Stop immediately: FAILED, BINDING_FAILED, WRONG_ENTITLEMENT, or ATTESTATION_TYPE_NOT_REGISTERED
@@ -113,9 +119,9 @@ sequenceDiagram
 
 **Step 2: Fetch <artifacts:Credential Issuer Metadata> (<protocols:OpenID for Verifiable Credentials Issuance (OID4VCI)|OID4VCI>).** The <components:Wallet Instance> retrieves information about the <roles:Attestation Provider (AP)|Attestation Provider>'s technical capabilities, supported attestations, and display information from the <roles:Attestation Provider (AP)|Attestation Provider> endpoint. In this context it is expected that the metadata is a signed JSON Web Signature (JWS). The JWS also contains the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> in its Protected Header [`AUTHZ-ISS-04`].
 
-**Step 3a: Fetch <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> <artifacts:List of Trusted Entities (LoTE)|LoTE>.** The <components:Wallet Instance> retrieves the <artifacts:List of Trusted Entities (LoTE)|LoTE> listing all the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> issuers from a publicly-known URL.
+**Step 3a: Fetch <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> <artifacts:List of Trusted Entities (LoTE)|LoTE>.** The <components:Wallet Instance> retrieves the <artifacts:List of Trusted Entities (LoTE)|LoTE> listing all the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> issuers from the fixed location that the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publishes for that LoTE type (`OJA-LoTE-Loc`, defined in the [List of Trusted Entities Validation](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation)).
 
-**Step 3b: Validate LoTE.** The <components:Wallet Instance> validates the <artifacts:List of Trusted Entities (LoTE)|LoTE> signature is order to make sure the <artifacts:List of Trusted Entities (LoTE)|LoTE> is authentic. Extra checks are performed in order to make sure the <artifacts:List of Trusted Entities (LoTE)|LoTE> is not outdated.
+**Step 3b: Validate LoTE.** The <components:Wallet Instance> invokes the [List of Trusted Entities Validation](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation) for the <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> <artifacts:List of Trusted Entities (LoTE)|LoTE>, with the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> certificate chain carried in the metadata JWS.
 
 **Step 3c: Identify the corresponding <roles:Trusted Entity>.** The <components:Wallet Instance> identifies the <artifacts:List of Trusted Entities (LoTE)|LoTE> <roles:Trusted Entity> corresponding to the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> presented in the metadata JWS.
 
@@ -129,9 +135,9 @@ sequenceDiagram
 
 **Step 6: Send <artifacts:Wallet Instance Attestation (WIA)|WIA> to PAR endpoint (<protocols:OpenID for Verifiable Credentials Issuance (OID4VCI)|OID4VCI>).** The <components:Wallet Instance> sends the <artifacts:Wallet Instance Attestation (WIA)|WIA> signed by the <roles:Wallet Provider (WP)|WP>, attesting that the <components:Wallet Instance> is a valid one.
 
-**Step 7a: Fetch <roles:Wallet Provider (WP)|WP> <artifacts:List of Trusted Entities (LoTE)|LoTE>.** The <roles:Attestation Provider (AP)|Attestation Providers> retrieves the <artifacts:List of Trusted Entities (LoTE)|LoTE> listing all the <roles:Wallet Provider (WP)|WPs> from a publicly-known URL. This list is necessary to validate different signed artifacts received from the <components:Wallet Instance> in the different requests. <roles:Attestation Provider (AP)|Attestation Providers> can implement a caching mechanism of the <artifacts:List of Trusted Entities (LoTE)|LoTE> so that they would not need to retrieve it multiple times in the course of the <credentials:Electronic Attestation of Attributes (EAA)|EAA> issuance process. It is up to <roles:Attestation Provider (AP)|Attestation Providers> to implement this mechanism or not and to decide for how long they would want to cache the list. This implies that in some cases, this step could be skipped.
+**Step 7a: Fetch <roles:Wallet Provider (WP)|WP> <artifacts:List of Trusted Entities (LoTE)|LoTE>.** The <roles:Attestation Provider (AP)|Attestation Providers> retrieves the <artifacts:List of Trusted Entities (LoTE)|LoTE> listing all the <roles:Wallet Provider (WP)|WPs> from the fixed location that the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publishes for that LoTE type (`OJA-LoTE-Loc`, defined in the [List of Trusted Entities Validation](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation)). This list is necessary to validate different signed artifacts received from the <components:Wallet Instance> in the different requests. The list is cached and refreshed under the 24-hour or `NextUpdate` refresh rule of [LoTE Validation Operations](../sections/trust-evaluation-process.md#lote-validation-operations), so this step is skipped only while an accepted cached list does not require a refresh.
 
-**Step 7b: Validate <artifacts:List of Trusted Entities (LoTE)|LoTE>.** The <roles:Attestation Provider (AP)|Attestation Provider> validates the <artifacts:List of Trusted Entities (LoTE)|LoTE> signature in order to make sure the <artifacts:List of Trusted Entities (LoTE)|LoTE> is authentic. Extra checks are performed in order to make sure the <artifacts:List of Trusted Entities (LoTE)|LoTE> is not outdated.
+**Step 7b: Validate <artifacts:List of Trusted Entities (LoTE)|LoTE>.** The <roles:Attestation Provider (AP)|Attestation Provider> invokes the [List of Trusted Entities Validation](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation) for the <roles:Wallet Provider (WP)|Wallet Provider> <artifacts:List of Trusted Entities (LoTE)|LoTE>, with the signer certificate chain carried in the signed artifact received from the <components:Wallet Instance>.
 
 **Step 7c: Identify the corresponding <roles:Trusted Entity>.** The <roles:Attestation Provider (AP)|Attestation Provider> identifies the <artifacts:List of Trusted Entities (LoTE)|LoTE> <roles:Trusted Entity> corresponding to the <artifacts:Wallet Instance Attestation (WIA)|WIA> presented in the request.
 
@@ -149,11 +155,11 @@ sequenceDiagram
 
 The <roles:Attestation Provider (AP)|Attestation Provider> checks that the cryptographic keys are protected according to its policy if any, and verifies the related Proof-of-Possessions if any.
 
-**Step 11a: Fetch EAA/PID/QEAA/Pub-EAA Provider <artifacts:List of Trusted Entities (LoTE)|LoTE>.** The <components:Wallet Instance> retrieves the <artifacts:List of Trusted Entities (LoTE)|LoTE> listing all the Providers of the corresponding type.
+**Step 11a: Fetch the Attestation Provider trust source.** For a <credentials:Person Identification Data (PID)|PID>, <credentials:Public Electronic Attestation of Attributes (PuB-EAA)|PuB-EAA> or <credentials:Electronic Attestation of Attributes (EAA)|EAA>, the <components:Wallet Instance> retrieves the <artifacts:List of Trusted Entities (LoTE)|LoTE> listing all the Providers of the corresponding type from the fixed location that the <artifacts:Official Journal of APTITUDE (OJA)|OJA> publishes for that LoTE type (`OJA-LoTE-Loc`, defined in the [List of Trusted Entities Validation](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation)). For a <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA>, no LoTE applies: the <components:Wallet Instance> retrieves the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL> through the [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process).
 
-**Step 11b: Validate <roles:Attestation Provider (AP)|Attestation Provider> <artifacts:List of Trusted Entities (LoTE)|LoTE>.** The <components:Wallet Instance> validates the <artifacts:List of Trusted Entities (LoTE)|LoTE> signature in order to make sure the <artifacts:List of Trusted Entities (LoTE)|LoTE> is authentic. A good practice is to follow the [ETSI TS 319 102-1, Clause 5] for validating AdES digital signatures. Extra checks are performed in order to make sure the <artifacts:List of Trusted Entities (LoTE)|LoTE> is not outdated.
+**Step 11b: Validate the Attestation Provider trust source.** For a PID, PuB-EAA or EAA, the <components:Wallet Instance> invokes the [List of Trusted Entities Validation](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation) for the <artifacts:List of Trusted Entities (LoTE)|LoTE> of the corresponding type, with the signer certificate chain carried in the <credentials:Attestation>. For a QEAA, the <components:Wallet Instance> validates the pilot <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL> through the [Trust Anchor Validation Process](../sections/trust-evaluation-process.md#trust-anchor-validation-process) and uses no LoTE.
 
-**Step 11c: Validate Attestation signature.** The <components:Wallet Instance> checks the integrity and authenticity of the Attestation by validating the signature using the trust anchor identified in the <artifacts:List of Trusted Entities (LoTE)|LoTE>. If multiple Attestations were received, they are all validated.
+**Step 11c: Validate Attestation signature.** The <components:Wallet Instance> checks the integrity and authenticity of the Attestation. For a PID, PuB-EAA or EAA, it validates the signature using the trust anchor identified in the <artifacts:List of Trusted Entities (LoTE)|LoTE>. For a QEAA, it invokes [Sign/Seal Validation](../sections/trust-evaluation-process.md#signseal-validation-process) using the runtime-accepted trust context of step 11b. If multiple Attestations were received, they are all validated.
 
 After successful issuance, the <components:Wallet Instance> SHALL retain any accepted <artifacts:Embedded Disclosure Policy (EDP)|EDP> with the corresponding <credentials:Attestation> so that it can be evaluated during presentation [`AUTHZ-ISS-10`].
 

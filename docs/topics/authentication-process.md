@@ -21,13 +21,17 @@ The <components:Wallet Unit> SHALL output either `AUTHENTICATED` or `NON_AUTHENT
 
 The <components:Wallet Unit> SHALL verify the authenticity and integrity of the presented <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> as follows:
 
-1. **Retrieve the <artifacts:Trust Anchor>.** Obtain the <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> entry from the validated <artifacts:List of Trusted Entities (LoTE)|LoTE>. To select the correct entry, match the `issuer.organizationIdentifier` of the first certificate in the presented chain with the `TrustedEntitiesList[].TrustedEntity.TETradeName` value. The certificates in `TrustedEntityServices[].ServiceInformation.ServiceDigitalIdentity` constitute the <artifacts:Trust Anchor|Trust Anchors>.
-2. **Construct the certification path.** Build a path starting with the certificate issued by the <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> (`C_1`) and ending with the WRPAC presented by the <roles:Wallet-Relying Party (WRP)|WRP> (`C_n`). The simplest path consists of a single certificate, where `n = 1`. If the received chain is in end-entity-first order, it SHALL be normalized to the path order consumed by the shared validation algorithm.
-3. **Execute path validation.** Validate the certification path with the retrieved <artifacts:Trust Anchor> using the [X.509 Certificate Chain Validation](../sections/trust-evaluation-process.md#certificate-path-validation) algorithm.
-4. **Verify the signature.** Use the public key of the validated <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> to verify the <roles:Wallet-Relying Party (WRP)|WRP> signature over the artifact signed in the specific interaction. The certificate chain and signed artifact depend on the flow:
+1. **Verify the signature.** Fetch the WRPAC `x5c` chain `[C, I_1, ..., I_n]`. The certificate chain and signed artifact depend on the flow:
     - **Remote Flow:** The chain is carried in the `x5c` header of the <roles:Wallet-Relying Party (WRP)|WRP>-signed <artifacts:Request Object>. The <roles:Wallet-Relying Party (WRP)|WRP> is authenticated through the `x509_hash` Client Identifier Prefix.
     - **Proximity Flow:** The chain is carried in the <roles:Wallet-Relying Party (WRP)|WRP>-signed `ReaderAuth` element, in the COSE `x5chain` header with label `33`, of the mdoc request message.
     - **Issuance Flow:** The chain is carried in the `x5c` header of the <roles:Wallet-Relying Party (WRP)|WRP>-signed <artifacts:Credential Issuer Metadata>.
+
+    Use the public key of the WRPAC end-entity certificate `C` to verify the <roles:Wallet-Relying Party (WRP)|WRP> signature over the artifact signed in the specific interaction. If the signature is invalid, the Authentication outcome is `NON_AUTHENTICATED`.
+
+2. **Select the <artifacts:Trust Anchor>.** Fetch the `Requested-LoTE-Type` of the <roles:Provider of Wallet-Relying Party Access Certificate (Provider of WRPAC)|Provider of WRPAC> <artifacts:List of Trusted Entities (LoTE)|LoTE>, its `Issuance` service type identifier as `Requested-Service-Type`, and use the runtime validation in [List of Trusted Entities Validation](../sections/trust-evaluation-process.md#list-of-trusted-entities-validation) process. This process identifies the entity and the service, and selects the WRPAC <artifacts:Trust Anchor>. If its `Status` is `PROCESS_FAILED`, the Authentication outcome is `NON_AUTHENTICATED`; otherwise, the <artifacts:Trust Anchor> is its `Trust-Anchor` output.
+3. **Validate the certificate path.** Run the [X.509 Certificate Chain Validation](../sections/trust-evaluation-process.md#x509-certificate-chain-validation) with the path `I_n, ..., I_1, C` of the WRPAC chain (for n = 0, the path is `C`), the <artifacts:Trust Anchor> from step 2 as `trust_anchor` and the runtime validation time as `current_time`. If the path is `INVALID`, the Authentication outcome is `NON_AUTHENTICATED`.
+
+The Authentication outcome SHALL be `AUTHENTICATED` only if all three steps succeed.
 
 !!! warning "Mitigating Blind Signing Attacks"
 

@@ -44,29 +44,29 @@ The <roles:User> and <components:Wallet Unit> participate in runtime Issuance an
 
 ### Trust Infrastructure
 
-The APTITUDE Large Scale Pilot does not deploy the full-stack Member State and European Commission infrastructure assumed by the <components:EUDI Wallet> framework. For piloting purposes, APTITUDE WP2 operates the corresponding capabilities regarding registration, certificate issuance, and publication of <artifacts:List of Trusted Entities (LoTE)\|artifacts:Lists of Trusted Entities (LoTE)>. Together, these capabilities establish the <artifacts:Trust Anchor|Trust Anchors> and trust artifacts used by the [Trust Evaluation Processes](../sections/trust-evaluation-process.md).
+The APTITUDE Large Scale Pilot does not deploy the full-stack Member State and European Commission infrastructure assumed by the <components:EUDI Wallet> framework. For piloting purposes, APTITUDE WP2 operates the corresponding capabilities regarding registration, certificate issuance, and publication of the pilot <artifacts:Trusted List (TL)|TL> and <artifacts:List Of Trusted Lists (LOTL)|LOTL> for <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> services and the seven retained <artifacts:List of Trusted Entities (LoTE)|LoTE> types. Together, these capabilities establish the <artifacts:Trust Anchor|Trust Anchors> and trust artifacts used by the [Trust Evaluation Processes](../sections/trust-evaluation-process.md).
 
 The trust infrastructure employed for APTITUDE consists of:
 
 - The APTITUDE <components:Public Key Infrastructure (PKI)|Public Key Infrastructure (PKI)>, which issues and manages the X.509 certificates required by the ecosystem.
 - The Registration Service and <components:Register>, which record the identity, role, and authorization information of <roles:Wallet-Relying Party (WRP)|WRPs>.
 - The Certificate Issuance Services, which issue and manage <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPACs> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRCs> during onboarding. The PKI also issues and manages the Entity Sign/Seal Certificates used by entities.
-- The Publication Service, which signs and publishes the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+- The Publication Service, which signs and publishes the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE>, <artifacts:List Of Trusted Lists (LOTL)|LOTL> and <artifacts:Trusted List (TL)|TL>.
 - The Onboarding UI, which coordinates these services for each entity requesting onboarding.
 
 #### Public Key Infrastructure
 
-The APTITUDE PKI establishes the certificate chains used to authenticate the entities involved and to validate the <artifacts:Electronic Signature|signatures> or <artifacts:Electronic Seal|seals> they create. APTITUDE WP2 SHALL establish the <roles:Certificate Authority (CA)|Certificate Authorities (CAs)> shown below. The <artifacts:Trust Anchor> Certificate of each <roles:Certificate Authority (CA)|CA> SHALL be published in the corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE>.
+The APTITUDE PKI establishes the certificate chains used to authenticate the entities involved and to validate the <artifacts:Electronic Signature|signatures> or <artifacts:Electronic Seal|seals> they create. APTITUDE WP2 SHALL establish the <roles:Certificate Authority (CA)|Certificate Authorities (CAs)> shown below. The <artifacts:Trust Anchor> Certificate of each <roles:Certificate Authority (CA)|CA> for a retained <artifacts:List of Trusted Entities (LoTE)|LoTE> path SHALL be published in the corresponding <artifacts:List of Trusted Entities (LoTE)|LoTE>.
 
-The diagram is organised into four layers, from the APTITUDE WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow shows a <roles:Certificate Authority (CA)|CA> issuing a certificate to the corresponding entity, while a dashed line connects each <roles:Certificate Authority (CA)|CA> to the <artifacts:List of Trusted Entities (LoTE)|LoTE> in which its <artifacts:Trust Anchor> is published.
+The diagram is organised into four layers, from the APTITUDE WP2 Publication Service at the top to the APTITUDE entities at the bottom. A solid arrow shows a <roles:Certificate Authority (CA)|CA> issuing a certificate to the corresponding entity, while a dashed line connects each <roles:Certificate Authority (CA)|CA> to the <artifacts:List of Trusted Entities (LoTE)|LoTE> or <artifacts:Trusted List (TL)|TL> (for <credentials:Qualified Electronic Attestation of Attributes (QEAA)|QEAA> Sign/Seal Certificates) in which its <artifacts:Trust Anchor> is published.
 
 ```mermaid
 flowchart TB
     PubSvc["APTITUDE WP2 Publication Service"]:::publication
 
-    subgraph Lists["APTITUDE Lists of Trusted Entities"]
+    subgraph Lists["APTITUDE TL and LoTEs"]
         direction LR
-        QEAA_L["QEAA Providers LoTE"]
+        QEAA_L["Pilot TL"]
         PID_L["PID Providers LoTE"]
         PuBEAA_L["PuB-EAA Providers LoTE"]
         EAA_L["EAA Providers LoTE"]
@@ -98,7 +98,9 @@ flowchart TB
         Wallet_Entity["Wallet Provider"]
     end
 
-    PubSvc ---->|"publishes"| QEAA_L
+    LOTL["Pilot LOTL"]
+    LOTL -->|"TL signing certificates and location"| QEAA_L
+    PubSvc -->|"signs and publishes"| LOTL
     PubSvc -->|"publishes"| PID_L
     PubSvc -->|"publishes"| PuBEAA_L
     PubSvc -->|"publishes"| EAA_L
@@ -107,7 +109,7 @@ flowchart TB
     PubSvc -->|"publishes"| WRPRC_L
     PubSvc -->|"publishes"| Registrar_L
 
-    QEAA_L -. "Trust Anchor" .- QEAA_CA
+    QEAA_L -. "identifies QEAA service" .- QEAA_Entity
     PID_L -. "Trust Anchor" .- PID_CA
     PuBEAA_L -. "Trust Anchor" .- PuBEAA_CA
     EAA_L -. "Trust Anchor" .- EAA_CA
@@ -136,13 +138,13 @@ The <roles:Certificate Authority (CA)|CA> certificates published as <artifacts:T
 
 The trust infrastructure capabilities are exposed through the APTITUDE Onboarding System. In this specification, *Onboarding System* denotes the aggregate logical system, while *Service* denotes one of its constituent components (Registration, WRPAC Issuance, WRPRC Issuance, Sign/Seal Certificate Issuance or Publication).
 
-The Onboarding System operates on a trust infrastructure whose entities are established and whose <artifacts:Trust Anchor|Trust Anchors> are published before operational entity onboarding starts. Within APTITUDE, this one-time prerequisite is established out of band with no pilot software and is not part of the recurring onboarding flow. The recurring process enables APTITUDE operational entities to obtain the trust artifacts required for interactions within the ecosystem. Its detailed inputs, outputs, and entity-specific paths are defined in [Onboarding Process](../sections/onboarding-process.md).
+The Onboarding System operates on a trust infrastructure whose entities are established and whose <artifacts:Trust Anchor|Trust Anchors> are published before operational entity onboarding starts. Within APTITUDE, this one-time prerequisite is established out of band with no APTITUDE software and is not part of the recurring onboarding flow. The recurring process enables APTITUDE operational entities to obtain the trust artifacts required for interactions within the ecosystem. Its detailed inputs, outputs, and entity-specific paths are defined in [Onboarding Process](../sections/onboarding-process.md).
 
-The **Onboarding UI** is the APTITUDE-specific orchestrator and single point of contact for an entity requesting onboarding. It collects the submitted data and SHALL trigger the applicable stages in order: registration, certificate issuance, and, where applicable, publication or update of the relevant <artifacts:List of Trusted Entities (LoTE)|LoTE> entry:
+The **Onboarding UI** is the APTITUDE-specific orchestrator and single point of contact for an entity requesting onboarding. It collects the submitted data and SHALL trigger the applicable stages in order: registration, certificate issuance, and, where applicable, publication or update of the pilot <artifacts:Trusted List (TL)|TL> service entry for <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Providers> or the applicable retained <artifacts:List of Trusted Entities (LoTE)|LoTE> entry:
 
 1. A <roles:Wallet-Relying Party (WRP)|WRP> submits its registration data to the Registration Service. Within APTITUDE, registration SHALL be restricted to APTITUDE Partners; the Registration Service SHALL otherwise rely on the submitted self-declaration and SHALL NOT perform the identity proofing defined in [ETSI TS 119 461] or [CIR 2025/848, Article 6]. After successful verification, the Registration Service creates an active record in the <components:Register|WRP Register>.
 2. After the registration record is active, the <roles:Wallet-Relying Party (WRP)|WRP> requests the applicable <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC> and <artifacts:Wallet-Relying Party Registration Certificate (WRPRC)|WRPRC>. The certificate issuance stage also covers Sign/Seal Certificates where applicable.
-3. A notified <roles:Wallet-Relying Party (WRP)|WRP> submits its notifiable data, after certificate issuance, to the Publication Service, which creates or updates the applicable <artifacts:List of Trusted Entities (LoTE)|LoTE> entry. A <roles:Wallet Provider (WP)|Wallet Provider> follows a <processes:Notification|notification>-only path with respect to registration and WRP certificates: it bypasses those stages, obtains its Sign/Seal Certificate, and then submits its notifiable data to the Publication Service.
+3. A notified <roles:Wallet-Relying Party (WRP)|WRP> submits its notifiable data, after certificate issuance, to the Publication Service, which creates or updates the pilot <artifacts:Trusted List (TL)|TL> service entry for a <roles:Provider of Qualified Electronic Attestation of Attributes (QEAA Provider)|QEAA Provider> or the applicable retained <artifacts:List of Trusted Entities (LoTE)|LoTE> entry, as specified in [Onboarding Process](../sections/onboarding-process.md). A <roles:Wallet Provider (WP)|Wallet Provider> follows a <processes:Notification|notification>-only path with respect to registration and <roles:Wallet-Relying Party (WRP)|WRP> certificates: it bypasses those stages, obtains its Sign/Seal Certificate, and then submits its notifiable data to the Publication Service.
 4. A <roles:Relying Party (RP)|Relying Party> or <roles:Relying Party Intermediary (RPI)|Relying Party Intermediary> completes onboarding after certificate issuance and does not require a <artifacts:List of Trusted Entities (LoTE)|LoTE> entry; trust in it is anchored through the <artifacts:Wallet-Relying Party Access Certificate (WRPAC)|WRPAC>.
 
 The figure below provides a logical overview rather than a deployment architecture. The notification data store is an internal detail of the Onboarding Process and is not represented here. The component responsibilities, prerequisites, inputs, outputs, and entity-specific paths are specified in [Onboarding Process](../sections/onboarding-process.md).
@@ -152,13 +154,16 @@ flowchart TD
     ENTITY(["Operational entity<br/>submits applicable data"])
     REG["Register WRP;<br/>create active WRP Register record"]
     CERT["Issue applicable certificates<br/>WRPAC / WRPRC<br/>Sign/Seal where applicable"]
-    PUB["Publish or update applicable<br/>LoTE entry"]
+    PUB["Publish or update applicable<br/>retained LoTE entry"]
+    QPUB["Publish QEAA service in pilot TL<br/>referenced by pilot LOTL"]
     ACTIVE(["Entity is Operational"])
 
     ENTITY -->|"WRP"| REG
     ENTITY -->|"Wallet Providers"| CERT
     REG --> CERT
-    CERT -->|"PID / Attestation Provider<br/>or Wallet Provider"| PUB
+    CERT -->|"PID / PuB-EAA / EAA Provider<br/>or Wallet Provider"| PUB
+    CERT -->|"QEAA Provider"| QPUB
+    QPUB --> ACTIVE
     CERT -->|"RP / RP Intermediary"| ACTIVE
     PUB --> ACTIVE
     ACTIVE -.->|"repeat for next entity"| ENTITY
