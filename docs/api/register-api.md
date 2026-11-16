@@ -22,8 +22,7 @@ hide:
       url: '../../includes/register-oas3-api-read.yaml',
       dom_id: '#swagger-ui',
       presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
+        SwaggerUIBundle.presets.apis
       ],
       layout: "BaseLayout"
     });
